@@ -1,0 +1,4 @@
+---
+title: Cache
+geekdocCollapseSection: true
+---

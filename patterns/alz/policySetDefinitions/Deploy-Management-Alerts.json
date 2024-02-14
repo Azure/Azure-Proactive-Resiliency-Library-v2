@@ -1,0 +1,365 @@
+{
+  "type": "Microsoft.Authorization/policySetDefinitions",
+  "apiVersion": "2021-06-01",
+  "name": "Alerting-Management",
+  "properties": {
+    "displayName": "Deploy Azure Monitor Baseline Alerts for Management",
+    "description": "Initiative to deploy AMBA alerts relevant to the ALZ Management management group",
+    "metadata": {
+      "version": "1.0.3",
+      "category": "Monitoring",
+      "source": "https://github.com/Azure/azure-monitor-baseline-alerts/",
+      "alzCloudEnvironments": [
+        "AzureCloud"
+      ],
+      "_deployed_by_amba": true
+    },
+    "parameters": {
+      "ALZMonitorResourceGroupName": {
+        "type": "String",
+        "defaultValue": "ALZ-Monitoring-RG",
+        "metadata": {
+          "displayName": "ALZ Monitoring Resource Group Name",
+          "description": "Name of the resource group to deploy the ALZ monitoring resources to"
+        }
+      },
+      "ALZMonitorResourceGroupTags": {
+        "type": "Object",
+        "defaultValue": {
+          "_deployed_by_alz_monitor": true
+        },
+        "metadata": {
+          "displayName": "ALZ Monitoring Resource Group Tags",
+          "description": "Tags to apply to the resource group"
+        }
+      },
+      "ALZMonitorResourceGroupLocation": {
+        "type": "String",
+        "defaultValue": "centralus",
+        "metadata": {
+          "displayName": "ALZ Monitoring Resource Group Location",
+          "description": "Location of the resource group"
+        }
+      },
+      "AATotalJobAlertSeverity": {
+        "type": "String",
+        "defaultValue": "2",
+        "allowedValues": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "metadata": {
+          "displayName": "AA Total Job Alert Severity",
+          "description": "Severity of the alert"
+        }
+      },
+      "AATotalJobAlertWindowSize": {
+        "type": "string",
+        "defaultValue": "PT5M",
+        "allowedValues": [
+          "PT1M",
+          "PT5M",
+          "PT15M",
+          "PT30M",
+          "PT1H",
+          "PT6H",
+          "PT12H",
+          "P1D"
+        ],
+        "metadata": {
+          "displayName": "AA Total Job Alert Window Size",
+          "description": "Window size for the alert"
+        }
+      },
+      "AATotalJobAlertEvaluationFrequency": {
+        "type": "string",
+        "defaultValue": "PT1M",
+        "allowedValues": [
+          "PT1M",
+          "PT5M",
+          "PT15M",
+          "PT30M",
+          "PT1H"
+        ],
+        "metadata": {
+          "displayName": "AA Total Job Alert Evaluation Frequency",
+          "description": "Evaluation frequency for the alert"
+        }
+      },
+      "AATotalJobAlertPolicyEffect": {
+        "type": "string",
+        "defaultValue": "deployIfNotExists",
+        "allowedValues": [
+          "deployIfNotExists",
+          "disabled"
+        ],
+        "metadata": {
+          "displayName": "AA Total Job Alert Policy Effect",
+          "description": "Policy effect for the alert"
+        }
+      },
+      "AATotalJobAlertAlertState": {
+        "type": "string",
+        "defaultValue": "true",
+        "metadata": {
+          "displayName": "AA Total Job Alert State",
+          "description": "Alert state for the alert"
+        }
+      },
+      "AATotalJobAlertThreshold": {
+        "type": "string",
+        "defaultValue": "20",
+        "metadata": {
+          "displayName": "AA Total Job Alert Threshold",
+          "description": "Threshold for the alert"
+        }
+      },
+      "RVBackupHealthMonitorPolicyEffect": {
+        "type": "string",
+        "defaultValue": "modify",
+        "allowedValues": [
+          "modify",
+          "audit",
+          "disabled"
+        ],
+        "metadata": {
+          "displayName": "RV Backup Health Monitor Policy Effect",
+          "description": "Policy effect for the alert, modify will create the alert if it does not exist and enable it on your Recovery Vaults, audit will only audit if alerting is enabled on Recovery Vaults, disabled will not create the alert on Recovery Vaults"
+        }
+      },
+      "StorageAccountAvailabilityAlertSeverity": {
+        "type": "String",
+        "defaultValue": "1",
+        "allowedValues": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "metadata": {
+          "displayName": "Storage Account Availability Alert Severity",
+          "description": "Severity of the alert"
+        }
+      },
+      "StorageAccountAvailabilityWindowSize": {
+        "type": "string",
+        "defaultValue": "PT5M",
+        "allowedValues": [
+          "PT1M",
+          "PT5M",
+          "PT15M",
+          "PT30M",
+          "PT1H",
+          "PT6H",
+          "PT12H",
+          "P1D"
+        ],
+        "metadata": {
+          "displayName": "Storage Account Availability Alert Window Size",
+          "description": "Window size for the alert"
+        }
+      },
+      "StorageAccountAvailabilityFrequency": {
+        "type": "string",
+        "defaultValue": "PT5M",
+        "allowedValues": [
+          "PT1M",
+          "PT5M",
+          "PT15M",
+          "PT30M",
+          "PT1H"
+        ],
+        "metadata": {
+          "displayName": "Storage Account Availability Alert Evaluation Frequency",
+          "description": "Evaluation frequency for the alert"
+        }
+      },
+      "StorageAccountAvailabilityPolicyEffect": {
+        "type": "string",
+        "defaultValue": "deployIfNotExists",
+        "allowedValues": [
+          "deployIfNotExists",
+          "disabled"
+        ],
+        "metadata": {
+          "displayName": "Storage Account Availability Alert Policy Effect",
+          "description": "Policy effect for the alert, deployIfNotExists will create the alert if it does not exist, disabled will not create the alert"
+        }
+      },
+      "StorageAccountAvailabilityAlertState": {
+        "type": "string",
+        "defaultValue": "true",
+        "metadata": {
+          "displayName": "Storage Account Availability Alert State",
+          "description": "Alert state for the alert"
+        }
+      },
+      "StorageAccountAvailabilityThreshold": {
+        "type": "string",
+        "defaultValue": "90",
+        "metadata": {
+          "displayName": "Storage Account Availability Alert Threshold",
+          "description": "Threshold for the alert"
+        }
+      },
+      "StorageAccountDeletePolicyEffect": {
+        "type": "string",
+        "defaultValue": "deployIfNotExists",
+        "allowedValues": [
+          "deployIfNotExists",
+          "disabled"
+        ],
+        "metadata": {
+          "displayName": "Storage Account Delete Alert Policy Effect",
+          "description": "Policy effect for the alert, deployIfNotExists will create the alert if it does not exist, disabled will not create the alert"
+        }
+      },
+      "StorageAccountDeleteAlertState": {
+        "type": "string",
+        "defaultValue": "true",
+        "metadata": {
+          "displayName": "Storage Account Delete Alert State",
+          "description": "Alert state for the alert"
+        }
+      },
+      "activityLAWDeleteAlertState": {
+        "type": "string",
+        "defaultValue": "true",
+        "metadata": {
+          "displayName": "Activity Log Alert Delete Alert State",
+          "description": "Alert state for the alert"
+        }
+      },
+      "activityLAWKeyRegenAlertState": {
+        "type": "string",
+        "defaultValue": "true",
+        "metadata": {
+          "displayName": "Activity Log Alert Key Regen Alert State",
+          "description": "Alert state for the alert"
+        }
+      }
+    },
+    "policyDefinitions": [
+      {
+        "policyDefinitionReferenceId": "ALZ_activityLAWDelete",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/contoso/providers/Microsoft.Authorization/policyDefinitions/Deploy_activitylog_LAWorkspace_Delete",
+        "parameters": {
+          "enabled": {
+            "value": "[[parameters('activityLAWDeleteAlertState')]"
+          },
+          "alertResourceGroupName": {
+            "value": "[[parameters('ALZMonitorResourceGroupName')]"
+          },
+          "alertResourceGroupTags": {
+            "value": "[[parameters('ALZMonitorResourceGroupTags')]"
+          },
+          "alertResourceGroupLocation": {
+            "value": "[[parameters('ALZMonitorResourceGroupLocation')]"
+          }
+        }
+      },
+      {
+        "policyDefinitionReferenceId": "ALZ_activityLAWKeyRegen",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/contoso/providers/Microsoft.Authorization/policyDefinitions/Deploy_activitylog_LAWorkspace_KeyRegen",
+        "parameters": {
+          "enabled": {
+            "value": "[[parameters('activityLAWKeyRegenAlertState')]"
+          },
+          "alertResourceGroupName": {
+            "value": "[[parameters('ALZMonitorResourceGroupName')]"
+          },
+          "alertResourceGroupTags": {
+            "value": "[[parameters('ALZMonitorResourceGroupTags')]"
+          },
+          "alertResourceGroupLocation": {
+            "value": "[[parameters('ALZMonitorResourceGroupLocation')]"
+          }
+        }
+      },
+      {
+        "policyDefinitionReferenceId": "ALZ_AATotalJob",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/contoso/providers/Microsoft.Authorization/policyDefinitions/Deploy_AA_TotalJob_Alert",
+        "parameters": {
+          "severity": {
+            "value": "[[parameters('AATotalJobAlertSeverity')]"
+          },
+          "windowSize": {
+            "value": "[[parameters('AATotalJobAlertWindowSize')]"
+          },
+          "evaluationFrequency": {
+            "value": "[[parameters('AATotalJobAlertEvaluationFrequency')]"
+          },
+          "effect": {
+            "value": "[[parameters('AATotalJobAlertPolicyEffect')]"
+          },
+          "enabled": {
+            "value": "[[parameters('AATotalJobAlertAlertState')]"
+          },
+          "threshold": {
+            "value": "[[parameters('AATotalJobAlertThreshold')]"
+          }
+        }
+      },
+      {
+        "policyDefinitionReferenceId": "ALZ_RVBackupHealth",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/contoso/providers/Microsoft.Authorization/policyDefinitions/Deploy_RecoveryVault_BackupHealthMonitor_Alert",
+        "parameters": {
+          "effect": {
+            "value": "[[parameters('RVBackupHealthMonitorPolicyEffect')]"
+          }
+        }
+      },
+      {
+        "policyDefinitionReferenceId": "ALZ_StorageAccountAvailability",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/contoso/providers/Microsoft.Authorization/policyDefinitions/Deploy_StorageAccount_Availability_Alert",
+        "parameters": {
+          "severity": {
+            "value": "[[parameters('StorageAccountAvailabilityAlertSeverity')]"
+          },
+          "windowSize": {
+            "value": "[[parameters('StorageAccountAvailabilityWindowSize')]"
+          },
+          "evaluationFrequency": {
+            "value": "[[parameters('StorageAccountAvailabilityFrequency')]"
+          },
+          "effect": {
+            "value": "[[parameters('StorageAccountAvailabilityPolicyEffect')]"
+          },
+          "enabled": {
+            "value": "[[parameters('StorageAccountAvailabilityAlertState')]"
+          },
+          "threshold": {
+            "value": "[[parameters('StorageAccountAvailabilityThreshold')]"
+          }
+        }
+      },
+      {
+        "policyDefinitionReferenceId": "ALZ_activitySADelete",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/contoso/providers/Microsoft.Authorization/policyDefinitions/Deploy_activitylog_StorageAccount_Delete",
+        "parameters": {
+          "effect": {
+            "value": "[[parameters('StorageAccountDeletePolicyEffect')]"
+          },
+          "enabled": {
+            "value": "[[parameters('StorageAccountDeleteAlertState')]"
+          },
+          "alertResourceGroupName": {
+            "value": "[[parameters('ALZMonitorResourceGroupName')]"
+          },
+          "alertResourceGroupTags": {
+            "value": "[[parameters('ALZMonitorResourceGroupTags')]"
+          },
+          "alertResourceGroupLocation": {
+            "value": "[[parameters('ALZMonitorResourceGroupLocation')]"
+          }
+        }
+      }
+    ],
+    "policyType": "Custom",
+    "policyDefinitionGroups": null
+  }
+}

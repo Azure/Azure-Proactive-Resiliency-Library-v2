@@ -1,0 +1,78 @@
+<!--
+Alert List
+-->
+
+<!-- Get resouce type and category from page path -->
+{{ $pageDir := path.Dir $.Page.File.Path }}
+{{ $parentDir := path.Dir $pageDir }}
+{{ $category := path.BaseName $parentDir }}
+{{ $type := path.BaseName $pageDir }}
+
+
+{{ with (index (index $.Site.Data $category) $type) }}
+  <!-- Create a table of all alerts under category/type -->
+  <div>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+      <!-- Loop through alerts under category/type -->
+      {{ range sort .alerts "name" "asc" }}
+        {{ if or (eq .visible true) (eq $.Site.Params.ambaDevMode true) }}
+          <tr>
+            <td><a href="#{{ anchorize .name }}">{{ .name }}</a></td>
+            <td>{{ .type }}</td>
+            <td>{{ .description }}</td>
+          </tr>
+        {{ end }}
+      {{ end }}
+    </table>
+  </div>
+
+  <br>
+
+  <h4>Dashboards:</h4>
+  {{ partial "templates/dashboard-tabs.html" (dict "type" $type "alerts" .alerts) }}
+
+  <!-- Create a detail entry for each alert under category/type -->
+  {{ range sort .alerts "name" "asc" }}
+    {{ if or (eq .visible true) (eq $.Site.Params.ambaDevMode true) }}
+    <br><br>
+      <div id="{{ anchorize .name }}">
+        <hr style="height: 4px;">
+        <h3>{{ .name }} - {{ .type }} Alert</h3>
+        <div style="text-indent: 1%;"><i>{{ .description }}</i></div>
+        <h4>Recommended Properties:</h4>
+        <table>
+          {{ range $key, $value := .properties }}
+            <tr>
+              <td>{{ $key }}</td>
+              <td>
+                {{ if or (reflect.IsMap $value) (reflect.IsSlice $value) }}
+                  {{ transform.Highlight (encoding.Jsonify (dict "indent" "  ")  $value) "json" }}
+                {{ else if eq $key "query" }}
+                  {{ transform.Highlight $value "plaintext" }}
+                {{ else }}
+                  {{ $value }}
+                {{ end }}
+              </td>
+            </tr>
+          {{ end }}
+        </table>
+        <h4>References:</h4>
+        <table>
+          {{ range .references }}
+            <tr>
+              <td><a href="{{ .url }}" target="_blank">{{ .name }}</a></td>
+              {{ $url := path.Join $.Page.File.Dir .template }}
+            </tr>
+          {{ end }}
+        </table>
+        <h4>Templates:</h4>
+        {{ partial "templates/template-tabs" (dict "category" $category "type" $type "alert" .) }}
+      </div>
+    {{ end }}
+  {{ end }}
+{{ end }}
