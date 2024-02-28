@@ -1,4 +1,0 @@
----
-title: ContainerRegistry
-geekdocCollapseSection: true
----

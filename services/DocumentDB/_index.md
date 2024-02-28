@@ -1,4 +1,0 @@
----
-title: DocumentDB
-geekdocCollapseSection: true
----

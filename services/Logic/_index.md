@@ -1,4 +1,0 @@
----
-title: Logic
-geekdocCollapseSection: true
----
