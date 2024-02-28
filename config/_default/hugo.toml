@@ -1,5 +1,5 @@
-baseURL = "https://azure.github.io/azure-monitor-baseline-alerts"
-title = "Azure Monitor Baseline Alerts"
+baseURL = "https://azure.github.io/Azure-Proactive-Resiliency-Library"
+title = "Azure Proactive Resiliency Library"
 theme = "hugo-geekdoc"
 themesDir = "docs/themes"
 
@@ -73,7 +73,7 @@ enableRobotsTXT = true
 
   # (Optional, default static/brand.svg) Set the path to a logo for the Geekdoc
   # relative to your 'static/' folder.
-  geekdocLogo = "img/amba_logo_thumb.png"
+  geekdocLogo = "img/aprl-white.png"
 
   # (Optional, default false) Render menu from data file in 'data/menu/main.yaml'.
   # See also https://geekdocs.de/usage/menus/#bundle-menu.
@@ -93,7 +93,7 @@ enableRobotsTXT = true
 
   # (Optional, default none) Set source repository location. Used for 'Edit page' links.
   # You can also specify this parameter per page in front matter.
-  geekdocRepo = "https://github.com/Azure/azure-monitor-baseline-alerts"
+  geekdocRepo = "https://azure.github.io/Azure-Proactive-Resiliency-Library/"
 
   # (Optional, default none) Enable 'Edit page' links. Requires 'geekdocRepo' param
   # and the path must point to the parent directory of the 'content' folder.
