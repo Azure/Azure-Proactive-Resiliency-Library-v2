@@ -386,4 +386,8 @@ Don't forget you can see your changes live by running a local copy of the APRL w
 
 1. Sometimes the local version of the website may show some inconsistencies that don't reflect the content you have created.
 
-   - If this happens, kill the Hugo local web server by pressing **CTRL** **+** **C** and then restart the Hugo web server by running `hugo server -D` from the root of the repo.
+{{< hint type=note >}}
+
+If this happens, kill the Hugo local web server by pressing **CTRL** **+** **C** and then restart the Hugo web server by running `hugo server -D` from the root of the repo.
+
+{{< /hint >}}
