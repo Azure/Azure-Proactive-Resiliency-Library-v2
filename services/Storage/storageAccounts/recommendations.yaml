@@ -1,0 +1,20 @@
+- recommendation: ST-1
+  category: Availability
+  impact: High
+  state: Preview
+  argQueryAvailable: "Yes"
+  guid: 1
+  verified: true
+  visible: true
+  tags:
+    - AVD
+  guidance: "Data in an Azure Storage account is always replicated three times in the primary region. Azure Storage offers other options for how your data is replicated in the primary or paired region:
+    - LRS synchronously replicates data 3 times in a single physical location. It is the least expensive replication but not recommended for apps with high availability and durability. LRS provides eleven 9s durability.
+    - ZRS copies data synchronously across 3 availability zones in the primary region. ZRS is recommended for apps requiring high availability across zones. ZRS provides twelve 9s durability.
+    - GRS replicates an additional 3 copies to the secondary region and provides sixteen 9s availability.
+    - GZRS provides both high availability and redundancy across geo-replication. It provides sixteen 9s durability over a given year."
+  references:
+    - name: Monitoring Availability
+      url: "https://learn.microsoft.com/troubleshoot/azure/azure-storage/storage-monitoring-diagnosing-troubleshooting?toc=%2Fazure%2Fstorage%2Fblobs%2Ftoc.json&tabs=dotnet#monitoring-availability"
+    - name: Supported metrics for Microsoft.Storage/storageAccounts
+      url: "https://learn.microsoft.com/azure/azure-monitor/reference/supported-metrics/microsoft-storage-storageaccounts-metrics"

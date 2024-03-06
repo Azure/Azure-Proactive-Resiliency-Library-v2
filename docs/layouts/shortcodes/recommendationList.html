@@ -21,7 +21,7 @@ Recommendation List
         <th>ARG Query Available</th>
       </tr>
       <!-- Loop through recommendations under category/type -->
-      {{ range sort .alerts "recommendation" "asc" }}
+      {{ range sort .recommendations "recommendation" "asc" }}
         {{ if or (eq .visible true) (eq $.Site.Params.ambaDevMode true) }}
           <tr>
             <td><a href="#{{ anchorize .recommendation }}">{{ .recommendation }}</a></td>
@@ -35,45 +35,24 @@ Recommendation List
     </table>
   </div>
 
-  <br>
-
-  <h4>Dashboards:</h4>
-  {{ partial "templates/dashboard-tabs.html" (dict "type" $type "alerts" .alerts) }}
-
   <!-- Create a detail entry for each recommendation under category/type -->
-  {{ range sort .alerts "recommendation" "asc" }}
+  {{ range sort .recommendations "recommendation" "asc" }}
     {{ if or (eq .visible true) (eq $.Site.Params.ambaDevMode true) }}
     <br><br>
       <div id="{{ anchorize .recommendation }}">
         <hr style="height: 4px;">
-        <h3>{{ .recommendation }} - {{ .category }} Alert</h3>
+        <h3>{{ .recommendation }} - {{ .category }} Recommendation/h3>
         <div style="text-indent: 1%;"><i>{{ .description }}</i></div>
-        <h4>Recommended Properties:</h4>
-        <table>
-          {{ range $key, $value := .properties }}
-            <tr>
-              <td>{{ $key }}</td>
-              <td>
-                {{ if or (reflect.IsMap $value) (reflect.IsSlice $value) }}
-                  {{ transform.Highlight (encoding.Jsonify (dict "indent" "  ")  $value) "json" }}
-                {{ else if eq $key "query" }}
-                  {{ transform.Highlight $value "plaintext" }}
-                {{ else }}
-                  {{ $value }}
-                {{ end }}
-              </td>
-            </tr>
-          {{ end }}
-        </table>
         <h4>References:</h4>
         <table>
           {{ range .references }}
             <tr>
-              <td><a href="{{ .url }}" target="_blank">{{ .recommendation }}</a></td>            </tr>
+              <td><a href="{{ .url }}" target="_blank">{{ .recommendation }}</a></td>
+            </tr>
           {{ end }}
         </table>
-        <h4>Templates:</h4>
-        {{ partial "templates/template-tabs" (dict "category" $category "type" $type "alert" .) }}
+        <h4>Query/Scripts:</h4>
+        {{ partial "templates/template-tabs" (dict "category" $category "type" $type "recommendation" .) }}
       </div>
     {{ end }}
   {{ end }}
