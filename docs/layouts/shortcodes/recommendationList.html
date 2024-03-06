@@ -3,57 +3,78 @@ Recommendation List
 -->
 
 <!-- Get resouce type and category from page path -->
-{{ $pageDir := path.Dir $.Page.File.Path }}
-{{ $parentDir := path.Dir $pageDir }}
-{{ $category := path.BaseName $parentDir }}
-{{ $type := path.BaseName $pageDir }}
+{{ $pageDir := path.Dir $.Page.File.Path }} {{ $parentDir := path.Dir $pageDir
+}} {{ $category := path.BaseName $parentDir }} {{ $type := path.BaseName
+$pageDir }} {{ with (index (index $.Site.Data $category) $type) }}
+<!-- Create a table of all recommendations under category/type -->
+<div>
+  <table>
+    <tr>
+      <th>Recommendation</th>
+      <th>Category</th>
+      <th>WAF Pillars</th>
+      <th>Impact</th>
+      <th>State</th>
+      <th>ARG Query Available</th>
+    </tr>
+    <!-- Loop through recommendations under category/type -->
+    {{ range sort .recommendations "recommendation" "asc" }} {{ if or (eq
+    .visible true) (eq $.Site.Params.ambaDevMode true) }}
+    <tr>
+      <td>
+        <a href="#{{ anchorize .recommendation }}">{{ .recommendation }}</a>
+      </td>
+      <td>{{ .category }}</td>
+      <td>
+        {{ $wafPillars := .wafPillars }} {{ $length := len $wafPillars }} {{
+        $delimiter := ", " }} {{ range $index, $value := .wafPillars }} {{ trim
+        (printf "%s" $value) " " }}{{ if lt (add $index 1) $length }}{{
+        $delimiter }}{{ end }} {{ end }}
+      </td>
+      <td>{{ .impact }}</td>
+      <td>{{ .state }}</td>
+      <td>{{ .argQueryAvailable }}</td>
+    </tr>
+    {{ end }} {{ end }}
+  </table>
+</div>
 
-
-{{ with (index (index $.Site.Data $category) $type) }}
-  <!-- Create a table of all recommendations under category/type -->
-  <div>
-    <table>
-      <tr>
-        <th>Recommendation</th>
-        <th>Category</th>
-        <th>Impact</th>
-        <th>State</th>
-        <th>ARG Query Available</th>
-      </tr>
-      <!-- Loop through recommendations under category/type -->
-      {{ range sort .recommendations "recommendation" "asc" }}
-        {{ if or (eq .visible true) (eq $.Site.Params.ambaDevMode true) }}
-          <tr>
-            <td><a href="#{{ anchorize .recommendation }}">{{ .recommendation }}</a></td>
-            <td>{{ .category }}</td>
-            <td>{{ .impact }}</td>
-            <td>{{ .state }}</td>
-            <td>{{ .argQueryAvailable }}</td>
-          </tr>
-        {{ end }}
-      {{ end }}
-    </table>
-  </div>
-
-  <!-- Create a detail entry for each recommendation under category/type -->
-  {{ range sort .recommendations "recommendation" "asc" }}
-    {{ if or (eq .visible true) (eq $.Site.Params.ambaDevMode true) }}
-    <br><br>
-      <div id="{{ anchorize .recommendation }}">
-        <hr style="height: 4px;">
-        <h3>{{ .recommendation }} - {{ .category }} Recommendation/h3>
-        <div style="text-indent: 1%;"><i>{{ .description }}</i></div>
-        <h4>References:</h4>
-        <table>
-          {{ range .references }}
-            <tr>
-              <td><a href="{{ .url }}" target="_blank">{{ .recommendation }}</a></td>
-            </tr>
-          {{ end }}
-        </table>
-        <h4>Query/Scripts:</h4>
-        {{ partial "templates/template-tabs" (dict "category" $category "type" $type "recommendation" .) }}
-      </div>
+<!-- Create a detail entry for each recommendation under category/type -->
+{{ range sort .recommendations "recommendation" "asc" }} {{ if or (eq .visible
+true) (eq $.Site.Params.ambaDevMode true) }}
+<br /><br />
+<div id="{{ anchorize .recommendation }}">
+  <hr style="height: 5px" />
+  <h3>{{ .recommendation }}</h3>
+  <h4>
+    <span style="font-weight: bold">Category:</span>&nbsp;
+    <span style="font-weight: normal">{{ .category }}</span>
+  </h4>
+  <h4>
+    <span style="font-weight: bold">WAF Pillars:</span>&nbsp; {{ $length := len
+    .wafPillars }}
+    <span style="font-weight: normal">
+      {{ $delimiter := ", " }} {{ range $index, $value := .wafPillars }} {{ trim
+      (printf "%s" $value) " " }}{{ if lt (add $index 1) $length }}{{ $delimiter
+      }}{{ end }} {{ end }}
+    </span>
+  </h4>
+  <h4>
+    <span style="font-weight: bold">Impact:</span>&nbsp;
+    <span style="font-weight: normal">{{ .impact }}</span>
+  </h4>
+  <h4>Guidance:</h4>
+  <pre>{{ .guidance }}</pre>
+  <h5 style="margin-bottom: 5px">References:</h5>
+  <table style="margin-top: 5px">
+    {{ range .references }}
+    <tr>
+      <td><a href="{{ .url }}" target="_blank">{{ .name }}</a></td>
+    </tr>
     {{ end }}
-  {{ end }}
-{{ end }}
+  </table>
+  <h4>Query/Scripts:</h4>
+  {{ partial "templates/template-tabs" (dict "category" $category "type" $type
+  "recommendation" .) }}
+</div>
+{{ end }} {{ end }} {{ end }}
