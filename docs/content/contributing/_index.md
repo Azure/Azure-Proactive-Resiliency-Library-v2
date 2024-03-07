@@ -3,6 +3,8 @@ title: Contributor Guide
 weight: 15
 geekdocCollapseSection: true
 ---
+
+---
 {{< hint type=warning >}}
 
 Currently we can only accept contributions from Microsoft FTEs. In the future we will look to change this
