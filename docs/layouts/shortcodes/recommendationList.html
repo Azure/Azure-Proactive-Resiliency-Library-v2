@@ -22,16 +22,16 @@ $pageDir }} {{ with (index (index $.Site.Data $category) $type) }}
     .visible true) (eq $.Site.Params.ambaDevMode true) }}
     <tr>
       <td>
-        <a href="#{{ anchorize .recommendation }}">{{ .recommendation }}</a>
+        <a href="#{{ anchorize .recommendation }}">{{ .pageTitle }}</a>
       </td>
-      <td>{{ .category }}</td>
+      <td>{{ .recommendationCategory }}</td>
       <td>
         {{ $wafPillars := .wafPillars }} {{ $length := len $wafPillars }} {{
         $delimiter := ", " }} {{ range $index, $value := .wafPillars }} {{ trim
         (printf "%s" $value) " " }}{{ if lt (add $index 1) $length }}{{
         $delimiter }}{{ end }} {{ end }}
       </td>
-      <td>{{ .impact }}</td>
+      <td>{{ .recommendationImpact }}</td>
       <td>{{ .state }}</td>
       <td>{{ .argQueryAvailable }}</td>
     </tr>
@@ -45,10 +45,10 @@ true) (eq $.Site.Params.ambaDevMode true) }}
 <br /><br />
 <div id="{{ anchorize .recommendation }}">
   <hr style="height: 5px" />
-  <h3>{{ .recommendation }}</h3>
+  <h3>{{ .pageTitle }}</h3>
   <h4>
     <span style="font-weight: bold">Category:</span>&nbsp;
-    <span style="font-weight: normal">{{ .category }}</span>
+    <span style="font-weight: normal">{{ .recommendationCategory }}</span>
   </h4>
   <h4>
     <span style="font-weight: bold">WAF Pillars:</span>&nbsp; {{ $length := len
@@ -61,19 +61,19 @@ true) (eq $.Site.Params.ambaDevMode true) }}
   </h4>
   <h4>
     <span style="font-weight: bold">Impact:</span>&nbsp;
-    <span style="font-weight: normal">{{ .impact }}</span>
+    <span style="font-weight: normal">{{ .recommendationImpact }}</span>
   </h4>
   <h4>Guidance:</h4>
-  <pre>{{ .guidance }}</pre>
-  <h5 style="margin-bottom: 5px">References:</h5>
+  <pre>{{ .longDescription }}</pre>
+  <h5 style="margin-bottom: 5px">Learn More:</h5>
   <table style="margin-top: 5px">
-    {{ range .references }}
+    {{ range .learnMoreLink }}
     <tr>
       <td><a href="{{ .url }}" target="_blank">{{ .name }}</a></td>
     </tr>
     {{ end }}
   </table>
-  <h4>Query/Scripts:</h4>
+  <h4>ARG Query/Scripts:</h4>
   {{ partial "templates/template-tabs" (dict "category" $category "type" $type
   "recommendation" .) }}
 </div>

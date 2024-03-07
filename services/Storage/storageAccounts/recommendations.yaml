@@ -1,59 +1,65 @@
-- recommendation: ST-1 - Ensure that Storage Account configuration is at least Zone redundant
-  category: Availability
+- pageTitle: ST-1 - Ensure that Storage Account configuration is at least Zone redundant
+  recommendationCategory: Availability
   wafPillars:
     - Reliability
-  impact: High
+  recommendationImpact: High
   state: Preview
   argQueryAvailable: "Yes"
-  guid: 1
+  recommendationTypeId: 1
   verified: true
   visible: true
-  tags:
+  workloads:
     - AVD
-  guidance: |
+  longDescription: |
     Data in an Azure Storage account is always replicated three times in the primary region. Azure Storage offers other options for how your data is replicated in the primary or paired region:
 
       - LRS synchronously replicates data 3 times in a single physical location. It is the least expensive replication but not recommended for apps with high availability and durability. LRS provides eleven 9s durability.
       - ZRS copies data synchronously across 3 availability zones in the primary region. ZRS is recommended for apps requiring high availability across zones. ZRS provides twelve 9s durability.
       - GRS replicates an additional 3 copies to the secondary region and provides sixteen 9s availability.
       - GZRS provides both high availability and redundancy across geo-replication. It provides sixteen 9s durability over a given year.
-  references:
+  potentialBenefits: |
+    Enhanced data redundancy and boosts availability.
+  learnMoreLink:
     - name: Azure Storage Redundancy
       url: "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy"
 
-- recommendation: ST-2 - Do not use classic Storage Account
-  category: Governance
+- pageTitle: ST-2 - Do not use classic Storage Account
+  recommendationCategory: Governance
   wafPillars:
     - Reliability
-  impact: High
+  recommendationImpact: High
   state: Preview
   argQueryAvailable: "Yes"
-  guid: 2
+  recommendationTypeId: 2
   verified: true
   visible: true
-  tags:
+  workloads:
     - AVD
-  guidance: |
+  longDescription: |
     Azure classic Storage Account will retire 31 august 2024. So migrate all workload from classic storage to v2.
-  references:
+  potentialBenefits: |
+    Improved security and modern features.
+  learnMoreLink:
     - name: Storage Account Retirement Announcement
       url: "https://azure.microsoft.com/updates/classic-azure-storage-accounts-will-be-retired-on-31-august-2024/y"
 
-- recommendation: ST-3 - Ensure Performance tier is set as per workload
-  category: System Efficiency
+- pageTitle: ST-3 - Ensure Performance tier is set as per workload
+  recommendationCategory: System Efficiency
   wafPillars:
     - Performance
     - Reliability
-  impact: Medium
+  recommendationImpact: Medium
   state: Preview
   argQueryAvailable: "Yes"
-  guid: 3
+  recommendationTypeId: 3
   verified: true
   visible: true
-  tags:
+  workloads:
     - AVD
-  guidance: |
+  longDescription: |
     Consider using appropriate storage performance tier for standard storage / block blob / append blob / file-share and page blob. Each workload scenario requires appropriate Performance tier and its important that based on the type of transaction and blob type/file type appropriate performance tier is selected. Failing to do so will create performance bottleneck.
-  references:
+  potentialBenefits: |
+    Optimized performance for diverse workloads.
+  learnMoreLink:
     - name: Storage Account Retirement Announcement
       url: "https://learn.microsoft.com/azure/storage/common/storage-account-overview#performance-tiers"
