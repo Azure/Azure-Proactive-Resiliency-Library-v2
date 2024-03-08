@@ -1,5 +1,5 @@
 ---
-title: Welcome to  Azure Proactive Resiliency Library (APRL)
+title: Welcome to Azure Proactive Resiliency Library (APRL)
 geekdocNav: false
 geekdocAlign: center
 geekdocAnchor: false
