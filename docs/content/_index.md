@@ -1,5 +1,5 @@
 ---
-title: Welcome to Azure Monitor Baseline Alerts
+title: Welcome to Azure Proactive Resiliency Library (APRL)
 geekdocNav: false
 geekdocAlign: center
 geekdocAnchor: false
@@ -8,7 +8,7 @@ geekdocAnchor: false
 {{< button size="large" relref="welcome/" >}}Getting Started{{< /button >}}
 
 {{< hint type=tip >}}
-Please review and leave issues on things you find, via [GitHub Issues](https://github.com/Azure/azure-monitor-baseline-alerts/issues)
-{{< /hint >}}
 
-<img src="img/amba_logo.png" width=40%>
+Please review and leave issues on things you find, via [GitHub Issues](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/issues)
+
+{{< /hint >}}

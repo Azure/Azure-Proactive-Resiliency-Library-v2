@@ -1,35 +1,43 @@
 ---
-title: Welcome
+title: Home
 weight: 0
 ---
 
 ---
-Welcome to the Azure Monitor Baseline Alerts (AMBA) site!  The purpose of this site is to provide best practice guidance around key alerts metrics and their thresholds.
 
-This sites is broken down into two main sections:
-1. **Services:** This section provides guidance for individual Azure services.  For each service, there is a list of key alert metrics and the recommended thresholds.
+Welcome to the home of the Azure Proactive Resiliency Library (APRL).
 
-2. **Patterns / Scenarios:** This section provides guidance for common patterns / scenarios (like Azure Landing Zones), as well as policy definition and initiatives for deploying the alerts in your environment.
+{{< figure src="../img/aprl-white.png" width="40%" >}}
 
-## Why is configuring alerts important?
----
-When deploying Azure resources, it is crucial to configure alerts to ensure the health, performance, and security of your resources. By setting up alerts, you can proactively monitor your resources and take timely actions to address any issues that may arise.
+This library is built with the intention of being a staging area for guidance and recommendations that can be used by customers, partners and the field in Well-Architected Framework reliability engagements/assessments; with the intent of the guidance and recommendations being promoted, once tested and validated with customers and partners, into the official [Well-Architected Framework documentation](https://aka.ms/waf).
 
-Here are the key reasons why configuring alerts is important:
+The library also contains supporting [Azure Resource Graph (ARG)](https://learn.microsoft.com/azure/governance/resource-graph/overview) queries, and sometimes [Azure PowerShell](https://learn.microsoft.com/powershell/azure/what-is-azure-powershell) or [Azure CLI](https://learn.microsoft.com/cli/azure/what-is-azure-cli) scripts, that can help customers, partners and the field identify resources that may or may not be compliant with the guidance and recommendations. The intent for these queries, in the long-term, is to make them part of the [Azure Advisor](https://learn.microsoft.com/azure/advisor/advisor-overview) service.
 
-1. **Early detection of issues**: Alerts enable you to identify potential problems or anomalies in your Azure resources at an early stage. By monitoring key metrics and logs, you can detect issues such as high CPU usage, low memory, network connectivity problems, or security breaches. This allows you to take immediate action and prevent any negative impact on your applications or services.
+## Get Started
 
-2. **Reduced downtime**: By configuring alerts, you can minimize downtime by being notified of critical events or failures in real-time. This allows you to quickly investigate and resolve issues before they escalate, ensuring the availability and reliability of your applications.
+To get started head over to the [Azure Services section]({{< ref "services/_index.md">}}) and then navigate via the appropriate category to find guidance, recommendations alongside supporting Azure Resource Graph queries, Azure PowerShell or Azure CLI scripts to help you discover compliant/non-compliant resources in your environment.
 
-3. **Optimized resource utilization**: Alerts help you optimize resource utilization by providing insights into resource usage patterns and trends. By monitoring metrics such as CPU utilization, memory consumption, or storage capacity, you can identify opportunities for optimization and cost savings.
+{{< hint type=note >}}
 
-4. **Compliance and security**: Configuring alerts is essential for maintaining compliance with regulatory requirements and ensuring the security of your Azure resources. By monitoring security logs and detecting suspicious activities or unauthorized access attempts, you can take immediate action to mitigate potential risks and protect your data.
+You can also use the basic search functionality provided by this site to locate the Azure service you are looking for guidance, recommendations and supporting queries and scripts for.
 
-5. **Proactive capacity planning**: Alerts provide valuable information for capacity planning and scaling your resources. By monitoring resource utilization trends over time, you can identify patterns and forecast future resource requirements. This helps you avoid performance bottlenecks and ensure a smooth user experience.
-
-{{< figure src="../img/amba_logo.png" width="20%" >}}
-
-{{< hint type=tip >}}
-Please review and leave issues on things you find, via [GitHub Issues](https://github.com/Azure/azure-monitor-baseline-alerts/issues)
 {{< /hint >}}
 
+### Definitions of Terms Used in APRL
+
+In APRL you will see a number of terms used, like Preview & Verified. The below table provides the definition for each of these terms for clarity.
+
+| Term | Definition |
+| ---- | ---------- |
+| Preview Guidance | Guidance that Microsoft FTEs have created based on customer engagements and is in the process of reviewing with the relevant Azure Product Group Engineering Service owners to ensure the content is valid and accurate |
+| Verified Guidance | Guidance has been signed off by Azure Product Group Engineering Service owners following their review |
+
+## Contributing
+
+Please see the [contribution guide here]({{< ref "contributing/_index.md">}}).
+
+{{< hint type=note >}}
+
+Please note that this site is built upon [GithHub Pages](https://pages.github.com) using [Hugo](https://gohugo.io/)
+
+{{< /hint >}}
