@@ -1,0 +1,80 @@
+<!--
+Recommendation List
+-->
+
+<!-- Get resouce type and category from page path -->
+{{ $pageDir := path.Dir $.Page.File.Path }} {{ $parentDir := path.Dir $pageDir
+}} {{ $category := path.BaseName $parentDir }} {{ $type := path.BaseName
+$pageDir }} {{ with (index (index $.Site.Data $category) $type) }}
+<!-- Create a table of all recommendations under category/type -->
+<div>
+  <table>
+    <tr>
+      <th>Recommendation</th>
+      <th>Category</th>
+      <th>WAF Pillars</th>
+      <th>Impact</th>
+      <th>State</th>
+      <th>ARG Query Available</th>
+    </tr>
+    <!-- Loop through recommendations under category/type -->
+    {{ range sort .recommendations "recommendation" "asc" }} {{ if or (eq
+    .visible true) (eq $.Site.Params.ambaDevMode true) }}
+    <tr>
+      <td>
+        <a href="#{{ anchorize .recommendation }}">{{ .pageTitle }}</a>
+      </td>
+      <td>{{ .recommendationCategory }}</td>
+      <td>
+        {{ $wafPillars := .wafPillars }} {{ $length := len $wafPillars }} {{
+        $delimiter := ", " }} {{ range $index, $value := .wafPillars }} {{ trim
+        (printf "%s" $value) " " }}{{ if lt (add $index 1) $length }}{{
+        $delimiter }}{{ end }} {{ end }}
+      </td>
+      <td>{{ .recommendationImpact }}</td>
+      <td>{{ .state }}</td>
+      <td>{{ .argQueryAvailable }}</td>
+    </tr>
+    {{ end }} {{ end }}
+  </table>
+</div>
+
+<!-- Create a detail entry for each recommendation under category/type -->
+{{ range sort .recommendations "recommendation" "asc" }} {{ if or (eq .visible
+true) (eq $.Site.Params.ambaDevMode true) }}
+<br /><br />
+<div id="{{ anchorize .recommendation }}">
+  <hr style="height: 5px" />
+  <h3>{{ .pageTitle }}</h3>
+  <h4>
+    <span style="font-weight: bold">Category:</span>&nbsp;
+    <span style="font-weight: normal">{{ .recommendationCategory }}</span>
+  </h4>
+  <h4>
+    <span style="font-weight: bold">WAF Pillars:</span>&nbsp; {{ $length := len
+    .wafPillars }}
+    <span style="font-weight: normal">
+      {{ $delimiter := ", " }} {{ range $index, $value := .wafPillars }} {{ trim
+      (printf "%s" $value) " " }}{{ if lt (add $index 1) $length }}{{ $delimiter
+      }}{{ end }} {{ end }}
+    </span>
+  </h4>
+  <h4>
+    <span style="font-weight: bold">Impact:</span>&nbsp;
+    <span style="font-weight: normal">{{ .recommendationImpact }}</span>
+  </h4>
+  <h4>Guidance:</h4>
+  <pre>{{ .longDescription }}</pre>
+  <h5 style="margin-bottom: 5px">Learn More:</h5>
+  <table style="margin-top: 5px">
+    {{ range .learnMoreLink }}
+    <tr>
+      <td><a href="{{ .url }}" target="_blank">{{ .name }}</a></td>
+    </tr>
+    {{ end }}
+  </table>
+  <h4>ARG Query/Scripts:</h4>
+  {{ partial "templates/queries-scripts-tabs" (dict "category" $category "type"
+  $type "recommendation" .) }}
+</div>
+{{ end }} {{ end }} {{ end }}

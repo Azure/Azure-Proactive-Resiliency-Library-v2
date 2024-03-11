@@ -212,7 +212,7 @@ def main():
         os.makedirs(os.path.join(dir, category, subdir), exist_ok=True)
         with open(os.path.join(dir, category, subdir, '_index.md'), 'w+') as f:
           f.write(f"---\ntitle: {type}\ngeekdocCollapseSection: true\ngeekdocHidden: true\n---\n\n")
-          f.write('{{< alertList name="alertList" >}}')
+          f.write('{{< recommendationList name="recommendationList" >}}')
 
       # load existing yaml file if it exists
       filename = os.path.join(dir, category, subdir, "alerts.yaml")
