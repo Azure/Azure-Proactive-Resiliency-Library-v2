@@ -18,8 +18,9 @@ Recommendation List
       <th>Automation Available</th>
     </tr>
     <!-- Loop through recommendations under category/type -->
-    {{ range sort .recommendations "recommendation" "asc" }} {{ if or (eq
-    .visible true) (eq $.Site.Params.aprlDevMode true) }}
+    {{ range sort .recommendations "recommendation" "asc" }} {{ if and (eq
+    .state "Active") (or (not (eq .state "Removed")) ($.Site.Params.aprlDevMode
+    true)) }}
     <tr>
       <td>
         <a href="#{{ anchorize .pageTitle }}">{{ .pageTitle }}</a>
@@ -40,9 +41,8 @@ Recommendation List
 </div>
 
 <!-- Create a detail entry for each recommendation under category/type -->
-{{ range sort .recommendations "recommendation" "asc" }} {{ if or (eq .visible
-true) (eq $.Site.Params.aprlDevMode true) }}
-<br /><br />
+{{ range sort .recommendations "recommendation" "asc" }} {{ if and (eq .state
+"Active") (or (not (eq .state "Removed")) ($.Site.Params.aprlDevMode true)) }}
 <div id="{{ anchorize .recommendation }}">
   <hr style="height: 5px" />
   <h3>{{ .pageTitle }}</h3>
