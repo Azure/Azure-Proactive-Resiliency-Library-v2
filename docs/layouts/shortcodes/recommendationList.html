@@ -3,9 +3,9 @@ Recommendation List
 -->
 
 <!-- Get resouce type and category from page path -->
-{{ $pageDir := path.Dir $.Page.File.Path }} {{ $parentDir := path.Dir $pageDir
-}} {{ $category := path.BaseName $parentDir }} {{ $type := path.BaseName
-$pageDir }} {{ with (index (index $.Site.Data $category) $type) }}
+{{ $pageDir := path.Dir $.Page.File.Path }} {{ $parentDir := path.Dir $pageDir}}
+{{ $category := path.BaseName $parentDir }} {{ $type := path.BaseName $pageDir
+}} {{ with (index (index $.Site.Data $category) $type) }}
 <!-- Create a table of all recommendations under category/type -->
 <div>
   <table>
@@ -22,7 +22,7 @@ $pageDir }} {{ with (index (index $.Site.Data $category) $type) }}
     .visible true) (eq $.Site.Params.aprlDevMode true) }}
     <tr>
       <td>
-        <a href="#{{ anchorize .recommendation }}">{{ .pageTitle }}</a>
+        <a href="#{{ anchorize .pageTitle }}">{{ .pageTitle }}</a>
       </td>
       <td>{{ .recommendationControl }}</td>
       <td>
@@ -61,8 +61,12 @@ true) (eq $.Site.Params.aprlDevMode true) }}
       (add $index 1) $length }} {{ $delimiter }} {{ end }} {{ end }}
     </span>
   </h4>
-  <h4>Guidance:</h4>
-  <pre>{{ .longDescription }}</pre>
+  <div
+    style="max-width: 100%; word-wrap: break-word; overflow-wrap: break-word"
+  >
+    <h4>Guidance:</h4>
+    <pre style="white-space: pre-wrap">{{ .longDescription }}</pre>
+  </div>
   <h5 style="margin-bottom: 5px">Learn More:</h5>
   <table style="margin-top: 5px">
     {{ range .learnMoreLink }}
