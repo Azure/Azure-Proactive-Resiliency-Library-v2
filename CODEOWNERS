@@ -1,0 +1,5 @@
+# The aprl-admins team is responsible for reviewing and merging all PRs.
+* @Azure/aprl-admins
+
+# The aprl-networking team is partially responsible for all networking-related PRs.
+/docs/content/services/networking/ @Azure/aprl-admins @Azure/aprl-networking
