@@ -1,21 +1,16 @@
 ---
 header:
-  - name: Download Alerts
-    ref: "/azure-monitor-baseline-alerts/amba-alerts.xlsx"
-    icon: gdoc_download
-    external: true
-
   - name: Glossary
     ref: "/glossary"
     icon: gdoc_copy
     external: false
 
   - name: GitHub
-    ref: https://github.com/Azure/azure-monitor-baseline-alerts
+    ref: https://azure.github.io/Azure-Proactive-Resiliency-Library
     icon: gdoc_github
     external: true
 
   - name: GitHub Issues
-    ref: https://github.com/Azure/azure-monitor-baseline-alerts/issues
+    ref: https://github.com/Azure/Azure-Proactive-Resiliency-Library/issues
     icon: gdoc_error_outline
     external: true

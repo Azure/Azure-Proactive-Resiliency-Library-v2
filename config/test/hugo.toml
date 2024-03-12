@@ -49,7 +49,6 @@ enableRobotsTXT = true
   [[module.mounts]]
     source = 'services'
     target = 'static'
-    includeFiles = ['amba-alerts.*']
 
 [markup]
   [markup.goldmark.renderer]
