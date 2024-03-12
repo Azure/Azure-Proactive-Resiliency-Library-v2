@@ -39,7 +39,7 @@
       {{ end }}
 
       {{ range $rangeBy }}
-        {{ if or (not .Params.geekdocHidden) (.Site.Params.ambaDevMode) }}
+        {{ if or (not .Params.geekdocHidden) (.Site.Params.aprlDevMode) }}
           {{ $numberOfPages := (add (len .Pages) (len .Sections)) }}
           {{ $isParent := and (ne $numberOfPages 0) (not .Params.geekdocFlatSection) }}
           {{ $isCurrent := eq $current . }}

@@ -19,7 +19,7 @@ $pageDir }} {{ with (index (index $.Site.Data $category) $type) }}
     </tr>
     <!-- Loop through recommendations under category/type -->
     {{ range sort .recommendations "recommendation" "asc" }} {{ if or (eq
-    .visible true) (eq $.Site.Params.ambaDevMode true) }}
+    .visible true) (eq $.Site.Params.aprlDevMode true) }}
     <tr>
       <td>
         <a href="#{{ anchorize .recommendation }}">{{ .pageTitle }}</a>
@@ -41,7 +41,7 @@ $pageDir }} {{ with (index (index $.Site.Data $category) $type) }}
 
 <!-- Create a detail entry for each recommendation under category/type -->
 {{ range sort .recommendations "recommendation" "asc" }} {{ if or (eq .visible
-true) (eq $.Site.Params.ambaDevMode true) }}
+true) (eq $.Site.Params.aprlDevMode true) }}
 <br /><br />
 <div id="{{ anchorize .recommendation }}">
   <hr style="height: 5px" />
