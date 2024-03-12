@@ -31,8 +31,7 @@ A "ready state" means you have a forked copy of the [`Azure/Azure-Proactive-Resi
 When in VS Code you should be able to open a terminal and run the below commands to access a copy of the APRL website from a local web server, provided by Hugo, using the following address [`http://localhost:1313/Azure-Proactive-Resiliency-Library/`](http://localhost:1313/Azure-Proactive-Resiliency-Library/):
 
 ```text
-cd docs
-hugo server -D
+hugo server --disableFastRender
 ```
 
 ### Software/Applications
