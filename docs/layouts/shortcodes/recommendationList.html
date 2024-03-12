@@ -11,11 +11,11 @@ $pageDir }} {{ with (index (index $.Site.Data $category) $type) }}
   <table>
     <tr>
       <th>Recommendation</th>
+      <th>Impact</th>
       <th>Category</th>
       <th>WAF Pillars</th>
-      <th>Impact</th>
-      <th>State</th>
-      <th>ARG Query Available</th>
+      <th>Published</th>
+      <th>Automation Available</th>
     </tr>
     <!-- Loop through recommendations under category/type -->
     {{ range sort .recommendations "recommendation" "asc" }} {{ if or (eq
@@ -24,16 +24,16 @@ $pageDir }} {{ with (index (index $.Site.Data $category) $type) }}
       <td>
         <a href="#{{ anchorize .recommendation }}">{{ .pageTitle }}</a>
       </td>
-      <td>{{ .recommendationCategory }}</td>
+      <td>{{ .recommendationControl }}</td>
       <td>
-        {{ $wafPillars := .wafPillars }} {{ $length := len $wafPillars }} {{
-        $delimiter := ", " }} {{ range $index, $value := .wafPillars }} {{ trim
-        (printf "%s" $value) " " }}{{ if lt (add $index 1) $length }}{{
-        $delimiter }}{{ end }} {{ end }}
+        {{ $recommendationCategory := .recommendationCategory }} {{ $length :=
+        len $recommendationCategory }} {{ $delimiter := ", " }} {{ range $index,
+        $value := .recommendationCategory }} {{ trim (printf "%s" $value) " "
+        }}{{ if lt (add $index 1) $length }}{{ $delimiter }}{{ end }} {{ end }}
       </td>
       <td>{{ .recommendationImpact }}</td>
-      <td>{{ .state }}</td>
-      <td>{{ .argQueryAvailable }}</td>
+      <td>{{ if eq .published true }}Yes{{ else }}No{{ end }}</td>
+      <td>{{ if eq .argQueryAvailable true }}Yes{{ else }}No{{ end }}</td>
     </tr>
     {{ end }} {{ end }}
   </table>
@@ -47,21 +47,19 @@ true) (eq $.Site.Params.ambaDevMode true) }}
   <hr style="height: 5px" />
   <h3>{{ .pageTitle }}</h3>
   <h4>
-    <span style="font-weight: bold">Category:</span>&nbsp;
-    <span style="font-weight: normal">{{ .recommendationCategory }}</span>
-  </h4>
-  <h4>
-    <span style="font-weight: bold">WAF Pillars:</span>&nbsp; {{ $length := len
-    .wafPillars }}
-    <span style="font-weight: normal">
-      {{ $delimiter := ", " }} {{ range $index, $value := .wafPillars }} {{ trim
-      (printf "%s" $value) " " }}{{ if lt (add $index 1) $length }}{{ $delimiter
-      }}{{ end }} {{ end }}
-    </span>
-  </h4>
-  <h4>
     <span style="font-weight: bold">Impact:</span>&nbsp;
     <span style="font-weight: normal">{{ .recommendationImpact }}</span>
+    <span style="margin-right: 40px"></span>
+    <span style="font-weight: bold">Category:</span>&nbsp;
+    <span style="font-weight: normal">{{ .recommendationControl }}</span>
+    <span style="margin-right: 40px"></span>
+    <span style="font-weight: bold">WAF Pillars:</span>&nbsp; {{ $length := len
+    .recommendationCategory }}
+    <span style="font-weight: normal">
+      {{ $delimiter := ", " }} {{ range $index, $value :=
+      .recommendationCategory }} {{ trim (printf "%s" $value) " " }} {{ if lt
+      (add $index 1) $length }} {{ $delimiter }} {{ end }} {{ end }}
+    </span>
   </h4>
   <h4>Guidance:</h4>
   <pre>{{ .longDescription }}</pre>

@@ -1,15 +1,13 @@
 - pageTitle: ST-1 - Ensure that Storage Account configuration is at least Zone redundant
-  recommendationCategory: Availability
-  wafPillars:
-    - Reliability
   recommendationImpact: High
-  state: Preview
-  argQueryAvailable: "Yes"
-  recommendationTypeId: 1
-  verified: true
+  recommendationControl: Availability
+  recommendationCategory:
+    - Reliability
+  published: false
+  automationAvailable: true
+  recommendationTypeId: e6c7e1cc-2f47-264d-aa50-1da421314472
+  state: Active
   visible: true
-  workloads:
-    - AVD
   longDescription: |
     Data in an Azure Storage account is always replicated three times in the primary region. Azure Storage offers other options for how your data is replicated in the primary or paired region:
 
@@ -24,17 +22,15 @@
       url: "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy"
 
 - pageTitle: ST-2 - Do not use classic Storage Account
-  recommendationCategory: Governance
-  wafPillars:
-    - Reliability
   recommendationImpact: High
-  state: Preview
-  argQueryAvailable: "Yes"
-  recommendationTypeId: 2
-  verified: true
+  recommendationControl: Governance
+  recommendationCategory:
+    - Reliability
+  published: false
+  automationAvailable: true
+  recommendationTypeId: 63ad027e-611c-294b-acc5-8e3234db9a40
+  state: Active
   visible: true
-  workloads:
-    - AVD
   longDescription: |
     Azure classic Storage Account will retire 31 august 2024. So migrate all workload from classic storage to v2.
   potentialBenefits: |
@@ -44,22 +40,20 @@
       url: "https://azure.microsoft.com/updates/classic-azure-storage-accounts-will-be-retired-on-31-august-2024/y"
 
 - pageTitle: ST-3 - Ensure Performance tier is set as per workload
-  recommendationCategory: System Efficiency
-  wafPillars:
+  recommendationImpact: Medium
+  recommendationControl: System Efficiency
+  recommendationCategory:
     - Performance
     - Reliability
-  recommendationImpact: Medium
-  state: Preview
-  argQueryAvailable: "Yes"
-  recommendationTypeId: 3
-  verified: true
+  published: false
+  automationAvailable: true
+  recommendationTypeId: 5587ef77-7a05-a74d-9c6e-449547a12f27
+  state: Active
   visible: true
-  workloads:
-    - AVD
   longDescription: |
     Consider using appropriate storage performance tier for standard storage / block blob / append blob / file-share and page blob. Each workload scenario requires appropriate Performance tier and its important that based on the type of transaction and blob type/file type appropriate performance tier is selected. Failing to do so will create performance bottleneck.
   potentialBenefits: |
     Optimized performance for diverse workloads.
   learnMoreLink:
-    - name: Storage Account Retirement Announcement
+    - name: Performance Tier
       url: "https://learn.microsoft.com/azure/storage/common/storage-account-overview#performance-tiers"
