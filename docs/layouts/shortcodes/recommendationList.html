@@ -25,6 +25,7 @@ Recommendation List
       <td>
         <a href="#{{ anchorize .pageTitle }}">{{ .pageTitle }}</a>
       </td>
+      <td>{{ .recommendationImpact }}</td>
       <td>{{ .recommendationControl }}</td>
       <td>
         {{ $recommendationCategory := .recommendationCategory }} {{ $length :=
@@ -32,7 +33,6 @@ Recommendation List
         $value := .recommendationCategory }} {{ trim (printf "%s" $value) " "
         }}{{ if lt (add $index 1) $length }}{{ $delimiter }}{{ end }} {{ end }}
       </td>
-      <td>{{ .recommendationImpact }}</td>
       <td>{{ if eq .published true }}Yes{{ else }}No{{ end }}</td>
       <td>{{ if eq .argQueryAvailable true }}Yes{{ else }}No{{ end }}</td>
     </tr>
