@@ -1,0 +1,6 @@
+// Azure Resource Graph Query
+// Find all Azure Storage Accounts, that do not have an access tier set
+resources
+| where type =~'microsoft.storage/storageaccounts'
+| where isnull(properties.accessTier)
+| project recommendationId = 'st-3', name, id, tags, param1="not defined - GeneralPurpose V1"
