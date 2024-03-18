@@ -14,7 +14,6 @@ Recommendation List
       <th>Impact</th>
       <th>Category</th>
       <th>WAF Pillars</th>
-      <th>Published</th>
       <th>Automation Available</th>
     </tr>
     <!-- Loop through recommendations under category/type -->
@@ -33,7 +32,6 @@ Recommendation List
         $value := .recommendationCategory }} {{ trim (printf "%s" $value) " "
         }}{{ if lt (add $index 1) $length }}{{ $delimiter }}{{ end }} {{ end }}
       </td>
-      <td>{{ if eq .published true }}Yes{{ else }}No{{ end }}</td>
       <td>{{ if eq .argQueryAvailable true }}Yes{{ else }}No{{ end }}</td>
     </tr>
     {{ end }} {{ end }}
@@ -77,6 +75,6 @@ Recommendation List
   </table>
   <h4>ARG Query/Scripts:</h4>
   {{ partial "templates/queries-scripts-tabs" (dict "category" $category "type"
-  $type "recommendation" .) }}
+  $type "recommendation" . "recommendationTypeId" .recommendationTypeId) }}
 </div>
 {{ end }} {{ end }} {{ end }}
