@@ -1,0 +1,144 @@
+- name: cpu_percent
+  description: CPU percent
+  type: Metric
+  verified: false
+  visible: true
+  tags:
+  - auto-generated
+  - agc-6560
+  properties:
+    metricName: cpu_percent
+    metricNamespace: Microsoft.DBforPostgreSQL/servers
+    severity: 2
+    windowSize: PT5M
+    evaluationFrequency: PT1M
+    timeAggregation: Average
+    operator: GreaterThan
+    criterionType: StaticThresholdCriterion
+    threshold: 80.0
+- name: storage_percent
+  description: Storage percent
+  type: Metric
+  verified: false
+  visible: true
+  tags:
+  - auto-generated
+  - agc-4912
+  properties:
+    metricName: storage_percent
+    metricNamespace: Microsoft.DBforPostgreSQL/servers
+    severity: 2
+    windowSize: PT5M
+    evaluationFrequency: PT1M
+    timeAggregation: Average
+    operator: GreaterThan
+    criterionType: StaticThresholdCriterion
+    threshold: 90.0
+- name: memory_percent
+  description: Memory percent
+  type: Metric
+  verified: false
+  visible: true
+  tags:
+  - auto-generated
+  - agc-4069
+  properties:
+    metricName: memory_percent
+    metricNamespace: Microsoft.DBforPostgreSQL/servers
+    severity: 2
+    windowSize: PT5M
+    evaluationFrequency: PT1M
+    timeAggregation: Average
+    operator: GreaterThan
+    criterionType: StaticThresholdCriterion
+    threshold: 90.0
+- name: connections_failed
+  description: Failed Connections
+  type: Metric
+  verified: false
+  visible: true
+  tags:
+  - auto-generated
+  - agc-2453
+  properties:
+    metricName: connections_failed
+    metricNamespace: Microsoft.DBforPostgreSQL/servers
+    severity: 3
+    windowSize: PT5M
+    evaluationFrequency: PT1M
+    timeAggregation: Total
+    operator: GreaterThan
+    criterionType: StaticThresholdCriterion
+    threshold: 10.0
+- name: active_connections
+  description: Active Connections
+  type: Metric
+  verified: false
+  visible: true
+  tags:
+  - auto-generated
+  - agc-2355
+  properties:
+    metricName: active_connections
+    metricNamespace: Microsoft.DBforPostgreSQL/servers
+    severity: 2
+    windowSize: PT5M
+    evaluationFrequency: PT1M
+    timeAggregation: Average
+    operator: GreaterThan
+    criterionType: StaticThresholdCriterion
+    threshold: 120.0
+- name: io_consumption_percent
+  description: IO percent
+  type: Metric
+  verified: false
+  visible: true
+  tags:
+  - auto-generated
+  - agc-2324
+  properties:
+    metricName: io_consumption_percent
+    metricNamespace: Microsoft.DBforPostgreSQL/servers
+    severity: 2
+    windowSize: PT5M
+    evaluationFrequency: PT1M
+    timeAggregation: Average
+    operator: GreaterThan
+    criterionType: StaticThresholdCriterion
+    threshold: 90.0
+- name: serverlog_storage_percent
+  description: Server Log storage percent
+  type: Metric
+  verified: false
+  visible: true
+  tags:
+  - auto-generated
+  - agc-526
+  properties:
+    metricName: serverlog_storage_percent
+    metricNamespace: Microsoft.DBforPostgreSQL/servers
+    severity: 2
+    windowSize: PT5M
+    evaluationFrequency: PT1M
+    timeAggregation: Average
+    operator: GreaterThan
+    criterionType: StaticThresholdCriterion
+    threshold: 80.0
+- name: pg_replica_log_delay_in_seconds
+  description: Replica lag in seconds
+  type: Metric
+  verified: false
+  visible: true
+  tags:
+  - auto-generated
+  - agc-298
+  properties:
+    metricName: pg_replica_log_delay_in_seconds
+    metricNamespace: Microsoft.DBforPostgreSQL/servers
+    severity: 2
+    windowSize: PT5M
+    evaluationFrequency: PT1M
+    timeAggregation: Maximum
+    operator: GreaterThan
+    criterionType: StaticThresholdCriterion
+    threshold: 60.0

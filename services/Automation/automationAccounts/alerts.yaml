@@ -1,0 +1,105 @@
+- name: TotalJob
+  description: The total number of jobs
+  type: Metric
+  verified: false
+  visible: true
+  tags:
+  - alz
+  properties:
+    metricName: TotalJob
+    metricNamespace: Microsoft.Automation/automationAccounts
+    severity: 2
+    windowSize: PT5M
+    evaluationFrequency: PT1M
+    timeAggregation: Average
+    operator: GreaterThan
+    threshold: 0
+    criterionType: StaticThresholdCriterion
+    dimensions:
+    - name: Status
+      operator: Exclude
+      values:
+      - Completed
+    autoMitigate: false
+  references:
+  - name: Azure Automation Azure Monitor Metrics
+    url: https://docs.microsoft.com/en-us/azure/azure-monitor/essentials/metrics-supported#microsoftautomationautomationaccounts
+  deployments:
+  - name: Deploy Automation Account TotalJob Alert
+    template: Deploy-AA-TotalJob-Alert.json
+    type: Policy
+    tags:
+    - alz
+    properties:
+      scope: Resource
+      multiResource: false
+- name: TotalJob
+  description: The total number of jobs
+  type: Metric
+  verified: false
+  visible: true
+  tags:
+  - auto-generated
+  - agc-7153
+  properties:
+    metricName: TotalJob
+    metricNamespace: Microsoft.Automation/automationAccounts
+    severity: 3
+    windowSize: PT5M
+    evaluationFrequency: PT1M
+    timeAggregation: Total
+    operator: GreaterThan
+    criterionType: StaticThresholdCriterion
+    dimensions:
+    - operator: include
+      name: status
+      values:
+      - failed
+    threshold: 0.0
+- name: TotalUpdateDeploymentMachineRuns
+  description: Total software update deployment machine runs in a software update
+    deployment run
+  type: Metric
+  verified: false
+  visible: true
+  tags:
+  - auto-generated
+  - agc-1665
+  properties:
+    metricName: TotalUpdateDeploymentMachineRuns
+    metricNamespace: Microsoft.Automation/automationAccounts
+    severity: 2
+    windowSize: PT5M
+    evaluationFrequency: PT1M
+    timeAggregation: Total
+    operator: GreaterThan
+    criterionType: StaticThresholdCriterion
+    dimensions:
+    - operator: include
+      name: status
+      values:
+      - failed
+    threshold: 0.0
+- name: TotalUpdateDeploymentRuns
+  description: Total software update deployment runs
+  type: Metric
+  verified: false
+  visible: true
+  tags:
+  - auto-generated
+  - agc-1222
+  properties:
+    metricName: TotalUpdateDeploymentRuns
+    metricNamespace: Microsoft.Automation/automationAccounts
+    severity: 3
+    windowSize: PT5M
+    evaluationFrequency: PT1M
+    timeAggregation: Total
+    operator: GreaterThan
+    criterionType: StaticThresholdCriterion
+    dimensions:
+    - operator: include
+      name: status
+      values:
+      - failed
+    threshold: 0.0

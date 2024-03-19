@@ -1,0 +1,156 @@
+- name: IntegrationPipelineRunsEnded
+  description: Count of integration pipeline runs that succeeded, failed, or were
+    cancelled
+  type: Metric
+  verified: false
+  visible: true
+  tags:
+  - auto-generated
+  - agc-3423
+  properties:
+    metricName: IntegrationPipelineRunsEnded
+    metricNamespace: Microsoft.Synapse/workspaces
+    severity: 3
+    windowSize: PT5M
+    evaluationFrequency: PT1M
+    timeAggregation: Total
+    operator: GreaterThan
+    criterionType: StaticThresholdCriterion
+    dimensions:
+    - operator: include
+      name: result
+      values:
+      - failed
+    threshold: 0.0
+- name: BuiltinSqlPoolDataProcessedBytes
+  description: Amount of data processed by queries
+  type: Metric
+  verified: false
+  visible: true
+  tags:
+  - auto-generated
+  - agc-322
+  properties:
+    metricName: BuiltinSqlPoolDataProcessedBytes
+    metricNamespace: Microsoft.Synapse/workspaces
+    severity: 3
+    windowSize: PT5M
+    evaluationFrequency: PT5M
+    timeAggregation: Total
+    operator: GreaterThan
+    criterionType: StaticThresholdCriterion
+    threshold: 386547056640.0
+- name: BuiltinSqlPoolLoginAttempts
+  description: Count of login attempts that succeded or failed
+  type: Metric
+  verified: false
+  visible: true
+  tags:
+  - auto-generated
+  - agc-298
+  properties:
+    metricName: BuiltinSqlPoolLoginAttempts
+    metricNamespace: Microsoft.Synapse/workspaces
+    severity: 3
+    windowSize: PT5M
+    evaluationFrequency: PT5M
+    timeAggregation: Total
+    operator: GreaterThan
+    criterionType: StaticThresholdCriterion
+    threshold: 360.0
+- name: IntegrationTriggerRunsEnded
+  description: Count of integration triggers that succeeded, failed, or were cancelled
+  type: Metric
+  verified: false
+  visible: true
+  tags:
+  - auto-generated
+  - agc-273
+  properties:
+    metricName: IntegrationTriggerRunsEnded
+    metricNamespace: Microsoft.Synapse/workspaces
+    severity: 3
+    windowSize: PT5M
+    evaluationFrequency: PT1M
+    timeAggregation: Total
+    operator: GreaterThan
+    criterionType: StaticThresholdCriterion
+    dimensions:
+    - operator: exclude
+      name: result
+      values:
+      - succeeded
+    threshold: 0.0
+- name: IntegrationActivityRunsEnded
+  description: Count of integration activities that succeeded, failed, or were cancelled
+  type: Metric
+  verified: false
+  visible: true
+  tags:
+  - auto-generated
+  - agc-261
+  properties:
+    metricName: IntegrationActivityRunsEnded
+    metricNamespace: Microsoft.Synapse/workspaces
+    severity: 3
+    windowSize: PT5M
+    evaluationFrequency: PT5M
+    timeAggregation: Count
+    operator: GreaterThan
+    criterionType: StaticThresholdCriterion
+    threshold: 700.0
+- name: sqlPools - DWUUsedPercent
+  description: Represents a high-level representation of usage across the SQL pool.
+    Measured by taking the maximum between CPU percentage and Data IO percentage
+  type: Metric
+  verified: false
+  visible: true
+  tags:
+  - auto-generated
+  - agc-451
+  properties:
+    metricName: DWUUsedPercent
+    metricNamespace: Microsoft.Synapse/workspaces/sqlPools
+    severity: 3
+    windowSize: PT5M
+    evaluationFrequency: PT5M
+    timeAggregation: Average
+    operator: GreaterThan
+    criterionType: StaticThresholdCriterion
+    threshold: 90.0
+- name: sqlPools - CPUPercent
+  description: CPU utilization across all nodes in the SQL pool
+  type: Metric
+  verified: false
+  visible: true
+  tags:
+  - auto-generated
+  - agc-403
+  properties:
+    metricName: CPUPercent
+    metricNamespace: Microsoft.Synapse/workspaces/sqlPools
+    severity: 3
+    windowSize: PT5M
+    evaluationFrequency: PT5M
+    timeAggregation: Average
+    operator: GreaterThan
+    criterionType: StaticThresholdCriterion
+    threshold: 90.0
+- name: sqlPools - MemoryUsedPercent
+  description: Memory utilization across all nodes in the SQL pool
+  type: Metric
+  verified: false
+  visible: true
+  tags:
+  - auto-generated
+  - agc-284
+  properties:
+    metricName: MemoryUsedPercent
+    metricNamespace: Microsoft.Synapse/workspaces/sqlPools
+    severity: 2
+    windowSize: PT5M
+    evaluationFrequency: PT5M
+    timeAggregation: Maximum
+    operator: GreaterThan
+    criterionType: StaticThresholdCriterion
+    threshold: 80.0
