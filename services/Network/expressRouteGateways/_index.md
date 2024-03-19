@@ -3,4 +3,4 @@ title: expressRouteGateways
 geekdocCollapseSection: true
 ---
 
-{{< alertList name="alertList" >}}
+{{< recommendationList name="recommendationList" >}}

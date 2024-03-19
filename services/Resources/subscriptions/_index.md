@@ -3,4 +3,4 @@ title: subscriptions
 geekdocCollapseSection: true
 ---
 
-{{< alertList name="alertList" >}}
+{{< recommendationList name="recommendationList" >}}

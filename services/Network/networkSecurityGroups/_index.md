@@ -3,4 +3,4 @@ title: networkSecurityGroups
 geekdocCollapseSection: true
 ---
 
-{{< alertList name="alertList" >}}
+{{< recommendationList name="recommendationList" >}}

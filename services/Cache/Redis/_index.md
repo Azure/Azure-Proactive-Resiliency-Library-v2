@@ -4,4 +4,4 @@ geekdocCollapseSection: true
 geekdocHidden: false
 ---
 
-{{< alertList name="alertList" >}}
+{{< recommendationList name="recommendationList" >}}
