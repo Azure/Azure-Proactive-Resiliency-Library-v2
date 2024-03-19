@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Azure Virtual Desktop on Azure Proactive Resiliency Library</title>
+    <link>http://localhost:1313/Azure-Proactive-Resiliency-Library/patterns/specialized/avd/</link>
+    <description>Recent content in Azure Virtual Desktop on Azure Proactive Resiliency Library</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <atom:link href="http://localhost:1313/Azure-Proactive-Resiliency-Library/patterns/specialized/avd/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>What´s new</title>
+      <link>http://localhost:1313/Azure-Proactive-Resiliency-Library/patterns/specialized/avd/Whats-New/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/Azure-Proactive-Resiliency-Library/patterns/specialized/avd/Whats-New/</guid>
+      <description>For information on what&amp;rsquo;s new please refer to the Releases page.&#xA;To update your current deployment with the content from the latest release, please refer to the Update to new release page.&#xA;2024-01-25&#xD;New features&#xD;Initial relocation from the Azure AVD Accelerator Brownfield with AVD specific Alerts on a per Host Pool basis.&#xA;Session Host monitoring both on performance, AVD agent health, storage, and fslogix profiles Bug fixes&#xD;No new bug fixes at this time.</description>
+    </item>
+    <item>
+      <title>Deploying the AVD pattern</title>
+      <link>http://localhost:1313/Azure-Proactive-Resiliency-Library/patterns/specialized/avd/deploy/Avd-Deploy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/Azure-Proactive-Resiliency-Library/patterns/specialized/avd/deploy/Avd-Deploy/</guid>
+      <description>Background&#xD;The Azure Virtual Desktop portal within Azure has a really great feature with regards to knowing the status of all things AVD via the provided Insights. However with the provided workbook it is not possible to create alerts based on what you see in Insights or having some knowledge of Log Analytics and Kusto queries. In order to provide customers with a quick list of common alerts and pre-created queries based on recommendations between the community with coordination with the Product Group, this solution was created.</description>
+    </item>
+    <item>
+      <title>Update to a new release</title>
+      <link>http://localhost:1313/Azure-Proactive-Resiliency-Library/patterns/specialized/avd/Update-to-new-Release/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/Azure-Proactive-Resiliency-Library/patterns/specialized/avd/Update-to-new-Release/</guid>
+      <description>How to update to a new release&#xD;Currently, redeploying the solution will update the existing components to include the alerts. Stay tuned for additional details as new releases are made available.</description>
+    </item>
+    <item>
+      <title>Frequently Asked Questions</title>
+      <link>http://localhost:1313/Azure-Proactive-Resiliency-Library/patterns/specialized/avd/FAQ/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/Azure-Proactive-Resiliency-Library/patterns/specialized/avd/FAQ/</guid>
+      <description>What are the Prerequisites?&#xD;An AVD deployment and the Owner Role on the Subscription containing the AVD resources, VMs and Storage. You must have also pre-configured the AVD Insights as it will enable diagnostic logging for the Host Pools and associated VMs in which the alerts rely on.&#xA;What&amp;rsquo;s deployed to my Subscription?&#xD;Names will be created with a standard &amp;lsquo;avdmetrics&amp;rsquo; in the name and vary based on input for things like site, environment type, etc.</description>
+    </item>
+    <item>
+      <title>Telemetry</title>
+      <link>http://localhost:1313/Azure-Proactive-Resiliency-Library/patterns/specialized/avd/Telemetry/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/Azure-Proactive-Resiliency-Library/patterns/specialized/avd/Telemetry/</guid>
+      <description>Telemetry Tracking Using Customer Usage Attribution (PID)&#xD;Microsoft can identify the deployments of the Azure Resource Manager and Bicep templates with the deployed Azure resources. Microsoft can correlate these resources used to support the deployments. Microsoft collects this information to provide the best experiences with their products and to operate their business. The telemetry is collected through customer usage attribution. The data is collected and governed by Microsoft&amp;rsquo;s privacy policies, located at the trust center.</description>
+    </item>
+    <item>
+      <title>Known Issues</title>
+      <link>http://localhost:1313/Azure-Proactive-Resiliency-Library/patterns/specialized/avd/Known-Issues/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/Azure-Proactive-Resiliency-Library/patterns/specialized/avd/Known-Issues/</guid>
+      <description>&#xD;None at this time&#xD;</description>
+    </item>
+  </channel>
+</rss>

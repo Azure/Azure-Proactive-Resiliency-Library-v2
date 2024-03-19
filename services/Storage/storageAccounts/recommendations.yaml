@@ -3,7 +3,9 @@
   recommendationControl: Availability
   recommendationCategory:
     - Reliability
-  published: false
+  publishedToLearn: false
+  publishToAdvisor: false
+  pgVerified: false
   automationAvailable: true
   recommendationTypeId: e6c7e1cc-2f47-264d-aa50-1da421314472
   state: Active
@@ -25,7 +27,9 @@
   recommendationControl: Governance
   recommendationCategory:
     - Reliability
-  published: false
+  publishedToLearn: false
+  publishToAdvisor: false
+  pgVerified: false
   automationAvailable: true
   recommendationTypeId: 63ad027e-611c-294b-acc5-8e3234db9a40
   state: Active
@@ -35,7 +39,7 @@
     Improved security and modern features.
   learnMoreLink:
     - name: Storage Account Retirement Announcement
-      url: "https://azure.microsoft.com/updates/classic-azure-storage-accounts-will-be-retired-on-31-august-2024/y"
+      url: "https://azure.microsoft.com/updates/classic-azure-storage-accounts-will-be-retired-on-31-august-2024"
 
 - pageTitle: ST-3 - Ensure Performance tier is set as per workload
   recommendationImpact: Medium
@@ -43,7 +47,9 @@
   recommendationCategory:
     - Performance
     - Reliability
-  published: false
+  publishedToLearn: false
+  publishToAdvisor: false
+  pgVerified: false
   automationAvailable: true
   recommendationTypeId: 5587ef77-7a05-a74d-9c6e-449547a12f27
   state: Active

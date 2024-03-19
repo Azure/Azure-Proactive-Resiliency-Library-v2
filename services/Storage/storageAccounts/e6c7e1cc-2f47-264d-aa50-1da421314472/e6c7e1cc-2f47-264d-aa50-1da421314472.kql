@@ -1,0 +1,6 @@
+// Azure Resource Graph Query
+// This query will return all storage accounts that are not using at least Zone replication
+Resources
+| where type =~'microsoft.storage/storageaccounts'
+| where sku.name =~'Standard_LRS'
+| project recommendationId = 'st-1', name, id, tags, param1=sku.name
