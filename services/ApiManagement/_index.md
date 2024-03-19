@@ -1,5 +1,5 @@
 ---
-title: Api Management
+title: ApiManagement
 geekdocCollapseSection: true
+geekdocHidden: false
 ---
-

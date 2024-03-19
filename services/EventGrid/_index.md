@@ -1,5 +1,5 @@
 ---
-title: Event Grid
+title: EventGrid
 geekdocCollapseSection: true
+geekdocHidden: false
 ---
-

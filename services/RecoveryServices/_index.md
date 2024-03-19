@@ -1,4 +1,5 @@
 ---
-title: Recovery Services
+title: RecoveryServices
 geekdocCollapseSection: true
+geekdocHidden: false
 ---

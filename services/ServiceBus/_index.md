@@ -1,5 +1,5 @@
 ---
-title: Service Bus
+title: ServiceBus
 geekdocCollapseSection: true
+geekdocHidden: false
 ---
-

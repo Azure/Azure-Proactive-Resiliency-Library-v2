@@ -1,5 +1,5 @@
 ---
-title: Management Groups
+title: Management
 geekdocCollapseSection: true
+geekdocHidden: false
 ---
-
