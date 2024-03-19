@@ -1,0 +1,24 @@
+<div class="gdoc-tabs">
+  <input type="radio" class="gdoc-tabs__control hidden" name="{{ anchorize .recommendation.pageTitle }}"
+    id="{{ anchorize .recommendation.pageTitle }}-0" checked="checked" />
+  <label for="{{ anchorize .recommendation.pageTitle }}-0" class="gdoc-tabs__label">
+    <svg class="gdoc-icon gdoc_keyboard_arrow_up">
+      <use xlink:href="#gdoc_keyboard_arrow_up"></use>
+    </svg>
+  </label>
+  <div class="gdoc-markdown--nested gdoc-tabs__content">
+    <p><b>Click the Azure Resource Graph tab to view the query</b></p>
+  </div>
+
+  <!-- Azure Resource Graph Tab -->
+  <input type="radio" class="gdoc-tabs__control hidden" name="{{ anchorize .recommendation.pageTitle }}"
+    id="{{ anchorize .recommendation.pageTitle }}-1" />
+  <label for="{{ anchorize .recommendation.pageTitle }}-1" class="gdoc-tabs__label">
+    Azure Resource Graph
+  </label>
+  <div class="gdoc-markdown--nested gdoc-tabs__content">
+    {{ $data := readFile (printf "services/%s/%s/%s/%s.kql" .category .type .recommendationTypeId
+    .recommendationTypeId)}}</pre>
+    {{ highlight $data "t-sql" }}
+  </div>
+</div>

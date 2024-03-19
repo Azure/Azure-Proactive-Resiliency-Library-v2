@@ -74,7 +74,8 @@ Recommendation List
     {{ end }}
   </table>
   <h4>ARG Query/Scripts:</h4>
-  {{ partial "templates/queries-scripts-tabs" (dict "category" $category "type"
-  $type "recommendation" . "recommendationTypeId" .recommendationTypeId) }}
+  {{ partial "queries-scripts/queries-scripts-tabs" (dict "category" $category
+  "type" $type "recommendation" . "recommendationTypeId" .recommendationTypeId)
+  }}
 </div>
 {{ end }} {{ end }} {{ end }}
