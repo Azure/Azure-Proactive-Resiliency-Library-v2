@@ -1,8 +1,9 @@
-- pageTitle: ST-1 - Ensure that Storage Account configuration is at least Zone redundant
+- pageTitle: Ensure that Storage Account configuration is at least Zone redundant
   recommendationImpact: High
   recommendationControl: Availability
   recommendationCategory:
     - Reliability
+  tags: null
   publishedToLearn: false
   publishToAdvisor: false
   pgVerified: false
@@ -22,11 +23,12 @@
     - name: Azure Storage Redundancy
       url: "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy"
 
-- pageTitle: ST-2 - Do not use classic Storage Account
+- pageTitle: Do not use classic Storage Account
   recommendationImpact: High
   recommendationControl: Governance
   recommendationCategory:
     - Reliability
+  tags: null
   publishedToLearn: false
   publishToAdvisor: false
   pgVerified: false
@@ -41,12 +43,13 @@
     - name: Storage Account Retirement Announcement
       url: "https://azure.microsoft.com/updates/classic-azure-storage-accounts-will-be-retired-on-31-august-2024"
 
-- pageTitle: ST-3 - Ensure Performance tier is set as per workload
+- pageTitle: Ensure Performance tier is set as per workload
   recommendationImpact: Medium
   recommendationControl: System Efficiency
   recommendationCategory:
     - Performance
     - Reliability
+  tags: null
   publishedToLearn: false
   publishToAdvisor: false
   pgVerified: false
