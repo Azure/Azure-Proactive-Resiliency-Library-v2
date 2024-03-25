@@ -110,74 +110,6 @@ Make sure you have followed the the [Steps to do before contributing anything (a
 
 {{< /hint >}}
 
-The is a common task that is likely to be done is adding a new service to which you want to provide recommendations and supporting queries etc. for example Virtual Machines.
-
-For this task we use [Hugo's archetype](https://gohugo.io/content-management/archetypes/) features which enables you to create a whole directory for a new service with a lot of templated content ready for you to change and use. This can be called by using the following command `hugo new --kind service-bundle services/<category>/<service-name`
-
-You can see source code of the directory archetype called `service-bundle` [here in the repo.](https://github.com/Azure/Azure-Proactive-Resiliency-Library/tree/main/docs/archetypes/service-bundle)
-
-{{< hint type=note >}}
-
-For the steps below we will use the Virtual Machine service as an example. Please change this to the service you are wanting to create.
-
-{{< /hint >}}
-
-Steps to follow:
-
-1. In your terminal of choice run the following:
-
-   ```text
-   cd docs/
-   hugo new --kind service-bundle services/compute/virtual-machines
-   ```
-
-1. You will now see a new folder in `content/services/compute` called `virtual-machines`
-
-   ```text
-   ├───content
-   │   ├───contributing
-   │   └───services
-   │       ├───ai-ml
-   │       ├───compute
-   │       │   └───virtual-machines
-   │       │       └───code
-   │       │           ├───cm-1
-   │       │           └───cm-2
-   ```
-
-1. Inside the `virtual-machines` folder you will see the following files pre-staged
-
-   ```text
-   │       │   └───virtual-machines
-   │       │       │   _index.md
-   │       │       │
-   │       │       └───code
-   │       │           ├───cm-1
-   │       │           │       cm-1.azcli
-   │       │           │       cm-1.kql
-   │       │           │       cm-1.ps1
-   │       │           │
-   │       │           └───cm-2
-   │       │                   cm-2.azcli
-   │       │                   cm-2.kql
-   │       │                   cm-2.ps1
-   ```
-
-1. Open `_index.md` in VS Code and make relevant changes
-   - You can copy the recommendations labelled `CM-1` or `CM-2` multiple times to create more recommendations
-1. Update Azure Resource Graph queries, PowerShell, AZCLI scripts in the `code` folder within `virtual-machines`
-   - You will see there is a folder, e.g. `cm-1`, `cm-2`, per recommendation to help with file structure organization
-1. Ensure you use the correct Azure resource abbreviations provided within our Cloud Adoption Framework (CAF) documentation [here](https://docs.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/resource-abbreviations). For example, use `vm` for Virtual Machines.
-1. Save, commit and push your changes to your branch and repo
-1. Create a [create a Pull Request](https://docs.github.com/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) into the `main` branch of the upstream repo
-1. Get it merged
-
-{{< hint type=note >}}
-
-Don't forget you can see your changes live by running a local copy of the APRL website by following the guidance [here.](#run-and-access-a-local-copy-of-aprl-during-development)
-
-{{< /hint >}}
-
 ## Updating a Service's Recommendation Page
 
 {{< hint type=important >}}
@@ -276,61 +208,6 @@ The column names should be in the order they are listed and match exactly.
 If you need support with validating a query, please reach out to the APRL team via the [APRL GitHub General Question/Feedback Form](https://github.com/Azure/Azure-Proactive-Resiliency-Library/issues/new?assignees=&labels=feedback%2C+question&projects=&template=general-question-feedback----.md&title=%E2%9D%93%F0%9F%91%82+Question%2FFeedback+-+PLEASE+CHANGE+ME+TO+SOMETHING+DESCRIPTIVE)
 
 {{< /hint >}}
-
-### Azure PowerShell Scripts
-
-1. All PowerShell scripts should have two comments at the top of the script, one comment stating `Azure PowerShell script` and another comment providing a description of the script results returned. For example:
-
-   ```powershell
-   # Azure PowerShell script
-   # Provides a list of Azure Container Registry resources that do not have soft delete enabled
-   ```
-
-1. Scripts should only return resources that do not adhere to the APRL recommendation. For example, if the recommendation is to enable soft delete for Azure Container Registries, the associated scripts should only return Azure Container Registry resources that do not have soft delete enabled.
-
-1. Scripts should exclusively contain code to retrieve resources that do not comply with the APRL recommendation. They should not include supporting code, such as Azure sign-in ([Connect-AzAccount](https://learn.microsoft.com/en-us/powershell/module/az.accounts/connect-azaccount), Login-AzAccount) or subscription selection ([Set-AzContext](https://learn.microsoft.com/en-us/powershell/module/az.accounts/set-azcontext), Select-AzSubscription). Execute these cmdlets separately from the APRL recommendation PowerShell script.
-
-1. The script should return the result as an array of the `PSCustomObject` data type, with each result object containing only the following properties:
-
-   {{< hint type=note >}}
-
-   The property names should be in the order they are listed and match exactly.
-
-   {{< /hint >}}
-
-   |  Property Name   |   Data Type    | Required |                                                            Information Returned (Example)                                                            | Description                                                                                                                                                                                                                                                                                                           |
-   | :--------------: | :------------: | :------: | :--------------------------------------------------------------------------------------------------------------------------------------------------: | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-   | recommendationId |     string     |   Yes    |                                                                        aks-1                                                                         | The acronym of the Azure service that the query is returning results for, followed by the APRL recommendation number.                                                                                                                                                                                                 |
-   |       name       |     string     |   Yes    |                                                                       test-aks                                                                       | The resource name of the Azure resource that does not adher to the APRL recommendation.                                                                                                                                                                                                                               |
-   |        id        |     string     |   Yes    | /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/test-resource-group/providers/Microsoft.ContainerService/managedClusters/test-aks | The resource ID of the Azure resource that does not adhere to the APRL recommendation.                                                                                                                                                                                                                                |
-   |       tags       | PSCustomObject |    No    |                                                       {"Environment":"Test","Department":"IT"}                                                       | Any relevant tags associated to the resource that does not adhere to the APRL recommendation. The data type should match the data type of `tags` in the result of ARG queries by [Search-AzGraph](https://learn.microsoft.com/en-us/powershell/module/az.resourcegraph/search-azgraph). If not set tags, set `$null`. |
-   |      param1      |     string     |    No    |                                                                networkProfile:kubenet                                                                | Any additional information that is necessary to provide clarification for the APRL recommendation.                                                                                                                                                                                                                    |
-   |      param2      |     string     |    No    |                                                                networkProfile:kubenet                                                                | Any additional information that is necessary to provide clarification for the APRL recommendation.                                                                                                                                                                                                                    |
-   |      param3      |     string     |    No    |                                                                networkProfile:kubenet                                                                | Any additional information that is necessary to provide clarification for the APRL recommendation.                                                                                                                                                                                                                    |
-   |      param4      |     string     |    No    |                                                                networkProfile:kubenet                                                                | Any additional information that is necessary to provide clarification for the APRL recommendation.                                                                                                                                                                                                                    |
-   |      param5      |     string     |    No    |                                                                networkProfile:kubenet                                                                | Any additional information that is necessary to provide clarification for the APRL recommendation.                                                                                                                                                                                                                    |
-
-   Below is a sample code to return a result that aligned to the above standards.
-
-   ```powershell
-   [PSCustomObject] @{
-       recommendationId = 'aks-1'
-       name             = $resource.Name
-       id               = $resource.Id
-       tags             = if ($resource.Tags) { [PSCustomObject] ([Hashtable] $resource.Tags) } else { $null }
-       param1           = 'networkProfile:kubenet'
-       param2           = 'networkProfile:kubenet'
-       param3           = 'networkProfile:kubenet'
-       param4           = 'networkProfile:kubenet'
-       param5           = 'networkProfile:kubenet'
-   }
-   ```
-
-   {{< hint type=note >}}
-
-   If you need support with validating a script, please reach out to the APRL team via the [APRL GitHub General Question/Feedback Form](https://github.com/Azure/Azure-Proactive-Resiliency-Library/issues/new?assignees=&labels=feedback%2C+question&projects=&template=general-question-feedback----.md&title=%E2%9D%93%F0%9F%91%82+Question%2FFeedback+-+PLEASE+CHANGE+ME+TO+SOMETHING+DESCRIPTIVE)
-
-   {{< /hint >}}
 
 ## Top Tips
 
