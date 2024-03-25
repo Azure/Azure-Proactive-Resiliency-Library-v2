@@ -138,7 +138,7 @@ Each recommendation should include a descriptive title, a short guidance section
 
 Recommendations should not require the CSA to spend a lot of time on background reading, they should not be open to interpretation, and they should not be vague. Remember that the CSA delivering the WARA is reviewing a large number of Azure resources in a limited amount of time and is not an expert in every Azure service.
 
-**Examples**
+### Examples
 
 - Good recommendation: Use a /24 subnet for the service
 - Bad recommendation: Size your subnet appropriately
