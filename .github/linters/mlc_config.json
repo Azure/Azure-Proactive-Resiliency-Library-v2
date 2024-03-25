@@ -7,13 +7,13 @@
       "pattern": "^(https:\\/\\/)?([www.]?)+(microsoft.com\\/)+[\\w\\-\\._~:/?#[\\]@!\\$&'\\(\\)\\*\\+,;=.]+$"
     },
     {
-      "pattern": "img/"
+      "pattern": "/Azure-Proactive-Resiliency-Library/"
     },
     {
-      "pattern": "/shortcodes/code/"
+      "pattern": "^https:\/\/aka.ms\/opensource\/.*$"
     },
     {
-      "pattern": "/azure-monitor-baseline-alerts/"
+      "pattern": "^https://review.learn.microsoft.com*"
     }
   ],
   "httpHeaders": [
