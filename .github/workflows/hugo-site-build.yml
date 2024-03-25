@@ -8,8 +8,8 @@ on:
       - main
     paths:
       - 'docs/**'
-      - 'services/**/alerts.yaml'
-      - 'services/**/*.md'
+      - 'azure-resources/**/recommendations.yaml'
+      - 'azure-resources/**/*.md'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch: {}

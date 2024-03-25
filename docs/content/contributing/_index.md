@@ -67,9 +67,9 @@ winget install --id 'Hugo.Hugo.Extended'
 - A fork of the [`Azure/Azure-Proactive-Resiliency-Library` repo](https://aka.ms/aprl/repo) into your GitHub org/account and cloned locally to your machine
   - Instructions on forking a repo and then cloning it can be found [here](https://docs.github.com/get-started/quickstart/fork-a-repo)
 
-## Useful Resources
+## Useful External Documentation
 
-Below are links to a number of useful resources to have when contributing to AMBA:
+Below are links to a number of useful links to have when contributing to APRL:
 
 - [GeekDocs Documentation Theme (that we use) - Docs](https://geekdocs.de/usage/getting-started/)
 - [Hugo Quick Start](https://gohugo.io/getting-started/quick-start/)
@@ -102,7 +102,7 @@ Once you have committed changes to your fork of the AMBA repo, you create a pull
 
 - [GitHub - Creating a pull request from a fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/)
 
-## Creating a Service's Recommendation Page
+## Creating a Azure Resource's Recommendation Page
 
 {{< hint type=important >}}
 
@@ -110,7 +110,7 @@ Make sure you have followed the the [Steps to do before contributing anything (a
 
 {{< /hint >}}
 
-## Updating a Service's Recommendation Page
+## Updating a Azure Resource's Recommendation Page
 
 {{< hint type=important >}}
 
@@ -136,18 +136,18 @@ Each recommendation should be actionable for the customer. The customer should b
 
 Each recommendation should include a descriptive title, a short guidance section that contains additional detail on the recommendation, links to public documentation that provide additional information related to the recommendation, and a query to identify resources that are not compliant with the recommendation. The title and guidance sections alone should provide sufficient information for a CSA to evaluate a resource.
 
-Recommendations should not require the CSA to spend a lot of time on background reading, they should not be open to interpretation, and they should not be vague. Remember that the CSA delivering the WARA is reviewing a large number of Azure resources in a limited amount of time and is not an expert in every Azure service.
+Recommendations should not require the CSA to spend a lot of time on background reading, they should not be open to interpretation, and they should not be vague. Remember that the CSA delivering the WARA is reviewing a large number of Azure resources in a limited amount of time and is not an expert in every Azure resource.
 
 ### Examples
 
-- Good recommendation: Use a /24 subnet for the service
+- Good recommendation: Use a /24 subnet for the resource
 - Bad recommendation: Size your subnet appropriately
 
-Not all best practices make good APRL recommendations. If the best practice relates to a particular service configuration and can be checked with an ARG query, it probably makes for a good APRL recommendation. If the best practice is more aligned to general architectural concepts that are true for many service or workload types, we very likely already have a recommendation in the APRL WAF section that addresses the topic. If not, consider adding a WAF recommendation to APRL. If neither is the case, APRL may not be the best location for this content.
+Not all best practices make good APRL recommendations. If the best practice relates to a particular resource configuration and can be checked with an ARG query, it probably makes for a good APRL recommendation. If the best practice is more aligned to general architectural concepts that are true for many Azure resources or workload types, we very likely already have a recommendation in the APRL WAF section that addresses the topic. If not, consider adding a WAF recommendation to APRL. If neither is the case, APRL may not be the best location for this content.
 
 ## Automation Standards for Recommendations
 
-When creating recommendations for a service, please follow the below standards:
+When creating recommendations for an Azure resource, please follow the below standards:
 
 ### Recommendation categories
 
@@ -193,7 +193,7 @@ The column names should be in the order they are listed and match exactly.
 
 |   Column Name    | Required |                                                            Information Returned (Example)                                                            |                                                      Description                                                      |
 | :--------------: | :------: | :--------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------: |
-| recommendationId |   Yes    |                                                                        aks-1                                                                         | The acronym of the Azure service that the query is returning results for, followed by the APRL recommendation number. |
+| recommendationId |   Yes    |                                                                        aks-1                                                                         | The acronym of the Azure resource that the query is returning results for, followed by the APRL recommendation number. |
 |       name       |   Yes    |                                                                       test-aks                                                                       |                The resource name of the Azure resource that does not adher to the APRL recommendation.                |
 |        id        |   Yes    | /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/test-resource-group/providers/Microsoft.ContainerService/managedClusters/test-aks |                The resource ID of the Azure resource that does not adhere to the APRL recommendation.                 |
 |       tags       |    No    |                                                       {"Environment":"Test","Department":"IT"}                                                       |             Any relevant tags associated to the resource that does not adhere to the APRL recommendation.             |
