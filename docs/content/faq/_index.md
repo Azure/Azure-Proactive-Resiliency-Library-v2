@@ -1,6 +1,6 @@
 ---
 title: Frequently Asked Questions (FAQs)
-weight: 20
+weight: 60
 ---
 
 {{< hint type=tip >}}

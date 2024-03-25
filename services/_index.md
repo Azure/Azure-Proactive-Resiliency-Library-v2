@@ -1,6 +1,6 @@
 ---
 title: Azure Resources
-weight: 5
+weight: 30
 geekdocCollapseSection: true
 ---
 

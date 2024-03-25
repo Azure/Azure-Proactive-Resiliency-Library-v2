@@ -1,6 +1,6 @@
 ---
 title: Contributor Guide
-weight: 15
+weight: 20
 geekdocCollapseSection: true
 ---
 

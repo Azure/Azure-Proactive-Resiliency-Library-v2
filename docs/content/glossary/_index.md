@@ -1,6 +1,6 @@
 ---
 title: Glossary
-weight: 25
+weight: 50
 ---
 
 This page holds a table of all the terms, abbreviations, and acronyms that are used across this site.
