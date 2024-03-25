@@ -15,7 +15,7 @@ The library also contains supporting [Azure Resource Graph (ARG)](https://learn.
 
 ## Get Started
 
-To get started head over to the [Azure Services section]({{< ref "services/_index.md">}}) and then navigate via the appropriate category to find guidance, recommendations alongside supporting Azure Resource Graph queries to help you discover compliant/non-compliant resources in your environment.
+To get started head over to the [Azure Services section]({{< ref "azure-resources/_index.md">}}) and then navigate via the appropriate category to find guidance, recommendations alongside supporting Azure Resource Graph queries to help you discover compliant/non-compliant resources in your environment.
 
 {{< hint type=note >}}
 

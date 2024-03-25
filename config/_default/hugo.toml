@@ -35,19 +35,19 @@ enableRobotsTXT = true
     source = 'docs/archetypes'
     target = 'archetypes'
   [[module.mounts]]
-    source = 'services'
-    target = 'static/services'
+    source = 'azure-resources'
+    target = 'static/azure-resources'
     excludeFiles = ['**/_index.json']
   [[module.mounts]]
-    source = 'services'
-    target = 'content/services'
+    source = 'azure-resources'
+    target = 'content/azure-resources'
     excludeFiles = ['**/*.json', '**/README.md']
   [[module.mounts]]
-    source = 'services'
+    source = 'azure-resources'
     target = 'data'
     includeFiles = ['**/recommendations.yaml']
   [[module.mounts]]
-    source = 'services'
+    source = 'azure-resources'
     target = 'static'
 
 [markup]
