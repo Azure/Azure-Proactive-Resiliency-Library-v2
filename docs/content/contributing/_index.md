@@ -98,7 +98,7 @@ git checkout -b <YOUR-DESIRED-BRANCH-NAME-HERE>
 
 ## Creating a pull request
 
-Once you have committed changes to your fork of the AMBA repo, you create a pull request to merge your changes into the AMBA repo.
+Once you have committed changes to your fork of the APRL repo, you create a pull request to merge your changes into the APRL repo.
 
 - [GitHub - Creating a pull request from a fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/)
 
