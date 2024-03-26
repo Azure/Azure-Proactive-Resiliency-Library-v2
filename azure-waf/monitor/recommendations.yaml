@@ -8,7 +8,7 @@
   publishToAdvisor: false
   pgVerified: true
   automationAvailable: false
-  recommendationTypeId: e6c7e1cc-2f47-264d-aa50-1da421314472
+  recommendationTypeId: 46fb4540-ecac-6e49-bc10-34c7792eb35d
   state: Active
   longDescription: |
     Monitoring and diagnostics are crucial for availability and resiliency. If something fails, you need to know that it failed, when it failed, and why.
@@ -39,7 +39,7 @@
   publishToAdvisor: false
   pgVerified: true
   automationAvailable: true
-  recommendationTypeId: 63ad027e-611c-294b-acc5-8e3234db9a40
+  recommendationTypeId: 5dd7a9a3-fb79-004d-bc89-c9ef79890900
   state: Active
   longDescription: |
     The health model should be able to surface the health of critical system flows or key subsystems to ensure that appropriate operational prioritization is applied. For example, the health model should be able to represent the current state of the user sign-in transaction flow.
@@ -53,7 +53,7 @@
     - Ensure the consistent use of diagnostic settings across the application.
     - Use critical system flows in your health model.
   potentialBenefits: |
-    Craft health model: performance, availability, recovery
+    Establish health model for performance, availability, recovery
   learnMoreLink:
     - name: Health modeling for reliability
       url: "https://learn.microsoft.com/azure/well-architected/resiliency/monitor-model"
@@ -68,7 +68,7 @@
   publishToAdvisor: false
   pgVerified: true
   automationAvailable: true
-  recommendationTypeId: 63ad027e-611c-294b-acc5-8e3234db9a40
+  recommendationTypeId: 1691bfea-c9fd-0948-969a-03e5abcab299
   state: Active
   longDescription: |
     In this stage, telemetry data is presented so that an operator can quickly notice problems or trends.
@@ -90,7 +90,7 @@
   publishToAdvisor: false
   pgVerified: true
   automationAvailable: true
-  recommendationTypeId: 63ad027e-611c-294b-acc5-8e3234db9a40
+  recommendationTypeId: 1422b388-5d23-5641-ba1c-139a59fb7b4c
   state: Active
   longDescription: |
     Azure offers a suite of experiences to keep you informed about the health of your cloud resources. The Service Health portal tracks four types of health events that may impact your resources:
@@ -99,6 +99,8 @@
     - Planned maintenance - Upcoming maintenance that can affect the availability of your services in the future.
     - Health advisories - Changes in Azure services that require your attention. Examples include deprecation of Azure features or upgrade requirements (e.g upgrade to a supported PHP framework).
     - Security advisories - Security related notifications or violations that may affect the availability of your Azure services.
+  potentialBenefits: |
+    Enable rapid staff notification for service issues
   learnMoreLink:
     - name: Create a Service Health alert using the Azure portal
       url: "https://learn.microsoft.com/azure/service-health/alerts-activity-log-service-notifications-portal#create-a-service-health-alert-using-the-azure-portal"

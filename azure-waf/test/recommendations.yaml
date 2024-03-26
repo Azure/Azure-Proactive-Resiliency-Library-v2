@@ -8,7 +8,7 @@
   publishToAdvisor: false
   pgVerified: true
   automationAvailable: false
-  recommendationTypeId: e6c7e1cc-2f47-264d-aa50-1da421314472
+  recommendationTypeId: 28a8ce6f-1b47-c243-bafb-208f4422fe7a
   state: Active
   longDescription: |
     Applications should be tested to ensure availability and resiliency. Availability describes the amount of time that an application runs in a healthy state without significant downtime. Resiliency describes how quickly an application recovers from failure.
@@ -40,7 +40,7 @@
   publishToAdvisor: false
   pgVerified: true
   automationAvailable: false
-  recommendationTypeId: 63ad027e-611c-294b-acc5-8e3234db9a40
+  recommendationTypeId: 155dda00-c264-1b45-8ac0-d6f68178844f
   state: Active
   longDescription: |
     In a distributed system, ensuring that your application can recover from errors is critical. You can test your applications to prevent errors and failure, but you need to prepare for a wide range of issues. Testing doesn't always catch everything, so you should understand how to handle errors and prevent potential failure.
@@ -70,7 +70,7 @@
   publishToAdvisor: false
   pgVerified: true
   automationAvailable: false
-  recommendationTypeId: 63ad027e-611c-294b-acc5-8e3234db9a40
+  recommendationTypeId: 1b612a06-28dc-e64e-9057-17467e57764a
   state: Active
   longDescription: |
     Disaster recovery is the process of restoring application functionality after a catastrophic loss.
@@ -101,7 +101,7 @@
   publishToAdvisor: false
   pgVerified: true
   automationAvailable: false
-  recommendationTypeId: 63ad027e-611c-294b-acc5-8e3234db9a40
+  recommendationTypeId: e10f11a5-9c5b-6c4c-a684-4d9f4063127a
   state: Active
   longDescription: |
     Ideally, you should apply chaos principles continuously. There's constant change in the environments in which software and hardware run, so monitoring the changes is key. By constantly applying stress or faults on components, you can help expose issues early, before small problems are compounded by many other factors.
@@ -128,7 +128,7 @@
   publishToAdvisor: false
   pgVerified: true
   automationAvailable: false
-  recommendationTypeId: 63ad027e-611c-294b-acc5-8e3234db9a40
+  recommendationTypeId: c8ba80d4-20d9-456f-a2bd-8e6d488d8ff9
   state: Active
   longDescription: |
     High availability is a fundamental part of the SQL Database platform that works transparently for your database application. However, we recognize that you may want to test how the automatic failover operations initiated during planned or unplanned events would impact an application before you deploy it to production. You can manually trigger a failover by calling a special API to restart a database, or an elastic pool.

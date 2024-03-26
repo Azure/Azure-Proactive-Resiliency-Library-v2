@@ -8,7 +8,7 @@
   publishToAdvisor: false
   pgVerified: true
   automationAvailable: false
-  recommendationTypeId: e6c7e1cc-2f47-264d-aa50-1da421314472
+  recommendationTypeId: 0c8a12dd-52fb-cf40-bb4a-b60f99409bab
   state: Active
   longDescription: |
     A Service Level Agreement (SLA) is an availability target that represents a commitment around performance and availability of the application. Understanding the SLA of individual components within the system is essential to define reliability targets. Knowing the SLA of dependencies will also provide a justification for additional spend when making the dependencies highly available and with proper support contracts. Availability targets for any dependencies leveraged by the application should be understood and ideally align with application targets should also be considered.
@@ -34,7 +34,7 @@
   publishToAdvisor: false
   pgVerified: true
   automationAvailable: false
-  recommendationTypeId: 63ad027e-611c-294b-acc5-8e3234db9a40
+  recommendationTypeId: a43ab756-5b33-2345-8743-3daee911a1ae
   state: Active
   longDescription: |
     Ensure the Recovery Targets are well defined and communicated across teams working on the Workload.

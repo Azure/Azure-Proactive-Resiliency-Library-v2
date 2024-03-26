@@ -8,7 +8,7 @@
   publishToAdvisor: false
   pgVerified: true
   automationAvailable: false
-  recommendationTypeId: e6c7e1cc-2f47-264d-aa50-1da421314472
+  recommendationTypeId: 063d7237-5f68-5d42-b3d1-43144b3630b5
   state: Active
   longDescription: |
     Design your application architecture to use availability zones within a region. Availability zones can be used to optimize application availability within a region by providing datacenter-level fault tolerance. However, the application architecture must not share dependencies between zones to use them effectively.
@@ -30,7 +30,7 @@
   publishToAdvisor: false
   pgVerified: true
   automationAvailable: false
-  recommendationTypeId: 63ad027e-611c-294b-acc5-8e3234db9a40
+  recommendationTypeId: 8a497b6d-d065-0d43-a7d9-e3f8eebfe0f4
   state: Active
   longDescription: |
     If your application is deployed to a single region, and the region becomes unavailable, your application will also be unavailable. This might be unacceptable under the terms of your application's SLA.
@@ -56,7 +56,7 @@
   publishToAdvisor: false
   pgVerified: true
   automationAvailable: false
-  recommendationTypeId: 63ad027e-611c-294b-acc5-8e3234db9a40
+  recommendationTypeId: 99ebe682-6306-6446-bfc7-cf6610ebfa02
   state: Active
   longDescription: |
     Ensure that all fault-points and fault-modes are understood and operationalized.
@@ -80,7 +80,7 @@
   publishToAdvisor: false
   pgVerified: true
   automationAvailable: false
-  recommendationTypeId: 63ad027e-611c-294b-acc5-8e3234db9a40
+  recommendationTypeId: 097651d8-6e62-314a-9299-a0234ffd190e
   state: Active
   longDescription: |
     PaaS provides a framework for developing and running apps. As with IaaS, the PaaS provider hosts and maintains the platform's servers, networks, storage, and other computing resources. But PaaS also includes tools, services, and systems that support the web application lifecycle. Developers use the platform to build apps without having to manage backups, security solutions, upgrades, and other administrative tasks.
@@ -100,7 +100,7 @@
   publishToAdvisor: false
   pgVerified: true
   automationAvailable: false
-  recommendationTypeId: 63ad027e-611c-294b-acc5-8e3234db9a40
+  recommendationTypeId: 7f4c76d7-f9d4-d643-ab73-4d8f27fd7ed9
   state: Active
   longDescription: |
     Azure provides elastic scalability and you should design to scale out. However, applications must leverage a scale-unit approach to navigate service and subscription limits to ensure that individual components and the application as a whole can scale horizontally. Don't forget about scale in, which is important to reduce cost. For example, scale in and out for App Service is done via rules. Often customers write scale out rules and never write scale in rules, which leaves the App Service more expensive.
@@ -120,7 +120,7 @@
   publishToAdvisor: false
   pgVerified: true
   automationAvailable: false
-  recommendationTypeId: 63ad027e-611c-294b-acc5-8e3234db9a40
+  recommendationTypeId: 6132a11a-3ea0-e64c-877b-f01ca1de79d4
   state: Active
   longDescription: |
     From a workload perspective, a landing zone refers to a prepared platform into which the application gets deployed. A landing zone implementation can have compute, data sources, access controls, and networking components already provisioned. With the required plumbing ready in place; the workload needs to plug into it.
@@ -146,7 +146,7 @@
   publishToAdvisor: false
   pgVerified: true
   automationAvailable: false
-  recommendationTypeId: 63ad027e-611c-294b-acc5-8e3234db9a40
+  recommendationTypeId: b09061cb-d536-1347-9957-390c2d0cfa3d
   state: Active
   longDescription: |
     Disaster recovery is the process of restoring application functionality after a catastrophic loss. In cloud environments, we acknowledge up front that failures happen. Instead of trying to prevent failures altogether, the goal is to minimize the effects of a single failing component.
@@ -178,7 +178,7 @@
   publishToAdvisor: false
   pgVerified: true
   automationAvailable: false
-  recommendationTypeId: 63ad027e-611c-294b-acc5-8e3234db9a40
+  recommendationTypeId: 835e616d-78e6-7f4c-a48b-6f80382a48cf
   state: Active
   longDescription: |
     Provide security assurance through identity management: the process of authenticating and authorizing security principals. Use identity management services to authenticate and grant permission to users, partners, customers, applications, services, and other entities. Identity management is typically a centralized function not controlled by the workload team as a part of the workload's architecture.
@@ -203,7 +203,7 @@
   publishToAdvisor: false
   pgVerified: true
   automationAvailable: false
-  recommendationTypeId: 63ad027e-611c-294b-acc5-8e3234db9a40
+  recommendationTypeId: c5d8f87e-45ef-1644-a4aa-95ec08b88109
   state: Active
   longDescription: |
     Security is one of the most important aspects of any architecture. It provides the following assurances against deliberate attacks and abuse of your valuable data and systems: Confidentiality ,Integrity, and Availability.
