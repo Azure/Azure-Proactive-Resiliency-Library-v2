@@ -49,6 +49,21 @@ enableRobotsTXT = true
   [[module.mounts]]
     source = 'azure-resources'
     target = 'static'
+  [[module.mounts]]
+    source = 'azure-waf'
+    target = 'static/azure-waf'
+    excludeFiles = ['**/_index.json']
+  [[module.mounts]]
+    source = 'azure-waf'
+    target = 'content/azure-waf'
+    excludeFiles = ['**/*.json', '**/README.md']
+  [[module.mounts]]
+    source = 'azure-waf'
+    target = 'data'
+    includeFiles = ['**/recommendations.yaml']
+  [[module.mounts]]
+    source = 'azure-waf'
+    target = 'static'
 
 [markup]
   [markup.goldmark.renderer]

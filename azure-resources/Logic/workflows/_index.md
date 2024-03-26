@@ -4,4 +4,5 @@ geekdocCollapseSection: true
 geekdocHidden: false
 ---
 
-{{< recommendationList name="recommendationList" >}}
+{{< azure-resources-recommendationlist name="azure-resources-recommendationlist" >}}
+

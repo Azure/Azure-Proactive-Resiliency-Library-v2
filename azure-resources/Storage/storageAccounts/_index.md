@@ -3,4 +3,4 @@ title: Storage Accounts
 geekdocCollapseSection: true
 ---
 
-{{< recommendationList name="recommendationList" >}}
+{{< azure-resources-recommendationlist name="azure-resources-recommendationlist" >}}

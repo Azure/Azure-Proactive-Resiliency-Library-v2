@@ -1,0 +1,75 @@
+<!--
+Azure WAF Recommendation List
+-->
+
+<!-- Get category from page path -->
+{{ $pageDir := path.Dir $.Page.File.Path }}
+{{ $category := path.BaseName $pageDir }}
+{{ with (index $.Site.Data $category) }}
+
+<div>
+  <table>
+    <tr>
+      <th>Recommendation</th>
+      <th>Impact</th>
+      <th>Category</th>
+      <th>WAF Pillars</th>
+      <th>Automation Available</th>
+    </tr>
+    <!-- Loop through recommendations under category -->
+    {{ range sort .recommendations "recommendation" "asc" }}
+    {{ if and (eq .state "Active") (or (not (eq .state "Removed")) ($.Site.Params.aprlDevMode true)) }}
+    <tr>
+      <td>
+        <a href="#{{ anchorize .pageTitle }}">{{ .pageTitle }}</a>
+      </td>
+      <td>{{ .recommendationImpact }}</td>
+      <td>{{ .recommendationControl }}</td>
+      <td>
+        {{ $recommendationCategory := .recommendationCategory }} {{ $length := len $recommendationCategory }} {{
+        $delimiter := ", " }} {{ range $index, $value := .recommendationCategory }}
+        {{ trim (printf "%s" $value) " " }}{{ if lt (add $index 1) $length }}{{ $delimiter }}{{ end }} {{ end }}
+      </td>
+      <td>{{ if eq .argQueryAvailable true }}Yes{{ else }}No{{ end }}</td>
+    </tr>
+    {{ end }} {{ end }}
+  </table>
+</div>
+
+<!-- Create a detail entry for each recommendation under category -->
+{{ range sort .recommendations "recommendation" "asc" }}
+{{ if and (eq .state "Active") (or (not (eq .state "Removed")) ($.Site.Params.aprlDevMode true)) }}
+<div id="{{ anchorize .pageTitle }}">
+  <hr style="height: 5px" />
+  <h3>{{ .pageTitle }}</h3>
+  <h4>
+    <span style="font-weight: bold">Impact:</span>&nbsp;
+    <span style="font-weight: normal">{{ .recommendationImpact }}</span>
+    <span style="margin-right: 40px"></span>
+    <span style="font-weight: bold">Category:</span>&nbsp;
+    <span style="font-weight: normal">{{ .recommendationControl }}</span>
+    <span style="margin-right: 40px"></span>
+    <span style="font-weight: bold">WAF Pillars:</span>&nbsp; {{ $length := len .recommendationCategory }}
+    <span style="font-weight: normal">
+      {{ $delimiter := ", " }} {{ range $index, $value := .recommendationCategory }} {{ trim (printf "%s" $value) " " }}
+      {{ if lt (add $index 1) $length }} {{ $delimiter }} {{ end }} {{ end }}
+    </span>
+  </h4>
+  <div style="max-width: 100%; word-wrap: break-word; overflow-wrap: break-word">
+    <h4>Description:</h4>
+    <pre style="white-space: pre-wrap">{{ .longDescription }}</pre>
+  </div>
+  <div style="max-width: 100%; word-wrap: break-word; overflow-wrap: break-word">
+    <h4>Potential Benefits:</h4>
+    <pre style="white-space: pre-wrap">{{ .potentialBenefits }}</pre>
+  </div>
+  <h5 style="margin-bottom: 5px">Learn More:</h5>
+  <table style="margin-top: 5px">
+    {{ range .learnMoreLink }}
+    <tr>
+      <td><a href="{{ .url }}" target="_blank">{{ .name }}</a></td>
+    </tr>
+    {{ end }}
+  </table>
+</div>
+{{ end }} {{ end }} {{ end }}
