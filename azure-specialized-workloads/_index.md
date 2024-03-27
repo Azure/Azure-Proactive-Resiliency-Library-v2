@@ -1,5 +1,7 @@
 ---
 title: Specialized Workloads
-geekdocCollapseSection: true
 weight: 40
+geekdocCollapseSection: true
 ---
+
+{{< toc-tree >}}

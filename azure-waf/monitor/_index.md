@@ -4,4 +4,4 @@ weight: 40
 geekdocCollapseSection: true
 ---
 
-{{< azure-waf-recommendationlist name="azure-waf-recommendationlist" >}}
+{{< azure-waf-workloads-recommendationlist name="azure-waf-workloads-recommendationlist" >}}
