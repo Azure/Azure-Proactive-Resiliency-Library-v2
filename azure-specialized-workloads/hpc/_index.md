@@ -8,8 +8,8 @@ geekdocHidden: false
 
 | Recommendation                                                                                                                                                                                         | Provider Namespace | Resource Type |
 | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------: | ------------- |
-| [Monitor Batch account quota](https://refactored-adventure-63z9633.pages.github.io/azure-resources/Batch/batchAccounts/#monitor-batch-account-quota)                                                   |       Batch        | batchAccounts |
-| [Create an Azure Batch pool across Availability Zones](https://refactored-adventure-63z9633.pages.github.io/azure-resources/Batch/batchAccounts/#create-an-azure-batch-pool-across-availability-zones) |       Batch        | batchAccounts |
+| [Monitor Batch account quota](https://azure.github.io/Azure-Proactive-Resiliency-Library-v2/azure-resources/Batch/batchAccounts/#monitor-batch-account-quota)                                                   |       Batch        | batchAccounts |
+| [Create an Azure Batch pool across Availability Zones](https://azure.github.io/Azure-Proactive-Resiliency-Library-v2/azure-resources/Batch/batchAccounts/#create-an-azure-batch-pool-across-availability-zones) |       Batch        | batchAccounts |
 
 ## General Guidance (not resource specific)
 
