@@ -8,6 +8,7 @@ Recommendation List
 }} {{ with (index (index $.Site.Data $category) $type) }}
 <!-- Create a table of all recommendations under category/type -->
 <div>
+  <h2>Summary</h2>
   <table>
     <tr>
       <th>Recommendation</th>
@@ -29,6 +30,11 @@ Recommendation List
     </tr>
     {{ end }} {{ end }}
   </table>
+</div>
+
+<div>
+  <br>
+  <h2>Details</h2>
 </div>
 
 <!-- Create a detail entry for each recommendation under category/type -->
@@ -65,5 +71,6 @@ Recommendation List
   {{ partial "queries-scripts/queries-scripts-tabs" (dict "category" $category
   "type" $type "recommendation" . "aprlRecommendationId" .aprlRecommendationId)
   }}
+  <br>
 </div>
 {{ end }} {{ end }} {{ end }}
