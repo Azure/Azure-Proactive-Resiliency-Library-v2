@@ -1,8 +1,6 @@
 - pageTitle: Make sure your application's health is being monitored
   recommendationImpact: Medium
   recommendationControl: Monitoring
-  recommendationCategory:
-    - Reliability
   tags: null
   publishedToLearn: false
   publishToAdvisor: false
@@ -23,8 +21,7 @@
     - Track the progress of long-running processes.
     - Troubleshoot issues to gain an overall view of application health.
     - Document how to analyze, diagnose, and respond to signals being monitored
-  potentialBenefits: |
-    Ensure continuous health monitoring for your app
+  potentialBenefits: Ensure continuous health monitoring for your app
   learnMoreLink:
     - name: Monitoring application health for reliability
       url: "https://learn.microsoft.com/azure/well-architected/resiliency/monitoring"
@@ -32,8 +29,6 @@
 - pageTitle: Define a health model based on performance, availability, and recovery targets
   recommendationImpact: Low
   recommendationControl: Monitoring
-  recommendationCategory:
-    - Reliability
   tags: null
   publishedToLearn: false
   publishToAdvisor: false
@@ -52,8 +47,7 @@
     - Understand the effects of logs in diagnostic data.
     - Ensure the consistent use of diagnostic settings across the application.
     - Use critical system flows in your health model.
-  potentialBenefits: |
-    Establish health model for performance, availability, recovery
+  potentialBenefits: Establish health model for performance, availability, recovery
   learnMoreLink:
     - name: Health modeling for reliability
       url: "https://learn.microsoft.com/azure/well-architected/resiliency/monitor-model"
@@ -61,8 +55,6 @@
 - pageTitle: Create Dashboards and Alerts for Azure Platform resources
   recommendationImpact: Low
   recommendationControl: Monitoring
-  recommendationCategory:
-    - Reliability
   tags: null
   publishedToLearn: false
   publishToAdvisor: false
@@ -74,8 +66,7 @@
     In this stage, telemetry data is presented so that an operator can quickly notice problems or trends.
 
     Examples include Workbook, Dashboards or email alerts. With Azure Workbooks and/or dashboards, you can build a single pane of glass view of monitoring graphs originating from Application Insights, Log Analytics, Azure Monitor metrics and service health. With Azure Monitor alerts, you can create alerts on service health and resource health.
-  potentialBenefits: |
-    Develop Azure resource dashboards & alerts
+  potentialBenefits: Develop Azure resource dashboards & alerts
   learnMoreLink:
     - name: Azure Workbooks templates
       url: "https://learn.microsoft.com/azure/azure-monitor/visualize/workbooks-templates"
@@ -83,8 +74,6 @@
 - pageTitle: Ensure that the right people in your organization will be notified about any future service issues
   recommendationImpact: Medium
   recommendationControl: Monitoring
-  recommendationCategory:
-    - Reliability
   tags: null
   publishedToLearn: false
   publishToAdvisor: false
@@ -99,8 +88,7 @@
     - Planned maintenance - Upcoming maintenance that can affect the availability of your services in the future.
     - Health advisories - Changes in Azure services that require your attention. Examples include deprecation of Azure features or upgrade requirements (e.g upgrade to a supported PHP framework).
     - Security advisories - Security related notifications or violations that may affect the availability of your Azure services.
-  potentialBenefits: |
-    Enable rapid staff notification for service issues
+  potentialBenefits: Enable rapid staff notification for service issues
   learnMoreLink:
     - name: Create a Service Health alert using the Azure portal
       url: "https://learn.microsoft.com/azure/service-health/alerts-activity-log-service-notifications-portal#create-a-service-health-alert-using-the-azure-portal"

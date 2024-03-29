@@ -1,8 +1,6 @@
 - pageTitle: Ensure the Availability Targets are well defined and communicated across teams working on the Workload
   recommendationImpact: High
   recommendationControl: Availability
-  recommendationCategory:
-    - Reliability
   tags: null
   publishedToLearn: false
   publishToAdvisor: false
@@ -16,8 +14,7 @@
     Understanding your availability expectations is vital to reviewing overall operations for the application.
 
     For example, if you are striving to achieve an application Service Level Objective (SLO) of 99.999%, the level of inherent operational action required by the application is going to be far greater than if an SLO of 99.9% was the goal.
-  potentialBenefits: |
-    Clarify and share clear Availability Targets across teams for improved workload management
+  potentialBenefits: Clarify and share clear Availability Targets across teams for improved workload management
   learnMoreLink:
     - name: Use business metrics to design resilient Azure applications
       url: "https://learn.microsoft.com/azure/well-architected/resiliency/business-metrics#workload-availability-targets"
@@ -27,8 +24,6 @@
 - pageTitle: Ensure the Recovery Targets are well defined and communicated across teams working on the Workload
   recommendationImpact: High
   recommendationControl: Disaster Recovery
-  recommendationCategory:
-    - Reliability
   tags: null
   publishedToLearn: false
   publishToAdvisor: false
@@ -48,8 +43,7 @@
 
      - Mean Time Between Failures (MTBF) — The average time between failures of a particular component.
      - Mean Time to Recover (MTTR) — The average time it takes to restore a component after a failure.
-  potentialBenefits: |
-    Define and communicate clear Recovery Targets to streamline workload collaboration
+  potentialBenefits: Define and communicate clear Recovery Targets to streamline workload collaboration
   learnMoreLink:
     - name: Target functional and nonfunctional requirements
       url: "https://learn.microsoft.com/azure/well-architected/resiliency/design-requirements"

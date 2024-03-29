@@ -1,8 +1,6 @@
 - pageTitle: Test your applications for availability and resiliency
   recommendationImpact: High
   recommendationControl: Application Resilience
-  recommendationCategory:
-    - Reliability
   tags: null
   publishedToLearn: false
   publishToAdvisor: false
@@ -24,8 +22,7 @@
     - Test the application against critical functional and nonfunctional requirements for performance.
     - Conduct load testing with expected peak volumes to Test scalability and performance under load.
     - Perform chaos testing by injecting faults.
-  potentialBenefits: |
-    Test for app availability & resiliency
+  potentialBenefits: Test for app availability & resiliency
   learnMoreLink:
     - name: Testing applications for availability and resiliency
       url: "https://learn.microsoft.com/azure/well-architected/resiliency/testing"
@@ -33,8 +30,6 @@
 - pageTitle: Consider building logic into your workload to handle errors
   recommendationImpact: High
   recommendationControl: Application Resilience
-  recommendationCategory:
-    - Reliability
   tags: null
   publishedToLearn: false
   publishToAdvisor: false
@@ -54,8 +49,7 @@
     - Configure request timeouts to manage intercomponent calls.
     - Configure and test health probes for your load balancers and traffic managers.
     - Segregate read operations from update operations across application data stores.
-  potentialBenefits: |
-    Enhances application reliability by proactively managing errors
+  potentialBenefits: Enhances application reliability by proactively managing errors
   learnMoreLink:
     - name: Error handling for resilient applications in Azure
       url: "https://learn.microsoft.com/azure/well-architected/resiliency/app-design-error-handling"
@@ -63,8 +57,6 @@
 - pageTitle: Perform disaster recovery tests regularly
   recommendationImpact: Medium
   recommendationControl: Disaster Recovery
-  recommendationCategory:
-    - Reliability
   tags: null
   publishedToLearn: false
   publishToAdvisor: false
@@ -85,8 +77,7 @@
     - Design a backup strategy that's tailored for the business requirements and circumstances of the application.
     - Automate failover and failback steps and processes.
     - Test and validate the failover and failback approach successfully at least once.
-  potentialBenefits: |
-    Ensures readiness for unforeseen events through regular disaster recovery tests
+  potentialBenefits: Ensures readiness for unforeseen events through regular disaster recovery tests
   learnMoreLink:
     - name: Backup and disaster recovery for Azure applications
       url: "https://learn.microsoft.com/azure/well-architected/resiliency/backup-and-recovery"
@@ -94,8 +85,6 @@
 - pageTitle: Use chaos engineering to test Azure applications
   recommendationImpact: Medium
   recommendationControl: Application Resilience
-  recommendationCategory:
-    - Reliability
   tags: null
   publishedToLearn: false
   publishToAdvisor: false
@@ -112,8 +101,7 @@
     - Add dependencies.
     - Observe changes in usage patterns.
     - Mitigate problems.
-  potentialBenefits: |
-    Enhances Azure application resilience through chaos engineering testing
+  potentialBenefits: Enhances Azure application resilience through chaos engineering testing
   learnMoreLink:
     - name: Use chaos engineering to test Azure applications
       url: "https://learn.microsoft.com/azure/well-architected/resiliency/chaos-engineering"
@@ -121,8 +109,6 @@
 - pageTitle: Test application fault resiliency
   recommendationImpact: High
   recommendationControl: Application Resilience
-  recommendationCategory:
-    - Reliability
   tags: null
   publishedToLearn: false
   publishToAdvisor: false
@@ -134,8 +120,7 @@
     High availability is a fundamental part of the SQL Database platform that works transparently for your database application. However, we recognize that you may want to test how the automatic failover operations initiated during planned or unplanned events would impact an application before you deploy it to production. You can manually trigger a failover by calling a special API to restart a database, or an elastic pool.
 
     In the case of a zone-redundant serverless or provisioned General Purpose database or elastic pool, the API call would result in redirecting client connections to the new primary in an Availability Zone different from the Availability Zone of the old primary. So in addition to testing how failover impacts existing database sessions, you can also verify if it changes the end-to-end performance due to changes in network latency. Because the restart operation is intrusive and a large number of them could stress the platform, only one failover call is allowed every 15 minutes for each database or elastic pool.
-  potentialBenefits: |
-    Enhance application reliability through fault resiliency testing
+  potentialBenefits: Enhance application reliability through fault resiliency testing
   learnMoreLink:
     - name: Test application fault resiliency
       url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/high-availability-sla?view=azuresql&tabs=azure-powershell#testing-application-fault-resiliency"

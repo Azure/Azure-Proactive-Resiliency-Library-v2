@@ -1,8 +1,6 @@
 - pageTitle: Implement proactive Incident Response
   recommendationImpact: High
   recommendationControl: Disaster Recovery
-  recommendationCategory:
-    - Reliability
   tags: null
   publishedToLearn: false
   publishToAdvisor: false
@@ -22,8 +20,7 @@
     Engaging the right resources to mitigate the issue(s), and
     Communicating with stakeholders about the problem
     After the problem has been remediated, you can then learn from the incident through a post-incident review process. That's an important subject which has a whole separate module worth of discussion.
-  potentialBenefits: |
-    Strengthen incident response with proactive implementation
+  potentialBenefits: Strengthen incident response with proactive implementation
   learnMoreLink:
     - name: Importance of incident response
       url: "https://learn.microsoft.com/training/modules/improve-reliability-incidents/2-importance"

@@ -1,8 +1,6 @@
 - pageTitle: Avoid manual configuration to enforce consistency with Infrastructure as code
   recommendationImpact: Medium
   recommendationControl: Automation
-  recommendationCategory:
-    - Reliability
   tags: null
   publishedToLearn: false
   publishToAdvisor: false
@@ -20,8 +18,7 @@
     - Avoid manual configuration to enforce consistency
     - Deliver stable test environments rapidly at scale
     - Use declarative definition files
-  potentialBenefits: |
-    Ensure consistent configurations with IaC
+  potentialBenefits: Ensure consistent configurations with IaC
   learnMoreLink:
     - name: Avoid manual configuration to enforce consistency
       url: "https://learn.microsoft.com/devops/deliver/what-is-infrastructure-as-code#avoid-manual-configuration-to-enforce-consistenc"
@@ -29,8 +26,6 @@
 - pageTitle: Validated all changes in development environments before applying them to production
   recommendationImpact: Medium
   recommendationControl: Automation
-  recommendationCategory:
-    - Reliability
   tags: null
   publishedToLearn: false
   publishToAdvisor: false

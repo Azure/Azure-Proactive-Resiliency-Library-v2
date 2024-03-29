@@ -1,8 +1,6 @@
 - pageTitle: Monitor Batch Account quota
   recommendationImpact: Medium
   recommendationControl: Monitoring
-  recommendationCategory:
-    - Reliability
   tags: null
   publishedToLearn: false
   publishToAdvisor: false
@@ -14,8 +12,7 @@
     To enable Cross-region disaster recovery and business continuity, ensure that the appropriate quotas are set for all user subscription Batch accounts. This will allocate the required number of cores made available upfront. Without enough allocated cores capacity a job execution will be interrupted with operational errors indicating “Quota Reached”.
 
     Pre-create all required services in each region, such as the Batch account and the storage account. There’s often no charge for having accounts created, and charges accrue only when the account is used or when data is stored.
-  potentialBenefits: |
-    Enhanced data redundancy and boosts availability
+  potentialBenefits: Enhanced data redundancy and boosts availability
   learnMoreLink:
     - name: Cross-region disaster recovery and business continuity
       url: "https://learn.microsoft.com/en-us/azure/reliability/reliability-batch#cross-region-disaster-recovery-and-business-continuity"
@@ -23,8 +20,6 @@
 - pageTitle: Create an Azure Batch pool across Availability Zones
   recommendationImpact: High
   recommendationControl: Availability
-  recommendationCategory:
-    - Reliability
   tags: null
   publishedToLearn: false
   publishToAdvisor: false
@@ -34,8 +29,7 @@
   state: Active
   longDescription: |
     When you create an Azure Batch pool using Virtual Machine Configuration, you can choose to provision your Batch pool across Availability Zones. Creating your pool with this zonal policy helps protect your Batch compute nodes from Azure datacenter-level failures. For example, you could create your pool with zonal policy in an Azure region that supports three Availability Zones. If an Azure datacenter in one Availability Zone has an infrastructure failure, your Batch pool will still have healthy nodes in the other two Availability Zones, so the pool will remain available for task scheduling.
-  potentialBenefits: |
-    Enhance availability with zonal placement
+  potentialBenefits: Enhance availability with zonal placement
   learnMoreLink:
     - name: Cross-region disaster recovery and business continuity
       url: "https://learn.microsoft.com/en-us/azure/reliability/reliability-batch#cross-region-disaster-recovery-and-business-continuity"
