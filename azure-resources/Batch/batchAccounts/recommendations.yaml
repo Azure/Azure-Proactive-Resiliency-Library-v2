@@ -6,7 +6,8 @@
   publishToAdvisor: false
   pgVerified: false
   automationAvailable: false
-  recommendationTypeId: 3464854d-6f75-4922-95e4-a2a308b53ce6
+  aprlRecommendationId: 3464854d-6f75-4922-95e4-a2a308b53ce6
+  recommendationTypeId: null
   state: Active
   longDescription: |
     To enable Cross-region disaster recovery and business continuity, ensure that the appropriate quotas are set for all user subscription Batch accounts. This will allocate the required number of cores made available upfront. Without enough allocated cores capacity a job execution will be interrupted with operational errors indicating “Quota Reached”.
@@ -25,7 +26,8 @@
   publishToAdvisor: false
   pgVerified: false
   automationAvailable: false
-  recommendationTypeId: 71cfab8f-d588-4742-b175-b6e07ae48dbd
+  aprlRecommendationId: 71cfab8f-d588-4742-b175-b6e07ae48dbd
+  recommendationTypeId: null
   state: Active
   longDescription: |
     When you create an Azure Batch pool using Virtual Machine Configuration, you can choose to provision your Batch pool across Availability Zones. Creating your pool with this zonal policy helps protect your Batch compute nodes from Azure datacenter-level failures. For example, you could create your pool with zonal policy in an Azure region that supports three Availability Zones. If an Azure datacenter in one Availability Zone has an infrastructure failure, your Batch pool will still have healthy nodes in the other two Availability Zones, so the pool will remain available for task scheduling.

@@ -6,7 +6,8 @@
   publishToAdvisor: false
   pgVerified: false
   automationAvailable: true
-  recommendationTypeId: e6c7e1cc-2f47-264d-aa50-1da421314472
+  aprlRecommendationId: e6c7e1cc-2f47-264d-aa50-1da421314472
+  recommendationTypeId: null
   state: Active
   longDescription: |
     Data in an Azure Storage account is always replicated three times in the primary region. Azure Storage offers other options for how your data is replicated in the primary or paired region:
@@ -28,7 +29,8 @@
   publishToAdvisor: false
   pgVerified: false
   automationAvailable: true
-  recommendationTypeId: 63ad027e-611c-294b-acc5-8e3234db9a40
+  aprlRecommendationId: 63ad027e-611c-294b-acc5-8e3234db9a40
+  recommendationTypeId: null
   state: Active
   longDescription: |
     Azure classic Storage Account will retire 31 august 2024. So migrate all workload from classic storage to v2.
@@ -45,7 +47,8 @@
   publishToAdvisor: false
   pgVerified: false
   automationAvailable: true
-  recommendationTypeId: 5587ef77-7a05-a74d-9c6e-449547a12f27
+  aprlRecommendationId: 5587ef77-7a05-a74d-9c6e-449547a12f27
+  recommendationTypeId: null
   state: Active
   longDescription: |
     Consider using appropriate storage performance tier for standard storage / block blob / append blob / file-share and page blob. Each workload scenario requires appropriate Performance tier and its important that based on the type of transaction and blob type/file type appropriate performance tier is selected. Failing to do so will create performance bottleneck.

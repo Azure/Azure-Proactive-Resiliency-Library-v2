@@ -6,7 +6,8 @@
   publishToAdvisor: false
   pgVerified: true
   automationAvailable: false
-  recommendationTypeId: daf605e4-d3fd-fc42-819a-e3ec084ffda6
+  aprlRecommendationId: daf605e4-d3fd-fc42-819a-e3ec084ffda6
+  recommendationTypeId: null
   state: Active
   longDescription: |
     Prevention of all problems is a laudable, but impossible goal. Things will go wrong, so we need a plan to limit the impact on our end users and return operations to normal as quickly as possible.

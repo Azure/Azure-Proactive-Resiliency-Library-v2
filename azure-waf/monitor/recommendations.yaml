@@ -6,7 +6,8 @@
   publishToAdvisor: false
   pgVerified: true
   automationAvailable: false
-  recommendationTypeId: 46fb4540-ecac-6e49-bc10-34c7792eb35d
+  aprlRecommendationId: 46fb4540-ecac-6e49-bc10-34c7792eb35d
+  recommendationTypeId: null
   state: Active
   longDescription: |
     Monitoring and diagnostics are crucial for availability and resiliency. If something fails, you need to know that it failed, when it failed, and why.
@@ -34,7 +35,8 @@
   publishToAdvisor: false
   pgVerified: true
   automationAvailable: true
-  recommendationTypeId: 5dd7a9a3-fb79-004d-bc89-c9ef79890900
+  aprlRecommendationId: 5dd7a9a3-fb79-004d-bc89-c9ef79890900
+  recommendationTypeId: null
   state: Active
   longDescription: |
     The health model should be able to surface the health of critical system flows or key subsystems to ensure that appropriate operational prioritization is applied. For example, the health model should be able to represent the current state of the user sign-in transaction flow.
@@ -60,7 +62,8 @@
   publishToAdvisor: false
   pgVerified: true
   automationAvailable: true
-  recommendationTypeId: 1691bfea-c9fd-0948-969a-03e5abcab299
+  aprlRecommendationId: 1691bfea-c9fd-0948-969a-03e5abcab299
+  recommendationTypeId: null
   state: Active
   longDescription: |
     In this stage, telemetry data is presented so that an operator can quickly notice problems or trends.
@@ -79,7 +82,8 @@
   publishToAdvisor: false
   pgVerified: true
   automationAvailable: true
-  recommendationTypeId: 1422b388-5d23-5641-ba1c-139a59fb7b4c
+  aprlRecommendationId: 1422b388-5d23-5641-ba1c-139a59fb7b4c
+  recommendationTypeId: null
   state: Active
   longDescription: |
     Azure offers a suite of experiences to keep you informed about the health of your cloud resources. The Service Health portal tracks four types of health events that may impact your resources:

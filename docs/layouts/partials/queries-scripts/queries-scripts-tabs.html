@@ -17,8 +17,8 @@
     Azure Resource Graph
   </label>
   <div class="gdoc-markdown--nested gdoc-tabs__content">
-    {{ $data := readFile (printf "azure-resources/%s/%s/%s/%s.kql" .category .type .recommendationTypeId
-    .recommendationTypeId)}}</pre>
+    {{ $data := readFile (printf "azure-resources/%s/%s/%s/%s.kql" .category .type .aprlRecommendationId
+    .aprlRecommendationId)}}</pre>
     {{ highlight $data "t-sql" }}
   </div>
 </div>

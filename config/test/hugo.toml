@@ -1,5 +1,5 @@
 baseURL = "https://azure.github.io/Azure-Proactive-Resiliency-Library"
-title = "Azure Proactive Resiliency Library"
+title = "Azure Proactive Resiliency Library v2"
 theme = "hugo-geekdoc"
 themesDir = "docs/themes"
 

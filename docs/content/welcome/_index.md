@@ -5,7 +5,7 @@ weight: 0
 
 ---
 
-Welcome to the home of the Azure Proactive Resiliency Library (APRL).
+Welcome to the home of the Azure Proactive Resiliency Library v2 (APRL).
 
 {{< figure src="../img/aprl-white.png" width="20%" >}}
 
