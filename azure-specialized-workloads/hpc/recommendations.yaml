@@ -1,0 +1,44 @@
+- pageTitle: Ensure that Storage Account configuration is at least Zone redundant
+  recommendationImpact: High
+  recommendationControl: Availability
+  recommendationCategory:
+    - Reliability
+  tags: null
+  publishedToLearn: false
+  publishToAdvisor: false
+  pgVerified: false
+  automationAvailable: true
+  recommendationTypeId: e6c7e1cc-2f47-264d-aa50-1da421314472
+  state: Active
+  longDescription: |
+    Data in an Azure Storage account is always replicated three times in the primary region. Azure Storage offers other options for how your data is replicated in the primary or paired region:
+
+      - LRS synchronously replicates data 3 times in a single physical location. It is the least expensive replication but not recommended for apps with high availability and durability. LRS provides eleven 9s durability.
+      - ZRS copies data synchronously across 3 availability zones in the primary region. ZRS is recommended for apps requiring high availability across zones. ZRS provides twelve 9s durability.
+      - GRS replicates an additional 3 copies to the secondary region and provides sixteen 9s availability.
+      - GZRS provides both high availability and redundancy across geo-replication. It provides sixteen 9s durability over a given year.
+  potentialBenefits: |
+    Enhanced data redundancy and boosts availability
+  learnMoreLink:
+    - name: Azure Storage Redundancy
+      url: "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy"
+
+- pageTitle: Do not use classic Storage Account
+  recommendationImpact: High
+  recommendationControl: Governance
+  recommendationCategory:
+    - Reliability
+  tags: null
+  publishedToLearn: false
+  publishToAdvisor: false
+  pgVerified: false
+  automationAvailable: true
+  recommendationTypeId: 63ad027e-611c-294b-acc5-8e3234db9a40
+  state: Active
+  longDescription: |
+    Azure classic Storage Account will retire 31 august 2024. So migrate all workload from classic storage to v2.
+  potentialBenefits: |
+    Improved security and modern features
+  learnMoreLink:
+    - name: Storage Account Retirement Announcement
+      url: "https://azure.microsoft.com/updates/classic-azure-storage-accounts-will-be-retired-on-31-august-2024"

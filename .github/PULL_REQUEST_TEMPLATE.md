@@ -23,10 +23,10 @@ Replace this with a list of related GitHub Issues and/or ADO Work Items (Interna
 
 ## As part of this Pull Request I have
 
-- [ ] Read the [Contribution Guide](https://azure.github.io/Azure-Proactive-Resiliency-Library/contributing) and ensured this PR is compliant with the guide
-- [ ] Checked for duplicate [Pull Requests](https://github.com/Azure/Azure-Proactive-Resiliency-Library/pulls)
-- [ ] Associated it with relevant [GitHub Issues](https://github.com/Azure/Azure-Proactive-Resiliency-Library/issues) or ADO Work Items (Internal Only)
-- [ ] Ensured my code/branch is up-to-date with the latest changes in the `main` [branch](https://github.com/Azure/Azure-Proactive-Resiliency-Library/tree/main)
+- [ ] Read the [Contribution Guide](https://azure.github.io/Azure-Proactive-Resiliency-Library-v2/contributing) and ensured this PR is compliant with the guide
+- [ ] Checked for duplicate [Pull Requests](https://azure.github.io/Azure-Proactive-Resiliency-Library-v2//pulls)
+- [ ] Associated it with relevant [GitHub Issues](https://azure.github.io/Azure-Proactive-Resiliency-Library-v2//issues) or ADO Work Items (Internal Only)
+- [ ] Ensured my code/branch is up-to-date with the latest changes in the `main` [branch](https://azure.github.io/Azure-Proactive-Resiliency-Library-v2//tree/main)
 - [ ] Ensured PR tests are passing
 - [ ] Performed testing and provided evidence (e.g. screenshot of output) for any changes associated to ARG queries and/or scripts
 - [ ] Updated relevant and associated documentation (e.g. Contribution Guide, Docs etc.)

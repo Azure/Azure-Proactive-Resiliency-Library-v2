@@ -4,8 +4,8 @@ geekdocCollapseSection: true
 geekdocHidden: false
 ---
 
-## Azure Resource Recommendations for SAP on Azure
+## Relevant Azure Resource Recommendations
 
-## General Guidance (not resource specific) for SAP on Azure
+## General Guidance (not resource specific)
 
 {{< azure-resources-recommendationlist name="azure-resources-recommendationlist" >}}

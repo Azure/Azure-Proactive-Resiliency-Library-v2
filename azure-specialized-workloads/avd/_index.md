@@ -4,8 +4,8 @@ geekdocCollapseSection: true
 geekdocHidden: false
 ---
 
-## Azure Resource Recommendations for Azure Virtual Desktop
+## Relevant Azure Resource Recommendations
 
-### General Guidance (not resource specific) for Azure Virtual Desktop
+## General Guidance (not resource specific)
 
 {{< azure-resources-recommendationlist name="azure-resources-recommendationlist" >}}

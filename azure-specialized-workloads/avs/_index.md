@@ -4,8 +4,8 @@ geekdocCollapseSection: true
 geekdocHidden: false
 ---
 
-## Azure Resource Recommendations for Azure VMware Solution
+## Relevant Azure Resource Recommendations
 
-## General Guidance (not resource specific) for Azure VMware Solution
+## General Guidance (not resource specific)
 
 {{< azure-resources-recommendationlist name="azure-resources-recommendationlist" >}}

@@ -222,7 +222,7 @@ The column names should be in the order they are listed and match exactly.
 
 {{< hint type=note >}}
 
-If you need support with validating a query, please reach out to the APRL team via the [APRL GitHub General Question/Feedback Form](https://github.com/Azure/Azure-Proactive-Resiliency-Library/issues/new?assignees=&labels=feedback%2C+question&projects=&template=general-question-feedback----.md&title=%E2%9D%93%F0%9F%91%82+Question%2FFeedback+-+PLEASE+CHANGE+ME+TO+SOMETHING+DESCRIPTIVE)
+If you need support with validating a query, please reach out to the APRL team via the [APRL GitHub General Question/Feedback Form](https://azure.github.io/Azure-Proactive-Resiliency-Library-v2//issues/new?assignees=&labels=feedback%2C+question&projects=&template=general-question-feedback----.md&title=%E2%9D%93%F0%9F%91%82+Question%2FFeedback+-+PLEASE+CHANGE+ME+TO+SOMETHING+DESCRIPTIVE)
 
 {{< /hint >}}
 

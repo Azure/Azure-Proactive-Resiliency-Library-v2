@@ -1,4 +1,4 @@
-baseURL = "https://azure.github.io/Azure-Proactive-Resiliency-Library"
+baseURL = "https://azure.github.io/Azure-Proactive-Resiliency-Library-v2"
 title = "Azure Proactive Resiliency Library"
 theme = "hugo-geekdoc"
 themesDir = "docs/themes"
@@ -128,7 +128,7 @@ enableRobotsTXT = true
 
   # (Optional, default none) Set source repository location. Used for 'Edit page' links.
   # You can also specify this parameter per page in front matter.
-  geekdocRepo = "https://azure.github.io/Azure-Proactive-Resiliency-Library/"
+  geekdocRepo = "https://azure.github.io/Azure-Proactive-Resiliency-Library-v2/"
 
   # (Optional, default none) Enable 'Edit page' links. Requires 'geekdocRepo' param
   # and the path must point to the parent directory of the 'content' folder.

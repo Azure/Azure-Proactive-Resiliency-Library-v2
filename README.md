@@ -1,7 +1,7 @@
 # Azure Proactive Resiliency Library (APRL)
 
-[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/Azure/Azure-Proactive-Resiliency-Library.svg)](http://isitmaintained.com/project/Azure/Azure-Proactive-Resiliency-Library "Average time to resolve an issue")
-[![Percentage of issues still open](http://isitmaintained.com/badge/open/Azure/Azure-Proactive-Resiliency-Library.svg)](http://isitmaintained.com/project/Azure/Azure-Proactive-Resiliency-Library "Percentage of issues still open")
+[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/Azure/Azure-Proactive-Resiliency-Library-v2.svg)](http://isitmaintained.com/project/Azure/Azure-Proactive-Resiliency-Library-v2 "Average time to resolve an issue")
+[![Percentage of issues still open](http://isitmaintained.com/badge/open/Azure/Azure-Proactive-Resiliency-Library-v2.svg)](http://isitmaintained.com/project/Azure/Azure-Proactive-Resiliency-Library-v2 "Percentage of issues still open")
 
 > **Please access the GitHub Pages site, unless looking to contribute, over at: [aka.ms/aprl](https://aka.ms/aprl)**
 

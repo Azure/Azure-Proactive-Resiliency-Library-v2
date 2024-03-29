@@ -4,13 +4,13 @@ geekdocCollapseSection: true
 geekdocHidden: false
 ---
 
-## Azure Resource Recommendations for Azure High Performance Computing
+## Relevant Azure Resource Recommendations
 
-| Recommendation                                           | Provider Namespace | Resource Type |
-| :------------------------------------------------------- | :----------------: | ------------- |
-| [Monitor Batch account quota]()                          |       Batch        | batchAccounts |
-| [Create an Azure Batch pool across Availability Zones]() |       Batch        | batchAccounts |
+| Recommendation                                                                                                                                                                                         | Provider Namespace | Resource Type |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------: | ------------- |
+| [Monitor Batch account quota](https://refactored-adventure-63z9633.pages.github.io/azure-resources/Batch/batchAccounts/#monitor-batch-account-quota)                                                   |       Batch        | batchAccounts |
+| [Create an Azure Batch pool across Availability Zones](https://refactored-adventure-63z9633.pages.github.io/azure-resources/Batch/batchAccounts/#create-an-azure-batch-pool-across-availability-zones) |       Batch        | batchAccounts |
 
-## General Guidance (not resource specific) for Azure High Performance Computing
+## General Guidance (not resource specific)
 
 {{< azure-resources-recommendationlist name="azure-resources-recommendationlist" >}}
