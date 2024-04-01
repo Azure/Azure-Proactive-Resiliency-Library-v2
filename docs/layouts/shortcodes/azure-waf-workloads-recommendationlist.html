@@ -8,6 +8,7 @@ Azure WAF and Specialized Workloads Recommendation List
 {{ with (index $.Site.Data $category) }}
 
 <div>
+  <h2>Summary</h2>
   <table>
     <tr>
       <th>Recommendation</th>
@@ -28,6 +29,11 @@ Azure WAF and Specialized Workloads Recommendation List
     </tr>
     {{ end }} {{ end }}
   </table>
+</div>
+
+<div>
+  <br>
+  <h2>Details</h2>
 </div>
 
 <!-- Create a detail entry for each recommendation under category -->
@@ -60,5 +66,6 @@ Azure WAF and Specialized Workloads Recommendation List
     </tr>
     {{ end }}
   </table>
+  <br>
 </div>
 {{ end }} {{ end }} {{ end }}
