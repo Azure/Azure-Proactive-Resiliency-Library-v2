@@ -1,4 +1,4 @@
-baseURL = "https://azure.github.io/Azure-Proactive-Resiliency-Library"
+baseURL = "https://azure.github.io/Azure-Proactive-Resiliency-Library-v2"
 title = "Azure Proactive Resiliency Library v2"
 theme = "hugo-geekdoc"
 themesDir = "docs/themes"
@@ -34,6 +34,8 @@ enableRobotsTXT = true
   [[module.mounts]]
     source = 'docs/archetypes'
     target = 'archetypes'
+
+  # Azure Resources
   [[module.mounts]]
     source = 'azure-resources'
     target = 'static/azure-resources'
@@ -48,6 +50,40 @@ enableRobotsTXT = true
     includeFiles = ['**/recommendations.yaml']
   [[module.mounts]]
     source = 'azure-resources'
+    target = 'static'
+
+  # Azure WAF
+  [[module.mounts]]
+    source = 'azure-waf'
+    target = 'static/azure-waf'
+    excludeFiles = ['**/_index.json']
+  [[module.mounts]]
+    source = 'azure-waf'
+    target = 'content/azure-waf'
+    excludeFiles = ['**/*.json', '**/README.md']
+  [[module.mounts]]
+    source = 'azure-waf'
+    target = 'data'
+    includeFiles = ['**/recommendations.yaml']
+  [[module.mounts]]
+    source = 'azure-waf'
+    target = 'static'
+
+  # Azure Specialized Workloads
+  [[module.mounts]]
+    source = 'azure-specialized-workloads'
+    target = 'static/azure-specialized-workloads'
+    excludeFiles = ['**/_index.json']
+  [[module.mounts]]
+    source = 'azure-specialized-workloads'
+    target = 'content/azure-specialized-workloads'
+    excludeFiles = ['**/*.json', '**/README.md']
+  [[module.mounts]]
+    source = 'azure-specialized-workloads'
+    target = 'data'
+    includeFiles = ['**/recommendations.yaml']
+  [[module.mounts]]
+    source = 'azure-specialized-workloads'
     target = 'static'
 
 [markup]
@@ -158,5 +194,3 @@ enableRobotsTXT = true
   # [params.geekdocContentLicense]
   #   name = "CC BY-SA 4.0"
   #   link = "https://creativecommons.org/licenses/by-sa/4.0/"
-
-
