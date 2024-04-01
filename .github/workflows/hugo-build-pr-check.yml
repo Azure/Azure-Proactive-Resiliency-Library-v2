@@ -6,8 +6,11 @@ on:
     branches:
       - main
     paths:
-      - 'docs/**'
-      - '.github/workflows/hugo-build-pr-check.yml'
+      - "docs/**"
+      - "azure-resources/**"
+      - "azure-specialized-workloads/**"
+      - "azure-waf/**"
+      - ".github/workflows/hugo-build-pr-check.yml"
   workflow_dispatch: {}
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
@@ -44,7 +47,7 @@ jobs:
 
       - name: Setup Pages
         id: pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5
 
       - name: Install Node.js dependencies
         run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"

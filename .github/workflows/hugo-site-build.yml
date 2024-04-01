@@ -7,9 +7,9 @@ on:
     branches:
       - main
     paths:
-      - 'docs/**'
-      - 'azure-resources/**/recommendations.yaml'
-      - 'azure-resources/**/*.md'
+      - "docs/**"
+      - "azure-resources/**/recommendations.yaml"
+      - "azure-resources/**/*.md"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch: {}
@@ -54,11 +54,11 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11' # install the python version needed
+          python-version: "3.11" # install the python version needed
 
       - name: Setup Pages
         id: pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5
 
       - name: Install Node.js dependencies
         run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
@@ -79,7 +79,6 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./public
-
 
   # Deployment job
   deploy:
