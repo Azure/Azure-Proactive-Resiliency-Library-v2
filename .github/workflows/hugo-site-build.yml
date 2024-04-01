@@ -35,7 +35,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      HUGO_VERSION: 0.117.0
+      HUGO_VERSION: 0.124.1
     steps:
       - name: Install Hugo CLI
         run: |
@@ -54,7 +54,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11" # install the python version needed
+          python-version: "3.12" # install the python version needed
 
       - name: Setup Pages
         id: pages
