@@ -3,4 +3,4 @@
 resources
 | where type =~'microsoft.storage/storageaccounts'
 | where isnull(properties.accessTier)
-| project recommendationId = 'st-3', name, id, tags, param1="not defined - GeneralPurpose V1"
+| project recommendationId = '5587ef77-7a05-a74d-9c6e-449547a12f27', name, id, tags, param1="not defined - GeneralPurpose V1"
