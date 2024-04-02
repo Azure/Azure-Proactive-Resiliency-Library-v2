@@ -11,6 +11,6 @@ header:
     external: true
 
   - name: GitHub Issues
-    ref: https://azure.github.io/Azure-Proactive-Resiliency-Library-v2//issues
+    ref: https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/issues
     icon: gdoc_error_outline
     external: true

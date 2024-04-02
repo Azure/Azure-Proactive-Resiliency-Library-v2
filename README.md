@@ -17,7 +17,7 @@ The library also contains supporting [Azure Resource Graph (ARG)](https://learn.
 
 > The contribution guide can be found on the GitHub pages site here: [aka.ms/aprl/contribute](https://aka.ms/aprl/contribute)
 
-This project only currently accepts Pull Requests from Microsoft FTEs as of today. However, anyone is welcomed to create issues/features requests on the repo for the team to triage and action. Most contributions require you to agree to a Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us the rights to use your contribution. For details, visit [https://cla.opensource.microsoft.com](https://cla.opensource.microsoft.com).
+Most contributions require you to agree to a Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us the rights to use your contribution. For details, visit [https://cla.opensource.microsoft.com](https://cla.opensource.microsoft.com).
 
 When you submit a pull request, a CLA bot will automatically determine whether you need to provide a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions provided by the bot. You will only need to do this once across all repos using our CLA.
 

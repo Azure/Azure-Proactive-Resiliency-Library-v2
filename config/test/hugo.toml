@@ -128,7 +128,7 @@ enableRobotsTXT = true
 
   # (Optional, default none) Set source repository location. Used for 'Edit page' links.
   # You can also specify this parameter per page in front matter.
-  geekdocRepo = "https://azure.github.io/Azure-Proactive-Resiliency-Library-v2/"
+  geekdocRepo = "https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2"
 
   # (Optional, default none) Enable 'Edit page' links. Requires 'geekdocRepo' param
   # and the path must point to the parent directory of the 'content' folder.
@@ -194,3 +194,5 @@ enableRobotsTXT = true
   # [params.geekdocContentLicense]
   #   name = "CC BY-SA 4.0"
   #   link = "https://creativecommons.org/licenses/by-sa/4.0/"
+
+
