@@ -1,0 +1,39 @@
+- pageTitle: Replace with the summarization of your recommendation. Allowed values - All single line strings
+  recommendationImpact: Replace with the importance of adopting the recommendation and/or the risk of choosing not to adopt. Allowed values - Low, Medium, High
+  recommendationControl: Replace with the resiliency category associated with the recommendation. Allowed values - High Availability, Business Continuity, Disaster Recovery, Scalability, Monitoring and Alerting, Service Upgrade and Retirement, Other Best Practices, Personalized
+  tags: null
+  publishedToLearn: false
+  publishToAdvisor: false
+  pgVerified: false
+  automationAvailable: Replace with whether automation is available for validating the recommendation. Allowed boolean - true, false
+  aprlRecommendationId: Replace with the unique identifier for the recommendation in the context of Azure Proactive Resiliency and CXObserve. Generate a GUID for each new recommendation. Allowed values - 32-character hexadecimal string.
+  recommendationTypeId: null
+  state: Active
+  longDescription: |
+    Replace with detailed description of the recommendation and its implications. Allowed values - All multi-line strings
+  potentialBenefits: Allowed values - All single line strings
+  learnMoreLink:
+    - name: Replace with link name related to the recommendation, such as announcements or documentation. Allowed values - All single line strings
+      url: "Replace with the link related to recommendation link name. Allowed values - URL"
+    - name: Replace with link name related to the recommendation, such as announcements or documentation. Allowed values - All single line strings
+      url: "Replace with the link related to recommendation link name. Allowed values - URL"
+
+- pageTitle: Replace with the summarization of your recommendation. Allowed values - All single line strings
+  recommendationImpact: Replace with the importance of adopting the recommendation and/or the risk of choosing not to adopt. Allowed values - Low, Medium, High
+  recommendationControl: Replace with the resiliency category associated with the recommendation. Allowed values - High Availability, Business Continuity, Disaster Recovery, Scalability, Monitoring and Alerting, Service Upgrade and Retirement, Other Best Practices, Personalized
+  tags: null
+  publishedToLearn: false
+  publishToAdvisor: false
+  pgVerified: false
+  automationAvailable: Replace with whether automation is available for validating the recommendation. Allowed boolean - true, false
+  aprlRecommendationId: Replace with the unique identifier for the recommendation in the context of Azure Proactive Resiliency and CXObserve. Generate a GUID for each new recommendation. Allowed values - 32-character hexadecimal string.
+  recommendationTypeId: null
+  state: Active
+  longDescription: |
+    Replace with detailed description of the recommendation and its implications. Allowed values - All multi-line strings
+  potentialBenefits: Allowed values - All single line strings
+  learnMoreLink:
+    - name: Replace with link name related to the recommendation, such as announcements or documentation. Allowed values - All single line strings
+      url: "Replace with the link related to recommendation link name. Allowed values - URL"
+    - name: Replace with link name related to the recommendation, such as announcements or documentation. Allowed values - All single line strings
+      url: "Replace with the link related to recommendation link name. Allowed values - URL"
