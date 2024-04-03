@@ -96,3 +96,23 @@
   learnMoreLink:
     - name: Create a Service Health alert using the Azure portal
       url: "https://learn.microsoft.com/azure/service-health/alerts-activity-log-service-notifications-portal#create-a-service-health-alert-using-the-azure-portal"
+
+- pageTitle: Utilize built-in Resilience policies
+  recommendationImpact: Medium
+  recommendationControl: Governance
+  tags: null
+  publishedToLearn: false
+  publishToAdvisor: false
+  pgVerified: true
+  automationAvailable: true
+  aprlRecommendationId: 1422b388-5d23-5641-ba1c-139a59fb7b4c
+  recommendationTypeId: null
+  state: Active
+  longDescription: |
+    Utilize Azure’s built-in Resilience policies to audit and enforce resilient configurations of Azure services. Azure Policy helps to enforce organizational standards and to assess compliance at-scale.
+  potentialBenefits: Enable rapid staff notification for service issues
+  learnMoreLink:
+    - name: Built-in Resilience policy definitions
+      url: "https://github.com/Azure/azure-policy/tree/master/built-in-policies/policyDefinitions/Resilience"
+    - name: Get policy compliance data
+      url: "https://learn.microsoft.com/azure/governance/policy/how-to/get-compliance-data"
