@@ -4,97 +4,27 @@ weight: 20
 geekdocCollapseSection: true
 ---
 
-Looking to contribute to the Azure Proactive Resiliency Library v2 (APRL), well you have made it to the right place/page 👍
+This section lists all contribution guidance available to contributors of the Azure Proactive Resiliency Library v2 (APRL). The guidance is broken down into the following sections:
 
-Follow the below instructions, especially the pre-requisites, to get started contributing to the library.
+{{< hint type=important >}}
 
-## Context/Background
-
-Before jumping into the pre-requisites and specific section contribution guidance, please familiarize yourself with this context/background on how this library is built to help you contribute going forward.
-
-This [site](https://aka.ms/aprl) is built using [Hugo](https://gohugo.io/), a static site generator, that's source code is stored in the [APRL GitHub repo](https://aka.ms/aprl/repo) (link in header of this site too) and is hosted on [GitHub Pages](https://pages.github.com), via the repo.
-
-The reason for the combination of Hugo & GitHub pages is to allow us to present an easy to navigate and consume library, rather than using a native GitHub repo, which is not easy to consume when there are lots of pages and folders. Also Hugo generates the site in such a way that it is also friendly for mobile consumers.
-
-### But I don't have any skills in Hugo?
-
-That's okay and you really don't need them. Hugo just needs you to be able to author markdown (`.md`) files and it does the rest when it generates the site 👍
-
-## Pre-Requisites
-
-Read and follow the below sections to leave you in a "ready state" to contribute to APRL.
-
-A "ready state" means you have a forked copy of the [`Azure/Azure-Proactive-Resiliency-Library` repo](https://aka.ms/aprl/repo) cloned to your local machine and open in VS Code.
-
-## Run and Access a Local Copy of APRL During Development
-
-When in VS Code you should be able to open a terminal and run the below commands to access a copy of the APRL website from a local web server, provided by Hugo, using the following address [`http://localhost:1313/Azure-Proactive-Resiliency-Library/`](http://localhost:1313/Azure-Proactive-Resiliency-Library/):
-
-```text
-hugo server --disableFastRender
-```
-
-### Software/Applications
-
-To contribute to this project/repo/library, you will need the following installed:
-
-{{< hint type=note >}}
-
-You can use `winget` to install all the pre-requisites easily for you. See the [below section](#winget-install-commands)
+If you cannot find guidance for what you need, please let us know via [GitHub Issues](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/issues) 👍
 
 {{< /hint >}}
 
-- [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
-- [Visual Studio Code (VS Code)](https://code.visualstudio.com/Download)
-  - Extensions:
-    - `editorconfig.editorconfig`, `streetsidesoftware.code-spell-checker`, `ms-vsliveshare.vsliveshare`, `medo64.render-crlf`, `vscode-icons-team.vscode-icons`
-    - VS Code will recommend automatically to install these when you open this repo, or a fork of it, in VS Code.
-- [Hugo Extended](https://gohugo.io/installation/)
+## Context/Background
 
-### winget Install Commands
+Before jumping in, please familiarize yourself with this context/background on how this library is built to help you contribute going forward.
 
-To install `winget` follow the [install instructions here.](https://learn.microsoft.com/windows/package-manager/winget/#install-winget)
+This [site](https://aka.ms/aprl) is built using [Hugo](https://gohugo.io/), a static site generator. The source code is stored in the [APRL GitHub repo](https://aka.ms/aprl/repo) (link in header of this site too) and is hosted on [GitHub Pages](https://pages.github.com), via the repo.
 
-```text
-winget install --id 'Git.Git'
-winget install --id 'Microsoft.VisualStudioCode'
-winget install --id 'Hugo.Hugo.Extended'
-```
+The reason for the combination of Hugo & GitHub pages is to allow us to present an easy to navigate and consume library, rather than using a native GitHub repo, which is not easy to consume when there are lots of pages and folders. Also Hugo generates the site in such a way that it is also friendly for mobile consumers.
 
 ### Other requirements
 
 - [A GitHub profile/account](https://github.com/join)
 - A fork of the [`Azure/Azure-Proactive-Resiliency-Library` repo](https://aka.ms/aprl/repo) into your GitHub org/account and cloned locally to your machine
   - Instructions on forking a repo and then cloning it can be found [here](https://docs.github.com/get-started/quickstart/fork-a-repo)
-
-## Useful External Documentation
-
-Below are links to a number of useful links to have when contributing to APRL:
-
-- [GeekDocs Documentation Theme (that we use) - Docs](https://geekdocs.de/usage/getting-started/)
-- [Hugo Quick Start](https://gohugo.io/getting-started/quick-start/)
-- [Hugo Docs](https://gohugo.io/documentation/)
-- [Markdown Cheat Sheet](https://www.markdownguide.org/cheat-sheet/)
-
-## Steps to do before contributing anything (after pre-requisites)
-
-Run the following commands in your terminal of choice from the directory where your fork of the repo is located:
-
-```text
-git checkout main
-git pull
-git fetch -p
-git fetch -p upstream
-git pull upstream main
-git push
-```
-
-Doing this will ensure you have the latest changes from the upstream repo and you are ready to now create a new branch from `main` by running the below commands:
-
-```text
-git checkout main
-git checkout -b <YOUR-DESIRED-BRANCH-NAME-HERE>
-```
 
 ## Creating a pull request
 
