@@ -11,8 +11,11 @@ azure-resources/Relay @Azure/aprl-admins @Azure/aprl-networking
 ## The aprl-hpc team is partially responsible for all HPC-related PRs
 
 azure-resources/Batch @Azure/aprl-admins @Azure/aprl-hpc
+azure-specialized-workloads/hpc @Azure/aprl-admins @Azure/aprl-hpc
 
 ## The aprl-avd team is partially responsible for all AVD-related PRs
 
 azure-resources/AVS @Azure/aprl-admins @Azure/aprl-avd
 azure-resources/DesktopVirtualization @Azure/aprl-admins @Azure/aprl-avd
+azure-specialized-workloads/avd @Azure/aprl-admins @Azure/aprl-avd
+azure-specialized-workloads/avs @Azure/aprl-admins @Azure/aprl-avd
