@@ -4,15 +4,15 @@
 
 ## The aprl-networking team is partially responsible for all networking-related PRs
 
-azure-resources\Cdn @Azure/aprl-admins @Azure/aprl-networking
-azure-resources\Network @Azure/aprl-admins @Azure/aprl-networking
-azure-resources\Relay @Azure/aprl-admins @Azure/aprl-networking
+azure-resources/Cdn @Azure/aprl-admins @Azure/aprl-networking
+azure-resources/Network @Azure/aprl-admins @Azure/aprl-networking
+azure-resources/Relay @Azure/aprl-admins @Azure/aprl-networking
 
 ## The aprl-hpc team is partially responsible for all HPC-related PRs
 
-azure-resources\Batch @Azure/aprl-admins @Azure/aprl-hpc
+azure-resources/Batch @Azure/aprl-admins @Azure/aprl-hpc
 
 ## The aprl-avd team is partially responsible for all AVD-related PRs
 
-azure-resources\AVS @Azure/aprl-admins @Azure/aprl-avd
-azure-resources\DesktopVirtualization @Azure/aprl-admins @Azure/aprl-avd
+azure-resources/AVS @Azure/aprl-admins @Azure/aprl-avd
+azure-resources/DesktopVirtualization @Azure/aprl-admins @Azure/aprl-avd
