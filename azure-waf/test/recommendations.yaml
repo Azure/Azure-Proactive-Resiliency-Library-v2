@@ -57,7 +57,7 @@
       url: "https://learn.microsoft.com/azure/well-architected/resiliency/app-design-error-handling"
 
 - pageTitle: Perform disaster recovery tests regularly
-  recommendationImpact: Medium
+  recommendationImpact: High
   recommendationControl: Disaster Recovery
   tags: null
   publishedToLearn: false
