@@ -4,8 +4,8 @@ geekdocCollapseSection: true
 geekdocHidden: false
 ---
 
-## Relevant Azure Resource Recommendations
+## Dependent Azure Resource Recommendations
 
-## General Guidance (not resource specific)
+## General Workload Guidance
 
 {{< azure-resources-recommendationlist name="azure-resources-recommendationlist" >}}
