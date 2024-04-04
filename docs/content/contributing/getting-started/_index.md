@@ -1,8 +1,22 @@
 ---
-title: Prerequisites
+title: Getting Started
 weight: 10
 geekdocCollapseSection: true
 ---
+
+This section provides guidance on how to get started with contributing. The following should be considered and/or addressed before you start contributing:
+
+{{< toc >}}
+
+## Context/Background
+
+Before diving in, please take a moment to acquaint yourself with the context and background of how this library is built, which will help you contribute effectively moving forward.
+
+- Website: The site is built using [Hugo](https://gohugo.io/), a static site generator.
+- Source Code: Stored in the [APRL GitHub repository](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2), this is also linked in the website's header.
+- Hosting: The site is hosted on [GitHub Pages](https://pages.github.com/).
+
+We've chosen Hugo and GitHub Pages to present an easily navigable and consumable library. This combination ensures a user-friendly experience, especially across different devices, including mobile platforms.
 
 ### I'm not familiar with Hugo. Is that okay?
 
@@ -13,14 +27,6 @@ Absolutely! You don't need to be. Hugo simply requires you to know how to write 
 To prepare for contributing to APRL, follow the steps below to ensure you're in a "ready state."
 
 A "ready state" means you have forked the [`Azure/Azure-Proactive-Resiliency-Library` repository](https://aka.ms/aprl/repo), cloned it to your local machine, and opened it in VS Code.
-
-## Running and Accessing a Local Copy of APRL During Development
-
-While in VS Code, you can open a terminal and execute the commands below to access a local copy of the APRL website from a web server provided by Hugo. Access it using the following address: [`http://localhost:1313/Azure-Proactive-Resiliency-Library/`](http://localhost:1313/Azure-Proactive-Resiliency-Library/):
-
-```text
-hugo server --disableFastRender
-```
 
 ### Required Software/Applications
 
@@ -56,3 +62,17 @@ Ensure you meet the following prerequisites:
 - [Create a GitHub profile/account](https://github.com/join)
 - Fork the [`Azure/Azure-Proactive-Resiliency-Library` repository](https://aka.ms/aprl/repo) to your GitHub organization/account and clone it locally to your machine.
 - Instructions for forking a repository and cloning it can be found [here](https://docs.github.com/get-started/quickstart/fork-a-repo).
+
+### Running and Accessing a Local Copy of APRL During Development
+
+While in VS Code, you can open a terminal and execute the commands below to access a local copy of the APRL website from a web server provided by Hugo. Access it using the following address: [`http://localhost:1313/Azure-Proactive-Resiliency-Library/`](http://localhost:1313/Azure-Proactive-Resiliency-Library/):
+
+```text
+hugo server --disableFastRender
+```
+
+## Creating a pull request
+
+Once you have committed changes to your fork of the APRL repo, you create a pull request to merge your changes into the APRL repo.
+
+- [GitHub - Creating a pull request from a fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/)

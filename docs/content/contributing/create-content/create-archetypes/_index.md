@@ -1,17 +1,14 @@
 ---
-title: Creating Content
+title: Create Content from Templates
 weight: 20
 geekdocCollapseSection: true
 ---
 
+This section provides information about creating new content from Hugo archetypes/templates. The following scenarios are covered:
+
 {{< toc >}}
-{{< hint type=important >}}
 
-Ensure you have completed the [Prerequisites](/contributing/creating-content/prerequisites/) before you attempt to follow the guidance for any of the scenarios below.
-
-{{< /hint >}}
-
-## Create a new Azure resource provider namespace
+## Create a New Azure Resource Provider Namespace
 
 1. Ensure you are in the root directory of the repository within your terminal.
 1. Run the following hugo command within your terminal.
@@ -34,9 +31,7 @@ Ensure you have completed the [Prerequisites](/contributing/creating-content/pre
    Content dir "C:\\Repos\\Reliability\\Azure-Proactive-Resiliency-Library-v2\\azure-resources\\Storage" created
    ```
 
-1. You should now see a new directory created within the `azure-resources` directory, which contains the following file which is automatically updated with the title of the Azure provider namespace you specified. You can also verify the creation by inspecting the directory in your local Hugo site, which should have been rebuilt automatically with the change.
-
-## Create a new Azure resource type within an existing provider namespace
+## Create a New Azure Resource Type within an Existing Provider Namespace
 
 1. Ensure you are in the root directory of the repository within your terminal
 1. Run the following hugo command within your terminal
@@ -61,7 +56,7 @@ Ensure you have completed the [Prerequisites](/contributing/creating-content/pre
 
 1. You should now see a new directory created within the `azure-resources/Storage` directory, named after the Azure resource type you specified and containing the relevant folders and files to build out the resource type. You can also verify the creation by inspecting the resource type within your local Hugo site, which should have been rebuilt automatically with the change.
 
-## Create a new Azure specialized workload
+## Create a New Azure Specialized Workload
 
 1. Ensure you are in the root directory of the repository within your terminal
 1. Run the following hugo command within your terminal
@@ -74,7 +69,7 @@ Ensure you have completed the [Prerequisites](/contributing/creating-content/pre
 
    Replace `oracle` with the name of the you want to create.
 
-   Also, ensure that it is formatted with no spaces and is using camel case. For example, `oracle` or `sql`.
+   Also, ensure that it is formatted with no spaces and is using camel case. For example, `hpcOnAzure`.
 
    {{< /hint >}}
 

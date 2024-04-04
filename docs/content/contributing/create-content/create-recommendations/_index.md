@@ -1,0 +1,119 @@
+---
+title: Create Recommendations
+weight: 10
+geekdocCollapseSection: true
+---
+
+{{< toc >}}
+
+This section provides guidance on how to create new recommendations. The following requirements should be followed:
+
+## Adding New Recommendation
+
+To contribute a new recommendation for an Azure resource, follow these steps:
+
+1. Locate the `recommendations.yaml` file within the directory corresponding to the Azure resource, Azure WAF design principle, or specialized workload you want to add a recommendation for.
+
+1. Open the `recommendations.yaml` file and copy the following YAML template:
+
+   ```yaml
+   - title: [Your Recommendation Title Here]
+     recommendationImpact: [Low/Medium/High]
+     recommendationCategory: [High Availability/Business Continuity/Disaster Recovery/Scalability/Monitoring and Alerting/Service Upgrade and Retirement/Other Best Practices/Personalized]
+     tags: null
+     publishedToLearn: false
+     publishedToAdvisor: false
+     pgVerified: false
+     automationAvailable: false
+     aprlGuid: [Generate a Unique GUID for Your Recommendation]
+     recommendationTypeId: null
+     state: Active
+     longDescription: |
+       [Your Long Description Here (less than 300 characters)]
+     potentialBenefits: [Potential Benefits of Implementing the Recommendation (less than 60 characters)]
+     learnMoreLink:
+       - name: [Link Name]
+         url: "[Link URL]"
+   ```
+
+1. Customize the placeholders with your recommendation's specific details. See the [Recommendation Structure](#recommendation-structure) section for more information on each key-value pair.
+
+1. Once you've added your recommendation, save the file.
+
+1. To test your changes, spin up your local hugo server by running the following command within your terminal:
+
+   ```bash
+   hugo server --disableFastRender
+   ```
+
+   {{< hint type=note >}}
+
+   If you encounter inconsistencies on the local version of the website that do not reflect your content updates, or errors unrelated to your changes, follow these steps:
+
+   1. Press **CTRL** **+** **C** to terminate the Hugo local web server.
+   2. Restart the Hugo web server by running `hugo server --disableFastRender` from the root of the repository.
+
+   {{< /hint >}}
+
+1. Submit your changes by creating a pull request in the repository.
+
+1. That's all! Your suggestion will be reviewed for potential inclusion in the Azure Proactive Resiliency Library.
+
+1. Questions or need assistance? Don't hesitate to create a GitHub Issue for support.
+
+Got questions or need assistance? Create a GitHub Issue for help.
+
+### Recommendation Structure
+
+The YAML structure for adding new recommendations consists of several key-value pairs, each providing specific information about the recommendation. Below is a table that describes each key-value pair:
+
+| Key                    | Example Value                                                                                                                                               | Data Type | Allowed Values                                                                                                                                                                                                                                                                                                   | Description                                                                                                                                                                                                  |
+| :--------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| title                  | Do not use classic Storage Account                                                                                                                          | String    | N/A                                                                                                                                                                                                                                                                                                              | Summarization of your recommendation                                                                                                                                                                         |
+| recommendationImpact   | High                                                                                                                                                        | String    | Low, Medium, High                                                                                                                                                                                                                                                                                                | Importance of adopting the recommendation and/or the risk of choosing not to adopt                                                                                                                           |
+| recommendationCategory | Upgrade and Retirement                                                                                                                                      | String    | [High Availability, Business Continuity, Disaster Recovery, Scalability, Monitoring and Alerting, Service Upgrade and Retirement, Other Best Practices, Personalized](http://localhost:1313/Azure-Proactive-Resiliency-Library-v2/contributing/create-content/create-recommendations/#recommendation-categories) | Resiliency category associated with the recommendation                                                                                                                                                       |
+| tags                   | Not Workload Specific                                                                                                                                       | String    | N/A                                                                                                                                                                                                                                                                                                              | Generalized tags used for incorporating fields to automate                                                                                                                                                   |
+| publishedToLearn       | false                                                                                                                                                       | Boolean   | true, false                                                                                                                                                                                                                                                                                                      | Indicates whether the recommendation is published to [Microsoft Learn](https://learn.microsoft.com/en-us/azure/well-architected/pillars)                                                                     |
+| publishedToAdvisor     | false                                                                                                                                                       | Boolean   | true, false                                                                                                                                                                                                                                                                                                      | Indicates whether the recommendation is published to Azure Advisor                                                                                                                                           |
+| pgVerified             | false                                                                                                                                                       | Boolean   | true, false                                                                                                                                                                                                                                                                                                      | Indicates whether the recommendation is verified by the relevant product group                                                                                                                               |
+| automationAvailable    | true                                                                                                                                                        | Boolean   | arg, false                                                                                                                                                                                                                                                                                                       | Indicates whether automation is available for validating the recommendation                                                                                                                                  |
+| aprlGuid               | 0a82ecb8-23ea-489a-823e-da73f0862de9                                                                                                                        | String    | 32-character hexadecimal string                                                                                                                                                                                                                                                                                  | The unique identifier for the recommendation in the context of Azure Proactive Resiliency and CXObserve. Generate a [GUID](https://guidgenerator.com/online-guid-generator.aspx) for each new recommendation |
+| advisorGuid            | d0aeac4f-963d-4fdc-ad7a-d932d52db28e                                                                                                                        | String    | 32-character hexadecimal string                                                                                                                                                                                                                                                                                  | The unique identifier for the recommendation in the context of Azure Advisor. Leave `null`.                                                                                                                  |
+| state                  | Active                                                                                                                                                      | String    | Active, Removed                                                                                                                                                                                                                                                                                                  | Indicates whether the recommendation is visible                                                                                                                                                              |
+| longDescription        | Azure classic Storage Account will retire on August 31, 2024. So, migrate all workload from classic storage to v2.                                          | String    | The length should be less than 300 characters                                                                                                                                                                                                                                                                    | Detailed description of the recommendation and its implications                                                                                                                                              |
+| potentialBenefits      | Improved security and modern features                                                                                                                       | String    | The length should be less than 60 characters                                                                                                                                                                                                                                                                     | The potential benefits of implementing the recommendation                                                                                                                                                    |
+| learnMoreLink          | - name: Storage Account Retirement Announcement url: "https://azure.microsoft.com/updates/classic-azure-storage-accounts-will-be-retired-on-31-august-2024" | Object    | Only 3 links per recommendation                                                                                                                                                                                                                                                                                  | Links related to the recommendation, such as announcements or documentation                                                                                                                                  |
+
+### Recommendation Categories
+
+Each recommendation should have _**one and only one**_ associated recommendationCategory from this list below.
+
+|    Recommendation Category     | Summary                                                                                                                 |
+| :----------------------------: | :---------------------------------------------------------------------------------------------------------------------- |
+|       High Availability        | Focuses on ensuring services remain accessible and operational with minimal downtime.                                   |
+|      Business Continuity       | Involves strategies to maintain essential functions during and after a disaster, ensuring business operations continue. |
+|       Disaster Recovery        | Focuses on restoring systems and data after catastrophic failures, ensuring quick recovery post-disaster.               |
+|          Scalability           | Involves techniques to handle changes in load and maintain system performance under varying conditions.                 |
+|    Monitoring and Alerting     | Constant surveillance of system health, performance, and security, aiding in quick issue identification and resolution. |
+| Service Upgrade and Retirement | Addresses the planning and execution of system upgrades and the retirement of outdated services.                        |
+|      Other Best Practices      | Encompasses miscellaneous best practices that improve system resilience, efficiency, and security.                      |
+|          Personalized          | Customized recommendations tailored to specific system requirements, configurations, or preferences.                    |
+
+## Writing a Meaningful Recommendation
+
+When writing a recommendation, consider the following:
+
+APRL recommendations are intended to enable and accelerate the delivery of Well Architected Reliability Assessments. The purpose of APRL is not to replace existing Azure public documentation and guidance on best practices.
+
+Each recommendation should be actionable for the customer. The customer should be able to place the recommendation in their backlog and the engineer that picks it up should have complete clarity on the change that needs to be made and the specific resources that the change should be made to.
+
+Each recommendation should include a descriptive title, a short guidance section that contains additional detail on the recommendation, links to public documentation that provide additional information related to the recommendation, and a query to identify resources that are not compliant with the recommendation. The title and guidance sections alone should provide sufficient information for a CSA to evaluate a resource.
+
+Recommendations should not require the CSA to spend a lot of time on background reading, they should not be open to interpretation, and they should not be vague. Remember that the CSA delivering the WARA is reviewing a large number of Azure resources in a limited amount of time and is not an expert in every Azure resource.
+
+### Examples
+
+- Good recommendation: Use a /24 subnet for the resource
+- Bad recommendation: Size your subnet appropriately
+
+Not all best practices make good APRL recommendations. If the best practice relates to a particular resource configuration and can be checked with an ARG query, it probably makes for a good APRL recommendation. If the best practice is more aligned to general architectural concepts that are true for many Azure resources or workload types, we very likely already have a recommendation in the APRL WAF section that addresses the topic. If not, consider adding a WAF recommendation to APRL. If neither is the case, APRL may not be the best location for this content.
