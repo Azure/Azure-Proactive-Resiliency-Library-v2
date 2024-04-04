@@ -1,5 +1,5 @@
 ---
-title: Pre-Requisites
+title: Prerequisites
 weight: 10
 geekdocCollapseSection: true
 ---
@@ -8,7 +8,7 @@ geekdocCollapseSection: true
 
 Absolutely! You don't need to be. Hugo simply requires you to know how to write markdown (`.md`) files, and it handles the rest when generating the site. 👍
 
-## Pre-Requisites
+## Prerequisites
 
 To prepare for contributing to APRL, follow the steps below to ensure you're in a "ready state."
 
