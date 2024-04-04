@@ -1,12 +1,12 @@
-- pageTitle: Monitor Batch Account quota
+- title: Monitor Batch Account quota
   recommendationImpact: Medium
-  recommendationControl: Monitoring
+  recommendationCategory: Monitoring
   tags: null
   publishedToLearn: false
-  publishToAdvisor: false
+  publishedToAdvisor: false
   pgVerified: false
   automationAvailable: false
-  aprlRecommendationId: 3464854d-6f75-4922-95e4-a2a308b53ce6
+  aprlGuid: 3464854d-6f75-4922-95e4-a2a308b53ce6
   recommendationTypeId: null
   state: Active
   longDescription: |
@@ -18,16 +18,16 @@
     - name: Cross-region disaster recovery and business continuity
       url: "https://learn.microsoft.com/en-us/azure/reliability/reliability-batch#cross-region-disaster-recovery-and-business-continuity"
 
-- pageTitle: Create an Azure Batch pool across Availability Zones
+- title: Create an Azure Batch pool across Availability Zones
   recommendationImpact: High
-  recommendationControl: Availability
+  recommendationCategory: Availability
   tags: null
   publishedToLearn: false
-  publishToAdvisor: false
+  publishedToAdvisor: false
   pgVerified: false
   automationAvailable: false
-  aprlRecommendationId: 71cfab8f-d588-4742-b175-b6e07ae48dbd
-  recommendationTypeId: null
+  aprlGuid: 71cfab8f-d588-4742-b175-b6e07ae48dbd
+  advisorGuid: null
   state: Active
   longDescription: |
     When you create an Azure Batch pool using Virtual Machine Configuration, you can choose to provision your Batch pool across Availability Zones. Creating your pool with this zonal policy helps protect your Batch compute nodes from Azure datacenter-level failures. For example, you could create your pool with zonal policy in an Azure region that supports three Availability Zones. If an Azure datacenter in one Availability Zone has an infrastructure failure, your Batch pool will still have healthy nodes in the other two Availability Zones, so the pool will remain available for task scheduling.

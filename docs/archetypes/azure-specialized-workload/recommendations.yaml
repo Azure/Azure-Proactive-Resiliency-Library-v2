@@ -3,7 +3,7 @@
   recommendationControl: Replace with the resiliency category associated with the recommendation. Allowed values - High Availability, Business Continuity, Disaster Recovery, Scalability, Monitoring and Alerting, Service Upgrade and Retirement, Other Best Practices, Personalized
   tags: null
   publishedToLearn: false
-  publishToAdvisor: false
+  publishedToAdvisor: false
   pgVerified: false
   automationAvailable: Replace with whether automation is available for validating the recommendation. Allowed boolean - true, false
   aprlRecommendationId: Replace with the unique identifier for the recommendation in the context of Azure Proactive Resiliency and CXObserve. Generate a GUID for each new recommendation. Allowed values - 32-character hexadecimal string.
@@ -23,7 +23,7 @@
   recommendationControl: Replace with the resiliency category associated with the recommendation. Allowed values - High Availability, Business Continuity, Disaster Recovery, Scalability, Monitoring and Alerting, Service Upgrade and Retirement, Other Best Practices, Personalized
   tags: null
   publishedToLearn: false
-  publishToAdvisor: false
+  publishedToAdvisor: false
   pgVerified: false
   automationAvailable: Replace with whether automation is available for validating the recommendation. Allowed boolean - true, false
   aprlRecommendationId: Replace with the unique identifier for the recommendation in the context of Azure Proactive Resiliency and CXObserve. Generate a GUID for each new recommendation. Allowed values - 32-character hexadecimal string.

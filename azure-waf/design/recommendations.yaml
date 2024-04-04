@@ -3,7 +3,7 @@
   recommendationControl: Availability
   tags: null
   publishedToLearn: false
-  publishToAdvisor: false
+  publishedToAdvisor: false
   pgVerified: true
   automationAvailable: false
   aprlRecommendationId: 063d7237-5f68-5d42-b3d1-43144b3630b5
@@ -23,7 +23,7 @@
   recommendationControl: Disaster Recovery
   tags: null
   publishedToLearn: false
-  publishToAdvisor: false
+  publishedToAdvisor: false
   pgVerified: true
   automationAvailable: false
   aprlRecommendationId: 8a497b6d-d065-0d43-a7d9-e3f8eebfe0f4
@@ -47,7 +47,7 @@
   recommendationControl: Availability
   tags: null
   publishedToLearn: false
-  publishToAdvisor: false
+  publishedToAdvisor: false
   pgVerified: true
   automationAvailable: false
   aprlRecommendationId: 99ebe682-6306-6446-bfc7-cf6610ebfa02
@@ -69,7 +69,7 @@
   recommendationControl: System Efficiency
   tags: null
   publishedToLearn: false
-  publishToAdvisor: false
+  publishedToAdvisor: false
   pgVerified: true
   automationAvailable: false
   aprlRecommendationId: 097651d8-6e62-314a-9299-a0234ffd190e
@@ -87,7 +87,7 @@
   recommendationControl: System Efficiency
   tags: null
   publishedToLearn: false
-  publishToAdvisor: false
+  publishedToAdvisor: false
   pgVerified: true
   automationAvailable: false
   aprlRecommendationId: 7f4c76d7-f9d4-d643-ab73-4d8f27fd7ed9
@@ -105,7 +105,7 @@
   recommendationControl: Governance
   tags: null
   publishedToLearn: false
-  publishToAdvisor: false
+  publishedToAdvisor: false
   pgVerified: true
   automationAvailable: false
   aprlRecommendationId: 6132a11a-3ea0-e64c-877b-f01ca1de79d4
@@ -129,7 +129,7 @@
   recommendationControl: Disaster Recovery
   tags: null
   publishedToLearn: false
-  publishToAdvisor: false
+  publishedToAdvisor: false
   pgVerified: true
   automationAvailable: false
   aprlRecommendationId: b09061cb-d536-1347-9957-390c2d0cfa3d
@@ -158,7 +158,7 @@
   recommendationControl: Access & Security
   tags: null
   publishedToLearn: false
-  publishToAdvisor: false
+  publishedToAdvisor: false
   pgVerified: true
   automationAvailable: false
   aprlRecommendationId: 835e616d-78e6-7f4c-a48b-6f80382a48cf
@@ -181,7 +181,7 @@
   recommendationControl: Access & Security
   tags: null
   publishedToLearn: false
-  publishToAdvisor: false
+  publishedToAdvisor: false
   pgVerified: true
   automationAvailable: false
   aprlRecommendationId: c5d8f87e-45ef-1644-a4aa-95ec08b88109

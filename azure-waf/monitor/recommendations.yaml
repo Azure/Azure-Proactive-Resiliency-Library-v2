@@ -3,7 +3,7 @@
   recommendationControl: Monitoring
   tags: null
   publishedToLearn: false
-  publishToAdvisor: false
+  publishedToAdvisor: false
   pgVerified: true
   automationAvailable: false
   aprlRecommendationId: 46fb4540-ecac-6e49-bc10-34c7792eb35d
@@ -32,7 +32,7 @@
   recommendationControl: Monitoring
   tags: null
   publishedToLearn: false
-  publishToAdvisor: false
+  publishedToAdvisor: false
   pgVerified: true
   automationAvailable: true
   aprlRecommendationId: 5dd7a9a3-fb79-004d-bc89-c9ef79890900
@@ -59,7 +59,7 @@
   recommendationControl: Monitoring
   tags: null
   publishedToLearn: false
-  publishToAdvisor: false
+  publishedToAdvisor: false
   pgVerified: true
   automationAvailable: true
   aprlRecommendationId: 1691bfea-c9fd-0948-969a-03e5abcab299
@@ -79,7 +79,7 @@
   recommendationControl: Monitoring
   tags: null
   publishedToLearn: false
-  publishToAdvisor: false
+  publishedToAdvisor: false
   pgVerified: true
   automationAvailable: true
   aprlRecommendationId: 1422b388-5d23-5641-ba1c-139a59fb7b4c
@@ -102,7 +102,7 @@
   recommendationControl: Governance
   tags: null
   publishedToLearn: false
-  publishToAdvisor: false
+  publishedToAdvisor: false
   pgVerified: true
   automationAvailable: true
   aprlRecommendationId: 1422b388-5d23-5641-ba1c-139a59fb7b4c

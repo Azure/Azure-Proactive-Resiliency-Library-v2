@@ -3,7 +3,7 @@
   recommendationControl: Availability
   tags: null
   publishedToLearn: false
-  publishToAdvisor: false
+  publishedToAdvisor: false
   pgVerified: false
   automationAvailable: true
   aprlRecommendationId: e6c7e1cc-2f47-264d-aa50-1da421314472
@@ -26,7 +26,7 @@
   recommendationControl: Governance
   tags: null
   publishedToLearn: false
-  publishToAdvisor: false
+  publishedToAdvisor: false
   pgVerified: false
   automationAvailable: true
   aprlRecommendationId: 63ad027e-611c-294b-acc5-8e3234db9a40
