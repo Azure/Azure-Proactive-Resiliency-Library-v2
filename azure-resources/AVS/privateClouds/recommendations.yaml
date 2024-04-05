@@ -1,360 +1,360 @@
 - description: Configure Azure Service Health notifications and alerts for Azure VMware Solution
   aprlGuid: 74fcb9f2-9a25-49a6-8c42-d32851c4afb7
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.AVS/privateClouds
   recommendationMetadataState: Active
   longDescription: |
    Ensure Azure Service Health notifications are set for Azure VMware Solution across all used regions and subscriptions. This communicates service/security issues and maintenance activities like host replacements and upgrades, reducing service request submissions.
-  potentialBenefits: Prompt mitigation of issues. 
+  potentialBenefits: Prompt mitigation of issues.
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags: 
+  tags:
   learnMoreLink:
   - name: Learn More
     url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/azure-vmware/eslz-management-and-monitoring#design-recommendations"
 
 - description: Verify Management Networks are not extended with HCX Network Extension
   aprlGuid: 6be9a543-cf82-4926-82ea-7e1f1ffaad80
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: Other Best Practices
   recommendationImpact: High
   recommendationResourceType: Microsoft.AVS/privateClouds
   recommendationMetadataState: Active
   longDescription: |
-  Do not extend the network used by the HCX Management devices to ensure the network's security and stability.
-  potentialBenefits: Enhanced network safety & performance 
+    Do not extend the network used by the HCX Management devices to ensure the network's security and stability.
+  potentialBenefits: Enhanced network safety & performance
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags: 
+  tags:
   learnMoreLink:
   - name: Learn More
     url: "https://docs.vmware.com/en/VMware-HCX/4.8/hcx-user-guide/GUID-0C746416-850E-46F7-85DD-4D4326A23785.html"
 
 - description: Use HCX Network Extension High Availability
   aprlGuid: bce16eee-0933-4baa-ab4d-8d1bb5653fc2
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.AVS/privateClouds
   recommendationMetadataState: Active
   longDescription: |
    Enable Network Extension High Availability for appliance failure tolerance in HCX service. It pairs selected appliances for Active Standby configuration, ensuring high availability and quick recovery, keeping configurations in-service despite failures.
-  potentialBenefits: Improves HCX service continuity 
+  potentialBenefits: Improves HCX service continuity
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags: 
+  tags:
   learnMoreLink:
   - name: Learn More
     url: "https://learn.microsoft.com/en-us/azure/azure-vmware/configure-hcx-network-extension-high-availability"
 
 - description: Integrate LDAPS Identity with dual sources for enhanced NSX and vCenter security
   aprlGuid: c2794660-ffd7-4da3-96ba-5d546b70b1c6
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: Security
   recommendationImpact: High
   recommendationResourceType: Microsoft.AVS/privateClouds
   recommendationMetadataState: Active
   longDescription: |
-  Ensure two external identity sources are configured for NSX and vCenter Server. The VMware vCenter Server and NSX Manager use these for authentication with external identities. 
-  potentialBenefits: Continuous login access during maintenances 
+    Ensure two external identity sources are configured for NSX and vCenter Server. The VMware vCenter Server and NSX Manager use these for authentication with external identities.
+  potentialBenefits: Continuous login access during maintenances
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags: 
+  tags:
   learnMoreLink:
   - name: Learn More
     url: "https://learn.microsoft.com/en-us/azure/azure-vmware/configure-identity-source-vcenter"
 
 - description: Use key autorotation for vSAN datastore customer-managed keys
   aprlGuid: e0ac2f57-c8c0-4b8c-a7c8-19e5797828b5
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: Security
   recommendationImpact: High
   recommendationResourceType: Microsoft.AVS/privateClouds
   recommendationMetadataState: Active
   longDescription: |
-   When using customer-managed keys for encrypting vSAN datastores, leveraging Azure Key Vault for central management and accessing them via a managed identity linked to the private cloud is advised. The expiration of these keys can render the vSAN datastore and its associated workloads inaccessible. 
-  potentialBenefits: Avoid outages with key auto-rotation 
+   When using customer-managed keys for encrypting vSAN datastores, leveraging Azure Key Vault for central management and accessing them via a managed identity linked to the private cloud is advised. The expiration of these keys can render the vSAN datastore and its associated workloads inaccessible.
+  potentialBenefits: Avoid outages with key auto-rotation
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags: 
+  tags:
   learnMoreLink:
   - name: Learn More
     url: "https://learn.microsoft.com/en-us/azure/azure-vmware/configure-customer-managed-keys?tabs=azure-portal"
 
 - description: Use the AVS Interconnect feature to connect private clouds in different availability zones
   aprlGuid: 726abfe3-adae-4a6d-8eb8-4b27a7214ca1
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.AVS/privateClouds
   recommendationMetadataState: Active
   longDescription: |
-   Use the Interconnect feature for direct communication between private clouds in different availability zones, enabling connectivity between the private clouds management and workload networks. 
-  potentialBenefits: Enhanced private cloud connectivity 
+   Use the Interconnect feature for direct communication between private clouds in different availability zones, enabling connectivity between the private clouds management and workload networks.
+  potentialBenefits: Enhanced private cloud connectivity
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags: 
+  tags:
   learnMoreLink:
   - name: Learn More
     url: "https://learn.microsoft.com/en-us/azure/azure-vmware/connect-multiple-private-clouds-same-region"
 
 - description: Deploy dual Azure VMware Solution clouds in different regions for disaster recovery
   aprlGuid: bdac462a-2eda-4a67-887d-46d58f141afe
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: Disaster Recovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.AVS/privateClouds
   recommendationMetadataState: Active
   longDescription: |
    Two Azure VMware Solution private clouds can be deployed in different regions for business continuity, implementing a mesh network topology based on ExpressRoute Gateway Connections and Global Reach Connections.
-  potentialBenefits: Enhanced disaster recovery 
+  potentialBenefits: Enhanced disaster recovery
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags: 
+  tags:
   learnMoreLink:
   - name: Learn More
     url: "https://learn.microsoft.com/en-us/azure/azure-vmware/move-azure-vmware-solution-across-regions"
 
 - description: Deploy two or more circuits in different peering locations when using stretched clusters
   aprlGuid: 91c84596-1c41-48fe-8d5e-3f817e6a273b
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.AVS/privateClouds
   recommendationMetadataState: Active
   longDescription: |
-  Azure VMware Solution vSAN stretched clusters cover 2 Availability Zones plus a third for witness. Use ExpressRoute for added resilience by deploying two circuits in different locations. With Global Reach, create a mesh topology by connecting on-premises circuits to Azure's managed circuits.
+    Azure VMware Solution vSAN stretched clusters cover 2 Availability Zones plus a third for witness. Use ExpressRoute for added resilience by deploying two circuits in different locations. With Global Reach, create a mesh topology by connecting on-premises circuits to Azure's managed circuits.
   potentialBenefits: Enhanced resilience & connectivity
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags: 
+  tags:
   learnMoreLink:
   - name: Learn More
     url: "https://learn.microsoft.com/en-us/azure/azure-vmware/deploy-vsan-stretched-clusters#deploy-a-stretched-cluster-private-cloud"
 
 - description: Use multiple DNS servers per private FQDN zone
   aprlGuid: fcc2e257-23af-4c68-aac8-9cc03033c939
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.AVS/privateClouds
   recommendationMetadataState: Active
   longDescription: |
    Azure VMware Solution private clouds support up to three DNS servers for a single FQDN, preventing a single DNS server from becoming a point of failure. It's crucial to use multiple DNS servers for on-premises FQDN resolution from each private cloud.
-  potentialBenefits: Enhances reliability & avoids failure 
+  potentialBenefits: Enhances reliability & avoids failure
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags: 
+  tags:
   learnMoreLink:
   - name: Learn More
     url: "https://learn.microsoft.com/en-us/azure/azure-vmware/configure-dns-azure-vmware-solution#configure-dns-forwarder"
 
 - description: Align ExpressRoute configuration with best practices for circuit resilience
   aprlGuid: 6f573d60-be93-4f18-8016-42e923e3c05e
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.AVS/privateClouds
   recommendationMetadataState: Active
   longDescription: |
-  Microsoft suggests using two or more ExpressRoute circuits at distinct peering locations for critical workloads. Connect these circuits and your Azure VMware Solutions private clouds using Global Reach. 
-  potentialBenefits: Enhanced circuit resilience for Azure VMware 
+    Microsoft suggests using two or more ExpressRoute circuits at distinct peering locations for critical workloads. Connect these circuits and your Azure VMware Solutions private clouds using Global Reach.
+  potentialBenefits: Enhanced circuit resilience for Azure VMware
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags: 
+  tags:
   learnMoreLink:
   - name: Learn More
     url: "https://azure.github.io/Azure-Proactive-Resiliency-Library/services/networking/expressroute-circuits"
 
 - description: Monitor when Azure VMware Solution Private Cloud is reaching the capacity limit
   aprlGuid: 29d7a115-dfb6-4df1-9205-04824109548f
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.AVS/privateClouds
   recommendationMetadataState: Active
   longDescription: |
    Set an alert for when the node count in Azure VMware Solution Private Cloud hits or exceeds 90 hosts, enabling timely planning for a new private cloud.
-  potentialBenefits: Proactive capacity planning 
+  potentialBenefits: Proactive capacity planning
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags: 
+  tags:
   learnMoreLink:
   - name: Learn More
     url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-vmware/monitoring#configure-and-streamline-alerts"
 
 - description: Monitor when Azure VMware Solution Cluster Size is approaching the host limit
   aprlGuid: f86355e3-de7c-4dad-8080-1b0b411e66c8
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.AVS/privateClouds
   recommendationMetadataState: Active
   longDescription: |
    Alert when the cluster size reaches 14 hosts. Set up periodic alerts for planning new clusters or datastores due to growth, especially from storage needs. Beyond 14 hosts, trigger alerts for each new host addition for proactive resource monitoring.
-  potentialBenefits: Proactive resource management 
+  potentialBenefits: Proactive resource management
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags: 
+  tags:
   learnMoreLink:
   - name: Learn More
     url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-vmware/monitoring#configure-and-streamline-alerts"
 
 - description: Monitor Memory Utilization to ensure sufficient resources for workloads
   aprlGuid: 029208c8-5186-4a76-8ee8-6e3445fef4dd
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.AVS/privateClouds
   recommendationMetadataState: Active
   longDescription: |
    Ensure sufficient memory resources to prevent host resource exhaustion in Azure VMware Solution. It uses vSphere DRS and vSphere HA for dynamic workload management. Yet, continuous memory use over 95% leads to disk swapping, affecting workloads.
-  potentialBenefits: Avoids host exhaustion & swapping 
+  potentialBenefits: Avoids host exhaustion & swapping
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags: 
+  tags:
   learnMoreLink:
   - name: Learn More
     url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-vmware/monitoring#configure-and-streamline-alerts"
 
 - description: Monitor CPU Utilization to ensure sufficient resources for workloads
   aprlGuid: 4ee5d535-c47b-470a-9557-4a3dd297d62f
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.AVS/privateClouds
   recommendationMetadataState: Active
   longDescription: |
    Ensure sufficient compute resources to avoid host resource exhaustion in Azure VMware Solution, which utilizes vSphere DRS and HA for dynamic workload resource management. However, sustained CPU utilization over 95% may increase CPU Ready times, impacting workloads.
-  potentialBenefits: Avoids resource exhaustion, optimizes performance 
+  potentialBenefits: Avoids resource exhaustion, optimizes performance
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags: 
+  tags:
   learnMoreLink:
   - name: Learn More
     url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-vmware/monitoring#configure-and-streamline-alerts"
 
 - description: Enable Stretched Clusters for Multi-AZ Availability of the vSAN Datastore
   aprlGuid: 9ec5b4c8-3dd8-473a-86ee-3273290331b9
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: High Availability
   recommendationImpact: Low
   recommendationResourceType: Microsoft.AVS/privateClouds
   recommendationMetadataState: Active
   longDescription: |
    For Azure VMware Solution, enabling Stretched Clusters offers 99.99% SLA, synchronous storage replication (RPO=0), and spreads vSAN datastore across two AZs. Must be done at initial setup, needing double quota due to extension across AZs.
-  potentialBenefits: 99.99% SLA, 0 RPO, Multi-AZ 
+  potentialBenefits: 99.99% SLA, 0 RPO, Multi-AZ
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags: 
+  tags:
   learnMoreLink:
   - name: Learn More
     url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-vmware/infrastructure#implement-high-availability"
 
 - description: Configure Azure Monitor Alert warning thresholds for vSAN datastore utilization
   aprlGuid: 4232eb32-3241-4049-9e14-9b8005817b56
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: Monitoring and Alerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.AVS/privateClouds
   recommendationMetadataState: Active
   longDescription: |
    Ensure VMware vSAN datastore slack space is maintained for SLA by monitoring storage utilization and setting alerts at 70% and 75% utilization to allow for capacity planning. To expand, add hosts or external storage like Azure Elastic SAN, Azure NetApp Files, if CPU and RAM requirements are met.
-  potentialBenefits: Optimized capacity planning for vSAN 
+  potentialBenefits: Optimized capacity planning for vSAN
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags: 
+  tags:
   learnMoreLink:
   - name: Learn More
     url: "https://learn.microsoft.com/en-us/azure/azure-vmware/configure-alerts-for-azure-vmware-solution#supported-metrics-and-activities"
 
 - description: Configure Syslog in Diagnostic Settings for Azure VMware Solution
   aprlGuid: fa4ab927-bced-429a-971a-53350de7f14b
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: Monitoring and Alerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.AVS/privateClouds
   recommendationMetadataState: Active
   longDescription: |
-   Ensure Diagnostic Settings are configured for each private cloud to send syslogs to external sources for analysis and/or archiving. Azure VMware Solution Syslogs contain data for troubleshooting and performance, aiding quicker issue resolution and early detection of issues. 
-  potentialBenefits: Faster issue resolution, early detection 
+   Ensure Diagnostic Settings are configured for each private cloud to send syslogs to external sources for analysis and/or archiving. Azure VMware Solution Syslogs contain data for troubleshooting and performance, aiding quicker issue resolution and early detection of issues.
+  potentialBenefits: Faster issue resolution, early detection
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags: 
+  tags:
   learnMoreLink:
   - name: Learn More
     url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-vmware/monitoring#manage-logs-and-archives"
 
 - description: Apply Resource delete lock on the resource group hosting the private cloud
   aprlGuid: a5ef7c05-c611-4842-9af5-11efdc99123a
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: Governance
   recommendationImpact: High
   recommendationResourceType: Microsoft.AVS/privateClouds
   recommendationMetadataState: Active
   longDescription: |
    Applying a resource delete lock to the Azure VMware Solution Private Cloud resource group prevents unauthorized or accidental deletion by anyone with contributor access, ensuring the protection and reliability of the Azure VMware Solution Private Cloud.
-  potentialBenefits: Prevents accidental deletion 
+  potentialBenefits: Prevents accidental deletion
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags: 
+  tags:
   learnMoreLink:
   - name: Learn More
     url: "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources"
 
 - description: Verify vSAN FTT configuration aligns with the cluster size
   aprlGuid: 0943aa90-e3db-4c61-aef1-782b6a6a3881
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.AVS/privateClouds
   recommendationMetadataState: Active
   longDescription: |
    The Azure VMware Solution's service SLA is influenced by vSAN storage policies, which change based on cluster size. For clusters over 6 hosts, an FTT-2 policy (RAID-1 or RAID-6) is advised. FTT refers to the Fault Tolerance feature.
-  potentialBenefits: Enhanced cluster reliability 
+  potentialBenefits: Enhanced cluster reliability
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags: 
+  tags:
   learnMoreLink:
   - name: Learn More
     url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-vmware/application-platform#use-fault-domains"
