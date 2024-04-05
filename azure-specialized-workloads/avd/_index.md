@@ -6,6 +6,8 @@ geekdocHidden: false
 
 ## Dependent Azure Resource Recommendations
 
+<br>
+
 ## General Workload Guidance
 
-{{< azure-resources-recommendationlist name="azure-resources-recommendationlist" >}}
+{{< azure-waf-workloads-recommendationlist name="azure-waf-workloads-recommendationlist" >}}
