@@ -1,5 +1,5 @@
 ---
 title: Insights
 geekdocCollapseSection: true
-geekdocHidden: false
+geekdocHidden: true
 ---

@@ -1,6 +1,5 @@
 ---
 title: Sql
 geekdocCollapseSection: true
-geekdocHidden: false
+geekdocHidden: true
 ---
-

@@ -1,5 +1,5 @@
 ---
 title: Devices
 geekdocCollapseSection: true
-geekdocHidden: false
+geekdocHidden: true
 ---

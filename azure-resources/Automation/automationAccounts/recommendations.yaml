@@ -1,0 +1,38 @@
+- description: Set up disaster recovery of Automation accounts and its dependent resources
+  aprlGuid: 67205887-0733-466e-b50e-b1cd7316c514
+  recommendationTypeId: 
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Automation/automationAccounts
+  recommendationMetadataState: Active
+  longDescription: |
+   Set up disaster recovery for Automation accounts and resources like Modules, Connections, Credentials, Certificates, Variables, and Schedules to deal with region or zone failures. A replica Automation account should be ready in a secondary region for failover. 
+  potentialBenefits: Ensures continuity during outages 
+  pgVerified: Preview
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: 
+  learnMoreLink:
+  - name: Learn More
+    url: "https://learn.microsoft.com/en-us/azure/automation/automation-disaster-recovery?tabs=win-hrw%2Cps-script%2Coption-one"
+
+- description: Subscriptions should not be placed under the Tenant Root Management Group
+  aprlGuid: 5ada5ffa-7149-4e49-9fbf-e67be7c2594c
+  recommendationTypeId: 
+  recommendationControl: Governance
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Automation/automationAccounts
+  recommendationMetadataState: Active
+  longDescription: |
+   The root management group in Azure is designed for organizational hierarchy, allowing for all management groups and subscriptions to fold into it. 
+  potentialBenefits: Enhanced security, compliance, and management 
+  pgVerified: Verified
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: 
+  learnMoreLink:
+  - name: Learn More
+    url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org-management-groups#management-group-recommendations"
+

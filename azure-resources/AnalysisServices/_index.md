@@ -1,5 +1,5 @@
 ---
 title: AnalysisServices
 geekdocCollapseSection: true
-geekdocHidden: false
+geekdocHidden: true
 ---

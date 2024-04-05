@@ -1,0 +1,7 @@
+// Azure Resource Graph query
+// List Basic SKU public IP addresses
+Resources
+| where type =~ "Microsoft.Network/publicIPAddresses"
+| where sku.name =~ "Basic"
+| project recommendationId = "5cea1501-6fe4-4ec4-ac8f-f72320eb18d3", name, id, tags, param1 = strcat("sku: ", sku.name)
+

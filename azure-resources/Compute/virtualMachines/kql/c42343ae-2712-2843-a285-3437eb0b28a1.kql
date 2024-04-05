@@ -1,0 +1,28 @@
+// Azure Resource Graph Query
+// Find all VMs in "NonCompliant" state with Azure Policies
+PolicyResources
+| where type =~ "Microsoft.PolicyInsights/policyStates" and properties.resourceType =~ "Microsoft.Compute/virtualMachines" and properties.complianceState =~ "NonCompliant"
+| project
+    policyAssignmentName = properties.policyAssignmentName,
+    policyDefinitionName = properties.policyDefinitionName,
+    lowerCasePolicyDefinitionIdOfPolicyState = tolower(properties.policyDefinitionId),
+    lowerCaseVmIdOfPolicyState = tolower(properties.resourceId)
+| join kind = leftouter (
+    PolicyResources
+    | where type =~ "Microsoft.Authorization/policyDefinitions"
+    | project lowerCasePolicyDefinitionId = tolower(id), policyDefinitionDisplayName = properties.displayName
+    )
+    on $left.lowerCasePolicyDefinitionIdOfPolicyState == $right.lowerCasePolicyDefinitionId
+| project policyAssignmentName, policyDefinitionName, policyDefinitionDisplayName, lowerCaseVmIdOfPolicyState
+| join kind = leftouter (
+    Resources
+    | where type =~ "Microsoft.Compute/virtualMachines"
+    | project vmName = name, vmId = id, vmTags = tags, lowerCaseVmId = tolower(id)
+    )
+    on $left.lowerCaseVmIdOfPolicyState == $right.lowerCaseVmId
+| extend
+    param1 = strcat("AssignmentName: ", policyAssignmentName),
+    param2 = strcat("DefinitionName: ", policyDefinitionDisplayName),  // Align to Azure portal's term.
+    param3 = strcat("DefinitionID: ", policyDefinitionName)            // Align to Azure portal's term.
+| project recommendationId = "c42343ae-2712-2843-a285-3437eb0b28a1", name = vmName, id = vmId, tags = vmTags, param1, param2, param3
+

@@ -1,5 +1,5 @@
 ---
 title: Search
 geekdocCollapseSection: true
-geekdocHidden: false
+geekdocHidden: true
 ---

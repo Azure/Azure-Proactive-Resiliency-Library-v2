@@ -1,5 +1,5 @@
 ---
 title: DBforMariaDB
 geekdocCollapseSection: true
-geekdocHidden: false
+geekdocHidden: true
 ---

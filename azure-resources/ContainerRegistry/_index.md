@@ -1,5 +1,5 @@
 ---
 title: ContainerRegistry
 geekdocCollapseSection: true
-geekdocHidden: false
+geekdocHidden: true
 ---

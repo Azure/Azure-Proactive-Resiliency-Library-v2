@@ -1,0 +1,17 @@
+// Azure Resource Graph Query
+// List all in-scope Azure Firewall resources, where the VNet is not associated to a DDoS Protection Plan
+resources
+| where type == "microsoft.network/azurefirewalls"
+| mv-expand properties.ipConfigurations
+| project name, firewallId = id, vNet = substring(properties_ipConfigurations.properties.subnet.id, 0, indexof(properties_ipConfigurations.properties.subnet, "/subnet") - 7), tags
+| join kind=fullouter (
+    resources
+    | where type == "microsoft.network/ddosprotectionplans"
+    | mv-expand properties.virtualNetworks
+    | extend vNet = tostring(properties_virtualNetworks.id)
+    | project ddosProtectionPlan = id, vNet
+    )
+    on $left.vNet == $right.vNet
+| where ddosProtectionPlan == ''
+| project recommendationId = "afw-5", name, id = firewallId, tags, param1 = "ddosProtectionPlan:false"
+

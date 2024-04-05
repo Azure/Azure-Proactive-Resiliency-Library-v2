@@ -1,5 +1,5 @@
 ---
-title: StreamAnalytics
+title: Streamanalytics
 geekdocCollapseSection: true
-geekdocHidden: false
+geekdocHidden: true
 ---

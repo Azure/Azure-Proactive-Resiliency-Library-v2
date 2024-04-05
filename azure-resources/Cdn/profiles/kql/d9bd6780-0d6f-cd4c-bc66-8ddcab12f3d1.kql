@@ -1,0 +1,9 @@
+// Azure Resource Graph Query
+// Use end-to-end TLS
+cdnresources
+| where type == "microsoft.cdn/profiles/afdendpoints/routes"
+| extend forwardingProtocol=tostring(properties.forwardingProtocol),supportedProtocols=properties.supportedProtocols
+| project id,name,forwardingProtocol,supportedProtocols,tags
+| where forwardingProtocol !~ "httpsonly" or supportedProtocols has "http"
+| project recommendationId= "d9bd6780-0d6f-cd4c-bc66-8ddcab12f3d1", name,id,tags,param1=strcat("forwardingProtocol:",forwardingProtocol),param2=strcat("supportedProtocols:",supportedProtocols)
+

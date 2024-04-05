@@ -1,5 +1,5 @@
 ---
 title: DataFactory
 geekdocCollapseSection: true
-geekdocHidden: false
+geekdocHidden: true
 ---

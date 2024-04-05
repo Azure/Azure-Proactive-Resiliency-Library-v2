@@ -1,0 +1,7 @@
+// Azure Resource Graph Query
+// Find all VMs using Availability Sets
+resources
+| where type =~ 'Microsoft.Compute/virtualMachines'
+| where isnotnull(properties.availabilitySet)
+| project recommendationId = "a8d25876-7951-b646-b4e8-880c9031596b", name, id, tags, param1=strcat("availabilitySet: ",properties.availabilitySet.id)
+

@@ -1,5 +1,5 @@
 ---
 title: Kusto
 geekdocCollapseSection: true
-geekdocHidden: false
+geekdocHidden: true
 ---

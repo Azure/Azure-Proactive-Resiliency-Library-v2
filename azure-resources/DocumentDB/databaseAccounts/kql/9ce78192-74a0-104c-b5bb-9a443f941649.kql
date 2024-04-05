@@ -1,0 +1,7 @@
+Resources
+| where type =~ 'Microsoft.DocumentDb/databaseAccounts'
+| where
+    array_length(properties.locations) > 1 and
+    properties.enableMultipleWriteLocations == false
+| project recommendationId='9ce78192-74a0-104c-b5bb-9a443f941649', name, id, tags
+

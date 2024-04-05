@@ -1,0 +1,7 @@
+// Azure Resource Graph Query
+// This query will return all Private Endpoints that are not in a Succeeded state
+resources
+| where type =~ "microsoft.network/privateendpoints"
+| where properties.provisioningState != "Succeeded" or properties.privateLinkServiceConnections[0].properties.provisioningState != "Succeeded"
+| project recommendationId = "b89c9acc-0aba-fb44-9ff2-3dbfcf97dce7", name, id, tags, param1 = strcat("provisioningState: ", tostring(properties.provisioningState)), param2 = strcat("provisioningState: ", tostring(properties.privateLinkServiceConnections[0].properties.provisioningState))
+

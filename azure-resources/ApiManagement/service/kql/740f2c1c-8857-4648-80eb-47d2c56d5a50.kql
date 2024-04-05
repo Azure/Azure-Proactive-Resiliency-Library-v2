@@ -1,0 +1,10 @@
+// Azure Resource Graph Query
+// Find all Premium API Management instances that aren't zone redundant
+resources
+| where type =~ 'Microsoft.ApiManagement/service'
+| extend skuName = sku.name
+| where tolower(skuName) == tolower('premium')
+| where isnull(zones) or array_length(zones) < 2
+| extend zoneValue = iff((isnull(zones)), "null", zones)
+| project recommendationId = "740f2c1c-8857-4648-80eb-47d2c56d5a50", name, id, tags, param1="Zones: No Zone or Zonal", param2=strcat("Zones value: ", zoneValue )
+

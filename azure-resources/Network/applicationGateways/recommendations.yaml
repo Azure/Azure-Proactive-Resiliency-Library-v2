@@ -1,0 +1,171 @@
+- description: Set a minimum instance count of 2
+  aprlGuid: 823b0cff-05c0-2e4e-a1e7-9965e1cfa16f
+  recommendationTypeId: 
+  recommendationControl: Scalability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/applicationGateways
+  recommendationMetadataState: Active
+  longDescription: |
+  Azure Application Gateways v2 are deployed highly available with multiple instances by default. 
+  potentialBenefits: Enhances uptime & enables autoscaling 
+  pgVerified: Preview
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: 
+  learnMoreLink:
+  - name: Learn More
+    url: "https://learn.microsoft.com/azure/application-gateway/application-gateway-autoscaling-zone-redundant#autoscaling-and-high-availability"
+
+- description: Secure all incoming connections with SSL
+  aprlGuid: 233a7008-71e9-e745-923e-1a1c7a0b92f3
+  recommendationTypeId: 
+  recommendationControl: Security
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/applicationGateways
+  recommendationMetadataState: Active
+  longDescription: |
+  Secure all incoming connections using HTTPS for production services with end-to-end SSL/TLS or SSL/TLS termination at the Application Gateway to protect against attacks and ensure data remains private and encrypted between the web server and browsers.
+  potentialBenefits: Enhanced security & privacy 
+  pgVerified: Preview
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: 
+  learnMoreLink:
+  - name: Learn More
+    url: "https://learn.microsoft.com/azure/well-architected/services/networking/azure-application-gateway#security"
+
+- description: Enable Web Application Firewall policies
+  aprlGuid: 8d9223c4-730d-ca47-af88-a9a024c37270
+  recommendationTypeId: 
+  recommendationControl: Security
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/applicationGateways
+  recommendationMetadataState: Active
+  longDescription: |
+  Use Application Gateway with Web Application Firewall (WAF) in an application virtual network to safeguard inbound HTTP/S internet traffic. WAF offers centralized defense against potential exploits through OWASP core rule sets-based rules.
+  potentialBenefits: Enhanced security for HTTP/S traffic 
+  pgVerified: Preview
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: 
+  learnMoreLink:
+  - name: Learn More
+    url: "https://learn.microsoft.com/azure/well-architected/services/networking/azure-application-gateway"
+
+- description: Use Application GW V2 instead of V1
+  aprlGuid: 7893f0b3-8622-1d47-beed-4b50a19f7895
+  recommendationTypeId: 
+  recommendationControl: Scalability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/applicationGateways
+  recommendationMetadataState: Active
+  longDescription: |
+   Use Application Gateway v2 for built-in features like autoscaling, static VIPs, Azure KeyVault integration for better traffic management and performance, unless v1 is necessary.
+  potentialBenefits: Better performance, autoscaling, more features 
+  pgVerified: Preview
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: 
+  learnMoreLink:
+  - name: Learn More
+    url: "https://learn.microsoft.com/azure/application-gateway/overview-v2"
+
+- description: Monitor and Log the configurations and traffic
+  aprlGuid: 5d035919-898d-a047-8d5d-454e199692e5
+  recommendationTypeId: 
+  recommendationControl: Monitoring and Alerting
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Network/applicationGateways
+  recommendationMetadataState: Active
+  longDescription: |
+   Enable logging in storage accounts, Log Analytics, and monitoring services for auditing and insights. If using NSGs, enable NSG flow logs to be stored, providing in-depth traffic analysis into Azure Cloud.
+  potentialBenefits: Enhanced traffic insight & audit 
+  pgVerified: Preview
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: 
+  learnMoreLink:
+  - name: Learn More
+    url: "https://learn.microsoft.com/azure/application-gateway/application-gateway-metrics"
+
+- description: Use Health Probes to detect backend availability
+  aprlGuid: 847a8d88-21c4-bc48-a94e-562206edd767
+  recommendationTypeId: 
+  recommendationControl: Monitoring and Alerting
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Network/applicationGateways
+  recommendationMetadataState: Active
+  longDescription: |
+  Using custom health probes enhances understanding of backend availability and facilitates monitoring of backend services for any impact.
+  potentialBenefits: Ensures backend uptime monitoring. 
+  pgVerified: Preview
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: 
+  learnMoreLink:
+  - name: Learn More
+    url: "https://learn.microsoft.com/azure/application-gateway/application-gateway-probe-overview"
+
+- description: Deploy Application Gateway in a zone-redundant configuration
+  aprlGuid: c9c00f2a-3888-714b-a72b-b4c9e8fcffb2
+  recommendationTypeId: 
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/applicationGateways
+  recommendationMetadataState: Active
+  longDescription: |
+   Deploying Application Gateway in a zone-aware configuration ensures continued customer access to services even if a specific zone goes down, as services in other zones remain available.
+  potentialBenefits: Enhanced uptime & customer access 
+  pgVerified: Preview
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: 
+  learnMoreLink:
+  - name: Learn More
+    url: "https://learn.microsoft.com/azure/well-architected/services/networking/azure-application-gateway#reliability"
+
+- description: Plan for backend maintenance by using connection draining
+  aprlGuid: 10f02bc6-e2e7-004d-a2c2-f9bf9f16b915
+  recommendationTypeId: 
+  recommendationControl: High Availability
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Network/applicationGateways
+  recommendationMetadataState: Active
+  longDescription: |
+  Using connection draining for backend maintenance ensures graceful removal of backend pool members during updates or health issues. It's enabled via Backend Setting and applies to all members during rule creation.
+  potentialBenefits: Smooth updates, no dropped users 
+  pgVerified: Preview
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: 
+  learnMoreLink:
+  - name: Learn More
+    url: "https://learn.microsoft.com/azure/application-gateway/features#connection-draining"
+
+- description: Ensure Application Gateway Subnet is using a /24 subnet mask
+  aprlGuid: 8364fd0a-7c0e-e240-9d95-4bf965aec243
+  recommendationTypeId: 
+  recommendationControl: Other Best Practices
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/applicationGateways
+  recommendationMetadataState: Active
+  longDescription: |
+  Application Gateway v2 (Standard_v2 or WAF_v2 SKU) can support up to 125 instances. A /24 subnet isn't mandatory for deployment but is advised to provide enough space for autoscaling and maintenance upgrades.
+  potentialBenefits: Allows autoscaling and maintenance 
+  pgVerified: Preview
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: 
+  learnMoreLink:
+  - name: Learn More
+    url: "https://learn.microsoft.com/en-us/azure/application-gateway/configuration-infrastructure#size-of-the-subnet"
+

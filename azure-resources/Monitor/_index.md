@@ -1,6 +1,5 @@
 ---
 title: Monitor
 geekdocCollapseSection: true
-geekdocHidden: false
+geekdocHidden: true
 ---
-

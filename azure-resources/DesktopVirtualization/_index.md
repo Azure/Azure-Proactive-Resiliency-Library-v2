@@ -1,6 +1,5 @@
 ---
-title: DesktopVirtualization
+title: Desktopvirtualization
 geekdocCollapseSection: true
 geekdocHidden: true
 ---
-

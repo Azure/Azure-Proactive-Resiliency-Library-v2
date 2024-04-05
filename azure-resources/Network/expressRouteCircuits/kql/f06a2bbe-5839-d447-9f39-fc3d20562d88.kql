@@ -1,0 +1,9 @@
+// Azure Resource Graph Query
+// Goal: Show any ExpressRoute circuit where one of the connections is not configured (i.e. no IP)
+Resources
+| where type =~ 'Microsoft.Network/expressRouteCircuits'
+| where properties.value[0].provisioningState != 'Succeeded' or properties.value[1].provisioningState != 'Succeeded'
+| where not(properties.peerings[0].properties.primaryPeerAddressPrefix != "null" and  properties.peerings[0].properties.secondaryPeerAddressPrefix != "null")
+| project recommendationId = "f06a2bbe-5839-d447-9f39-fc3d20562d88", name, id, tags, param1 = strcat("Peer1_IP: ",properties.peerings[0].properties.primaryPeerAddressPrefix), param2=strcat("Peer2_IP: ", properties.peerings[0].properties.secondaryPeerAddressPrefix)
+| order by id asc
+

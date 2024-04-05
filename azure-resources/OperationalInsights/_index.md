@@ -1,5 +1,5 @@
 ---
 title: OperationalInsights
 geekdocCollapseSection: true
-geekdocHidden: false
+geekdocHidden: true
 ---

@@ -1,0 +1,19 @@
+- description: Enable Availability Zones for Service Bus namespaces
+  aprlGuid: 20057905-262c-49fe-a9be-49f423afb359
+  recommendationTypeId: 
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.ServiceBus/namespaces
+  recommendationMetadataState: Active
+  longDescription: |
+   Use Service Bus with zone redundancy for high availability. The Premium SKU supports availability zones, ensuring isolations within the same region. It manages 3 copies of the messaging store, kept in sync. 
+  potentialBenefits: Enhances fault tolerance and uptime 
+  pgVerified: Preview
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: 
+  learnMoreLink:
+  - name: Learn More
+    url: "https://learn.microsoft.com/en-us/azure/well-architected/services/messaging/service-bus/reliability"
+

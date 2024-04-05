@@ -1,40 +1,76 @@
-- pageTitle: Ensure that Storage Account configuration is at least Zone redundant
+- description: Ensure File shares that stores jobs metadata are accessible from all head nodes
+  aprlGuid: 4c78fab4-845a-495d-ab14-3ad51de53a2a
+  recommendationTypeId: 
+  recommendationControl: High Availability
   recommendationImpact: High
-  recommendationControl: Availability
-  tags: null
+  recommendationResourceType: n/a
+  recommendationMetadataState: Active
+  longDescription: |
+  Currently in all HPC Pack ARM templates we create the cluster share on one of the head node which is not highly available. 
+  potentialBenefits: Enhances job metadata availability 
+  pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
-  pgVerified: false
-  automationAvailable: true
-  aprlRecommendationId: e6c7e1cc-2f47-264d-aa50-1da421314472
-  recommendationTypeId: null
-  state: Active
-  longDescription: |
-    Data in an Azure Storage account is always replicated three times in the primary region. Azure Storage offers other options for how your data is replicated in the primary or paired region:
-
-      - LRS synchronously replicates data 3 times in a single physical location. It is the least expensive replication but not recommended for apps with high availability and durability. LRS provides eleven 9s durability.
-      - ZRS copies data synchronously across 3 availability zones in the primary region. ZRS is recommended for apps requiring high availability across zones. ZRS provides twelve 9s durability.
-      - GRS replicates an additional 3 copies to the secondary region and provides sixteen 9s availability.
-      - GZRS provides both high availability and redundancy across geo-replication. It provides sixteen 9s durability over a given year.
-  potentialBenefits: Enhanced data redundancy and boosts availability
+  automationAvailable: no
+  tags: 
   learnMoreLink:
-    - name: Azure Storage Redundancy
-      url: "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy"
+  - name: Learn More
+    url: "https://learn.microsoft.com/en-us/powershell/high-performance-computing/hpcpack-ha-cloud?view=hpc19-ps#hpc-pack-cluster-shares"
 
-- pageTitle: Do not use classic Storage Account
-  recommendationImpact: High
-  recommendationControl: Governance
-  tags: null
+- description: Automatically grow and shrink HPC Pack cluster resources
+  aprlGuid: b02b5a0e-3770-44da-a099-5dd4d9f8cd70
+  recommendationTypeId: 
+  recommendationControl: Scalability
+  recommendationImpact: Medium
+  recommendationResourceType: n/a
+  recommendationMetadataState: Active
+  longDescription: |
+  By deploying Azure "burst" nodes (both Windows and Linux) in your HPC Pack cluster or creating your HPC Pack cluster in Azure, you can automatically grow or shrink the cluster's resources such as nodes or cores according to the workload on the cluster. 
+  potentialBenefits: Efficient, uninterrupted execution 
+  pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
-  pgVerified: false
-  automationAvailable: true
-  aprlRecommendationId: 63ad027e-611c-294b-acc5-8e3234db9a40
-  recommendationTypeId: null
-  state: Active
-  longDescription: |
-    Azure classic Storage Account will retire 31 august 2024. So migrate all workload from classic storage to v2.
-  potentialBenefits: Improved security and modern features
+  automationAvailable: no
+  tags: 
   learnMoreLink:
-    - name: Storage Account Retirement Announcement
-      url: "https://azure.microsoft.com/updates/classic-azure-storage-accounts-will-be-retired-on-31-august-2024"
+  - name: Learn More
+    url: "https://learn.microsoft.com/en-us/powershell/high-performance-computing/hpcpack-auto-grow-shrink?view=hpc19-ps"
+
+- description: Use multiple head nodes for HPC Pack
+  aprlGuid: a48b1be6-77a3-4e3c-8205-dda2ba010a99
+  recommendationTypeId: 
+  recommendationControl: High Availability
+  recommendationImpact: Medium
+  recommendationResourceType: n/a
+  recommendationMetadataState: Active
+  longDescription: |
+  Establish a cluster with a minimum of two head nodes. In the event of a head node failure, the active HPC Service will be automatically transferred from the affected head node to another functioning one.
+  potentialBenefits: Enhanced reliability for HPC 
+  pgVerified: Preview
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: 
+  learnMoreLink:
+  - name: Learn More
+    url: "https://learn.microsoft.com/en-us/powershell/high-performance-computing/hpcpack-ha-cloud?view=hpc19-ps#dealing-with-head-node-failure"
+
+- description: Use HPC Pack Azure AD Integration or other highly available AD configuration
+  aprlGuid: 37eec891-7880-4759-b597-7cd925512fe3
+  recommendationTypeId: 
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: n/a
+  recommendationMetadataState: Active
+  longDescription: |
+  When HPC failed to connect to the Domain controller, admin and user will not be able to connect to the HPC Service thus not able to manage and submit jobs to the cluster. 
+  potentialBenefits: Enhanced reliability & job management 
+  pgVerified: Preview
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: 
+  learnMoreLink:
+  - name: Learn More
+    url: "https://learn.microsoft.com/en-us/powershell/high-performance-computing/hpcpack-ha-cloud?view=hpc19-ps#dealing-with-ad-failure"
+
