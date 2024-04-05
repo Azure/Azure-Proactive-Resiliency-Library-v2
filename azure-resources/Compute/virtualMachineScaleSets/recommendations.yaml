@@ -1,209 +1,208 @@
 - description: Deploy VMSS with Flex orchestration mode instead of Uniform
   aprlGuid: e7495e1c-0c75-0946-b266-b429b5c7f3bf
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: Scalability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
   recommendationMetadataState: Active
   longDescription: |
     Deploying even single instance VMs into a scale set with Flexible orchestration mode future-proofs applications for scaling and availability. This mode guarantees high availability (up to 1000 VMs) by distributing VMs across fault domains in a region or within an Availability Zone.
-  potentialBenefits: Higher scalability & availability 
+  potentialBenefits: Higher scalability & availability
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false 
+  publishedToAdvisor: false
   automationAvailable: arg
-  tags: 
+  tags:
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-design-overview#when-to-use-scale-sets-instead-of-virtual-machines"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-design-overview#when-to-use-scale-sets-instead-of-virtual-machines"
 
 - description: Enable VMSS application health monitoring
   aprlGuid: 94794d2a-eff0-2345-9b67-6f9349d0a627
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
   recommendationMetadataState: Active
   longDescription: |
-    Monitoring application health in Azure Virtual Machine Scale Sets is crucial for deployment management. It supports rolling upgrades such as automatic OS-image upgrades and VM guest patching, leveraging health monitoring for upgrading. 
-  potentialBenefits: Enhances deployment management & upgrades 
+    Monitoring application health in Azure Virtual Machine Scale Sets is crucial for deployment management. It supports rolling upgrades such as automatic OS-image upgrades and VM guest patching, leveraging health monitoring for upgrading.
+  potentialBenefits: Enhances deployment management & upgrades
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false 
+  publishedToAdvisor: false
   automationAvailable: arg
-  tags: 
+  tags:
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-health-extension?tabs=rest-api"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-health-extension?tabs=rest-api"
 
 - description: Enable Automatic Repair policy
   aprlGuid: 820f4743-1f94-e946-ae0b-45efafd87962
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: Automation
   recommendationImpact: High
   recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
   recommendationMetadataState: Active
   longDescription: |
-    Enabling automatic instance repairs in Azure Virtual Machine Scale Sets enhances application availability through a continuous health check and maintenance process. 
-  potentialBenefits: Boosts app availability by auto-repair 
+    Enabling automatic instance repairs in Azure Virtual Machine Scale Sets enhances application availability through a continuous health check and maintenance process.
+  potentialBenefits: Boosts app availability by auto-repair
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false 
+  publishedToAdvisor: false
   automationAvailable: arg
-  tags: 
+  tags:
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-automatic-instance-repairs#requirements-for-using-automatic-instance-repairs"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-automatic-instance-repairs#requirements-for-using-automatic-instance-repairs"
 
 - description: Configure VMSS Autoscale to custom and configure the scaling metrics
   aprlGuid: ee66ff65-9aa3-2345-93c1-25827cf79f44
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: Scalability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
   recommendationMetadataState: Active
   longDescription: |
     Use custom autoscale for VMSS based on metrics and schedules to improve performance and cost effectiveness, adjusting instances as demand changes.
-  potentialBenefits: Enhances performance & cost-efficiency 
+  potentialBenefits: Enhances performance & cost-efficiency
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false 
+  publishedToAdvisor: false
   automationAvailable: arg
-  tags: 
+  tags:
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/azure-monitor/autoscale/autoscale-get-started?WT.mc_id=Portal-Microsoft_Azure_Monitoring"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/azure-monitor/autoscale/autoscale-get-started?WT.mc_id=Portal-Microsoft_Azure_Monitoring"
 
 - description: Enable Predictive autoscale and configure at least for Forecast Only
   aprlGuid: 3f85a51c-e286-9f44-b4dc-51d00768696c
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: Scalability
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
   recommendationMetadataState: Active
   longDescription: |
     Predictive autoscale utilizes machine learning to efficiently manage and scale Azure Virtual Machine Scale Sets by forecasting CPU load through historical usage analysis, ensuring timely scale-out to meet demand.
-  potentialBenefits: Optimizes scaling with ML predictions 
+  potentialBenefits: Optimizes scaling with ML predictions
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false 
+  publishedToAdvisor: false
   automationAvailable: arg
-  tags: 
+  tags:
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/azure-monitor/autoscale/autoscale-predictive"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/azure-monitor/autoscale/autoscale-predictive"
 
 - description: Disable Force strictly even balance across zones to avoid scale in and out fail attempts
   aprlGuid: b5a63aa0-c58e-244f-b8a6-cbba0560a6db
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
   recommendationMetadataState: Active
   longDescription: |
     Microsoft advises disabling strictly even VM instance distribution across Availability Zones in VMSS to improve scalability and flexibility, noting that uneven distribution may better serve application load demands despite the potential trade-off in resilience.
-  potentialBenefits: Improves scaling, reduces fail attempts 
+  potentialBenefits: Improves scaling, reduces fail attempts
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false 
+  publishedToAdvisor: false
   automationAvailable: arg
-  tags: 
+  tags:
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-scale-in-policy"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-scale-in-policy"
 
 - description: Configure Allocation Policy Spreading algorithm to Max Spreading
   aprlGuid: 457e1648-8aa2-214d-a854-11a4084ecdc9
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: Scalability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
   recommendationMetadataState: Active
   longDescription: |
     Max spreading distributes VMs across multiple fault domains per zone, potentially more or less than five, enhancing resilience. Static spreading limits VMs to exactly five fault domains. If five distinct domains aren't available, allocation fails.
-  potentialBenefits: Enhances fault tolerance 
+  potentialBenefits: Enhances fault tolerance
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false 
+  publishedToAdvisor: false
   automationAvailable: arg
-  tags: 
+  tags:
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-use-availability-zones#availability-considerations"
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-use-availability-zones#availability-considerations"
 
 - description: Deploy VMSS across availability zones with VMSS Flex
   aprlGuid: 1422c567-782c-7148-ac7c-5fc14cf45adc
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
   recommendationMetadataState: Active
   longDescription: |
     When creating VMSS, implement availability zones as a protection measure for your applications and data against the rare event of datacenter failure.
-  potentialBenefits: Enhances disaster resilience 
+  potentialBenefits: Enhances disaster resilience
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false 
+  publishedToAdvisor: false
   automationAvailable: arg
-  tags: 
+  tags:
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-use-availability-zones"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-use-availability-zones"
 
 - description: Set Patch orchestration options to Azure-orchestrated
   aprlGuid: e4ffd7b0-ba24-c84e-9352-ba4819f908c0
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: Automation
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
   recommendationMetadataState: Active
   longDescription: |
     Enabling automatic VM guest patching eases update management by safely, automatically patching virtual machines to maintain security compliance, while limiting blast radius of VMs. Note, the KQL will not return sets using Uniform orchestration.
-  potentialBenefits: Eases patch management, enhances security 
+  potentialBenefits: Eases patch management, enhances security
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false 
+  publishedToAdvisor: false
   automationAvailable: arg
-  tags: 
+  tags:
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/virtual-machines/automatic-vm-guest-patching"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/virtual-machines/automatic-vm-guest-patching"
 
 - description: Upgrade VMSS Image versions scheduled to be deprecated or already retired
   aprlGuid: 83d61669-7bd6-9642-a305-175db8adcdf4
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: Governance
   recommendationImpact: High
   recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
   recommendationMetadataState: Active
   longDescription: |
     Using current image versions prevents disruption from deprecation, ensuring uninterrupted deployment of VMs and VMSS.
-  potentialBenefits: Avoid disruptions by updating VMSS images. 
+  potentialBenefits: Avoid disruptions by updating VMSS images.
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false 
+  publishedToAdvisor: false
   automationAvailable: no
-  tags: 
+  tags:
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/en-us/azure/virtual-machines/deprecated-images"
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/virtual-machines/deprecated-images"
 
 - description: Production VMSS instances should be using SSD disks
   aprlGuid: 1074f391-22bf-42f5-9c95-68af5ad89bf6
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: Scalability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
   recommendationMetadataState: Active
   longDescription: |
     Using SSD disks for Production workloads is advised as HDDs could negatively impact resources, being suitable only for non-critical resources or those needing infrequent access.
-  potentialBenefits: Faster access & reliability for VMSS 
+  potentialBenefits: Faster access & reliability for VMSS
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false 
+  publishedToAdvisor: false
   automationAvailable: arg
-  tags: 
+  tags:
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/en-us/azure/virtual-machines/disks-types#disk-type-comparison"
-
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/virtual-machines/disks-types#disk-type-comparison"

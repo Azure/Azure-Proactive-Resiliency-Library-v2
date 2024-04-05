@@ -1,114 +1,113 @@
 - description: Use Active Geo Replication to Create a Readable Secondary in Another Region
   aprlGuid: 74c2491d-048b-0041-a140-935960220e20
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: Disaster Recovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.Sql/servers
   recommendationMetadataState: Active
   longDescription: |
-    If your primary database fails, perform a manual failover to the secondary database which remains read-only until then. Active geo-replication allows creating readable replicas and manual failover in case of a datacenter outage or application upgrade. 
-  potentialBenefits: Enhanced disaster recovery & read scalability 
+    If your primary database fails, perform a manual failover to the secondary database which remains read-only until then. Active geo-replication allows creating readable replicas and manual failover in case of a datacenter outage or application upgrade.
+  potentialBenefits: Enhanced disaster recovery & read scalability
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false 
+  publishedToAdvisor: false
   automationAvailable: arg
-  tags: 
+  tags:
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/active-geo-replication-overview"
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/active-geo-replication-overview"
 
 - description: Auto Failover Groups for apps should include all related databases for cohesion
   aprlGuid: 943c168a-2ec2-a94c-8015-85732a1b4859
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: Disaster Recovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.Sql/servers
   recommendationMetadataState: Active
   longDescription: |
     You can use the readable secondary databases to offload read-only query workloads. Autofailover groups involve multiple databases configured on a primary server, supporting replication of all databases in the group to only one secondary server or instance in a different region.
-  potentialBenefits: Improves load balancing & disaster recovery 
+  potentialBenefits: Improves load balancing & disaster recovery
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false 
+  publishedToAdvisor: false
   automationAvailable: arg
-  tags: 
+  tags:
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/auto-failover-group-overview?tabs=azure-powershell"
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/auto-failover-group-overview?tabs=azure-powershell"
 
 - description: Use a Zone-Redundant Database
   aprlGuid: c0085c32-84c0-c247-bfa9-e70977cbf108
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: High Availability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Sql/servers
   recommendationMetadataState: Active
   longDescription: |
-    By default, the premium availability model clusters nodes in one datacenter. 
-  potentialBenefits: Enhanced reliability, no extra cost 
+    By default, the premium availability model clusters nodes in one datacenter.
+  potentialBenefits: Enhanced reliability, no extra cost
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false 
+  publishedToAdvisor: false
   automationAvailable: arg
-  tags: 
+  tags:
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/high-availability-sla"
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/high-availability-sla"
 
 - description: Implement Retry Logic
   aprlGuid: cbb17a29-64fb-c943-95d0-8df814a37c40
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Sql/servers
   recommendationMetadataState: Active
   longDescription: |
     Azure SQL Database, known for its resilience to infrastructure failures, can occasionally encounter connectivity issues due to transient errors. Implementing retry logic in your code ensures continued operation by reattempting failed calls, maintaining smooth database interaction.
-  potentialBenefits: Enhanced connectivity stability 
+  potentialBenefits: Enhanced connectivity stability
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false 
+  publishedToAdvisor: false
   automationAvailable: no
-  tags: 
+  tags:
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/troubleshoot-common-connectivity-issues"
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/troubleshoot-common-connectivity-issues"
 
 - description: Monitor your Azure SQL Database in Near Real-Time to Detect Reliability Incidents
   aprlGuid: 7e7daec9-6a81-3546-a4cc-9aef72fec1f7
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: Monitoring and Alerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.Sql/servers
   recommendationMetadataState: Active
   longDescription: |
     Use available solutions to monitor SQL Database to detect reliability incidents early, making your databases more reliable. Opt for near real-time monitoring to rapidly react to incidents.
-  potentialBenefits: Quick incident detection & response 
+  potentialBenefits: Quick incident detection & response
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false 
+  publishedToAdvisor: false
   automationAvailable: arg
-  tags: 
+  tags:
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/en-us/azure/azure-monitor/insights/azure-sql#analyze-data-and-create-alerts"
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/azure-monitor/insights/azure-sql#analyze-data-and-create-alerts"
 
 - description: Back Up Your Keys
   aprlGuid: d6ef87aa-574e-584e-a955-3e6bb8b5425b
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: Disaster Recovery
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Sql/servers
   recommendationMetadataState: Active
   longDescription: |
     It is highly recommended to use Azure Key Vault to store encryption keys for Always Encrypted configurations. Though not mandatory, if not using AKV, ensure keys are properly backed up.
-  potentialBenefits: Enhanced security & data recovery 
+  potentialBenefits: Enhanced security & data recovery
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false 
+  publishedToAdvisor: false
   automationAvailable: no
-  tags: 
+  tags:
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/en-us/azure/key-vault/general/overview"
-
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/key-vault/general/overview"

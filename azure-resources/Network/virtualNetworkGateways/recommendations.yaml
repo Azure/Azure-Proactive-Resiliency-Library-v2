@@ -1,228 +1,227 @@
 - description: Connect ExpressRoute Gateway with circuits from diverse peering locations for resilience
   aprlGuid: d37db635-157f-584d-9bce-4f6fc8c65ce5
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
   recommendationMetadataState: Active
   longDescription: |
     To increase reliability, it's advised that each ExpressRoute Gateway connects to at least two circuits, with each circuit originating from a different peering location than the other, ensuring diverse connectivity paths for enhanced resilience.
-  potentialBenefits: Enhanced resiliency for Azure service 
+  potentialBenefits: Enhanced resiliency for Azure service
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false 
+  publishedToAdvisor: false
   automationAvailable: arg
-  tags: 
+  tags:
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/expressroute/designing-for-disaster-recovery-with-expressroute-privatepeering"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/expressroute/designing-for-disaster-recovery-with-expressroute-privatepeering"
 
 - description: Use Zone-redundant gateway SKUs
   aprlGuid: bbe668b7-eb5c-c746-8b82-70afdedf0cae
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
   recommendationMetadataState: Active
   longDescription: |
     Azure ExpressRoute gateway offers variable SLAs based on deployment in single or multiple availability zones. To deploy virtual network gateways across zones automatically, use zone-redundant gateways for accessing critical, scalable services with increased resilience.
-  potentialBenefits: Enhanced SLA and resilience 
+  potentialBenefits: Enhanced SLA and resilience
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false 
+  publishedToAdvisor: false
   automationAvailable: arg
-  tags: 
+  tags:
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/expressroute/expressroute-about-virtual-network-gateways#zrgw"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/expressroute/expressroute-about-virtual-network-gateways#zrgw"
 
 - description: Configure an Azure Resource lock for ExpressRoute Gateway to prevent accidental deletion
   aprlGuid: c0f23a92-d322-4d4d-97e9-a238b5e3bbb8
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: High Availability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
   recommendationMetadataState: Active
   longDescription: |
     Configuring an Azure Resource lock for ExpressRoute Gateway prevents accidental deletion by enabling administrators to lock an Azure subscription, resource group, or resource, thereby protecting them from unintended user deletions and modifications, with the lock overriding all user permissions.
-  potentialBenefits: Prevents accidental deletions 
+  potentialBenefits: Prevents accidental deletions
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false 
+  publishedToAdvisor: false
   automationAvailable: no
-  tags: 
+  tags:
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources?tabs=json"
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources?tabs=json"
 
 - description: Monitor gateway health
   aprlGuid: 1c34faa8-8b99-974c-adbf-71922eae943c
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: Monitoring and Alerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
   recommendationMetadataState: Active
   longDescription: |
-    Use Network Insights for monitoring ExpressRoute Gateway's health, including availability, performance, and scalability. 
-  potentialBenefits: Enhanced monitoring & alerting 
+    Use Network Insights for monitoring ExpressRoute Gateway's health, including availability, performance, and scalability.
+  potentialBenefits: Enhanced monitoring & alerting
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false 
+  publishedToAdvisor: false
   automationAvailable: no
-  tags: 
+  tags:
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/expressroute/expressroute-monitoring-metrics-alerts#expressroute-gateways"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/expressroute/expressroute-monitoring-metrics-alerts#expressroute-gateways"
 
 - description: Avoid using ExpressRoute circuits for VNet to VNet communication
   aprlGuid: 194c14ac-0d7a-5a48-ae32-75fa450ee564
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: High Availability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
   recommendationMetadataState: Active
   longDescription: |
     While multiple VNets can connect via the same ExpressRoute Gateway, Microsoft recommends using alternatives like VNet peering, Azure Firewall, NVA, Azure Route Server, site-to-site VPN, virtual WAN, or SD-WAN for VNet-to-VNet communication to optimize network performance and management.
-  potentialBenefits: Enhanced VNet integration efficiency 
+  potentialBenefits: Enhanced VNet integration efficiency
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false 
+  publishedToAdvisor: false
   automationAvailable: no
-  tags: 
+  tags:
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/expressroute/expressroute-about-virtual-network-gateways#vnet-to-vnet-connectivity"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/expressroute/expressroute-about-virtual-network-gateways#vnet-to-vnet-connectivity"
 
 - description: Configure customer-controlled gateway maintenance
   aprlGuid: 3e115044-a3aa-433e-be01-ce17d67e50da
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
   recommendationMetadataState: Active
   longDescription: |
     ExpressRoute gateways are updated for improved functionality, reliability, performance, and security. Customer-controlled maintenance configuration and scheduling minimize update impact and align with your maintenance windows.
-  potentialBenefits: Minimizes update impact 
+  potentialBenefits: Minimizes update impact
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false 
+  publishedToAdvisor: false
   automationAvailable: arg
-  tags: 
+  tags:
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/en-us/azure/expressroute/customer-controlled-gateway-maintenance#azure-portal-steps"
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/expressroute/customer-controlled-gateway-maintenance#azure-portal-steps"
 
 - description: Choose a Zone-redundant gateway
   aprlGuid: 5b1933a6-90e4-f642-a01f-e58594e5aab2
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
   recommendationMetadataState: Active
   longDescription: |
     Azure VPN gateway offers variable SLAs based on deployment in one or two availability zones. Deploying zone-redundant virtual network gateways across availability zones ensures zone-resiliency, improving access to mission-critical, scalable services on Azure.
-  potentialBenefits: Enhanced reliability and scalability 
+  potentialBenefits: Enhanced reliability and scalability
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false 
+  publishedToAdvisor: false
   automationAvailable: arg
-  tags: 
+  tags:
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/vpn-gateway/about-zone-redundant-vnet-gateways"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/vpn-gateway/about-zone-redundant-vnet-gateways"
 
 - description: Plan for Active-Active mode
   aprlGuid: 281a2713-c0e0-3c48-b596-19f590c46671
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
   recommendationMetadataState: Active
   longDescription: |
     The active-active mode is available for all SKUs except Basic, allowing for two Gateway IP configurations and two public IP addresses, enhancing redundancy and traffic handling.
-  potentialBenefits: Enhanced reliability & network capacity 
+  potentialBenefits: Enhanced reliability & network capacity
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false 
+  publishedToAdvisor: false
   automationAvailable: arg
-  tags: 
+  tags:
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/vpn-gateway/active-active-portal#gateway"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/vpn-gateway/active-active-portal#gateway"
 
 - description: Deploy active-active VPN concentrators on your premises for maximum resiliency
   aprlGuid: af11fc4c-c06c-4f4c-b98d-6eee6d5c4c70
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: Disaster Recovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
   recommendationMetadataState: Active
   longDescription: |
     Deploying active-active VPN concentrators and Azure VPN Gateways maximizes resilience and availability using a fully-meshed topology with four IPSec tunnels.
-  potentialBenefits: Maximizes resilience & availability 
+  potentialBenefits: Maximizes resilience & availability
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false 
+  publishedToAdvisor: false
   automationAvailable: no
-  tags: 
+  tags:
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/vpn-gateway/vpn-gateway-highlyavailable#dual-redundancy-active-active-vpn-gateways-for-both-azure-and-on-premises-networks"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/vpn-gateway/vpn-gateway-highlyavailable#dual-redundancy-active-active-vpn-gateways-for-both-azure-and-on-premises-networks"
 
 - description: Monitor connections and gateway health
   aprlGuid: 9eab120e-f6d3-ee49-ba0d-766562ce7df1
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
   recommendationMetadataState: Active
   longDescription: |
     Set up monitoring and alerts for Virtual Network Gateway health to utilize a variety of metrics for ensuring operational efficiency and prompt response to any disruptions.
-  potentialBenefits: Improved uptime and issue awareness 
+  potentialBenefits: Improved uptime and issue awareness
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false 
+  publishedToAdvisor: false
   automationAvailable: no
-  tags: 
+  tags:
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/vpn-gateway/monitor-vpn-gateway-reference"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/vpn-gateway/monitor-vpn-gateway-reference"
 
 - description: Enable service health
   aprlGuid: 9186dae0-7ddc-8f4b-bea5-55538cea4893
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
   recommendationMetadataState: Active
   longDescription: |
     VPN Gateway leverages service health to inform users about both planned and unplanned maintenance, ensuring they are notified about modifications to their VPN connectivity.
-  potentialBenefits: Improves VPN maintenance alerts 
+  potentialBenefits: Improves VPN maintenance alerts
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false 
+  publishedToAdvisor: false
   automationAvailable: no
-  tags: 
+  tags:
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/azure-monitor/essentials/metrics-getting-started"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/azure-monitor/essentials/metrics-getting-started"
 
 - description: Deploy zone-redundant VPN Gateways with zone-redundant Public IP(s)
   aprlGuid: 4bae5a28-5cf4-40d9-bcf1-623d28f6d917
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
   recommendationMetadataState: Active
   longDescription: |
     For zone-redundant VPN Gateways, always use zone-redundant Standard SKU public IPs to avoid deploying all instances in one zone. This ensures the gateway's reliability, applying to both active-passive (single IP) and active-active (dual IP) setups.
-  potentialBenefits: Enhanced reliability & disaster recovery 
+  potentialBenefits: Enhanced reliability & disaster recovery
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false 
+  publishedToAdvisor: false
   automationAvailable: arg
-  tags: 
+  tags:
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/vpn-gateway/about-zone-redundant-vnet-gateways"
-
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/vpn-gateway/about-zone-redundant-vnet-gateways"

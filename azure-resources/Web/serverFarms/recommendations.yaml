@@ -1,95 +1,94 @@
 - description: Migrate App Service to availability Zone Support
   aprlGuid: 88cb90c2-3b99-814b-9820-821a63f600dd
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Web/serverFarms
   recommendationMetadataState: Active
   longDescription: |
     Azure's feature of deploying App Service plans across availability zones enhances resiliency and reliability by ensuring operation during datacenter failures, providing redundancy without needing different regions, thus minimizing downtime and maintaining uninterrupted services.
-  potentialBenefits: Enhances app resiliency & reliability 
+  potentialBenefits: Enhances app resiliency & reliability
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false 
+  publishedToAdvisor: false
   automationAvailable: arg
-  tags: 
+  tags:
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/en-us/azure/reliability/migrate-app-service"
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/reliability/migrate-app-service"
 
 - description: Use Standard or Premium tier
   aprlGuid: b2113023-a553-2e41-9789-597e2fb54c31
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Web/serverFarms
   recommendationMetadataState: Active
   longDescription: |
     Choose Standard/Premium Azure App Service Plan for robust apps with advanced scaling, high availability, better performance, and multiple slots, ensuring resilience and continuous operation.
-  potentialBenefits: Enhanced scaling & reliability 
+  potentialBenefits: Enhanced scaling & reliability
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false 
+  publishedToAdvisor: false
   automationAvailable: arg
-  tags: 
+  tags:
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/en-us/azure/architecture/checklist/resiliency-per-service#app-service"
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/architecture/checklist/resiliency-per-service#app-service"
 
 - description: Avoid scaling up or down
   aprlGuid: 07243659-4643-d44c-a1c6-07ac21635072
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: Scalability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Web/serverFarms
   recommendationMetadataState: Active
   longDescription: |
     Avoid frequent scaling up/down of Azure App Service instances to prevent service disruptions. Choose the right tier and size for the workload and scale out for traffic changes, as scaling adjustments can trigger application restarts.
-  potentialBenefits: Minimizes restarts, enhances stability 
+  potentialBenefits: Minimizes restarts, enhances stability
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false 
+  publishedToAdvisor: false
   automationAvailable: arg
-  tags: 
+  tags:
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/en-us/azure/architecture/checklist/resiliency-per-service#app-service"
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/architecture/checklist/resiliency-per-service#app-service"
 
 - description: Create separate App Service plans for production and test
   aprlGuid: dbe3fd66-fb2a-9d46-b162-1791e21da236
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: Governance
   recommendationImpact: High
   recommendationResourceType: Microsoft.Web/serverFarms
   recommendationMetadataState: Active
   longDescription: |
-    It is strongly recommended to create separate App Service plans for production and test environments to avoid using slots within your production deployment for testing purposes. 
-  potentialBenefits: Protects prod performance; avoids test impact 
+    It is strongly recommended to create separate App Service plans for production and test environments to avoid using slots within your production deployment for testing purposes.
+  potentialBenefits: Protects prod performance; avoids test impact
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false 
+  publishedToAdvisor: false
   automationAvailable: no
-  tags: 
+  tags:
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/en-us/azure/architecture/checklist/resiliency-per-service#app-service"
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/architecture/checklist/resiliency-per-service#app-service"
 
 - description: Enable Autoscale/Automatic scaling to ensure adequate resources are available to service requests
   aprlGuid: 6320abf6-f917-1843-b2ae-4779c35985ae
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: Scalability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Web/serverFarms
   recommendationMetadataState: Active
   longDescription: |
     Enabling Autoscale/Automatic Scaling for your Azure App Service ensures sufficient resources for incoming requests. Autoscaling is rule-based, whereas Automatic Scaling, a newer feature, automatically adjusts resources based on HTTP traffic.
-  potentialBenefits: Optimizes resources for traffic 
+  potentialBenefits: Optimizes resources for traffic
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false 
+  publishedToAdvisor: false
   automationAvailable: no
-  tags: 
+  tags:
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/en-us/azure/app-service/manage-automatic-scaling?tabs=azure-portal"
-
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/app-service/manage-automatic-scaling?tabs=azure-portal"

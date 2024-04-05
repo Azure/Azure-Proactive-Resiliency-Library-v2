@@ -1,38 +1,37 @@
 - description: Monitor changes in Route Tables with Azure Monitor
   aprlGuid: 23b2dfc7-7e5d-9443-9f62-980ca621b561
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Network/routeTables
   recommendationMetadataState: Active
   longDescription: |
     Create Alerts with Azure Monitor for operations like Create or Update Route Table to spot unauthorized/undesired changes in production resources. This setup aids in identifying improper routing changes, including efforts to evade firewalls or access resources from outside.
-  potentialBenefits: Enhanced security & change detection 
+  potentialBenefits: Enhanced security & change detection
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false 
+  publishedToAdvisor: false
   automationAvailable: arg
-  tags: 
+  tags:
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/activity-log?tabs=powershell"
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/activity-log?tabs=powershell"
 
 - description: Configure locks for Route Tables to avoid accidental changes or deletion
   aprlGuid: 89d1166a-1a20-0f46-acc8-3194387bf127
-  recommendationTypeId: 
+  recommendationTypeId:
   recommendationControl: Governance
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Network/routeTables
   recommendationMetadataState: Active
   longDescription: |
-    As an administrator, you can protect Azure subscriptions, resource groups, or resources from accidental deletions and modifications by setting locks. 
-  potentialBenefits: Prevents accidental edits/deletions 
+    As an administrator, you can protect Azure subscriptions, resource groups, or resources from accidental deletions and modifications by setting locks.
+  potentialBenefits: Prevents accidental edits/deletions
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false 
+  publishedToAdvisor: false
   automationAvailable: no
-  tags: 
+  tags:
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources?toc=%2Fazure%2Fvirtual-network%2Ftoc.json&tabs=json"
-
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources?toc=%2Fazure%2Fvirtual-network%2Ftoc.json&tabs=json"

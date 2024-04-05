@@ -1,5 +1,7 @@
 ---
-title: Azure-resources
+title: Azure Resources
+weight: 40
 geekdocCollapseSection: true
-geekdocHidden: true
 ---
+
+{{< toc-tree >}}
