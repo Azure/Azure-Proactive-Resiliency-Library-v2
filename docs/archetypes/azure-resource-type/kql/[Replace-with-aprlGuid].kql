@@ -2,5 +2,4 @@
 // Replace with a description of what your query returns
 resources
 // Replace with your query
-| project recommendationId = '00000000-00-0000-0000-00-000000000000', name, id, tags
-
+| project recommendationId = '[Replace with aprlGuid]', name, id, tags

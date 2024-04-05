@@ -8,8 +8,8 @@ geekdocHidden: false
 
 | Recommendation                                                                                   | Provider Namespace |  Resource Type  |
 | :----------------------------------------------------------------------------------------------- | :----------------: | :-------------: |
-| [Replace with existing recommendation pageTitle value](Replace with existing recommendation URL) |       Batch        |  batchAccounts  |
-| [Replace with existing recommendation pageTitle value](Replace with existing recommendation URL) |      Storage       | storageAccounts |
+| [Replace with existing recommendation description value](Replace with existing recommendation URL) |       Batch        |  batchAccounts  |
+| [Replace with existing recommendation description value](Replace with existing recommendation URL) |      Storage       | storageAccounts |
 
 ## General Guidance (not resource specific)
 
