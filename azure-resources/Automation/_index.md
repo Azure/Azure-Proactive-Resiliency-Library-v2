@@ -1,5 +1,5 @@
 ---
 title: Automation
 geekdocCollapseSection: true
-geekdocHidden: true
+geekdocHidden: false
 ---

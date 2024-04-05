@@ -1,5 +1,5 @@
 ---
 title: Keyvault
 geekdocCollapseSection: true
-geekdocHidden: true
+geekdocHidden: false
 ---
