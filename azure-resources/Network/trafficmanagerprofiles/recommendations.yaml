@@ -6,11 +6,11 @@
   recommendationResourceType: Microsoft.Network/trafficManagerProfiles
   recommendationMetadataState: Active
   longDescription: |
-   Monitor status should be online to ensure failover for application workload. If Traffic Manager's health shows Degraded, one or more endpoints may also be Degraded.
+    Monitor status should be online to ensure failover for application workload. If Traffic Manager's health shows Degraded, one or more endpoints may also be Degraded.
   potentialBenefits: Ensures failover functionality 
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: arg
   tags: 
   learnMoreLink:
@@ -25,11 +25,11 @@
   recommendationResourceType: Microsoft.Network/trafficManagerProfiles
   recommendationMetadataState: Active
   longDescription: |
-   When configuring the Azure traffic manager, provision at least two endpoints to ensure workloads can fail-over to another instance, enhancing reliability and availability.
+    When configuring the Azure traffic manager, provision at least two endpoints to ensure workloads can fail-over to another instance, enhancing reliability and availability.
   potentialBenefits: Enhances failover capabilities 
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: arg
   tags: 
   learnMoreLink:
@@ -44,11 +44,11 @@
   recommendationResourceType: Microsoft.Network/trafficManagerProfiles
   recommendationMetadataState: Active
   longDescription: |
-  Profiles should have multiple endpoints to ensure availability in case an endpoint fails. It's also advised to distribute these endpoints across different regions for enhanced reliability.
+    Profiles should have multiple endpoints to ensure availability in case an endpoint fails. It's also advised to distribute these endpoints across different regions for enhanced reliability.
   potentialBenefits: Enhances availability across regions 
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -63,11 +63,11 @@
   recommendationResourceType: Microsoft.Network/trafficManagerProfiles
   recommendationMetadataState: Active
   longDescription: |
-   For geographic routing, traffic is directed to endpoints based on specific regions. If a region fails, without a predefined failover, configuring an endpoint to "All (World)" for geographic profiles can prevent traffic black holes, ensuring service remains available.
+    For geographic routing, traffic is directed to endpoints based on specific regions. If a region fails, without a predefined failover, configuring an endpoint to "All (World)" for geographic profiles can prevent traffic black holes, ensuring service remains available.
   potentialBenefits: Avoids traffic black holing, ensures availability 
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:

@@ -6,11 +6,11 @@
   recommendationResourceType: Microsoft.RecoveryServices/vaults
   recommendationMetadataState: Active
   longDescription: |
-   Ensure VM failover settings' static IP addresses are available in the failover subnet to maintain consistent IP assignment during failover, with the target VM receiving the same static IP if it's available or the next available IP otherwise. IP adjustments can be made in VM Network settings.
+    Ensure VM failover settings' static IP addresses are available in the failover subnet to maintain consistent IP assignment during failover, with the target VM receiving the same static IP if it's available or the next available IP otherwise. IP adjustments can be made in VM Network settings.
   potentialBenefits: Smooth failover IP management 
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -25,11 +25,11 @@
   recommendationResourceType: Microsoft.RecoveryServices/vaults
   recommendationMetadataState: Active
   longDescription: |
-   Perform a test failover to validate your BCDR strategy and ensure that your applications are functioning correctly in the target region without impacting your production environment. Test your Disaster Recovery plan periodically without any data loss or downtime, using test failovers.
+    Perform a test failover to validate your BCDR strategy and ensure that your applications are functioning correctly in the target region without impacting your production environment. Test your Disaster Recovery plan periodically without any data loss or downtime, using test failovers.
   potentialBenefits: Ensures BCDR plan accuracy and VM performance 
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: arg
   tags: 
   learnMoreLink:
@@ -44,11 +44,11 @@
   recommendationResourceType: Microsoft.RecoveryServices/vaults
   recommendationMetadataState: Active
   longDescription: |
-  Classic alerts for Recovery Services vaults in Azure Backup will be retired on 31 March 2026. 
+    Classic alerts for Recovery Services vaults in Azure Backup will be retired on 31 March 2026. 
   potentialBenefits: Enhanced, scalable, and consistent alerting. 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: arg
   tags: 
   learnMoreLink:
@@ -63,11 +63,11 @@
   recommendationResourceType: Microsoft.RecoveryServices/vaults
   recommendationMetadataState: Active
   longDescription: |
-   Cross Region Restore enables the restoration of Azure VMs in a secondary, Azure paired region, facilitating drills for audit or compliance and allowing recovery of VMs or disks in the event of a primary region disaster. It is an opt-in feature available exclusively for GRS vaults.
+    Cross Region Restore enables the restoration of Azure VMs in a secondary, Azure paired region, facilitating drills for audit or compliance and allowing recovery of VMs or disks in the event of a primary region disaster. It is an opt-in feature available exclusively for GRS vaults.
   potentialBenefits: Enhances disaster recovery capabilities 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: arg
   tags: 
   learnMoreLink:

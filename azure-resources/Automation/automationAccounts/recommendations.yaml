@@ -6,11 +6,11 @@
   recommendationResourceType: Microsoft.Automation/automationAccounts
   recommendationMetadataState: Active
   longDescription: |
-   Set up disaster recovery for Automation accounts and resources like Modules, Connections, Credentials, Certificates, Variables, and Schedules to deal with region or zone failures. A replica Automation account should be ready in a secondary region for failover. 
+    Set up disaster recovery for Automation accounts and resources like Modules, Connections, Credentials, Certificates, Variables, and Schedules to deal with region or zone failures. A replica Automation account should be ready in a secondary region for failover. 
   potentialBenefits: Ensures continuity during outages 
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -25,11 +25,11 @@
   recommendationResourceType: Microsoft.Automation/automationAccounts
   recommendationMetadataState: Active
   longDescription: |
-   The root management group in Azure is designed for organizational hierarchy, allowing for all management groups and subscriptions to fold into it. 
+    The root management group in Azure is designed for organizational hierarchy, allowing for all management groups and subscriptions to fold into it. 
   potentialBenefits: Enhanced security, compliance, and management 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: arg
   tags: 
   learnMoreLink:

@@ -6,11 +6,11 @@
   recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
   recommendationMetadataState: Active
   longDescription: |
-  Deploying even single instance VMs into a scale set with Flexible orchestration mode future-proofs applications for scaling and availability. This mode guarantees high availability (up to 1000 VMs) by distributing VMs across fault domains in a region or within an Availability Zone.
+    Deploying even single instance VMs into a scale set with Flexible orchestration mode future-proofs applications for scaling and availability. This mode guarantees high availability (up to 1000 VMs) by distributing VMs across fault domains in a region or within an Availability Zone.
   potentialBenefits: Higher scalability & availability 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: arg
   tags: 
   learnMoreLink:
@@ -25,11 +25,11 @@
   recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
   recommendationMetadataState: Active
   longDescription: |
-   Monitoring application health in Azure Virtual Machine Scale Sets is crucial for deployment management. It supports rolling upgrades such as automatic OS-image upgrades and VM guest patching, leveraging health monitoring for upgrading. 
+    Monitoring application health in Azure Virtual Machine Scale Sets is crucial for deployment management. It supports rolling upgrades such as automatic OS-image upgrades and VM guest patching, leveraging health monitoring for upgrading. 
   potentialBenefits: Enhances deployment management & upgrades 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: arg
   tags: 
   learnMoreLink:
@@ -44,11 +44,11 @@
   recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
   recommendationMetadataState: Active
   longDescription: |
-  Enabling automatic instance repairs in Azure Virtual Machine Scale Sets enhances application availability through a continuous health check and maintenance process. 
+    Enabling automatic instance repairs in Azure Virtual Machine Scale Sets enhances application availability through a continuous health check and maintenance process. 
   potentialBenefits: Boosts app availability by auto-repair 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: arg
   tags: 
   learnMoreLink:
@@ -63,11 +63,11 @@
   recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
   recommendationMetadataState: Active
   longDescription: |
-   Use custom autoscale for VMSS based on metrics and schedules to improve performance and cost effectiveness, adjusting instances as demand changes.
+    Use custom autoscale for VMSS based on metrics and schedules to improve performance and cost effectiveness, adjusting instances as demand changes.
   potentialBenefits: Enhances performance & cost-efficiency 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: arg
   tags: 
   learnMoreLink:
@@ -82,11 +82,11 @@
   recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
   recommendationMetadataState: Active
   longDescription: |
-   Predictive autoscale utilizes machine learning to efficiently manage and scale Azure Virtual Machine Scale Sets by forecasting CPU load through historical usage analysis, ensuring timely scale-out to meet demand.
+    Predictive autoscale utilizes machine learning to efficiently manage and scale Azure Virtual Machine Scale Sets by forecasting CPU load through historical usage analysis, ensuring timely scale-out to meet demand.
   potentialBenefits: Optimizes scaling with ML predictions 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: arg
   tags: 
   learnMoreLink:
@@ -101,11 +101,11 @@
   recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
   recommendationMetadataState: Active
   longDescription: |
-   Microsoft advises disabling strictly even VM instance distribution across Availability Zones in VMSS to improve scalability and flexibility, noting that uneven distribution may better serve application load demands despite the potential trade-off in resilience.
+    Microsoft advises disabling strictly even VM instance distribution across Availability Zones in VMSS to improve scalability and flexibility, noting that uneven distribution may better serve application load demands despite the potential trade-off in resilience.
   potentialBenefits: Improves scaling, reduces fail attempts 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: arg
   tags: 
   learnMoreLink:
@@ -120,11 +120,11 @@
   recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
   recommendationMetadataState: Active
   longDescription: |
-   Max spreading distributes VMs across multiple fault domains per zone, potentially more or less than five, enhancing resilience. Static spreading limits VMs to exactly five fault domains. If five distinct domains aren't available, allocation fails.
+    Max spreading distributes VMs across multiple fault domains per zone, potentially more or less than five, enhancing resilience. Static spreading limits VMs to exactly five fault domains. If five distinct domains aren't available, allocation fails.
   potentialBenefits: Enhances fault tolerance 
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: arg
   tags: 
   learnMoreLink:
@@ -139,11 +139,11 @@
   recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
   recommendationMetadataState: Active
   longDescription: |
-   When creating VMSS, implement availability zones as a protection measure for your applications and data against the rare event of datacenter failure.
+    When creating VMSS, implement availability zones as a protection measure for your applications and data against the rare event of datacenter failure.
   potentialBenefits: Enhances disaster resilience 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: arg
   tags: 
   learnMoreLink:
@@ -158,11 +158,11 @@
   recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
   recommendationMetadataState: Active
   longDescription: |
-   Enabling automatic VM guest patching eases update management by safely, automatically patching virtual machines to maintain security compliance, while limiting blast radius of VMs. Note, the KQL will not return sets using Uniform orchestration.
+    Enabling automatic VM guest patching eases update management by safely, automatically patching virtual machines to maintain security compliance, while limiting blast radius of VMs. Note, the KQL will not return sets using Uniform orchestration.
   potentialBenefits: Eases patch management, enhances security 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: arg
   tags: 
   learnMoreLink:
@@ -177,11 +177,11 @@
   recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
   recommendationMetadataState: Active
   longDescription: |
-   Using current image versions prevents disruption from deprecation, ensuring uninterrupted deployment of VMs and VMSS.
+    Using current image versions prevents disruption from deprecation, ensuring uninterrupted deployment of VMs and VMSS.
   potentialBenefits: Avoid disruptions by updating VMSS images. 
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -196,11 +196,11 @@
   recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
   recommendationMetadataState: Active
   longDescription: |
-   Using SSD disks for Production workloads is advised as HDDs could negatively impact resources, being suitable only for non-critical resources or those needing infrequent access.
+    Using SSD disks for Production workloads is advised as HDDs could negatively impact resources, being suitable only for non-critical resources or those needing infrequent access.
   potentialBenefits: Faster access & reliability for VMSS 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: arg
   tags: 
   learnMoreLink:

@@ -6,11 +6,11 @@
   recommendationResourceType: Microsoft.Insights/components
   recommendationMetadataState: Active
   longDescription: |
-   Classic Application Insights retires in February 2024. To minimize disruption to existing application monitoring scenarios, transition to workspace-based Application Insights before 29 February 2024.
+    Classic Application Insights retires in February 2024. To minimize disruption to existing application monitoring scenarios, transition to workspace-based Application Insights before 29 February 2024.
   potentialBenefits: Avoid service disruption post-Feb 2024 
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: arg
   tags: 
   learnMoreLink:

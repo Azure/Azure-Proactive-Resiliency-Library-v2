@@ -6,11 +6,11 @@
   recommendationResourceType: Microsoft.Network/ExpressRoutePorts
   recommendationMetadataState: Active
   longDescription: |
-   In Azure ExpressRoute Direct, the "Admin State" indicates the administrative status of layer 1 links, showing if a link is enabled or disabled, effectively turning the physical port on or off. 
+    In Azure ExpressRoute Direct, the "Admin State" indicates the administrative status of layer 1 links, showing if a link is enabled or disabled, effectively turning the physical port on or off. 
   potentialBenefits: Ensures optimal connectivity. 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: arg
   tags: 
   learnMoreLink:
@@ -25,11 +25,11 @@
   recommendationResourceType: Microsoft.Network/ExpressRoutePorts
   recommendationMetadataState: Active
   longDescription: |
-  Provisioning ExpressRoute circuits on a 10-Gbps or 100-Gbps ExpressRoute Direct resource up to 20-Gbps or 200-Gbps is possible but not recommended for resiliency. If an ExpressRoute Direct port fails, and circuits are using full capacity, the remaining port won't handle the extra load. 
+    Provisioning ExpressRoute circuits on a 10-Gbps or 100-Gbps ExpressRoute Direct resource up to 20-Gbps or 200-Gbps is possible but not recommended for resiliency. If an ExpressRoute Direct port fails, and circuits are using full capacity, the remaining port won't handle the extra load. 
   potentialBenefits: Improves resilience during port failures
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: arg
   tags: 
   learnMoreLink:
@@ -44,11 +44,11 @@
   recommendationResourceType: Microsoft.Network/ExpressRoutePorts
   recommendationMetadataState: Active
   longDescription: |
-   Rate limiting controls traffic volume between on-premises networks and Azure via ExpressRoute Direct, applying to private or Microsoft peering. It distributes port bandwidth, ensures stability, and prevents congestion, with steps outlined for enabling on circuits.
+    Rate limiting controls traffic volume between on-premises networks and Azure via ExpressRoute Direct, applying to private or Microsoft peering. It distributes port bandwidth, ensures stability, and prevents congestion, with steps outlined for enabling on circuits.
   potentialBenefits: Optimizes network, prevents congestion 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:

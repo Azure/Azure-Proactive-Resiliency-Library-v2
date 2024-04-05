@@ -6,11 +6,11 @@
   recommendationResourceType: Microsoft.SignalRService/SignalR
   recommendationMetadataState: Active
   longDescription: |
-   Use SignalR with zone redundancy for production to improve uptime. This feature, available in the Premium tier, is activated upon creating or upgrading to Premium. Standard can upgrade to Premium without downtime.
+    Use SignalR with zone redundancy for production to improve uptime. This feature, available in the Premium tier, is activated upon creating or upgrading to Premium. Standard can upgrade to Premium without downtime.
   potentialBenefits: Enhances reliability & uptime 
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: arg
   tags: 
   learnMoreLink:

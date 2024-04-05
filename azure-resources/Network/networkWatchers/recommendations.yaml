@@ -6,11 +6,11 @@
   recommendationResourceType: Microsoft.Network/networkWatchers
   recommendationMetadataState: Active
   longDescription: |
-   Azure Network Watcher offers tools for monitoring, diagnosing, viewing metrics, and managing logs for IaaS resources. It helps maintain the health of VMs, VNets, application gateways, load balancers, but not for PaaS or Web analytics.
+    Azure Network Watcher offers tools for monitoring, diagnosing, viewing metrics, and managing logs for IaaS resources. It helps maintain the health of VMs, VNets, application gateways, load balancers, but not for PaaS or Web analytics.
   potentialBenefits: Enhanced monitoring & diagnostics for Azure IaaS 
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: arg
   tags: 
   learnMoreLink:
@@ -25,11 +25,11 @@
   recommendationResourceType: Microsoft.Network/networkWatchers
   recommendationMetadataState: Active
   longDescription: |
-   Network security group flow logging is a feature of Azure Network Watcher that logs IP traffic info through a network security group. If in Failed state, monitoring data from the associated resource is not collected.
+    Network security group flow logging is a feature of Azure Network Watcher that logs IP traffic info through a network security group. If in Failed state, monitoring data from the associated resource is not collected.
   potentialBenefits: Ensures IP traffic logging 
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: arg
   tags: 
   learnMoreLink:

@@ -6,11 +6,11 @@
   recommendationResourceType: Microsoft.Network/privateEndpoints
   recommendationMetadataState: Active
   longDescription: |
-   A private endpoint has two custom properties, static IP address and the network interface name, which must be set at creation. If not in Succeeded state, there may be issues with the endpoint or associated resource.
+    A private endpoint has two custom properties, static IP address and the network interface name, which must be set at creation. If not in Succeeded state, there may be issues with the endpoint or associated resource.
   potentialBenefits: Enhanced connection reliability 
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: arg
   tags: 
   learnMoreLink:

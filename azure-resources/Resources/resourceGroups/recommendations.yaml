@@ -6,11 +6,11 @@
   recommendationResourceType: Microsoft.Resources/resourceGroups
   recommendationMetadataState: Active
   longDescription: |
-   Ensure resource locations align with their resource group to manage resources during regional outages. ARM stores resource data, which if in an unavailable region, could halt updates, rendering resources read-only.
+    Ensure resource locations align with their resource group to manage resources during regional outages. ARM stores resource data, which if in an unavailable region, could halt updates, rendering resources read-only.
   potentialBenefits: Improves outage management 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: arg
   tags: 
   learnMoreLink:

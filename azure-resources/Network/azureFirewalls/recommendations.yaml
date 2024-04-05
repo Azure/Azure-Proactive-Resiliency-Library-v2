@@ -6,11 +6,11 @@
   recommendationResourceType: Microsoft.Network/azureFirewalls
   recommendationMetadataState: Active
   longDescription: |
-   Azure Firewall offers different SLAs depending on its deployment; in a single availability zone or across multiple, potentially improving reliability and performance.
+    Azure Firewall offers different SLAs depending on its deployment; in a single availability zone or across multiple, potentially improving reliability and performance.
   potentialBenefits: Enhanced SLA and reliability 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: arg
   tags: 
   learnMoreLink:
@@ -25,11 +25,11 @@
   recommendationResourceType: Microsoft.Network/azureFirewalls
   recommendationMetadataState: Active
   longDescription: |
-   Monitor Azure Firewall for overall health, processed throughput, and outbound SNAT port usage. Get alerted before limits impact services. Consider NAT gateway integration with zonal deployments; note limitations with zone redundant firewalls and secure virtual hub networks.
+    Monitor Azure Firewall for overall health, processed throughput, and outbound SNAT port usage. Get alerted before limits impact services. Consider NAT gateway integration with zonal deployments; note limitations with zone redundant firewalls and secure virtual hub networks.
   potentialBenefits: Improve health & performance monitoring 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: arg
   tags: 
   learnMoreLink:
@@ -44,11 +44,11 @@
   recommendationResourceType: Microsoft.Network/azureFirewalls
   recommendationMetadataState: Active
   longDescription: |
-  Associate a DDoS protection plan with the virtual network hosting Azure Firewall to provide enhanced mitigation against DDoS attacks. Azure Firewall Manager integrates the creation of firewall infrastructure and DDoS protection plans.
+    Associate a DDoS protection plan with the virtual network hosting Azure Firewall to provide enhanced mitigation against DDoS attacks. Azure Firewall Manager integrates the creation of firewall infrastructure and DDoS protection plans.
   potentialBenefits: Enhanced DDoS attack defense 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: arg
   tags: 
   learnMoreLink:
@@ -63,11 +63,11 @@
   recommendationResourceType: Microsoft.Network/azureFirewalls
   recommendationMetadataState: Active
   longDescription: |
-   Azure Firewall policy supports rule hierarchies for compliance enforcement, using a central base policy with higher priority over child policies, and employs Azure custom roles to safeguard base policy and manage access within subscriptions or groups.
+    Azure Firewall policy supports rule hierarchies for compliance enforcement, using a central base policy with higher priority over child policies, and employs Azure custom roles to safeguard base policy and manage access within subscriptions or groups.
   potentialBenefits: Enhanced compliance and rule hierarchy 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -82,11 +82,11 @@
   recommendationResourceType: Microsoft.Network/azureFirewalls
   recommendationMetadataState: Active
   longDescription: |
-   Configure a minimum of two to four public IP addresses per Azure Firewall to avoid SNAT exhaustion. Azure Firewall offers SNAT for all outbound traffic to public IPs, providing 2,496 SNAT ports for each additional PIP.
+    Configure a minimum of two to four public IP addresses per Azure Firewall to avoid SNAT exhaustion. Azure Firewall offers SNAT for all outbound traffic to public IPs, providing 2,496 SNAT ports for each additional PIP.
   potentialBenefits: Avoids SNAT exhaustion. 
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -101,11 +101,11 @@
   recommendationResourceType: Microsoft.Network/azureFirewalls
   recommendationMetadataState: Active
   longDescription: |
-   Creating a metric to monitor latency probes over 20ms for periods longer than 30mins helps identify when firewall instance CPUs are stressed, potentially indicating issues.
+    Creating a metric to monitor latency probes over 20ms for periods longer than 30mins helps identify when firewall instance CPUs are stressed, potentially indicating issues.
   potentialBenefits: Improved CPU stress detection 
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:

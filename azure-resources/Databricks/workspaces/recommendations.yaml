@@ -6,11 +6,11 @@
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
   longDescription: |
-   Databricks recommends migrating workloads to the latest or LTS version of its runtime for enhanced stability and support. If on Runtime 11.3 LTS or above, move directly to the latest 12.x version. If below, first migrate to 11.3 LTS, then to the latest 12.x version as per the migration guide.
+    Databricks recommends migrating workloads to the latest or LTS version of its runtime for enhanced stability and support. If on Runtime 11.3 LTS or above, move directly to the latest 12.x version. If below, first migrate to 11.3 LTS, then to the latest 12.x version as per the migration guide.
   potentialBenefits: Enhanced stability & support 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -25,11 +25,11 @@
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
   longDescription: |
-   Azure Spot VMs are not suitable for critical production workloads needing high availability and reliability. They are meant for fault-tolerant tasks and can be evicted with 30-seconds notice if Azure needs the capacity, with no SLA guarantees.
+    Azure Spot VMs are not suitable for critical production workloads needing high availability and reliability. They are meant for fault-tolerant tasks and can be evicted with 30-seconds notice if Azure needs the capacity, with no SLA guarantees.
   potentialBenefits: Ensures high reliability for production 
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -44,11 +44,11 @@
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
   longDescription: |
-   Driven by security and data availability concerns, each Azure Databricks Workspace comes with a default DBFS designed for system-level artifacts like libraries and Init scripts, not for production data. 
+    Driven by security and data availability concerns, each Azure Databricks Workspace comes with a default DBFS designed for system-level artifacts like libraries and Init scripts, not for production data. 
   potentialBenefits: Enhanced security, data protection 
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -63,11 +63,11 @@
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
   longDescription: |
-  Deploying only one Databricks Workspace per VNet aligns with ADB's isolation model. 
+    Deploying only one Databricks Workspace per VNet aligns with ADB's isolation model. 
   potentialBenefits: Enhanced security & resource isolation 
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -82,11 +82,11 @@
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
   longDescription: |
-   Customers often naturally divide workspaces by teams or departments. However, it's crucial to also consider Azure Subscription and ADB Workspace limits when partitioning.
+    Customers often naturally divide workspaces by teams or departments. However, it's crucial to also consider Azure Subscription and ADB Workspace limits when partitioning.
   potentialBenefits: Enhanced limits management, team separation 
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -101,11 +101,11 @@
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
   longDescription: |
-   The Databricks Terraform provider is a flexible, powerful tool for managing Azure Databricks workspaces and cloud infrastructure. 
+    The Databricks Terraform provider is a flexible, powerful tool for managing Azure Databricks workspaces and cloud infrastructure. 
   potentialBenefits: Enhanced reliability & automation 
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -120,11 +120,11 @@
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
   longDescription: |
-  The Databricks Terraform provider manages Azure Databricks workspaces and cloud infrastructure flexibly and powerfully. 
+    The Databricks Terraform provider manages Azure Databricks workspaces and cloud infrastructure flexibly and powerfully. 
   potentialBenefits: Efficient, reliable automation 
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -139,11 +139,11 @@
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
   longDescription: |
-   Implementing a disaster recovery pattern is vital for Azure Databricks, a cloud-native data analytics platform, ensuring data teams' access even during rare regional outages caused by disasters like hurricanes or earthquakes.
+    Implementing a disaster recovery pattern is vital for Azure Databricks, a cloud-native data analytics platform, ensuring data teams' access even during rare regional outages caused by disasters like hurricanes or earthquakes.
   potentialBenefits: Ensures service continuity during disasters 
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -158,11 +158,11 @@
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
   longDescription: |
-   Databricks Workflows enable efficient error recovery in multi-task jobs by offering a matrix view for issue examination. Fixes can be applied to initiate repair runs targeting only failed and dependent tasks, preserving successful outcomes and thereby saving time and money.
+    Databricks Workflows enable efficient error recovery in multi-task jobs by offering a matrix view for issue examination. Fixes can be applied to initiate repair runs targeting only failed and dependent tasks, preserving successful outcomes and thereby saving time and money.
   potentialBenefits: Saves time and money with smart recovery 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -177,11 +177,11 @@
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
   longDescription: |
-   Despite thorough testing, a production job can fail or yield unexpected data. Sometimes, repairs are done by adding jobs post-issue identification and pipeline correction. 
+    Despite thorough testing, a production job can fail or yield unexpected data. Sometimes, repairs are done by adding jobs post-issue identification and pipeline correction. 
   potentialBenefits: Easy rollback and fix for ETL jobs 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -196,11 +196,11 @@
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
   longDescription: |
-   Structured Streaming ensures fault-tolerance and data consistency in streaming queries. With Azure Databricks workflows, you can set up your queries to automatically restart after failure, picking up precisely where they left off.
+    Structured Streaming ensures fault-tolerance and data consistency in streaming queries. With Azure Databricks workflows, you can set up your queries to automatically restart after failure, picking up precisely where they left off.
   potentialBenefits: Fault-tolerance & auto-restart for queries 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -215,11 +215,11 @@
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
   longDescription: |
-   To recover from a failure, regular backups are needed. The Databricks Labs project migrate lets admins create backups by exporting workspace assets using the Databricks CLI/API. These backups help in restoring or migrating workspaces.
+    To recover from a failure, regular backups are needed. The Databricks Labs project migrate lets admins create backups by exporting workspace assets using the Databricks CLI/API. These backups help in restoring or migrating workspaces.
   potentialBenefits: Ensures data recovery & migration 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -234,11 +234,11 @@
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
   longDescription: |
-   Delta tables verify data quality automatically with SQL constraints, triggering an error for violations. Delta Live Tables enhance this by defining expectations for data quality, utilizing Python or SQL, to manage actions for record failures, ensuring data integrity and compliance.
+    Delta tables verify data quality automatically with SQL constraints, triggering an error for violations. Delta Live Tables enhance this by defining expectations for data quality, utilizing Python or SQL, to manage actions for record failures, ensuring data integrity and compliance.
   potentialBenefits: Ensures data quality and integrity 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -253,11 +253,11 @@
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
   longDescription: |
-   Uncontrolled schema changes can lead to invalid data and failing jobs. Databricks validates and enforces schema through Delta Lake, which prevents bad records during ingestion, and Auto Loader, which detects new columns and supports schema evolution to maintain data integrity.
+    Uncontrolled schema changes can lead to invalid data and failing jobs. Databricks validates and enforces schema through Delta Lake, which prevents bad records during ingestion, and Auto Loader, which detects new columns and supports schema evolution to maintain data integrity.
   potentialBenefits: Prevents invalid data & job failures 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -272,11 +272,11 @@
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
   longDescription: |
-   Copying data leads to redundancy, lost integrity, lineage, and access issues, affecting lakehouse data quality. Temporary copies are useful for agility and innovation but can become problematic operational data silos, questioning data's master status and currency.
+    Copying data leads to redundancy, lost integrity, lineage, and access issues, affecting lakehouse data quality. Temporary copies are useful for agility and innovation but can become problematic operational data silos, questioning data's master status and currency.
   potentialBenefits: Enhanced data integrity and quality 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -291,11 +291,11 @@
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
   longDescription: |
-   Curate data by creating a layered architecture to increase data quality across layers. Start with a raw layer for ingested source data, continue with a curated layer for cleansed and refined data, and finish with a final layer catered to business needs, focusing on security and performance. 
+    Curate data by creating a layered architecture to increase data quality across layers. Start with a raw layer for ingested source data, continue with a curated layer for cleansed and refined data, and finish with a final layer catered to business needs, focusing on security and performance. 
   potentialBenefits: Enhances data quality & trust 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -310,11 +310,11 @@
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
   longDescription: |
-   Use Databricks and MLflow for deploying models as Apache Spark UDFs, benefiting from job scheduling, retries, autoscaling, etc. 
+    Use Databricks and MLflow for deploying models as Apache Spark UDFs, benefiting from job scheduling, retries, autoscaling, etc. 
   potentialBenefits: Enhances scalability & reliability 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -329,11 +329,11 @@
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
   longDescription: |
-   Use Databricks and MLflow for deploying models as Spark UDFs for job scheduling, retries, autoscaling. Model serving offers scalable infrastructure, processes models using MLflow, and serves them via REST API using serverless compute managed in Databricks cloud.
+    Use Databricks and MLflow for deploying models as Spark UDFs for job scheduling, retries, autoscaling. Model serving offers scalable infrastructure, processes models using MLflow, and serves them via REST API using serverless compute managed in Databricks cloud.
   potentialBenefits: Enhanced reliability & autoscaling 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -348,11 +348,11 @@
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
   longDescription: |
-   Invalid or nonconforming data can crash workloads dependent on specific data formats. Best practices recommend filtering such data at ingestion to improve end-to-end resilience, ensuring no data is lost or missed. 
+    Invalid or nonconforming data can crash workloads dependent on specific data formats. Best practices recommend filtering such data at ingestion to improve end-to-end resilience, ensuring no data is lost or missed. 
   potentialBenefits: Enhanced data resilience and integrity 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -367,11 +367,11 @@
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
   longDescription: |
-   Apache Spark in Databricks Lakehouse ensures resilient distributed data processing by automatically rescheduling failed tasks, aiding in overcoming external issues like network problems or revoked VMs. 
+    Apache Spark in Databricks Lakehouse ensures resilient distributed data processing by automatically rescheduling failed tasks, aiding in overcoming external issues like network problems or revoked VMs. 
   potentialBenefits: Boosts speed & reliability for Spark tasks 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -386,11 +386,11 @@
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
   longDescription: |
-   Delta Lake is an open source storage format enhancing data lakes' reliability with ACID transactions, schema enforcement, and scalable metadata handling. 
+    Delta Lake is an open source storage format enhancing data lakes' reliability with ACID transactions, schema enforcement, and scalable metadata handling. 
   potentialBenefits: Enhances data reliability & processing 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -405,11 +405,11 @@
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
   longDescription: |
-   When creating a Databricks cluster, you can set a log delivery location for the Spark driver, worker nodes, and events. Logs are delivered every 5 mins and archived hourly. Upon cluster termination, all generated logs until that point are guaranteed to be delivered. 
+    When creating a Databricks cluster, you can set a log delivery location for the Spark driver, worker nodes, and events. Logs are delivered every 5 mins and archived hourly. Upon cluster termination, all generated logs until that point are guaranteed to be delivered. 
   potentialBenefits: Improved troubleshooting & audit 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -424,11 +424,11 @@
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
   longDescription: |
-   To conserve cluster resources, you can terminate a cluster to store its configuration for future reuse or autostart jobs. Clusters can auto-terminate after inactivity, but this only tracks Spark jobs, not local processes, which might still be running even after Spark jobs end. 
+    To conserve cluster resources, you can terminate a cluster to store its configuration for future reuse or autostart jobs. Clusters can auto-terminate after inactivity, but this only tracks Spark jobs, not local processes, which might still be running even after Spark jobs end. 
   potentialBenefits: Saves cluster resources, avoids idle use 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -443,11 +443,11 @@
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
   longDescription: |
-   Databricks enhanced autoscaling optimizes cluster utilization by automatically allocating cluster resources based on workload volume, with minimal impact on the data processing latency of your pipelines.
+    Databricks enhanced autoscaling optimizes cluster utilization by automatically allocating cluster resources based on workload volume, with minimal impact on the data processing latency of your pipelines.
   potentialBenefits: Optimized resource use & minimal latency 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -462,11 +462,11 @@
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
   longDescription: |
-   The scaling parameter of a SQL warehouse defines the min and max number of clusters for distributing queries. By default, it's set to one. Increasing the cluster count can accommodate more concurrent users effectively.
+    The scaling parameter of a SQL warehouse defines the min and max number of clusters for distributing queries. By default, it's set to one. Increasing the cluster count can accommodate more concurrent users effectively.
   potentialBenefits: Improves concurrency & efficiency 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -481,11 +481,11 @@
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
   longDescription: |
-   Autoscaling adjusts cluster sizes automatically based on workload demands, offering benefits for many use cases in terms of costs and performance. It includes guidance on when and how to best utilize Autoscaling. For streaming, Delta Live Tables with autoscaling is advised.
+    Autoscaling adjusts cluster sizes automatically based on workload demands, offering benefits for many use cases in terms of costs and performance. It includes guidance on when and how to best utilize Autoscaling. For streaming, Delta Live Tables with autoscaling is advised.
   potentialBenefits: Cost & performance optimization 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -500,11 +500,11 @@
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
   longDescription: |
-  Upgrade HDDs in premium VMs to SSDs for better speed and reliability. Premium SSDs boost IO-heavy apps; Standard SSDs balance cost and performance. Ideal for critical workloads, upgrading improves connectivity with brief reboot. Consider for vital VMs
+    Upgrade HDDs in premium VMs to SSDs for better speed and reliability. Premium SSDs boost IO-heavy apps; Standard SSDs balance cost and performance. Ideal for critical workloads, upgrading improves connectivity with brief reboot. Consider for vital VMs
   potentialBenefits: Faster, reliable VM performance 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -519,11 +519,11 @@
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
   longDescription: |
-   Databricks pools pre-provision VMs, reducing risks of provisioning errors during cluster start or scale, enhancing reliability.
+    Databricks pools pre-provision VMs, reducing risks of provisioning errors during cluster start or scale, enhancing reliability.
   potentialBenefits: Reduces provisioning errors 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -538,11 +538,11 @@
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
   longDescription: |
-  Azure Databricks transitioned from a shared to dedicated in-region control planes to prevent regional outages affecting customer workspaces. Legacy workspaces, established before this change, differ from newer workspaces that utilize in-region control planes. 
+    Azure Databricks transitioned from a shared to dedicated in-region control planes to prevent regional outages affecting customer workspaces. Legacy workspaces, established before this change, differ from newer workspaces that utilize in-region control planes. 
   potentialBenefits: Improves resilience and data sovereignty
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -557,11 +557,11 @@
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
   longDescription: |
-  Azure Databricks planning should include VM SKU swap strategies for capacity issues. VMs are regional, and allocation failures may occur, shown by a "CLOUD PROVIDER" error. 
+    Azure Databricks planning should include VM SKU swap strategies for capacity issues. VMs are regional, and allocation failures may occur, shown by a "CLOUD PROVIDER" error. 
   potentialBenefits: Ensures service availability
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:

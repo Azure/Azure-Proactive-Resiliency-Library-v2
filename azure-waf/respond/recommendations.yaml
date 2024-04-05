@@ -1,18 +1,18 @@
 - description: Implement proactive Incident Response
   aprlGuid: daf605e4-d3fd-fc42-819a-e3ec084ffda6
-  recommendationTypeId:
+  recommendationTypeId: 
   recommendationControl: Disaster Recovery
   recommendationImpact: High
   recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     Prevention of all problems is a laudable, but impossible goal. Things will go wrong, so we need a plan to limit the impact on our end users and return operations to normal as quickly as possible. The key is to respond with urgency, rather than react. A reaction tends to be more impulsive and based in the present moment, without consideration of long-term effects. A response is well-thought-out, organized, and information based. Your incident response approach determines your effectiveness at: Understanding what�s going on (diagnosing the problem) Triaging (determining the urgency) and prioritizing the problem Engaging the right resources to mitigate the issue(s), and Communicating with stakeholders about the problem After the problem has been remediated, you can then learn from the incident through a post-incident review process. That's an important subject which has a whole separate module worth of discussion.
-  potentialBenefits: Quicker recovery, less impact
+  potentialBenefits: Quicker recovery, less impact 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: No
-  tags:
+  tags: 
   learnMoreLink:
   - name: Learn More
     url: "https://learn.microsoft.com/training/modules/improve-reliability-incidents/2-importance"

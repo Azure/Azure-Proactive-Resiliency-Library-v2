@@ -6,11 +6,11 @@
   recommendationResourceType: Microsoft.Batch/batchAccounts
   recommendationMetadataState: Active
   longDescription: |
-   To ensure cross-region disaster recovery and business continuity, set the right quotas for all Batch accounts to allocate necessary core numbers upfront, preventing execution interruptions from reaching quota limits. 
+    To ensure cross-region disaster recovery and business continuity, set the right quotas for all Batch accounts to allocate necessary core numbers upfront, preventing execution interruptions from reaching quota limits. 
   potentialBenefits: Ensures business continuity 
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -25,11 +25,11 @@
   recommendationResourceType: Microsoft.Batch/batchAccounts
   recommendationMetadataState: Active
   longDescription: |
-   When using Virtual Machine Configuration for Azure Batch pools, opting to distribute your pool across Availability Zones bolsters your compute nodes against Azure datacenter failures. 
+    When using Virtual Machine Configuration for Azure Batch pools, opting to distribute your pool across Availability Zones bolsters your compute nodes against Azure datacenter failures. 
   potentialBenefits: Enhanced reliability & failure protection 
   pgVerified: Preview
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:

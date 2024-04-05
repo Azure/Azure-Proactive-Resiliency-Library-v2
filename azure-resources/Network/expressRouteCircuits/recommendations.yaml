@@ -6,11 +6,11 @@
   recommendationResourceType: Microsoft.Network/expressRouteCircuits
   recommendationMetadataState: Active
   longDescription: |
-  Connecting each ExpressRoute Gateway to a minimum of two circuits in different peering locations enhances redundancy and reliability by ensuring alternate pathways for data in case one circuit fails.
+    Connecting each ExpressRoute Gateway to a minimum of two circuits in different peering locations enhances redundancy and reliability by ensuring alternate pathways for data in case one circuit fails.
   potentialBenefits: Enhanced reliability & redundancy 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -25,11 +25,11 @@
   recommendationResourceType: Microsoft.Network/expressRouteCircuits
   recommendationMetadataState: Active
   longDescription: |
-   Microsoft or the ExpressRoute provider always ensures physical redundancy in their services. It's essential to maintain this level of physical redundancy (two devices, two links) from the ExpressRoute peering location to your network for optimal performance and reliability.
+    Microsoft or the ExpressRoute provider always ensures physical redundancy in their services. It's essential to maintain this level of physical redundancy (two devices, two links) from the ExpressRoute peering location to your network for optimal performance and reliability.
   potentialBenefits: Enhanced reliability & fault tolerance 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -44,11 +44,11 @@
   recommendationResourceType: Microsoft.Network/expressRouteCircuits
   recommendationMetadataState: Active
   longDescription: |
-  Operating both connections of an ExpressRoute circuit in active-active mode enhances high availability as the Microsoft network will load balance the traffic across the connections on a per-flow basis.
+    Operating both connections of an ExpressRoute circuit in active-active mode enhances high availability as the Microsoft network will load balance the traffic across the connections on a per-flow basis.
   potentialBenefits: Improved high availability and load balancing 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: arg
   tags: 
   learnMoreLink:
@@ -63,11 +63,11 @@
   recommendationResourceType: Microsoft.Network/expressRouteCircuits
   recommendationMetadataState: Active
   longDescription: |
-   Enabling BFD over ExpressRoute speeds up link failure detection between MSEE devices and routers configured for ExpressRoute (CE/PE), applicable over both customer and Partner Edge routing devices with managed Layer 3 service.
+    Enabling BFD over ExpressRoute speeds up link failure detection between MSEE devices and routers configured for ExpressRoute (CE/PE), applicable over both customer and Partner Edge routing devices with managed Layer 3 service.
   potentialBenefits: Faster link failure detection 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -82,11 +82,11 @@
   recommendationResourceType: Microsoft.Network/expressRouteCircuits
   recommendationMetadataState: Active
   longDescription: |
-   Use Network Insights for monitoring ExpressRoute circuit availability, QoS, and throughput. Set alerts based on Azure Monitor Baseline Alerts for availability, QoS metrics, and throughput metrics exceeding specific thresholds. 
+    Use Network Insights for monitoring ExpressRoute circuit availability, QoS, and throughput. Set alerts based on Azure Monitor Baseline Alerts for availability, QoS metrics, and throughput metrics exceeding specific thresholds. 
   potentialBenefits: Enhanced network performance & health 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -101,11 +101,11 @@
   recommendationResourceType: Microsoft.Network/expressRouteCircuits
   recommendationMetadataState: Active
   longDescription: |
-   ExpressRoute leverages service health for notifications on both planned and unplanned maintenance, ensuring users are informed about any changes to their ExpressRoute circuits.
+    ExpressRoute leverages service health for notifications on both planned and unplanned maintenance, ensuring users are informed about any changes to their ExpressRoute circuits.
   potentialBenefits: Stay informed on circuit updates 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:
@@ -120,11 +120,11 @@
   recommendationResourceType: Microsoft.Network/expressRouteCircuits
   recommendationMetadataState: Active
   longDescription: |
-   If you haven't added a second ExpressRoute circuit, use a site-to-site VPN as a temporary solution until the second circuit is available. This ensures network reliability and continuity of service.
+    If you haven't added a second ExpressRoute circuit, use a site-to-site VPN as a temporary solution until the second circuit is available. This ensures network reliability and continuity of service.
   potentialBenefits: Ensures continuity & reliability 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: no
   tags: 
   learnMoreLink:

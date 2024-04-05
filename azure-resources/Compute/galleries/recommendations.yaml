@@ -6,11 +6,11 @@
   recommendationResourceType: Microsoft.Compute/galleries
   recommendationMetadataState: Active
   longDescription: |
-  Keeping a minimum of 3 replicas for production images in Azure's Compute Gallery ensures scalability and prevents throttling in multi-VM deployments by distributing VM deployments across different replicas. This reduces the risk of overloading a single replica. 
+    Keeping a minimum of 3 replicas for production images in Azure's Compute Gallery ensures scalability and prevents throttling in multi-VM deployments by distributing VM deployments across different replicas. This reduces the risk of overloading a single replica. 
   potentialBenefits: Enhances scalability & avoids throttling 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: arg
   tags: 
   learnMoreLink:
@@ -25,11 +25,11 @@
   recommendationResourceType: Microsoft.Compute/galleries
   recommendationMetadataState: Active
   longDescription: |
-   Use ZRS for high availability when creating image/VM versions in Azure Compute Gallery, offering resilience against Availability Zone failures. ZRS accounts are advisable in regions with Availability Zones, with the choice of Standard_ZRS recommended over Standard_LRS for these regions.
+    Use ZRS for high availability when creating image/VM versions in Azure Compute Gallery, offering resilience against Availability Zone failures. ZRS accounts are advisable in regions with Availability Zones, with the choice of Standard_ZRS recommended over Standard_LRS for these regions.
   potentialBenefits: Enhances image version availability 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: arg
   tags: 
   learnMoreLink:
@@ -44,11 +44,11 @@
   recommendationResourceType: Microsoft.Compute/galleries
   recommendationMetadataState: Active
   longDescription: |
-   We recommend creating Trusted Launch Supported Images for benefits like Secure Boot, vTPM, trusted launch VMs, large boot volume. These are Gen 2 Images by default and you cannot change a VM's generation after creation, so review the considerations first.
+    We recommend creating Trusted Launch Supported Images for benefits like Secure Boot, vTPM, trusted launch VMs, large boot volume. These are Gen 2 Images by default and you cannot change a VM's generation after creation, so review the considerations first.
   potentialBenefits: Enhances VM security and features 
   pgVerified: Verified
   publishedToLearn: false
-  publishedToAdvisor: false
+  publishedToAdvisor: false 
   automationAvailable: arg
   tags: 
   learnMoreLink:
