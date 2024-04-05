@@ -18,14 +18,14 @@ Azure WAF and Specialized Workloads Recommendation List
     </tr>
     <!-- Loop through recommendations under category -->
     {{ range sort .recommendations "recommendation" "asc" }}
-    {{ if and (eq .state "Active") (or (not (eq .state "Removed")) ($.Site.Params.aprlDevMode true)) }}
+    {{ if and (eq .recommendationMetadataState "Active") (or (not (eq .recommendationMetadataState "Removed")) ($.Site.Params.aprlDevMode true)) }}
     <tr>
       <td>
-        <a href="#{{ anchorize .title }}">{{ .title }}</a>
+        <a href="#{{ anchorize .description }}">{{ .description }}</a>
       </td>
       <td>{{ .recommendationImpact }}</td>
-      <td>{{ .recommendationCategory }}</td>
-      <td>{{ if eq .argQueryAvailable true }}Yes{{ else }}No{{ end }}</td>
+      <td>{{ .recommendationControl }}</td>
+      <td>{{ if eq .automationAvailable true }}Yes{{ else }}No{{ end }}</td>
     </tr>
     {{ end }} {{ end }}
   </table>
@@ -38,16 +38,16 @@ Azure WAF and Specialized Workloads Recommendation List
 
 <!-- Create a detail entry for each recommendation under category -->
 {{ range sort .recommendations "recommendation" "asc" }}
-{{ if and (eq .state "Active") (or (not (eq .state "Removed")) ($.Site.Params.aprlDevMode true)) }}
-<div id="{{ anchorize .title }}">
+{{ if and (eq .recommendationMetadataState "Active") (or (not (eq .recommendationMetadataState "Removed")) ($.Site.Params.aprlDevMode true)) }}
+<div id="{{ anchorize .description }}">
   <hr style="height: 5px" />
-  <h3>{{ .title }}</h3>
+  <h3>{{ .description }}</h3>
   <h4>
     <span style="font-weight: bold">Impact:</span>&nbsp;
     <span style="font-weight: normal">{{ .recommendationImpact }}</span>
     <span style="margin-right: 40px"></span>
     <span style="font-weight: bold">Category:</span>&nbsp;
-    <span style="font-weight: normal">{{ .recommendationCategory }}</span>
+    <span style="font-weight: normal">{{ .recommendationControl }}</span>
     <span style="margin-right: 40px"></span>
   </h4>
   <div style="max-width: 100%; word-wrap: break-word; overflow-wrap: break-word">
