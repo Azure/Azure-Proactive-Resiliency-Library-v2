@@ -1,0 +1,7 @@
+// Azure Resource Graph Query
+// Find Database for PostgreSQL instances that are not zone redundant
+resources
+| where type == "microsoft.dbforpostgresql/flexibleservers"
+| where properties.highAvailability.mode != "ZoneRedundant"
+| project recommendationId = "ca87914f-aac4-4783-ab67-82a6f936f194", name, id, tags, param1 = "ZoneRedundant: False"
+

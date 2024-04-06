@@ -64,7 +64,6 @@
   recommendationMetadataState: Active
   longDescription: |
     Ensure Route Tables that force tunnel traffic to FW/NVA have failover considerations evaluated and won't fail or trigger next-gen FW protections.
-
     AVD workload teams should collaborate with centralized teams that manage the shared infrastructure, like networking, to ensure that both Production and DR workloads have the appropriate route tables in place for failover of routing to perform as expected.
   potentialBenefits: Enhanced failover reliability
   pgVerified: Verified
@@ -85,7 +84,6 @@
   recommendationMetadataState: Active
   longDescription: |
     NSG and ASG per AVD persona and IP space per Prod/DR regions.
-
     It's important your organization plans for IP addressing in Azure. Planning ensures the IP address space doesn't overlap across on-premises locations and Azure regions. Overlapping IP address spaces across on-premises and Azure regions create major contention challenges.
   potentialBenefits: Enhances security & prevents IP conflicts
   pgVerified: Verified
@@ -125,9 +123,7 @@
   recommendationMetadataState: Active
   longDescription: |
     App Attach packages should be on a separate share from profiles. And App Attach files should be backed up.
-
     Best practice is to separate App Attach VHD files in a separate file share away from user profiles, both for performance and scalability purposes. Requirements can vary greatly depending on how many packaged applications are stored in an image, and you need to test your applications to understand your requirements.
-
     Your file share should be in the same Azure region as your session hosts.
   potentialBenefits: Enhances performance & scalability
   pgVerified: Verified
@@ -148,7 +144,6 @@
   recommendationMetadataState: Active
   longDescription: |
     Turn on Continuous Availability if using Azure Netapp Files.
-
     Verify the number of users connecting to each file share to make sure the SMB path can handle the number of file connections. Currently, Azure Files supports up to 10k handles per root directory.
   potentialBenefits: Enhanced stability & user limit checks
   pgVerified: Verified
@@ -388,7 +383,6 @@
   recommendationMetadataState: Active
   longDescription: |
     When using an AD DS identity solution with AVD, it is recommended to deploy domain controllers and DNS servers on Azure virtual machines across availability zones. This improves the environment�s reliability by removing a dependency on an on-premises service and improves performance by creating a shorter path for user authentication.
-
     This recommendation is not relevant when you are utilizing Microsoft Entra as the identity provider.
   potentialBenefits: Enhanced reliability and performance
   pgVerified: Verified
@@ -507,7 +501,6 @@
   longDescription: |
     It is important to ensure the redundancy of our user profiles when using FSLogix. When using FSLogix with AVD, it is deployed on a file share in a storage account. Data in an Azure Storage account is always replicated three times in the primary region. Below are the options for how your data is replicated in the primary or paired region:
     LRS for least expensive replication (not recommended for apps with high availability and durability).
-
     - LRS provides eleven 9s durability and replicates three time in a single physical location.
     - ZRS is recommended for apps requiring high availability across zones. ZRS provides twelve 9s durability. Replicated across three availability zones
     - GRS replicates an additional three copies to secondary region and provides sixteen 9s durability.
@@ -620,27 +613,6 @@
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/architecture/example-scenario/azure-virtual-desktop/azure-virtual-desktop-multi-region-bcdr"
-
-- description: Capacity Planning for AVD Resources
-  aprlGuid: ef4b3561-c85f-47cf-8cb0-51fae9ddf929
-  recommendationTypeId:
-  recommendationControl: Disaster Recovery
-  recommendationImpact: Low
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
-  recommendationMetadataState: Active
-  longDescription: |
-    Monitor and plan for subscription limits and API throttling limits. Closely monitor your Azure Virtual Desktop deployments, and keep track of resource usage within your subscription. By proactively monitoring capacity, you can identify potential challenges early on, and you can take suitable actions to avoid reaching limits.
-    Consider scaling across multiple subscriptions if further scaling is required, or work with Azure support to adjust limits based on your business requirements.
-    To handle a large number of users, consider scaling horizontally by creating multiple host pools.
-  potentialBenefits: Avoids limits, ensures smooth scaling
-  pgVerified: Verified
-  publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
-  tags:
-  learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-virtual-desktop/business-continuity#capacity-planning"
 
 - description: Enable Azure Backup for FSLogix Storage Account
   aprlGuid: 0025ed2e-41f4-4ada-93c1-12484cef8b0c
