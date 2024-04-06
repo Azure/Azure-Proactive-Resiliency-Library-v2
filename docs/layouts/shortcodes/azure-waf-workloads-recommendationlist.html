@@ -15,6 +15,7 @@ Azure WAF and Specialized Workloads Recommendation List
       <th>Impact</th>
       <th>Category</th>
       <th>Automation Available</th>
+      <th>PG Verified</th>
     </tr>
     <!-- Loop through recommendations under category -->
     {{ range sort .recommendations "recommendation" "asc" }}
@@ -25,7 +26,8 @@ Azure WAF and Specialized Workloads Recommendation List
       </td>
       <td>{{ .recommendationImpact }}</td>
       <td>{{ .recommendationControl }}</td>
-      <td>{{ if eq .automationAvailable true }}Yes{{ else }}No{{ end }}</td>
+      <td>{{ if eq .automationAvailable "arg" }}Yes{{ else }}No{{ end }}</td>
+      <td>{{ .pgVerified }}</td>
     </tr>
     {{ end }} {{ end }}
   </table>
@@ -48,6 +50,11 @@ Azure WAF and Specialized Workloads Recommendation List
     <span style="margin-right: 40px"></span>
     <span style="font-weight: bold">Category:</span>&nbsp;
     <span style="font-weight: normal">{{ .recommendationControl }}</span>
+    <span style="margin-right: 40px"></span>
+  </h4>
+  <h4>
+    <span style="font-weight: bold">PG Verified:</span>&nbsp;
+    <span style="font-weight: normal">{{ .pgVerified }}</span>
     <span style="margin-right: 40px"></span>
   </h4>
   <div style="max-width: 100%; word-wrap: break-word; overflow-wrap: break-word">
