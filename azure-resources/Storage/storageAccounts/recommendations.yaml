@@ -20,7 +20,7 @@
 - description: Do not use classic storage accounts
   aprlGuid: 63ad027e-611c-294b-acc5-8e3234db9a40
   recommendationTypeId:
-  recommendationControl: Governance
+  recommendationControl: Service Upgrade and Retirement
   recommendationImpact: High
   recommendationResourceType: Microsoft.Storage/storageAccounts
   recommendationMetadataState: Active
