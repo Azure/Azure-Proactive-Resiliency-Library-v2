@@ -2,7 +2,7 @@
 Recommendation List
 -->
 
-<!-- Get resouce type and category from page path -->
+<!-- Get resource type and category from page path -->
 {{ $pageDir := path.Dir $.Page.File.Path }} {{ $parentDir := path.Dir $pageDir}}
 {{ $category := path.BaseName $parentDir }} {{ $type := path.BaseName $pageDir
 }} {{ with (index (index $.Site.Data $category) $type) }}
@@ -15,6 +15,7 @@ Recommendation List
       <th>Impact</th>
       <th>Category</th>
       <th>Automation Available</th>
+      <th>PG Verified</th>
     </tr>
     <!-- Loop through recommendations under category/type -->
     {{ range sort .recommendations "recommendation" "asc" }} {{ if and (eq
@@ -27,6 +28,7 @@ Recommendation List
       <td>{{ .recommendationImpact }}</td>
       <td>{{ .recommendationControl }}</td>
       <td>{{ if eq .automationAvailable "arg" }}Yes{{ else }}No{{ end }}</td>
+      <td>{{ .pgVerified }}</td>
     </tr>
     {{ end }} {{ end }}
   </table>
@@ -49,6 +51,10 @@ Recommendation List
     <span style="margin-right: 40px"></span>
     <span style="font-weight: bold">Category:</span>&nbsp;
     <span style="font-weight: normal">{{ .recommendationControl }}</span>
+    <span style="margin-right: 40px"></span>
+    <br>
+    <span style="font-weight: bold">PG Verified:</span>&nbsp;
+    <span style="font-weight: normal">{{ .pgVerified }}</span>
     <span style="margin-right: 40px"></span>
     <span style="font-weight: bold">ResourceType:</span>&nbsp;
     <span style="font-weight: normal">{{ .recommendationResourceType }}</span>
