@@ -1,6 +1,6 @@
 - description: Device Identities are exported to a secondary region
   aprlGuid: 783c6c18-760b-4867-9ced-3010a0bc5aa3
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.Devices/IotHubs
@@ -12,14 +12,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/iot-hub/iot-hub-bulk-identity-mgmt"
 
 - description: Do not use free tier
   aprlGuid: eeba3a49-fef0-481f-a471-7ff01139b474
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Devices/IotHubs
@@ -31,14 +31,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/iot-hub/iot-hub-scaling"
 
 - description: Use Availability Zones
   aprlGuid: 214cbc46-747e-4354-af6e-6bf0054196a5
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Devices/IotHubs
@@ -50,14 +50,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/iot-hub/iot-hub-ha-dr#availability-zones"
 
 - description: Use Device Provisioning Service
   aprlGuid: b1e1378d-4572-4414-bebd-b8872a6d4d1c
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Scalability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Devices/IotHubs
@@ -69,14 +69,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/iot-dps/concepts-service"
 
 - description: Define Failover Guidelines
   aprlGuid: 02568a5d-335e-4e51-9f7c-fe2ada977300
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Devices/IotHubs
@@ -88,14 +88,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/iot-hub/iot-hub-ha-dr"
 
 - description: Disabled Fallback Route
   aprlGuid: e7dbd21f-b27a-4b8c-a901-cedb1e6d8e1e
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Devices/IotHubs
@@ -107,7 +107,7 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-messages-d2c#fallback-route"

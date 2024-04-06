@@ -1,6 +1,6 @@
 - description: Run production workloads on two or more VMs using VMSS Flex
   aprlGuid: 273f6b30-68e0-4241-85ea-acf15ffb60bf
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Compute/virtualMachines
@@ -12,14 +12,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes#what-has-changed-with-flexible-orchestration-mode"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes#what-has-changed-with-flexible-orchestration-mode"
 
 - description: Deploy VMs across Availability Zones
   aprlGuid: 2bd0be95-a825-6f47-a8c6-3db1fb5eb387
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Compute/virtualMachines
@@ -31,14 +31,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/virtual-machines/create-portal-availability-zone?tabs=standard"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/virtual-machines/create-portal-availability-zone?tabs=standard"
 
 - description: Migrate VMs using availability sets to VMSS Flex
   aprlGuid: a8d25876-7951-b646-b4e8-880c9031596b
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Compute/virtualMachines
@@ -50,14 +50,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/architecture/checklist/resiliency-per-service#virtual-machines"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/architecture/checklist/resiliency-per-service#virtual-machines"
 
 - description: Replicate VMs using Azure Site Recovery
   aprlGuid: cfe22a65-b1db-fd41-9e8e-d573922709ae
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Compute/virtualMachines
@@ -69,14 +69,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/architecture/checklist/resiliency-per-service#virtual-machines"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/architecture/checklist/resiliency-per-service#virtual-machines"
 
 - description: Use Managed Disks for VM disks
   aprlGuid: 122d11d7-b91f-8747-a562-f56b79bcfbdc
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Compute/virtualMachines
@@ -88,14 +88,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/virtual-machines/unmanaged-disks-deprecation"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/virtual-machines/unmanaged-disks-deprecation"
 
 - description: Host database data on a data disk
   aprlGuid: 4ea2878f-0d69-8d4a-b715-afc10d1e538e
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Scalability
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Compute/virtualMachines
@@ -107,14 +107,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/virtual-machines/managed-disks-overview#data-disk"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/virtual-machines/managed-disks-overview#data-disk"
 
 - description: Backup VMs with Azure Backup service
   aprlGuid: 1981f704-97b9-b645-9c57-33f8ded9261a
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Compute/virtualMachines
@@ -126,14 +126,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/backup/backup-overview"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/backup/backup-overview"
 
 - description: Production VMs should be using SSD disks
   aprlGuid: d3f3ee41-b9aa-d34d-b442-5d46d20232b2
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Scalability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Compute/virtualMachines
@@ -145,14 +145,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/virtual-machines/disks-types#premium-ssd"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/virtual-machines/disks-types#premium-ssd"
 
 - description: Review VMs in stopped state
   aprlGuid: 98b334c0-8578-6046-9e43-b6e8fce6318e
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Governance
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Compute/virtualMachines
@@ -164,14 +164,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/virtual-machines/states-billing?context=%2Ftroubleshoot%2Fazure%2Fvirtual-machines%2Fcontext%2Fcontext#power-states-and-billing"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/virtual-machines/states-billing?context=%2Ftroubleshoot%2Fazure%2Fvirtual-machines%2Fcontext%2Fcontext#power-states-and-billing"
 
 - description: Enable Accelerated Networking (AccelNet)
   aprlGuid: dfedbeb1-1519-fc47-86a5-52f96cf07105
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Scalability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Compute/virtualMachines
@@ -183,14 +183,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/virtual-network/accelerated-networking-overview"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/virtual-network/accelerated-networking-overview"
 
 - description: When AccelNet is enabled, you must manually update the GuestOS NIC driver
   aprlGuid: 73d1bb04-7d3e-0d47-bc0d-63afe773b5fe
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Governance
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Compute/virtualMachines
@@ -202,14 +202,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/virtual-network/accelerated-networking-overview"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/virtual-network/accelerated-networking-overview"
 
 - description: VMs should not have a Public IP directly associated
   aprlGuid: 1f629a30-c9d0-d241-82ee-6f2eb9d42cb4
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Security
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Compute/virtualMachines
@@ -221,14 +221,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/load-balancer/load-balancer-outbound-connections"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/load-balancer/load-balancer-outbound-connections"
 
 - description: VM network interfaces and associated subnets both have a Network Security Group (NSG) associated
   aprlGuid: 82b3cf6b-9ae2-2e44-b193-10793213f676
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Security
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Compute/virtualMachines
@@ -240,14 +240,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/virtual-network/network-security-group-how-it-works#intra-subnet-traffic"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/virtual-network/network-security-group-how-it-works#intra-subnet-traffic"
 
 - description: IP Forwarding should only be enabled for Network Virtual Appliances
   aprlGuid: 41a22a5e-5e08-9647-92d0-2ffe9ef1bdad
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Security
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Compute/virtualMachines
@@ -259,14 +259,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/virtual-network/virtual-network-network-interface?tabs=network-interface-portal#enable-or-disable-ip-forwarding"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/virtual-network/virtual-network-network-interface?tabs=network-interface-portal#enable-or-disable-ip-forwarding"
 
 - description: Customer DNS Servers should be configured in the Virtual Network level
   aprlGuid: 1cf8fe21-9593-1e4e-966b-779a294c0d30
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Other Best Practices
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Compute/virtualMachines
@@ -278,14 +278,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances"
 
 - description: Shared disks should only be enabled in clustered servers
   aprlGuid: 3263a64a-c256-de48-9818-afd3cbc55c2a
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Other Best Practices
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Compute/virtualMachines
@@ -297,14 +297,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/virtual-machines/disks-shared-enable?tabs=azure-portal"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/virtual-machines/disks-shared-enable?tabs=azure-portal"
 
 - description: Network access to the VM disk should be set to Disable public access and enable private access
   aprlGuid: 70b1d2be-e6c4-b54e-9959-b1b690f9e485
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Security
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Compute/virtualMachines
@@ -316,14 +316,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/virtual-machines/disks-enable-private-links-for-import-export-portal"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/virtual-machines/disks-enable-private-links-for-import-export-portal"
 
 - description: Ensure that your VMs are compliant with Azure Policies
   aprlGuid: c42343ae-2712-2843-a285-3437eb0b28a1
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Governance
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Compute/virtualMachines
@@ -335,14 +335,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-principles#policy-driven-governance"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-principles#policy-driven-governance"
 
 - description: Enable advanced encryption options for your managed disks
   aprlGuid: f0a97179-133a-6e4f-8a49-8a44da73ffce
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Security
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Compute/virtualMachines
@@ -354,14 +354,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/virtual-machines/disk-encryption-overview"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/virtual-machines/disk-encryption-overview"
 
 - description: Enable VM Insights
   aprlGuid: b72214bb-e879-5f4b-b9cd-642db84f36f4
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Compute/virtualMachines
@@ -373,14 +373,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/azure-monitor/vm/vminsights-overview"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/azure-monitor/vm/vminsights-overview"
 
 - description: Configure diagnostic settings for all Azure Virtual Machines
   aprlGuid: 4a9d8973-6dba-0042-b3aa-07924877ebd5
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Compute/virtualMachines
@@ -392,14 +392,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/azure-monitor/essentials/diagnostic-settings?tabs=portal"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/azure-monitor/essentials/diagnostic-settings?tabs=portal"
 
 - description: Use maintenance configurations for the VMs
   aprlGuid: 52ab9e5c-eec0-3148-8bd7-b6dd9e1be870
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Compute/virtualMachines
@@ -411,14 +411,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/virtual-machines/maintenance-configurations"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/virtual-machines/maintenance-configurations"
 
 - description: Don't use A or B-Series VMs for production needing constant full CPU performance
   aprlGuid: 3201dba8-d1da-4826-98a4-104066545170
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Scalability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Compute/virtualMachines
@@ -430,14 +430,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/en-us/azure/virtual-machines/sizes-b-series-burstable"
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/virtual-machines/sizes-b-series-burstable"
 
 - description: Mission Critical Workloads should be using Premium or Ultra Disks
   aprlGuid: df0ff862-814d-45a3-95e4-4fad5a244ba6
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Scalability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Compute/virtualMachines
@@ -449,14 +449,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/en-us/azure/virtual-machines/disks-types#disk-type-comparison"
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/virtual-machines/disks-types#disk-type-comparison"
 
 - description: Use Azure Boost VMs for Maintenance sensitive workload
   aprlGuid: 9ab499d8-8844-424d-a2d4-8f53690eb8f8
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Compute/virtualMachines
@@ -468,14 +468,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/azure-boost/overview"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/azure-boost/overview"
 
 - description: Enable Scheduled Events for Maintenance sensitive workload VMs
   aprlGuid: 2de8fa5e-14f4-4c4c-857f-1520f87a629f
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Compute/virtualMachines
@@ -487,7 +487,7 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
-  - name: Learn More
-    url: "https://learn.microsoft.com/azure/virtual-machines/windows/scheduled-event-service"
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/virtual-machines/windows/scheduled-event-service"

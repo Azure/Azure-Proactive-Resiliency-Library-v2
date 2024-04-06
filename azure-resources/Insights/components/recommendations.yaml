@@ -1,6 +1,6 @@
 - description: Convert Classic Deployments
   aprlGuid: dac421ec-2832-4c37-839e-b6dc5a38f2fa
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Service Upgrade And Retirement
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Insights/components
@@ -12,7 +12,7 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/azure-monitor/app/convert-classic-resource"

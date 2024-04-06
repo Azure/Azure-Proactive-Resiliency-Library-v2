@@ -1,6 +1,6 @@
 - description: Use Standard SKU and Zone-Redundant IPs when applicable
   aprlGuid: c63b81fb-7afc-894c-a840-91bb8a8dcfaf
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/publicIPAddresses
@@ -12,14 +12,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/virtual-network/ip-services/public-ip-addresses#availability-zone"
 
 - description: Use NAT gateway for outbound connectivity to avoid SNAT Exhaustion
   aprlGuid: 1adba190-5c4c-e646-8527-dd1b2a6d8b15
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/publicIPAddresses
@@ -31,14 +31,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/advisor/advisor-reference-reliability-recommendations#use-nat-gateway-for-outbound-connectivity"
 
 - description: Upgrade Basic SKU public IP addresses to Standard SKU
   aprlGuid: 5cea1501-6fe4-4ec4-ac8f-f72320eb18d3
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/publicIPAddresses
@@ -50,7 +50,7 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/public-ip-basic-upgrade-guidance"

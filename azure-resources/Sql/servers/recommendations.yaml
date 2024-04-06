@@ -1,6 +1,6 @@
 - description: Use Active Geo Replication to Create a Readable Secondary in Another Region
   aprlGuid: 74c2491d-048b-0041-a140-935960220e20
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.Sql/servers
@@ -12,14 +12,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/active-geo-replication-overview"
 
 - description: Auto Failover Groups for apps should include all related databases for cohesion
   aprlGuid: 943c168a-2ec2-a94c-8015-85732a1b4859
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.Sql/servers
@@ -31,14 +31,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/auto-failover-group-overview?tabs=azure-powershell"
 
 - description: Use a Zone-Redundant Database
   aprlGuid: c0085c32-84c0-c247-bfa9-e70977cbf108
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Sql/servers
@@ -50,14 +50,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/high-availability-sla"
 
 - description: Implement Retry Logic
   aprlGuid: cbb17a29-64fb-c943-95d0-8df814a37c40
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Sql/servers
@@ -69,14 +69,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/troubleshoot-common-connectivity-issues"
 
 - description: Monitor your Azure SQL Database in Near Real-Time to Detect Reliability Incidents
   aprlGuid: 7e7daec9-6a81-3546-a4cc-9aef72fec1f7
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.Sql/servers
@@ -88,14 +88,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/azure-monitor/insights/azure-sql#analyze-data-and-create-alerts"
 
 - description: Back Up Your Keys
   aprlGuid: d6ef87aa-574e-584e-a955-3e6bb8b5425b
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Sql/servers
@@ -107,7 +107,7 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/key-vault/general/overview"

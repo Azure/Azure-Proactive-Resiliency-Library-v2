@@ -1,6 +1,6 @@
 - description: Use Premium tier for critical production workloads
   aprlGuid: eb005943-40a8-194b-9db2-474d430046b7
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Scalability
   recommendationImpact: High
   recommendationResourceType: Microsoft.ContainerRegistry/registries
@@ -12,14 +12,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices"
 
 - description: Enable zone redundancy
   aprlGuid: 63491f70-22e4-3b4a-8b0c-845450e46fac
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.ContainerRegistry/registries
@@ -31,14 +31,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://review.learn.microsoft.com/en-us/azure/container-registry/zone-redundancy?toc=%2Fazure%2Freliability%2Ftoc.json&bc=%2Fazure%2Freliability%2Fbreadcrumb%2Ftoc.json&branch=main"
 
 - description: Enable geo-replication
   aprlGuid: 36ea6c09-ef6e-d743-9cfb-bd0c928a430b
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.ContainerRegistry/registries
@@ -50,14 +50,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices#geo-replicate-multi-region-deployments"
 
 - description: Use Repository namespaces
   aprlGuid: a5a0101a-a240-8742-90ba-81dbde9a0c0c
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Security
   recommendationImpact: Low
   recommendationResourceType: Microsoft.ContainerRegistry/registries
@@ -69,14 +69,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices#repository-namespaces"
 
 - description: Move Container Registry to a dedicated resource group
   aprlGuid: 8e389532-5db5-7e4c-9d4d-443b3e55ae82
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Governance
   recommendationImpact: Low
   recommendationResourceType: Microsoft.ContainerRegistry/registries
@@ -88,14 +88,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices#dedicated-resource-group"
 
 - description: Manage registry size
   aprlGuid: 3ef86f16-f65b-c645-9901-7830d6dc3a1b
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Scalability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.ContainerRegistry/registries
@@ -107,14 +107,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices#manage-registry-size"
 
 - description: Disable anonymous pull access
   aprlGuid: 03f4a7d8-c5b4-7842-8e6e-14997a34842b
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Security
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.ContainerRegistry/registries
@@ -126,14 +126,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/container-registry/anonymous-pull-access#about-anonymous-pull-access"
 
 - description: Configure Diagnostic Settings for all Azure Container Registries
   aprlGuid: 44107155-7a32-9348-89f3-d5aa7e7c5a1d
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.ContainerRegistry/registries
@@ -145,14 +145,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/container-registry/monitor-service-reference#resource-logs"
 
 - description: Monitor Azure Container Registry with Azure Monitor
   aprlGuid: d594cde6-4116-d143-a64a-25f63289a2f8
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.ContainerRegistry/registries
@@ -164,14 +164,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/container-registry/monitor-service-reference#metrics"
 
 - description: Enable soft delete policy
   aprlGuid: e7f0fd54-fba0-054e-9ab8-e676f2851f88
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.ContainerRegistry/registries
@@ -183,7 +183,7 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-soft-delete-policy"

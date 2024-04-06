@@ -1,6 +1,6 @@
 - description: Configure Resource Health Alerts
   aprlGuid: be448849-0d7d-49ba-9c94-9573ee533d5d
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Low
   recommendationResourceType: microsoft.insights/activityLogAlerts
@@ -12,14 +12,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/service-health/resource-health-overview"
 
 - description: Configure Service Health Alerts
   aprlGuid: 9729c89d-8118-41b4-a39b-e12468fa872b
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: High
   recommendationResourceType: microsoft.insights/activityLogAlerts
@@ -31,7 +31,7 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/service-health/overview"

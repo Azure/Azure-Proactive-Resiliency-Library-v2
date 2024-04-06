@@ -1,6 +1,6 @@
 - description: Use Standard Load Balancer SKU
   aprlGuid: 38c3bca1-97a1-eb42-8cd3-838b243f35ba
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/loadBalancers
@@ -12,14 +12,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/architecture/framework/services/networking/azure-load-balancer/reliability"
 
 - description: Ensure the Backend Pool contains at least two instances
   aprlGuid: 6d82d042-6d61-ad49-86f0-6a5455398081
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/loadBalancers
@@ -31,14 +31,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/architecture/checklist/resiliency-per-service#azure-load-balancer"
 
 - description: Use NAT Gateway instead of Outbound Rules for Production Workloads
   aprlGuid: 8d319a05-677b-944f-b9b4-ca0fb42e883c
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/loadBalancers
@@ -50,14 +50,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/architecture/checklist/resiliency-per-service#azure-load-balancer"
 
 - description: Ensure Standard Load Balancer is zone-redundant
   aprlGuid: 621dbc78-3745-4d32-8eac-9e65b27b7512
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/loadBalancers
@@ -69,7 +69,7 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-standard-availability-zones#zone-redundant"

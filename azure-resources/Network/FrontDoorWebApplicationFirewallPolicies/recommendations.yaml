@@ -1,6 +1,6 @@
 - description: Inspect Azure Front Door WAF logs for wrongfully blocked legitimate requests
   aprlGuid: d0cfe47f-686b-5043-bf83-5a3868acb80a
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/frontdoorWebApplicationFirewallPolicies
@@ -12,14 +12,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/web-application-firewall/afds/waf-front-door-monitor?pivots=front-door-standard-premium#access-logs"
 
 - description: Check Azure Application Gateway WAF logs for mistakenly blocked valid requests
   aprlGuid: 537b4d94-edd1-4041-b13d-8217dfa485f0
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/frontdoorWebApplicationFirewallPolicies
@@ -31,14 +31,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/web-application-firewall/ag/application-gateway-waf-metrics#logs-and-diagnostics"
 
 - description: Monitor Web Application Firewall
   aprlGuid: 5357ae22-0f52-1a49-9fd4-1f00ace6add0
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/frontdoorWebApplicationFirewallPolicies
@@ -50,7 +50,7 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/web-application-firewall/ag/ag-overview#waf-monitoring"

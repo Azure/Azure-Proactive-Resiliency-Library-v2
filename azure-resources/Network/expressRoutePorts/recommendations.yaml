@@ -1,6 +1,6 @@
 - description: The Admin State of both Links of an ExpressRoute Direct should be in Enabled state
   aprlGuid: 60077378-7cb1-4b35-89bb-393884d9921d
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/ExpressRoutePorts
@@ -12,14 +12,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/expressroute/expressroute-howto-erdirect#state"
 
 - description: Ensure you do not over-subscribe an ExpressRoute Direct
   aprlGuid: 0bee356b-7348-4799-8cab-0c71ffe13018
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Scalability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/ExpressRoutePorts
@@ -31,14 +31,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/expressroute/expressroute-erdirect-about?source=recommendations#circuit-sizes"
 
 - description: Implement rate-limiting across ExpressRoute Direct Circuits to optimize network flow
   aprlGuid: d40c769d-2f08-4980-8d8f-a386946276e6
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Scalability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/ExpressRoutePorts
@@ -50,7 +50,7 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/expressroute/rate-limit"

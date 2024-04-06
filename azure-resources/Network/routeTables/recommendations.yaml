@@ -1,6 +1,6 @@
 - description: Monitor changes in Route Tables with Azure Monitor
   aprlGuid: 23b2dfc7-7e5d-9443-9f62-980ca621b561
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Network/routeTables
@@ -12,14 +12,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/activity-log?tabs=powershell"
 
 - description: Configure locks for Route Tables to avoid accidental changes or deletion
   aprlGuid: 89d1166a-1a20-0f46-acc8-3194387bf127
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Governance
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Network/routeTables
@@ -31,7 +31,7 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources?toc=%2Fazure%2Fvirtual-network%2Ftoc.json&tabs=json"

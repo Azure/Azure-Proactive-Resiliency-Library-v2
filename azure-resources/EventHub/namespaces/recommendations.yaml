@@ -1,6 +1,6 @@
 - description: Enable zone redundancy for Event Hub namespace
   aprlGuid: 84636c6c-b317-4722-b603-7b1ffc16384b
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.EventHub/namespaces
@@ -12,14 +12,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/event-hubs/event-hubs-geo-dr?tabs=portal#availability-zones"
 
 - description: Enable auto-inflate on Event Hub Standard tier
   aprlGuid: fbfef3df-04a5-41b2-a8fd-b8541eb04956
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Scalability
   recommendationImpact: High
   recommendationResourceType: Microsoft.EventHub/namespaces
@@ -31,7 +31,7 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/event-hubs/event-hubs-auto-inflate"

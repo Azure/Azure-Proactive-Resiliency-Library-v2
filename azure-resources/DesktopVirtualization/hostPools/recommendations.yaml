@@ -1,6 +1,6 @@
 - description: Use Private link when connecting to File Share or Key Vault
   aprlGuid: dc55be60-6f8c-461e-a9d5-a3c7686ed94e
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Security
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
@@ -12,14 +12,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-virtual-desktop/networking#private-endpoints-private-link"
 
 - description: Configure AVD Insights Workbook
   aprlGuid: 0cf72d91-644d-4591-9bb7-84ba3f705a41
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
@@ -31,14 +31,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/virtual-desktop/insights?tabs=monitor"
 
 - description: Provision Secondary Key Vault for Disaster Recovery
   aprlGuid: 1f57434f-f884-41f3-b818-129bbe3c5d3b
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
@@ -50,14 +50,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/key-vault/general/disaster-recovery-guidance"
 
 - description: Ensure route tables accommodate failover
   aprlGuid: 4b1a45af-d35f-442d-922a-a3e7b6052de1
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
@@ -70,14 +70,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/management-business-continuity-disaster-recovery"
 
 - description: Ensure virtual networks isolation with separate IP space and NSGs for Prod and DR
   aprlGuid: 37d1091b-e599-4548-a067-a9286be16e45
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Business Continuity
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
@@ -90,14 +90,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/plan-for-ip-addressing"
 
 - description: Ensure virtual networks have route tables/route server configured for all regions
   aprlGuid: db1727d1-5c8e-4a01-a31e-f0d58cfd95b1
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
@@ -109,14 +109,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/expressroute/designing-for-disaster-recovery-with-expressroute-privatepeering#need-for-redundant-connectivity-solution"
 
 - description: Segregate App attach storage in disaster recovery plans with distinct file shares
   aprlGuid: 7d9c96a6-1ce5-4cf0-ad1b-638a37f753cb
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
@@ -130,14 +130,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/virtual-desktop/app-attach-overview?pivots=msix-app-attach"
 
 - description: Turn on Continuous Availability for ANF if using App Attach
   aprlGuid: 9b2301af-9cac-4f1a-871a-f17475d01812
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
@@ -150,14 +150,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/virtual-desktop/app-attach-overview?pivots=msix-app-attach"
 
 - description: Manually update new FSLogix image when available
   aprlGuid: d51e0a70-8b50-4be3-af8a-7c9065e47360
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Governance
   recommendationImpact: Low
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
@@ -169,14 +169,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/fslogix/how-to-install-fslogix"
 
 - description: Configure Diagnostic Settings for FSLogix logs and enable review for accounts
   aprlGuid: 483f5a00-84a0-49f7-903b-ef6f1fc0c389
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
@@ -188,14 +188,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/fslogix/troubleshooting-events-logs-diagnostics"
 
 - description: Ensure user permissions are set correctly on SMB shares
   aprlGuid: 7b170ddd-5770-4945-9bc3-cd1ccf5f8672
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Security
   recommendationImpact: High
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
@@ -207,14 +207,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/fslogix/how-to-configure-storage-permissions"
 
 - description: Ensure the standard FSLogix configuration is deployed
   aprlGuid: c15b2b73-52a1-4db2-88dd-d592424ff4e4
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Governance
   recommendationImpact: High
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
@@ -226,14 +226,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/fslogix/reference-configuration-settings?tabs=profiles"
 
 - description: Ensure a unique OU when deploying VMs to Domain
   aprlGuid: 939cb85c-102a-4e0a-ab82-5c92116d3778
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Governance
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
@@ -246,14 +246,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/deploy/virtual-dc/adds-on-azure-vm#configure-the-vms-and-install-active-directory-domain-services"
 
 - description: Use Azure Site Recovery or Backups on VMs supporting personal desktops
   aprlGuid: 38721758-2cc2-4d6b-b7b7-8b47dadbf7df
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
@@ -265,14 +265,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/virtual-desktop/scheduled-agent-updates"
 
 - description: (Personal) Create a validation pool for testing of planned updates
   aprlGuid: 97d4d8c1-eeb4-4506-b338-79a4949c993b
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Governance
   recommendationImpact: Low
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
@@ -286,14 +286,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/virtual-desktop/configure-validation-environment?tabs=azure-portal"
 
 - description: (Pooled) Configure scheduled agent updates
   aprlGuid: 9fc522c1-d5b0-4bad-8169-1e1d32855afd
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Scalability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
@@ -306,14 +306,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/virtual-desktop/scheduled-agent-updates"
 
 - description: (Pooled) Create a validation pool for testing of planned updates
   aprlGuid: 0a22b144-6fa7-4032-be77-fa64152858eb
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Governance
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
@@ -328,14 +328,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/virtual-desktop/configure-validation-environment?tabs=azure-portal"
 
 - description: Create updated image version and replace session hosts rather than updating host directly
   aprlGuid: 2831dab9-6a43-44a1-8aec-90a8e84894bc
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Governance
   recommendationImpact: Low
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
@@ -348,14 +348,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/training/modules/create-manage-session-host-image/"
 
 - description: Monitor Service Health and Resource Health of AVD
   aprlGuid: a75a20e7-8cc0-4f7b-b4a9-e2476bd72429
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
@@ -369,14 +369,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-virtual-desktop/monitoring#resource-health"
 
 - description: Deploy Domain Controllers and DNS Servers in Azure Virtual Network Across Availability Zones
   aprlGuid: 99bf5c94-aa68-4bb3-8b7f-45d1c5f09b5d
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
@@ -389,14 +389,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/architecture/example-scenario/identity/adds-extend-domain#reliability"
 
 - description: Implement RDP Shortpath for Public or Managed Networks
   aprlGuid: 3835b4b3-0479-4be8-9ffd-34ae29fa33b9
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Other Best Practices
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
@@ -408,14 +408,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/virtual-desktop/rdp-shortpath?tabs=managed-networks"
 
 - description: Implement a Multi-Region BCDR Plan
   aprlGuid: 0714d039-535e-468d-9732-e32b5c094faa
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
@@ -427,14 +427,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/architecture/example-scenario/wvd/azure-virtual-desktop-multi-region-bcdr"
 
 - description: Store Golden Image Redundantly for Disaster Recovery
   aprlGuid: 0bf1a2bb-7617-4ab2-a784-e7ea40c5f01b
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: Low
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
@@ -446,14 +446,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-virtual-desktop/business-continuity#golden-images"
 
 - description: Capacity Planning for AVD Resources
   aprlGuid: ef4b3561-c85f-47cf-8cb0-51fae9ddf929
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: Low
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
@@ -467,14 +467,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-virtual-desktop/business-continuity#capacity-planning"
 
 - description: Ensure separate log analytics workspaces for Prod and DR
   aprlGuid: 89b4d8f6-6345-4d66-9012-c3fc2aef94e8
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: Low
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
@@ -486,14 +486,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/virtual-desktop/diagnostics-log-analytics"
 
 - description: Ensure that FSLogix Storage Account is Redundant
   aprlGuid: ed1f0327-0914-49e8-9518-16acb0d6b8d6
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
@@ -512,14 +512,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-virtual-desktop/storage#user-profiles"
 
 - description: Scaling plans should be created per region and not scaled across regions
   aprlGuid: e091419d-10ba-4a8e-bdb0-67380cc021a9
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
@@ -531,14 +531,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/virtual-desktop/autoscale-scaling-plan?tabs=portal"
 
 - description: Validate AVD Session Host Connectivity to the AVD Control Plane and UDP Ports open if in use
   aprlGuid: e718ac1a-ebab-4f75-9e4a-1a5ccef20d1f
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Governance
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
@@ -550,14 +550,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/virtual-desktop/troubleshoot-rdp-shortpath"
 
 - description: Ensure Secondary Entra ID connect synchronization server
   aprlGuid: d984eaf9-0fa1-4f8d-a326-bda751993c6f
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Security
   recommendationImpact: Low
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
@@ -570,14 +570,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/how-to-connect-install-multiple-domains"
 
 - description: Deploy paired Domain Controllers in the same region as AVD session hosts
   aprlGuid: d61f6ee8-de1b-4fd9-9ce3-316cfe11ee05
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
@@ -590,14 +590,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/architecture/example-scenario/azure-virtual-desktop/azure-virtual-desktop-multi-region-bcdr"
 
 - description: Ensure DNS regions are replicated to avoid single point of failure
   aprlGuid: e1a34ac6-8761-4020-b537-d60c0be7514e
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
@@ -609,14 +609,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/architecture/example-scenario/azure-virtual-desktop/azure-virtual-desktop-multi-region-bcdr"
 
 - description: Enable Azure Backup for FSLogix Storage Account
   aprlGuid: 0025ed2e-41f4-4ada-93c1-12484cef8b0c
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
@@ -628,14 +628,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/fslogix/overview-what-is-fslogix"
 
 - description: Organize AVD resources using the AVD Scale unit model described by the AVD Landing Zone Methodology
   aprlGuid: 204b56b0-9710-4c16-b506-bafb5fb318ed
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Governance
   recommendationImpact: Low
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
@@ -647,7 +647,7 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/azure-virtual-desktop/enterprise-scale-landing-zone"

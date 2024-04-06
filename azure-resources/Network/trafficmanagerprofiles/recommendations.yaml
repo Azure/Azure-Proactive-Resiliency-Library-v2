@@ -1,6 +1,6 @@
 - description: Traffic Manager Monitor Status Should be Online
   aprlGuid: f05a3e6d-49db-2740-88e2-2b13706c1f67
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/trafficManagerProfiles
@@ -12,14 +12,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/traffic-manager/traffic-manager-monitoring"
 
 - description: Traffic manager profiles should have more than one endpoint
   aprlGuid: 5b422a7f-8caa-3d48-becb-511599e5bba9
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/trafficManagerProfiles
@@ -31,14 +31,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/traffic-manager/traffic-manager-endpoint-types"
 
 - description: Configure at least one endpoint within a another region
   aprlGuid: 1ad9d7b7-9692-1441-a8f4-93792efbe97a
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/trafficManagerProfiles
@@ -50,14 +50,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/advisor/advisor-reference-reliability-recommendations#add-at-least-one-more-endpoint-to-the-profile-preferably-in-another-azure-region"
 
 - description: Ensure endpoint configured to (All World) for geographic profiles
   aprlGuid: c31f76a0-48cd-9f44-aa43-99ee904db9bc
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/trafficManagerProfiles
@@ -69,7 +69,7 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/advisor/advisor-reference-reliability-recommendations#add-an-endpoint-configured-to-all-world"

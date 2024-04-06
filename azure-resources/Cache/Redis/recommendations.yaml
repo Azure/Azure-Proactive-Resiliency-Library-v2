@@ -1,6 +1,6 @@
 - description: Enable zone redundancy for Azure Cache for Redis
   aprlGuid: 5a44bd30-ae6a-4b81-9b68-dc3a8ffca4d8
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Cache/Redis
@@ -12,7 +12,7 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/azure-cache-for-redis/cache-how-to-zone-redundancy"

@@ -1,6 +1,6 @@
 - description: Set a minimum instance count of 2
   aprlGuid: 823b0cff-05c0-2e4e-a1e7-9965e1cfa16f
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Scalability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/applicationGateways
@@ -12,14 +12,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/application-gateway/application-gateway-autoscaling-zone-redundant#autoscaling-and-high-availability"
 
 - description: Secure all incoming connections with SSL
   aprlGuid: 233a7008-71e9-e745-923e-1a1c7a0b92f3
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Security
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/applicationGateways
@@ -31,14 +31,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/well-architected/services/networking/azure-application-gateway#security"
 
 - description: Enable Web Application Firewall policies
   aprlGuid: 8d9223c4-730d-ca47-af88-a9a024c37270
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Security
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/applicationGateways
@@ -50,14 +50,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/well-architected/services/networking/azure-application-gateway"
 
 - description: Use Application GW V2 instead of V1
   aprlGuid: 7893f0b3-8622-1d47-beed-4b50a19f7895
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Scalability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/applicationGateways
@@ -69,14 +69,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/application-gateway/overview-v2"
 
 - description: Monitor and Log the configurations and traffic
   aprlGuid: 5d035919-898d-a047-8d5d-454e199692e5
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/applicationGateways
@@ -88,14 +88,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/application-gateway/application-gateway-metrics"
 
 - description: Use Health Probes to detect backend availability
   aprlGuid: 847a8d88-21c4-bc48-a94e-562206edd767
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/applicationGateways
@@ -107,14 +107,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/application-gateway/application-gateway-probe-overview"
 
 - description: Deploy Application Gateway in a zone-redundant configuration
   aprlGuid: c9c00f2a-3888-714b-a72b-b4c9e8fcffb2
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/applicationGateways
@@ -126,14 +126,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/well-architected/services/networking/azure-application-gateway#reliability"
 
 - description: Plan for backend maintenance by using connection draining
   aprlGuid: 10f02bc6-e2e7-004d-a2c2-f9bf9f16b915
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/applicationGateways
@@ -145,14 +145,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/application-gateway/features#connection-draining"
 
 - description: Ensure Application Gateway Subnet is using a /24 subnet mask
   aprlGuid: 8364fd0a-7c0e-e240-9d95-4bf965aec243
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Other Best Practices
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/applicationGateways
@@ -164,7 +164,7 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/application-gateway/configuration-infrastructure#size-of-the-subnet"

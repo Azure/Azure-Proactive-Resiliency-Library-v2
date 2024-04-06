@@ -1,6 +1,6 @@
 - description: All Subnets should have a Network Security Group associated
   aprlGuid: f0bf9ae6-25a5-974d-87d5-025abec73539
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Security
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/virtualNetworks
@@ -12,14 +12,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/virtual-network/concepts-and-best-practices"
 
 - description: Shield public endpoints in Azure VNets with Azure DDoS Standard Protection Plans
   aprlGuid: 69ea1185-19b7-de40-9da1-9e8493547a5c
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Security
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/virtualNetworks
@@ -31,14 +31,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/architecture/framework/services/networking/azure-virtual-network/reliability"
 
 - description: When available, use Private Endpoints instead of Service Endpoints for PaaS Services
   aprlGuid: 24ae3773-cc2c-3649-88de-c9788e25b463
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Security
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/virtualNetworks
@@ -50,7 +50,7 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/virtual-network/virtual-networks-faq"

@@ -1,6 +1,6 @@
 - description: Deploy Azure Firewall across multiple availability zones
   aprlGuid: c72b7fee-1fa0-5b4b-98e5-54bcae95bb74
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/azureFirewalls
@@ -12,14 +12,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/architecture/framework/services/networking/azure-firewall"
 
 - description: Monitor Azure Firewall metrics
   aprlGuid: 3c8fa7c6-6b78-a24a-a63f-348a7c71acb9
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/azureFirewalls
@@ -31,14 +31,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/azure-monitor/essentials/metrics-supported#microsoftnetworkazurefirewalls"
 
 - description: Configure DDoS Protection on the Azure Firewall VNet
   aprlGuid: 1b2dbf4a-8a0b-5e4b-8f4e-3f758188910d
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Security
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/azureFirewalls
@@ -50,14 +50,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/ddos-protection/ddos-protection-overview"
 
 - description: Leverage Azure Policy inheritance model
   aprlGuid: 3a63560a-1ed3-6140-acd1-d1d23f9a2e12
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Governance
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/azureFirewalls
@@ -69,14 +69,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/firewall-manager/rule-hierarchy"
 
 - description: Configure 2-4 PIPs for SNAT Port utilization
   aprlGuid: d2e4a38e-2307-4299-a217-4c0cebc9a7f6
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/azureFirewalls
@@ -88,14 +88,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/well-architected/service-guides/azure-firewall#recommendations"
 
 - description: Monitor AZFW Latency Probes metric
   aprlGuid: 8faace2d-a36e-425c-aa58-2ad99e3e0b7a
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/azureFirewalls
@@ -107,7 +107,7 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/well-architected/service-guides/azure-firewall#recommendations"

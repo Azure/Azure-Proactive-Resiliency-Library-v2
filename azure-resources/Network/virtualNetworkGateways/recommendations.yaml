@@ -1,6 +1,6 @@
 - description: Connect ExpressRoute Gateway with circuits from diverse peering locations for resilience
   aprlGuid: d37db635-157f-584d-9bce-4f6fc8c65ce5
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
@@ -12,14 +12,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/expressroute/designing-for-disaster-recovery-with-expressroute-privatepeering"
 
 - description: Use Zone-redundant gateway SKUs
   aprlGuid: bbe668b7-eb5c-c746-8b82-70afdedf0cae
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
@@ -31,14 +31,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/expressroute/expressroute-about-virtual-network-gateways#zrgw"
 
 - description: Configure an Azure Resource lock for ExpressRoute Gateway to prevent accidental deletion
   aprlGuid: c0f23a92-d322-4d4d-97e9-a238b5e3bbb8
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
@@ -50,14 +50,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources?tabs=json"
 
 - description: Monitor gateway health
   aprlGuid: 1c34faa8-8b99-974c-adbf-71922eae943c
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
@@ -69,14 +69,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/expressroute/expressroute-monitoring-metrics-alerts#expressroute-gateways"
 
 - description: Avoid using ExpressRoute circuits for VNet to VNet communication
   aprlGuid: 194c14ac-0d7a-5a48-ae32-75fa450ee564
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
@@ -88,14 +88,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/expressroute/expressroute-about-virtual-network-gateways#vnet-to-vnet-connectivity"
 
 - description: Configure customer-controlled gateway maintenance
   aprlGuid: 3e115044-a3aa-433e-be01-ce17d67e50da
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
@@ -107,14 +107,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/expressroute/customer-controlled-gateway-maintenance#azure-portal-steps"
 
 - description: Choose a Zone-redundant gateway
   aprlGuid: 5b1933a6-90e4-f642-a01f-e58594e5aab2
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
@@ -126,14 +126,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/vpn-gateway/about-zone-redundant-vnet-gateways"
 
 - description: Plan for Active-Active mode
   aprlGuid: 281a2713-c0e0-3c48-b596-19f590c46671
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
@@ -145,14 +145,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/vpn-gateway/active-active-portal#gateway"
 
 - description: Deploy active-active VPN concentrators on your premises for maximum resiliency
   aprlGuid: af11fc4c-c06c-4f4c-b98d-6eee6d5c4c70
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
@@ -164,14 +164,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/vpn-gateway/vpn-gateway-highlyavailable#dual-redundancy-active-active-vpn-gateways-for-both-azure-and-on-premises-networks"
 
 - description: Monitor connections and gateway health
   aprlGuid: 9eab120e-f6d3-ee49-ba0d-766562ce7df1
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
@@ -183,14 +183,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/vpn-gateway/monitor-vpn-gateway-reference"
 
 - description: Enable service health
   aprlGuid: 9186dae0-7ddc-8f4b-bea5-55538cea4893
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
@@ -202,14 +202,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/azure-monitor/essentials/metrics-getting-started"
 
 - description: Deploy zone-redundant VPN Gateways with zone-redundant Public IP(s)
   aprlGuid: 4bae5a28-5cf4-40d9-bcf1-623d28f6d917
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
@@ -221,7 +221,7 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/vpn-gateway/about-zone-redundant-vnet-gateways"

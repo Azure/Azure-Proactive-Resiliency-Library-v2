@@ -1,6 +1,6 @@
 - description: Enable Log Analytics data export to GRS or GZRS
   aprlGuid: b36fd2ac-dd83-664a-ab48-ff7b8d3b189d
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Governance
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.OperationalInsights/workspaces
@@ -12,14 +12,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/azure-monitor/logs/logs-data-export"
 
 - description: Create a health status alert rule for your Log Analytics workspace
   aprlGuid: 4b77191c-cc3c-8c4e-844b-0f56d0927890
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Low
   recommendationResourceType: Microsoft.OperationalInsights/workspaces
@@ -31,14 +31,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/azure-monitor/logs/log-analytics-workspace-health"
 
 - description: Configure minimal logging and retention of logs
   aprlGuid: 7a0063ee-98a0-4634-823b-310a67f798cc
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Governance
   recommendationImpact: Low
   recommendationResourceType: Microsoft.OperationalInsights/workspaces
@@ -50,7 +50,7 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
-  tags:
+  tags: null
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-retention-archive?tabs=portal-1%2Cportal-2"
