@@ -1,5 +1,5 @@
 ---
 title: Management
 geekdocCollapseSection: true
-geekdocHidden: true
+geekdocHidden: false
 ---
