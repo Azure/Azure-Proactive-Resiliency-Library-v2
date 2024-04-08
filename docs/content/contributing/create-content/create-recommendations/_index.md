@@ -17,30 +17,25 @@ To contribute a new recommendation for an Azure resource, follow these steps:
 1. Open the `recommendations.yaml` file and copy the following YAML template:
 
    ```yaml
-   - description: [Your Recommendation Title Here]
-     aprlGuid: [Generate a Unique GUID for Your Recommendation]
+   - description: Your Recommendation Title Here (less than 100 characters)
+     aprlGuid: Generate a Unique GUID for Your Recommendation
      recommendationTypeId: null
-     recommendationImpact: [Low/Medium/High]
-     recommendationResourceType: [Friendly name to identity resource type]
-     recommendationControl:
-       [
-         High Availability/Business Continuity/Disaster Recovery/Scalability/Monitoring and Alerting/Service Upgrade and Retirement/Other Best Practices/Personalized/Governance,
-       ]
+     recommendationImpact: Low/Medium/High
+     recommendationResourceType: Friendly name to identity resource type
+     recommendationControl: High Availability/Business Continuity/Disaster Recovery/Scalability/Monitoring and Alerting/Service Upgrade and Retirement/Other Best Practices/Personalized/Governance
      recommendationMetadataState: Active
      longDescription: |
-       [Your Long Description Here (less than 300 characters)]
-     potentialBenefits:
-       [
-         Potential Benefits of Implementing the Recommendation (less than 60 characters),
-       ]
+       Your Long Description Here
+       (less than 300 characters)
+     potentialBenefits: Potential Benefits of Implementing the Recommendation (less than 60 characters)
      publishedToLearn: false
      publishedToAdvisor: false
      pgVerified: false
      automationAvailable: false
      tags: null
      learnMoreLink:
-       - name: [Link Name]
-         url: "[Link URL]"
+       - name: Learn More
+         url: "Link URL"
    ```
 
 1. Customize the placeholders with your recommendation's specific details. See the [Recommendation Structure](#recommendation-structure) section for more information on each key-value pair.
@@ -89,7 +84,7 @@ The YAML structure for adding new recommendations consists of several key-value 
 | pgVerified | false | Boolean | true, false | Indicates whether the recommendation is verified by the relevant product group |
 | automationAvailable | false | Boolean | no, arg | Indicates whether automation is available for validating the recommendation |
 | tags | null | String | null | Generalized tags used for incorporating fields to automate |
-| learnMoreLink | - name: Cross-region disaster recovery and business continuity url: "https://learn.microsoft.com/en-us/azure/reliability/reliability-batch#cross-region-disaster-recovery-and-business-continuity" | Object | Only 3 links per recommendation | Links related to the recommendation, such as announcements or documentation |
+| learnMoreLink | - name: Learn More url: "https://learn.microsoft.com/en-us/azure/reliability/reliability-batch#cross-region-disaster-recovery-and-business-continuity" | Object | Only 1 link per recommendation | Links related to the recommendation, such as announcements or documentation |
 
 ### Recommendation Categories
 
