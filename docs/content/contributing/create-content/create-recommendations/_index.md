@@ -17,7 +17,7 @@ To contribute a new recommendation for an Azure resource, follow these steps:
 1. Open the `recommendations.yaml` file and copy the following YAML template:
 
    ```yaml
-   - description: [Your Recommendation Title Here]
+   - description: [Your Recommendation Title Here (less than 100 characters)]
      aprlGuid: [Generate a Unique GUID for Your Recommendation]
      recommendationTypeId: null
      recommendationImpact: [Low/Medium/High]
