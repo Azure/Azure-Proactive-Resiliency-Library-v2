@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "editorconfig.editorconfig",
+    "streetsidesoftware.code-spell-checker",
+    "medo64.render-crlf",
+    "github.copilot-chat",
+    "esbenp.prettier-vscode"
+  ]
+}

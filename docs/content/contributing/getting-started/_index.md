@@ -41,7 +41,7 @@ You can use `winget` to easily install all the prerequisites. Refer to the [sect
 - [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 - [Visual Studio Code (VS Code)](https://code.visualstudio.com/Download)
   - Extensions:
-    - `editorconfig.editorconfig`, `streetsidesoftware.code-spell-checker`, `ms-vsliveshare.vsliveshare`, `medo64.render-crlf`, `vscode-icons-team.vscode-icons`
+    - `editorconfig.editorconfig`, `streetsidesoftware.code-spell-checker`, `medo64.render-crlf`, `github.copilot-chat`, `esbenp.prettier-vscode`
     - VS Code will automatically recommend installing these when you open this repository, or a fork of it, in VS Code.
 - [Hugo Extended](https://gohugo.io/installation/)
 
