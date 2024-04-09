@@ -34,7 +34,7 @@ To contribute to this project/repository/library, you will need the following in
 
 {{< hint type=note >}}
 
-You can use `winget` to easily install all the prerequisites. Refer to the [section below](#winget-install-commands) for installation commands.
+You can use `winget` to easily install all the prerequisites. Refer to the [section below](#installation-with-winget) for installation commands.
 
 {{< /hint >}}
 
