@@ -6,6 +6,9 @@
 
 azure-resources/Cdn @Azure/aprl-admins @Azure/aprl-networking
 azure-resources/Network @Azure/aprl-admins @Azure/aprl-networking
+azure-resources/NetworkCloud @Azure/aprl-admins @Azure/aprl-networking
+azure-resources/NetworkFunction @Azure/aprl-admins @Azure/aprl-networking
+azure-resources/Peerings @Azure/aprl-admins @Azure/aprl-networking
 azure-resources/Relay @Azure/aprl-admins @Azure/aprl-networking
 
 ## The aprl-hpc team is partially responsible for all HPC-related PRs
@@ -15,7 +18,8 @@ azure-specialized-workloads/hpc @Azure/aprl-admins @Azure/aprl-hpc
 
 ## The aprl-avd team is partially responsible for all AVD-related PRs
 
-azure-resources/AVS @Azure/aprl-admins @Azure/aprl-avd
 azure-resources/DesktopVirtualization @Azure/aprl-admins @Azure/aprl-avd
 azure-specialized-workloads/avd @Azure/aprl-admins @Azure/aprl-avd
-azure-specialized-workloads/avs @Azure/aprl-admins @Azure/aprl-avd
+
+
+tools @Azure/aprl-wara-tools
