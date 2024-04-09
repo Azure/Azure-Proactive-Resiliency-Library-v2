@@ -65,7 +65,7 @@ Ensure you meet the following prerequisites:
 
 ### Running and Accessing a Local Copy of APRL During Development
 
-While in VS Code, you can open a terminal and execute the commands below to access a local copy of the APRL website from a web server provided by Hugo. Access it using the following address: [`http://localhost:1313/Azure-Proactive-Resiliency-Library/`](http://localhost:1313/Azure-Proactive-Resiliency-Library/):
+While in VS Code, you can open a terminal and execute the commands below to access a local copy of the APRL website from a web server provided by Hugo. Access it using the following address: [`http://localhost:1313/Azure-Proactive-Resiliency-Library-v2/`](http://localhost:1313/Azure-Proactive-Resiliency-Library-v2/):
 
 ```text
 hugo server --disableFastRender
