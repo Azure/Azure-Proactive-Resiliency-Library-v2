@@ -26,7 +26,7 @@ Absolutely! You don't need to be. Hugo simply requires you to know how to write 
 
 To prepare for contributing to APRL, follow the steps below to ensure you're in a "ready state."
 
-A "ready state" means you have forked the [`Azure/Azure-Proactive-Resiliency-Library` repository](https://aka.ms/aprl/repo), cloned it to your local machine, and opened it in VS Code.
+A "ready state" means you have forked the [`Azure/Azure-Proactive-Resiliency-Library-v2` repository](https://aka.ms/aprl/repo), cloned it to your local machine, and opened it in VS Code.
 
 ### Required Software/Applications
 
