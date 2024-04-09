@@ -1,4 +1,4 @@
-﻿<#
+<#
 The goal of this tool is to execute ARGs from APRL and export the results to a JSON file.
 
 APRL Repo will be downloaded in the script's folder
@@ -190,7 +190,7 @@ $Global:Runtime = Measure-Command -Expression {
                 }
 
 
-            $Global:Outageslist = $Outages.value | Where-Object {$_.properties.description -like '*How can customers make incidents like this less impactful?*' } | Sort-Object @{Expression = "properties.eventlevel"; Descending = $false},@{Expression = "properties.status"; Descending = $false} | Select-Object -Property name,properties -First 30
+            $Global:Outageslist = $Outages.value | Sort-Object @{Expression = "properties.eventlevel"; Descending = $false},@{Expression = "properties.status"; Descending = $false} | Select-Object -Property name,properties -First 50
             $Global:SupportTickets = $SupTickets.value | Where-Object {$_.properties.severity -ne 'Minimal'} | Select-Object -Property name,properties
 
     }
