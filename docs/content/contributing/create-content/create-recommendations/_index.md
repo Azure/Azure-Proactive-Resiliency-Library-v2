@@ -17,30 +17,25 @@ To contribute a new recommendation for an Azure resource, follow these steps:
 1. Open the `recommendations.yaml` file and copy the following YAML template:
 
    ```yaml
-   - description: [Your Recommendation Title Here]
-     aprlGuid: [Generate a Unique GUID for Your Recommendation]
+   - description: Your Recommendation Title Here (less than 100 characters)
+     aprlGuid: Generate a Unique GUID for Your Recommendation
      recommendationTypeId: null
-     recommendationImpact: [Low/Medium/High]
-     recommendationResourceType: [Friendly name to identity resource type]
-     recommendationControl:
-       [
-         High Availability/Business Continuity/Disaster Recovery/Scalability/Monitoring and Alerting/Service Upgrade and Retirement/Other Best Practices/Personalized,
-       ]
+     recommendationImpact: Low/Medium/High
+     recommendationResourceType: Friendly name to identity resource type
+     recommendationControl: High Availability/Business Continuity/Disaster Recovery/Scalability/Monitoring and Alerting/Service Upgrade and Retirement/Other Best Practices/Personalized/Governance
      recommendationMetadataState: Active
      longDescription: |
-       [Your Long Description Here (less than 300 characters)]
-     potentialBenefits:
-       [
-         Potential Benefits of Implementing the Recommendation (less than 60 characters),
-       ]
+       Your Long Description Here
+       (less than 300 characters)
+     potentialBenefits: Potential Benefits of Implementing the Recommendation (less than 60 characters)
      publishedToLearn: false
      publishedToAdvisor: false
      pgVerified: false
      automationAvailable: false
      tags: null
      learnMoreLink:
-       - name: [Link Name]
-         url: "[Link URL]"
+       - name: Learn More
+         url: "Link URL"
    ```
 
 1. Customize the placeholders with your recommendation's specific details. See the [Recommendation Structure](#recommendation-structure) section for more information on each key-value pair.
@@ -80,7 +75,7 @@ The YAML structure for adding new recommendations consists of several key-value 
 | recommendationTypeId | 3464854d-6f75-4922-95e4-a2a308b53ce6 | String | `null` until updated by the Azure Advisor team | The unique identifier for the recommendation in the context of Advisor. |
 | recommendationImpact | Medium | String | Low, Medium, High | Importance of adopting the recommendation and/or the risk of choosing not to adopt |
 | recommendationResourceType | Storage Account | String | Align with the resource type | Friendly name to identity resource type |
-| recommendationControl | Monitoring and Alerting | String | [High Availability, Business Continuity, Disaster Recovery, Scalability, Monitoring and Alerting, Service Upgrade and Retirement, Other Best Practices, Personalized](Azure-Proactive-Resiliency-Library-v2/contributing/create-content/create-recommendations/#recommendation-categories) | Resiliency category associated with the recommendation |
+| recommendationControl | Monitoring and Alerting | String | [High Availability, Business Continuity, Disaster Recovery, Scalability, Monitoring and Alerting, Service Upgrade and Retirement, Other Best Practices, Personalized, Governance](Azure-Proactive-Resiliency-Library-v2/contributing/create-content/create-recommendations/#recommendation-categories) | Resiliency category associated with the recommendation |
 | recommendationMetadataState | Active | String | Active, Disabled | Indicates whether the recommendation is visible |
 | longDescription | To enable Cross-region disaster recovery and business continuity, ensure that the appropriate quotas are set for all user subscription Batch accounts. | String | The length should be less than 300 characters | Detailed description of the recommendation and its implications |
 | potentialBenefits | Enhanced data redundancy and boosts availability | String | The length should be less than 60 characters | The potential benefits of implementing the recommendation |
@@ -89,22 +84,23 @@ The YAML structure for adding new recommendations consists of several key-value 
 | pgVerified | false | Boolean | true, false | Indicates whether the recommendation is verified by the relevant product group |
 | automationAvailable | false | Boolean | no, arg | Indicates whether automation is available for validating the recommendation |
 | tags | null | String | null | Generalized tags used for incorporating fields to automate |
-| learnMoreLink | - name: Cross-region disaster recovery and business continuity url: "https://learn.microsoft.com/en-us/azure/reliability/reliability-batch#cross-region-disaster-recovery-and-business-continuity" | Object | Only 3 links per recommendation | Links related to the recommendation, such as announcements or documentation |
+| learnMoreLink | - name: Learn More url: "https://learn.microsoft.com/en-us/azure/reliability/reliability-batch#cross-region-disaster-recovery-and-business-continuity" | Object | Only 1 link per recommendation | Links related to the recommendation, such as announcements or documentation |
 
 ### Recommendation Categories
 
 Each recommendation should have _**one and only one**_ associated recommendationCategory from this list below.
 
-|    Recommendation Category     | Summary                                                                                                                 |
-| :----------------------------: | :---------------------------------------------------------------------------------------------------------------------- |
-|       High Availability        | Focuses on ensuring services remain accessible and operational with minimal downtime.                                   |
-|      Business Continuity       | Involves strategies to maintain essential functions during and after a disaster, ensuring business operations continue. |
-|       Disaster Recovery        | Focuses on restoring systems and data after catastrophic failures, ensuring quick recovery post-disaster.               |
-|          Scalability           | Involves techniques to handle changes in load and maintain system performance under varying conditions.                 |
-|    Monitoring and Alerting     | Constant surveillance of system health, performance, and security, aiding in quick issue identification and resolution. |
-| Service Upgrade and Retirement | Addresses the planning and execution of system upgrades and the retirement of outdated services.                        |
-|      Other Best Practices      | Encompasses miscellaneous best practices that improve system resilience, efficiency, and security.                      |
-|          Personalized          | Customized recommendations tailored to specific system requirements, configurations, or preferences.                    |
+|    Recommendation Category     | Summary                                                                                                                                                                                                                            |
+| :----------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|       High Availability        | Focuses on ensuring services remain accessible and operational with minimal downtime.                                                                                                                                              |
+|      Business Continuity       | Involves strategies to maintain essential functions during and after a disaster, ensuring business operations continue.                                                                                                            |
+|       Disaster Recovery        | Focuses on restoring systems and data after catastrophic failures, ensuring quick recovery post-disaster.                                                                                                                          |
+|          Scalability           | Involves techniques to handle changes in load and maintain system performance under varying conditions.                                                                                                                            |
+|    Monitoring and Alerting     | Constant surveillance of system health, performance, and security, aiding in quick issue identification and resolution.                                                                                                            |
+| Service Upgrade and Retirement | Addresses the planning and execution of system upgrades and the retirement of outdated services.                                                                                                                                   |
+|      Other Best Practices      | Encompasses miscellaneous best practices that improve system resilience, efficiency, and security.                                                                                                                                 |
+|          Personalized          | Customized recommendations tailored to specific system requirements, configurations, or preferences.                                                                                                                               |
+|           Governance           | Involves policies, procedures, and oversight for IT resource utilization. Ensures adherence to legal, regulatory, and compatibility requirements, while guiding overall system management. (Includes Compliance and Compatibility) |
 
 ## Writing a Meaningful Recommendation
 

@@ -4,9 +4,11 @@ geekdocCollapseSection: true
 geekdocHidden: false
 ---
 
-## Dependent Azure Resource Recommendations
+Refer to:
 
-<br>
+- Azure Center for SAP Solutions
+- Opensource Quality Checks
+- Openssource Inventory Checks
 
 ## General Workload Guidance
 
