@@ -178,7 +178,6 @@ $Global:Runtime = Measure-Command -Expression {
             New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -AutoSize -NumberFormat '0' -Range "A:D"
             New-ExcelStyle -HorizontalAlignment Left -FontName 'Calibri' -FontSize 11 -Width 80 -Range "E:E"
             New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -AutoSize -NumberFormat '0' -Range "L:N"
-            
         )
 
         $ImpactedResourcesSheet = New-Object System.Collections.Generic.List[System.Object]
@@ -210,7 +209,11 @@ $Global:Runtime = Measure-Command -Expression {
         $ResourceTypeSheet.Add('Custom2')
         $ResourceTypeSheet.Add('Custom3')
 
-        $TypeStyle = New-ExcelStyle -HorizontalAlignment Center -AutoSize -NumberFormat '0'
+        $TypeStyle = @(
+            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -Bold -BackgroundColor "DarkSlateGray" -AutoSize -Range "A1:F1"
+            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -AutoSize -NumberFormat '0' -Range "A:F"
+            
+        )
 
         $Global:AllResourceTypesOrdered | ForEach-Object { [PSCustomObject]$_ } | Select-Object $ResourceTypeSheet |
         Export-Excel -Path $ExcelFile -WorksheetName 'ResourceTypes' -TableName 'TableTypes' -AutoSize -TableStyle $TableStyle -Style $TypeStyle
@@ -222,19 +225,24 @@ $Global:Runtime = Measure-Command -Expression {
             {
                 if(![string]::IsNullOrEmpty($Retires))
                     {
+                        $OutageRetirement = $Global:Outages | Where-Object {$_.name -eq $Retires.TrackingId}
                         $HTML = New-Object -Com "HTMLFile"
                         $HTML.write([ref]$Retires.Summary)
                         $RetirementDescription = $Html.body.innerText
 
-                        $Lastupdate = [dateTime]::FromFileTime($Retires.LastUpdateTime).ToString()
+                        $HTML = New-Object -Com "HTMLFile"
+                        $HTML.write([ref]$OutageRetirement.properties.description)
+                        $RetirementDescriptionFull = $Html.body.innerText
 
                         $tmp = @{
                             'Tracking ID'          = [string]$Retires.TrackingId;
                             'Status'               = [string]$Retires.Status;
-                            'Last Update Time'     = [string]$Lastupdate;
+                            'Last Update Time'     = [string]$OutageRetirement.properties.lastUpdateTime;
+                            'End Time'             = [string]$OutageRetirement.properties.impactMitigationTime;
                             'Impacted Service'     = [string]$Retires.ImpactedService;
                             'Title'                = [string]$Retires.Title;
-                            'Summary'              = [string]$RetirementDescription
+                            'Summary'              = [string]$RetirementDescription;
+                            'Details'              = [string]$RetirementDescriptionFull
                         }
                         $Global:RetirementSheet += $tmp
                     }
@@ -243,11 +251,12 @@ $Global:Runtime = Measure-Command -Expression {
 
         $Styles4 = @(
             New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 20 -Range "A1:B1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 25 -Range "C1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 30 -Range "D1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 70 -Range "E1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 80 -Range "F1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -VerticalAlignment Center -WrapText -Range "A:F"
+            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 25 -Range "C1:D1"
+            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 30 -Range "E1"
+            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 70 -Range "F1"
+            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 80 -Range "G1"
+            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 90 -Range "H1"
+            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -VerticalAlignment Center -WrapText -Range "A:H"
         )
 
         # Configure the array of fields to be used in the Retirement sheet
@@ -255,16 +264,17 @@ $Global:Runtime = Measure-Command -Expression {
         $RetirementWorksheet.Add('Tracking ID')
         $RetirementWorksheet.Add('Status')
         $RetirementWorksheet.Add('Last Update Time')
+        $RetirementWorksheet.Add('End Time')
         $RetirementWorksheet.Add('Impacted Service')
         $RetirementWorksheet.Add('Title')
         $RetirementWorksheet.Add('Summary')
+        $RetirementWorksheet.Add('Details')
 
         if(![string]::IsNullOrEmpty($Global:RetirementSheet))
             {
                 $Global:RetirementSheet | ForEach-Object { [PSCustomObject]$_ } | Select-Object $RetirementWorksheet |
                 Export-Excel -Path $ExcelFile -WorksheetName 'Retirements' -TableName 'TableRetires' -AutoSize -TableStyle $tableStyle -Style $Styles4
             }
-
 
 
         ####################    Creates the Tickets sheet
@@ -292,16 +302,16 @@ $Global:Runtime = Measure-Command -Expression {
         
 
         $Styles5 = @(
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 25 -NumberFormat '0' -Range "A1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 20 -Range "B1:C1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 45 -Range "D1"
+            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 20 -NumberFormat '0' -Range "A1"
+            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 15 -Range "B1:C1"
+            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 35 -Range "D1"
             New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 20 -Range "E1:F1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 25 -Range "G1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 55 -Range "H1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 80 -Range "I1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 45 -Range "J1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 25 -Range "K1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -VerticalAlignment Center -WrapText -Range "A:K"
+            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 35 -Range "G1"
+            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 50 -Range "H1"
+            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 95 -Range "I1"
+            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 60 -Range "J1"
+            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 35 -Range "K1"
+            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -VerticalAlignment Center -WrapText -NumberFormat '0' -Range "A:K"
         )
 
         # Configure the array of fields to be used in the Tickets sheet
@@ -451,7 +461,8 @@ $Global:Runtime = Measure-Command -Expression {
 
         ####################    Creates the Outages sheet
         $Global:OutagesSheet = @()
-        foreach ($Outage in $Global:Outages)
+        $RealOutages = $Global:Outages | Where-Object {$_.properties.description -like '*How can customers make incidents like this less impactful?*' }
+        foreach ($Outage in  $RealOutages)
             {
                 if(![string]::IsNullOrEmpty($Outage.name))
                     {
