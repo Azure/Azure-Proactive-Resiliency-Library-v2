@@ -16,27 +16,27 @@ To contribute a new recommendation for an Azure resource, follow these steps:
 
 1. Open the `recommendations.yaml` file and copy the following YAML template:
 
-   ```yaml
-   - description: Your Recommendation Title Here (less than 100 characters)
-     aprlGuid: Generate a Unique GUID for Your Recommendation
-     recommendationTypeId: null
-     recommendationImpact: Low/Medium/High
-     recommendationResourceType: Friendly name to identity resource type
-     recommendationControl: High Availability/Business Continuity/Disaster Recovery/Scalability/Monitoring and Alerting/Service Upgrade and Retirement/Other Best Practices/Personalized/Governance
-     recommendationMetadataState: Active
-     longDescription: |
-       Your Long Description Here
-       (less than 300 characters)
-     potentialBenefits: Potential Benefits of Implementing the Recommendation (less than 60 characters)
-     publishedToLearn: false
-     publishedToAdvisor: false
-     pgVerified: false
-     automationAvailable: false
-     tags: null
-     learnMoreLink:
-       - name: Learn More
-         url: "Link URL"
-   ```
+    ```yaml
+    - description: Your Recommendation Title Here (less than 100 characters)
+      aprlGuid: Generate a Unique GUID for Your Recommendation
+      recommendationTypeId: null
+      recommendationImpact: Low/Medium/High
+      recommendationResourceType: Friendly name to identity resource type
+      recommendationControl: High Availability/Business Continuity/Disaster Recovery/Scalability/Monitoring and Alerting/Service Upgrade and Retirement/Other Best Practices/Personalized/Governance
+      recommendationMetadataState: Active
+      longDescription: |
+        Your Long Description Here
+        (less than 300 characters)
+      potentialBenefits: Potential Benefits of Implementing the Recommendation (less than 60 characters)
+      publishedToLearn: false
+      publishedToAdvisor: false
+      pgVerified: false
+      automationAvailable: false
+      tags: null
+      learnMoreLink:
+        - name: Learn More
+          url: "Link URL"
+    ```
 
 1. Customize the placeholders with your recommendation's specific details. See the [Recommendation Structure](#recommendation-structure) section for more information on each key-value pair.
 
@@ -44,18 +44,18 @@ To contribute a new recommendation for an Azure resource, follow these steps:
 
 1. To test your changes, spin up your local hugo server by running the following command within your terminal:
 
-   ```bash
-   hugo server --disableFastRender
-   ```
+    ```bash
+    hugo server --disableFastRender
+    ```
 
-   {{< hint type=note >}}
+    {{< hint type=note >}}
 
-   If you encounter inconsistencies on the local version of the website that do not reflect your content updates, or errors unrelated to your changes, follow these steps:
+    If you encounter inconsistencies on the local version of the website that do not reflect your content updates, or errors unrelated to your changes, follow these steps:
 
-   1. Press **CTRL** **+** **C** to terminate the Hugo local web server.
-   2. Restart the Hugo web server by running `hugo server --disableFastRender` from the root of the repository.
+    1. Press **CTRL** **+** **C** to terminate the Hugo local web server.
+    2. Restart the Hugo web server by running `hugo server --disableFastRender` from the root of the repository.
 
-   {{< /hint >}}
+    {{< /hint >}}
 
 1. Submit your changes by creating a pull request in the repository.
 
@@ -75,7 +75,7 @@ The YAML structure for adding new recommendations consists of several key-value 
 | recommendationTypeId | 3464854d-6f75-4922-95e4-a2a308b53ce6 | String | `null` until updated by the Azure Advisor team | The unique identifier for the recommendation in the context of Advisor. |
 | recommendationImpact | Medium | String | Low, Medium, High | Importance of adopting the recommendation and/or the risk of choosing not to adopt |
 | recommendationResourceType | Storage Account | String | Align with the resource type | Friendly name to identity resource type |
-| recommendationControl | Monitoring and Alerting | String | [High Availability, Business Continuity, Disaster Recovery, Scalability, Monitoring and Alerting, Service Upgrade and Retirement, Other Best Practices, Personalized, Governance](Azure-Proactive-Resiliency-Library-v2/contributing/create-content/create-recommendations/#recommendation-categories) | Resiliency category associated with the recommendation |
+| recommendationControl | Monitoring and Alerting | String | [High Availability, Business Continuity, Disaster Recovery, Scalability, Monitoring and Alerting, Service Upgrade and Retirement, Other Best Practices, Personalized, Governance](#recommendation-categories) | Resiliency category associated with the recommendation |
 | recommendationMetadataState | Active | String | Active, Disabled | Indicates whether the recommendation is visible |
 | longDescription | To enable Cross-region disaster recovery and business continuity, ensure that the appropriate quotas are set for all user subscription Batch accounts. | String | The length should be less than 300 characters | Detailed description of the recommendation and its implications |
 | potentialBenefits | Enhanced data redundancy and boosts availability | String | The length should be less than 60 characters | The potential benefits of implementing the recommendation |
@@ -84,7 +84,7 @@ The YAML structure for adding new recommendations consists of several key-value 
 | pgVerified | false | Boolean | true, false | Indicates whether the recommendation is verified by the relevant product group |
 | automationAvailable | false | Boolean | no, arg | Indicates whether automation is available for validating the recommendation |
 | tags | null | String | null | Generalized tags used for incorporating fields to automate |
-| learnMoreLink | - name: Learn More url: "https://learn.microsoft.com/en-us/azure/reliability/reliability-batch#cross-region-disaster-recovery-and-business-continuity" | Object | Only 1 link per recommendation | Links related to the recommendation, such as announcements or documentation |
+| learnMoreLink | - name: Learn More url: "<https://learn.microsoft.com/en-us/azure/reliability/reliability-batch#cross-region-disaster-recovery-and-business-continuity>" | Object | Only 1 link per recommendation | Links related to the recommendation, such as announcements or documentation |
 
 ### Recommendation Categories
 
