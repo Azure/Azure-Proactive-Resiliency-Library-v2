@@ -1,22 +1,3 @@
-- description: Configure Azure Monitor Alert warning thresholds for vSAN datastore utilization
-  aprlGuid: 4232eb32-3241-4049-9e14-9b8005817b56
-  recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
-  recommendationImpact: High
-  recommendationResourceType: Microsoft.AVS/privateClouds
-  recommendationMetadataState: Active
-  longDescription: |
-    Ensure VMware vSAN datastore slack space is maintained for SLA by monitoring storage utilization and setting alerts at 70% and 75% utilization to allow for capacity planning. To expand, add hosts or external storage like Azure Elastic SAN, Azure NetApp Files, if CPU and RAM requirements are met.
-  potentialBenefits: Optimized capacity planning for vSAN
-  pgVerified: Verified
-  publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
-  tags: null
-  learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/azure-vmware/configure-alerts-for-azure-vmware-solution#supported-metrics-and-activities"
-
 - description: Configure Syslog in Diagnostic Settings for Azure VMware Solution
   aprlGuid: fa4ab927-bced-429a-971a-53350de7f14b
   recommendationTypeId: null
@@ -35,6 +16,25 @@
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-vmware/monitoring#manage-logs-and-archives"
+
+- description: Configure Azure Monitor Alert warning thresholds for vSAN datastore utilization
+  aprlGuid: 4232eb32-3241-4049-9e14-9b8005817b56
+  recommendationTypeId: null
+  recommendationControl: Monitoring and Alerting
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.AVS/privateClouds
+  recommendationMetadataState: Active
+  longDescription: |
+    Ensure VMware vSAN datastore slack space is maintained for SLA by monitoring storage utilization and setting alerts at 70% and 75% utilization to allow for capacity planning. To expand, add hosts or external storage like Azure Elastic SAN, Azure NetApp Files, if CPU and RAM requirements are met.
+  potentialBenefits: Optimized capacity planning for vSAN
+  pgVerified: Verified
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/azure-vmware/configure-alerts-for-azure-vmware-solution#supported-metrics-and-activities"
 
 - description: Monitor CPU Utilization to ensure sufficient resources for workloads
   aprlGuid: 4ee5d535-c47b-470a-9557-4a3dd297d62f
@@ -90,7 +90,7 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Lock your resources to protect your infrastructure
       url: "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources"
 
 - description: Align ExpressRoute configuration with best practices for circuit resilience
@@ -109,27 +109,10 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: APRL guidance for ExpressRoute circuits
       url: "https://azure.github.io/Azure-Proactive-Resiliency-Library/services/networking/expressroute-circuits"
-
-- description: Deploy dual Azure VMware Solution clouds in different regions for disaster recovery
-  aprlGuid: bdac462a-2eda-4a67-887d-46d58f141afe
-  recommendationTypeId: null
-  recommendationControl: Disaster Recovery
-  recommendationImpact: High
-  recommendationResourceType: Microsoft.AVS/privateClouds
-  recommendationMetadataState: Active
-  longDescription: |
-    Two Azure VMware Solution private clouds can be deployed in different regions for business continuity, implementing a mesh network topology based on ExpressRoute Gateway Connections and Global Reach Connections.
-  potentialBenefits: Enhanced disaster recovery
-  pgVerified: Verified
-  publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
-  tags: null
-  learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/azure-vmware/move-azure-vmware-solution-across-regions"
+    - name: Create a new ExpressRoute circuit
+      url: "https://learn.microsoft.com/azure/expressroute/expressroute-howto-circuit-portal-resource-manager?pivots=expressroute-preview#create-a-new-expressroute-circuit-preview"
 
 - description: Deploy two or more circuits in different peering locations when using stretched clusters
   aprlGuid: 91c84596-1c41-48fe-8d5e-3f817e6a273b
@@ -147,8 +130,29 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Deploy vSAN streched cluster
       url: "https://learn.microsoft.com/en-us/azure/azure-vmware/deploy-vsan-stretched-clusters#deploy-a-stretched-cluster-private-cloud"
+
+- description: Deploy dual Azure VMware Solution clouds in different regions for disaster recovery
+  aprlGuid: bdac462a-2eda-4a67-887d-46d58f141afe
+  recommendationTypeId: null
+  recommendationControl: Disaster Recovery
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.AVS/privateClouds
+  recommendationMetadataState: Active
+  longDescription: |
+    Two Azure VMware Solution private clouds can be deployed in different regions for business continuity, implementing a mesh network topology based on ExpressRoute Gateway Connections and Global Reach Connections.
+  potentialBenefits: Enhanced disaster recovery
+  pgVerified: Verified
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Private Clouds in two regions
+      url: "https://learn.microsoft.com/en-us/azure/azure-vmware/move-azure-vmware-solution-across-regions"
+    - name: Dual Region Network Topology
+      url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/azure-vmware/eslz-dual-region-network-topology"
 
 - description: Use key autorotation for vSAN datastore customer-managed keys
   aprlGuid: e0ac2f57-c8c0-4b8c-a7c8-19e5797828b5
@@ -166,7 +170,7 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Configure Customer Managed Keys
       url: "https://learn.microsoft.com/en-us/azure/azure-vmware/configure-customer-managed-keys?tabs=azure-portal"
 
 - description: Use multiple DNS servers per private FQDN zone
@@ -185,5 +189,5 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Configure DNS forwarder
       url: "https://learn.microsoft.com/en-us/azure/azure-vmware/configure-dns-azure-vmware-solution#configure-dns-forwarder"
