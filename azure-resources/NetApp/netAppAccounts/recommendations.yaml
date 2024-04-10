@@ -75,7 +75,7 @@
       url: "https://learn.microsoft.com/azure/azure-netapp-files/snapshots-introduction"
 
 - description: Enable backup for data protection in Azure NetApp Files
-  aprlGuid: e30317d2-c502-4dfe-a2d3-0a737cc79545
+  aprlGuid: b2fb3e60-97ec-e34d-af29-b16a0d61c2ac
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: High
@@ -94,7 +94,7 @@
       url: "https://learn.microsoft.com/azure/azure-netapp-files/backup-introduction"
 
 - description: Enable Cross-region replication of Azure NetApp Files volumes
-  aprlGuid: b2fb3e60-97ec-e34d-af29-b16a0d61c2ac
+  aprlGuid: e30317d2-c502-4dfe-a2d3-0a737cc79545
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: High
