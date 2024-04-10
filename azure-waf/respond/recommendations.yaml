@@ -1,6 +1,6 @@
-- description: Implement proactive Incident Response
+﻿- description: Implement proactive Incident Response
   aprlGuid: daf605e4-d3fd-fc42-819a-e3ec084ffda6
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: High
   recommendationResourceType: WellArchitected/Respond
@@ -12,7 +12,10 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
-  tags:
+  tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Importance of incident response
       url: "https://learn.microsoft.com/training/modules/improve-reliability-incidents/2-importance"
+    - name: Incident tracking
+      url: "https://learn.microsoft.com/training/modules/improve-reliability-incidents/5-tracking"
+

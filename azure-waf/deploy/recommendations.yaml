@@ -1,6 +1,6 @@
-- description: Avoid manual configuration to enforce consistency with Infrastructure as code
+﻿- description: Avoid manual configuration to enforce consistency with Infrastructure as code
   aprlGuid: 6bf9e5d5-fe57-c647-8daa-4903770e1302
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Automation
   recommendationImpact: Medium
   recommendationResourceType: WellArchitected/Deploy
@@ -12,14 +12,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
-  tags:
+  tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Avoid manual configuration to enforce consistency
       url: "https://learn.microsoft.com/devops/deliver/what-is-infrastructure-as-code#avoid-manual-configuration-to-enforce-consistency"
 
 - description: Validated all changes in development environments before applying them to production
   aprlGuid: e42e646c-7d67-dd4b-96dc-16a3439fa030
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Automation
   recommendationImpact: Medium
   recommendationResourceType: WellArchitected/Deploy
@@ -31,7 +31,8 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
-  tags:
+  tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Safe deployment practices
       url: "https://learn.microsoft.com/devops/operate/safe-deployment-practices"
+

@@ -1,4 +1,4 @@
-- description: Configure Diagnostic Settings for all Azure Event Grid resources
+﻿- description: Configure Diagnostic Settings for all Azure Event Grid resources
   aprlGuid: 54c3191b-b535-1946-bba9-b754f44060f6
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
@@ -14,7 +14,7 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Azure Event Grid - Enable diagnostic logs for Event Grid resources
       url: "https://learn.microsoft.com/en-us/azure/event-grid/enable-diagnostic-logs-topic"
 
 - description: Configure Dead-letter to save events that cannot be delivered
@@ -33,7 +33,7 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Azure Event Grid delivery and retry
       url: "https://learn.microsoft.com/en-us/azure/event-grid/delivery-and-retry#dead-letter-events"
 
 - description: Configure Private Endpoints
@@ -52,5 +52,6 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Configure private endpoints for Azure Event Grid topics or domains
       url: "https://learn.microsoft.com/en-us/azure/event-grid/configure-private-endpoints"
+

@@ -1,4 +1,4 @@
-- description: Configure Diagnostic Settings for all network security groups
+﻿- description: Configure Diagnostic Settings for all network security groups
   aprlGuid: d2976d3e-294b-4b49-a1f0-c42566a3758f
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
@@ -7,14 +7,14 @@
   recommendationMetadataState: Active
   longDescription: |
     Resource Logs are not collected and stored until you create a diagnostic setting and route them to one or more locations.
-  potentialBenefits: Enhanced monitoring & security insights
+  potentialBenefits: Enhanced monitoring and security insights
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Diagnostic settings in Azure Monitor
       url: "https://learn.microsoft.com/azure/azure-monitor/essentials/diagnostic-settings"
 
 - description: Monitor changes in Network Security Groups with Azure Monitor
@@ -33,7 +33,7 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Azure Monitor activity log
       url: "https://learn.microsoft.com/azure/azure-monitor/essentials/activity-log?tabs=powershell"
 
 - description: Configure locks for Network Security Groups to avoid accidental changes and/or deletion
@@ -52,7 +52,7 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Lock your resources to protect your infrastructure
       url: "https://learn.microsoft.com/azure/azure-resource-manager/management/lock-resources?toc=%2Fazure%2Fvirtual-network%2Ftoc.json&tabs=json"
 
 - description: Configure NSG Flow Logs
@@ -64,14 +64,14 @@
   recommendationMetadataState: Active
   longDescription: |
     Monitoring, managing, and understanding your network is crucial for protection and optimization. Knowing the current state, who and from where connections are made, open internet ports, expected and irregular behavior, and traffic spikes is essential.
-  potentialBenefits: Enhances security & optimizes network
+  potentialBenefits: Enhances security and optimizes network
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Flow logging for network security groups
       url: "https://learn.microsoft.com/azure/network-watcher/network-watcher-nsg-flow-logging-overview"
 
 - description: The NSG only has Default Security Rules, make sure to configure the necessary rules
@@ -83,12 +83,12 @@
   recommendationMetadataState: Active
   longDescription: |
     Azure network security groups filter network traffic between resources in a virtual network, using security rules to allow or deny inbound or outbound traffic based on source, destination, port, and protocol.
-  potentialBenefits: Enhanced traffic control & security
+  potentialBenefits: Enhanced traffic control and security
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Security rules
       url: "https://learn.microsoft.com/azure/virtual-network/network-security-groups-overview#security-rules"

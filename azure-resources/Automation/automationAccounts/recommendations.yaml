@@ -1,4 +1,4 @@
-- description: Set up disaster recovery of Automation accounts and its dependent resources
+﻿- description: Set up disaster recovery of Automation accounts and its dependent resources
   aprlGuid: 67205887-0733-466e-b50e-b1cd7316c514
   recommendationTypeId: null
   recommendationControl: High Availability
@@ -14,5 +14,8 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Disaster recovery for Automation accounts
       url: "https://learn.microsoft.com/en-us/azure/automation/automation-disaster-recovery?tabs=win-hrw%2Cps-script%2Coption-one"
+    - name: Disaster recovery scenarios for cloud and hybrid jobs
+      url: "https://learn.microsoft.com/en-us/azure/automation/automation-disaster-recovery?tabs=win-hrw%2Cps-script%2Coption-one#scenarios-for-cloud-and-hybrid-jobs"
+

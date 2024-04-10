@@ -1,4 +1,4 @@
-- description: Ensure that storage accounts are zone or region redundant
+﻿- description: Ensure that storage accounts are zone or region redundant
   aprlGuid: e6c7e1cc-2f47-264d-aa50-1da421314472
   recommendationTypeId: null
   recommendationControl: High Availability
@@ -7,15 +7,17 @@
   recommendationMetadataState: Active
   longDescription: |
     Redundancy ensures storage accounts meet availability and durability targets amidst failures, weighing lower costs against higher availability. Locally redundant storage offers the least durability at the lowest cost.
-  potentialBenefits: High availability & durability for storage
+  potentialBenefits: High availability and durability for storage
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Azure Storage redundancy
       url: "https://learn.microsoft.com/azure/storage/common/storage-redundancy"
+    - name: Change the redundancy configuration for a storage account
+      url: "https://learn.microsoft.com/azure/storage/common/redundancy-migration"
 
 - description: Do not use classic storage accounts
   aprlGuid: 63ad027e-611c-294b-acc5-8e3234db9a40
@@ -33,8 +35,10 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Azure classic storage accounts retirement announcement
       url: "https://azure.microsoft.com/updates/classic-azure-storage-accounts-will-be-retired-on-31-august-2024/"
+    - name: Migrate your classic storage accounts to Azure Resource Manager
+      url: "https://learn.microsoft.com/azure/storage/common/classic-account-migration-overview"
 
 - description: Ensure Performance tier is set as per workload
   aprlGuid: 5587ef77-7a05-a74d-9c6e-449547a12f27
@@ -45,15 +49,23 @@
   recommendationMetadataState: Active
   longDescription: |
     Consider using the appropriate storage performance tier for workload scenarios. Each workload scenario requires appropriate performance tiers, and selecting the appropriate tiers based on storage usage is crucial.
-  potentialBenefits: Optimized cost & performance
+  potentialBenefits: Optimized cost and performance
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Types of storage accounts
       url: "https://learn.microsoft.com/azure/storage/common/storage-account-overview#types-of-storage-accounts"
+    - name: Scalability and performance targets for standard storage accounts
+      url: "https://learn.microsoft.com/azure/storage/common/scalability-targets-standard-account"
+    - name: Performance and scalability checklist for Blob storage
+      url: "https://learn.microsoft.com/azure/storage/blobs/storage-performance-checklist"
+    - name: Scalability and performance targets for Blob storage
+      url: "https://learn.microsoft.com/azure/storage/blobs/scalability-targets"
+    - name: Premium block blob storage accounts
+      url: "https://learn.microsoft.com/azure/storage/blobs/storage-blob-block-blob-premium"
 
 - description: Enable soft delete for recovery of data
   aprlGuid: 03263c57-c869-3841-9e0a-3dbb9ef3e28d
@@ -71,7 +83,7 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Soft delete detail docs
       url: "https://learn.microsoft.com//azure/storage/blobs/soft-delete-blob-enable?tabs=azure-portal "
 
 - description: Enable versioning for accidental modification and keep the number of versions below 1000
@@ -90,7 +102,7 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Blob versioning
       url: "https://learn.microsoft.com/azure/storage/blobs/versioning-overview "
 
 - description: Enable point-in-time restore for GPv2 accounts to safeguard against data loss
@@ -109,8 +121,10 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Point-in-time restore for block blobs
       url: "https://learn.microsoft.com/azure/storage/blobs/point-in-time-restore-overview"
+    - name: Perform a point-in-time restore on block blob data
+      url: "https://learn.microsoft.com/azure/storage/blobs/point-in-time-restore-manage?tabs=portal"
 
 - description: Monitor all blob storage accounts
   aprlGuid: 96cb8331-6b06-8242-8ce8-4e2f665dc679
@@ -121,15 +135,17 @@
   recommendationMetadataState: Active
   longDescription: |
     For critical applications and business processes relying on Azure, monitoring and alerts are crucial. Resource logs are only stored after creating a diagnostic setting to route logs to specified locations, requiring selection of log categories to collect.
-  potentialBenefits: Enhanced alerting & log analysis
+  potentialBenefits: Enhanced alerting and log analysis
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Monitor Azure Blob Storage
       url: "https://learn.microsoft.com/azure/storage/blobs/monitor-blob-storage"
+    - name: Best practices for monitoring Azure Blob Storage
+      url: "https://learn.microsoft.com/azure/storage/blobs/blob-storage-monitoring-scenarios"
 
 - description: Consider upgrading legacy storage accounts to v2 storage accounts
   aprlGuid: 2ad78dec-5a4d-4a30-8fd1-8584335ad781
@@ -147,5 +163,7 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Legacy storage account types
       url: "https://learn.microsoft.com/azure/storage/common/storage-account-overview#legacy-storage-account-types"
+    - name: Upgrade to a general-purpose v2 storage account
+      url: "https://learn.microsoft.com/azure/storage/common/storage-account-upgrade"

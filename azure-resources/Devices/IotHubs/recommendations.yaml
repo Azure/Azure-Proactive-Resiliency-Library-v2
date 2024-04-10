@@ -1,4 +1,4 @@
-- description: Device Identities are exported to a secondary region
+﻿- description: Device Identities are exported to a secondary region
   aprlGuid: 783c6c18-760b-4867-9ced-3010a0bc5aa3
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
@@ -14,8 +14,10 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Import and export IoT Hub device identities in bulk
       url: "https://learn.microsoft.com/en-us/azure/iot-hub/iot-hub-bulk-identity-mgmt"
+    - name: IoT Hub high availability and disaster recovery
+      url: "https://learn.microsoft.com/en-us/azure/iot-hub/iot-hub-ha-dr#manual-failover"
 
 - description: Do not use free tier
   aprlGuid: eeba3a49-fef0-481f-a471-7ff01139b474
@@ -33,7 +35,7 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Choose the right IoT Hub tier and size for your solution
       url: "https://learn.microsoft.com/en-us/azure/iot-hub/iot-hub-scaling"
 
 - description: Use Availability Zones
@@ -52,7 +54,7 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Azure IoT Hub high availability and disaster recovery
       url: "https://learn.microsoft.com/en-us/azure/iot-hub/iot-hub-ha-dr#availability-zones"
 
 - description: Use Device Provisioning Service
@@ -64,15 +66,19 @@
   recommendationMetadataState: Active
   longDescription: |
     Device Provisioning Service (DPS) enables easy redistribution of IoT devices for scaling and availability, allowing devices to be reassigned and not bound to specific IoT Hub instances. Devices in IoT Hubs using DPS should be verified for DPS utilization.
-  potentialBenefits: Enhances scalability & availability
+  potentialBenefits: Enhances scalability and availability
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: IoT Hub Device Provisioning Service (DPS) terminology
       url: "https://learn.microsoft.com/en-us/azure/iot-dps/concepts-service"
+    - name: Best practices for large-scale IoT device deployments
+      url: "https://learn.microsoft.com/en-us/azure/iot-dps/concepts-deploy-at-scale"
+    - name: IoT Hub Device Provisioning Service high availability and disaster recovery
+      url: "https://learn.microsoft.com/en-us/azure/iot-dps/iot-dps-ha-dr"
 
 - description: Define Failover Guidelines
   aprlGuid: 02568a5d-335e-4e51-9f7c-fe2ada977300
@@ -90,7 +96,7 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: IoT Hub high availability and disaster recovery
       url: "https://learn.microsoft.com/en-us/azure/iot-hub/iot-hub-ha-dr"
 
 - description: Disabled Fallback Route
@@ -109,5 +115,5 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Use message routing - Fallback route
       url: "https://learn.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-messages-d2c#fallback-route"

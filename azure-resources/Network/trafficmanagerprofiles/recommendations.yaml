@@ -1,4 +1,4 @@
-- description: Traffic Manager Monitor Status Should be Online
+﻿- description: Traffic Manager Monitor Status Should be Online
   aprlGuid: f05a3e6d-49db-2740-88e2-2b13706c1f67
   recommendationTypeId: null
   recommendationControl: High Availability
@@ -14,8 +14,12 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Azure Traffic Manager endpoint monitoring
       url: "https://learn.microsoft.com/azure/traffic-manager/traffic-manager-monitoring"
+    - name: Enable or disable health checks
+      url: "https://learn.microsoft.com/azure/traffic-manager/traffic-manager-monitoring#enable-or-disable-health-checks-preview"
+    - name: Troubleshooting degraded state on Azure Traffic Manager
+      url: "https://learn.microsoft.com/azure/traffic-manager/traffic-manager-troubleshooting-degraded"
 
 - description: Traffic manager profiles should have more than one endpoint
   aprlGuid: 5b422a7f-8caa-3d48-becb-511599e5bba9
@@ -33,7 +37,7 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Traffic Manager Endpoint Types
       url: "https://learn.microsoft.com/azure/traffic-manager/traffic-manager-endpoint-types"
 
 - description: Configure at least one endpoint within a another region
@@ -52,7 +56,8 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Reliability recommendations
+
       url: "https://learn.microsoft.com/azure/advisor/advisor-reference-reliability-recommendations#add-at-least-one-more-endpoint-to-the-profile-preferably-in-another-azure-region"
 
 - description: Ensure endpoint configured to (All World) for geographic profiles
@@ -71,5 +76,8 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Add an endpoint configured to "All (World)"
       url: "https://learn.microsoft.com/azure/advisor/advisor-reference-reliability-recommendations#add-an-endpoint-configured-to-all-world"
+    - name: Traffic Manager profile - GeographicProfile (Add an endpoint configured to ""All (World)"").
+      url: "https://aka.ms/Rf7vc5"
+

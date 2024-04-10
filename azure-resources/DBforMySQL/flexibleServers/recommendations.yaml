@@ -1,4 +1,4 @@
-- description: Enable HA with zone redundancy
+﻿- description: Enable HA with zone redundancy
   aprlGuid: 88856605-53d8-4bbd-a75b-4a7b14939d32
   recommendationTypeId: null
   recommendationControl: High Availability
@@ -7,14 +7,14 @@
   recommendationMetadataState: Active
   longDescription: |
     Enable HA with zone redundancy on flexible server instances to deploy a standby replica in a different zone, offering automatic failover capability for improved reliability and disaster recovery.
-  potentialBenefits: Enhanced uptime & data protection
+  potentialBenefits: Enhanced uptime and data protection
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: High availability concepts in Azure Database for MySQL - Flexible Server
       url: "https://learn.microsoft.com/azure/mysql/flexible-server/concepts-high-availability"
 
 - description: Enable custom maintenance schedule
@@ -33,5 +33,5 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Scheduled maintenance in Azure Database for MySQL - Flexible Server
       url: "https://learn.microsoft.com/azure/mysql/flexible-server/concepts-maintenance"

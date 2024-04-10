@@ -1,4 +1,4 @@
-- description: Deploy Azure Firewall across multiple availability zones
+﻿- description: Deploy Azure Firewall across multiple availability zones
   aprlGuid: c72b7fee-1fa0-5b4b-98e5-54bcae95bb74
   recommendationTypeId: null
   recommendationControl: High Availability
@@ -14,8 +14,10 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Azure Well Architected Framework - Azure Firewall
       url: "https://learn.microsoft.com/azure/architecture/framework/services/networking/azure-firewall"
+    - name: Deploy Azure Firewall across multiple availability zones
+      url: "https://learn.microsoft.com/azure/firewall/deploy-availability-zone-powershell"
 
 - description: Monitor Azure Firewall metrics
   aprlGuid: 3c8fa7c6-6b78-a24a-a63f-348a7c71acb9
@@ -26,15 +28,17 @@
   recommendationMetadataState: Active
   longDescription: |
     Monitor Azure Firewall for overall health, processed throughput, and outbound SNAT port usage. Get alerted before limits impact services. Consider NAT gateway integration with zonal deployments; note limitations with zone redundant firewalls and secure virtual hub networks.
-  potentialBenefits: Improve health & performance monitoring
+  potentialBenefits: Improve health and performance monitoring
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Azure Firewall metrics supported in Azure Monitor
       url: "https://learn.microsoft.com/azure/azure-monitor/essentials/metrics-supported#microsoftnetworkazurefirewalls"
+    - name: Azure Firewall performance
+      url: "https://learn.microsoft.com/azure/firewall/firewall-performance"
 
 - description: Configure DDoS Protection on the Azure Firewall VNet
   aprlGuid: 1b2dbf4a-8a0b-5e4b-8f4e-3f758188910d
@@ -52,7 +56,7 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Azure DDoS Protection overview
       url: "https://learn.microsoft.com/azure/ddos-protection/ddos-protection-overview"
 
 - description: Leverage Azure Policy inheritance model
@@ -71,7 +75,7 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Azure Firewall Policy hierarchy
       url: "https://learn.microsoft.com/azure/firewall-manager/rule-hierarchy"
 
 - description: Configure 2-4 PIPs for SNAT Port utilization
@@ -90,7 +94,7 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Azure Well-Architected Framework review - Azure Firewall
       url: "https://learn.microsoft.com/en-us/azure/well-architected/service-guides/azure-firewall#recommendations"
 
 - description: Monitor AZFW Latency Probes metric
@@ -109,5 +113,7 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Azure Well-Architected Framework review - Azure Firewall
       url: "https://learn.microsoft.com/azure/well-architected/service-guides/azure-firewall#recommendations"
+    - name: Azure Firewall metrics overview
+      url: "https://learn.microsoft.com/azure/firewall/metrics"

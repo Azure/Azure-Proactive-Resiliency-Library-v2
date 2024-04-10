@@ -1,4 +1,4 @@
-- description: Avoid combining Traffic Manager and Front Door
+﻿- description: Avoid combining Traffic Manager and Front Door
   aprlGuid: 9437634c-d69e-2747-b13e-631c13182150
   recommendationTypeId: null
   recommendationControl: Business Continuity
@@ -14,8 +14,14 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Azure Load Balancing Options
       url: "https://learn.microsoft.com/azure/architecture/guide/technology-choices/load-balancing-overview"
+    - name: Azure Traffic Manager
+      url: "https://learn.microsoft.com/azure/traffic-manager/traffic-manager-overview"
+    - name: Azure Front Door
+      url: "https://learn.microsoft.com/azure/frontdoor/front-door-overview"
+    - name: Mission-critical global content delivery
+      url: "https://learn.microsoft.com/en-us/azure/architecture/guide/networking/global-web-applications/mission-critical-content-delivery"
 
 - description: Restrict traffic to your origins
   aprlGuid: 6c40b7ae-2bea-5748-be1a-9e9e3b834649
@@ -26,14 +32,14 @@
   recommendationMetadataState: Active
   longDescription: |
     Front Door's features perform optimally when traffic exclusively comes through Front Door. It's advised to set up your origin to deny access to traffic that bypasses Front Door.
-  potentialBenefits: Enhances security & performance
+  potentialBenefits: Enhances security and performance
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Secure traffic to Azure Front Door origins
       url: "https://learn.microsoft.com/azure/frontdoor/origin-security?tabs=app-service-functions&pivots=front-door-standard-premium"
 
 - description: Use the latest API version and SDK version
@@ -45,15 +51,19 @@
   recommendationMetadataState: Active
   longDescription: |
     When working with Azure Front Door through APIs, ARM templates, Bicep, or SDKs, using the latest API or SDK version is crucial. Updates bring new functions, important security patches, and bug fixes.
-  potentialBenefits: Enhanced security & features
+  potentialBenefits: Enhanced security and features
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: REST API Reference
       url: "https://learn.microsoft.com/rest/api/frontdoor/"
+    - name: Client library for Java
+      url: "https://learn.microsoft.com/java/api/overview/azure/resourcemanager-frontdoor-readme?view=azure-java-preview"
+    - name: SDK for Python
+      url: "https://learn.microsoft.com/python/api/overview/azure/front-door?view=azure-python"
 
 - description: Configure logs
   aprlGuid: 1ad74c3c-e3d7-0046-b83f-a2199974ef15
@@ -71,8 +81,12 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Monitor metrics and logs in Azure Front Door
       url: "https://learn.microsoft.com/azure/frontdoor/front-door-diagnostics?pivots=front-door-standard-premium"
+    - name: WAF logs
+      url: "https://learn.microsoft.com/azure/web-application-firewall/afds/waf-front-door-monitor?pivots=front-door-standard-premium#waf-logs"
+    - name: Configure Azure Front Door logs
+      url: "https://learn.microsoft.com/azure/frontdoor/standard-premium/how-to-logs"
 
 - description: Use end-to-end TLS
   aprlGuid: d9bd6780-0d6f-cd4c-bc66-8ddcab12f3d1
@@ -90,7 +104,7 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: End-to-end TLS with Azure Front Door
       url: "https://learn.microsoft.com/azure/frontdoor/end-to-end-tls?pivots=front-door-standard-premium"
 
 - description: Use HTTP to HTTPS redirection
@@ -109,7 +123,7 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Create HTTP to HTTPS redirect rule
       url: "https://learn.microsoft.com/azure/frontdoor/front-door-how-to-redirect-https#create-http-to-https-redirect-rule"
 
 - description: Use managed TLS certificates
@@ -128,7 +142,7 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Configure HTTPS on an Azure Front Door custom domain using the Azure portal
       url: "https://learn.microsoft.com/azure/frontdoor/standard-premium/how-to-configure-https-custom-domain?tabs=powershell"
 
 - description: Use latest version for customer-managed certificates
@@ -140,14 +154,14 @@
   recommendationMetadataState: Active
   longDescription: |
     If you use your own TLS certificates, set the Key Vault certificate version to 'Latest' to avoid reconfiguring Azure Front Door for new certificate versions and waiting for deployment across Front Door's environments.
-  potentialBenefits: Saves time & automates TLS updates
+  potentialBenefits: Saves time and automates TLS updates
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Select the certificate for Azure Front Door to deploy
       url: "https://learn.microsoft.com/azure/frontdoor/standard-premium/how-to-configure-https-custom-domain?tabs=powershell#select-the-certificate-for-azure-front-door-to-deploy"
 
 - description: Use the same domain name on Front Door and your origin
@@ -166,7 +180,7 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Preserve the original HTTP host name between a reverse proxy and its back-end web application
       url: "https://learn.microsoft.com/azure/architecture/best-practices/host-name-preservation"
 
 - description: Enable the WAF
@@ -185,7 +199,7 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Web Application Firewall on Azure Front Door
       url: "https://learn.microsoft.com/azure/frontdoor/web-application-firewall"
 
 - description: Disable health probes when there is only one origin in an origin group
@@ -204,7 +218,7 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Health probes
       url: "https://learn.microsoft.com/azure/frontdoor/health-probes"
 
 - description: Select good health probe endpoints
@@ -216,14 +230,14 @@
   recommendationMetadataState: Active
   longDescription: |
     Consider selecting a webpage or location specifically designed for health monitoring as the endpoint for Azure Front Door's health probes. This should encompass the status of critical components like application servers, databases, and caches to serve production traffic efficiently.
-  potentialBenefits: Improves traffic routing & uptime
+  potentialBenefits: Improves traffic routing and uptime
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Health Endpoint Monitoring pattern
       url: "https://learn.microsoft.com/azure/architecture/patterns/health-endpoint-monitoring"
 
 - description: Use HEAD health probes
@@ -242,7 +256,7 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Supported HTTP methods for health probes
       url: "https://learn.microsoft.com/azure/frontdoor/health-probes#supported-http-methods-for-health-probes"
 
 - description: Use geo-filtering in Azure Front Door
@@ -261,7 +275,7 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Geo filter WAF policy - GeoMatch
       url: "https://learn.microsoft.com/azure/web-application-firewall/afds/waf-front-door-geo-filtering"
 
 - description: Secure your Origin with Private Link in Azure Front Door
@@ -273,12 +287,12 @@
   recommendationMetadataState: Active
   longDescription: |
     Azure Private Link enables secure access to Azure PaaS and services over a private endpoint in your virtual network, ensuring traffic goes over the Microsoft backbone network, not the public internet.
-  potentialBenefits: Enhanced security & private connectivity
+  potentialBenefits: Enhanced security and private connectivity
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Private link for Azure Front Door
       url: "https://learn.microsoft.com/azure/frontdoor/private-link"

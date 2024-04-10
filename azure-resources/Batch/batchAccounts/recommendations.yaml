@@ -1,4 +1,4 @@
-- description: Monitor Batch Account quota
+﻿- description: Monitor Batch Account quota
   aprlGuid: 3464854d-6f75-4922-95e4-a2a308b53ce6
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
@@ -26,7 +26,7 @@
   recommendationMetadataState: Active
   longDescription: |
     When using Virtual Machine Configuration for Azure Batch pools, opting to distribute your pool across Availability Zones bolsters your compute nodes against Azure datacenter failures.
-  potentialBenefits: Enhanced reliability & failure protection
+  potentialBenefits: Enhanced reliability and failure protection
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false

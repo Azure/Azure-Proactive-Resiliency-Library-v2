@@ -67,7 +67,7 @@
   recommendationMetadataState: Active
   longDescription: |
     It is recommended to enable RDP Shortpath for AVD. RDP Shortpath is a feature of Azure Virtual Desktop that establishes a direct UDP-based transport between a supported Windows Remote Desktop client and session host. By default, Remote Desktop Protocol (RDP) tries to establish connection using UDP and uses a TCP-based reverse connect transport as a fallback connection mechanism. TCP-based reverse connect transport provides the best compatibility with various networking configurations and has a high success rate for establishing RDP connections. UDP-based transport offers better connection reliability and more consistent latency.
-  potentialBenefits: Better reliability & consistent latency
+  potentialBenefits: Better reliability and consistent latency
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -86,7 +86,7 @@
   recommendationMetadataState: Active
   longDescription: |
     It is recommended to adopt a multi-region deployment (active-active) for AVD. Each region should contain at least identity, name resolution, AVD management resources, and session hosts in case of a primary region outage.
-  potentialBenefits: Enhanced resilience & uptime
+  potentialBenefits: Enhanced resilience and uptime
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -150,9 +150,8 @@
     - ZRS is recommended for apps requiring high availability across zones. ZRS provides twelve 9s durability. Replicated across three availability zones
     - GRS replicates an additional three copies to secondary region and provides sixteen 9s durability.
     - GZRS provides both high availability and redundancy across geo replication. It provides sixteen 9s durability over a given year.
-
     Generally, it is recommended to store your data as secure and redundant as possible.
-  potentialBenefits: Improves data durability & availability
+  potentialBenefits: Improves data durability and availability
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -444,7 +443,7 @@
     App Attach packages should be on a separate share from profiles. And App Attach files should be backed up.
     Best practice is to separate App Attach VHD files in a separate file share away from user profiles, both for performance and scalability purposes. Requirements can vary greatly depending on how many packaged applications are stored in an image, and you need to test your applications to understand your requirements.
     Your file share should be in the same Azure region as your session hosts.
-  potentialBenefits: Enhances performance & scalability
+  potentialBenefits: Enhances performance and scalability
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -483,7 +482,7 @@
   longDescription: |
     NSG and ASG per AVD persona and IP space per Prod/DR regions.
     It's important your organization plans for IP addressing in Azure. Planning ensures the IP address space doesn't overlap across on-premises locations and Azure regions. Overlapping IP address spaces across on-premises and Azure regions create major contention challenges.
-  potentialBenefits: Enhances security & prevents IP conflicts
+  potentialBenefits: Enhances security and prevents IP conflicts
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -502,7 +501,6 @@
   recommendationMetadataState: Active
   longDescription: |
     Ensure Route Tables that force tunnel traffic to FW/NVA have failover considerations evaluated and won't fail or trigger next-gen FW protections.
-
     AVD workload teams should collaborate with centralized teams that manage the shared infrastructure, like networking, to ensure that both Production and DR workloads have the appropriate route tables in place for failover of routing to perform as expected.
   potentialBenefits: Enhanced failover reliability
   pgVerified: Verified
@@ -542,7 +540,7 @@
   recommendationMetadataState: Active
   longDescription: |
     AVD Insights is an Azure Workbook template provided by the AVD product team. It is highly recommended in order to monitor and troubleshoot AVD workloads across metrics, logs, events, and more. Both Production and DR workloads should be enabled with AVD Insights.
-  potentialBenefits: Enhanced AVD monitoring & troubleshooting
+  potentialBenefits: Enhanced AVD monitoring and troubleshooting
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -561,7 +559,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Having separate Log Analytics ensures that your DR environment is fully operational for visibility of the metrics, performance, and other auditing tools your workload teams will rely on in the event of an incident.
-  potentialBenefits: Improved DR visibility & operation
+  potentialBenefits: Improved DR visibility and operation
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -580,7 +578,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Follow AVD Landing Zone best practices using multiple resource groups based on resource type and associated shared resources for AVD workloads.
-  potentialBenefits: Enhanced organization & scalability
+  potentialBenefits: Enhanced organization and scalability
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
