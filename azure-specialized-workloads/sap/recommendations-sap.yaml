@@ -14,16 +14,16 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-  - name: SAP ACSS Quality Insights
-    url: https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/get-quality-checks-insights
-  - name: OpenSource Inventory Checks
-    url: https://aka.ms/ACESInventoryCheckSAP
-  - name: OpenSource Quality Checks
-    url: https://github.com/Azure/SAP-on-Azure-Scripts-and-Utilities/tree/main/QualityCheck
-  - name: Move Regional SAP HA to Zonal
-    url: https://github.com/Azure/SAP-on-Azure-Scripts-and-Utilities/tree/main/Move-VM-from-AvSet-to-AvZone/Move-Regional-SAP-HA-To-Zonal-SAP-HA-WhitePaper
-  - name: High Availability Deployment Options for SAP
-    url: https://learn.microsoft.com/en-us/azure/sap/workloads/sap-high-availability-architecture-scenarios#high-availability-deployment-options-for-sap-workload
+    - name: SAP ACSS Quality Insights
+      url: "https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/get-quality-checks-insights"
+    - name: OpenSource Inventory Checks
+      url: "https://aka.ms/ACESInventoryCheckSAP"
+    - name: OpenSource Quality Checks
+      url: "https://github.com/Azure/SAP-on-Azure-Scripts-and-Utilities/tree/main/QualityCheck"
+    - name: Move Regional SAP HA to Zonal
+      url: "https://github.com/Azure/SAP-on-Azure-Scripts-and-Utilities/tree/main/Move-VM-from-AvSet-to-AvZone/Move-Regional-SAP-HA-To-Zonal-SAP-HA-WhitePaper"
+    - name: High Availability Deployment Options for SAP
+      url: "https://learn.microsoft.com/en-us/azure/sap/workloads/sap-high-availability-architecture-scenarios#high-availability-deployment-options-for-sap-workload"
 
 - description: Run SAP application servers on two or more VMs using VMSS Flex
   aprlGuid: 49bd34ab-d117-4b0e-99f8-34cc8a5394bc
@@ -41,14 +41,14 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-  - name: OpenSource Inventory Checks
-    url: https://aka.ms/ACESInventoryCheckSAP
-  - name: Virtual machine Scale Set SAP Deployment Guide
-    url: https://learn.microsoft.com/en-us/azure/sap/workloads/virtual-machine-scale-set-sap-deployment-guide
-  - name: Considerations for Flexible VM Scale Sets for SAP
-    url: https://learn.microsoft.com/en-us/azure/sap/workloads/virtual-machine-scale-set-sap-deployment-guide?tabs=scaleset-cli#important-consideration-of-flexible-virtual-machine-scale-sets-for-sap-workload
-  - name: Migrate existing SAP system VMs to VMSS Flex
-    url: https://techcommunity.microsoft.com/t5/running-sap-applications-on-the/how-to-easily-migrate-an-existing-sap-system-vms-to-flexible/ba-p/3833548
+    - name: OpenSource Inventory Checks
+      url: "https://aka.ms/ACESInventoryCheckSAP"
+    - name: Virtual machine Scale Set SAP Deployment Guide
+      url: "https://learn.microsoft.com/en-us/azure/sap/workloads/virtual-machine-scale-set-sap-deployment-guide"
+    - name: Considerations for Flexible VM Scale Sets for SAP
+      url: "https://learn.microsoft.com/en-us/azure/sap/workloads/virtual-machine-scale-set-sap-deployment-guide?tabs=scaleset-cli#important-consideration-of-flexible-virtual-machine-scale-sets-for-sap-workload"
+    - name: Migrate existing SAP system VMs to VMSS Flex
+      url: "https://techcommunity.microsoft.com/t5/running-sap-applications-on-the/how-to-easily-migrate-an-existing-sap-system-vms-to-flexible/ba-p/3833548"
 
 - description: If using single-instance VMs all OS and data disks must be Premium SSD or Ultra Disk
   aprlGuid: b60ae773-9917-4bca-8a42-7cb45365a917
@@ -66,16 +66,16 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-  - name: SAP ACSS Insights
-    url: https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/get-quality-checks-insights
-  - name: OpenSource Inventory Checks
-    url: https://aka.ms/ACESInventoryCheckSAP
-  - name: OpenSource Quality Checks
-    url: https://github.com/Azure/SAP-on-Azure-Scripts-and-Utilities/tree/main/QualityCheck
-  - name: VM SLA
-    url: https://www.azure.cn/en-us/support/sla/virtual-machines/
-  - name: SAP Storage Planning Guide
-    url: https://learn.microsoft.com/en-us/azure/sap/workloads/planning-guide-storage
+    - name: SAP ACSS Insights
+      url: "https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/get-quality-checks-insights"
+    - name: OpenSource Inventory Checks
+      url: "https://aka.ms/ACESInventoryCheckSAP"
+    - name: OpenSource Quality Checks
+      url: "https://github.com/Azure/SAP-on-Azure-Scripts-and-Utilities/tree/main/QualityCheck"
+    - name: VM SLA
+      url: "https://www.azure.cn/en-us/support/sla/virtual-machines/"
+    - name: SAP Storage Planning Guide
+      url: "https://learn.microsoft.com/en-us/azure/sap/workloads/planning-guide-storage"
 
 - description: Ensure that the data is replicated synchronously (SYNC mode) between the primary and secondary database hosting VM nodes
   aprlGuid: 094400a5-f112-408d-a334-afd68873ff0f
@@ -93,10 +93,10 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-  - name: SAP ACSS Insights
-    url: https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/get-quality-checks-insights
-  - name: OpenSource Quality Checks
-    url: https://github.com/Azure/SAP-on-Azure-Scripts-and-Utilities/tree/main/QualityCheck
+    - name: SAP ACSS Insights
+      url: "https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/get-quality-checks-insights"
+    - name: OpenSource Quality Checks
+      url: "https://github.com/Azure/SAP-on-Azure-Scripts-and-Utilities/tree/main/QualityCheck"
 
 - description: Ensure that SAP shared file systems are designed for high availability and when possible using availability zones
   aprlGuid: e09ca960-20b7-4831-b85b-83ec84c1390e
@@ -106,8 +106,8 @@
   recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
-SAP shared file systems such as /sapmnt, /usr/trans, interfaces should be made highly available.
-In case of Azure File Shares, we recommend that you use ZRS (Zone-redundant storage) and for Azure NetApp Files use Zonal replication for your volumes.
+    SAP shared file systems such as /sapmnt, /usr/trans, interfaces should be made highly available.
+    In case of Azure File Shares, we recommend that you use ZRS (Zone-redundant storage) and for Azure NetApp Files use Zonal replication for your volumes.
   potentialBenefits: Enhanced data availability for SAP
   pgVerified: Verified
   publishedToLearn: false
@@ -115,8 +115,8 @@ In case of Azure File Shares, we recommend that you use ZRS (Zone-redundant stor
   automationAvailable: no
   tags: null
   learnMoreLink:
-  - name: OpenSource Inventory Checks
-    url: https://aka.ms/ACESInventoryCheckSAP
+    - name: OpenSource Inventory Checks
+      url: "https://aka.ms/ACESInventoryCheckSAP"
 
 - description: Test high availability solutions thoroughly to ensure fail overs work as expected
   aprlGuid: 5663a808-56be-49ea-8d5c-c5dfc6925f76
@@ -126,8 +126,8 @@ In case of Azure File Shares, we recommend that you use ZRS (Zone-redundant stor
   recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
-Test all high availability solutions thoroughly (including kernel panic in Linux VMs and also fail-back). Include zonal failure scenarios in your testing, the testing should confirm that each layer of your SAP solution including database, central services, application servers and shared file systems is configured correctly for zone redundancy, the solution meets RPO = 0 and the application fails over automatically meeting your RTO.
-The fail back can be either automatic or manual.
+    Test all high availability solutions thoroughly (including kernel panic in Linux VMs and also fail-back). Include zonal failure scenarios in your testing, the testing should confirm that each layer of your SAP solution including database, central services, application servers and shared file systems is configured correctly for zone redundancy, the solution meets RPO = 0 and the application fails over automatically meeting your RTO.
+    The fail back can be either automatic or manual.
   potentialBenefits: Ensures SAP Azure's failover reliability
   pgVerified: Verified
   publishedToLearn: false
@@ -135,8 +135,8 @@ The fail back can be either automatic or manual.
   automationAvailable: no
   tags: null
   learnMoreLink:
-  - name: Test Cases
-    url: https://learn.microsoft.com/en-us/azure/sap/workloads/sap-hana-high-availability?tabs=lb-portal#test-the-cluster-setup
+    - name: Test Cases
+      url: "https://learn.microsoft.com/en-us/azure/sap/workloads/sap-hana-high-availability?tabs=lb-portal#test-the-cluster-setup"
 
 - description: Remove unwanted location constraints from Linux Pacemaker clusters
   aprlGuid: 1b8a3051-dfd4-4780-bfb7-446296774029
@@ -146,12 +146,12 @@ The fail back can be either automatic or manual.
   recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
-When executing a migrate command in a Linux Pacemaker cluster, the system generates a temporary "prefer" location constraint, aiming to move a resource to a specified node. This constraint prioritizes the target node for the resource temporarily without permanently altering the cluster�s configuration.
+    When executing a migrate command in a Linux Pacemaker cluster, the system generates a temporary "prefer" location constraint, aiming to move a resource to a specified node. This constraint prioritizes the target node for the resource temporarily without permanently altering the cluster�s configuration.
 
-During planned maintenances and fail over testing, you can leverage the migrate command for temporary resource relocation during maintenance or administrative tasks to ensure minimal disruption. This constraint is not permanent and does not survive reboots or cluster resets. It's designed for short-term adjustments.
+    During planned maintenances and fail over testing, you can leverage the migrate command for temporary resource relocation during maintenance or administrative tasks to ensure minimal disruption. This constraint is not permanent and does not survive reboots or cluster resets. It's designed for short-term adjustments.
 
-Once the planned task necessitating the resource migration is complete, manually remove the temporary constraint to revert to the cluster's original resource management policies.
-This approach allows for controlled resource movement within the cluster, facilitating maintenance while preserving the integrity and efficiency of the cluster's configuration.
+    Once the planned task necessitating the resource migration is complete, manually remove the temporary constraint to revert to the cluster's original resource management policies.
+    This approach allows for controlled resource movement within the cluster, facilitating maintenance while preserving the integrity and efficiency of the cluster's configuration.
   potentialBenefits: Enhanced maintenance and failover handling
   pgVerified: Verified
   publishedToLearn: false
@@ -159,7 +159,6 @@ This approach allows for controlled resource movement within the cluster, facili
   automationAvailable: no
   tags: null
   learnMoreLink:
-
 
 - description: Secure compute resource capacity for critical VM roles in DR region
   aprlGuid: 820b4c0c-8a74-442a-8ba7-b0cb840cd983
@@ -169,9 +168,9 @@ This approach allows for controlled resource movement within the cluster, facili
   recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
-To ensure the availability of compute resources for critical VM roles in a DR region, consider securing capacity either through a warm standby approach or by utilizing Azure's On-demand Capacity Reservation.
+    To ensure the availability of compute resources for critical VM roles in a DR region, consider securing capacity either through a warm standby approach or by utilizing Azure's On-demand Capacity Reservation.
 
-Warm standby involves keeping VMs in the DR region running. On-demand Capacity Reservation, on the other hand, reserves compute capacity without having to run the VMs, allowing you to start them when needed. When DR VMs are not needed, the reserved capacity may safely be used to run other workloads without the risk of losing the capacity to other customers. This strategy guarantees resource availability for your critical workloads in the event of a disaster, balancing cost and readiness.
+    Warm standby involves keeping VMs in the DR region running. On-demand Capacity Reservation, on the other hand, reserves compute capacity without having to run the VMs, allowing you to start them when needed. When DR VMs are not needed, the reserved capacity may safely be used to run other workloads without the risk of losing the capacity to other customers. This strategy guarantees resource availability for your critical workloads in the event of a disaster, balancing cost and readiness.
   potentialBenefits: Guarantees DR region availability
   pgVerified: Verified
   publishedToLearn: false
@@ -179,8 +178,8 @@ Warm standby involves keeping VMs in the DR region running. On-demand Capacity R
   automationAvailable: no
   tags: null
   learnMoreLink:
-  - name: Capacity Reservation
-    url: https://learn.microsoft.com/en-us/azure/virtual-machines/capacity-reservation-overview
+    - name: Capacity Reservation
+      url: "https://learn.microsoft.com/en-us/azure/virtual-machines/capacity-reservation-overview"
 
 - description: Ensure that the production databases are replicated (ASYNC) to DR location using the database vendor's replication technology
   aprlGuid: fb8bdcee-d88f-408d-8572-a76a4aaa733b
@@ -198,8 +197,8 @@ Warm standby involves keeping VMs in the DR region running. On-demand Capacity R
   automationAvailable: no
   tags: null
   learnMoreLink:
-  - name: SAP Disaster Recovery Guide
-    url: https://learn.microsoft.com/en-us/azure/sap/workloads/disaster-recovery-sap-guide?tabs=windows
+    - name: SAP Disaster Recovery Guide
+      url: "https://learn.microsoft.com/en-us/azure/sap/workloads/disaster-recovery-sap-guide?tabs=windows"
 
 - description: SAP components are backed up to DR location using an appropriate backup tool or ASR
   aprlGuid: 41f0d88e-7866-4444-aac4-ef5fee3e6874
@@ -217,10 +216,10 @@ Warm standby involves keeping VMs in the DR region running. On-demand Capacity R
   automationAvailable: no
   tags: null
   learnMoreLink:
-  - name: SAP ACSS Insights
-    url: https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/get-quality-checks-insights
-  - name: OpenSource Inventory Checks
-    url: https://aka.ms/ACESInventoryCheckSAP
+    - name: SAP ACSS Insights
+      url: "https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/get-quality-checks-insights"
+    - name: OpenSource Inventory Checks
+      url: "https://aka.ms/ACESInventoryCheckSAP"
 
 - description: SAP shared files systems are replicated or backed up to DR location
   aprlGuid: ee4dc309-00a1-49fe-92fa-1724baf5f103
@@ -238,8 +237,8 @@ Warm standby involves keeping VMs in the DR region running. On-demand Capacity R
   automationAvailable: no
   tags: null
   learnMoreLink:
-  - name: DR Guidance
-    url: https://learn.microsoft.com/en-us/azure/sap/workloads/disaster-recovery-sap-guide?tabs=windows
+    - name: DR Guidance
+      url: "https://learn.microsoft.com/en-us/azure/sap/workloads/disaster-recovery-sap-guide?tabs=windows"
 
 - description: Automate DR infrastructure build or pre-deploy DR resources
   aprlGuid: 0fabc52e-cdbb-4acd-8626-c4c637061e2d
@@ -258,7 +257,6 @@ Warm standby involves keeping VMs in the DR region running. On-demand Capacity R
   tags: null
   learnMoreLink:
 
-
 - description: Document and test DR procedure ensure it meets RPO and RTO targets
   aprlGuid: c300e949-528d-4ac9-889b-cacf8b4a6e90
   recommendationTypeId: null
@@ -267,9 +265,9 @@ Warm standby involves keeping VMs in the DR region running. On-demand Capacity R
   recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
-Create detailed documentation of your DR procedures for each layer of the SAP architecture-database, central services, application servers, and shared file systems. This documentation should include configuration details, failover mechanisms, and step-by-step recovery procedures.
+    Create detailed documentation of your DR procedures for each layer of the SAP architecture-database, central services, application servers, and shared file systems. This documentation should include configuration details, failover mechanisms, and step-by-step recovery procedures.
 
-Test a wide range of failure scenarios, including regional outages. Testing should confirm that your DR strategy is robust, meets your RPO and RTO targets, and provides seamless failover across all layers of the SAP architecture. This will ensure a comprehensive and resilient DR strategy capable of withstanding regional failures and ensuring business continuity.
+    Test a wide range of failure scenarios, including regional outages. Testing should confirm that your DR strategy is robust, meets your RPO and RTO targets, and provides seamless failover across all layers of the SAP architecture. This will ensure a comprehensive and resilient DR strategy capable of withstanding regional failures and ensuring business continuity.
   potentialBenefits: Ensures robust DR, meets RPO/RTO
   pgVerified: Verified
   publishedToLearn: false
@@ -295,7 +293,6 @@ Test a wide range of failure scenarios, including regional outages. Testing shou
   tags: null
   learnMoreLink:
 
-
 - description: Configure scheduled events notification
   aprlGuid: 6b589ce6-c847-4cee-af35-f6e8eb1cf983
   recommendationTypeId: null
@@ -304,16 +301,13 @@ Test a wide range of failure scenarios, including regional outages. Testing shou
   recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
-Scheduled events is an Azure Metadata Services that provides proactive notifications about upcoming maintenance events (for example, reboot) so that your application can prepare for them and limit disruption. You should configure scheduled events for all your critical Azure VMs.
+    Scheduled events is an Azure Metadata Services that provides proactive notifications about upcoming maintenance events (for example, reboot) so that your application can prepare for them and limit disruption. You should configure scheduled events for all your critical Azure VMs.
 
+    Resource agent azure-events-az can also integrate with Pacemaker clusters.
 
-Resource agent azure-events-az can also integrate with Pacemaker clusters.
+    To ensure high availability and service continuity in your Azure VMs, you should configure the azure-events-az resource agent within your Pacemaker clusters. This agent monitors for scheduled Azure maintenance events and can proactively relocate resources for a graceful node shutdown. Configure the agent to monitor specific event types such as Reboot and Redeploy, and enable verbose logging for detailed diagnostics.
 
-To ensure high availability and service continuity in your Azure VMs, you should configure the azure-events-az resource agent within your Pacemaker clusters. This agent monitors for scheduled Azure maintenance events and can proactively relocate resources for a graceful node shutdown. Configure the agent to monitor specific event types such as Reboot and Redeploy, and enable verbose logging for detailed diagnostics.
-
-
-
-In addition, it is also important that you define a procedure on how to react to scheduled events.
+    In addition, it is also important that you define a procedure on how to react to scheduled events.
   potentialBenefits: Proactive maintenance awareness
   pgVerified: Verified
   publishedToLearn: false
@@ -321,10 +315,10 @@ In addition, it is also important that you define a procedure on how to react to
   automationAvailable: no
   tags: null
   learnMoreLink:
-  - name: VM Scheduled Events
-    url: https://learn.microsoft.com/en-us/azure/virtual-machines/linux/scheduled-events
-  - name: Configure Pacemaker for Azure Scheduled Events
-    url: https://learn.microsoft.com/en-us/azure/sap/workloads/high-availability-guide-suse-pacemaker?tabs=msi#configure-pacemaker-for-azure-scheduled-events
+    - name: VM Scheduled Events
+      url: "https://learn.microsoft.com/en-us/azure/virtual-machines/linux/scheduled-events"
+    - name: Configure Pacemaker for Azure Scheduled Events
+      url: "https://learn.microsoft.com/en-us/azure/sap/workloads/high-availability-guide-suse-pacemaker?tabs=msi#configure-pacemaker-for-azure-scheduled-events"
 
 - description: ASCS-Pacemaker (Central Server Instance) Ensure Pacemaker cluster has been setup for SAP ASCS high availability
   aprlGuid: 9d8f6678-694c-4da4-8384-415201f65194
@@ -342,12 +336,12 @@ In addition, it is also important that you define a procedure on how to react to
   automationAvailable: no
   tags: null
   learnMoreLink:
-  - name: SAP ACSS Insights
-    url: https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/get-quality-checks-insights
-  - name: OpenSource Quality Checks
-    url: https://github.com/Azure/SAP-on-Azure-Scripts-and-Utilities/tree/main/QualityCheck
-  - name: ASCS-Pacemaker - Central Server Instance
-    url: https://docs.microsoft.com/en-us/azure/advisor/advisor-reference-reliability-recommendations
+    - name: SAP ACSS Insights
+      url: "https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/get-quality-checks-insights"
+    - name: OpenSource Quality Checks
+      url: "https://github.com/Azure/SAP-on-Azure-Scripts-and-Utilities/tree/main/QualityCheck"
+    - name: ASCS-Pacemaker - Central Server Instance
+      url: "https://docs.microsoft.com/en-us/azure/advisor/advisor-reference-reliability-recommendations"
 
 - description: ASCS-LB (Central Server Instance) Ensure the load balancer is configured correctly for SAP ASCS High availability
   aprlGuid: 5c2e52d0-25be-4b1c-833c-b98b5ef1a26b
@@ -365,12 +359,12 @@ In addition, it is also important that you define a procedure on how to react to
   automationAvailable: no
   tags: null
   learnMoreLink:
-  - name: SAP ACSS Insights
-    url: https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/get-quality-checks-insights
-  - name: OpenSource Quality Checks
-    url: https://github.com/Azure/SAP-on-Azure-Scripts-and-Utilities/tree/main/QualityCheck
-  - name: ASCS-LB - Central Server Instance
-    url: https://docs.microsoft.com/en-us/azure/advisor/advisor-reference-reliability-recommendations
+    - name: SAP ACSS Insights
+      url: "https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/get-quality-checks-insights"
+    - name: OpenSource Quality Checks
+      url: "https://github.com/Azure/SAP-on-Azure-Scripts-and-Utilities/tree/main/QualityCheck"
+    - name: ASCS-LB - Central Server Instance
+      url: "https://docs.microsoft.com/en-us/azure/advisor/advisor-reference-reliability-recommendations"
 
 - description: DBHANA-Pacemaker (Database Instance) Ensure the Pacemaker cluster has been setup for SAP HANA DB high availability
   aprlGuid: 6648fe61-880d-4a96-8d2d-190a23d5580b
@@ -388,12 +382,12 @@ In addition, it is also important that you define a procedure on how to react to
   automationAvailable: no
   tags: null
   learnMoreLink:
-  - name: SAP ACSS Insights
-    url: https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/get-quality-checks-insights
-  - name: OpenSource Quality Checks
-    url: https://github.com/Azure/SAP-on-Azure-Scripts-and-Utilities/tree/main/QualityCheck
-  - name: DBHANA-Pacemaker - Database Instance
-    url: https://docs.microsoft.com/en-us/azure/advisor/advisor-reference-reliability-recommendations
+    - name: SAP ACSS Insights
+      url: "https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/get-quality-checks-insights"
+    - name: OpenSource Quality Checks
+      url: "https://github.com/Azure/SAP-on-Azure-Scripts-and-Utilities/tree/main/QualityCheck"
+    - name: DBHANA-Pacemaker - Database Instance
+      url: "https://docs.microsoft.com/en-us/azure/advisor/advisor-reference-reliability-recommendations"
 
 - description: DBHANA-LB (Database Instance) Ensure the load balancer is configured correctly for SAP HANA DB High availability
   aprlGuid: 2e4c2171-a83f-4238-a8e3-b51c90d86a99
@@ -411,10 +405,9 @@ In addition, it is also important that you define a procedure on how to react to
   automationAvailable: no
   tags: null
   learnMoreLink:
-  - name: SAP ACSS Insights
-    url: https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/get-quality-checks-insights
-  - name: OpenSource Quality Checks
-    url: https://github.com/Azure/SAP-on-Azure-Scripts-and-Utilities/tree/main/QualityCheck
-  - name: DBHANA-LB- Database Instance
-    url: https://docs.microsoft.com/en-us/azure/advisor/advisor-reference-reliability-recommendations
-
+    - name: SAP ACSS Insights
+      url: "https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/get-quality-checks-insights"
+    - name: OpenSource Quality Checks
+      url: "https://github.com/Azure/SAP-on-Azure-Scripts-and-Utilities/tree/main/QualityCheck"
+    - name: DBHANA-LB- Database Instance
+      url: "https://docs.microsoft.com/en-us/azure/advisor/advisor-reference-reliability-recommendations"
