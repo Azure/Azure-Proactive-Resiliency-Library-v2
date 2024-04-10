@@ -7,7 +7,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Enabling diagnostics logging for your Azure App Service is crucial for monitoring and diagnostics, including both application logging and web server logging.
-  potentialBenefits Enhanced monitoring & diagnostics
+  potentialBenefits: Enhanced monitoring & diagnostics
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -26,7 +26,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Use Application Insights to monitor app performance and load behavior, offering real-time insights, issue diagnosis, and root-cause analysis. It supports ASP.NET, ASP.NET Core, Java, and Node.js on Azure App Service, now with built-in monitoring.
-  potentialBenefits Real-time insights & issue diagnosis
+  potentialBenefits: Real-time insights & issue diagnosis
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -47,7 +47,7 @@
   recommendationMetadataState: Active
   longDescription: |
     If your solution includes both a web front end and a web API, decomposing them into separate App Service apps facilitates solution decomposition by workload, allowing for independent scaling. Initially, you can deploy both in the same plan and separate them for independent scaling when necessary.
-  potentialBenefits Independent scaling, easier management
+  potentialBenefits: Independent scaling, easier management
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -66,7 +66,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Creating a separate storage account for logs and not using the same one for application data prevents logging activities from reducing application performance by ensuring that the resources dedicated to handling application data are not burdened by logging processes.
-  potentialBenefits Improves app performance
+  potentialBenefits: Improves app performance
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -85,7 +85,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Create a deployment slot for staging to deploy updates, verify them, and ensure all instances are warmed up before production swap, reducing bad update chances. An LKG slot allows easy rollback to a previous good deployment if issues arise later, enhancing reliability.
-  potentialBenefits Safer updates & easy rollback
+  potentialBenefits: Safer updates & easy rollback
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -104,7 +104,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Use app settings for configuration and define them in Resource Manager templates or via PowerShell to facilitate part of an automated deployment/update process for improved reliability.
-  potentialBenefits Enhanced reliability via automation
+  potentialBenefits: Enhanced reliability via automation
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -113,4 +113,3 @@
   learnMoreLink:
     - name: Configure web apps in Azure App Service
       url: "https://learn.microsoft.com/azure/app-service-web/web-sites-configure"
-

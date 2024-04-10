@@ -7,7 +7,7 @@
   recommendationMetadataState: Active
   longDescription: |
     A Citrix Managed Azure subscription supports VMs with VDA for app/desktop delivery, excluding other machines like Cloud Connectors. When close to the limit, signaled by a dashboard notification, and with sufficient licenses, request another subscription. Can't exceed the given limits for catalogs.
-  potentialBenefits Avoids hitting limit, ensures reliability
+  potentialBenefits: Avoids hitting limit, ensures reliability
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -16,4 +16,3 @@
   learnMoreLink:
     - name: Citrix Limits
       url: "https://docs.citrix.com/en-us/citrix-daas-azure/limits"
-

@@ -7,7 +7,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Selecting Standard SKU Load Balancer enhances reliability through availability zones and zone resiliency, ensuring deployments withstand zone and region failures. Unlike Basic, it supports global load balancing and offers an SLA.
-  potentialBenefits Enhanced reliability & SLA support
+  potentialBenefits: Enhanced reliability & SLA support
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -28,7 +28,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Deploying Azure Load Balancers with at least two instances in the backend prevents a single point of failure and supports scalability. Pairing with Virtual Machine Scale Sets is advised for optimal scale building.
-  potentialBenefits Enhances reliability & scalability
+  potentialBenefits: Enhances reliability & scalability
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -47,7 +47,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Outbound rules for Standard Public Load Balancer involve manual port allocation for backend pools, limiting scalability and risk of SNAT port exhaustion. NAT Gateway is recommended for its dynamic scaling and secure internet connectivity.
-  potentialBenefits Enhanced scalability and reliability
+  potentialBenefits: Enhanced scalability and reliability
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -66,7 +66,7 @@
   recommendationMetadataState: Active
   longDescription: |
     In regions with Availability Zones, assigning a zone-redundant frontend IP to a Standard Load Balancer ensures continuous traffic distribution even if one availability zone fails, provided other healthy zones and backend instances are available to receive the traffic.
-  potentialBenefits Enhances uptime & resilience
+  potentialBenefits: Enhances uptime & resilience
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false

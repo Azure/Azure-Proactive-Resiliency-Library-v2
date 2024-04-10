@@ -6,8 +6,8 @@
   recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
-    Currently in all HPC Pack ARM templates we create the cluster share on one of the head node which is not highly available. 
-  potentialBenefits Enhances job metadata availability
+    Currently in all HPC Pack ARM templates we create the cluster share on one of the head node which is not highly available.
+  potentialBenefits: Enhances job metadata availability
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -25,8 +25,8 @@
   recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
-    By deploying Azure "burst" nodes (both Windows and Linux) in your HPC Pack cluster or creating your HPC Pack cluster in Azure, you can automatically grow or shrink the cluster's resources such as nodes or cores according to the workload on the cluster. 
-  potentialBenefits Efficient, uninterrupted execution
+    By deploying Azure "burst" nodes (both Windows and Linux) in your HPC Pack cluster or creating your HPC Pack cluster in Azure, you can automatically grow or shrink the cluster's resources such as nodes or cores according to the workload on the cluster.
+  potentialBenefits: Efficient, uninterrupted execution
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -45,7 +45,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Establish a cluster with a minimum of two head nodes. In the event of a head node failure, the active HPC Service will be automatically transferred from the affected head node to another functioning one.
-  potentialBenefits Enhanced reliability for HPC
+  potentialBenefits: Enhanced reliability for HPC
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -63,8 +63,8 @@
   recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
-    When HPC failed to connect to the Domain controller, admin and user will not be able to connect to the HPC Service thus not able to manage and submit jobs to the cluster. 
-  potentialBenefits Enhanced reliability & job management
+    When HPC failed to connect to the Domain controller, admin and user will not be able to connect to the HPC Service thus not able to manage and submit jobs to the cluster.
+  potentialBenefits: Enhanced reliability & job management
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -83,7 +83,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Azure Availability Zones are physically separate locations within each Azure region that are tolerant to local failures. Use availability zones to protect your applications and data against unlikely data center failures. Ensure each single point of failure of each SAP production system is protected with high availability using multiple availability zones. If you cannot deploy across different zones in a region, then  refer to Microsoft guidance for High availability deployment options for SAP workload.
-  potentialBenefits High availability for SAP systems
+  potentialBenefits: High availability for SAP systems
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -110,7 +110,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Use Virtual Machines Scale Set (VMSS) with flexible orchestration to distribute the virtual machines across specified zones and within each zone to also distribute VMs across different fault domains within the zone on a best effort basis. Configure VMSS Flex following Microsoft recommendation for SAP workload using the right mode and correct settings. If you aren't currently using VMSS Flex for SAP application servers and also not using Availability Sets with Fault domain & Update domain distribution, then you should consider moving to VMSS Flex architecture to improve the resiliency posture of your SAP deployment. The following blog post in links below outlines the details on the process of migrating existing SAP workloads that are deployed in an availability set or availability zone to a flexible scale set with FD=1 deployment option.
-  potentialBenefits Enhanced resiliency for SAP on Azure
+  potentialBenefits: Enhanced resiliency for SAP on Azure
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -135,7 +135,7 @@
   recommendationMetadataState: Active
   longDescription: |
     For single-instance VMs, both OS and data disks must be either Premium SSD or Ultra Disk to achieve the single-instance SLA of 99.9% availability.
-  potentialBenefits Higher SLA of 99.9% with SSDs
+  potentialBenefits: Higher SLA of 99.9% with SSDs
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -162,7 +162,7 @@
   recommendationMetadataState: Active
   longDescription: |
     High availability for databases should be implemented using database native replication technologies and the data should be replicated synchronously that is in SYNC mode from primary database to a stand-by node.
-  potentialBenefits Ensures high availability for SAP data
+  potentialBenefits: Ensures high availability for SAP data
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -184,7 +184,7 @@
   longDescription: |
 SAP shared file systems such as /sapmnt, /usr/trans, interfaces should be made highly available.
 In case of Azure File Shares, we recommend that you use ZRS (Zone-redundant storage) and for Azure NetApp Files use Zonal replication for your volumes.
-  potentialBenefits Enhanced data availability for SAP
+  potentialBenefits: Enhanced data availability for SAP
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -204,7 +204,7 @@ In case of Azure File Shares, we recommend that you use ZRS (Zone-redundant stor
   longDescription: |
 Test all high availability solutions thoroughly (including kernel panic in Linux VMs and also fail-back). Include zonal failure scenarios in your testing, the testing should confirm that each layer of your SAP solution including database, central services, application servers and shared file systems is configured correctly for zone redundancy, the solution meets RPO = 0 and the application fails over automatically meeting your RTO.
 The fail back can be either automatic or manual.
-  potentialBenefits Ensures SAP Azure's failover reliability
+  potentialBenefits: Ensures SAP Azure's failover reliability
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -228,7 +228,7 @@ During planned maintenances and fail over testing, you can leverage the migrate 
 
 Once the planned task necessitating the resource migration is complete, manually remove the temporary constraint to revert to the cluster's original resource management policies.
 This approach allows for controlled resource movement within the cluster, facilitating maintenance while preserving the integrity and efficiency of the cluster's configuration.
-  potentialBenefits Enhanced maintenance and failover handling
+  potentialBenefits: Enhanced maintenance and failover handling
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -248,7 +248,7 @@ This approach allows for controlled resource movement within the cluster, facili
 To ensure the availability of compute resources for critical VM roles in a DR region, consider securing capacity either through a warm standby approach or by utilizing Azure's On-demand Capacity Reservation.
 
 Warm standby involves keeping VMs in the DR region running. On-demand Capacity Reservation, on the other hand, reserves compute capacity without having to run the VMs, allowing you to start them when needed. When DR VMs are not needed, the reserved capacity may safely be used to run other workloads without the risk of losing the capacity to other customers. This strategy guarantees resource availability for your critical workloads in the event of a disaster, balancing cost and readiness.
-  potentialBenefits Guarantees DR region availability
+  potentialBenefits: Guarantees DR region availability
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -267,7 +267,7 @@ Warm standby involves keeping VMs in the DR region running. On-demand Capacity R
   recommendationMetadataState: Active
   longDescription: |
     Replicate production databases (ASYNC) to the DR location using the database vendor�s replication technology.
-  potentialBenefits Enhanced DR resilience
+  potentialBenefits: Enhanced DR resilience
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -286,7 +286,7 @@ Warm standby involves keeping VMs in the DR region running. On-demand Capacity R
   recommendationMetadataState: Active
   longDescription: |
     SAP components such as (A)SCS, application servers, WebDispatchers, etc are backed up to DR location using an appropriate backup tool or ASR.
-  potentialBenefits Ensures SAP data safety & recovery
+  potentialBenefits: Ensures SAP data safety & recovery
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -307,7 +307,7 @@ Warm standby involves keeping VMs in the DR region running. On-demand Capacity R
   recommendationMetadataState: Active
   longDescription: |
     Implementing robust monitoring and alerting for DR in SAP on Azure ensures coverage across its complex, multi-layer architecture. This strategy is crucial for databases, services, applications, and shared systems.
-  potentialBenefits Enhances SAP DR oversight
+  potentialBenefits: Enhances SAP DR oversight
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -326,7 +326,7 @@ Warm standby involves keeping VMs in the DR region running. On-demand Capacity R
   recommendationMetadataState: Active
   longDescription: |
     Automate the build of disaster recovery (DR) infrastructure (or pre-deploy DR resources) and streamline SAP service recovery as much as possible.
-  potentialBenefits Faster SAP recovery, reduced downtime
+  potentialBenefits: Faster SAP recovery, reduced downtime
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -346,7 +346,7 @@ Warm standby involves keeping VMs in the DR region running. On-demand Capacity R
 Create detailed documentation of your DR procedures for each layer of the SAP architecture-database, central services, application servers, and shared file systems. This documentation should include configuration details, failover mechanisms, and step-by-step recovery procedures.
 
 Test a wide range of failure scenarios, including regional outages. Testing should confirm that your DR strategy is robust, meets your RPO and RTO targets, and provides seamless failover across all layers of the SAP architecture. This will ensure a comprehensive and resilient DR strategy capable of withstanding regional failures and ensuring business continuity.
-  potentialBenefits Ensures robust DR, meets RPO/RTO
+  potentialBenefits: Ensures robust DR, meets RPO/RTO
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -364,7 +364,7 @@ Test a wide range of failure scenarios, including regional outages. Testing shou
   recommendationMetadataState: Active
   longDescription: |
     For an SAP solution hosted on Azure it is imperative to implement a robust monitoring and alerting solution that comprehensively covers DR of each layer of the SAP architecture. Given the complexity of SAP systems, which span multiple layers using diverse technologies and Azure resources, each with potentially distinct DR replication mechanisms, an appropriate monitoring strategy is crucial. The different layers include database, central services, application, and shared file systems.
-  potentialBenefits Improved DR oversight & rapid issue response
+  potentialBenefits: Improved DR oversight & rapid issue response
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -391,7 +391,7 @@ To ensure high availability and service continuity in your Azure VMs, you should
 
 
 In addition, it is also important that you define a procedure on how to react to scheduled events.
-  potentialBenefits Proactive maintenance awareness
+  potentialBenefits: Proactive maintenance awareness
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -412,7 +412,7 @@ In addition, it is also important that you define a procedure on how to react to
   recommendationMetadataState: Active
   longDescription: |
     For the ASCS-Pacemaker (Central Server Instance), ensure that the Pacemaker cluster configuration parameters are correctly set up for SAP ASCS high availability.
-  potentialBenefits Enhances SAP ASCS uptime
+  potentialBenefits: Enhances SAP ASCS uptime
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -435,7 +435,7 @@ In addition, it is also important that you define a procedure on how to react to
   recommendationMetadataState: Active
   longDescription: |
     For the ASCS-LB (Central Server Instance), ensure that the load balancer is configured correctly for SAP ASCS high availability.
-  potentialBenefits Enhanced HA for SAP ASCS
+  potentialBenefits: Enhanced HA for SAP ASCS
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -458,7 +458,7 @@ In addition, it is also important that you define a procedure on how to react to
   recommendationMetadataState: Active
   longDescription: |
     For the DBHANA-Pacemaker (Database Instance), ensure that the Pacemaker cluster configuration parameters are correctly set up for SAP HANA DB high availability.
-  potentialBenefits Enhances SAP HANA DB uptime
+  potentialBenefits: Enhances SAP HANA DB uptime
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -481,7 +481,7 @@ In addition, it is also important that you define a procedure on how to react to
   recommendationMetadataState: Active
   longDescription: |
     For the DBHANA-LB (Database Instance), make sure the load balancer is configured correctly for SAP HANA DB high availability.
-  potentialBenefits Enhanced DB availability
+  potentialBenefits: Enhanced DB availability
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false

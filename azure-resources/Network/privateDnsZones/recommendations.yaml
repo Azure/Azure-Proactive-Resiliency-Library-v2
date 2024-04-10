@@ -7,7 +7,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Private DNS zones and records are critical and their deletion can cause service outages. To protect against unauthorized or accidental changes, the Private DNS Zone Contributor role, a built-in role for managing these resources, should be assigned to specific users or groups.
-  potentialBenefits Prevents DNS outages
+  potentialBenefits: Prevents DNS outages
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -26,7 +26,7 @@
   recommendationMetadataState: Active
   longDescription: |
     The records in a private DNS zone are only resolvable from linked virtual networks. You can link a private DNS zone to multiple networks and enable autoregistration to manage DNS records for virtual machines automatically.
-  potentialBenefits Enhanced DNS reliability & alerting
+  potentialBenefits: Enhanced DNS reliability & alerting
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -45,7 +45,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Azure Private DNS offers a reliable, secure way to handle domain names within virtual networks, using custom domains instead of default Azure names. Records in these zones aren't internet-accessible, only resolvable within linked virtual networks.
-  potentialBenefits Ensures seamless failover for DNS
+  potentialBenefits: Ensures seamless failover for DNS
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false

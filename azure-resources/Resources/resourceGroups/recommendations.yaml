@@ -7,7 +7,7 @@
   recommendationMetadataState: Active
   longDescription: |
     The root management group in Azure is designed for organizational hierarchy, allowing for all management groups and subscriptions to fold into it.
-  potentialBenefits Enhanced security, compliance, and management
+  potentialBenefits: Enhanced security, compliance, and management
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -28,7 +28,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Ensure resource locations align with their resource group to manage resources during regional outages. ARM stores resource data, which if in an unavailable region, could halt updates, rendering resources read-only.
-  potentialBenefits Improves outage management
+  potentialBenefits: Improves outage management
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false

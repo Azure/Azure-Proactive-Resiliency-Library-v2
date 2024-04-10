@@ -7,7 +7,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Data export in a Log Analytics workspace to an Azure Storage account enhances data protection against regional failures by using geo-redundant (GRS) or geo-zone-redundant storage (GZRS), mainly for compliance and integration with other Azure services and tools.
-  potentialBenefits Enhances compliance and regional fault tolerance
+  potentialBenefits: Enhances compliance and regional fault tolerance
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -28,7 +28,7 @@
   recommendationMetadataState: Active
   longDescription: |
     A health status alert will proactively notify you if a workspace becomes unavailable because of a datacenter or regional failure.
-  potentialBenefits Early alert for workspace failure
+  potentialBenefits: Early alert for workspace failure
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -49,7 +49,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Azure Monitor Logs retain log data for specific periods depending on the data type, e.g., 30 days for platform logs. For compliance or business reasons, you might need longer retention. Data retention settings are adjustable.
-  potentialBenefits Cost-saving & compliance with data rules
+  potentialBenefits: Cost-saving & compliance with data rules
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false

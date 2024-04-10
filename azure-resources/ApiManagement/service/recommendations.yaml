@@ -7,7 +7,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Upgrading the API Management instance to the Premium SKU adds support for Availability Zones, enhancing availability and resilience by distributing services across physically separate locations within Azure regions.
-  potentialBenefits Enhanced availability & resilience
+  potentialBenefits: Enhanced availability & resilience
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -28,7 +28,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Zone redundancy for APIM instances ensures the gateway and control plane (Management API, developer portal, Git configuration) are replicated across datacenters in physically separated zones, boosting resilience to zone failures.
-  potentialBenefits Improved resilience to zone failures
+  potentialBenefits: Improved resilience to zone failures
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -49,7 +49,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Upgrading to API Management stv2 is required as stv1 retires on 31 Aug 2024, offering enhanced capabilities with the new platform version.
-  potentialBenefits Ensures service continuity
+  potentialBenefits: Ensures service continuity
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false

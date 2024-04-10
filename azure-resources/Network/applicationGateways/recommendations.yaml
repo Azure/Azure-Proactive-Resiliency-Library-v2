@@ -7,7 +7,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Azure Application Gateways v2 are deployed highly available with multiple instances by default.
-  potentialBenefits Enhances uptime & enables autoscaling
+  potentialBenefits: Enhances uptime & enables autoscaling
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -26,7 +26,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Secure all incoming connections using HTTPS for production services with end-to-end SSL/TLS or SSL/TLS termination at the Application Gateway to protect against attacks and ensure data remains private and encrypted between the web server and browsers.
-  potentialBenefits Enhanced security & privacy
+  potentialBenefits: Enhanced security & privacy
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -53,7 +53,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Use Application Gateway with Web Application Firewall (WAF) in an application virtual network to safeguard inbound HTTP/S internet traffic. WAF offers centralized defense against potential exploits through OWASP core rule sets-based rules.
-  potentialBenefits Enhanced security for HTTP/S traffic
+  potentialBenefits: Enhanced security for HTTP/S traffic
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -74,7 +74,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Use Application Gateway v2 for built-in features like autoscaling, static VIPs, Azure KeyVault integration for better traffic management and performance, unless v1 is necessary.
-  potentialBenefits Better performance, autoscaling, more features
+  potentialBenefits: Better performance, autoscaling, more features
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -97,7 +97,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Enable logging in storage accounts, Log Analytics, and monitoring services for auditing and insights. If using NSGs, enable NSG flow logs to be stored, providing in-depth traffic analysis into Azure Cloud.
-  potentialBenefits Enhanced traffic insight & audit
+  potentialBenefits: Enhanced traffic insight & audit
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -118,7 +118,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Using custom health probes enhances understanding of backend availability and facilitates monitoring of backend services for any impact.
-  potentialBenefits Ensures backend uptime monitoring.
+  potentialBenefits: Ensures backend uptime monitoring.
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -139,7 +139,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Deploying Application Gateway in a zone-aware configuration ensures continued customer access to services even if a specific zone goes down, as services in other zones remain available.
-  potentialBenefits Enhanced uptime & customer access
+  potentialBenefits: Enhanced uptime & customer access
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -160,7 +160,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Using connection draining for backend maintenance ensures graceful removal of backend pool members during updates or health issues. It's enabled via Backend Setting and applies to all members during rule creation.
-  potentialBenefits Smooth updates, no dropped users
+  potentialBenefits: Smooth updates, no dropped users
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -181,7 +181,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Application Gateway v2 (Standard_v2 or WAF_v2 SKU) can support up to 125 instances. A /24 subnet isn't mandatory for deployment but is advised to provide enough space for autoscaling and maintenance upgrades.
-  potentialBenefits Allows autoscaling and maintenance
+  potentialBenefits: Allows autoscaling and maintenance
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false

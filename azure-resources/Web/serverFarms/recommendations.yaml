@@ -7,7 +7,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Azure's feature of deploying App Service plans across availability zones enhances resiliency and reliability by ensuring operation during datacenter failures, providing redundancy without needing different regions, thus minimizing downtime and maintaining uninterrupted services.
-  potentialBenefits Enhances app resiliency & reliability
+  potentialBenefits: Enhances app resiliency & reliability
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -28,7 +28,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Choose Standard/Premium Azure App Service Plan for robust apps with advanced scaling, high availability, better performance, and multiple slots, ensuring resilience and continuous operation.
-  potentialBenefits Enhanced scaling & reliability
+  potentialBenefits: Enhanced scaling & reliability
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -47,7 +47,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Avoid frequent scaling up/down of Azure App Service instances to prevent service disruptions. Choose the right tier and size for the workload and scale out for traffic changes, as scaling adjustments can trigger application restarts.
-  potentialBenefits Minimizes restarts, enhances stability
+  potentialBenefits: Minimizes restarts, enhances stability
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -66,7 +66,7 @@
   recommendationMetadataState: Active
   longDescription: |
     It is strongly recommended to create separate App Service plans for production and test environments to avoid using slots within your production deployment for testing purposes.
-  potentialBenefits Protects prod performance; avoids test impact
+  potentialBenefits: Protects prod performance; avoids test impact
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -85,7 +85,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Enabling Autoscale/Automatic Scaling for your Azure App Service ensures sufficient resources for incoming requests. Autoscaling is rule-based, whereas Automatic Scaling, a newer feature, automatically adjusts resources based on HTTP traffic.
-  potentialBenefits Optimizes resources for traffic
+  potentialBenefits: Optimizes resources for traffic
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -96,4 +96,3 @@
       url: "https://learn.microsoft.com/en-us/azure/app-service/manage-automatic-scaling?tabs=azure-portal"
     - name: Auto Scale Web Apps
       url: "https://learn.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-get-started"
-

@@ -7,7 +7,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Network security groups and application security groups allow filtering of inbound and outbound traffic by IP, port, and protocol, adding a security layer at the Subnet level.
-  potentialBenefits Enhanced subnet security & traffic control
+  potentialBenefits: Enhanced subnet security & traffic control
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -32,7 +32,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Azure DDoS Protection offers enhanced mitigation features against DDoS attacks and is auto-tuned to protect specific resources in a virtual network, combined with application design best practices.
-  potentialBenefits Enhanced DDoS attack mitigation
+  potentialBenefits: Enhanced DDoS attack mitigation
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -51,7 +51,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Use VNet service endpoints only if Private Link isn't available and no data movement concerns. This feature restricts Azure service access to specified VNet and subnet, enhancing network security and isolating service traffic.
-  potentialBenefits Enhanced security & data isolation
+  potentialBenefits: Enhanced security & data isolation
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false

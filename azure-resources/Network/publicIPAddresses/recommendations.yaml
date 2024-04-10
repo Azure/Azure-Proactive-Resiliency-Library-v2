@@ -7,7 +7,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Public IP addresses in Azure can be of standard SKU, available as non-zonal, zonal, or zone-redundant. Zone-redundant IPs are accessible across all zones, resisting any single zone failure, thereby providing higher resilience.
-  potentialBenefits Enhanced resilience with zone redundancy
+  potentialBenefits: Enhanced resilience with zone redundancy
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -28,7 +28,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Prevent connectivity failures due to SNAT port exhaustion by employing NAT gateway for outbound traffic from virtual networks, ensuring dynamic scaling and secure internet connections.
-  potentialBenefits Avoids SNAT port exhaustion risks
+  potentialBenefits: Avoids SNAT port exhaustion risks
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -49,7 +49,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Basic SKU public IP addresses will be retired on September 30, 2025. Users are advised to upgrade to Standard SKU public IP addresses before this date to avoid service disruptions.
-  potentialBenefits Avoids service disruption
+  potentialBenefits: Avoids service disruption
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false

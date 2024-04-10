@@ -7,7 +7,7 @@
   recommendationMetadataState: Active
   longDescription: |
     For most solutions, choose either Azure Front Door for content caching, CDN, TLS termination, and WAF, or Traffic Manager for simple global load balancing.
-  potentialBenefits Optimized network routing and security
+  potentialBenefits: Optimized network routing and security
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -32,7 +32,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Front Door's features perform optimally when traffic exclusively comes through Front Door. It's advised to set up your origin to deny access to traffic that bypasses Front Door.
-  potentialBenefits Enhances security & performance
+  potentialBenefits: Enhances security & performance
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -51,7 +51,7 @@
   recommendationMetadataState: Active
   longDescription: |
     When working with Azure Front Door through APIs, ARM templates, Bicep, or SDKs, using the latest API or SDK version is crucial. Updates bring new functions, important security patches, and bug fixes.
-  potentialBenefits Enhanced security & features
+  potentialBenefits: Enhanced security & features
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -74,7 +74,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Front Door logs offer comprehensive telemetry on each request, crucial for understanding your solution's performance and responses, especially when caching is enabled, as origin servers might not receive every request.
-  potentialBenefits Enhanced insights and solution monitoring
+  potentialBenefits: Enhanced insights and solution monitoring
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -97,7 +97,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Front Door terminates TCP and TLS connections from clients and establishes new connections from each PoP to the origin. Securing these connections with TLS, even for Azure-hosted origins, ensures data is always encrypted during transit.
-  potentialBenefits Ensures data encryption in transit
+  potentialBenefits: Ensures data encryption in transit
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -116,7 +116,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Using HTTPS is ideal for secure connections. However, for compatibility with older clients, HTTP requests may be necessary. Azure Front Door enables auto redirection of HTTP to HTTPS, enhancing security without sacrificing accessibility.
-  potentialBenefits Enhances security and compliance
+  potentialBenefits: Enhances security and compliance
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -135,7 +135,7 @@
   recommendationMetadataState: Active
   longDescription: |
     When Front Door manages your TLS certificates, it reduces your operational costs and helps you to avoid costly outages caused by forgetting to renew a certificate. Front Door automatically issues and rotates the managed TLS certificates.
-  potentialBenefits Lowers costs, avoids outages
+  potentialBenefits: Lowers costs, avoids outages
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -154,7 +154,7 @@
   recommendationMetadataState: Active
   longDescription: |
     If you use your own TLS certificates, set the Key Vault certificate version to 'Latest' to avoid reconfiguring Azure Front Door for new certificate versions and waiting for deployment across Front Door's environments.
-  potentialBenefits Saves time & automates TLS updates
+  potentialBenefits: Saves time & automates TLS updates
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -173,7 +173,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Front Door can rewrite Host headers for custom domain names routing to a single origin, useful for avoiding custom domain configuration at both Front Door and the origin.
-  potentialBenefits Improves session/auth handling
+  potentialBenefits: Improves session/auth handling
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -192,7 +192,7 @@
   recommendationMetadataState: Active
   longDescription: |
     For internet-facing applications, enabling the Front Door web application firewall (WAF) and configuring it to use managed rules is recommended for protection against a wide range of attacks using Microsoft-managed rules.
-  potentialBenefits Enhances web app security
+  potentialBenefits: Enhances web app security
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -211,7 +211,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Front Door health probes help detect unavailable or unhealthy origins, directing traffic to alternate origins if needed.
-  potentialBenefits Reduces unnecessary origin traffic
+  potentialBenefits: Reduces unnecessary origin traffic
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -230,7 +230,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Consider selecting a webpage or location specifically designed for health monitoring as the endpoint for Azure Front Door's health probes. This should encompass the status of critical components like application servers, databases, and caches to serve production traffic efficiently.
-  potentialBenefits Improves traffic routing & uptime
+  potentialBenefits: Improves traffic routing & uptime
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -249,7 +249,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Health probes in Azure Front Door can use GET or HEAD HTTP methods. Using the HEAD method for health probes is a recommended practice because it reduces the traffic load on your origins, being less resource-intensive.
-  potentialBenefits Reduces traffic load on origins
+  potentialBenefits: Reduces traffic load on origins
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -268,7 +268,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Azure Front Door's geo-filtering through WAF enables defining custom access rules by country/region to restrict or allow web app access.
-  potentialBenefits Enhanced regional access control
+  potentialBenefits: Enhanced regional access control
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -287,7 +287,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Azure Private Link enables secure access to Azure PaaS and services over a private endpoint in your virtual network, ensuring traffic goes over the Microsoft backbone network, not the public internet.
-  potentialBenefits Enhanced security & private connectivity
+  potentialBenefits: Enhanced security & private connectivity
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false

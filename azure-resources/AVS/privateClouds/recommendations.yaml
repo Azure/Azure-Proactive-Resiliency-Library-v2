@@ -7,7 +7,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Ensure Azure Service Health notifications are set for Azure VMware Solution across all used regions and subscriptions. This communicates service/security issues and maintenance activities like host replacements and upgrades, reducing service request submissions.
-  potentialBenefits Prompt mitigation of issues.
+  potentialBenefits: Prompt mitigation of issues.
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -26,7 +26,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Set an alert for when the node count in Azure VMware Solution Private Cloud hits or exceeds 90 hosts, enabling timely planning for a new private cloud.
-  potentialBenefits Proactive capacity planning
+  potentialBenefits: Proactive capacity planning
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -45,7 +45,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Alert when the cluster size reaches 14 hosts. Set up periodic alerts for planning new clusters or datastores due to growth, especially from storage needs. Beyond 14 hosts, trigger alerts for each new host addition for proactive resource monitoring.
-  potentialBenefits Proactive resource management
+  potentialBenefits: Proactive resource management
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -64,7 +64,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Use the Interconnect feature for direct communication between private clouds in different availability zones, enabling connectivity between the private clouds management and workload networks.
-  potentialBenefits Enhanced private cloud connectivity
+  potentialBenefits: Enhanced private cloud connectivity
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -83,7 +83,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Ensure two external identity sources are configured for NSX and vCenter Server. The VMware vCenter Server and NSX Manager use these for authentication with external identities.
-  potentialBenefits Continuous login access during maintenances
+  potentialBenefits: Continuous login access during maintenances
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -104,7 +104,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Enable Network Extension High Availability for appliance failure tolerance in HCX service. It pairs selected appliances for Active Standby configuration, ensuring high availability and quick recovery, keeping configurations in-service despite failures.
-  potentialBenefits Improves HCX service continuity
+  potentialBenefits: Improves HCX service continuity
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -125,7 +125,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Do not extend the network used by the HCX Management devices to ensure the network's security and stability.
-  potentialBenefits Enhanced network safety & performance
+  potentialBenefits: Enhanced network safety & performance
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -144,7 +144,7 @@
   recommendationMetadataState: Active
   longDescription: |
     For Azure VMware Solution, enabling Stretched Clusters offers 99.99% SLA, synchronous storage replication (RPO=0), and spreads vSAN datastore across two AZs. Must be done at initial setup, needing double quota due to extension across AZs.
-  potentialBenefits 99.99% SLA, 0 RPO, Multi-AZ
+  potentialBenefits: 99.99% SLA, 0 RPO, Multi-AZ
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -165,7 +165,7 @@
   recommendationMetadataState: Active
   longDescription: |
     The Azure VMware Solution's service SLA is influenced by vSAN storage policies, which change based on cluster size. For clusters over 6 hosts, an FTT-2 policy (RAID-1 or RAID-6) is advised. FTT refers to the Fault Tolerance feature.
-  potentialBenefits Enhanced cluster reliability
+  potentialBenefits: Enhanced cluster reliability
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -186,7 +186,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Ensure VMware vSAN datastore slack space is maintained for SLA by monitoring storage utilization and setting alerts at 70% and 75% utilization to allow for capacity planning. To expand, add hosts or external storage like Azure Elastic SAN, Azure NetApp Files, if CPU and RAM requirements are met.
-  potentialBenefits Optimized capacity planning for vSAN
+  potentialBenefits: Optimized capacity planning for vSAN
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -205,7 +205,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Ensure Diagnostic Settings are configured for each private cloud to send syslogs to external sources for analysis and/or archiving. Azure VMware Solution Syslogs contain data for troubleshooting and performance, aiding quicker issue resolution and early detection of issues.
-  potentialBenefits Faster issue resolution, early detection
+  potentialBenefits: Faster issue resolution, early detection
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -224,7 +224,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Ensure sufficient compute resources to avoid host resource exhaustion in Azure VMware Solution, which utilizes vSphere DRS and HA for dynamic workload resource management. However, sustained CPU utilization over 95% may increase CPU Ready times, impacting workloads.
-  potentialBenefits Avoids resource exhaustion, optimizes performance
+  potentialBenefits: Avoids resource exhaustion, optimizes performance
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -243,7 +243,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Ensure sufficient memory resources to prevent host resource exhaustion in Azure VMware Solution. It uses vSphere DRS and vSphere HA for dynamic workload management. Yet, continuous memory use over 95% leads to disk swapping, affecting workloads.
-  potentialBenefits Avoids host exhaustion & swapping
+  potentialBenefits: Avoids host exhaustion & swapping
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -262,7 +262,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Applying a resource delete lock to the Azure VMware Solution Private Cloud resource group prevents unauthorized or accidental deletion by anyone with contributor access, ensuring the protection and reliability of the Azure VMware Solution Private Cloud.
-  potentialBenefits Prevents accidental deletion
+  potentialBenefits: Prevents accidental deletion
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -281,7 +281,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Microsoft suggests using two or more ExpressRoute circuits at distinct peering locations for critical workloads. Connect these circuits and your Azure VMware Solutions private clouds using Global Reach.
-  potentialBenefits Enhanced circuit resilience for Azure VMware
+  potentialBenefits: Enhanced circuit resilience for Azure VMware
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -302,7 +302,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Two Azure VMware Solution private clouds can be deployed in different regions for business continuity, implementing a mesh network topology based on ExpressRoute Gateway Connections and Global Reach Connections.
-  potentialBenefits Enhanced disaster recovery
+  potentialBenefits: Enhanced disaster recovery
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -323,7 +323,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Azure VMware Solution vSAN stretched clusters cover 2 Availability Zones plus a third for witness. Use ExpressRoute for added resilience by deploying two circuits in different locations. With Global Reach, create a mesh topology by connecting on-premises circuits to Azure's managed circuits.
-  potentialBenefits Enhanced resilience & connectivity
+  potentialBenefits: Enhanced resilience & connectivity
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -342,7 +342,7 @@
   recommendationMetadataState: Active
   longDescription: |
     When using customer-managed keys for encrypting vSAN datastores, leveraging Azure Key Vault for central management and accessing them via a managed identity linked to the private cloud is advised. The expiration of these keys can render the vSAN datastore and its associated workloads inaccessible.
-  potentialBenefits Avoid outages with key auto-rotation
+  potentialBenefits: Avoid outages with key auto-rotation
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -361,7 +361,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Azure VMware Solution private clouds support up to three DNS servers for a single FQDN, preventing a single DNS server from becoming a point of failure. It's crucial to use multiple DNS servers for on-premises FQDN resolution from each private cloud.
-  potentialBenefits Enhances reliability & avoids failure
+  potentialBenefits: Enhances reliability & avoids failure
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
