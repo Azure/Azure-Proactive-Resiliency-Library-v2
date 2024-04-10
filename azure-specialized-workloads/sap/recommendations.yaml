@@ -63,7 +63,7 @@
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: arg
   tags: null
   learnMoreLink:
     - name: SAP ACSS Insights
