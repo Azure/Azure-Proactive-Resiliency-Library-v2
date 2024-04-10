@@ -6,9 +6,9 @@
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
   recommendationMetadataState: Active
   longDescription: |
-At least one Validation Pool to have early warning if a planned update to AVD causes an issue. Also check that the host pool has been used regularly to test planned updates.
-Host pools are a collection of one or more identical virtual machines within Azure Virtual Desktop environment. We highly recommend you create a validation host pool where service updates are applied first. Validation host pools let you monitor service updates before the service applies them to your standard or non-validation environment. Without a validation host pool, you may not discover changes that introduce errors, which could result in downtime for users in your standard environment.
-To ensure your apps work with the latest updates, the validation host pool should be as similar to host pools in your non-validation environment as possible. Users should connect as frequently to the validation host pool as they do to the standard host pool. If you have automated testing on your host pool, you should include automated testing on the validation host pool.
+    At least one Validation Pool to have early warning if a planned update to AVD causes an issue. Also check that the host pool has been used regularly to test planned updates.
+    Host pools are a collection of one or more identical virtual machines within Azure Virtual Desktop environment. We highly recommend you create a validation host pool where service updates are applied first. Validation host pools let you monitor service updates before the service applies them to your standard or non-validation environment. Without a validation host pool, you may not discover changes that introduce errors, which could result in downtime for users in your standard environment.
+    To ensure your apps work with the latest updates, the validation host pool should be as similar to host pools in your non-validation environment as possible. Users should connect as frequently to the validation host pool as they do to the standard host pool. If you have automated testing on your host pool, you should include automated testing on the validation host pool.
   potentialBenefits: Early issue detection and testing for AVD updates
   pgVerified: Verified
   publishedToLearn: false
@@ -27,8 +27,8 @@ To ensure your apps work with the latest updates, the validation host pool shoul
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
   recommendationMetadataState: Active
   longDescription: |
-Ensure schedules have been created to provide maintenance windows for AVD agent updates.
-The Scheduled Agent Updates feature lets you create up to two maintenance windows for the Azure Virtual Desktop agent, side-by-side stack, and Geneva Monitoring agent to get updated so that updates don't happen during peak business hours.
+    Ensure schedules have been created to provide maintenance windows for AVD agent updates.
+    The Scheduled Agent Updates feature lets you create up to two maintenance windows for the Azure Virtual Desktop agent, side-by-side stack, and Geneva Monitoring agent to get updated so that updates don't happen during peak business hours.
   potentialBenefits: Minimizes disruptions, ensures updates
   pgVerified: Verified
   publishedToLearn: false
@@ -47,10 +47,10 @@ The Scheduled Agent Updates feature lets you create up to two maintenance window
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
   recommendationMetadataState: Active
   longDescription: |
-At least one Validation Pool to have early warning if a planned update to AVD causes an issue. support to adjust limits based on your business requirements. To handle a large number of users, consider scaling horizontally by creating multiple host pools.
-Also check that the host pool has been used regularly to test planned updates.
-Host pools are a collection of one or more identical virtual machines within Azure Virtual Desktop environment. We highly recommend you create a validation host pool where service updates are applied first. Validation host pools let you monitor service updates before the service applies them to your standard or non-validation environment. Without a validation host pool, you may not discover changes that introduce errors, which could result in downtime for users in your standard environment.
-To ensure your apps work with the latest updates, the validation host pool should be as similar to host pools in your non-validation environment as possible. Users should connect as frequently to the validation host pool as they do to the standard host pool. If you have automated testing on your host pool, you should include automated testing on the validation host pool.
+    At least one Validation Pool to have early warning if a planned update to AVD causes an issue. support to adjust limits based on your business requirements. To handle a large number of users, consider scaling horizontally by creating multiple host pools.
+    Also check that the host pool has been used regularly to test planned updates.
+    Host pools are a collection of one or more identical virtual machines within Azure Virtual Desktop environment. We highly recommend you create a validation host pool where service updates are applied first. Validation host pools let you monitor service updates before the service applies them to your standard or non-validation environment. Without a validation host pool, you may not discover changes that introduce errors, which could result in downtime for users in your standard environment.
+    To ensure your apps work with the latest updates, the validation host pool should be as similar to host pools in your non-validation environment as possible. Users should connect as frequently to the validation host pool as they do to the standard host pool. If you have automated testing on your host pool, you should include automated testing on the validation host pool.
   potentialBenefits: Early detection of update issues.
   pgVerified: Verified
   publishedToLearn: false
@@ -128,8 +128,8 @@ To ensure your apps work with the latest updates, the validation host pool shoul
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
   recommendationMetadataState: Active
   longDescription: |
-NSG and ASG per AVD persona and IP space per Prod/DR regions.
-It's important your organization plans for IP addressing in Azure. Planning ensures the IP address space doesn't overlap across on-premises locations and Azure regions. Overlapping IP address spaces across on-premises and Azure regions create major contention challenges.
+    NSG and ASG per AVD persona and IP space per Prod/DR regions.
+    It's important your organization plans for IP addressing in Azure. Planning ensures the IP address space doesn't overlap across on-premises locations and Azure regions. Overlapping IP address spaces across on-premises and Azure regions create major contention challenges.
   potentialBenefits: Enhances security and prevents IP conflicts
   pgVerified: Verified
   publishedToLearn: false
@@ -167,9 +167,9 @@ It's important your organization plans for IP addressing in Azure. Planning ensu
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
   recommendationMetadataState: Active
   longDescription: |
-App Attach packages should be on a separate share from profiles. And App Attach files should be backed up.
-Best practice is to separate App Attach VHD files in a separate file share away from user profiles, both for performance and scalability purposes. Requirements can vary greatly depending on how many packaged applications are stored in an image, and you need to test your applications to understand your requirements.
-Your file share should be in the same Azure region as your session hosts.
+    App Attach packages should be on a separate share from profiles. And App Attach files should be backed up.
+    Best practice is to separate App Attach VHD files in a separate file share away from user profiles, both for performance and scalability purposes. Requirements can vary greatly depending on how many packaged applications are stored in an image, and you need to test your applications to understand your requirements.
+    Your file share should be in the same Azure region as your session hosts.
   potentialBenefits: Enhances performance and scalability
   pgVerified: Verified
   publishedToLearn: false
@@ -188,8 +188,8 @@ Your file share should be in the same Azure region as your session hosts.
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
   recommendationMetadataState: Active
   longDescription: |
-Turn on Continuous Availability if using Azure Netapp Files.
-Verify the number of users connecting to each file share to make sure the SMB path can handle the number of file connections. Currently, Azure Files supports up to 10k handles per root directory.
+    Turn on Continuous Availability if using Azure Netapp Files.
+    Verify the number of users connecting to each file share to make sure the SMB path can handle the number of file connections. Currently, Azure Files supports up to 10k handles per root directory.
   potentialBenefits: Enhanced stability and user limit checks
   pgVerified: Verified
   publishedToLearn: false
@@ -284,8 +284,8 @@ Verify the number of users connecting to each file share to make sure the SMB pa
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
   recommendationMetadataState: Active
   longDescription: |
-Hybrid VMs should be in a unique OU.
-When using AD-joined session hosts will benefit from using a unique OU to target specific AVD configurations per hostpool. Examples include Fslogix, time out limits, session controls, and much more. It�s also important to segment Prod and DR organization units to ensure resources are configured per environment.
+    Hybrid VMs should be in a unique OU.
+    When using AD-joined session hosts will benefit from using a unique OU to target specific AVD configurations per hostpool. Examples include Fslogix, time out limits, session controls, and much more. It�s also important to segment Prod and DR organization units to ensure resources are configured per environment.
   potentialBenefits: Improved AVD hostpool config and segmentation
   pgVerified: Verified
   publishedToLearn: false
@@ -323,8 +323,7 @@ When using AD-joined session hosts will benefit from using a unique OU to target
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
   recommendationMetadataState: Active
   longDescription: |
-Establish a systematic process for handling image updates within your Azure Virtual Desktop environment. Instead of directly updating individual session hosts, create a new version of the updated image. This process involves creating and configuring a golden image with the necessary updates and configurations. Once the new image is prepared, replace existing session hosts with instances using the updated image. This approach ensures consistency across all session hosts and minimizes the risk of configuration drift. Additionally, it enables quick rollback to a previous image version in case of any issues with the update. Implementing this process helps streamline maintenance activities and ensures that all session hosts are up-to-date with the latest configurations and updates.
-has context menu
+    Establish a systematic process for handling image updates within your Azure Virtual Desktop environment. Instead of directly updating individual session hosts, create a new version of the updated image. This process involves creating and configuring a golden image with the necessary updates and configurations. Once the new image is prepared, replace existing session hosts with instances using the updated image. This approach ensures consistency across all session hosts and minimizes the risk of configuration drift. Additionally, it enables quick rollback to a previous image version in case of any issues with the update. Implementing this process helps streamline maintenance activities and ensures that all session hosts are up-to-date with the latest configurations and updates.
   potentialBenefits: Ensures consistency; minimizes drift
   pgVerified: Verified
   publishedToLearn: false
@@ -343,9 +342,9 @@ has context menu
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
   recommendationMetadataState: Active
   longDescription: |
-Use Service Health to stay informed about the health of the Azure services and regions that you use to insure their availability.
-Set up Service Health alerts so that you stay aware of service issues, planned maintenance, or other changes that might affect your Azure Virtual Desktop resources.
-Use Resource Health to monitor your VMs and storage solutions.
+    Use Service Health to stay informed about the health of the Azure services and regions that you use to insure their availability.
+    Set up Service Health alerts so that you stay aware of service issues, planned maintenance, or other changes that might affect your Azure Virtual Desktop resources.
+    Use Resource Health to monitor your VMs and storage solutions.
   potentialBenefits: Enhanced AVD uptime and awareness
   pgVerified: Verified
   publishedToLearn: false
@@ -364,8 +363,8 @@ Use Resource Health to monitor your VMs and storage solutions.
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
   recommendationMetadataState: Active
   longDescription: |
-When using an AD DS identity solution with AVD, it is recommended to deploy domain controllers and DNS servers on Azure virtual machines across availability zones. This improves the environment�s reliability by removing a dependency on an on-premises service and improves performance by creating a shorter path for user authentication.
-This recommendation is not relevant when you are utilizing Microsoft Entra as the identity provider.
+    When using an AD DS identity solution with AVD, it is recommended to deploy domain controllers and DNS servers on Azure virtual machines across availability zones. This improves the environment�s reliability by removing a dependency on an on-premises service and improves performance by creating a shorter path for user authentication.
+    This recommendation is not relevant when you are utilizing Microsoft Entra as the identity provider.
   potentialBenefits: Enhanced reliability and performance
   pgVerified: Verified
   publishedToLearn: false
@@ -445,9 +444,9 @@ This recommendation is not relevant when you are utilizing Microsoft Entra as th
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
   recommendationMetadataState: Active
   longDescription: |
-Monitor and plan for subscription limits and API throttling limits. Closely monitor your Azure Virtual Desktop deployments, and keep track of resource usage within your subscription. By proactively monitoring capacity, you can identify potential challenges early on, and you can take suitable actions to avoid reaching limits.
-Consider scaling across multiple subscriptions if further scaling is required, or work with Azure support to adjust limits based on your business requirements.
-To handle a large number of users, consider scaling horizontally by creating multiple host pools.
+    Monitor and plan for subscription limits and API throttling limits. Closely monitor your Azure Virtual Desktop deployments, and keep track of resource usage within your subscription. By proactively monitoring capacity, you can identify potential challenges early on, and you can take suitable actions to avoid reaching limits.
+    Consider scaling across multiple subscriptions if further scaling is required, or work with Azure support to adjust limits based on your business requirements.
+    To handle a large number of users, consider scaling horizontally by creating multiple host pools.
   potentialBenefits: Avoids limits, ensures smooth scaling
   pgVerified: Verified
   publishedToLearn: false
@@ -487,14 +486,15 @@ To handle a large number of users, consider scaling horizontally by creating mul
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
   recommendationMetadataState: Active
   longDescription: |
-It is important to ensure the redundancy of our user profiles when using FSLogix. When using FSLogix with AVD, it is deployed on a file share in a storage account. Data in an Azure Storage account is always replicated three times in the primary region. Below are the options for how your data is replicated in the primary or paired region:
-LRS for least expensive replication (not recommended for apps with high availability and durability).
-- LRS provides eleven 9s durability and replicates three time in a single physical location.
-- ZRS is recommended for apps requiring high availability across zones. ZRS provides twelve 9s durability. Replicated across three availability zones
-- GRS replicates an additional three copies to secondary region and provides sixteen 9s durability.
-- GZRS provides both high availability and redundancy across geo replication. It provides sixteen 9s durability over a given year.
+    It is important to ensure the redundancy of our user profiles when using FSLogix. When using FSLogix with AVD, it is deployed on a file share in a storage account. Data in an Azure Storage account is always replicated three times in the primary region. Below are the options for how your data is replicated in the primary or paired region:
+    LRS for least expensive replication (not recommended for apps with high availability and durability)
 
-Generally, it is recommended to store your data as secure and redundant as possible.
+    - LRS provides eleven 9s durability and replicates three time in a single physical location.
+    - ZRS is recommended for apps requiring high availability across zones. ZRS provides twelve 9s durability. Replicated across three availability zones
+    - GRS replicates an additional three copies to secondary region and provides sixteen 9s durability.
+    - GZRS provides both high availability and redundancy across geo replication. It provides sixteen 9s durability over a given year.
+
+    Generally, it is recommended to store your data as secure and redundant as possible.
   potentialBenefits: Improves data durability and availability
   pgVerified: Verified
   publishedToLearn: false
@@ -551,8 +551,8 @@ Generally, it is recommended to store your data as secure and redundant as possi
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
   recommendationMetadataState: Active
   longDescription: |
-Hybrid - Entra ID Connect best to run in Azure but can be hosted on-prem. Secondary or more VMs should be setup in staging mode in event of failover.
-Set up secondary server in staging mode for Entra Connect for syncing to Entra in case of primary server outage.
+    Hybrid - Entra ID Connect best to run in Azure but can be hosted on-prem. Secondary or more VMs should be setup in staging mode in event of failover.
+    Set up secondary server in staging mode for Entra Connect for syncing to Entra in case of primary server outage.
   potentialBenefits: Improved failover reliability
   pgVerified: Verified
   publishedToLearn: false
@@ -571,8 +571,8 @@ Set up secondary server in staging mode for Entra Connect for syncing to Entra i
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
   recommendationMetadataState: Active
   longDescription: |
-Ensure each region with session hosts has multiple domain controllers in the same region to support high availability with regards to identity.
-For a hybrid scenario, each Azure region with AVD session hosts should have Active Directory Domain Controllers in Azure and use Availability Zones or Availability Sets for resilience within the region. This also mitigates dependency on ER/VPN/Inter-Azure dependencies.
+    Ensure each region with session hosts has multiple domain controllers in the same region to support high availability with regards to identity.
+    For a hybrid scenario, each Azure region with AVD session hosts should have Active Directory Domain Controllers in Azure and use Availability Zones or Availability Sets for resilience within the region. This also mitigates dependency on ER/VPN/Inter-Azure dependencies.
   potentialBenefits: Enhanced identity resilience
   pgVerified: Verified
   publishedToLearn: false
@@ -641,4 +641,3 @@ For a hybrid scenario, each Azure region with AVD session hosts should have Acti
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/azure-virtual-desktop/enterprise-scale-landing-zone"
-
