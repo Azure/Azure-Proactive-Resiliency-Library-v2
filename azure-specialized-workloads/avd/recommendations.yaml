@@ -15,6 +15,8 @@
   tags: null
   learnMoreLink:
     - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/architecture/example-scenario/wvd/windows-virtual-desktop#azure-virtual-desktop-limitations"
+    - name: Private Link
       url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-virtual-desktop/networking#private-endpoints-private-link"
 
 - description: Monitor Service Health and Resource Health of AVD
@@ -93,8 +95,10 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Multi-region BCDR
       url: "https://learn.microsoft.com/en-us/azure/architecture/example-scenario/wvd/azure-virtual-desktop-multi-region-bcdr"
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-virtual-desktop/business-continuity#active-active-scenarios"
 
 - description: Store Golden Image Redundantly for Disaster Recovery
   aprlGuid: 0bf1a2bb-7617-4ab2-a784-e7ea40c5f01b
@@ -112,8 +116,10 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Golden Image
       url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-virtual-desktop/business-continuity#golden-images"
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-virtual-desktop/application-delivery#fault-tolerance"
 
 - description: Capacity Planning for AVD Resources
   aprlGuid: ef4b3561-c85f-47cf-8cb0-51fae9ddf929
@@ -133,8 +139,10 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Capacity Planning
       url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-virtual-desktop/business-continuity#capacity-planning"
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/architecture/example-scenario/wvd/windows-virtual-desktop#azure-virtual-desktop-limitations"
 
 - description: Ensure that FSLogix Storage Account is Redundant
   aprlGuid: ed1f0327-0914-49e8-9518-16acb0d6b8d6
@@ -177,8 +185,10 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: FSLogix
       url: "https://learn.microsoft.com/en-us/fslogix/overview-what-is-fslogix"
+    - name: Backup Storage Account
+      url: https://learn.microsoft.com/en-us/azure/backup/blob-backup-configure-manage?tabs=operational-backup
 
 - description: Scaling plans should be created per region and not scaled across regions
   aprlGuid: e091419d-10ba-4a8e-bdb0-67380cc021a9
