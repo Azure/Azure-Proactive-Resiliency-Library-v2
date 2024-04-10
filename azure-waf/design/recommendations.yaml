@@ -35,7 +35,7 @@
   learnMoreLink:
     - name: Design reliable Azure applications
       url: "https://learn.microsoft.com/azure/well-architected/resiliency/app-design"
-    - name: Cross-region replication in Azure: Business continuity and disaster recovery
+    - name: Cross-region replication in Azure Business continuity and disaster recovery
       url: "https://learn.microsoft.com/azure/reliability/cross-region-replication-azure"
 
 - description: Ensure that all fault-points and fault-modes are understood and operationalized
@@ -170,4 +170,3 @@
   learnMoreLink:
     - name: Security design principles
       url: "https://learn.microsoft.com/azure/well-architected/security/security-principles"
-
