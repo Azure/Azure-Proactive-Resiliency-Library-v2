@@ -509,8 +509,7 @@
   learnMoreLink:
     - name: Monitor scheduled events for your Azure VMs
       url: "https://learn.microsoft.com/azure/virtual-machines/windows/scheduled-event-service"
-    - name: Azure Metadata Service: Scheduled Events for Linux VMs
+    - name: Azure Metadata Service Scheduled Events for Linux VMs
       url: "https://learn.microsoft.com/azure/virtual-machines/linux/scheduled-events"
-    - name: Azure Metadata Service: Scheduled Events for Windows VMs
+    - name: Azure Metadata Service Scheduled Events for Windows VMs
       url: "https://learn.microsoft.com/azure/virtual-machines/windows/scheduled-events"
-
