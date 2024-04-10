@@ -7,13 +7,13 @@
   recommendationMetadataState: Active
   longDescription: |
     Classic Application Insights retires in February 2024. To minimize disruption to existing application monitoring scenarios, transition to workspace-based Application Insights before 29 February 2024.
-  potentialBenefits: Avoid service disruption post-Feb 2024
+  potentialBenefits Avoid service disruption post-Feb 2024
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
-  - name: Migrate an Application Insights classic resource to a workspace-based resource
-    url: https://learn.microsoft.com/en-us/azure/azure-monitor/app/convert-classic-resource
+    - name: Migrate an Application Insights classic resource to a workspace-based resource
+      url: "https://learn.microsoft.com/en-us/azure/azure-monitor/app/convert-classic-resource"
 

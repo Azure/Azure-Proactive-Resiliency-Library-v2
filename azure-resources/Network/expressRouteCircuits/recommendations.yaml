@@ -7,15 +7,15 @@
   recommendationMetadataState: Active
   longDescription: |
     Connecting each ExpressRoute Gateway to a minimum of two circuits in different peering locations enhances redundancy and reliability by ensuring alternate pathways for data in case one circuit fails.
-  potentialBenefits: Enhanced reliability & redundancy
+  potentialBenefits Enhanced reliability & redundancy
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
-  - name: Designing for disaster recovery with ExpressRoute private peering
-    url: https://learn.microsoft.com/azure/expressroute/designing-for-disaster-recovery-with-expressroute-privatepeering
+    - name: Designing for disaster recovery with ExpressRoute private peering
+      url: "https://learn.microsoft.com/azure/expressroute/designing-for-disaster-recovery-with-expressroute-privatepeering"
 
 - description: Ensure ExpressRoute's physical links connect to distinct network edge devices
   aprlGuid: 0e19cc41-8274-1342-b0db-0e4146eacef8
@@ -26,17 +26,17 @@
   recommendationMetadataState: Active
   longDescription: |
     Microsoft or the ExpressRoute provider always ensures physical redundancy in their services. It's essential to maintain this level of physical redundancy (two devices, two links) from the ExpressRoute peering location to your network for optimal performance and reliability.
-  potentialBenefits: Enhanced reliability & fault tolerance
+  potentialBenefits Enhanced reliability & fault tolerance
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
-  - name: Designing for high availability with ExpressRoute
-    url: https://learn.microsoft.com/en-us/azure/expressroute/designing-for-high-availability-with-expressroute
-  - name: Azure Well-Architected Framework review - Azure ExpressRoute - Design Checklist
-    url: https://learn.microsoft.com/azure/well-architected/services/networking/azure-expressroute#recommendations
+    - name: Designing for high availability with ExpressRoute
+      url: "https://learn.microsoft.com/en-us/azure/expressroute/designing-for-high-availability-with-expressroute"
+    - name: Azure Well-Architected Framework review - Azure ExpressRoute - Design Checklist
+      url: "https://learn.microsoft.com/azure/well-architected/services/networking/azure-expressroute#recommendations"
 
 - description: Ensure both connections of an ExpressRoute circuit are configured in active-active mode
   aprlGuid: f06a2bbe-5839-d447-9f39-fc3d20562d88
@@ -47,15 +47,15 @@
   recommendationMetadataState: Active
   longDescription: |
     Operating both connections of an ExpressRoute circuit in active-active mode enhances high availability as the Microsoft network will load balance the traffic across the connections on a per-flow basis.
-  potentialBenefits: Improved high availability and load balancing
+  potentialBenefits Improved high availability and load balancing
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
-  - name: Designing for high availability with ExpressRoute - Active-active connections
-    url: https://learn.microsoft.com/azure/expressroute/designing-for-high-availability-with-expressroute#active-active-connections
+    - name: Designing for high availability with ExpressRoute - Active-active connections
+      url: "https://learn.microsoft.com/azure/expressroute/designing-for-high-availability-with-expressroute#active-active-connections"
 
 - description: Activate Bidirectional Forwarding Detection on edge devices for faster failover
   aprlGuid: 2a5bf650-586d-db4c-a292-d922be7d3e0e
@@ -66,15 +66,15 @@
   recommendationMetadataState: Active
   longDescription: |
     Enabling BFD over ExpressRoute speeds up link failure detection between MSEE devices and routers configured for ExpressRoute (CE/PE), applicable over both customer and Partner Edge routing devices with managed Layer 3 service.
-  potentialBenefits: Faster link failure detection
+  potentialBenefits Faster link failure detection
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
-  - name: Configure BFD over ExpressRoute
-    url: https://learn.microsoft.com/azure/expressroute/expressroute-bfd
+    - name: Configure BFD over ExpressRoute
+      url: "https://learn.microsoft.com/azure/expressroute/expressroute-bfd"
 
 - description: Configure monitoring and alerting for ExpressRoute circuits
   aprlGuid: 9771a435-d031-814e-9827-9b5fdafc0f87
@@ -85,19 +85,19 @@
   recommendationMetadataState: Active
   longDescription: |
     Use Network Insights for monitoring ExpressRoute circuit availability, QoS, and throughput. Set alerts based on Azure Monitor Baseline Alerts for availability, QoS metrics, and throughput metrics exceeding specific thresholds.
-  potentialBenefits: Enhanced network performance & health
+  potentialBenefits Enhanced network performance & health
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
-  - name: Azure ExpressRoute Insights using Network Insights | Microsoft Learn
-    url: https://learn.microsoft.com/en-us/azure/expressroute/expressroute-network-insights
-  - name: Monitoring Azure ExpressRoute
-    url: https://learn.microsoft.com/azure/expressroute/monitor-expressroute
-  - name: Configure Traffic Collector for ExpressRoute Direct - Azure ExpressRoute | Microsoft Learn
-    url: https://learn.microsoft.com/en-us/azure/expressroute/how-to-configure-traffic-collector#deploy-expressroute-traffic-collector
+    - name: Azure ExpressRoute Insights using Network Insights | Microsoft Learn
+      url: "https://learn.microsoft.com/en-us/azure/expressroute/expressroute-network-insights"
+    - name: Monitoring Azure ExpressRoute
+      url: "https://learn.microsoft.com/azure/expressroute/monitor-expressroute"
+    - name: Configure Traffic Collector for ExpressRoute Direct - Azure ExpressRoute | Microsoft Learn
+      url: "https://learn.microsoft.com/en-us/azure/expressroute/how-to-configure-traffic-collector#deploy-expressroute-traffic-collector"
 
 - description: Configure service health to receive ExpressRoute circuit maintenance notification
   aprlGuid: 26cb547f-aabc-dc40-be02-d0a9b6b04b1a
@@ -108,15 +108,15 @@
   recommendationMetadataState: Active
   longDescription: |
     ExpressRoute leverages service health for notifications on both planned and unplanned maintenance, ensuring users are informed about any changes to their ExpressRoute circuits.
-  potentialBenefits: Stay informed on circuit updates
+  potentialBenefits Stay informed on circuit updates
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
-  - name: How to view and configure alerts for Azure ExpressRoute circuit maintenance
-    url: https://learn.microsoft.com/azure/expressroute/maintenance-alerts
+    - name: How to view and configure alerts for Azure ExpressRoute circuit maintenance
+      url: "https://learn.microsoft.com/azure/expressroute/maintenance-alerts"
 
 - description: Use a site-to-site VPN as an interim backup solution for a single ExpressRoute circuit
   aprlGuid: f902cf86-2b53-2942-abc2-781f4fb62be6
@@ -127,13 +127,13 @@
   recommendationMetadataState: Active
   longDescription: |
     If you haven't added a second ExpressRoute circuit, use a site-to-site VPN as a temporary solution until the second circuit is available. This ensures network reliability and continuity of service.
-  potentialBenefits: Ensures continuity & reliability
+  potentialBenefits Ensures continuity & reliability
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
-  - name: Using S2S VPN as a backup for ExpressRoute private peering
-    url: https://learn.microsoft.com/azure/expressroute/use-s2s-vpn-as-backup-for-expressroute-privatepeering
+    - name: Using S2S VPN as a backup for ExpressRoute private peering
+      url: "https://learn.microsoft.com/azure/expressroute/use-s2s-vpn-as-backup-for-expressroute-privatepeering"
 

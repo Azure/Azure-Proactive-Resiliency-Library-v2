@@ -7,13 +7,13 @@
   recommendationMetadataState: Active
   longDescription: |
     Use SignalR with zone redundancy for production to improve uptime. This feature, available in the Premium tier, is activated upon creating or upgrading to Premium. Standard can upgrade to Premium without downtime.
-  potentialBenefits: Enhances reliability & uptime
+  potentialBenefits Enhances reliability & uptime
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
-  - name: Availability zones support in Azure SignalR Service
-    url: https://learn.microsoft.com/azure/azure-signalr/availability-zones
+    - name: Availability zones support in Azure SignalR Service
+      url: "https://learn.microsoft.com/azure/azure-signalr/availability-zones"
 

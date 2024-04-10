@@ -7,15 +7,15 @@
   recommendationMetadataState: Active
   longDescription: |
     ExpressRoute gateways facilitate network traffic and route exchanges. FastPath enhances on-premises to virtual network data path performance by directing traffic straight to virtual machines, bypassing the gateway for improved resiliency through reduced gateway utilization.
-  potentialBenefits: Enhances speed & resiliency
+  potentialBenefits Enhances speed & resiliency
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
-  - name: About ExpressRoute FastPath
-    url: https://learn.microsoft.com/en-us/azure/expressroute/about-fastpath
+    - name: About ExpressRoute FastPath
+      url: "https://learn.microsoft.com/en-us/azure/expressroute/about-fastpath"
 
 - description: Configure an Azure Resource Lock on connections to prevent accidental deletion
   aprlGuid: a5f3a4bd-4cf1-4196-a3cb-f5a0876198b2
@@ -26,13 +26,13 @@
   recommendationMetadataState: Active
   longDescription: |
     Configure an Azure Resource lock for Gateway Connection resources to prevent accidental deletion and maintain connectivity between on-premises networks and Azure workloads.
-  potentialBenefits: Prevents accidental deletion of connections
+  potentialBenefits Prevents accidental deletion of connections
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
-  - name: Protect your Azure resources with a lock - Azure Resource Manager | Microsoft Learn
-    url: https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources?tabs=json
+    - name: Protect your Azure resources with a lock - Azure Resource Manager | Microsoft Learn
+      url: "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources?tabs=json"
 

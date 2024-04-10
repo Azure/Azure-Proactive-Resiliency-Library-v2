@@ -7,13 +7,13 @@
   recommendationMetadataState: Active
   longDescription: |
     ExpressRoute Traffic Collector samples network flows over ExpressRoute Direct circuits, sending flow logs to a Log Analytics workspace for analysis or export to visualization tools/SIEM.
-  potentialBenefits: Enhanced network flow analysis & DR readiness
+  potentialBenefits Enhanced network flow analysis & DR readiness
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
-  - name: Azure ExpressRoute Traffic Collector
-    url: https://learn.microsoft.com/en-us/azure/expressroute/traffic-collector
+    - name: Azure ExpressRoute Traffic Collector
+      url: "https://learn.microsoft.com/en-us/azure/expressroute/traffic-collector"
 

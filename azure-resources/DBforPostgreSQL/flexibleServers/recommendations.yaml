@@ -7,15 +7,15 @@
   recommendationMetadataState: Active
   longDescription: |
     Enable HA with zone redundancy on flexible server instances to deploy a standby replica in a different zone, offering automatic failover capability for improved reliability and disaster recovery.
-  potentialBenefits: Enhanced uptime & data protection
+  potentialBenefits Enhanced uptime & data protection
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
-  - name: Overview of high availability with Azure Database for PostgreSQL
-    url: https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-high-availability
+    - name: Overview of high availability with Azure Database for PostgreSQL
+      url: "https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-high-availability"
 
 - description: Enable custom maintenance schedule
   aprlGuid: b2bad57d-7e03-4c0f-9024-597c9eb295bb
@@ -26,13 +26,13 @@
   recommendationMetadataState: Active
   longDescription: |
     Use custom maintenance schedule on flexible server instances to select a preferred time for service updates to be applied.
-  potentialBenefits: Control update timings
+  potentialBenefits Control update timings
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
-  - name: Scheduled maintenance in Azure Database for PostgreSQL - Flexible Server
-    url: https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-maintenance
+    - name: Scheduled maintenance in Azure Database for PostgreSQL - Flexible Server
+      url: "https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-maintenance"
 

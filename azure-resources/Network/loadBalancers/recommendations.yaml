@@ -7,17 +7,17 @@
   recommendationMetadataState: Active
   longDescription: |
     Selecting Standard SKU Load Balancer enhances reliability through availability zones and zone resiliency, ensuring deployments withstand zone and region failures. Unlike Basic, it supports global load balancing and offers an SLA.
-  potentialBenefits: Enhanced reliability & SLA support
+  potentialBenefits Enhanced reliability & SLA support
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
-  - name: Reliability and Azure Load Balancer
-    url: https://learn.microsoft.com/azure/architecture/framework/services/networking/azure-load-balancer/reliability
-  - name: Resiliency checklist for specific Azure services- Azure Load Balancer
-    url: https://learn.microsoft.com/azure/architecture/checklist/resiliency-per-service#azure-load-balancer
+    - name: Reliability and Azure Load Balancer
+      url: "https://learn.microsoft.com/azure/architecture/framework/services/networking/azure-load-balancer/reliability"
+    - name: Resiliency checklist for specific Azure services- Azure Load Balancer
+      url: "https://learn.microsoft.com/azure/architecture/checklist/resiliency-per-service#azure-load-balancer"
 
 - description: Ensure the Backend Pool contains at least two instances
   aprlGuid: 6d82d042-6d61-ad49-86f0-6a5455398081
@@ -28,15 +28,15 @@
   recommendationMetadataState: Active
   longDescription: |
     Deploying Azure Load Balancers with at least two instances in the backend prevents a single point of failure and supports scalability. Pairing with Virtual Machine Scale Sets is advised for optimal scale building.
-  potentialBenefits: Enhances reliability & scalability
+  potentialBenefits Enhances reliability & scalability
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
-  - name: Resiliency checklist for specific Azure services- Azure Load Balancer
-    url: https://learn.microsoft.com/azure/architecture/checklist/resiliency-per-service#azure-load-balancer
+    - name: Resiliency checklist for specific Azure services- Azure Load Balancer
+      url: "https://learn.microsoft.com/azure/architecture/checklist/resiliency-per-service#azure-load-balancer"
 
 - description: Use NAT Gateway instead of Outbound Rules for Production Workloads
   aprlGuid: 8d319a05-677b-944f-b9b4-ca0fb42e883c
@@ -47,15 +47,15 @@
   recommendationMetadataState: Active
   longDescription: |
     Outbound rules for Standard Public Load Balancer involve manual port allocation for backend pools, limiting scalability and risk of SNAT port exhaustion. NAT Gateway is recommended for its dynamic scaling and secure internet connectivity.
-  potentialBenefits: Enhanced scalability and reliability
+  potentialBenefits Enhanced scalability and reliability
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
-  - name: Resiliency checklist for specific Azure services- Azure Load Balancer
-    url: https://learn.microsoft.com/azure/architecture/checklist/resiliency-per-service#azure-load-balancer
+    - name: Resiliency checklist for specific Azure services- Azure Load Balancer
+      url: "https://learn.microsoft.com/azure/architecture/checklist/resiliency-per-service#azure-load-balancer"
 
 - description: Ensure Standard Load Balancer is zone-redundant
   aprlGuid: 621dbc78-3745-4d32-8eac-9e65b27b7512
@@ -66,13 +66,13 @@
   recommendationMetadataState: Active
   longDescription: |
     In regions with Availability Zones, assigning a zone-redundant frontend IP to a Standard Load Balancer ensures continuous traffic distribution even if one availability zone fails, provided other healthy zones and backend instances are available to receive the traffic.
-  potentialBenefits: Enhances uptime & resilience
+  potentialBenefits Enhances uptime & resilience
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
-  - name: Load Balancer and Availability Zones
-    url: https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-standard-availability-zones#zone-redundant
+    - name: Load Balancer and Availability Zones
+      url: "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-standard-availability-zones#zone-redundant"
 

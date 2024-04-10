@@ -7,13 +7,13 @@
   recommendationMetadataState: Active
   longDescription: |
     Azure DDoS Plan metrics differentiate packets and bytes by tags: null Dropped (packets scrubbed by DDoS), Forwarded (packets to VIP not filtered), and No tag (total packets, sum of dropped and forwarded).
-  potentialBenefits: Enhanced security & traffic insight
+  potentialBenefits Enhanced security & traffic insight
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
-  - name: Monitoring Azure DDoS Protection
-    url: https://learn.microsoft.com/en-us/azure/ddos-protection/monitor-ddos-protection-reference
+    - name: Monitoring Azure DDoS Protection
+      url: "https://learn.microsoft.com/en-us/azure/ddos-protection/monitor-ddos-protection-reference"
 
