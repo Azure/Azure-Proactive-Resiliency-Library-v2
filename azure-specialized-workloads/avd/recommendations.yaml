@@ -17,259 +17,6 @@
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-virtual-desktop/networking#private-endpoints-private-link"
 
-- description: Configure AVD Insights Workbook
-  aprlGuid: 0cf72d91-644d-4591-9bb7-84ba3f705a41
-  recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
-  recommendationImpact: High
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
-  recommendationMetadataState: Active
-  longDescription: |
-    AVD Insights is an Azure Workbook template provided by the AVD product team. It is highly recommended in order to monitor and troubleshoot AVD workloads across metrics, logs, events, and more. Both Production and DR workloads should be enabled with AVD Insights.
-  potentialBenefits: Enhanced AVD monitoring and troubleshooting
-  pgVerified: Verified
-  publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
-  tags: null
-  learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/virtual-desktop/insights?tabs=monitor"
-
-- description: Provision Secondary Key Vault for Disaster Recovery
-  aprlGuid: 1f57434f-f884-41f3-b818-129bbe3c5d3b
-  recommendationTypeId: null
-  recommendationControl: Disaster Recovery
-  recommendationImpact: High
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
-  recommendationMetadataState: Active
-  longDescription: |
-    To ensure continuous availability and disaster recovery readiness, it is recommended to provision a secondary Key Vault in a secondary region. In the event of a primary region failure, this secondary Key Vault will ensure that critical secrets are accessible for use in deployments in the secondary region.
-  potentialBenefits: Ensures DR readiness and access
-  pgVerified: Verified
-  publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
-  tags: null
-  learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/key-vault/general/disaster-recovery-guidance"
-
-- description: Ensure virtual networks isolation with separate IP space and NSGs for Prod and DR
-  aprlGuid: 37d1091b-e599-4548-a067-a9286be16e45
-  recommendationTypeId: null
-  recommendationControl: Business Continuity
-  recommendationImpact: Medium
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
-  recommendationMetadataState: Active
-  longDescription: |
-    NSG and ASG per AVD persona and IP space per Prod/DR regions.
-    It's important your organization plans for IP addressing in Azure. Planning ensures the IP address space doesn't overlap across on-premises locations and Azure regions. Overlapping IP address spaces across on-premises and Azure regions create major contention challenges.
-  potentialBenefits: Enhances security and prevents IP conflicts
-  pgVerified: Verified
-  publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
-  tags: null
-  learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/plan-for-ip-addressing"
-
-- description: Ensure virtual networks have route tables/route server configured for all regions
-  aprlGuid: db1727d1-5c8e-4a01-a31e-f0d58cfd95b1
-  recommendationTypeId: null
-  recommendationControl: High Availability
-  recommendationImpact: Medium
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
-  recommendationMetadataState: Active
-  longDescription: |
-    For high availability connections back to on-premises datacenters should consider backup paths across the regions that have been utilized. Ensure redundancy in routing by having a secondary route table in the secondary region.
-  potentialBenefits: Enhanced availability and routing
-  pgVerified: Verified
-  publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
-  tags: null
-  learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/expressroute/designing-for-disaster-recovery-with-expressroute-privatepeering#need-for-redundant-connectivity-solution"
-
-- description: Segregate App attach storage in disaster recovery plans with distinct file shares
-  aprlGuid: 7d9c96a6-1ce5-4cf0-ad1b-638a37f753cb
-  recommendationTypeId: null
-  recommendationControl: Disaster Recovery
-  recommendationImpact: Medium
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
-  recommendationMetadataState: Active
-  longDescription: |
-    App Attach packages should be on a separate share from profiles. And App Attach files should be backed up.
-    Best practice is to separate App Attach VHD files in a separate file share away from user profiles, both for performance and scalability purposes. Requirements can vary greatly depending on how many packaged applications are stored in an image, and you need to test your applications to understand your requirements.
-    Your file share should be in the same Azure region as your session hosts.
-  potentialBenefits: Enhances performance and scalability
-  pgVerified: Verified
-  publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
-  tags: null
-  learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/virtual-desktop/app-attach-overview?pivots=msix-app-attach"
-
-- description: Turn on Continuous Availability for ANF if using App Attach
-  aprlGuid: 9b2301af-9cac-4f1a-871a-f17475d01812
-  recommendationTypeId: null
-  recommendationControl: High Availability
-  recommendationImpact: Medium
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
-  recommendationMetadataState: Active
-  longDescription: |
-    Turn on Continuous Availability if using Azure Netapp Files.
-    Verify the number of users connecting to each file share to make sure the SMB path can handle the number of file connections. Currently, Azure Files supports up to 10k handles per root directory.
-  potentialBenefits: Enhanced stability and user limit checks
-  pgVerified: Verified
-  publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
-  tags: null
-  learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/virtual-desktop/app-attach-overview?pivots=msix-app-attach"
-
-- description: Manually update new FSLogix image when available
-  aprlGuid: d51e0a70-8b50-4be3-af8a-7c9065e47360
-  recommendationTypeId: null
-  recommendationControl: Governance
-  recommendationImpact: Low
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
-  recommendationMetadataState: Active
-  longDescription: |
-    Ensure a process is in place to regularly check for FSLogix agent upgrades and maintain FSLogix up to date. We recommend customers upgrade to the latest version of FSLogix as quickly as their deployment process can allow. FSLogix will provide hotfix releases which address current and potential bugs that impact customer deployments. Additionally, it is the first requirement when opening any support case.
-  potentialBenefits: Enhanced reliability and support
-  pgVerified: Verified
-  publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
-  tags: null
-  learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/fslogix/how-to-install-fslogix"
-
-- description: Configure Diagnostic Settings for FSLogix logs and enable review for accounts
-  aprlGuid: 483f5a00-84a0-49f7-903b-ef6f1fc0c389
-  recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
-  recommendationImpact: Medium
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
-  recommendationMetadataState: Active
-  longDescription: |
-    Regularly review FSLogix logs for errors and issues related to login and mounting the profile. Events can be reviewed by looking locally inside the Session Host and also in Log Analytics when the Azure Monitor Agent is used.
-  potentialBenefits: Enhanced AVD error tracking and resolution
-  pgVerified: Verified
-  publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
-  tags: null
-  learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/fslogix/troubleshooting-events-logs-diagnostics"
-
-- description: Ensure user permissions are set correctly on SMB shares
-  aprlGuid: 7b170ddd-5770-4945-9bc3-cd1ccf5f8672
-  recommendationTypeId: null
-  recommendationControl: Security
-  recommendationImpact: High
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
-  recommendationMetadataState: Active
-  longDescription: |
-    Verify user permissions are correctly set on SMB shares so that users have appropriate access to only their own profile and not other user profiles, while administrators have full access at the root volume. Also ensure secondary storage path permissions are set in case of a DR event.
-  potentialBenefits: Enhanced security and disaster recovery
-  pgVerified: Verified
-  publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
-  tags: null
-  learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/fslogix/how-to-configure-storage-permissions"
-
-- description: Ensure the standard FSLogix configuration is deployed
-  aprlGuid: c15b2b73-52a1-4db2-88dd-d592424ff4e4
-  recommendationTypeId: null
-  recommendationControl: Governance
-  recommendationImpact: High
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
-  recommendationMetadataState: Active
-  longDescription: |
-    Ensure all session hosts have the standard FSLogix configuration deployed. Regularly validate settings for consistency and alignment with best practices.
-  potentialBenefits: Optimized session reliability and performance
-  pgVerified: Verified
-  publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
-  tags: null
-  learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/fslogix/reference-configuration-settings?tabs=profiles"
-
-- description: Ensure a unique OU when deploying VMs to Domain
-  aprlGuid: 939cb85c-102a-4e0a-ab82-5c92116d3778
-  recommendationTypeId: null
-  recommendationControl: Governance
-  recommendationImpact: Medium
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
-  recommendationMetadataState: Active
-  longDescription: |
-    Hybrid VMs should be in a unique OU.
-    When using AD-joined session hosts will benefit from using a unique OU to target specific AVD configurations per hostpool. Examples include Fslogix, time out limits, session controls, and much more. It�s also important to segment Prod and DR organization units to ensure resources are configured per environment.
-  potentialBenefits: Improved AVD hostpool config and segmentation
-  pgVerified: Verified
-  publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
-  tags: null
-  learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/deploy/virtual-dc/adds-on-azure-vm#configure-the-vms-and-install-active-directory-domain-services"
-
-- description: Use Azure Site Recovery or Backups on VMs supporting personal desktops
-  aprlGuid: 38721758-2cc2-4d6b-b7b7-8b47dadbf7df
-  recommendationTypeId: null
-  recommendationControl: Disaster Recovery
-  recommendationImpact: Medium
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
-  recommendationMetadataState: Active
-  longDescription: |
-    Leverage Azure Site Recovery (ASR) or implement Azure Backup for personal host pools for seamless failover and failback capabilities, enabling the replication of VMs supporting personal desktops to a secondary Azure region. In the event of a disaster or unexpected outage, this ensures the recovery of these VMs from a known-state.
-  potentialBenefits: Ensures VM recovery and failover
-  pgVerified: Verified
-  publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
-  tags: null
-  learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/virtual-desktop/scheduled-agent-updates"
-
-- description: Create updated image version and replace session hosts rather than updating host directly
-  aprlGuid: 2831dab9-6a43-44a1-8aec-90a8e84894bc
-  recommendationTypeId: null
-  recommendationControl: Governance
-  recommendationImpact: Low
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
-  recommendationMetadataState: Active
-  longDescription: |
-    Establish a systematic process for handling image updates within your Azure Virtual Desktop environment. Instead of directly updating individual session hosts, create a new version of the updated image. This process involves creating and configuring a golden image with the necessary updates and configurations. Once the new image is prepared, replace existing session hosts with instances using the updated image. This approach ensures consistency across all session hosts and minimizes the risk of configuration drift. Additionally, it enables quick rollback to a previous image version in case of any issues with the update. Implementing this process helps streamline maintenance activities and ensures that all session hosts are up-to-date with the latest configurations and updates.
-    has context menu
-  potentialBenefits: Ensures consistency; minimizes drift
-  pgVerified: Verified
-  publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
-  tags: null
-  learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/training/modules/create-manage-session-host-image/"
-
 - description: Monitor Service Health and Resource Health of AVD
   aprlGuid: a75a20e7-8cc0-4f7b-b4a9-e2476bd72429
   recommendationTypeId: null
@@ -389,25 +136,6 @@
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-virtual-desktop/business-continuity#capacity-planning"
 
-- description: Ensure separate log analytics workspaces for Prod and DR
-  aprlGuid: 89b4d8f6-6345-4d66-9012-c3fc2aef94e8
-  recommendationTypeId: null
-  recommendationControl: Disaster Recovery
-  recommendationImpact: Low
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
-  recommendationMetadataState: Active
-  longDescription: |
-    Having separate Log Analytics ensures that your DR environment is fully operational for visibility of the metrics, performance, and other auditing tools your workload teams will rely on in the event of an incident.
-  potentialBenefits: Improved DR visibility and operation
-  pgVerified: Verified
-  publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
-  tags: null
-  learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/virtual-desktop/diagnostics-log-analytics"
-
 - description: Ensure that FSLogix Storage Account is Redundant
   aprlGuid: ed1f0327-0914-49e8-9518-16acb0d6b8d6
   recommendationTypeId: null
@@ -422,7 +150,6 @@
     - ZRS is recommended for apps requiring high availability across zones. ZRS provides twelve 9s durability. Replicated across three availability zones
     - GRS replicates an additional three copies to secondary region and provides sixteen 9s durability.
     - GZRS provides both high availability and redundancy across geo replication. It provides sixteen 9s durability over a given year.
-
     Generally, it is recommended to store your data as secure and redundant as possible.
   potentialBenefits: Improves data durability and availability
   pgVerified: Verified
@@ -433,6 +160,25 @@
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-virtual-desktop/storage#user-profiles"
+
+- description: Enable Azure Backup for FSLogix Storage Account
+  aprlGuid: 0025ed2e-41f4-4ada-93c1-12484cef8b0c
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationMetadataState: Active
+  longDescription: |
+    It is recommended to enable backup on the FSLogix Storage Account. Ensuring the user profiles are resilient will allow user data and experience to be consistent through outages.
+  potentialBenefits: Ensures data resilience and consistency
+  pgVerified: Verified
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/fslogix/overview-what-is-fslogix"
 
 - description: Scaling plans should be created per region and not scaled across regions
   aprlGuid: e091419d-10ba-4a8e-bdb0-67380cc021a9
@@ -462,7 +208,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Ensure that AVD session hosts can effectively communicate with the AVD control plane and that UDP ports are open if UDP is utilized. Validate the connectivity of VMs to the AVD Control Plane and confirm the accessibility of UDP TURN ports. Whitelist global URLs and ensure that UDP/TURN ports are open and accessible to facilitate smooth user connections. Proper connectivity validation guarantees optimal performance and user experience within the AVD environment.
-  potentialBenefits: Enhanced performance and user experience
+  potentialBenefits: Enhanced performance & user experience
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -521,7 +267,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Active Directory Domain Services (AD DS) integrated DNS/other should target Secondary/Tertiary customer DNS across multi-region zones. If using custom DNS, ensure there are redundant DNS servers to avoid a single point of failure.
-  potentialBenefits: Improves uptime and resilience
+  potentialBenefits: Improves uptime & resilience
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -531,16 +277,17 @@
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/architecture/example-scenario/azure-virtual-desktop/azure-virtual-desktop-multi-region-bcdr"
 
-- description: Enable Azure Backup for FSLogix Storage Account
-  aprlGuid: 0025ed2e-41f4-4ada-93c1-12484cef8b0c
+- description: Create updated image version and replace session hosts rather than updating host directly
+  aprlGuid: 2831dab9-6a43-44a1-8aec-90a8e84894bc
   recommendationTypeId: null
-  recommendationControl: High Availability
-  recommendationImpact: Medium
+  recommendationControl: Governance
+  recommendationImpact: Low
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
   recommendationMetadataState: Active
   longDescription: |
-    It is recommended to enable backup on the FSLogix Storage Account. Ensuring the user profiles are resilient will allow user data and experience to be consistent through outages.
-  potentialBenefits: Ensures data resilience and consistency
+    Establish a systematic process for handling image updates within your Azure Virtual Desktop environment. Instead of directly updating individual session hosts, create a new version of the updated image. This process involves creating and configuring a golden image with the necessary updates and configurations. Once the new image is prepared, replace existing session hosts with instances using the updated image. This approach ensures consistency across all session hosts and minimizes the risk of configuration drift. Additionally, it enables quick rollback to a previous image version in case of any issues with the update. Implementing this process helps streamline maintenance activities and ensures that all session hosts are up-to-date with the latest configurations and updates.
+    has context menu
+  potentialBenefits: Ensures consistency; minimizes drift
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -548,7 +295,279 @@
   tags: null
   learnMoreLink:
     - name: Learn More
-      url: "https://learn.microsoft.com/en-us/fslogix/overview-what-is-fslogix"
+      url: "https://learn.microsoft.com/en-us/training/modules/create-manage-session-host-image/"
+
+- description: Use Azure Site Recovery or Backups on VMs supporting personal desktops
+  aprlGuid: 38721758-2cc2-4d6b-b7b7-8b47dadbf7df
+  recommendationTypeId: null
+  recommendationControl: Disaster Recovery
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationMetadataState: Active
+  longDescription: |
+    Leverage Azure Site Recovery (ASR) or implement Azure Backup for personal host pools for seamless failover and failback capabilities, enabling the replication of VMs supporting personal desktops to a secondary Azure region. In the event of a disaster or unexpected outage, this ensures the recovery of these VMs from a known-state.
+  potentialBenefits: Ensures VM recovery & failover
+  pgVerified: Verified
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/virtual-desktop/scheduled-agent-updates"
+
+- description: Ensure a unique OU when deploying VMs to Domain
+  aprlGuid: 939cb85c-102a-4e0a-ab82-5c92116d3778
+  recommendationTypeId: null
+  recommendationControl: Governance
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationMetadataState: Active
+  longDescription: |
+    Hybrid VMs should be in a unique OU.
+    When using AD-joined session hosts will benefit from using a unique OU to target specific AVD configurations per hostpool. Examples include Fslogix, time out limits, session controls, and much more. It�s also important to segment Prod and DR organization units to ensure resources are configured per environment.
+  potentialBenefits: Improved AVD hostpool config & segmentation
+  pgVerified: Verified
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/deploy/virtual-dc/adds-on-azure-vm#configure-the-vms-and-install-active-directory-domain-services"
+
+- description: Ensure the standard FSLogix configuration is deployed
+  aprlGuid: c15b2b73-52a1-4db2-88dd-d592424ff4e4
+  recommendationTypeId: null
+  recommendationControl: Governance
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationMetadataState: Active
+  longDescription: |
+    Ensure all session hosts have the standard FSLogix configuration deployed. Regularly validate settings for consistency and alignment with best practices.
+  potentialBenefits: Optimized session reliability and performance
+  pgVerified: Verified
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/fslogix/reference-configuration-settings?tabs=profiles"
+
+- description: Ensure user permissions are set correctly on SMB shares
+  aprlGuid: 7b170ddd-5770-4945-9bc3-cd1ccf5f8672
+  recommendationTypeId:
+  recommendationControl: Security
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationMetadataState: Active
+  longDescription: |
+    Verify user permissions are correctly set on SMB shares so that users have appropriate access to only their own profile and not other user profiles, while administrators have full access at the root volume. Also ensure secondary storage path permissions are set in case of a DR event.
+  potentialBenefits: Enhanced security & disaster recovery
+  pgVerified: Verified
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags:
+  learnMoreLink:
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/fslogix/how-to-configure-storage-permissions"
+
+- description: Configure Diagnostic Settings for FSLogix logs and enable review for accounts
+  aprlGuid: 483f5a00-84a0-49f7-903b-ef6f1fc0c389
+  recommendationTypeId: null
+  recommendationControl: Monitoring and Alerting
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationMetadataState: Active
+  longDescription: |
+    Regularly review FSLogix logs for errors and issues related to login and mounting the profile. Events can be reviewed by looking locally inside the Session Host and also in Log Analytics when the Azure Monitor Agent is used.
+  potentialBenefits: Enhanced AVD error tracking and resolution
+  pgVerified: Verified
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/fslogix/troubleshooting-events-logs-diagnostics"
+
+- description: Manually update new FSLogix image when available
+  aprlGuid: d51e0a70-8b50-4be3-af8a-7c9065e47360
+  recommendationTypeId: null
+  recommendationControl: Governance
+  recommendationImpact: Low
+  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationMetadataState: Active
+  longDescription: |
+    Ensure a process is in place to regularly check for FSLogix agent upgrades and maintain FSLogix up to date. We recommend customers upgrade to the latest version of FSLogix as quickly as their deployment process can allow. FSLogix will provide hotfix releases which address current and potential bugs that impact customer deployments. Additionally, it is the first requirement when opening any support case.
+  potentialBenefits: Enhanced reliability & support
+  pgVerified: Verified
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/fslogix/how-to-install-fslogix"
+
+- description: Turn on Continuous Availability for ANF if using App Attach
+  aprlGuid: 9b2301af-9cac-4f1a-871a-f17475d01812
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationMetadataState: Active
+  longDescription: |
+    Turn on Continuous Availability if using Azure Netapp Files.
+    Verify the number of users connecting to each file share to make sure the SMB path can handle the number of file connections. Currently, Azure Files supports up to 10k handles per root directory.
+  potentialBenefits: Enhanced stability & user limit checks
+  pgVerified: Verified
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/virtual-desktop/app-attach-overview?pivots=msix-app-attach"
+
+- description: Segregate App attach storage in disaster recovery plans with distinct file shares
+  aprlGuid: 7d9c96a6-1ce5-4cf0-ad1b-638a37f753cb
+  recommendationTypeId: null
+  recommendationControl: Disaster Recovery
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationMetadataState: Active
+  longDescription: |
+    App Attach packages should be on a separate share from profiles. And App Attach files should be backed up.
+    Best practice is to separate App Attach VHD files in a separate file share away from user profiles, both for performance and scalability purposes. Requirements can vary greatly depending on how many packaged applications are stored in an image, and you need to test your applications to understand your requirements.
+    Your file share should be in the same Azure region as your session hosts.
+  potentialBenefits: Enhances performance and scalability
+  pgVerified: Verified
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/virtual-desktop/app-attach-overview?pivots=msix-app-attach"
+
+- description: Ensure virtual networks have route tables/route server configured for all regions
+  aprlGuid: db1727d1-5c8e-4a01-a31e-f0d58cfd95b1
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationMetadataState: Active
+  longDescription: |
+    For high availability connections back to on-premises datacenters should consider backup paths across the regions that have been utilized. Ensure redundancy in routing by having a secondary route table in the secondary region.
+  potentialBenefits: Enhanced availability & routing
+  pgVerified: Verified
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/expressroute/designing-for-disaster-recovery-with-expressroute-privatepeering#need-for-redundant-connectivity-solution"
+
+- description: Ensure virtual networks isolation with separate IP space and NSGs for Prod and DR
+  aprlGuid: 37d1091b-e599-4548-a067-a9286be16e45
+  recommendationTypeId: null
+  recommendationControl: Business Continuity
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationMetadataState: Active
+  longDescription: |
+    NSG and ASG per AVD persona and IP space per Prod/DR regions.
+    It's important your organization plans for IP addressing in Azure. Planning ensures the IP address space doesn't overlap across on-premises locations and Azure regions. Overlapping IP address spaces across on-premises and Azure regions create major contention challenges.
+  potentialBenefits: Enhances security and prevents IP conflicts
+  pgVerified: Verified
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/plan-for-ip-addressing"
+
+- description: Ensure route tables accommodate failover
+  aprlGuid: 4b1a45af-d35f-442d-922a-a3e7b6052de1
+  recommendationTypeId:
+  recommendationControl: Disaster Recovery
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationMetadataState: Active
+  longDescription: |
+    Ensure Route Tables that force tunnel traffic to FW/NVA have failover considerations evaluated and won't fail or trigger next-gen FW protections.
+    AVD workload teams should collaborate with centralized teams that manage the shared infrastructure, like networking, to ensure that both Production and DR workloads have the appropriate route tables in place for failover of routing to perform as expected.
+  potentialBenefits: Enhanced failover reliability
+  pgVerified: Verified
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags:
+  learnMoreLink:
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/management-business-continuity-disaster-recovery"
+
+- description: Provision Secondary Key Vault for Disaster Recovery
+  aprlGuid: 1f57434f-f884-41f3-b818-129bbe3c5d3b
+  recommendationTypeId: null
+  recommendationControl: Disaster Recovery
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationMetadataState: Active
+  longDescription: |
+    To ensure continuous availability and disaster recovery readiness, it is recommended to provision a secondary Key Vault in a secondary region. In the event of a primary region failure, this secondary Key Vault will ensure that critical secrets are accessible for use in deployments in the secondary region.
+  potentialBenefits: Ensures DR readiness and access
+  pgVerified: Verified
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/key-vault/general/disaster-recovery-guidance"
+
+- description: Configure AVD Insights Workbook
+  aprlGuid: 0cf72d91-644d-4591-9bb7-84ba3f705a41
+  recommendationTypeId: null
+  recommendationControl: Monitoring and Alerting
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationMetadataState: Active
+  longDescription: |
+    AVD Insights is an Azure Workbook template provided by the AVD product team. It is highly recommended in order to monitor and troubleshoot AVD workloads across metrics, logs, events, and more. Both Production and DR workloads should be enabled with AVD Insights.
+  potentialBenefits: Enhanced AVD monitoring and troubleshooting
+  pgVerified: Verified
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/virtual-desktop/insights?tabs=monitor"
+
+- description: Ensure separate log analytics workspaces for Prod and DR
+  aprlGuid: 89b4d8f6-6345-4d66-9012-c3fc2aef94e8
+  recommendationTypeId: null
+  recommendationControl: Disaster Recovery
+  recommendationImpact: Low
+  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationMetadataState: Active
+  longDescription: |
+    Having separate Log Analytics ensures that your DR environment is fully operational for visibility of the metrics, performance, and other auditing tools your workload teams will rely on in the event of an incident.
+  potentialBenefits: Improved DR visibility and operation
+  pgVerified: Verified
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/virtual-desktop/diagnostics-log-analytics"
 
 - description: Organize AVD resources using the AVD Scale unit model described by the AVD Landing Zone Methodology
   aprlGuid: 204b56b0-9710-4c16-b506-bafb5fb318ed
