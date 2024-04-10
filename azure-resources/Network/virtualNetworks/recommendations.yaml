@@ -1,4 +1,4 @@
-- description: All Subnets should have a Network Security Group associated
+﻿- description: All Subnets should have a Network Security Group associated
   aprlGuid: f0bf9ae6-25a5-974d-87d5-025abec73539
   recommendationTypeId: null
   recommendationControl: Security
@@ -14,8 +14,14 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/virtual-network/concepts-and-best-practices"
+  - name: Azure Virtual Network - Concepts and best practices | Microsoft Learn
+    url: https://learn.microsoft.com/azure/virtual-network/concepts-and-best-practices
+  - name: GatewaySUbnet
+    url: https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpn-gateway-settings#gwsub
+  - name: Can I associate a network security group (NSG) to the RouteServerSubnet?
+    url: https://learn.microsoft.com/en-us/azure/route-server/route-server-faq#can-i-associate-a-network-security-group-nsg-to-the-routeserversubnet
+  - name: Are Network Security Groups (NSGs) supported on the AzureFirewallSubnet?
+    url: https://learn.microsoft.com/en-us/azure/firewall/firewall-faq#are-network-security-groups--nsgs--supported-on-the-azurefirewallsubnet
 
 - description: Shield public endpoints in Azure VNets with Azure DDoS Standard Protection Plans
   aprlGuid: 69ea1185-19b7-de40-9da1-9e8493547a5c
@@ -33,8 +39,8 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/architecture/framework/services/networking/azure-virtual-network/reliability"
+  - name: Reliability and Azure Virtual Network - Microsoft Azure Well-Architected Framework | Microsoft Learn
+    url: https://learn.microsoft.com/azure/architecture/framework/services/networking/azure-virtual-network/reliability
 
 - description: When available, use Private Endpoints instead of Service Endpoints for PaaS Services
   aprlGuid: 24ae3773-cc2c-3649-88de-c9788e25b463
@@ -52,5 +58,10 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/virtual-network/virtual-networks-faq"
+  - name: Azure Virtual Network FAQ | Microsoft Learn
+    url: https://learn.microsoft.com/azure/virtual-network/virtual-networks-faq
+  - name: Reliability and Network connectivity - Microsoft Azure Well-Architected Framework | Microsoft LearnNetworking Reliability
+    url: https://learn.microsoft.com/azure/architecture/framework/services/networking/network-connectivity/reliability
+  - name: Azure Private Link availability
+    url: https://learn.microsoft.com/en-us/azure/private-link/availability
+

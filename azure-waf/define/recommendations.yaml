@@ -1,6 +1,6 @@
-- description: Define and share Availability Targets with all teams for workload consistency
+﻿- description: Define and share Availability Targets with all teams for workload consistency
   aprlGuid: 0c8a12dd-52fb-cf40-bb4a-b60f99409bab
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: WellArchitected/Define
@@ -12,14 +12,16 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
-  tags:
+  tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/well-architected/resiliency/business-metrics#workload-availability-targets"
+  - name: Use business metrics to design resilient Azure applications
+    url: https://learn.microsoft.com/azure/well-architected/resiliency/business-metrics#workload-availability-targets
+  - name: Target functional and nonfunctional requirements
+    url: https://learn.microsoft.com/azure/well-architected/resiliency/design-requirements
 
 - description: Ensure the Recovery Targets are well defined and communicated across teams working on the Workload
   aprlGuid: a43ab756-5b33-2345-8743-3daee911a1ae
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: High
   recommendationResourceType: WellArchitected/Define
@@ -31,7 +33,8 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
-  tags:
+  tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/well-architected/resiliency/design-requirements"
+  - name: Target functional and nonfunctional requirements
+    url: https://learn.microsoft.com/azure/well-architected/resiliency/design-requirements
+

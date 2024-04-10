@@ -1,4 +1,4 @@
-- description: Configure at least two regions for high availability
+﻿- description: Configure at least two regions for high availability
   aprlGuid: 43663217-a1d3-844b-80ea-571a2ce37c6c
   recommendationTypeId: null
   recommendationControl: High Availability
@@ -14,8 +14,10 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/cosmos-db/distribute-data-globally"
+  - name: Distribute data globally with Azure Cosmos DB | Microsoft Learn
+    url: https://learn.microsoft.com/en-us/azure/cosmos-db/distribute-data-globally
+  - name: Tips for building highly available applications | Microsoft Learn
+    url: https://learn.microsoft.com/en-us/azure/cosmos-db/high-availability#tips-for-building-highly-available-applications
 
 - description: Enable service-managed failover for multi-region accounts with single write region
   aprlGuid: 9cabded7-a1fc-6e4a-944b-d7dd98ea31a2
@@ -33,8 +35,8 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-manage-database-account#automatic-failover"
+  - name: Manage an Azure Cosmos DB account by using the Azure portal | Microsoft Learn
+    url: https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-manage-database-account#automatic-failover
 
 - description: Evaluate multi-region write capability
   aprlGuid: 9ce78192-74a0-104c-b5bb-9a443f941649
@@ -52,8 +54,10 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/cosmos-db/distribute-data-globally"
+  - name: Distribute data globally with Azure Cosmos DB | Microsoft Learn
+    url: https://learn.microsoft.com/en-us/azure/cosmos-db/distribute-data-globally
+  - name: Conflict resolution types and resolution policies in Azure Cosmos DB | Microsoft Learn
+    url: https://learn.microsoft.com/en-us/azure/cosmos-db/conflict-resolution-policies
 
 - description: Choose appropriate consistency mode reflecting data durability requirements
   aprlGuid: 23ebe97d-c546-204b-8b0d-00e61a5524f7
@@ -71,8 +75,8 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels"
+  - name: Consistency level choices - Azure Cosmos DB | Microsoft Learn
+    url: https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels
 
 - description: Configure continuous backup mode
   aprlGuid: e544520b-8505-7841-9e77-1f1974ee86ec
@@ -90,8 +94,8 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/cosmos-db/continuous-backup-restore-introduction"
+  - name: Continuous backup with point in time restore feature in Azure Cosmos DB | Microsoft Learn
+    url: https://learn.microsoft.com/en-us/azure/cosmos-db/continuous-backup-restore-introduction
 
 - description: Ensure query results are fully drained
   aprlGuid: c006604a-0d29-684c-99f0-9729cb40dac5
@@ -109,8 +113,8 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/query/pagination#handling-multiple-pages-of-results"
+  - name: Pagination in Azure Cosmos DB | Microsoft Learn
+    url: https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/query/pagination#handling-multiple-pages-of-results
 
 - description: Maintain singleton pattern in your client
   aprlGuid: 7eb32cf9-9a42-1540-acf8-597cbba8a418
@@ -128,8 +132,8 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/conceptual-resilient-sdk-applications"
+  - name: Designing resilient applications with Azure Cosmos DB SDKs | Microsoft Learn
+    url: https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/conceptual-resilient-sdk-applications
 
 - description: Implement retry logic in your client
   aprlGuid: fa6ac22f-0584-bb4b-80e4-80f4755d1a97
@@ -147,8 +151,8 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/conceptual-resilient-sdk-applications"
+  - name: Designing resilient applications with Azure Cosmos DB SDKs | Microsoft Learn
+    url: https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/conceptual-resilient-sdk-applications
 
 - description: Monitor Cosmos DB health and set up alerts
   aprlGuid: deaea200-013c-414b-ac9f-bfa7a7fb13f0
@@ -166,5 +170,6 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/cosmos-db/create-alerts"
+  - name: Create alerts for Azure Cosmos DB using Azure Monitor | Microsoft Learn
+    url: https://learn.microsoft.com/en-us/azure/cosmos-db/create-alerts
+

@@ -1,4 +1,4 @@
-- description: Monitor Batch Account quota
+﻿- description: Monitor Batch Account quota
   aprlGuid: 3464854d-6f75-4922-95e4-a2a308b53ce6
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
@@ -14,8 +14,8 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/reliability/reliability-batch#cross-region-disaster-recovery-and-business-continuity"
+  - name: Learn More
+    url: https://learn.microsoft.com/azure/reliability/reliability-batch#cross-region-disaster-recovery-and-business-continuity
 
 - description: Create an Azure Batch pool across Availability Zones
   aprlGuid: 71cfab8f-d588-4742-b175-b6e07ae48dbd
@@ -33,5 +33,6 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/batch/create-pool-availability-zones"
+  - name: Learn More
+    url: https://learn.microsoft.com/azure/batch/create-pool-availability-zones
+

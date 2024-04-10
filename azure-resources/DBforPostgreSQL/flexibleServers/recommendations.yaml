@@ -1,4 +1,4 @@
-- description: Enable HA with zone redundancy
+﻿- description: Enable HA with zone redundancy
   aprlGuid: ca87914f-aac4-4783-ab67-82a6f936f194
   recommendationTypeId: null
   recommendationControl: High Availability
@@ -14,8 +14,8 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-high-availability"
+  - name: Overview of high availability with Azure Database for PostgreSQL
+    url: https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-high-availability
 
 - description: Enable custom maintenance schedule
   aprlGuid: b2bad57d-7e03-4c0f-9024-597c9eb295bb
@@ -33,5 +33,6 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-maintenance"
+  - name: Scheduled maintenance in Azure Database for PostgreSQL - Flexible Server
+    url: https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-maintenance
+

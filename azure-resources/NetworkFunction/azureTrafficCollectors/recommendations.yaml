@@ -1,4 +1,4 @@
-- description: Ensure ExpressRoute Traffic Collector is enabled and configured for ExpressRoute Direct circuits
+﻿- description: Ensure ExpressRoute Traffic Collector is enabled and configured for ExpressRoute Direct circuits
   aprlGuid: 1ceea4b5-1d8b-4be0-9bbe-9594557be51a
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
@@ -14,5 +14,6 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/expressroute/traffic-collector"
+  - name: Azure ExpressRoute Traffic Collector
+    url: https://learn.microsoft.com/en-us/azure/expressroute/traffic-collector
+

@@ -1,4 +1,4 @@
-- description: Configure Diagnostic Settings for all network security groups
+﻿- description: Configure Diagnostic Settings for all network security groups
   aprlGuid: d2976d3e-294b-4b49-a1f0-c42566a3758f
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
@@ -14,8 +14,8 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/azure-monitor/essentials/diagnostic-settings"
+  - name: Diagnostic settings in Azure Monitor
+    url: https://learn.microsoft.com/azure/azure-monitor/essentials/diagnostic-settings
 
 - description: Monitor changes in Network Security Groups with Azure Monitor
   aprlGuid: 8bb4a57b-55e4-d24e-9c19-2679d8bc779f
@@ -33,8 +33,8 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/azure-monitor/essentials/activity-log?tabs=powershell"
+  - name: Azure Monitor activity log
+    url: https://learn.microsoft.com/azure/azure-monitor/essentials/activity-log?tabs=powershell
 
 - description: Configure locks for Network Security Groups to avoid accidental changes and/or deletion
   aprlGuid: 52ac35e8-9c3e-f84d-8ce8-2fab955333d3
@@ -52,8 +52,8 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/azure-resource-manager/management/lock-resources?toc=%2Fazure%2Fvirtual-network%2Ftoc.json&tabs=json"
+  - name: Lock your resources to protect your infrastructure
+    url: https://learn.microsoft.com/azure/azure-resource-manager/management/lock-resources?toc=%2Fazure%2Fvirtual-network%2Ftoc.json&tabs=json
 
 - description: Configure NSG Flow Logs
   aprlGuid: da1a3c06-d1d5-a940-9a99-fcc05966fe7c
@@ -71,8 +71,8 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/network-watcher/network-watcher-nsg-flow-logging-overview"
+  - name: Flow logging for network security groups
+    url: https://learn.microsoft.com/azure/network-watcher/network-watcher-nsg-flow-logging-overview
 
 - description: The NSG only has Default Security Rules, make sure to configure the necessary rules
   aprlGuid: 8291c1fa-650c-b44b-b008-4deb7465919d
@@ -90,5 +90,6 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/virtual-network/network-security-groups-overview#security-rules"
+  - name: Security rules
+    url: https://learn.microsoft.com/azure/virtual-network/network-security-groups-overview#security-rules
+

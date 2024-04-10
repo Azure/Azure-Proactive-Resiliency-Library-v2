@@ -1,4 +1,4 @@
-- description: For better data path performance enable FastPath on ExpressRoute Direct and Gateway
+﻿- description: For better data path performance enable FastPath on ExpressRoute Direct and Gateway
   aprlGuid: f6a14b32-a727-4ace-b5fa-7b1c6bdff402
   recommendationTypeId: null
   recommendationControl: Scalability
@@ -14,8 +14,8 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/expressroute/about-fastpath"
+  - name: About ExpressRoute FastPath
+    url: https://learn.microsoft.com/en-us/azure/expressroute/about-fastpath
 
 - description: Configure an Azure Resource Lock on connections to prevent accidental deletion
   aprlGuid: a5f3a4bd-4cf1-4196-a3cb-f5a0876198b2
@@ -33,5 +33,6 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources?tabs=json"
+  - name: Protect your Azure resources with a lock - Azure Resource Manager | Microsoft Learn
+    url: https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources?tabs=json
+

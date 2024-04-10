@@ -1,4 +1,4 @@
-- description: Enable HA with zone redundancy
+﻿- description: Enable HA with zone redundancy
   aprlGuid: 88856605-53d8-4bbd-a75b-4a7b14939d32
   recommendationTypeId: null
   recommendationControl: High Availability
@@ -14,8 +14,8 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/mysql/flexible-server/concepts-high-availability"
+  - name: High availability concepts in Azure Database for MySQL - Flexible Server
+    url: https://learn.microsoft.com/azure/mysql/flexible-server/concepts-high-availability
 
 - description: Enable custom maintenance schedule
   aprlGuid: 82a9a0f2-24ee-496f-9ad2-25f81710942d
@@ -33,5 +33,6 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/mysql/flexible-server/concepts-maintenance"
+  - name: Scheduled maintenance in Azure Database for MySQL - Flexible Server
+    url: https://learn.microsoft.com/azure/mysql/flexible-server/concepts-maintenance
+

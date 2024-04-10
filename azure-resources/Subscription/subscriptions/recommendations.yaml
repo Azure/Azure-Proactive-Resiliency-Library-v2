@@ -1,4 +1,4 @@
-- description: Do not create more than 2000 Citrix VDA servers per subscription
+﻿- description: Do not create more than 2000 Citrix VDA servers per subscription
   aprlGuid: c041d596-6c97-4c5f-b4b3-9cd37628f2e2
   recommendationTypeId: null
   recommendationControl: Governance
@@ -14,5 +14,6 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://docs.citrix.com/en-us/citrix-daas-azure/limits"
+  - name: Citrix Limits
+    url: https://docs.citrix.com/en-us/citrix-daas-azure/limits
+

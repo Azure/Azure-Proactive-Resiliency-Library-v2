@@ -1,4 +1,4 @@
-- description: Migrate App Service to availability Zone Support
+﻿- description: Migrate App Service to availability Zone Support
   aprlGuid: 88cb90c2-3b99-814b-9820-821a63f600dd
   recommendationTypeId: null
   recommendationControl: High Availability
@@ -14,8 +14,10 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/reliability/migrate-app-service"
+  - name: Migrate App Service to availability zone support
+    url: https://learn.microsoft.com/en-us/azure/reliability/migrate-app-service
+  - name: High availability enterprise deployment using App Service Environment
+    url: https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/enterprise-integration/ase-high-availability-deployment
 
 - description: Use Standard or Premium tier
   aprlGuid: b2113023-a553-2e41-9789-597e2fb54c31
@@ -33,8 +35,8 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/architecture/checklist/resiliency-per-service#app-service"
+  - name: Resiliency checklist for specific Azure services
+    url: https://learn.microsoft.com/en-us/azure/architecture/checklist/resiliency-per-service#app-service
 
 - description: Avoid scaling up or down
   aprlGuid: 07243659-4643-d44c-a1c6-07ac21635072
@@ -52,8 +54,8 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/architecture/checklist/resiliency-per-service#app-service"
+  - name: Resiliency checklist for specific Azure services
+    url: https://learn.microsoft.com/en-us/azure/architecture/checklist/resiliency-per-service#app-service
 
 - description: Create separate App Service plans for production and test
   aprlGuid: dbe3fd66-fb2a-9d46-b162-1791e21da236
@@ -71,8 +73,8 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/architecture/checklist/resiliency-per-service#app-service"
+  - name: Resiliency checklist for specific Azure services
+    url: https://learn.microsoft.com/en-us/azure/architecture/checklist/resiliency-per-service#app-service
 
 - description: Enable Autoscale/Automatic scaling to ensure adequate resources are available to service requests
   aprlGuid: 6320abf6-f917-1843-b2ae-4779c35985ae
@@ -90,5 +92,8 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/app-service/manage-automatic-scaling?tabs=azure-portal"
+  - name: Automatic scaling in Azure App Service
+    url: https://learn.microsoft.com/en-us/azure/app-service/manage-automatic-scaling?tabs=azure-portal
+  - name: Auto Scale Web Apps
+    url: https://learn.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-get-started
+

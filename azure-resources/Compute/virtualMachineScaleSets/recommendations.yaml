@@ -1,4 +1,4 @@
-- description: Deploy VMSS with Flex orchestration mode instead of Uniform
+﻿- description: Deploy VMSS with Flex orchestration mode instead of Uniform
   aprlGuid: e7495e1c-0c75-0946-b266-b429b5c7f3bf
   recommendationTypeId: null
   recommendationControl: Scalability
@@ -14,8 +14,10 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-design-overview#when-to-use-scale-sets-instead-of-virtual-machines"
+  - name: When to use VMSS instead of VMs
+    url: https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-design-overview#when-to-use-scale-sets-instead-of-virtual-machines
+  - name: Azure Well-Architected Framework review - Virtual Machines and Scale Sets
+    url: https://learn.microsoft.com/azure/well-architected/services/compute/virtual-machines/virtual-machines-review
 
 - description: Enable VMSS application health monitoring
   aprlGuid: 94794d2a-eff0-2345-9b67-6f9349d0a627
@@ -33,8 +35,8 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-health-extension?tabs=rest-api"
+  - name: Using Application Health extension with Virtual Machine Scale Sets
+    url: https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-health-extension?tabs=rest-api
 
 - description: Enable Automatic Repair policy
   aprlGuid: 820f4743-1f94-e946-ae0b-45efafd87962
@@ -52,8 +54,8 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-automatic-instance-repairs#requirements-for-using-automatic-instance-repairs"
+  - name: Automatic instance repairs for Azure Virtual Machine Scale Sets
+    url: https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-automatic-instance-repairs#requirements-for-using-automatic-instance-repairs
 
 - description: Configure VMSS Autoscale to custom and configure the scaling metrics
   aprlGuid: ee66ff65-9aa3-2345-93c1-25827cf79f44
@@ -71,8 +73,10 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/azure-monitor/autoscale/autoscale-get-started?WT.mc_id=Portal-Microsoft_Azure_Monitoring"
+  - name: Get started with autoscale in Azure
+    url: https://learn.microsoft.com/azure/azure-monitor/autoscale/autoscale-get-started?WT.mc_id=Portal-Microsoft_Azure_Monitoring
+  - name: Overview of autoscale in Azure
+    url: https://learn.microsoft.com/azure/azure-monitor/autoscale/autoscale-overview
 
 - description: Enable Predictive autoscale and configure at least for Forecast Only
   aprlGuid: 3f85a51c-e286-9f44-b4dc-51d00768696c
@@ -90,8 +94,8 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/azure-monitor/autoscale/autoscale-predictive"
+  - name: Use predictive autoscale to scale out before load demands in virtual machine scale sets
+    url: https://learn.microsoft.com/azure/azure-monitor/autoscale/autoscale-predictive
 
 - description: Disable Force strictly even balance across zones to avoid scale in and out fail attempts
   aprlGuid: b5a63aa0-c58e-244f-b8a6-cbba0560a6db
@@ -109,8 +113,8 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-scale-in-policy"
+  - name: Use scale-in policies with Azure Virtual Machine Scale Sets
+    url: https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-scale-in-policy
 
 - description: Configure Allocation Policy Spreading algorithm to Max Spreading
   aprlGuid: 457e1648-8aa2-214d-a854-11a4084ecdc9
@@ -128,8 +132,8 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-use-availability-zones#availability-considerations"
+  - name: Availability Considerations
+    url: https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-use-availability-zones#availability-considerations
 
 - description: Deploy VMSS across availability zones with VMSS Flex
   aprlGuid: 1422c567-782c-7148-ac7c-5fc14cf45adc
@@ -147,8 +151,10 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-use-availability-zones"
+  - name: Create a Virtual Machine Scale Set that uses Availability Zones
+    url: https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-use-availability-zones
+  - name: Update scale set to add availability zones
+    url: https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-use-availability-zones?tabs=cli-1%2Cportal-2#update-scale-set-to-add-availability-zones
 
 - description: Set Patch orchestration options to Azure-orchestrated
   aprlGuid: e4ffd7b0-ba24-c84e-9352-ba4819f908c0
@@ -166,8 +172,10 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/virtual-machines/automatic-vm-guest-patching"
+  - name: Automatic VM Guest Patching for Azure VMs
+    url: https://learn.microsoft.com/azure/virtual-machines/automatic-vm-guest-patching
+  - name: Auto OS Image Upgrades
+    url: https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-automatic-upgrade
 
 - description: Upgrade VMSS Image versions scheduled to be deprecated or already retired
   aprlGuid: 83d61669-7bd6-9642-a305-175db8adcdf4
@@ -185,8 +193,8 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/virtual-machines/deprecated-images"
+  - name: Deprecated Azure Marketplace images
+    url: https://learn.microsoft.com/en-us/azure/virtual-machines/deprecated-images
 
 - description: Production VMSS instances should be using SSD disks
   aprlGuid: 1074f391-22bf-42f5-9c95-68af5ad89bf6
@@ -204,5 +212,6 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/virtual-machines/disks-types#disk-type-comparison"
+  - name: Disk Comparison
+    url: https://learn.microsoft.com/en-us/azure/virtual-machines/disks-types#disk-type-comparison
+

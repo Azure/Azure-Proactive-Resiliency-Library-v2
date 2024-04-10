@@ -1,4 +1,4 @@
-- description: Protect private DNS zones and records
+﻿- description: Protect private DNS zones and records
   aprlGuid: 2820f6d6-a23c-7a40-aec5-506f3bd1aeb6
   recommendationTypeId: null
   recommendationControl: Security
@@ -14,8 +14,8 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/dns/dns-protect-private-zones-recordsets"
+  - name: Protecting private DNS Zones and Records - Azure DNS
+    url: https://learn.microsoft.com/en-us/azure/dns/dns-protect-private-zones-recordsets
 
 - description: Monitor Private DNS Zones health and set up alerts
   aprlGuid: ab896e8c-49b9-2c44-adec-98339aff7821
@@ -33,8 +33,8 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/dns/private-dns-scenarios"
+  - name: Scenarios for Azure Private DNS zones
+    url: https://learn.microsoft.com/en-us/azure/dns/private-dns-scenarios
 
 - description: Align Production and DR zones with identical workload and resource failover entries
   aprlGuid: 1e02335c-1f90-fd4e-a5a5-d359c7b22d70
@@ -52,5 +52,6 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/dns/private-dns-scenarios"
+  - name: Scenarios for Azure Private DNS zones
+    url: https://learn.microsoft.com/en-us/azure/dns/private-dns-scenarios
+

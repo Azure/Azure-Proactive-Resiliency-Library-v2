@@ -1,6 +1,6 @@
-- description: Consider deploying your application across multiple zones
+﻿- description: Consider deploying your application across multiple zones
   aprlGuid: 063d7237-5f68-5d42-b3d1-43144b3630b5
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: WellArchitected/Design
@@ -12,14 +12,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
-  tags:
+  tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/reliability/availability-zones-overview#availability-zones"
+  - name: Use Availability Zones
+    url: https://learn.microsoft.com/azure/reliability/availability-zones-overview#availability-zones
 
 - description: Consider deploying your application across multiple regions
   aprlGuid: 8a497b6d-d065-0d43-a7d9-e3f8eebfe0f4
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: High
   recommendationResourceType: WellArchitected/Design
@@ -31,14 +31,16 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
-  tags:
+  tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/well-architected/resiliency/app-design"
+  - name: Design reliable Azure applications
+    url: https://learn.microsoft.com/azure/well-architected/resiliency/app-design
+  - name: Cross-region replication in Azure: Business continuity and disaster recovery
+    url: https://learn.microsoft.com/azure/reliability/cross-region-replication-azure
 
 - description: Ensure that all fault-points and fault-modes are understood and operationalized
   aprlGuid: 99ebe682-6306-6446-bfc7-cf6610ebfa02
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: WellArchitected/Design
@@ -50,14 +52,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
-  tags:
+  tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/architecture/resiliency/failure-mode-analysis"
+  - name: Failure mode analysis for Azure applications
+    url: https://learn.microsoft.com/azure/architecture/resiliency/failure-mode-analysis
 
 - description: Use PaaS Azure services instead of IaaS
   aprlGuid: 097651d8-6e62-314a-9299-a0234ffd190e
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Scalability
   recommendationImpact: Medium
   recommendationResourceType: WellArchitected/Design
@@ -69,14 +71,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
-  tags:
+  tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/architecture/guide/design-principles/managed-services"
+  - name: Use platform as a service (PaaS) options
+    url: https://learn.microsoft.com/azure/architecture/guide/design-principles/managed-services
 
 - description: Design the application to scale out
   aprlGuid: 7f4c76d7-f9d4-d643-ab73-4d8f27fd7ed9
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Scalability
   recommendationImpact: High
   recommendationResourceType: WellArchitected/Design
@@ -88,14 +90,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
-  tags:
+  tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/architecture/guide/design-principles/scale-out"
+  - name: Design to scale out
+    url: https://learn.microsoft.com/azure/architecture/guide/design-principles/scale-out
 
 - description: Create a landing zone for the workload following the Microsoft Cloud Adoption Framework
   aprlGuid: 6132a11a-3ea0-e64c-877b-f01ca1de79d4
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Governance
   recommendationImpact: Low
   recommendationResourceType: WellArchitected/Design
@@ -107,14 +109,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
-  tags:
+  tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/well-architected/security/design-governance-landing-zone"
+  - name: Azure landing zone integration
+    url: https://learn.microsoft.com/azure/well-architected/security/design-governance-landing-zone
 
 - description: Design a BCDR strategy that will help to meet the business requirements
   aprlGuid: b09061cb-d536-1347-9957-390c2d0cfa3d
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: High
   recommendationResourceType: WellArchitected/Design
@@ -126,14 +128,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
-  tags:
+  tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/well-architected/resiliency/backup-and-recovery"
+  - name: Backup and disaster recovery for Azure applications
+    url: https://learn.microsoft.com/azure/well-architected/resiliency/backup-and-recovery
 
 - description: Provide security assurance through identity management
   aprlGuid: 835e616d-78e6-7f4c-a48b-6f80382a48cf
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Security
   recommendationImpact: Medium
   recommendationResourceType: WellArchitected/Design
@@ -145,14 +147,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
-  tags:
+  tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/well-architected/security/design-identity"
+  - name: Azure identity and access management considerations
+    url: https://learn.microsoft.com/azure/well-architected/security/design-identity
 
 - description: Addressing security risks minimizes downtime and data loss from exposures
   aprlGuid: c5d8f87e-45ef-1644-a4aa-95ec08b88109
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Security
   recommendationImpact: High
   recommendationResourceType: WellArchitected/Design
@@ -164,7 +166,8 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
-  tags:
+  tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/well-architected/security/security-principles"
+  - name: Security design principles
+    url: https://learn.microsoft.com/azure/well-architected/security/security-principles
+

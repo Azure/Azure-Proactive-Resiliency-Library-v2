@@ -1,6 +1,6 @@
-- description: Make sure your application's health is being monitored
+﻿- description: Make sure your application's health is being monitored
   aprlGuid: 46fb4540-ecac-6e49-bc10-34c7792eb35d
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Medium
   recommendationResourceType: WellArchitected/Monitor
@@ -12,14 +12,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
-  tags:
+  tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/well-architected/resiliency/monitoring"
+  - name: Monitoring application health for reliability
+    url: https://learn.microsoft.com/azure/well-architected/resiliency/monitoring
 
 - description: Define a health model based on performance, availability, and recovery targets
   aprlGuid: 5dd7a9a3-fb79-004d-bc89-c9ef79890900
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Low
   recommendationResourceType: WellArchitected/Monitor
@@ -31,14 +31,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
-  tags:
+  tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/well-architected/resiliency/monitor-model"
+  - name: Health modeling for reliability
+    url: https://learn.microsoft.com/azure/well-architected/resiliency/monitor-model
 
 - description: Create Dashboards and Alerts for Azure Platform resources
   aprlGuid: 1691bfea-c9fd-0948-969a-03e5abcab299
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Low
   recommendationResourceType: WellArchitected/Monitor
@@ -50,14 +50,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
-  tags:
+  tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/azure-monitor/visualize/workbooks-templates"
+  - name: Azure Workbooks templates
+    url: https://learn.microsoft.com/azure/azure-monitor/visualize/workbooks-templates
 
 - description: Ensure that the right people in your organization will be notified about any future service issues
   aprlGuid: 1422b388-5d23-5641-ba1c-139a59fb7b4c
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Medium
   recommendationResourceType: WellArchitected/Monitor
@@ -69,14 +69,14 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
-  tags:
+  tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/service-health/alerts-activity-log-service-notifications-portal#create-a-service-health-alert-using-the-azure-portal"
+  - name: Create a Service Health alert using the Azure portal
+    url: https://learn.microsoft.com/azure/service-health/alerts-activity-log-service-notifications-portal#create-a-service-health-alert-using-the-azure-portal
 
 - description: Utilize built-in Resilience policies
   aprlGuid: 2af4f8c2-bafc-4808-88df-0af009a019b5
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Governance
   recommendationImpact: Medium
   recommendationResourceType: WellArchitected/Monitor
@@ -88,7 +88,10 @@
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
-  tags:
+  tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://github.com/Azure/azure-policy/tree/master/built-in-policies/policyDefinitions/Resilience"
+  - name: Built-in Resilience policy definitions
+    url: https://github.com/Azure/azure-policy/tree/master/built-in-policies/policyDefinitions/Resilience
+  - name: Get policy compliance data
+    url: https://learn.microsoft.com/azure/governance/policy/how-to/get-compliance-data
+

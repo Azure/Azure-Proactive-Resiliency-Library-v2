@@ -1,4 +1,4 @@
-- description: Avoid combining Traffic Manager and Front Door
+﻿- description: Avoid combining Traffic Manager and Front Door
   aprlGuid: 9437634c-d69e-2747-b13e-631c13182150
   recommendationTypeId: null
   recommendationControl: Business Continuity
@@ -14,8 +14,14 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/architecture/guide/technology-choices/load-balancing-overview"
+  - name: Azure Load Balancing Options
+    url: https://learn.microsoft.com/azure/architecture/guide/technology-choices/load-balancing-overview
+  - name: Azure Traffic Manager
+    url: https://learn.microsoft.com/azure/traffic-manager/traffic-manager-overview
+  - name: Azure Front Door
+    url: https://learn.microsoft.com/azure/frontdoor/front-door-overview
+  - name: Mission-critical global content delivery
+    url: https://learn.microsoft.com/en-us/azure/architecture/guide/networking/global-web-applications/mission-critical-content-delivery
 
 - description: Restrict traffic to your origins
   aprlGuid: 6c40b7ae-2bea-5748-be1a-9e9e3b834649
@@ -33,8 +39,8 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/frontdoor/origin-security?tabs=app-service-functions&pivots=front-door-standard-premium"
+  - name: Secure traffic to Azure Front Door origins
+    url: https://learn.microsoft.com/azure/frontdoor/origin-security?tabs=app-service-functions&pivots=front-door-standard-premium
 
 - description: Use the latest API version and SDK version
   aprlGuid: 52bc9a7b-23c8-bc4c-9d2a-7bc43b50104a
@@ -52,8 +58,12 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/rest/api/frontdoor/"
+  - name: REST API Reference
+    url: https://learn.microsoft.com/rest/api/frontdoor/
+  - name: Client library for Java
+    url: https://learn.microsoft.com/java/api/overview/azure/resourcemanager-frontdoor-readme?view=azure-java-preview
+  - name: SDK for Python
+    url: https://learn.microsoft.com/python/api/overview/azure/front-door?view=azure-python
 
 - description: Configure logs
   aprlGuid: 1ad74c3c-e3d7-0046-b83f-a2199974ef15
@@ -71,8 +81,12 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/frontdoor/front-door-diagnostics?pivots=front-door-standard-premium"
+  - name: Monitor metrics and logs in Azure Front Door
+    url: https://learn.microsoft.com/azure/frontdoor/front-door-diagnostics?pivots=front-door-standard-premium
+  - name: WAF logs
+    url: https://learn.microsoft.com/azure/web-application-firewall/afds/waf-front-door-monitor?pivots=front-door-standard-premium#waf-logs
+  - name: Configure Azure Front Door logs
+    url: https://learn.microsoft.com/azure/frontdoor/standard-premium/how-to-logs
 
 - description: Use end-to-end TLS
   aprlGuid: d9bd6780-0d6f-cd4c-bc66-8ddcab12f3d1
@@ -90,8 +104,8 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/frontdoor/end-to-end-tls?pivots=front-door-standard-premium"
+  - name: End-to-end TLS with Azure Front Door
+    url: https://learn.microsoft.com/azure/frontdoor/end-to-end-tls?pivots=front-door-standard-premium
 
 - description: Use HTTP to HTTPS redirection
   aprlGuid: 24ab9f11-a3e4-3043-a985-22cf94c4933a
@@ -109,8 +123,8 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/frontdoor/front-door-how-to-redirect-https#create-http-to-https-redirect-rule"
+  - name: Create HTTP to HTTPS redirect rule
+    url: https://learn.microsoft.com/azure/frontdoor/front-door-how-to-redirect-https#create-http-to-https-redirect-rule
 
 - description: Use managed TLS certificates
   aprlGuid: 29d65c41-2fad-d142-95eb-9eab95f6c0a5
@@ -128,8 +142,8 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/frontdoor/standard-premium/how-to-configure-https-custom-domain?tabs=powershell"
+  - name: Configure HTTPS on an Azure Front Door custom domain using the Azure portal
+    url: https://learn.microsoft.com/azure/frontdoor/standard-premium/how-to-configure-https-custom-domain?tabs=powershell
 
 - description: Use latest version for customer-managed certificates
   aprlGuid: 4638c2c0-03de-6d42-9e09-82ee4478cbf3
@@ -147,8 +161,8 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/frontdoor/standard-premium/how-to-configure-https-custom-domain?tabs=powershell#select-the-certificate-for-azure-front-door-to-deploy"
+  - name: Select the certificate for Azure Front Door to deploy
+    url: https://learn.microsoft.com/azure/frontdoor/standard-premium/how-to-configure-https-custom-domain?tabs=powershell#select-the-certificate-for-azure-front-door-to-deploy
 
 - description: Use the same domain name on Front Door and your origin
   aprlGuid: cd6a32af-747a-e649-82a7-a98f528ca842
@@ -166,8 +180,8 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/architecture/best-practices/host-name-preservation"
+  - name: Preserve the original HTTP host name between a reverse proxy and its back-end web application
+    url: https://learn.microsoft.com/azure/architecture/best-practices/host-name-preservation
 
 - description: Enable the WAF
   aprlGuid: 1bd2b7e8-400f-e64a-99a2-c572f7b08a62
@@ -185,8 +199,8 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/frontdoor/web-application-firewall"
+  - name: https://learn.microsoft.com/azure/frontdoor/web-application-firewall
+    url: https://learn.microsoft.com/azure/frontdoor/web-application-firewall
 
 - description: Disable health probes when there is only one origin in an origin group
   aprlGuid: 38f3d542-6de6-a44b-86c6-97e3be690281
@@ -204,8 +218,8 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/frontdoor/health-probes"
+  - name: Health probes
+    url: https://learn.microsoft.com/azure/frontdoor/health-probes
 
 - description: Select good health probe endpoints
   aprlGuid: 5225bba3-28ec-1e43-8986-7eedfd466d65
@@ -223,8 +237,8 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/architecture/patterns/health-endpoint-monitoring"
+  - name: Health Endpoint Monitoring pattern
+    url: https://learn.microsoft.com/azure/architecture/patterns/health-endpoint-monitoring
 
 - description: Use HEAD health probes
   aprlGuid: 5783defe-b49e-d947-84f7-d8677593f324
@@ -242,8 +256,8 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/frontdoor/health-probes#supported-http-methods-for-health-probes"
+  - name: Supported HTTP methods for health probes
+    url: https://learn.microsoft.com/azure/frontdoor/health-probes#supported-http-methods-for-health-probes
 
 - description: Use geo-filtering in Azure Front Door
   aprlGuid: b515690d-3bf9-3a49-8d38-188e0fd45896
@@ -261,8 +275,8 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/web-application-firewall/afds/waf-front-door-geo-filtering"
+  - name: Geo filter WAF policy - GeoMatch
+    url: https://learn.microsoft.com/azure/web-application-firewall/afds/waf-front-door-geo-filtering
 
 - description: Secure your Origin with Private Link in Azure Front Door
   aprlGuid: 1cfe7834-56ec-ff41-b11d-993734705dba
@@ -280,5 +294,6 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/frontdoor/private-link"
+  - name: Private link for Azure Front Door
+    url: https://learn.microsoft.com/azure/frontdoor/private-link
+

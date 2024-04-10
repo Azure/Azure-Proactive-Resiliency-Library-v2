@@ -1,4 +1,4 @@
-- description: Use Standard Load Balancer SKU
+﻿- description: Use Standard Load Balancer SKU
   aprlGuid: 38c3bca1-97a1-eb42-8cd3-838b243f35ba
   recommendationTypeId: null
   recommendationControl: High Availability
@@ -14,8 +14,10 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/architecture/framework/services/networking/azure-load-balancer/reliability"
+  - name: Reliability and Azure Load Balancer
+    url: https://learn.microsoft.com/azure/architecture/framework/services/networking/azure-load-balancer/reliability
+  - name: Resiliency checklist for specific Azure services- Azure Load Balancer
+    url: https://learn.microsoft.com/azure/architecture/checklist/resiliency-per-service#azure-load-balancer
 
 - description: Ensure the Backend Pool contains at least two instances
   aprlGuid: 6d82d042-6d61-ad49-86f0-6a5455398081
@@ -33,8 +35,8 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/architecture/checklist/resiliency-per-service#azure-load-balancer"
+  - name: Resiliency checklist for specific Azure services- Azure Load Balancer
+    url: https://learn.microsoft.com/azure/architecture/checklist/resiliency-per-service#azure-load-balancer
 
 - description: Use NAT Gateway instead of Outbound Rules for Production Workloads
   aprlGuid: 8d319a05-677b-944f-b9b4-ca0fb42e883c
@@ -52,8 +54,8 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/architecture/checklist/resiliency-per-service#azure-load-balancer"
+  - name: Resiliency checklist for specific Azure services- Azure Load Balancer
+    url: https://learn.microsoft.com/azure/architecture/checklist/resiliency-per-service#azure-load-balancer
 
 - description: Ensure Standard Load Balancer is zone-redundant
   aprlGuid: 621dbc78-3745-4d32-8eac-9e65b27b7512
@@ -71,5 +73,6 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-standard-availability-zones#zone-redundant"
+  - name: Load Balancer and Availability Zones
+    url: https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-standard-availability-zones#zone-redundant
+

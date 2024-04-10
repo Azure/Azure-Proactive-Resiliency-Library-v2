@@ -1,4 +1,4 @@
-- description: A minimum of three replicas should be kept for production image versions
+﻿- description: A minimum of three replicas should be kept for production image versions
   aprlGuid: b49a39fd-f431-4b61-9062-f2157849d845
   recommendationTypeId: null
   recommendationControl: High Availability
@@ -14,8 +14,8 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/virtual-machines/azure-compute-gallery#best-practices"
+  - name: Compute Gallery best practices
+    url: https://learn.microsoft.com/en-us/azure/virtual-machines/azure-compute-gallery#best-practices
 
 - description: Zone redundant storage should be used for image versions
   aprlGuid: 488dcc8b-f2e3-40ce-bf95-73deb2db095f
@@ -33,8 +33,10 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/virtual-machines/azure-compute-gallery#best-practices"
+  - name: Compute Gallery best practices
+    url: https://learn.microsoft.com/en-us/azure/virtual-machines/azure-compute-gallery#best-practices
+  - name: Zone-redundant storage
+    url: https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy#zone-redundant-storage
 
 - description: Consider creating TrustedLaunchSupported images where possible
   aprlGuid: 1c5e1e58-4e56-491c-8529-10f37af9d4ed
@@ -52,5 +54,10 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/virtual-machines/azure-compute-gallery#best-practices"
+  - name: Compute Gallery best practices
+    url: https://learn.microsoft.com/en-us/azure/virtual-machines/azure-compute-gallery#best-practices
+  - name: Generation 1 vs Generation 2 in Hyper-V
+    url: https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/plan/should-i-create-a-generation-1-or-2-virtual-machine-in-hyper-v
+  - name: Images in Compute gallery
+    url: https://learn.microsoft.com/en-us/azure/virtual-machines/shared-image-galleries?tabs=azure-cli
+

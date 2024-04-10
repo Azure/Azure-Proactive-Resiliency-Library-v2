@@ -1,4 +1,4 @@
-- description: Enable diagnostics logging
+﻿- description: Enable diagnostics logging
   aprlGuid: 493f6079-3bb6-4a56-96ba-ab3248474cb1
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
@@ -14,8 +14,8 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/app-service/troubleshoot-diagnostic-logs"
+  - name: Enable diagnostics logging for apps in Azure App Service
+    url: https://learn.microsoft.com/azure/app-service/troubleshoot-diagnostic-logs
 
 - description: Monitor Performance
   aprlGuid: a7e8bb3d-8ceb-442d-b26f-007cd63f9ffc
@@ -33,8 +33,10 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/application-insights/app-insights-overview"
+  - name: Application Insights
+    url: https://learn.microsoft.com/azure/application-insights/app-insights-overview
+  - name: Application monitoring for Azure App Service
+    url: https://learn.microsoft.com/azure/azure-monitor/app/azure-web-apps
 
 - description: Separate web apps from web APIs
   aprlGuid: 78a5c033-ff51-4332-8a71-83464c34494b
@@ -52,8 +54,8 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/architecture/checklist/resiliency-per-service#app-service"
+  - name: Resiliency checklist for specific Azure services
+    url: https://learn.microsoft.com/azure/architecture/checklist/resiliency-per-service#app-service
 
 - description: Create a separate storage account for logs
   aprlGuid: 3f9ddb59-0bb3-4acb-9c9b-99aa1776f0ab
@@ -71,8 +73,8 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/architecture/checklist/resiliency-per-service#app-service"
+  - name: Resiliency checklist
+    url: https://learn.microsoft.com/azure/architecture/checklist/resiliency-per-service#app-service
 
 - description: Deploy to a staging slot
   aprlGuid: a1d91661-32d4-430b-b3b6-5adeb0975df7
@@ -90,8 +92,8 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/app-service-web/web-sites-staged-publishing"
+  - name: Set up staging environments in Azure App Service
+    url: https://learn.microsoft.com/azure/app-service-web/web-sites-staged-publishing
 
 - description: Store configuration as app settings
   aprlGuid: 0b80b67c-afbe-4988-ad58-a85a146b681e
@@ -109,5 +111,6 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/app-service-web/web-sites-configure"
+  - name: Configure web apps in Azure App Service
+    url: https://learn.microsoft.com/azure/app-service-web/web-sites-configure
+

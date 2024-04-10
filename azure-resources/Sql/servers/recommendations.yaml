@@ -1,4 +1,4 @@
-- description: Use Active Geo Replication to Create a Readable Secondary in Another Region
+﻿- description: Use Active Geo Replication to Create a Readable Secondary in Another Region
   aprlGuid: 74c2491d-048b-0041-a140-935960220e20
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
@@ -14,8 +14,8 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/active-geo-replication-overview"
+  - name: Active Geo Replication
+    url: https://learn.microsoft.com/en-us/azure/azure-sql/database/active-geo-replication-overview
 
 - description: Auto Failover Groups for apps should include all related databases for cohesion
   aprlGuid: 943c168a-2ec2-a94c-8015-85732a1b4859
@@ -33,8 +33,10 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/auto-failover-group-overview?tabs=azure-powershell"
+  - name: AutoFailover Groups
+    url: https://learn.microsoft.com/en-us/azure/azure-sql/database/auto-failover-group-overview?tabs=azure-powershell
+  - name: DR Design
+    url: https://learn.microsoft.com/en-us/azure/azure-sql/database/designing-cloud-solutions-for-disaster-recovery
 
 - description: Use a Zone-Redundant Database
   aprlGuid: c0085c32-84c0-c247-bfa9-e70977cbf108
@@ -52,8 +54,8 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/high-availability-sla"
+  - name: Zone Redundant Databases
+    url: https://learn.microsoft.com/en-us/azure/azure-sql/database/high-availability-sla
 
 - description: Implement Retry Logic
   aprlGuid: cbb17a29-64fb-c943-95d0-8df814a37c40
@@ -71,8 +73,8 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/troubleshoot-common-connectivity-issues"
+  - name: How to Implement Retry Logic
+    url: https://learn.microsoft.com/en-us/azure/azure-sql/database/troubleshoot-common-connectivity-issues
 
 - description: Monitor your Azure SQL Database in Near Real-Time to Detect Reliability Incidents
   aprlGuid: 7e7daec9-6a81-3546-a4cc-9aef72fec1f7
@@ -90,8 +92,12 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/azure-monitor/insights/azure-sql#analyze-data-and-create-alerts"
+  - name: Azure Monitor
+    url: https://learn.microsoft.com/en-us/azure/azure-monitor/insights/azure-sql#analyze-data-and-create-alerts
+  - name: Azure SQL Database Monitoring
+    url: https://learn.microsoft.com/en-us/azure/azure-sql/database/monitoring-sql-database-azure-monitor
+  - name: Monitoring SQL Database Reference
+    url: https://learn.microsoft.com/en-us/azure/azure-sql/database/monitoring-sql-database-azure-monitor-reference
 
 - description: Back Up Your Keys
   aprlGuid: d6ef87aa-574e-584e-a955-3e6bb8b5425b
@@ -109,5 +115,8 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/key-vault/general/overview"
+  - name: Azure Key Vault
+    url: https://learn.microsoft.com/en-us/azure/key-vault/general/overview
+  - name: Getting Started with Always Encrypted
+    url: https://learn.microsoft.com/en-us/azure/azure-sql/database/always-encrypted-landing?view=azuresql
+
