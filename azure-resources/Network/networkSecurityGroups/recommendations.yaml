@@ -7,7 +7,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Resource Logs are not collected and stored until you create a diagnostic setting and route them to one or more locations.
-  potentialBenefits: Enhanced monitoring & security insights
+  potentialBenefits: Enhanced monitoring and security insights
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -64,7 +64,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Monitoring, managing, and understanding your network is crucial for protection and optimization. Knowing the current state, who and from where connections are made, open internet ports, expected and irregular behavior, and traffic spikes is essential.
-  potentialBenefits: Enhances security & optimizes network
+  potentialBenefits: Enhances security and optimizes network
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -83,7 +83,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Azure network security groups filter network traffic between resources in a virtual network, using security rules to allow or deny inbound or outbound traffic based on source, destination, port, and protocol.
-  potentialBenefits: Enhanced traffic control & security
+  potentialBenefits: Enhanced traffic control and security
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -92,4 +92,3 @@
   learnMoreLink:
     - name: Security rules
       url: "https://learn.microsoft.com/azure/virtual-network/network-security-groups-overview#security-rules"
-

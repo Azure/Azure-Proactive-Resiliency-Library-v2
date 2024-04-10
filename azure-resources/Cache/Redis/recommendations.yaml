@@ -7,7 +7,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Azure Cache for Redis offers zone redundancy in Premium and Enterprise tiers, using VMs across multiple Availability Zones to ensure greater resilience and availability.
-  potentialBenefits: Higher resilience & availability
+  potentialBenefits: Higher resilience and availability
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -16,4 +16,3 @@
   learnMoreLink:
     - name: Enable zone redundancy for Azure Cache for Redis
       url: "https://learn.microsoft.com/azure/azure-cache-for-redis/cache-how-to-zone-redundancy"
-

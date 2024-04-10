@@ -26,7 +26,7 @@
   recommendationMetadataState: Active
   longDescription: |
     When using Virtual Machine Configuration for Azure Batch pools, opting to distribute your pool across Availability Zones bolsters your compute nodes against Azure datacenter failures.
-  potentialBenefits: Enhanced reliability & failure protection
+  potentialBenefits: Enhanced reliability and failure protection
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -35,4 +35,3 @@
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/batch/create-pool-availability-zones"
-

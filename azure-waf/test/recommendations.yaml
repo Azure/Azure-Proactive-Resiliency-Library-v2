@@ -7,7 +7,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Applications should be tested to ensure availability and resiliency. Availability describes the amount of time that an application runs in a healthy state without significant downtime. Resiliency describes how quickly an application recovers from failure. Being able to measure availability and resiliency can answer questions like: How much downtime is acceptable? How much does potential downtime cost your business? What are your availability requirements? How much do you invest in making your application highly available? What is the risk versus the cost? Testing plays a critical role in making sure your applications can meet these requirements. Key points: - Test regularly to validate existing thresholds, targets, and assumptions. - Automate testing as much as possible. - Perform testing on both key Test environments and the production environment. - Verify how the end-to-end workload performs under intermittent failure conditions. - Test the application against critical functional and nonfunctional requirements for performance. - Conduct load testing with expected peak volumes to Test scalability and performance under load. - Perform chaos testing by injecting faults.
-  potentialBenefits: Improves uptime & speeds recovery
+  potentialBenefits: Improves uptime and speeds recovery
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -26,7 +26,7 @@
   recommendationMetadataState: Active
   longDescription: |
     In a distributed system, ensuring that your application can recover from errors is critical. You can test your applications to prevent errors and failure, but you need to prepare for a wide range of issues. Testing doesn't always catch everything, so you should understand how to handle errors and prevent potential failure. Many things in a distributed system, such as underlying cloud infrastructure and third-party runtime dependencies, are outside your span of control and your means to test. You can be sure something will fail eventually, so you need to be prepared. Key points: - Implement retry logic to handle transient application failures and transient failures with internal or external dependencies. - Uncover issues or failures in your application's retry logic. - Configure request timeouts to manage intercomponent calls. - Configure and test health probes for your load balancers and traffic managers. - Segregate read operations from update operations across application data stores.
-  potentialBenefits: Enhances recovery & error management
+  potentialBenefits: Enhances recovery and error management
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -92,4 +92,3 @@
   learnMoreLink:
     - name: Test application fault resiliency
       url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/high-availability-sla?view=azuresql&tabs=azure-powershell#testing-application-fault-resiliency"
-

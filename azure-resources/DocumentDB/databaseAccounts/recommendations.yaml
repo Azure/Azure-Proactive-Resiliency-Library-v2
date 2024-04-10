@@ -7,7 +7,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Azure leverages a multi-tier isolation approach (rack, DC, zone, region) for Cosmos DB's default resilience with four replicas.
-  potentialBenefits: Enhances SLA & resilience
+  potentialBenefits: Enhances SLA and resilience
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -68,7 +68,7 @@
   recommendationMetadataState: Active
   longDescription: |
     In a globally distributed database, consistency level impacts data durability in region-wide outages. For business continuity, gauge data loss tolerance post-disruption.
-  potentialBenefits: Enhances data durability & recovery
+  potentialBenefits: Enhances data durability and recovery
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -125,7 +125,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Establishing and maintaining database connections is costly. Using a single instance of the SDK client for each account and application is crucial as connections are tied to the client. Compute environments have a limit on open connections, affecting connectivity when exceeded.
-  potentialBenefits: Reduces costs & prevents connectivity issues
+  potentialBenefits: Reduces costs and prevents connectivity issues
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -172,4 +172,3 @@
   learnMoreLink:
     - name: Create alerts for Azure Cosmos DB using Azure Monitor | Microsoft Learn
       url: "https://learn.microsoft.com/en-us/azure/cosmos-db/create-alerts"
-

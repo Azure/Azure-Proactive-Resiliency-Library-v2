@@ -32,7 +32,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Front Door's features perform optimally when traffic exclusively comes through Front Door. It's advised to set up your origin to deny access to traffic that bypasses Front Door.
-  potentialBenefits: Enhances security & performance
+  potentialBenefits: Enhances security and performance
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -51,7 +51,7 @@
   recommendationMetadataState: Active
   longDescription: |
     When working with Azure Front Door through APIs, ARM templates, Bicep, or SDKs, using the latest API or SDK version is crucial. Updates bring new functions, important security patches, and bug fixes.
-  potentialBenefits: Enhanced security & features
+  potentialBenefits: Enhanced security and features
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -154,7 +154,7 @@
   recommendationMetadataState: Active
   longDescription: |
     If you use your own TLS certificates, set the Key Vault certificate version to 'Latest' to avoid reconfiguring Azure Front Door for new certificate versions and waiting for deployment across Front Door's environments.
-  potentialBenefits: Saves time & automates TLS updates
+  potentialBenefits: Saves time and automates TLS updates
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -230,7 +230,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Consider selecting a webpage or location specifically designed for health monitoring as the endpoint for Azure Front Door's health probes. This should encompass the status of critical components like application servers, databases, and caches to serve production traffic efficiently.
-  potentialBenefits: Improves traffic routing & uptime
+  potentialBenefits: Improves traffic routing and uptime
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -287,7 +287,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Azure Private Link enables secure access to Azure PaaS and services over a private endpoint in your virtual network, ensuring traffic goes over the Microsoft backbone network, not the public internet.
-  potentialBenefits: Enhanced security & private connectivity
+  potentialBenefits: Enhanced security and private connectivity
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -296,4 +296,3 @@
   learnMoreLink:
     - name: Private link for Azure Front Door
       url: "https://learn.microsoft.com/azure/frontdoor/private-link"
-

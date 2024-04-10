@@ -7,7 +7,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Enabling diagnostics logging for your Azure App Service is crucial for monitoring and diagnostics, including both application logging and web server logging.
-  potentialBenefits: Enhanced monitoring & diagnostics
+  potentialBenefits: Enhanced monitoring and diagnostics
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -26,7 +26,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Use Application Insights to monitor app performance and load behavior, offering real-time insights, issue diagnosis, and root-cause analysis. It supports ASP.NET, ASP.NET Core, Java, and Node.js on Azure App Service, now with built-in monitoring.
-  potentialBenefits: Real-time insights & issue diagnosis
+  potentialBenefits: Real-time insights and issue diagnosis
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -85,7 +85,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Create a deployment slot for staging to deploy updates, verify them, and ensure all instances are warmed up before production swap, reducing bad update chances. An LKG slot allows easy rollback to a previous good deployment if issues arise later, enhancing reliability.
-  potentialBenefits: Safer updates & easy rollback
+  potentialBenefits: Safer updates and easy rollback
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false

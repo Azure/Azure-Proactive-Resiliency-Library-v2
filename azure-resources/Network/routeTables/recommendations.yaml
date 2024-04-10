@@ -7,7 +7,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Create Alerts with Azure Monitor for operations like Create or Update Route Table to spot unauthorized/undesired changes in production resources. This setup aids in identifying improper routing changes, including efforts to evade firewalls or access resources from outside.
-  potentialBenefits: Enhanced security & change detection
+  potentialBenefits: Enhanced security and change detection
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -35,4 +35,3 @@
   learnMoreLink:
     - name: Protect your Azure resources with a lock - Azure Resource Manager | Microsoft Learn
       url: "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources?toc=%2Fazure%2Fvirtual-network%2Ftoc.json&tabs=json"
-

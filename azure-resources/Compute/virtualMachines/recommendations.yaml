@@ -47,7 +47,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Availability sets will soon be retired. Migrate workloads from VMs to VMSS Flex for deployment across zones or within the same zone across different fault domains (FDs) and update domains (UD) for better reliability.
-  potentialBenefits: Enhances reliability & future-proofs VMs
+  potentialBenefits: Enhances reliability and future-proofs VMs
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -150,7 +150,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Premium SSD disks support I/O-intensive apps with high performance, low latency, ideal for production. Standard SSDs offer cost-effective solutions for less critical workloads with consistent performance.
-  potentialBenefits: High-performance & reliability for critical apps
+  potentialBenefits: High-performance and reliability for critical apps
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -188,7 +188,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Accelerated networking enables SR-IOV to a VM, greatly improving its networking performance by bypassing the host from the data path, which reduces latency, jitter, and CPU utilization for demanding network workloads on supported VM types.
-  potentialBenefits: Reduces latency, jitter & CPU use
+  potentialBenefits: Reduces latency, jitter and CPU use
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -323,7 +323,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Recommended changing to "Disable public access and enable private access" and creating a Private Endpoint to improve security by restricting direct public access and ensuring connections are made privately, enhancing data protection and minimizing potential external threats.
-  potentialBenefits: Enhances VM security & privacy
+  potentialBenefits: Enhances VM security and privacy
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -342,7 +342,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Keeping your virtual machine (VM) secure is crucial for the applications you run. This involves using various Azure services and features to ensure secure access to your VMs and the secure storage of your data, aiming for overall security of your VM and applications.
-  potentialBenefits: Secure VMs & applications
+  potentialBenefits: Secure VMs and applications
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -382,7 +382,7 @@
   recommendationMetadataState: Active
   longDescription: |
     VM Insights monitors VM and scale set performance, health, running processes, and dependencies. It enhances the predictability of application performance and availability by pinpointing performance bottlenecks and network issues, and it clarifies if problems are related to other dependencies.
-  potentialBenefits: Improves VM performance & health
+  potentialBenefits: Improves VM performance and health
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -403,7 +403,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Azure Monitor Metrics automatically receives platform metrics, but platform logs, which offer detailed diagnostics and auditing for resources and their Azure platform, need to be manually routed for collection.
-  potentialBenefits: Enhanced diagnostics & auditing capability
+  potentialBenefits: Enhanced diagnostics and auditing capability
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -460,7 +460,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Azure Premium SSDs provide high-performance, low-latency for IO-intensive VM workloads. Premium SSD v2 offers better performance at a lower cost, with adjustable capacity, throughput, IOPS, ideal for shifting needs, but not as OS Disks.
-  potentialBenefits: Enhanced performance & cost efficiency
+  potentialBenefits: Enhanced performance and cost efficiency
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false

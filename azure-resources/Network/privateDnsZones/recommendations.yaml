@@ -26,7 +26,7 @@
   recommendationMetadataState: Active
   longDescription: |
     The records in a private DNS zone are only resolvable from linked virtual networks. You can link a private DNS zone to multiple networks and enable autoregistration to manage DNS records for virtual machines automatically.
-  potentialBenefits: Enhanced DNS reliability & alerting
+  potentialBenefits: Enhanced DNS reliability and alerting
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -54,4 +54,3 @@
   learnMoreLink:
     - name: Scenarios for Azure Private DNS zones
       url: "https://learn.microsoft.com/en-us/azure/dns/private-dns-scenarios"
-

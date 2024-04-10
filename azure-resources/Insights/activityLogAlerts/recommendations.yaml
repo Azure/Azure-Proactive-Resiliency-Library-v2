@@ -30,7 +30,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Service health gives a personalized health view of Azure services and regions used, offering the best place for notifications on outages, planned maintenance, and health advisories by knowing the services used.
-  potentialBenefits: Proactive outage & maintenance alerts
+  potentialBenefits: Proactive outage and maintenance alerts
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -41,4 +41,3 @@
       url: "https://learn.microsoft.com/azure/service-health/overview"
     - name: Configure alerts for service health events
       url: "https://learn.microsoft.com/azure/service-health/alerts-activity-log-service-notifications-portal"
-

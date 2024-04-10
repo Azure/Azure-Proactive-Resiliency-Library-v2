@@ -83,7 +83,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Enable logs, set up alerts, and adhere to retention requirements for improved monitoring and security of Key Vault access, detailing the frequency and identity of users.
-  potentialBenefits: Enhanced monitoring & security compliance
+  potentialBenefits: Enhanced monitoring and security compliance
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -92,4 +92,3 @@
   learnMoreLink:
     - name: Azure Key Vault logging overview
       url: "https://learn.microsoft.com/azure/key-vault/general/logging?tabs=Vault"
-

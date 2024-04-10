@@ -7,7 +7,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Azure's feature of deploying App Service plans across availability zones enhances resiliency and reliability by ensuring operation during datacenter failures, providing redundancy without needing different regions, thus minimizing downtime and maintaining uninterrupted services.
-  potentialBenefits: Enhances app resiliency & reliability
+  potentialBenefits: Enhances app resiliency and reliability
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -28,7 +28,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Choose Standard/Premium Azure App Service Plan for robust apps with advanced scaling, high availability, better performance, and multiple slots, ensuring resilience and continuous operation.
-  potentialBenefits: Enhanced scaling & reliability
+  potentialBenefits: Enhanced scaling and reliability
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false

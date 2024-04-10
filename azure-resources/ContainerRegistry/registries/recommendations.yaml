@@ -7,7 +7,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Choose a service tier of Azure Container Registry to meet your performance needs. Premium offers the most bandwidth and highest rate of read and write operations for high-volume deployments. Use Basic to start, Standard for production, and Premium for hyper-scale performance and geo-replication.
-  potentialBenefits: High-volume support & geo-replication
+  potentialBenefits: High-volume support and geo-replication
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -26,7 +26,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Azure Container Registry's optional zone redundancy enhances resiliency and high availability for registries or replication resources in a specific region by distributing resources across multiple zones.
-  potentialBenefits: Enhances resiliency & high availability
+  potentialBenefits: Enhances resiliency and high availability
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -66,7 +66,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Using repository namespaces allows a single registry to be shared across multiple groups and deployments within an organization, supporting nested namespaces for group isolation. However, repositories are managed independently, not hierarchically.
-  potentialBenefits: Enables sharing & group isolation
+  potentialBenefits: Enables sharing and group isolation
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -103,7 +103,7 @@
   recommendationResourceType: Microsoft.ContainerRegistry/registries
   recommendationMetadataState: Active
   longDescription: |
-    The storage constraints of Azure Container Registry's service tiers align with usage scenarios: Basic for starters, Standard for production, and Premium for high-scale performance & geo-replication.
+    The storage constraints of Azure Container Registry's service tiers align with usage scenarios: Basic for starters, Standard for production, and Premium for high-scale performance and geo-replication.
   potentialBenefits: Reduce costs, optimize storage
   pgVerified: Preview
   publishedToLearn: false
@@ -125,7 +125,7 @@
   recommendationMetadataState: Active
   longDescription: |
     By default, Azure container registry requires authentication for pull/push actions. Enabling anonymous pull access exposes all content for public read actions. This applies to all repositories, potentially allowing unrestricted access if repository-scoped tokens are used.
-  potentialBenefits: Enhanced security & controlled access
+  potentialBenefits: Enhanced security and controlled access
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -165,7 +165,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Monitoring Azure resources using Azure Monitor enhances their availability, performance, and operation. Azure Container Registry, a full-stack monitoring service, provides features for Azure and other cloud and on-premises resources.
-  potentialBenefits: Enhanced monitoring & operation
+  potentialBenefits: Enhanced monitoring and operation
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -195,4 +195,3 @@
   learnMoreLink:
     - name: Enable soft delete policy
       url: "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-soft-delete-policy"
-

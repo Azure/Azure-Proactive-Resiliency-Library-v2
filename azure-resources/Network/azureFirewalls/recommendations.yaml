@@ -28,7 +28,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Monitor Azure Firewall for overall health, processed throughput, and outbound SNAT port usage. Get alerted before limits impact services. Consider NAT gateway integration with zonal deployments; note limitations with zone redundant firewalls and secure virtual hub networks.
-  potentialBenefits: Improve health & performance monitoring
+  potentialBenefits: Improve health and performance monitoring
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -117,4 +117,3 @@
       url: "https://learn.microsoft.com/azure/well-architected/service-guides/azure-firewall#recommendations"
     - name: Azure Firewall metrics overview
       url: "https://learn.microsoft.com/azure/firewall/metrics"
-

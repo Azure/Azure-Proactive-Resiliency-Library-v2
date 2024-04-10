@@ -45,7 +45,7 @@
   recommendationMetadataState: Active
   longDescription: |
     In this stage, telemetry data is presented so that an operator can quickly notice problems or trends. Examples include Workbook, Dashboards or email alerts. With Azure Workbooks and/or dashboards, you can build a single pane of glass view of monitoring graphs originating from Application Insights, Log Analytics, Azure Monitor metrics and service health. With Azure Monitor alerts, you can create alerts on service health and resource health.
-  potentialBenefits: Quick issue detection & response
+  potentialBenefits: Quick issue detection and response
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -83,7 +83,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Utilize Azure's built-in Resilience policies to audit and enforce resilient configurations of Azure services. Azure Policy helps to enforce organizational standards and to assess compliance at-scale.
-  potentialBenefits: Ensures compliance & upscale resilience
+  potentialBenefits: Ensures compliance and upscale resilience
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -94,4 +94,3 @@
       url: "https://github.com/Azure/azure-policy/tree/master/built-in-policies/policyDefinitions/Resilience"
     - name: Get policy compliance data
       url: "https://learn.microsoft.com/azure/governance/policy/how-to/get-compliance-data"
-

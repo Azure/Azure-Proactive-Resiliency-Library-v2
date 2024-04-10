@@ -47,7 +47,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Local Kubernetes accounts in AKS, being non-auditable and legacy, are discouraged. Microsoft Entra's integration offers centralized management, multi-factor authentication, RBAC for detailed access, and a secure, scalable authentication system compatible with Azure and external identity providers.
-  potentialBenefits: Enhanced security & access control
+  potentialBenefits: Enhanced security and access control
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -91,7 +91,7 @@
   recommendationMetadataState: Active
   longDescription: |
     The cluster auto-scaler in AKS adjusts node counts based on pod resource needs and available capacity, enabling scaling as per demand to prevent outages.
-  potentialBenefits: Optimizes scaling & prevents outages
+  potentialBenefits: Optimizes scaling and prevents outages
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -248,7 +248,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Production AKS clusters require the Standard tier for a financially backed SLA and enhanced node scalability, as the free service lacks these features.
-  potentialBenefits: SLA guarantee & better scalability
+  potentialBenefits: SLA guarantee and better scalability
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -288,7 +288,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Ephemeral OS disks on AKS offer lower read/write latency due to local attachment, eliminating the need for replication seen with managed disks. This enhances performance and speeds up cluster operations such as scaling or upgrading due to quicker re-imaging and boot times.
-  potentialBenefits: Lower latency, faster re-imaging & booting
+  potentialBenefits: Lower latency, faster re-imaging and booting
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -311,7 +311,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Azure Policies in AKS clusters help enforce governance best practices concerning security, authentication, provisioning, networking, and more, ensuring a robust and secure environment for operations.
-  potentialBenefits: Enhanced AKS governance & security
+  potentialBenefits: Enhanced AKS governance and security
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -501,4 +501,3 @@
   learnMoreLink:
     - name: Resource quotas
       url: "https://learn.microsoft.com/azure/aks/operator-best-practices-scheduler#enforce-resource-quotas"
-

@@ -68,7 +68,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Use Network Insights for monitoring ExpressRoute Gateway's health, including availability, performance, and scalability.
-  potentialBenefits: Enhanced monitoring & alerting
+  potentialBenefits: Enhanced monitoring and alerting
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -150,7 +150,7 @@
   recommendationMetadataState: Active
   longDescription: |
     The active-active mode is available for all SKUs except Basic, allowing for two Gateway IP configurations and two public IP addresses, enhancing redundancy and traffic handling.
-  potentialBenefits: Enhanced reliability & network capacity
+  potentialBenefits: Enhanced reliability and network capacity
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -171,7 +171,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Deploying active-active VPN concentrators and Azure VPN Gateways maximizes resilience and availability using a fully-meshed topology with four IPSec tunnels.
-  potentialBenefits: Maximizes resilience & availability
+  potentialBenefits: Maximizes resilience and availability
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -230,7 +230,7 @@
   recommendationMetadataState: Active
   longDescription: |
     For zone-redundant VPN Gateways, always use zone-redundant Standard SKU public IPs to avoid deploying all instances in one zone. This ensures the gateway's reliability, applying to both active-passive (single IP) and active-active (dual IP) setups.
-  potentialBenefits: Enhanced reliability & disaster recovery
+  potentialBenefits: Enhanced reliability and disaster recovery
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false

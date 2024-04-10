@@ -7,7 +7,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Network security groups and application security groups allow filtering of inbound and outbound traffic by IP, port, and protocol, adding a security layer at the Subnet level.
-  potentialBenefits: Enhanced subnet security & traffic control
+  potentialBenefits: Enhanced subnet security and traffic control
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -51,7 +51,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Use VNet service endpoints only if Private Link isn't available and no data movement concerns. This feature restricts Azure service access to specified VNet and subnet, enhancing network security and isolating service traffic.
-  potentialBenefits: Enhanced security & data isolation
+  potentialBenefits: Enhanced security and data isolation
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -64,4 +64,3 @@
       url: "https://learn.microsoft.com/azure/architecture/framework/services/networking/network-connectivity/reliability"
     - name: Azure Private Link availability
       url: "https://learn.microsoft.com/en-us/azure/private-link/availability"
-

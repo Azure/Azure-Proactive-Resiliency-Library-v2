@@ -7,7 +7,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Deploying even single instance VMs into a scale set with Flexible orchestration mode future-proofs applications for scaling and availability. This mode guarantees high availability (up to 1000 VMs) by distributing VMs across fault domains in a region or within an Availability Zone.
-  potentialBenefits: Higher scalability & availability
+  potentialBenefits: Higher scalability and availability
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -28,7 +28,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Monitoring application health in Azure Virtual Machine Scale Sets is crucial for deployment management. It supports rolling upgrades such as automatic OS-image upgrades and VM guest patching, leveraging health monitoring for upgrading.
-  potentialBenefits: Enhances deployment management & upgrades
+  potentialBenefits: Enhances deployment management and upgrades
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -66,7 +66,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Use custom autoscale for VMSS based on metrics and schedules to improve performance and cost effectiveness, adjusting instances as demand changes.
-  potentialBenefits: Enhances performance & cost-efficiency
+  potentialBenefits: Enhances performance and cost-efficiency
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -205,7 +205,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Using SSD disks for Production workloads is advised as HDDs could negatively impact resources, being suitable only for non-critical resources or those needing infrequent access.
-  potentialBenefits: Faster access & reliability for VMSS
+  potentialBenefits: Faster access and reliability for VMSS
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -214,4 +214,3 @@
   learnMoreLink:
     - name: Disk Comparison
       url: "https://learn.microsoft.com/en-us/azure/virtual-machines/disks-types#disk-type-comparison"
-

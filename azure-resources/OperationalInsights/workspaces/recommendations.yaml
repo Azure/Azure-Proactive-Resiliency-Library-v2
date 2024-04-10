@@ -49,7 +49,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Azure Monitor Logs retain log data for specific periods depending on the data type, e.g., 30 days for platform logs. For compliance or business reasons, you might need longer retention. Data retention settings are adjustable.
-  potentialBenefits: Cost-saving & compliance with data rules
+  potentialBenefits: Cost-saving and compliance with data rules
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -62,4 +62,3 @@
       url: "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/search-jobs?tabs=portal-1%2Cportal-2"
     - name: Restore logs in Azure Monitor
       url: "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/restore?tabs=api-1"
-

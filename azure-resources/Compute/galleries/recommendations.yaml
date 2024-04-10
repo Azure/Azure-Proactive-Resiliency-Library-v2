@@ -7,7 +7,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Keeping a minimum of 3 replicas for production images in Azure's Compute Gallery ensures scalability and prevents throttling in multi-VM deployments by distributing VM deployments across different replicas. This reduces the risk of overloading a single replica.
-  potentialBenefits: Enhances scalability & avoids throttling
+  potentialBenefits: Enhances scalability and avoids throttling
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -60,4 +60,3 @@
       url: "https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/plan/should-i-create-a-generation-1-or-2-virtual-machine-in-hyper-v"
     - name: Images in Compute gallery
       url: "https://learn.microsoft.com/en-us/azure/virtual-machines/shared-image-galleries?tabs=azure-cli"
-

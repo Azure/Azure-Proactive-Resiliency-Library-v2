@@ -7,7 +7,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Upgrading the API Management instance to the Premium SKU adds support for Availability Zones, enhancing availability and resilience by distributing services across physically separate locations within Azure regions.
-  potentialBenefits: Enhanced availability & resilience
+  potentialBenefits: Enhanced availability and resilience
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -60,4 +60,3 @@
       url: "https://learn.microsoft.com/en-us/azure/api-management/breaking-changes/stv1-platform-retirement-august-2024"
     - name: Azure API Management compute platform
       url: "https://learn.microsoft.com/en-us/azure/api-management/compute-infrastructure"
-

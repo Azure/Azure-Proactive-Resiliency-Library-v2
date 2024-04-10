@@ -64,7 +64,7 @@
   recommendationMetadataState: Active
   longDescription: |
     When HPC failed to connect to the Domain controller, admin and user will not be able to connect to the HPC Service thus not able to manage and submit jobs to the cluster.
-  potentialBenefits: Enhanced reliability & job management
+  potentialBenefits: Enhanced reliability and job management
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -109,7 +109,7 @@
   recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
-    Use Virtual Machines Scale Set (VMSS) with flexible orchestration to distribute the virtual machines across specified zones and within each zone to also distribute VMs across different fault domains within the zone on a best effort basis. Configure VMSS Flex following Microsoft recommendation for SAP workload using the right mode and correct settings. If you aren't currently using VMSS Flex for SAP application servers and also not using Availability Sets with Fault domain & Update domain distribution, then you should consider moving to VMSS Flex architecture to improve the resiliency posture of your SAP deployment. The following blog post in links below outlines the details on the process of migrating existing SAP workloads that are deployed in an availability set or availability zone to a flexible scale set with FD=1 deployment option.
+    Use Virtual Machines Scale Set (VMSS) with flexible orchestration to distribute the virtual machines across specified zones and within each zone to also distribute VMs across different fault domains within the zone on a best effort basis. Configure VMSS Flex following Microsoft recommendation for SAP workload using the right mode and correct settings. If you aren't currently using VMSS Flex for SAP application servers and also not using Availability Sets with Fault domain and Update domain distribution, then you should consider moving to VMSS Flex architecture to improve the resiliency posture of your SAP deployment. The following blog post in links below outlines the details on the process of migrating existing SAP workloads that are deployed in an availability set or availability zone to a flexible scale set with FD=1 deployment option.
   potentialBenefits: Enhanced resiliency for SAP on Azure
   pgVerified: Verified
   publishedToLearn: false
@@ -286,7 +286,7 @@ Warm standby involves keeping VMs in the DR region running. On-demand Capacity R
   recommendationMetadataState: Active
   longDescription: |
     SAP components such as (A)SCS, application servers, WebDispatchers, etc are backed up to DR location using an appropriate backup tool or ASR.
-  potentialBenefits: Ensures SAP data safety & recovery
+  potentialBenefits: Ensures SAP data safety and recovery
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -364,7 +364,7 @@ Test a wide range of failure scenarios, including regional outages. Testing shou
   recommendationMetadataState: Active
   longDescription: |
     For an SAP solution hosted on Azure it is imperative to implement a robust monitoring and alerting solution that comprehensively covers DR of each layer of the SAP architecture. Given the complexity of SAP systems, which span multiple layers using diverse technologies and Azure resources, each with potentially distinct DR replication mechanisms, an appropriate monitoring strategy is crucial. The different layers include database, central services, application, and shared file systems.
-  potentialBenefits: Improved DR oversight & rapid issue response
+  potentialBenefits: Improved DR oversight and rapid issue response
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false

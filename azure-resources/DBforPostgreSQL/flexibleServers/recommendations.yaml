@@ -7,7 +7,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Enable HA with zone redundancy on flexible server instances to deploy a standby replica in a different zone, offering automatic failover capability for improved reliability and disaster recovery.
-  potentialBenefits: Enhanced uptime & data protection
+  potentialBenefits: Enhanced uptime and data protection
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -35,4 +35,3 @@
   learnMoreLink:
     - name: Scheduled maintenance in Azure Database for PostgreSQL - Flexible Server
       url: "https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-maintenance"
-

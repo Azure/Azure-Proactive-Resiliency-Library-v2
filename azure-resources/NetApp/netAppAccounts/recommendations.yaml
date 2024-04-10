@@ -7,7 +7,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Service levels, part of capacity pool attributes, determine the maximum throughput per volume quota in Azure NetApp Files. It combines read and write speed, offering three levels: Standard (16 MiB/s per 1TiB), Premium (64 MiB/s per 1TiB), and Ultra (128 MiB/s per 1TiB) throughput.
-  potentialBenefits: Optimized performance & cost efficiency
+  potentialBenefits: Optimized performance and cost efficiency
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -26,7 +26,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Standard network feature in Azure NetApp Files enhances IP limits and VNet capabilities, including network security groups, user-defined routes on subnets, and diverse connectivity options.
-  potentialBenefits: Enhanced connectivity & security
+  potentialBenefits: Enhanced connectivity and security
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -83,7 +83,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Azure NetApp Files offers a fully managed backup solution enhancing long-term recovery, archiving, and compliance.
-  potentialBenefits: Enhances data recovery & compliance
+  potentialBenefits: Enhances data recovery and compliance
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -102,7 +102,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Azure NetApp Files replication offers data protection by allowing asynchronous cross-region volume replication for application failover in case of regional outages. Volumes can be replicated across regions, not concurrently with cross-zone replication.
-  potentialBenefits: Enhanced data protection & disaster recovery
+  potentialBenefits: Enhanced data protection and disaster recovery
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -140,7 +140,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Azure NetApp Files offers metrics like allocated storage, actual usage, volume IOPS, and latency, enabling a better understanding of usage patterns and volume performance for NetApp accounts.
-  potentialBenefits: Optimize usage & performance
+  potentialBenefits: Optimize usage and performance
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -159,7 +159,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Azure NetApp Files supports Azure policy integration using either built-in policy definitions or by creating custom ones to maintain organizational standards and compliance.
-  potentialBenefits: Enforce standards & assess compliance
+  potentialBenefits: Enforce standards and assess compliance
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -235,4 +235,3 @@
   learnMoreLink:
     - name: What do you recommend for handling potential application disruptions due to storage service maintenance events? | Microsoft Learn
       url: "https://learn.microsoft.com/azure/azure-netapp-files/faq-application-resilience#what-do-you-recommend-for-handling-potential-application-disruptions-due-to-storage-service-maintenance-events"
-

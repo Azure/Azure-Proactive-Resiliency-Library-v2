@@ -125,7 +125,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Do not extend the network used by the HCX Management devices to ensure the network's security and stability.
-  potentialBenefits: Enhanced network safety & performance
+  potentialBenefits: Enhanced network safety and performance
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -243,7 +243,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Ensure sufficient memory resources to prevent host resource exhaustion in Azure VMware Solution. It uses vSphere DRS and vSphere HA for dynamic workload management. Yet, continuous memory use over 95% leads to disk swapping, affecting workloads.
-  potentialBenefits: Avoids host exhaustion & swapping
+  potentialBenefits: Avoids host exhaustion and swapping
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -323,7 +323,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Azure VMware Solution vSAN stretched clusters cover 2 Availability Zones plus a third for witness. Use ExpressRoute for added resilience by deploying two circuits in different locations. With Global Reach, create a mesh topology by connecting on-premises circuits to Azure's managed circuits.
-  potentialBenefits: Enhanced resilience & connectivity
+  potentialBenefits: Enhanced resilience and connectivity
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -361,7 +361,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Azure VMware Solution private clouds support up to three DNS servers for a single FQDN, preventing a single DNS server from becoming a point of failure. It's crucial to use multiple DNS servers for on-premises FQDN resolution from each private cloud.
-  potentialBenefits: Enhances reliability & avoids failure
+  potentialBenefits: Enhances reliability and avoids failure
   pgVerified: Preview
   publishedToLearn: false
   publishedToAdvisor: false
@@ -370,4 +370,3 @@
   learnMoreLink:
     - name: Configure DNS forwarder
       url: "https://learn.microsoft.com/en-us/azure/azure-vmware/configure-dns-azure-vmware-solution#configure-dns-forwarder"
-
