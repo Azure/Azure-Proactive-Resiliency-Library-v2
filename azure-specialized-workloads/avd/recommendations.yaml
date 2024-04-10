@@ -3,7 +3,7 @@
   recommendationTypeId: null
   recommendationControl: Security
   recommendationImpact: Medium
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     Private Link is available for other Azure services that work in conjunction with Azure Virtual Desktop, such as Azure Files and Key Vault. From a resiliency standpoint, we recommending implementing private endpoints for these services to reduce exposure to potential internet-related issues such as latency, packet loss, and/or downtime. This can lead to more reliable communication between AVD and dependent services.
@@ -24,7 +24,7 @@
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: High
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     Use Service Health to stay informed about the health of the Azure services and regions that you use to insure their availability.
@@ -45,7 +45,7 @@
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     When using an AD DS identity solution with AVD, it is recommended to deploy domain controllers and DNS servers on Azure virtual machines across availability zones. This improves the environment�s reliability by removing a dependency on an on-premises service and improves performance by creating a shorter path for user authentication.
@@ -65,7 +65,7 @@
   recommendationTypeId: null
   recommendationControl: Other Best Practices
   recommendationImpact: Medium
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     It is recommended to enable RDP Shortpath for AVD. RDP Shortpath is a feature of Azure Virtual Desktop that establishes a direct UDP-based transport between a supported Windows Remote Desktop client and session host. By default, Remote Desktop Protocol (RDP) tries to establish connection using UDP and uses a TCP-based reverse connect transport as a fallback connection mechanism. TCP-based reverse connect transport provides the best compatibility with various networking configurations and has a high success rate for establishing RDP connections. UDP-based transport offers better connection reliability and more consistent latency.
@@ -84,7 +84,7 @@
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: Medium
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     It is recommended to adopt a multi-region deployment (active-active) for AVD. Each region should contain at least identity, name resolution, AVD management resources, and session hosts in case of a primary region outage.
@@ -105,7 +105,7 @@
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: Low
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     If a full BCDR strategy is not in place, consider using zone-redundant storage to store golden images across availability zones. Having the image available will allow for faster recovery in case of zonal or regional outage.
@@ -126,7 +126,7 @@
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: Low
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     Monitor and plan for subscription limits and API throttling limits. Closely monitor your Azure Virtual Desktop deployments, and keep track of resource usage within your subscription. By proactively monitoring capacity, you can identify potential challenges early on, and you can take suitable actions to avoid reaching limits.
@@ -149,7 +149,7 @@
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: Medium
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     It is important to ensure the redundancy of our user profiles when using FSLogix. When using FSLogix with AVD, it is deployed on a file share in a storage account. Data in an Azure Storage account is always replicated three times in the primary region. Below are the options for how your data is replicated in the primary or paired region:
@@ -174,7 +174,7 @@
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: Medium
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     It is recommended to enable backup on the FSLogix Storage Account. Ensuring the user profiles are resilient will allow user data and experience to be consistent through outages.
@@ -195,7 +195,7 @@
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: Medium
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     Each region has its own scaling plans assigned to host pools within that region. However, these plans can become inaccessible if there's a regional failure. To mitigate this risk, it's advisable to create a secondary scaling plan in another region.
@@ -214,7 +214,7 @@
   recommendationTypeId: null
   recommendationControl: Governance
   recommendationImpact: Medium
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     Ensure that AVD session hosts can effectively communicate with the AVD control plane and that UDP ports are open if UDP is utilized. Validate the connectivity of VMs to the AVD Control Plane and confirm the accessibility of UDP TURN ports. Whitelist global URLs and ensure that UDP/TURN ports are open and accessible to facilitate smooth user connections. Proper connectivity validation guarantees optimal performance and user experience within the AVD environment.
@@ -233,7 +233,7 @@
   recommendationTypeId: null
   recommendationControl: Security
   recommendationImpact: Low
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     Hybrid - Entra ID Connect best to run in Azure but can be hosted on-prem. Secondary or more VMs should be setup in staging mode in event of failover.
@@ -253,7 +253,7 @@
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: High
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     Ensure each region with session hosts has multiple domain controllers in the same region to support high availability with regards to identity.
@@ -273,7 +273,7 @@
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: Medium
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     Active Directory Domain Services (AD DS) integrated DNS/other should target Secondary/Tertiary customer DNS across multi-region zones. If using custom DNS, ensure there are redundant DNS servers to avoid a single point of failure.
@@ -292,7 +292,7 @@
   recommendationTypeId: null
   recommendationControl: Governance
   recommendationImpact: Low
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     Establish a systematic process for handling image updates within your Azure Virtual Desktop environment. Instead of directly updating individual session hosts, create a new version of the updated image. This process involves creating and configuring a golden image with the necessary updates and configurations. Once the new image is prepared, replace existing session hosts with instances using the updated image. This approach ensures consistency across all session hosts and minimizes the risk of configuration drift. Additionally, it enables quick rollback to a previous image version in case of any issues with the update. Implementing this process helps streamline maintenance activities and ensures that all session hosts are up-to-date with the latest configurations and updates.
@@ -312,7 +312,7 @@
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: Medium
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     Leverage Azure Site Recovery (ASR) or implement Azure Backup for personal host pools for seamless failover and failback capabilities, enabling the replication of VMs supporting personal desktops to a secondary Azure region. In the event of a disaster or unexpected outage, this ensures the recovery of these VMs from a known-state.
@@ -331,7 +331,7 @@
   recommendationTypeId: null
   recommendationControl: Governance
   recommendationImpact: Medium
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     Hybrid VMs should be in a unique OU.
@@ -351,7 +351,7 @@
   recommendationTypeId: null
   recommendationControl: Governance
   recommendationImpact: High
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     Ensure all session hosts have the standard FSLogix configuration deployed. Regularly validate settings for consistency and alignment with best practices.
@@ -370,7 +370,7 @@
   recommendationTypeId:
   recommendationControl: Security
   recommendationImpact: High
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     Verify user permissions are correctly set on SMB shares so that users have appropriate access to only their own profile and not other user profiles, while administrators have full access at the root volume. Also ensure secondary storage path permissions are set in case of a DR event.
@@ -389,7 +389,7 @@
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Medium
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     Regularly review FSLogix logs for errors and issues related to login and mounting the profile. Events can be reviewed by looking locally inside the Session Host and also in Log Analytics when the Azure Monitor Agent is used.
@@ -408,7 +408,7 @@
   recommendationTypeId: null
   recommendationControl: Governance
   recommendationImpact: Low
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     Ensure a process is in place to regularly check for FSLogix agent upgrades and maintain FSLogix up to date. We recommend customers upgrade to the latest version of FSLogix as quickly as their deployment process can allow. FSLogix will provide hotfix releases which address current and potential bugs that impact customer deployments. Additionally, it is the first requirement when opening any support case.
@@ -427,7 +427,7 @@
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: Medium
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     Turn on Continuous Availability if using Azure Netapp Files.
@@ -447,7 +447,7 @@
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: Medium
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     App Attach packages should be on a separate share from profiles. And App Attach files should be backed up.
@@ -468,7 +468,7 @@
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: Medium
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     For high availability connections back to on-premises datacenters should consider backup paths across the regions that have been utilized. Ensure redundancy in routing by having a secondary route table in the secondary region.
@@ -487,7 +487,7 @@
   recommendationTypeId: null
   recommendationControl: Business Continuity
   recommendationImpact: Medium
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     NSG and ASG per AVD persona and IP space per Prod/DR regions.
@@ -507,7 +507,7 @@
   recommendationTypeId:
   recommendationControl: Disaster Recovery
   recommendationImpact: Medium
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     Ensure Route Tables that force tunnel traffic to FW/NVA have failover considerations evaluated and won't fail or trigger next-gen FW protections.
@@ -527,7 +527,7 @@
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: High
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     To ensure continuous availability and disaster recovery readiness, it is recommended to provision a secondary Key Vault in a secondary region. In the event of a primary region failure, this secondary Key Vault will ensure that critical secrets are accessible for use in deployments in the secondary region.
@@ -546,7 +546,7 @@
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: High
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     AVD Insights is an Azure Workbook template provided by the AVD product team. It is highly recommended in order to monitor and troubleshoot AVD workloads across metrics, logs, events, and more. Both Production and DR workloads should be enabled with AVD Insights.
@@ -565,7 +565,7 @@
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: Low
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     Having separate Log Analytics ensures that your DR environment is fully operational for visibility of the metrics, performance, and other auditing tools your workload teams will rely on in the event of an incident.
@@ -584,7 +584,7 @@
   recommendationTypeId: null
   recommendationControl: Governance
   recommendationImpact: Low
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     Follow AVD Landing Zone best practices using multiple resource groups based on resource type and associated shared resources for AVD workloads.

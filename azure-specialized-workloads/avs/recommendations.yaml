@@ -3,7 +3,7 @@
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: High
-  recommendationResourceType: Microsoft.AVS/privateClouds
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     Ensure Diagnostic Settings are configured for each private cloud to send syslogs to external sources for analysis and/or archiving. Azure VMware Solution Syslogs contain data for troubleshooting and performance, aiding quicker issue resolution and early detection of issues.
@@ -22,7 +22,7 @@
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: High
-  recommendationResourceType: Microsoft.AVS/privateClouds
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     Ensure VMware vSAN datastore slack space is maintained for SLA by monitoring storage utilization and setting alerts at 70% and 75% utilization to allow for capacity planning. To expand, add hosts or external storage like Azure Elastic SAN, Azure NetApp Files, if CPU and RAM requirements are met.
@@ -41,7 +41,7 @@
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Medium
-  recommendationResourceType: Microsoft.AVS/privateClouds
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     Ensure sufficient compute resources to avoid host resource exhaustion in Azure VMware Solution, which utilizes vSphere DRS and HA for dynamic workload resource management. However, sustained CPU utilization over 95% may increase CPU Ready times, impacting workloads.
@@ -60,7 +60,7 @@
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Medium
-  recommendationResourceType: Microsoft.AVS/privateClouds
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     Ensure sufficient memory resources to prevent host resource exhaustion in Azure VMware Solution. It uses vSphere DRS and vSphere HA for dynamic workload management. Yet, continuous memory use over 95% leads to disk swapping, affecting workloads.
@@ -79,7 +79,7 @@
   recommendationTypeId: null
   recommendationControl: Governance
   recommendationImpact: High
-  recommendationResourceType: Microsoft.AVS/privateClouds
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     Applying a resource delete lock to the Azure VMware Solution Private Cloud resource group prevents unauthorized or accidental deletion by anyone with contributor access, ensuring the protection and reliability of the Azure VMware Solution Private Cloud.
@@ -98,7 +98,7 @@
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
-  recommendationResourceType: Microsoft.AVS/privateClouds
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     Microsoft suggests using two or more ExpressRoute circuits at distinct peering locations for critical workloads. Connect these circuits and your Azure VMware Solutions private clouds using Global Reach.
@@ -119,7 +119,7 @@
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
-  recommendationResourceType: Microsoft.AVS/privateClouds
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     Azure VMware Solution vSAN stretched clusters cover 2 Availability Zones plus a third for witness. Use ExpressRoute for added resilience by deploying two circuits in different locations. With Global Reach, create a mesh topology by connecting on-premises circuits to Azure's managed circuits.
@@ -138,7 +138,7 @@
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: High
-  recommendationResourceType: Microsoft.AVS/privateClouds
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     Two Azure VMware Solution private clouds can be deployed in different regions for business continuity, implementing a mesh network topology based on ExpressRoute Gateway Connections and Global Reach Connections.
@@ -159,7 +159,7 @@
   recommendationTypeId: null
   recommendationControl: Security
   recommendationImpact: High
-  recommendationResourceType: Microsoft.AVS/privateClouds
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     When using customer-managed keys for encrypting vSAN datastores, leveraging Azure Key Vault for central management and accessing them via a managed identity linked to the private cloud is advised. The expiration of these keys can render the vSAN datastore and its associated workloads inaccessible.
@@ -178,7 +178,7 @@
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
-  recommendationResourceType: Microsoft.AVS/privateClouds
+  recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
     Azure VMware Solution private clouds support up to three DNS servers for a single FQDN, preventing a single DNS server from becoming a point of failure. It's crucial to use multiple DNS servers for on-premises FQDN resolution from each private cloud.
