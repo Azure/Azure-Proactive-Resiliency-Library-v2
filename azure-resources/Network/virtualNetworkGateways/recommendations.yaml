@@ -178,7 +178,7 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Dual-redundancy: active-active VPN gateways for both Azure and on-premises networks
+    - name: Dual-redundancy active-active VPN gateways for both Azure and on-premises networks
       url: "https://learn.microsoft.com/azure/vpn-gateway/vpn-gateway-highlyavailable#dual-redundancy-active-active-vpn-gateways-for-both-azure-and-on-premises-networks"
 
 - description: Monitor connections and gateway health
@@ -239,4 +239,3 @@
   learnMoreLink:
     - name: About zone-redundant virtual network gateway in Azure availability zones
       url: "https://learn.microsoft.com/azure/vpn-gateway/about-zone-redundant-vnet-gateways"
-

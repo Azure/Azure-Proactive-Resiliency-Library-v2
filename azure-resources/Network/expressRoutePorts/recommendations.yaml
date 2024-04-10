@@ -14,7 +14,7 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: How to configure ExpressRoute Direct: Change Admin State of links
+    - name: How to configure ExpressRoute Direct Change Admin State of links
       url: "https://learn.microsoft.com/en-us/azure/expressroute/expressroute-howto-erdirect#state"
 
 - description: Ensure you do not over-subscribe an ExpressRoute Direct
@@ -33,7 +33,7 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: About ExpressRoute Direct: Circuit Sizes
+    - name: About ExpressRoute Direct Circuit Sizes
       url: "https://learn.microsoft.com/en-us/azure/expressroute/expressroute-erdirect-about?source=recommendations#circuit-sizes"
 
 - description: Implement rate-limiting across ExpressRoute Direct Circuits to optimize network flow
@@ -54,4 +54,3 @@
   learnMoreLink:
     - name: Rate limiting for ExpressRoute Direct circuits (Preview)
       url: "https://learn.microsoft.com/en-us/azure/expressroute/rate-limit"
-

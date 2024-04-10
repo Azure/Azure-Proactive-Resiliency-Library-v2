@@ -199,7 +199,7 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: https://learn.microsoft.com/azure/frontdoor/web-application-firewall
+    - name: Web Application Firewall on Azure Front Door
       url: "https://learn.microsoft.com/azure/frontdoor/web-application-firewall"
 
 - description: Disable health probes when there is only one origin in an origin group
