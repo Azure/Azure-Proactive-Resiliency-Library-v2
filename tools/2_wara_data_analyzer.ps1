@@ -91,6 +91,7 @@ $Global:Runtime = Measure-Command -Expression {
         $Global:Outages = $results.Outages
         $Global:SupportTickets = $results.SupportTickets
         $Global:Retirements = $results.Retirements
+        $Global:ServiceHealth = $results.ServiceHealth
 
         $CoreResources = $results.Resource
         $CoreAdvisories = $results.Advisory
@@ -116,6 +117,9 @@ $Global:Runtime = Measure-Command -Expression {
                 $Ticket = $Global:SupportTickets | Where-Object {$_.properties.technicalTicketDetails.resourceId -eq $Recom.id}
                 if($RecomTitle.recommendationMetadataState -eq 'Active' -or $Recom.name -eq 'Service Not Available In APRL - Validate Service manually if Applicable, if not Delete this line' -or $Recom.name -eq 'IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually' -or $Recom.name -eq 'Query under development - Validate Recommendation manually' )
                     {
+                        $Tickets = if($Ticket.properties.supportTicketId.count -gt 1){$Ticket.properties.supportTicketId | ForEach-Object {$_ + ' /'}}else{$Ticket.properties.supportTicketId}
+                        $Tickets = [string]$Tickets
+                        $Tickets = if($Tickets -like '* /*'){$Tickets -replace ".$"}else{$Tickets}
                         $tmp = @{
                             recommendationId        = [string]$Recom.recommendationId;
                             recommendationTitle     = [string]$RecomTitle.description;
@@ -128,7 +132,7 @@ $Global:Runtime = Measure-Command -Expression {
                             param3                  = [string]$Recom.param3;
                             param4                  = [string]$Recom.param4;
                             param5                  = [string]$Recom.param5;
-                            supportTicketId         = [string]$Ticket.properties.supportTicketId;
+                            supportTicketId         = $Tickets;
                             source                  = [string]$Recom.selector;
                             checkName               = [string]$Recom.checkName
                         }
@@ -141,6 +145,9 @@ $Global:Runtime = Measure-Command -Expression {
                 if(![string]::IsNullOrEmpty($adv.recommendationId))
                     {
                         $Ticket = $Global:SupportTickets | Where-Object {$_.properties.technicalTicketDetails.resourceId -eq $adv.id}
+                        $Tickets = if($Ticket.properties.supportTicketId.count -gt 1){$Ticket.properties.supportTicketId | ForEach-Object {$_ + ' /'}}else{$Ticket.properties.supportTicketId}
+                        $Tickets = [string]$Tickets
+                        $Tickets = if($Tickets -like '* /*'){$Tickets -replace ".$"}else{$Tickets}
                         $tmp = @{
                             recommendationId        = [string]$adv.recommendationId;
                             recommendationTitle     = [string]$adv.description;
@@ -153,7 +160,7 @@ $Global:Runtime = Measure-Command -Expression {
                             param3                  = "";
                             param4                  = "";
                             param5                  = "";
-                            supportTicketId         = [string]$Ticket.properties.supportTicketId;
+                            supportTicketId         = $Tickets;
                             source                  = "ADVISOR";
                             checkName               = ""
                         }
@@ -172,459 +179,559 @@ $Global:Runtime = Measure-Command -Expression {
         # Defines the Excel file to be created in the root folder
         $Global:ExcelFile = ($PSScriptRoot + "\WARA Action Plan " + (get-date -Format "yyyy-MM-dd_HH_mm") + ".xlsx")
 
-        ####################    Creates the first sheet (ImpactedResources)
-        $Styles1 = @(
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -Bold -BackgroundColor "DarkSlateGray" -AutoSize -Range "A1:N1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -AutoSize -NumberFormat '0' -Range "A:D"
-            New-ExcelStyle -HorizontalAlignment Left -FontName 'Calibri' -FontSize 11 -Width 80 -Range "E:E"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -AutoSize -NumberFormat '0' -Range "L:N"
+        function ImpactedResources {
+            ####################    Creates the first sheet (ImpactedResources)
+            $Styles1 = @(
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -Bold -BackgroundColor "DarkSlateGray" -AutoSize -Range "A1:N1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -AutoSize -NumberFormat '0' -Range "A:D"
+                New-ExcelStyle -HorizontalAlignment Left -FontName 'Calibri' -FontSize 11 -Width 80 -Range "E:E"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -AutoSize -NumberFormat '0' -Range "L:N"
+            )
+
+            $ImpactedResourcesSheet = New-Object System.Collections.Generic.List[System.Object]
+            $ImpactedResourcesSheet.Add('recommendationId')
+            $ImpactedResourcesSheet.Add('recommendationTitle')
+            $ImpactedResourcesSheet.Add('resourceType')
+            $ImpactedResourcesSheet.Add('name')
+            $ImpactedResourcesSheet.Add('id')
+            $ImpactedResourcesSheet.Add('tags')
+            $ImpactedResourcesSheet.Add('param1')
+            $ImpactedResourcesSheet.Add('param2')
+            $ImpactedResourcesSheet.Add('param3')
+            $ImpactedResourcesSheet.Add('param4')
+            $ImpactedResourcesSheet.Add('param5')
+            $ImpactedResourcesSheet.Add('supportTicketId')
+            $ImpactedResourcesSheet.Add('source')
+            $ImpactedResourcesSheet.Add('checkName')
+
+            $Global:MergedRecommendation | ForEach-Object { [PSCustomObject]$_ } | Select-Object $ImpactedResourcesSheet |
+            Export-Excel -Path $ExcelFile -WorksheetName 'ImpactedResources' -TableName 'Table2' -AutoSize -TableStyle $TableStyle -Style $Styles1
+
+        }
+
+        function ResourceTypes {
+            ####################    Creates the second sheet (ResourceTypes)
+            $ResourceTypeSheet = New-Object System.Collections.Generic.List[System.Object]
+            $ResourceTypeSheet.Add('Resource Type')
+            $ResourceTypeSheet.Add('Number of Resources')
+            $ResourceTypeSheet.Add('Available in APRL?')
+            $ResourceTypeSheet.Add('Custom1')
+            $ResourceTypeSheet.Add('Custom2')
+            $ResourceTypeSheet.Add('Custom3')
+
+            $TypeStyle = @(
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -Bold -BackgroundColor "DarkSlateGray" -AutoSize -Range "A1:F1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -AutoSize -NumberFormat '0' -Range "A:F"
+                
+            )
+
+            $Global:AllResourceTypesOrdered | ForEach-Object { [PSCustomObject]$_ } | Select-Object $ResourceTypeSheet |
+            Export-Excel -Path $ExcelFile -WorksheetName 'ResourceTypes' -TableName 'TableTypes' -AutoSize -TableStyle $TableStyle -Style $TypeStyle
+
+        }
+
+        function Outages {
+            ####################    Creates the Outages sheet
+            $Global:OutagesSheet = @()
+            $RealOutages = $Global:Outages | Where-Object {$_.properties.description -like '*How can customers make incidents like this less impactful?*' -and $_.properties.impactStartTime -gt ((Get-Date).AddMonths(-3))}
+            foreach ($Outage in  $RealOutages)
+                {
+                    if(![string]::IsNullOrEmpty($Outage.name))
+                        {
+                            $HTML = New-Object -Com "HTMLFile"
+                            $HTML.write([ref]$Outage.properties.description)
+                            $OutageDescription = $Html.body.innerText
+                            $SplitDescription = $OutageDescription.split('How can we make our incident communications more useful?').split('How can customers make incidents like this less impactful?').split('How are we making incidents like this less likely or less impactful?').split('How did we respond?').split('What went wrong and why?').split('What happened?')
+
+                            $OutProps = $Outage.properties
+                            $tmp = @{
+                                'Tracking ID'                                                           = [string]$Outage.name;
+                                'Event Type'                                                            = [string]$OutProps.eventType;
+                                'Event Source'                                                          = [string]$OutProps.eventSource;
+                                'Status'                                                                = [string]$OutProps.status;
+                                'Title'                                                                 = [string]$OutProps.title;
+                                'Level'                                                                 = [string]$OutProps.level;
+                                'Event Level'                                                           = [string]$OutProps.eventLevel;
+                                'Start Time'                                                            = [string]$OutProps.impactStartTime;
+                                'Mitigation Time'                                                       = [string]$OutProps.impactMitigationTime;
+                                'Impacted Service'                                                      = [string]$OutProps.impact.impactedService;
+                                'What happened'                                                         = ($SplitDescription[1]).Split([Environment]::NewLine)[1];
+                                'What went wrong and why'                                               = ($SplitDescription[2]).Split([Environment]::NewLine)[1];
+                                'How did we respond'                                                    = ($SplitDescription[3]).Split([Environment]::NewLine)[1];
+                                'How are we making incidents like this less likely or less impactful'   = ($SplitDescription[4]).Split([Environment]::NewLine)[1];
+                                'How can customers make incidents like this less impactful'             = ($SplitDescription[5]).Split([Environment]::NewLine)[1];
+                            }
+                            $Global:OutagesSheet += $tmp
+                        }
+                }
+
+
+            $Styles3 = @(
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 14 -Range "A1:B1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 18 -Range "C1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 20 -Range "D1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 55 -Range "E1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 20 -Range "F1:I1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 25 -Range "J1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 80 -Range "K1:O1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -VerticalAlignment Center -WrapText -Range "A:O"
+            )
+
+            # Configure the array of fields to be used in the Recommendations sheet
+            $OutagesWorksheet = New-Object System.Collections.Generic.List[System.Object]
+            $OutagesWorksheet.Add('Tracking ID')
+            $OutagesWorksheet.Add('Event Type')
+            $OutagesWorksheet.Add('Event Source')
+            $OutagesWorksheet.Add('Status')
+            $OutagesWorksheet.Add('Title')
+            $OutagesWorksheet.Add('Level')
+            $OutagesWorksheet.Add('Event Level')
+            $OutagesWorksheet.Add('Start Time')
+            $OutagesWorksheet.Add('Mitigation Time')
+            $OutagesWorksheet.Add('Impacted Service')
+            $OutagesWorksheet.Add('What happened')
+            $OutagesWorksheet.Add('What went wrong and why')
+            $OutagesWorksheet.Add('How did we respond')
+            $OutagesWorksheet.Add('How are we making incidents like this less likely or less impactful')
+            $OutagesWorksheet.Add('How can customers make incidents like this less impactful')
+
+
+            $Global:OutagesSheet | ForEach-Object { [PSCustomObject]$_ } | Select-Object $OutagesWorksheet |
+            Export-Excel -Path $ExcelFile -WorksheetName 'Outages' -TableName 'TableOutage' -AutoSize -TableStyle $tableStyle -Style $Styles3
+
+        }
+
+        function Retirement {
+            ####################    Creates the Retirement sheet
+            $Global:RetirementSheet = @()
+            foreach ($Retires in $Global:Retirements)
+                {
+                    if(![string]::IsNullOrEmpty($Retires))
+                        {
+                            $OutageRetirement = $Global:Outages | Where-Object {$_.name -eq $Retires.TrackingId}
+                            $HTML = New-Object -Com "HTMLFile"
+                            $HTML.write([ref]$Retires.Summary)
+                            $RetirementDescription = $Html.body.innerText
+
+                            if(![string]::IsNullOrEmpty($OutageRetirement))
+                                {
+                                    $HTML = New-Object -Com "HTMLFile"
+                                    $HTML.write([ref]$OutageRetirement.properties.description)
+                                    $RetirementDescriptionFull = $Html.body.innerText
+                                    $SplitDescription = $RetirementDescriptionFull.split('Help and support').split('Required action')
+                                }
+                            else
+                                {
+                                    $SplitDescription = ''
+                                }
+
+                            $tmp = @{
+                                'Subscription'         = [string]$Retires.Subscription;
+                                'Tracking ID'          = [string]$Retires.TrackingId;
+                                'Status'               = [string]$Retires.Status;
+                                'Last Update Time'     = [string]$OutageRetirement.properties.lastUpdateTime;
+                                'End Time'             = [string]$OutageRetirement.properties.impactMitigationTime;
+                                'Impacted Service'     = [string]$Retires.ImpactedService;
+                                'Title'                = [string]$Retires.Title;
+                                'Summary'              = [string]$RetirementDescription;
+                                'Required Action'      = [string]$SplitDescription[1];
+                                'Details'              = [string]$SplitDescription[0]
+                            }
+                            $Global:RetirementSheet += $tmp
+                        }
+                }
+
+            $Styles4 = @(
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 50 -Range "A1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 25 -Range "B1:E1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 30 -Range "F1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 70 -Range "G1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 80 -Range "H1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 90 -Range "I1:J1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -VerticalAlignment Center -WrapText -Range "A:J"
+            )
+
+            # Configure the array of fields to be used in the Retirement sheet
+            $RetirementWorksheet = New-Object System.Collections.Generic.List[System.Object]
+            $RetirementWorksheet.Add('Subscription')
+            $RetirementWorksheet.Add('Tracking ID')
+            $RetirementWorksheet.Add('Status')
+            $RetirementWorksheet.Add('Last Update Time')
+            $RetirementWorksheet.Add('End Time')
+            $RetirementWorksheet.Add('Impacted Service')
+            $RetirementWorksheet.Add('Title')
+            $RetirementWorksheet.Add('Summary')
+            $RetirementWorksheet.Add('Details')
+            $RetirementWorksheet.Add('Required Action')
+
+            if(![string]::IsNullOrEmpty($Global:RetirementSheet))
+                {
+                    $Global:RetirementSheet | ForEach-Object { [PSCustomObject]$_ } | Select-Object $RetirementWorksheet |
+                    Export-Excel -Path $ExcelFile -WorksheetName 'Retirements' -TableName 'TableRetires' -AutoSize -TableStyle $tableStyle -Style $Styles4
+                }
+
+        }
+
+        function Tickets {
+            ####################    Creates the Tickets sheet
+            $Global:TicketsSheet = @()
+            foreach ($Ticket in $Global:SupportTickets)
+                {
+                    if(![string]::IsNullOrEmpty($Ticket))
+                        {
+                            $tmp = @{
+                                'Ticket ID'            = [string]$Ticket.properties.supportTicketId;
+                                'Severity'             = [string]$Ticket.properties.severity;
+                                'Status'               = [string]$Ticket.properties.status;
+                                'Support Plan Type'    = [string]$Ticket.properties.supportPlanType;
+                                'Creation Date'        = [string]$Ticket.properties.createdDate;
+                                'Modified Date'        = [string]$Ticket.properties.modifiedDate;
+                                'Customer Contact'     = [string]$Ticket.properties.contactDetails.primaryEmailAddress;
+                                'Title'                = [string]$Ticket.properties.title;
+                                'Description'          = [string]$Ticket.properties.description;
+                                'Related Resource'     = [string]$Ticket.properties.technicalTicketDetails.resourceId;
+                                'Support Engineer'     = [string]$Ticket.properties.supportEngineer.emailAddress
+                            }
+                            $Global:TicketsSheet += $tmp
+                        }
+                }
             
-        )
 
-        $ImpactedResourcesSheet = New-Object System.Collections.Generic.List[System.Object]
-        $ImpactedResourcesSheet.Add('recommendationId')
-        $ImpactedResourcesSheet.Add('recommendationTitle')
-        $ImpactedResourcesSheet.Add('resourceType')
-        $ImpactedResourcesSheet.Add('name')
-        $ImpactedResourcesSheet.Add('id')
-        $ImpactedResourcesSheet.Add('tags')
-        $ImpactedResourcesSheet.Add('param1')
-        $ImpactedResourcesSheet.Add('param2')
-        $ImpactedResourcesSheet.Add('param3')
-        $ImpactedResourcesSheet.Add('param4')
-        $ImpactedResourcesSheet.Add('param5')
-        $ImpactedResourcesSheet.Add('supportTicketId')
-        $ImpactedResourcesSheet.Add('source')
-        $ImpactedResourcesSheet.Add('checkName')
+            $Styles5 = @(
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 20 -NumberFormat '0' -Range "A1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 15 -Range "B1:C1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 35 -Range "D1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 20 -Range "E1:F1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 35 -Range "G1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 50 -Range "H1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 95 -Range "I1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 60 -Range "J1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 35 -Range "K1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -VerticalAlignment Center -WrapText -NumberFormat '0' -Range "A:K"
+            )
 
-        $Global:MergedRecommendation | ForEach-Object { [PSCustomObject]$_ } | Select-Object $ImpactedResourcesSheet |
-        Export-Excel -Path $ExcelFile -WorksheetName 'ImpactedResources' -TableName 'Table2' -AutoSize -TableStyle $TableStyle -Style $Styles1
+            # Configure the array of fields to be used in the Tickets sheet
+            $TicketWorksheet = New-Object System.Collections.Generic.List[System.Object]
+            $TicketWorksheet.Add('Ticket ID')
+            $TicketWorksheet.Add('Severity')
+            $TicketWorksheet.Add('Status')
+            $TicketWorksheet.Add('Support Plan Type')
+            $TicketWorksheet.Add('Creation Date')
+            $TicketWorksheet.Add('Modified Date')
+            $TicketWorksheet.Add('Customer Contact')
+            $TicketWorksheet.Add('Title')
+            $TicketWorksheet.Add('Description')
+            $TicketWorksheet.Add('Related Resource')
+            $TicketWorksheet.Add('Support Engineer')
 
-
-        ####################    Creates the second sheet (ResourceTypes)
-        $ResourceTypeSheet = New-Object System.Collections.Generic.List[System.Object]
-        $ResourceTypeSheet.Add('Resource Type')
-        $ResourceTypeSheet.Add('Number of Resources')
-        $ResourceTypeSheet.Add('Available in APRL?')
-        $ResourceTypeSheet.Add('Custom1')
-        $ResourceTypeSheet.Add('Custom2')
-        $ResourceTypeSheet.Add('Custom3')
-
-        $TypeStyle = New-ExcelStyle -HorizontalAlignment Center -AutoSize -NumberFormat '0'
-
-        $Global:AllResourceTypesOrdered | ForEach-Object { [PSCustomObject]$_ } | Select-Object $ResourceTypeSheet |
-        Export-Excel -Path $ExcelFile -WorksheetName 'ResourceTypes' -TableName 'TableTypes' -AutoSize -TableStyle $TableStyle -Style $TypeStyle
-
-
-        ####################    Creates the Retirement sheet
-        $Global:RetirementSheet = @()
-        foreach ($Retires in $Global:Retirements)
-            {
-                if(![string]::IsNullOrEmpty($Retires))
-                    {
-                        $HTML = New-Object -Com "HTMLFile"
-                        $HTML.write([ref]$Retires.Summary)
-                        $RetirementDescription = $Html.body.innerText
-
-                        $Lastupdate = [dateTime]::FromFileTime($Retires.LastUpdateTime).ToString()
-
-                        $tmp = @{
-                            'Tracking ID'          = [string]$Retires.TrackingId;
-                            'Status'               = [string]$Retires.Status;
-                            'Last Update Time'     = [string]$Lastupdate;
-                            'Impacted Service'     = [string]$Retires.ImpactedService;
-                            'Title'                = [string]$Retires.Title;
-                            'Summary'              = [string]$RetirementDescription
-                        }
-                        $Global:RetirementSheet += $tmp
-                    }
-            }
-        
-
-        $Styles4 = @(
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 20 -Range "A1:B1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 25 -Range "C1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 30 -Range "D1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 70 -Range "E1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 80 -Range "F1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -VerticalAlignment Center -WrapText -Range "A:F"
-        )
-
-        # Configure the array of fields to be used in the Retirement sheet
-        $RetirementWorksheet = New-Object System.Collections.Generic.List[System.Object]
-        $RetirementWorksheet.Add('Tracking ID')
-        $RetirementWorksheet.Add('Status')
-        $RetirementWorksheet.Add('Last Update Time')
-        $RetirementWorksheet.Add('Impacted Service')
-        $RetirementWorksheet.Add('Title')
-        $RetirementWorksheet.Add('Summary')
-
-        if(![string]::IsNullOrEmpty($Global:RetirementSheet))
-            {
-                $Global:RetirementSheet | ForEach-Object { [PSCustomObject]$_ } | Select-Object $RetirementWorksheet |
-                Export-Excel -Path $ExcelFile -WorksheetName 'Retirements' -TableName 'TableRetires' -AutoSize -TableStyle $tableStyle -Style $Styles4
-            }
-
-
-
-        ####################    Creates the Tickets sheet
-        $Global:TicketsSheet = @()
-        foreach ($Ticket in $Global:SupportTickets)
-            {
-                if(![string]::IsNullOrEmpty($Ticket))
-                    {
-                        $tmp = @{
-                            'Ticket ID'            = [string]$Ticket.properties.supportTicketId;
-                            'Severity'             = [string]$Ticket.properties.severity;
-                            'Status'               = [string]$Ticket.properties.status;
-                            'Support Plan Type'    = [string]$Ticket.properties.supportPlanType;
-                            'Creation Date'        = [string]$Ticket.properties.createdDate;
-                            'Modified Date'        = [string]$Ticket.properties.modifiedDate;
-                            'Customer Contact'     = [string]$Ticket.properties.contactDetails.primaryEmailAddress;
-                            'Title'                = [string]$Ticket.properties.title;
-                            'Description'          = [string]$Ticket.properties.description;
-                            'Related Resource'     = [string]$Ticket.properties.technicalTicketDetails.resourceId;
-                            'Support Engineer'     = [string]$Ticket.properties.supportEngineer.emailAddress
-                        }
-                        $Global:TicketsSheet += $tmp
-                    }
-            }
-        
-
-        $Styles5 = @(
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 25 -NumberFormat '0' -Range "A1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 20 -Range "B1:C1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 45 -Range "D1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 20 -Range "E1:F1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 25 -Range "G1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 55 -Range "H1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 80 -Range "I1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 45 -Range "J1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 25 -Range "K1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -VerticalAlignment Center -WrapText -Range "A:K"
-        )
-
-        # Configure the array of fields to be used in the Tickets sheet
-        $TicketWorksheet = New-Object System.Collections.Generic.List[System.Object]
-        $TicketWorksheet.Add('Ticket ID')
-        $TicketWorksheet.Add('Severity')
-        $TicketWorksheet.Add('Status')
-        $TicketWorksheet.Add('Support Plan Type')
-        $TicketWorksheet.Add('Creation Date')
-        $TicketWorksheet.Add('Modified Date')
-        $TicketWorksheet.Add('Customer Contact')
-        $TicketWorksheet.Add('Title')
-        $TicketWorksheet.Add('Description')
-        $TicketWorksheet.Add('Related Resource')
-        $TicketWorksheet.Add('Support Engineer')
-
-        if(![string]::IsNullOrEmpty($Global:TicketsSheet))
-            {
-                $Global:TicketsSheet | ForEach-Object { [PSCustomObject]$_ } | Select-Object $TicketWorksheet |
-                Export-Excel -Path $ExcelFile -WorksheetName 'Support Tickets' -TableName 'TableTickets' -AutoSize -TableStyle $tableStyle -Style $Styles5
-            }
-        
-
-
-
-        ####################    Starts to process the main sheet
-        $Global:WAFYAMLContent = @()
-        foreach ($YAML in $Global:WAFYAML)
-            {  
-                if(![string]::IsNullOrEmpty($YAML))
-                    {
-                        $Global:WAFYAMLContent += Get-Content -Path $YAML | ConvertFrom-Yaml
-                    }
-            }
-        #$TextInfo = (Get-Culture).TextInfo
-
-
-        # Build the APRL Recommendations
-        foreach ($Service in $Global:ServicesYAMLContent)
-            {
-                if($Service.recommendationResourceType -in $Global:AllResourceTypesOrdered.'Resource Type' -or $Global:FilterRecommendations -eq $false)
-                    {
-                        $ID = $Service.aprlGuid
-                        $resourceType = $Service.recommendationResourceType.ToLower()
-                        $tmp = @{
-                            'Implemented?Yes/No'                                                                             = ('=IF((COUNTIF(ImpactedResources!A:A,"' + $ID + '")=0),"Yes","No")');
-                            'Number of Impacted Resources?'                                                                  = ('=COUNTIF(ImpactedResources!A:A,"' + $ID + '")');
-                            'Azure Service / Well-Architected'                                                               = 'Azure Service';
-                            'Recommendation Source'                                                                          = 'APRL';
-                            'Resiliency Category'                                                                            = $Service.recommendationControl;
-                            'Azure Service Category / Well-Architected Area'                                                 = ($resourceType.split('/')[0]);
-                            'Azure Service / Well-Architected Topic'                                                         = ($resourceType.split('/')[1]);
-                            'Recommendation Title'                                                                           = $Service.description;
-                            'Impact'                                                                                         = $Service.recommendationImpact;
-                            'Best Practices Guidance'                                                                        = [string]$Service.longDescription;
-                            'Read More'                                                                                      = [string]$Service.learnMoreLink.url;
-                            'Potential Benefits'                                                                             = [string]$Service.potentialBenefits;
-                            'Add associated Outage TrackingID and/or Support Request # and/or Service Retirement TrackingID' = '';
-                            'Observation / Annotation'                                                                       = ''
-                        }
-                        $Global:Recommendations += $tmp
-                    }
-            }
-
-        # Builds the Advisor recommendations 
-        foreach ($advisor in $Global:AdvisorContent)
-            {
-                $ID = $advisor.recommendationId
-                $resourceType = $advisor.type.ToLower()
-                $tmp = @{
-                    'Implemented?Yes/No'                                                                             = ('=IF((COUNTIF(ImpactedResources!A:A,"' + $ID + '")=0),"Yes","No")');
-                    'Number of Impacted Resources?'                                                                  = ('=COUNTIF(ImpactedResources!A:A,"' + $ID + '")');
-                    'Azure Service / Well-Architected'                                                               = 'Azure Service';
-                    'Recommendation Source'                                                                          = 'ADVISOR';
-                    'Resiliency Category'                                                                            = $advisor.category;
-                    'Azure Service Category / Well-Architected Area'                                                 = ($resourceType.split('/')[0]);
-                    'Azure Service / Well-Architected Topic'                                                         = ($resourceType.split('/')[1]);
-                    'Recommendation Title'                                                                           = $advisor.description;
-                    'Impact'                                                                                         = $advisor.impact;
-                    'Best Practices Guidance'                                                                        = '';
-                    'Read More'                                                                                      = '';
-                    'Potential Benefits'                                                                             = '';
-                    'Add associated Outage TrackingID and/or Support Request # and/or Service Retirement TrackingID' = '';
-                    'Observation / Annotation'                                                                       = ''
+            if(![string]::IsNullOrEmpty($Global:TicketsSheet))
+                {
+                    $Global:TicketsSheet | ForEach-Object { [PSCustomObject]$_ } | Select-Object $TicketWorksheet |
+                    Export-Excel -Path $ExcelFile -WorksheetName 'Support Tickets' -TableName 'TableTickets' -AutoSize -TableStyle $tableStyle -Style $Styles5
                 }
-                $Global:Recommendations += $tmp
-            }
+        }
 
-        # Builds the WAF recommendations 
-        foreach ($WAFYAML in $Global:WAFYAMLContent)
-            {
-                $ID = $WAFYAML.aprlGuid
-                $tmp = @{
-                    'Implemented?Yes/No'                                                                             = ('=IF((COUNTIF(ImpactedResources!A:A,"' + $ID + '")=0),"Yes","No")');
-                    'Number of Impacted Resources?'                                                                  = ('=COUNTIF(ImpactedResources!A:A,"' + $ID + '")');
-                    'Azure Service / Well-Architected'                                                               = 'Well Architected';
-                    'Recommendation Source'                                                                          = 'APRL';
-                    'Resiliency Category'                                                                            = $WAFYAML.recommendationControl;
-                    'Azure Service Category / Well-Architected Area'                                                 = '';
-                    'Azure Service / Well-Architected Topic'                                                         = '';
-                    'Recommendation Title'                                                                           = $WAFYAML.description;
-                    'Impact'                                                                                         = $WAFYAML.recommendationImpact;
-                    'Best Practices Guidance'                                                                        = [string]$WAFYAML.longDescription;
-                    'Read More'                                                                                      = [string]$WAFYAML.learnMoreLink.url;
-                    'Potential Benefits'                                                                             = [string]$WAFYAML.potentialBenefits;
-                    'Add associated Outage TrackingID and/or Support Request # and/or Service Retirement TrackingID' = '';
-                    'Observation / Annotation'                                                                       = ''
-                }
-                $Global:Recommendations += $tmp
-            }
-
-
-        $Styles2 = @(
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 14 -Range "A1:B1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 18 -Range "C1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 20 -Range "D1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 35 -Range "E1:F1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 20 -Range "G1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 55 -Range "H1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 10 -Range "I1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 90 -Range "J1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 45 -Range "K1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 35 -Range "L1:M1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -VerticalAlignment Center -WrapText -Range "A:M"
-        )
-
-        # Configure the array of fields to be used in the Recommendations sheet
-        $FinalWorksheet = New-Object System.Collections.Generic.List[System.Object]
-        $FinalWorksheet.Add('Implemented?Yes/No')
-        $FinalWorksheet.Add('Number of Impacted Resources?')
-        $FinalWorksheet.Add('Azure Service / Well-Architected')
-        $FinalWorksheet.Add('Recommendation Source')
-        $FinalWorksheet.Add('Azure Service Category / Well-Architected Area')
-        $FinalWorksheet.Add('Azure Service / Well-Architected Topic')
-        $FinalWorksheet.Add('Resiliency Category')
-        $FinalWorksheet.Add('Recommendation Title')
-        $FinalWorksheet.Add('Impact')
-        $FinalWorksheet.Add('Best Practices Guidance')
-        $FinalWorksheet.Add('Read More')
-        $FinalWorksheet.Add('Add associated Outage TrackingID and/or Support Request # and/or Service Retirement TrackingID')
-        $FinalWorksheet.Add('Observation / Annotation')
-
-        ####################    Creates the recommendations sheet in Excel
-        $Global:Recommendations | ForEach-Object { [PSCustomObject]$_ } | Select-Object $FinalWorksheet |
-        Export-Excel -Path $ExcelFile -WorksheetName 'Recommendations' -TableName 'Table1' -AutoSize -TableStyle $tableStyle -Style $Styles2 -MoveToStart
-
-
-        ####################    Creates the Outages sheet
-        $Global:OutagesSheet = @()
-        foreach ($Outage in $Global:Outages)
-            {
-                if(![string]::IsNullOrEmpty($Outage.name))
-                    {
-                        $HTML = New-Object -Com "HTMLFile"
-                        $HTML.write([ref]$Outage.properties.description)
-                        $OutageDescription = $Html.body.innerText
-                        $SplitDescription = $OutageDescription.split('How can we make our incident communications more useful?').split('How can customers make incidents like this less impactful?').split('How are we making incidents like this less likely or less impactful?').split('How did we respond?').split('What went wrong and why?').split('What happened?')
-
-                        $OutProps = $Outage.properties
-                        $tmp = @{
-                            'Tracking ID'                                                           = [string]$Outage.name;
-                            'Event Type'                                                            = [string]$OutProps.eventType;
-                            'Event Source'                                                          = [string]$OutProps.eventSource;
-                            'Status'                                                                = [string]$OutProps.status;
-                            'Title'                                                                 = [string]$OutProps.title;
-                            'Level'                                                                 = [string]$OutProps.level;
-                            'Event Level'                                                           = [string]$OutProps.eventLevel;
-                            'Start Time'                                                            = [string]$OutProps.impactStartTime;
-                            'Mitigation Time'                                                       = [string]$OutProps.impactMitigationTime;
-                            'Impacted Service'                                                      = [string]$OutProps.impact.impactedService;
-                            'What happened'                                                         = ($SplitDescription[1]).Split([Environment]::NewLine)[1];
-                            'What went wrong and why'                                               = ($SplitDescription[2]).Split([Environment]::NewLine)[1];
-                            'How did we respond'                                                    = ($SplitDescription[3]).Split([Environment]::NewLine)[1];
-                            'How are we making incidents like this less likely or less impactful'   = ($SplitDescription[4]).Split([Environment]::NewLine)[1];
-                            'How can customers make incidents like this less impactful'             = ($SplitDescription[5]).Split([Environment]::NewLine)[1];
+        function Health {
+            ####################    Creates the Service Health sheet
+            $Global:ServiceHealthSheet = @()
+            foreach ($Alert in $Global:ServiceHealth)
+                {
+                    if(![string]::IsNullOrEmpty($Alert))
+                        {
+                            $Service = if($Alert.Services.count -gt 1){$Alert.Services | ForEach-Object {$_ + ' /'}}else{$Alert.Services}
+                            $Service = [string]$Service
+                            $Service = if($Service -like '* /*'){$Service -replace ".$"}else{$Service}
+                            $Event = if($Alert.EventType.count -gt 1){$Alert.EventType | ForEach-Object {$_ + ' /'}}else{$Alert.EventType}
+                            $Event = [string]$Event
+                            $Event = if($Event -like '* /*'){$Event -replace ".$"}else{$Event}
+                            $Region = if($Alert.Regions.count -gt 1){$Alert.Regions | ForEach-Object {$_ + ' /'}}else{$Alert.Regions}
+                            $Region = [string]$Region
+                            $Region = if($Region -like '* /*'){$Region -replace ".$"}else{$Region}
+                            $Action = if($Alert.ActionGroup.count -gt 1){$Alert.ActionGroup | ForEach-Object {$_ + ' /'}}else{$Alert.ActionGroup}
+                            $Action = [string]$Action
+                            $Action = if($Action -like '* /*'){$Action -replace ".$"}else{$Action}
+                            $tmp = @{
+                                'Name'            = [string]$Alert.Name;
+                                'Enabled'         = [string]$Alert.Enabled;
+                                'Subscription'    = [string]$Alert.Subscription;
+                                'Services'        = $Service;
+                                'Event Type'      = $Event;
+                                'Regions'         = $Region;
+                                'Action Group'    = $Action
+                            }
+                            $Global:ServiceHealthSheet += $tmp
                         }
-                        $Global:OutagesSheet += $tmp
+                }
+
+            $Styles6 = @(
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 25 -NumberFormat '0' -Range "A1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 15 -NumberFormat '0' -Range "B1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 35 -NumberFormat '0' -Range "C1:G1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -VerticalAlignment Center -WrapText -NumberFormat '0' -Range "A:G"
+            )
+
+            # Configure the array of fields to be used in the Tickets sheet
+            $ServiceHealthtWorksheet = New-Object System.Collections.Generic.List[System.Object]
+            $ServiceHealthtWorksheet.Add('Name')
+            $ServiceHealthtWorksheet.Add('Enabled')
+            $ServiceHealthtWorksheet.Add('Subscription')
+            $ServiceHealthtWorksheet.Add('Services')
+            $ServiceHealthtWorksheet.Add('Event Type')
+            $ServiceHealthtWorksheet.Add('Regions')
+            $ServiceHealthtWorksheet.Add('Action Group')
+
+            if(![string]::IsNullOrEmpty($Global:ServiceHealthSheet))
+                {
+                    $Global:ServiceHealthSheet | ForEach-Object { [PSCustomObject]$_ } | Select-Object $ServiceHealthtWorksheet |
+                    Export-Excel -Path $ExcelFile -WorksheetName 'Health Alerts' -TableName 'TableAlerts' -AutoSize -TableStyle $tableStyle -Style $Styles6
+                }
+        }
+
+        function MainSheet {
+            ####################    Starts to process the main sheet
+            $Global:WAFYAMLContent = @()
+            foreach ($YAML in $Global:WAFYAML)
+                {  
+                    if(![string]::IsNullOrEmpty($YAML))
+                        {
+                            $Global:WAFYAMLContent += Get-Content -Path $YAML | ConvertFrom-Yaml
+                        }
+                }
+            #$TextInfo = (Get-Culture).TextInfo
+
+
+            # Build the APRL Recommendations
+            foreach ($Service in $Global:ServicesYAMLContent)
+                {
+                    if($Service.recommendationResourceType -in $Global:AllResourceTypesOrdered.'Resource Type' -or $Global:FilterRecommendations -eq $false)
+                        {
+                            $ID = $Service.aprlGuid
+                            $resourceType = $Service.recommendationResourceType.ToLower()
+                            $tmp = @{
+                                'Implemented?Yes/No'                                                                             = ('=IF((COUNTIF(ImpactedResources!A:A,"' + $ID + '")=0),"Yes","No")');
+                                'Number of Impacted Resources?'                                                                  = ('=COUNTIF(ImpactedResources!A:A,"' + $ID + '")');
+                                'Azure Service / Well-Architected'                                                               = 'Azure Service';
+                                'Recommendation Source'                                                                          = 'APRL';
+                                'Resiliency Category'                                                                            = $Service.recommendationControl;
+                                'Azure Service Category / Well-Architected Area'                                                 = ($resourceType.split('/')[0]);
+                                'Azure Service / Well-Architected Topic'                                                         = ($resourceType.split('/')[1]);
+                                'Recommendation Title'                                                                           = $Service.description;
+                                'Impact'                                                                                         = $Service.recommendationImpact;
+                                'Best Practices Guidance'                                                                        = [string]$Service.longDescription;
+                                'Read More'                                                                                      = [string]$Service.learnMoreLink.url;
+                                'Potential Benefits'                                                                             = [string]$Service.potentialBenefits;
+                                'Add associated Outage TrackingID and/or Support Request # and/or Service Retirement TrackingID' = '';
+                                'Observation / Annotation'                                                                       = ''
+                            }
+                            $Global:Recommendations += $tmp
+                        }
+                }
+
+            # Builds the Advisor recommendations 
+            foreach ($advisor in $Global:AdvisorContent)
+                {
+                    $ID = $advisor.recommendationId
+                    $resourceType = $advisor.type.ToLower()
+                    $tmp = @{
+                        'Implemented?Yes/No'                                                                             = ('=IF((COUNTIF(ImpactedResources!A:A,"' + $ID + '")=0),"Yes","No")');
+                        'Number of Impacted Resources?'                                                                  = ('=COUNTIF(ImpactedResources!A:A,"' + $ID + '")');
+                        'Azure Service / Well-Architected'                                                               = 'Azure Service';
+                        'Recommendation Source'                                                                          = 'ADVISOR';
+                        'Resiliency Category'                                                                            = $advisor.category;
+                        'Azure Service Category / Well-Architected Area'                                                 = ($resourceType.split('/')[0]);
+                        'Azure Service / Well-Architected Topic'                                                         = ($resourceType.split('/')[1]);
+                        'Recommendation Title'                                                                           = $advisor.description;
+                        'Impact'                                                                                         = $advisor.impact;
+                        'Best Practices Guidance'                                                                        = '';
+                        'Read More'                                                                                      = '';
+                        'Potential Benefits'                                                                             = '';
+                        'Add associated Outage TrackingID and/or Support Request # and/or Service Retirement TrackingID' = '';
+                        'Observation / Annotation'                                                                       = ''
                     }
+                    $Global:Recommendations += $tmp
+                }
+
+            # Builds the WAF recommendations 
+            foreach ($WAFYAML in $Global:WAFYAMLContent)
+                {
+                    $ID = $WAFYAML.aprlGuid
+                    $tmp = @{
+                        'Implemented?Yes/No'                                                                             = ('=IF((COUNTIF(ImpactedResources!A:A,"' + $ID + '")=0),"Yes","No")');
+                        'Number of Impacted Resources?'                                                                  = ('=COUNTIF(ImpactedResources!A:A,"' + $ID + '")');
+                        'Azure Service / Well-Architected'                                                               = 'Well Architected';
+                        'Recommendation Source'                                                                          = 'APRL';
+                        'Resiliency Category'                                                                            = $WAFYAML.recommendationControl;
+                        'Azure Service Category / Well-Architected Area'                                                 = '';
+                        'Azure Service / Well-Architected Topic'                                                         = '';
+                        'Recommendation Title'                                                                           = $WAFYAML.description;
+                        'Impact'                                                                                         = $WAFYAML.recommendationImpact;
+                        'Best Practices Guidance'                                                                        = [string]$WAFYAML.longDescription;
+                        'Read More'                                                                                      = [string]$WAFYAML.learnMoreLink.url;
+                        'Potential Benefits'                                                                             = [string]$WAFYAML.potentialBenefits;
+                        'Add associated Outage TrackingID and/or Support Request # and/or Service Retirement TrackingID' = '';
+                        'Observation / Annotation'                                                                       = ''
+                    }
+                    $Global:Recommendations += $tmp
+                }
+
+
+            $Styles2 = @(
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 14 -Range "A1:B1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 18 -Range "C1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 20 -Range "D1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 35 -Range "E1:F1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 20 -Range "G1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 55 -Range "H1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 10 -Range "I1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 90 -Range "J1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 45 -Range "K1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 35 -Range "L1:M1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -VerticalAlignment Center -WrapText -Range "A:M"
+            )
+
+            # Configure the array of fields to be used in the Recommendations sheet
+            $FinalWorksheet = New-Object System.Collections.Generic.List[System.Object]
+            $FinalWorksheet.Add('Implemented?Yes/No')
+            $FinalWorksheet.Add('Number of Impacted Resources?')
+            $FinalWorksheet.Add('Azure Service / Well-Architected')
+            $FinalWorksheet.Add('Recommendation Source')
+            $FinalWorksheet.Add('Azure Service Category / Well-Architected Area')
+            $FinalWorksheet.Add('Azure Service / Well-Architected Topic')
+            $FinalWorksheet.Add('Resiliency Category')
+            $FinalWorksheet.Add('Recommendation Title')
+            $FinalWorksheet.Add('Impact')
+            $FinalWorksheet.Add('Best Practices Guidance')
+            $FinalWorksheet.Add('Read More')
+            $FinalWorksheet.Add('Add associated Outage TrackingID and/or Support Request # and/or Service Retirement TrackingID')
+            $FinalWorksheet.Add('Observation / Annotation')
+
+            ####################    Creates the recommendations sheet in Excel
+            $Global:Recommendations | ForEach-Object { [PSCustomObject]$_ } | Select-Object $FinalWorksheet |
+            Export-Excel -Path $ExcelFile -WorksheetName 'Recommendations' -TableName 'Table1' -AutoSize -TableStyle $tableStyle -Style $Styles2 -MoveToStart
+
+        }
+
+        function PivotTables {
+            ####################    Creates the empty PivotTable sheet to be used later
+            "" | Export-Excel -Path $ExcelFile -WorksheetName 'PivotTable'
+
+            ####################    Creates the Charts sheet and already add the first line with the yellow background
+            $StyleOver = New-ExcelStyle -Range A1:G1 -Bold -FontSize 11 -BackgroundColor ([System.Drawing.Color]::Yellow) -Merge -HorizontalAlignment Left
+            "Copy the Charts below to your Word and Powerpoint Documents" | Export-Excel -Path $ExcelFile -WorksheetName 'Charts' -Style $StyleOver
+
+            # Open the Excel file to add the Pivot Tables and Charts
+            $Excel = Open-ExcelPackage -Path $ExcelFile
+
+            $PTParams = @{
+                PivotTableName    = "P0"
+                Address           = $Excel.PivotTable.cells["A3"]
+                SourceWorkSheet   = $Excel.Recommendations
+                PivotRows         = @("Azure Service / Well-Architected", "Azure Service / Well-Architected Topic")
+                PivotColumns      = @("Impact")
+                PivotData         = @{"Azure Service Category / Well-Architected Area" = "Count" }
+                PivotTableStyle   = 'Medium8'
+                Activate          = $true
+                PivotFilter       = 'Implemented?Yes/No'
+                ShowPercent       = $true
+                IncludePivotChart = $true
+                #ShowCategory            = $true
+                ChartType         = "BarClustered"
+                ChartRow          = 80
+                ChartColumn       = 3
+                NoLegend          = $false
+                ChartTitle        = 'Recommendations per Services/Well-Architected Area'
+                ChartHeight       = 696
+                ChartWidth        = 450
+            }
+            Add-PivotTable @PTParams
+
+
+            $PTParams = @{
+                PivotTableName    = "P1"
+                Address           = $Excel.PivotTable.cells["H3"]
+                SourceWorkSheet   = $Excel.Recommendations
+                PivotRows         = @("Resiliency Category")
+                PivotColumns      = @("Impact")
+                PivotData         = @{"Resiliency Category" = "Count" }
+                PivotTableStyle   = 'Medium9'
+                Activate          = $true
+                PivotFilter       = 'Implemented?Yes/No'
+                ShowPercent       = $true
+                IncludePivotChart = $true
+                ChartType         = "BarClustered"
+                ChartRow          = 80
+                ChartColumn       = 30
+                NoLegend          = $false
+                ChartTitle        = 'Recommendations per Resiliency Category'
+                ChartHeight       = 569
+                ChartWidth        = 462
+            }
+            Add-PivotTable @PTParams
+
+            Close-ExcelPackage $Excel
+        }
+
+        function ExcelAPI {
+            Write-Host "Openning Excel..."
+            $Global:ExcelApplication = New-Object -ComObject Excel.Application
+            Start-Sleep 2
+            Write-Host "Customizing Excel Charts. "
+            # Open the Excel using the API to move the charts from the PivotTable sheet to the Charts sheet and change chart style, font, etc..
+            if ($Global:ExcelApplication) {
+                Write-Debug 'Openning Excel File'
+                $Ex = $ExcelApplication.Workbooks.Open($ExcelFile)
+                Start-Sleep -Seconds 2
+                Write-Debug 'Openning Excel Sheets'
+                $WS = $ex.Worksheets | Where-Object { $_.Name -eq 'PivotTable' }
+                $WS2 = $ex.Worksheets | Where-Object { $_.Name -eq 'Charts' }
+                Write-Debug 'Moving Charts to Chart sheet'
+                ($WS.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Cut()
+                $WS2.Paste()
+                ($WS.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Cut()
+                $WS2.Paste()
+
+                Write-Debug 'Reloading Excel Chart Sheet'
+                $WS2 = $ex.Worksheets | Where-Object { $_.Name -eq 'Charts' }
+
+                Write-Debug 'Editing ChartP0'
+                ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartStyle = 222
+                ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartArea.Font.Name = 'Segoe UI'
+                ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartArea.Font.Size = 9
+                ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartArea.Left = 18
+                ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartArea.Top = 40
+
+                Write-Debug 'Editing ChartP1'
+                ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartStyle = 222
+                ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartArea.Font.Name = 'Segoe UI'
+                ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartArea.Font.Size = 9
+                ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartArea.Left = 555
+                ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartArea.Top = 40
+
+                Write-Debug 'Editing Pivot Filters'
+                $WS.Range("B1").Formula = 'No'
+                $WS.Range("I1").Formula = 'No'
+
+                Write-Debug 'Saving File'
+                $Ex.Save()
+                Write-Debug 'Closing Excel Application'
+                $Ex.Close()
+                $ExcelApplication.Quit()
+                # Ensures the Excel process opened by the API is closed
+                Write-Debug 'Ensuring Excel Process is Closed.'
+                Get-Process -Name "excel" -ErrorAction Ignore | Where-Object { $_.CommandLine -like '*/automation*' } | Stop-Process
             }
 
-
-        $Styles3 = @(
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 14 -Range "A1:B1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 18 -Range "C1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 20 -Range "D1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 55 -Range "E1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 20 -Range "F1:I1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 25 -Range "J1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 80 -Range "K1:O1"
-            New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -VerticalAlignment Center -WrapText -Range "A:O"
-        )
-
-        # Configure the array of fields to be used in the Recommendations sheet
-        $OutagesWorksheet = New-Object System.Collections.Generic.List[System.Object]
-        $OutagesWorksheet.Add('Tracking ID')
-        $OutagesWorksheet.Add('Event Type')
-        $OutagesWorksheet.Add('Event Source')
-        $OutagesWorksheet.Add('Status')
-        $OutagesWorksheet.Add('Title')
-        $OutagesWorksheet.Add('Level')
-        $OutagesWorksheet.Add('Event Level')
-        $OutagesWorksheet.Add('Start Time')
-        $OutagesWorksheet.Add('Mitigation Time')
-        $OutagesWorksheet.Add('Impacted Service')
-        $OutagesWorksheet.Add('What happened')
-        $OutagesWorksheet.Add('What went wrong and why')
-        $OutagesWorksheet.Add('How did we respond')
-        $OutagesWorksheet.Add('How are we making incidents like this less likely or less impactful')
-        $OutagesWorksheet.Add('How can customers make incidents like this less impactful')
-
-
-        $Global:OutagesSheet | ForEach-Object { [PSCustomObject]$_ } | Select-Object $OutagesWorksheet |
-        Export-Excel -Path $ExcelFile -WorksheetName 'Outages' -TableName 'TableOutage' -AutoSize -TableStyle $tableStyle -Style $Styles3
-
-
-        ####################    Creates the empty PivotTable sheet to be used later
-        "" | Export-Excel -Path $ExcelFile -WorksheetName 'PivotTable'
-
-        ####################    Creates the Charts sheet and already add the first line with the yellow background
-        $StyleOver = New-ExcelStyle -Range A1:G1 -Bold -FontSize 11 -BackgroundColor ([System.Drawing.Color]::Yellow) -Merge -HorizontalAlignment Left
-        "Copy the Charts below to your Word and Powerpoint Documents" | Export-Excel -Path $ExcelFile -WorksheetName 'Charts' -Style $StyleOver
-
-        # Open the Excel file to add the Pivot Tables and Charts
-        $Excel = Open-ExcelPackage -Path $ExcelFile
-
-        $PTParams = @{
-            PivotTableName    = "P0"
-            Address           = $Excel.PivotTable.cells["A3"]
-            SourceWorkSheet   = $Excel.Recommendations
-            PivotRows         = @("Azure Service / Well-Architected", "Azure Service / Well-Architected Topic")
-            PivotColumns      = @("Impact")
-            PivotData         = @{"Azure Service Category / Well-Architected Area" = "Count" }
-            PivotTableStyle   = 'Medium8'
-            Activate          = $true
-            PivotFilter       = 'Implemented?Yes/No'
-            ShowPercent       = $true
-            IncludePivotChart = $true
-            #ShowCategory            = $true
-            ChartType         = "BarClustered"
-            ChartRow          = 80
-            ChartColumn       = 3
-            NoLegend          = $false
-            ChartTitle        = 'Recommendations per Services/Well-Architected Area'
-            ChartHeight       = 696
-            ChartWidth        = 450
-        }
-        Add-PivotTable @PTParams
-
-
-        $PTParams = @{
-            PivotTableName    = "P1"
-            Address           = $Excel.PivotTable.cells["H3"]
-            SourceWorkSheet   = $Excel.Recommendations
-            PivotRows         = @("Resiliency Category")
-            PivotColumns      = @("Impact")
-            PivotData         = @{"Resiliency Category" = "Count" }
-            PivotTableStyle   = 'Medium9'
-            Activate          = $true
-            PivotFilter       = 'Implemented?Yes/No'
-            ShowPercent       = $true
-            IncludePivotChart = $true
-            ChartType         = "BarClustered"
-            ChartRow          = 80
-            ChartColumn       = 30
-            NoLegend          = $false
-            ChartTitle        = 'Recommendations per Resiliency Category'
-            ChartHeight       = 569
-            ChartWidth        = 462
-        }
-        Add-PivotTable @PTParams
-
-
-        Close-ExcelPackage $Excel
-
-        Write-Host "Openning Excel..."
-        $Global:ExcelApplication = New-Object -ComObject Excel.Application
-        Start-Sleep 2
-        Write-Host "Customizing Excel Charts. "
-        # Open the Excel using the API to move the charts from the PivotTable sheet to the Charts sheet and change chart style, font, etc..
-        if ($Global:ExcelApplication) {
-            Write-Debug 'Openning Excel File'
-            $Ex = $ExcelApplication.Workbooks.Open($ExcelFile)
-            Start-Sleep -Seconds 2
-            Write-Debug 'Openning Excel Sheets'
-            $WS = $ex.Worksheets | Where-Object { $_.Name -eq 'PivotTable' }
-            $WS2 = $ex.Worksheets | Where-Object { $_.Name -eq 'Charts' }
-            Write-Debug 'Moving Charts to Chart sheet'
-            ($WS.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Cut()
-            $WS2.Paste()
-            ($WS.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Cut()
-            $WS2.Paste()
-
-            Write-Debug 'Reloading Excel Chart Sheet'
-            $WS2 = $ex.Worksheets | Where-Object { $_.Name -eq 'Charts' }
-
-            Write-Debug 'Editing ChartP0'
-            ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartStyle = 222
-            ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartArea.Font.Name = 'Segoe UI'
-            ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartArea.Font.Size = 9
-            ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartArea.Left = 18
-            ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartArea.Top = 40
-
-            Write-Debug 'Editing ChartP1'
-            ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartStyle = 222
-            ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartArea.Font.Name = 'Segoe UI'
-            ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartArea.Font.Size = 9
-            ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartArea.Left = 555
-            ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartArea.Top = 40
-
-            Write-Debug 'Editing Pivot Filters'
-            $WS.Range("B1").Formula = 'No'
-            $WS.Range("I1").Formula = 'No'
-
-            Write-Debug 'Saving File'
-            $Ex.Save()
-            Write-Debug 'Closing Excel Application'
-            $Ex.Close()
-            $ExcelApplication.Quit()
-            # Ensures the Excel process opened by the API is closed
-            Write-Debug 'Ensuring Excel Process is Closed.'
-            Get-Process -Name "excel" -ErrorAction Ignore | Where-Object { $_.CommandLine -like '*/automation*' } | Stop-Process
         }
 
+        ImpactedResources
+        ResourceTypes
+        Outages
+        Retirement
+        Tickets
+        Health
+        MainSheet
+        PivotTables
+        ExcelAPI
 
         # [Optional] - export errors to a separate file
         if ($errors.Count -gt 0) {
@@ -634,8 +741,9 @@ $Global:Runtime = Measure-Command -Expression {
     }
 
     #Call the functions
-    Write-Debug "Version"
-    $Version = 2.2.0
+    $Version = "2.2.0"
+    Write-Host "Version: " -NoNewline
+    Write-Host $Version -ForegroundColor DarkGreen
 
     if ($Help.IsPresent) {
         Help

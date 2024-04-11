@@ -1,4 +1,4 @@
-﻿<#
+<#
 The goal of this tool is to execute ARGs from APRL and export the results to a JSON file.
 
 APRL Repo will be downloaded in the script's folder
@@ -64,6 +64,7 @@ $Global:Runtime = Measure-Command -Expression {
         $Global:AllResourceTypesOrdered = @()
         $Global:AllAdvisories = @()
         $Global:AllRetirements = @()
+        $Global:AllServiceHealth = @()
         $Global:results = @()
         $Global:errors = @()
     }
@@ -160,7 +161,8 @@ $Global:Runtime = Measure-Command -Expression {
 
             # Getting Outages
             Write-Debug "Exporting Outages"
-            $Date = (Get-Date).AddMonths(-6)
+            $Date = (Get-Date).AddMonths(-9)
+            $DateCore = (Get-Date).AddMonths(-3)
             $Date = $Date.ToString("MM/dd/yyyy")
             $Outages = @()
             $SupTickets = @()
@@ -189,10 +191,8 @@ $Global:Runtime = Measure-Command -Expression {
                     catch{}
                 }
 
-
-            $Global:Outageslist = $Outages.value | Where-Object {$_.properties.description -like '*How can customers make incidents like this less impactful?*' } | Sort-Object @{Expression = "properties.eventlevel"; Descending = $false},@{Expression = "properties.status"; Descending = $false} | Select-Object -Property name,properties -First 30
-            $Global:SupportTickets = $SupTickets.value | Where-Object {$_.properties.severity -ne 'Minimal'} | Select-Object -Property name,properties
-
+            $Global:Outageslist = $Outages.value | Sort-Object @{Expression = "properties.eventlevel"; Descending = $false},@{Expression = "properties.status"; Descending = $false} | Select-Object -Property name,properties -First 50
+            $Global:SupportTickets = $SupTickets.value | Where-Object {$_.properties.severity -ne 'Minimal' -and $_.properties.createdDate -gt $DateCore} | Select-Object -Property name,properties
     }
 
     function Runbook {
@@ -399,6 +399,11 @@ $Global:Runtime = Measure-Command -Expression {
                 Write-Host "Collecting: " -NoNewline
                 Write-Host "Retirements" -ForegroundColor Magenta
                 Retirement $Subid
+
+                Write-Host "----------------------------"
+                Write-Host "Collecting: " -NoNewline
+                Write-Host "Service Health Alerts" -ForegroundColor Magenta
+                ServiceHealth $Subid
 
 
                 if (![string]::IsNullOrEmpty($ResourceGroups))
@@ -890,7 +895,7 @@ $Global:Runtime = Measure-Command -Expression {
         param($Subid)
 
         $RetirementCount = Search-AzGraph -Query "servicehealthresources | where properties.EventSubType contains 'Retirement' | summarize count()" -Subscription $Subid
-        if($RetirementCount.count_ -lt 1000) 
+        if($RetirementCount.count_ -lt 1000)
             {
                 $retquery = "servicehealthresources | where properties.EventSubType contains 'Retirement' | order by id"
                 $queryResults = Search-AzGraph -Query $retquery -First 1000 -Subscription $Subid -ErrorAction SilentlyContinue
@@ -898,6 +903,7 @@ $Global:Runtime = Measure-Command -Expression {
                 foreach ($row in $queryResults) 
                     {
                         $result = [PSCustomObject]@{
+                            Subscription     = [string]$Subid
                             TrackingId       = [string]$row.properties.TrackingId
                             Status           = [string]$row.Properties.Status
                             LastUpdateTime   = [string]$row.properties.LastUpdateTime
@@ -912,7 +918,7 @@ $Global:Runtime = Measure-Command -Expression {
             }
         else 
             {
-                $Loop = $Advisories.count_ / 1000
+                $Loop = $RetirementCount.count_ / 1000
                 $Loop = [math]::ceiling($Loop)
                 $Looper = 0
                 $Limit = 1
@@ -924,6 +930,7 @@ $Global:Runtime = Measure-Command -Expression {
                     foreach ($row in $queryResults) 
                     {
                         $result = [PSCustomObject]@{
+                            Subscription     = [string]$Subid
                             TrackingId       = [string]$row.properties.TrackingId
                             Status           = [string]$row.Properties.Status
                             LastUpdateTime   = [string]$row.properties.LastUpdateTime
@@ -937,6 +944,91 @@ $Global:Runtime = Measure-Command -Expression {
                     }
                 }
             }
+    }
+
+    function ServiceHealth {
+        param($Subid)
+
+        $ServiceHealthCount = Search-AzGraph -Query "resources | where type == 'microsoft.insights/activitylogalerts' | summarize count()" -Subscription $Subid
+        if($ServiceHealthCount.count_ -lt 1000) 
+            {
+                $Servicequery = "resources | where type == 'microsoft.insights/activitylogalerts' | order by id"
+                $queryResults = Search-AzGraph -Query $Servicequery -First 1000 -Subscription $Subid -ErrorAction SilentlyContinue
+
+                $Rowler = @()
+                foreach ($row in $queryResults) 
+                    {
+                        foreach ($type in $row.properties.condition.allOf)
+                            {
+                                if($type.equals -eq 'ServiceHealth')
+                                    {
+                                        $Rowler += $row
+                                    }
+                            }
+                    }
+
+                foreach ($Row in $Rowler)
+                    {
+                        $SubName = ($SubIds | Where-Object {$_.Id -eq ($Row.properties.scopes.split('/')[2])}).Name
+                        $EventType = $Row.Properties.condition.allOf.anyOf | Select-Object -Property equals | ForEach-Object { switch ($_.equals) {'Incident' {'Service Issues'} 'Informational' {'Health Advisories'} 'ActionRequired' {'Security Advisory'} 'Maintenance' {'Planned Maintenance'}}}
+                        $Services = $Row.Properties.condition.allOf | Where-Object {$_.field -eq 'properties.impactedServices[*].ServiceName'} | Select-Object -Property containsAny | ForEach-Object {$_.containsAny}
+                        $Regions = $Row.Properties.condition.allOf | Where-Object {$_.field -eq 'properties.impactedServices[*].ImpactedRegions[*].RegionName'} | Select-Object -Property containsAny | ForEach-Object {$_.containsAny}
+                        
+                        $result = [PSCustomObject]@{
+                            Name               = [string]$row.name
+                            Subscription       = [string]$SubName
+                            Enabled            = [string]$Row.properties.enabled
+                            EventType          = if (![string]::IsNullOrEmpty($EventType)){$EventType}Else{'All'}
+                            Services           = if (![string]::IsNullOrEmpty($Services)){$Services}Else{'All'}
+                            Regions            = if (![string]::IsNullOrEmpty($Regions)){$Regions}Else{'All'}
+                            ActionGroup        = $Row.Properties.actions.actionGroups.actionGroupId.split('/')[8]
+                        }
+                        $Global:AllServiceHealth += $result
+                    }
+            }
+        else 
+            {
+                $Loop = $ServiceHealthCount.count_ / 1000
+                $Loop = [math]::ceiling($Loop)
+                $Looper = 0
+                $Limit = 1
+                $Rowler = @()
+
+                while ($Looper -lt $Loop) {
+                    $Servicequery = "resources | where type == 'microsoft.insights/activitylogalerts' | order by id"
+                    $queryResults = Search-AzGraph -Query $Servicequery -Subscription $Subid -Skip $Limit -first 1000 -ErrorAction SilentlyContinue
+
+                    foreach ($row in $queryResults) 
+                        {
+                            foreach ($type in $row.properties.condition.allOf)
+                                {
+                                    if($type.equals -eq 'ServiceHealth')
+                                        {
+                                            $Rowler += $row
+                                        }
+                                }
+                        }
+
+                    }
+                foreach ($Row in $Rowler)
+                    {
+                        $SubName = ($SubIds | Where-Object {$_.Id -eq ($Row.properties.scopes.split('/')[2])}).Name
+                        $EventType = $Row.Properties.condition.allOf.anyOf | Select-Object -Property equals | ForEach-Object { switch ($_.equals) {'Incident' {'Service Issues'} 'Informational' {'Health Advisories'} 'ActionRequired' {'Security Advisories'} 'Maintenance' {'Planned Maintenance'}}}
+                        $Services = $Row.Properties.condition.allOf | Where-Object {$_.field -eq 'properties.impactedServices[*].ServiceName'} | Select-Object -Property containsAny | ForEach-Object {$_.containsAny}
+                        $Regions = $Row.Properties.condition.allOf | Where-Object {$_.field -eq 'properties.impactedServices[*].ImpactedRegions[*].RegionName'} | Select-Object -Property containsAny | ForEach-Object {$_.containsAny}
+                        
+                        $result = [PSCustomObject]@{
+                            Name               = [string]$row.name
+                            Subscription       = [string]$SubName
+                            Enabled            = [string]$Row.properties.enabled
+                            EventType          = if (![string]::IsNullOrEmpty($EventType)){$EventType}Else{'All'}
+                            Services           = if (![string]::IsNullOrEmpty($Services)){$Services}Else{'All'}
+                            Regions            = if (![string]::IsNullOrEmpty($Regions)){$Regions}Else{'All'}
+                            ActionGroup        = $Row.Properties.actions.actionGroups.actionGroupId.split('/')[8]
+                        }
+                        $Global:AllServiceHealth += $result
+                    }
+                }
     }
 
     function JsonFile {
@@ -958,6 +1050,9 @@ $Global:Runtime = Measure-Command -Expression {
         $SupportExporter    = @{
             SupportTickets  = $Global:SupportTickets
         }
+        $ServiceHealthExporter = @{
+            ServiceHealth   = $Global:AllServiceHealth
+        }
 
         $ExporterArray = @()
         $ExporterArray += $ResourceExporter
@@ -966,6 +1061,7 @@ $Global:Runtime = Measure-Command -Expression {
         $ExporterArray += $OutageExporter
         $ExporterArray += $RetirementExporter
         $ExporterArray += $SupportExporter
+        $ExporterArray += $ServiceHealthExporter
 
         $Global:JsonFile = ($PSScriptRoot + "\WARA_File_" + (get-date -Format "yyyy-MM-dd_HH_mm") + ".json")
 
@@ -975,8 +1071,10 @@ $Global:Runtime = Measure-Command -Expression {
 
 
     #Call the functions
-    Write-Debug "Version"
-    $Version = 2.2.0
+    $Version = "2.2.0"
+    Write-Host "Version: " -NoNewline
+    Write-Host $Version -ForegroundColor DarkGreen
+
 
     if ($Help.IsPresent) {
         Help
