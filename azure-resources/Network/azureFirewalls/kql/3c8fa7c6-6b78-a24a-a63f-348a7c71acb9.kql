@@ -18,5 +18,5 @@ resources
 ) on $left.firewallId == $right.metricId
 | extend alertsNotFullyConfigured = isnull(allAlertsConfigured) or not(allAlertsConfigured)
 | where alertsNotFullyConfigured
-| project recommendationId = "afw-3", name, id = firewallId, tags, param1 = strcat("MetricsAlerts:", monitoredMetrics)
+| project recommendationId = "c8fa7c6-6b78-a24a-a63f-348a7c71acb9", name, id = firewallId, tags, param1 = strcat("MetricsAlerts:", monitoredMetrics)
 
