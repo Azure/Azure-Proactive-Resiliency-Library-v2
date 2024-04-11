@@ -58,5 +58,5 @@
   learnMoreLink:
     - name: Upgrading a basic public IP address to Standard SKU - Guidance
       url: "https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/public-ip-basic-upgrade-guidance"
-    - name: Upgrade to Standard SKU public IP addresses in Azure by 30 September 2025'Basic SKU will be retired
+    - name: Upgrade to Standard SKU public IP addresses in Azure by 30 September 2025 as Basic SKU will be retired
       url: "https://azure.microsoft.com/en-us/updates/upgrade-to-standard-sku-public-ip-addresses-in-azure-by-30-september-2025-basic-sku-will-be-retired/"

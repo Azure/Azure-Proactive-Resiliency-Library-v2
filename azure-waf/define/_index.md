@@ -9,5 +9,4 @@ The presented Microsoft Azure Well-Architected Framework recommendations in this
 
 In this initial stage, the objectives and requirements for system reliability are established. This often involves specifying availability and recovery targets, latency tolerances, criticality classifications, and disaster recovery objectives.
 
-
 {{< azure-waf-recommendationlist name="azure-waf-recommendationlist" >}}
