@@ -84,7 +84,9 @@
   recommendationResourceType: WellArchitected/Design
   recommendationMetadataState: Active
   longDescription: |
-    Azure provides elastic scalability and you should design to scale out. However, applications must leverage a scale-unit approach to navigate service and subscription limits to ensure that individual components and the application as a whole can scale horizontally. Don't forget about scale in, which is important to reduce cost. For example, scale in and out for App Service is done via rules. Often customers write scale out rules and never write scale in rules, which leaves the App Service more expensive.
+    Azure provides elastic scalability and you should design to scale out. However, applications must leverage a scale-unit approach to navigate service and subscription limits to ensure that individual components and the application as a whole can scale horizontally. Don't forget about scale in, which is important to reduce cost.
+
+    For example, scale in and out for App Service is done via rules. Often customers write scale out rules and never write scale in rules, which leaves the App Service more expensive.
   potentialBenefits: Enhances scalability and cost efficiency
   pgVerified: Verified
   publishedToLearn: false
@@ -103,7 +105,12 @@
   recommendationResourceType: WellArchitected/Design
   recommendationMetadataState: Active
   longDescription: |
-    From a workload perspective, a landing zone refers to a prepared platform into which the application gets deployed. A landing zone implementation can have compute, data sources, access controls, and networking components already provisioned. With the required plumbing ready in place; the workload needs to plug into it. When considering the overall security, a landing zone offers centralized security capabilities that adds a threat mitigation layer for the workload. Implementations can vary but here are some common strategies that enhance the security posture. - Isolation through segmentation. You can isolate assets at several layers from Azure enrollment down to a subscription that has the resources for the workload. - Consistent adoption of organizational policies, enforce creation and deletion of services and their configuration through Azure Policy. - Configurations that align with principles of Zero Trust . For instance an implementation might have network connectivity to on-premises data centers.
+    From a workload perspective, a landing zone refers to a prepared platform into which the application gets deployed. A landing zone implementation can have compute, data sources, access controls, and networking components already provisioned. With the required plumbing ready in place; the workload needs to plug into it. When considering the overall security, a landing zone offers centralized security capabilities that adds a threat mitigation layer for the workload.
+
+    Implementations can vary but here are some common strategies that enhance the security posture.
+    - Isolation through segmentation. You can isolate assets at several layers from Azure enrollment down to a subscription that has the resources for the workload.
+    - Consistent adoption of organizational policies, enforce creation and deletion of services and their configuration through Azure Policy.
+    - Configurations that align with principles of Zero Trust. For instance an implementation might have network connectivity to on-premises data centers.
   potentialBenefits: Enhances security and speeds deployment
   pgVerified: Verified
   publishedToLearn: false

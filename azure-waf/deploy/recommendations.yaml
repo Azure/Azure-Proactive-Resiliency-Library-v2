@@ -6,7 +6,12 @@
   recommendationResourceType: WellArchitected/Deploy
   recommendationMetadataState: Active
   longDescription: |
-    Infrastructure as code (IaC) uses DevOps methodology and versioning with a descriptive model to define and deploy infrastructure, such as networks, virtual machines, load balancers, and connection topologies. Just as the same source code always generates the same binary, an IaC model generates the same environment every time it deploys. IaC is a key DevOps practice and a component of continuous delivery. With IaC, DevOps teams can work together with a unified set of practices and tools to deliver applications and their supporting infrastructure rapidly and reliably at scale. Key Points: - Avoid manual configuration to enforce consistency - Deliver stable test environments rapidly at scale - Use declarative definition files
+    Infrastructure as code (IaC) uses DevOps methodology and versioning with a descriptive model to define and deploy infrastructure, such as networks, virtual machines, load balancers, and connection topologies. Just as the same source code always generates the same binary, an IaC model generates the same environment every time it deploys. IaC is a key DevOps practice and a component of continuous delivery. With IaC, DevOps teams can work together with a unified set of practices and tools to deliver applications and their supporting infrastructure rapidly and reliably at scale.
+
+    Key Points:
+    - Avoid manual configuration to enforce consistency
+    - Deliver stable test environments rapidly at scale
+    - Use declarative definition files
   potentialBenefits: Ensures consistent, scalable deployments
   pgVerified: Verified
   publishedToLearn: false
@@ -35,4 +40,3 @@
   learnMoreLink:
     - name: Safe deployment practices
       url: "https://learn.microsoft.com/devops/operate/safe-deployment-practices"
-
