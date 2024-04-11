@@ -1,17 +1,17 @@
 - description: Your Recommendation Title Here (less than 100 characters)
   aprlGuid: Generate a Unique GUID for Your Recommendation
   recommendationTypeId: null
+  recommendationControl: High Availability/Business Continuity/Disaster Recovery/Scalability/Monitoring and Alerting/Service Upgrade and Retirement/Other Best Practices/Personalized/Governance
   recommendationImpact: Low/Medium/High
   recommendationResourceType: Friendly name to identity resource type
-  recommendationControl: High Availability/Business Continuity/Disaster Recovery/Scalability/Monitoring and Alerting/Service Upgrade and Retirement/Other Best Practices/Personalized/Governance
   recommendationMetadataState: Active
   longDescription: |
     Your Long Description Here
     (less than 300 characters)
   potentialBenefits: Potential Benefits of Implementing the Recommendation (less than 60 characters)
+  pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
-  pgVerified: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -21,17 +21,17 @@
 - description: Your Recommendation Title Here (less than 100 characters)
   aprlGuid: Generate a Unique GUID for Your Recommendation
   recommendationTypeId: null
+  recommendationControl: High Availability/Business Continuity/Disaster Recovery/Scalability/Monitoring and Alerting/Service Upgrade and Retirement/Other Best Practices/Personalized/Governance
   recommendationImpact: Low/Medium/High
   recommendationResourceType: Friendly name to identity resource type
-  recommendationControl: High Availability/Business Continuity/Disaster Recovery/Scalability/Monitoring and Alerting/Service Upgrade and Retirement/Other Best Practices/Personalized/Governance
   recommendationMetadataState: Active
   longDescription: |
     Your Long Description Here
     (less than 300 characters)
   potentialBenefits: Potential Benefits of Implementing the Recommendation (less than 60 characters)
+  pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
-  pgVerified: false
   automationAvailable: false
   tags: null
   learnMoreLink:
