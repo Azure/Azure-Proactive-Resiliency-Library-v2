@@ -6,43 +6,38 @@ Param(
     [Parameter(mandatory=$true)]
     [string] $ExcelFile,
     [string] $PPTTemplateFile,
-    [string] $WordTemplateFile,
-    [switch] $IncludeOutages,
-    [array] $SubscriptionIds,
-    [string] $TenantID
+    [string] $WordTemplateFile
     )
-
 
 
 $Global:AUTOMESSAGE = 'AUTOMATICALLY MODIFIED (Please Review)'
 
-if ($Debugging.IsPresent)
-    {
-        $ErrorActionPreference = [System.Management.Automation.ActionPreference]::Continue
-        $DebugPreference = 'Continue'
-    }
-else
-    {
-        $ErrorActionPreference = [System.Management.Automation.ActionPreference]::SilentlyContinue
-        $DebugPreference = "silentlycontinue" 
-    }
+if ($Debugging.IsPresent) { $DebugPreference = 'Continue' } else { $DebugPreference = "silentlycontinue" }
 
 if (!$PPTTemplateFile)
     {
-        if ((Test-Path -Path ($PSScriptRoot+'\Mandatory - Executive Summary presentation - Template.pptx') -PathType Leaf) -eq $true) {
-        $PPTTemplateFile = ($PSScriptRoot+'\Mandatory - Executive Summary presentation - Template.pptx')
-        }
+        if ((Test-Path -Path ($PSScriptRoot+'\Mandatory - Executive Summary presentation - Template.pptx') -PathType Leaf) -eq $true) 
+            {
+                $PPTTemplateFile = ($PSScriptRoot+'\Mandatory - Executive Summary presentation - Template.pptx')
+            }
         else
-        {
-            Write-Host
-        }
+            {
+                Write-Host "This script requires specific Microsoft PowerPoint and Word templates, only available to Microsoft Cloud Solution Architects at this moment. If you are participating on a Well-Architected Reliability Assessment, reach out to the CSA coordinating the engagement."
+                Exit
+            }
     }
 
 if (!$WordTemplateFile)
     {
-        if ((Test-Path -Path ($PSScriptRoot+'\Optional - Assessment Report - Template.docx') -PathType Leaf) -eq $true) {
-            $WordTemplateFile = ($PSScriptRoot+'\Optional - Assessment Report - Template.docx')
-        }
+        if ((Test-Path -Path ($PSScriptRoot+'\Optional - Assessment Report - Template.docx') -PathType Leaf) -eq $true) 
+            {
+                $WordTemplateFile = ($PSScriptRoot+'\Optional - Assessment Report - Template.docx')
+            }
+        else
+            {
+                Write-Host "This script requires specific Microsoft PowerPoint and Word templates, only available to Microsoft Cloud Solution Architects at this moment. If you are participating on a Well-Architected Reliability Assessment, reach out to the CSA coordinating the engagement."
+                Exit
+            }
     }
 
 if (!$CustomerName)
@@ -55,15 +50,6 @@ if (!$WorkloadName)
         $WorkloadName = '[Workload Name]'
     }
 
-if ($IncludeOutages.IsPresent -and ([string]::IsNullOrEmpty($TenantID) -or [string]::IsNullOrEmpty($SubscriptionIds)))
-    {
-        Write-Debug ""
-        Write-Debug "Tenant ID and Suscription IDs are required when using -IncludeOutages"
-        Write-Debug ""
-        Exit
-    }
-
-
 function Help {
     Write-Host ""
     Write-Host "Parameters"
@@ -73,1133 +59,1491 @@ function Help {
     Write-Host " -WorkloadName         :  Optional; specifies the Name of the Workload of the analyses to be added to the PPTx and DOCx files. "
     Write-Host " -PPTTemplateFile      :  Optional; specifies the PPTx template file to be used as source. If not specified the script will look for the file in the same path as the script. "
     Write-Host " -WordTemplateFile     :  Optional; specifies the DOCx template file to be used as source. If not specified the script will look for the file in the same path as the script. "
-    Write-Host " -IncludeOutages       :  Optional; When used the script will connect to the customer's environment and will bring most of the Outages and will populate the related PPTx Slides and DOCx tables. When this parameter is used, -TenantID and -SubscriptionIDs must be present. "
-    Write-Host " -TenantID <ID>        :  Optional; tenant to be used. "
-    Write-Host " -SubscriptionIds <IDs>:  Optional (or SubscriptionsFile); Specifies Subscription(s) to be included in the analysis: Subscription1,Subscription2. "
     Write-Host " -Debugging            :  Writes Debugging information of the script during the execution. "
     Write-Host ""
     Write-Host "Examples: "
     Write-Host ""
-    Write-Host "  Running with Outages and Customer details specific Subscriptions in the Tenant"
-    Write-Host "  .\3_wara_reports_generator.ps1 -ExcelFile 'C:\WARA_Script\WARA Action Plan 2024-03-07_16_06.xlsx' -CustomerName 'ABC Customs' -WorkloadName 'SAP On Azure' -IncludeOutages -TenantID XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX -SubscriptionIds YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY,AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA"
+    Write-Host "  Running with Customer details"
+    Write-Host "  .\3_wara_reports_generator.ps1 -ExcelFile 'C:\WARA_Script\WARA Action Plan 2024-03-07_16_06.xlsx' -CustomerName 'ABC Customs' -WorkloadName 'SAP On Azure'"
     Write-Host ""
     Write-Host ""
-    Write-Host "  Running with Outages without Customer details specific Subscriptions in the Tenant"
-    Write-Host "  .\3_wara_reports_generator.ps1 -ExcelFile 'C:\WARA_Script\WARA Action Plan 2024-03-07_16_06.xlsx' -IncludeOutages -TenantID XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX -SubscriptionIds YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY,AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA"
+    Write-Host "  Running without Customer details"
+    Write-Host "  .\3_wara_reports_generator.ps1 -ExcelFile 'C:\WARA_Script\WARA Action Plan 2024-03-07_16_06.xlsx'"
     Write-Host ""
     Write-Host ""
 }
 
+$Global:Runtime = Measure-Command -Expression {
 
-############# Outages Core Data
+    ############# EXCEL 
+    function Excel {
+        Write-Debug "Importing Core Excel Data"
 
-function OutagesData {
+        Write-Host "Openning Excel..."
+        $Global:ExcelApplication = New-Object -ComObject Excel.Application
+        #$ExcelApplication.Visible = $true
+        Start-Sleep 1
+        $Global:Ex = $ExcelApplication.Workbooks.Open($ExcelFile)
+        Start-Sleep 1
 
-    Write-Host "Parameter -IncludeOutages is present, Authenticating to Azure..."
-    Connect-AzAccount -Tenant $TenantID -WarningAction SilentlyContinue -InformationAction SilentlyContinue | Out-Null
+        $Global:ExcelContent = Import-Excel -Path $ExcelFile -WorksheetName ImpactedResources
 
-    $Date = (Get-Date).AddMonths(-6)
+        $Global:Outages = Import-Excel -Path $ExcelFile -WorksheetName Outages
 
-    $Date = $Date.ToString("MM/dd/yyyy")
+        $Global:SupportTickets = Import-Excel -Path $ExcelFile -WorksheetName "Support Tickets" -AsText 'Ticket ID'
 
-    $Global:Outages = @()
+        $Global:ServiceHealth = Import-Excel -Path $ExcelFile -WorksheetName "Health Alerts"
 
-    foreach ($sub in $SubscriptionIds)
-        {
-            Select-AzSubscription -Subscription $sub -WarningAction SilentlyContinue -InformationAction SilentlyContinue | Out-Null
+        $Global:Retirements = Import-Excel -Path $ExcelFile -WorksheetName "Retirements"
 
-            $Token = Get-AzAccessToken
-
-            $header = @{
-                'Authorization' = 'Bearer ' + $Token.Token
-            }
-
-            $url = ('https://management.azure.com/subscriptions/'+ $Sub +'/providers/Microsoft.ResourceHealth/events?api-version=2022-10-01&queryStartTime='+$Date)
-
-
-            $Global:Outages += Invoke-RestMethod -Uri $url -Headers $header -Method GET
-        }
-
-        $Global:Outageslist = $Outages.value | Where-Object {$_.properties.description -like '*How can customers make incidents like this less impactful?*' } | Sort-Object @{Expression = "properties.eventlevel"; Descending = $false},@{Expression = "properties.status"; Descending = $false} | Select-Object -First 10
-}
-
-############# EXCEL 
-
-function Excel {
-    Write-Debug "Importing Core Excel Data"
-
-    Write-Host "Openning Excel..."
-    $Global:ExcelApplication = New-Object -ComObject Excel.Application
-    #$ExcelApplication.Visible = $true
-    Start-Sleep 1
-    $Global:Ex = $ExcelApplication.Workbooks.Open($ExcelFile)
-    Start-Sleep 1
-
-    $Global:ExcelContent = Import-Excel -Path $ExcelFile -WorksheetName ImpactedResources
-
-    $ResourceIDs = $ExcelContent.id | Select-Object -Unique
-    $Resources = @()
-    Foreach($ID in $ResourceIDs)
-        {
-            if(![string]::IsNullOrEmpty($ID))
-                {
-                    $obj = @{
-                        'ID'            = $ID;
-                        'Subscription'  = $ID.split('/')[2];
-                        'Resource Group'= $ID.split('/')[4];
-                        'Resource Type' = ($ID.split('/')[6]+'/'+$ID.split('/')[7])
-                    }
-                    $Resources += $obj
-                }            
-        }
-
-    $Global:ResourcesTypes = $Resources | Group-Object -Property 'Resource Type' | Sort-Object -Property 'Count' -Descending | Select-Object -First 10
-
-    $Global:ExcelCore = Import-Excel -Path $ExcelFile
-
-    $Global:HighImpact = $ExcelCore | Where-Object {$_."Number of Impacted Resources?" -gt 0 -and $_.Impact -eq 'High'} | Sort-Object -Property "Number of Impacted Resources?" -Descending
-    $Global:MediumImpact = $ExcelCore | Where-Object {$_."Number of Impacted Resources?" -gt 0 -and $_.Impact -eq 'Medium'} | Sort-Object -Property "Number of Impacted Resources?" -Descending
-    $Global:LowImpact = $ExcelCore | Where-Object {$_."Number of Impacted Resources?" -gt 0 -and $_.Impact -eq 'Low'} | Sort-Object -Property "Number of Impacted Resources?" -Descending
-
-    $Global:ServiceHighImpact = $ExcelCore | Where-Object {$_."Number of Impacted Resources?" -gt 0 -and $_.Impact -eq 'High' -and $_.'Azure Service / Well-Architected' -eq 'Azure Service'} | Sort-Object -Property "Number of Impacted Resources?" -Descending
-    $Global:WordServicempact = $ExcelCore | Where-Object {$_."Number of Impacted Resources?" -gt 0 -and ($_.Impact -eq 'High' -or $_.Impact -eq 'Medium') -and $_.'Azure Service / Well-Architected' -eq 'Azure Service'} | Sort-Object -Property "Number of Impacted Resources?" -Descending
-    $Global:WAFHighImpact = $ExcelCore | Where-Object {$_."Number of Impacted Resources?" -gt 0 -and $_.Impact -eq 'High' -and $_.'Azure Service / Well-Architected' -eq 'Well Architected'} | Sort-Object -Property "Number of Impacted Resources?" -Descending
-    $Global:WordWAFImpact = $ExcelCore | Where-Object {$_."Number of Impacted Resources?" -gt 0 -and ($_.Impact -eq 'High' -or $_.Impact -eq 'Medium') -and $_.'Azure Service / Well-Architected' -eq 'Well Architected'} | Sort-Object -Property "Number of Impacted Resources?" -Descending
-
-}
-
-############# PowerPoint and Word
-
-function PPT {
-    Write-Host "Openning PowerPoint"
-
-    $Global:Application = New-Object -ComObject PowerPoint.Application
-
-    $msoFalse = [Microsoft.Office.Core.MsoTristate]::msoFalse
-    $msoTrue = [Microsoft.Office.Core.MsoTristate]::msoTrue
-
-    $Global:pres = $Application.Presentations.Open($PPTTemplateFile, $msoTrue, $msoFalse, $msoFalse)
-
-}
-
-function Word {
-    Write-Host "Openning Word"
-
-    $Global:Word = New-Object -Com Word.Application
-
-    #$Global:Word.Visible = $true
-
-    $Global:Document=$Word.documents.open($WordTemplateFile)
-
-}
-
-############# Slide 1
-
-function Slide1 {
-    Write-Debug "Removing First Slide"
-
-    if(($pres.Slides | Where-Object {$_.SlideIndex -eq 1}).Shapes[1].TextFrame.TextRange.Text -notlike '*VBD Update*')
-        {
-            Write-host 'Incorrect PPTx Template file!' -ForegroundColor DarkRed -BackgroundColor Green
-            Write-host "Please use IPKit's PPTx Template File" -ForegroundColor DarkRed -BackgroundColor Green
-            Exit
-        }
-
-    ($pres.Slides | Where-Object {$_.SlideIndex -eq 1}).Delete()
-
-    $Slide1 = $pres.Slides | Where-Object {$_.SlideIndex -eq 1}
-
-    ($Slide1.Shapes | Where-Object {$_.Id -eq 5}).TextFrame.TextRange.Text = ($CustomerName+ ' - ' + $WorkloadName)
-}
-
-############# SLide 12
-
-function Slide12 {
-    Write-Debug "Editing Slide 12"
-
-    $Slide12 = $pres.Slides | Where-Object {$_.SlideIndex -eq 12}
-
-    $TargetShape = ($Slide12.Shapes | Where-Object {$_.Id -eq 9})
-    $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
-    #$TargetShape.Delete()
-
-    $TargetShape = ($Slide12.Shapes | Where-Object {$_.Id -eq 8})
-    $TargetShape.Delete()
-
-    ($Slide12.Shapes | Where-Object {$_.Id -eq 3}).TextFrame.TextRange.Text = ('During the engagement, the Workload '+$WorkloadName+' has been reviewed. The solution is hosted in two Azure regions, and runs mainly IaaS resources, with some PaaS resources, which includes but is not limited to:')
-
-
-    $loop = 1
-    foreach ($ResourcesType in $ResourcesTypes)
-        {
-            if($loop -eq 1)
-                {
-                    $ResourceTemp = ($ResourcesType.Name + ' ('+$ResourcesType.'Count'+')')
-                    ($Slide12.Shapes | Where-Object {$_.Id -eq 6}).Table.Columns(1).Width = 685
-                    ($Slide12.Shapes | Where-Object {$_.Id -eq 6}).Table.Rows(1).Cells(1).Shape.TextFrame.TextRange.Text = $ResourceTemp 
-                    ($Slide12.Shapes | Where-Object {$_.Id -eq 6}).Table.Rows(1).Height = 20 
-                }
-            else
-                {
-                    $ResourceTemp = ($ResourcesType.Name + ' ('+$ResourcesType.'Count'+')')
-                    ($Slide12.Shapes | Where-Object {$_.Id -eq 6}).Table.Rows.Add() | Out-Null
-                    ($Slide12.Shapes | Where-Object {$_.Id -eq 6}).Table.Rows($loop).Cells(1).Shape.TextFrame.TextRange.Text = $ResourceTemp
-                }
-            $loop ++
-        }
-
-}
-
-############# Slide 16
-
-function Slide16 {
-    Write-Debug "Editing Slide 16"
-
-    $Slide16 = $pres.Slides | Where-Object {$_.SlideIndex -eq 16}
-
-    $TargetShape = ($Slide16.Shapes | Where-Object {$_.Id -eq 41})
-    $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
-    #$TargetShape.Delete()
-
-
-    $count = 1
-    foreach ($Impact in $ServiceHighImpact)
-        {
-            if($count -lt 5)
-                {
-                    ($Slide16.Shapes | Where-Object {$_.Id -eq 9}).TextFrame.TextRange.Paragraphs($count).text = $Impact.'Recommendation Title'
-                    $count ++
-                }
-        }
-
-        while (($Slide16.Shapes | Where-Object {$_.Id -eq 9}).TextFrame.TextRange.Paragraphs().count -gt 5)
+        $ResourceIDs = $ExcelContent.id | Select-Object -Unique
+        $Resources = @()
+        Foreach($ID in $ResourceIDs)
             {
-                ($Slide16.Shapes | Where-Object {$_.Id -eq 9}).TextFrame.TextRange.Paragraphs(6).Delete()
+                if(![string]::IsNullOrEmpty($ID))
+                    {
+                        $obj = @{
+                            'ID'            = $ID;
+                            'Subscription'  = $ID.split('/')[2];
+                            'Resource Group'= $ID.split('/')[4];
+                            'Resource Type' = ($ID.split('/')[6]+'/'+$ID.split('/')[7])
+                        }
+                        $Resources += $obj
+                    }            
             }
 
-    if($WAFHighImpact.count -ne 0)
-        {
+        $Global:ResourcesTypes = $Resources | Group-Object -Property 'Resource Type' | Sort-Object -Property 'Count' -Descending | Select-Object -First 10
+
+        $Global:ExcelCore = Import-Excel -Path $ExcelFile
+
+        $Global:HighImpact = $ExcelCore | Where-Object {$_."Number of Impacted Resources?" -gt 0 -and $_.Impact -eq 'High'} | Sort-Object -Property "Number of Impacted Resources?" -Descending
+        $Global:MediumImpact = $ExcelCore | Where-Object {$_."Number of Impacted Resources?" -gt 0 -and $_.Impact -eq 'Medium'} | Sort-Object -Property "Number of Impacted Resources?" -Descending
+        $Global:LowImpact = $ExcelCore | Where-Object {$_."Number of Impacted Resources?" -gt 0 -and $_.Impact -eq 'Low'} | Sort-Object -Property "Number of Impacted Resources?" -Descending
+
+        $Global:ServiceHighImpact = $ExcelCore | Where-Object {$_."Number of Impacted Resources?" -gt 0 -and $_.Impact -eq 'High' -and $_.'Azure Service / Well-Architected' -eq 'Azure Service'} | Sort-Object -Property "Number of Impacted Resources?" -Descending
+        $Global:WordServicempact = $ExcelCore | Where-Object {$_."Number of Impacted Resources?" -gt 0 -and ($_.Impact -eq 'High' -or $_.Impact -eq 'Medium') -and $_.'Azure Service / Well-Architected' -eq 'Azure Service'} | Sort-Object -Property "Number of Impacted Resources?" -Descending
+        $Global:WAFHighImpact = $ExcelCore | Where-Object {$_."Number of Impacted Resources?" -gt 0 -and $_.Impact -eq 'High' -and $_.'Azure Service / Well-Architected' -eq 'Well Architected'} | Sort-Object -Property "Number of Impacted Resources?" -Descending
+        $Global:WordWAFImpact = $ExcelCore | Where-Object {$_."Number of Impacted Resources?" -gt 0 -and ($_.Impact -eq 'High' -or $_.Impact -eq 'Medium') -and $_.'Azure Service / Well-Architected' -eq 'Well Architected'} | Sort-Object -Property "Number of Impacted Resources?" -Descending
+
+    }
+
+    ############# PowerPoint and Word
+
+    function PPT {
+        Write-Host "Openning PowerPoint"
+
+        $Global:Application = New-Object -ComObject PowerPoint.Application
+
+        #$msoFalse = [Microsoft.Office.Core.MsoTristate]::msoFalse
+        #$msoTrue = [Microsoft.Office.Core.MsoTristate]::msoTrue
+
+        #$Global:pres = $Application.Presentations.Open($PPTTemplateFile, $msoTrue, $msoFalse, $msoFalse)
+        $Global:pres = $Application.Presentations.Open($PPTTemplateFile, $null, $null, $null)
+
+    }
+
+    function Word {
+        Write-Debug "Openning Word"
+
+        $Global:Word = New-Object -Com Word.Application
+
+        #$Global:Word.Visible = $true
+
+        $Global:Document = $Word.documents.open($WordTemplateFile)
+    }
+
+    function PPT_Orchestrator {
+
+        ############# Slide 1
+        function Slide1 {
+            Write-Debug "Removing First Slide"
+
+            if(($pres.Slides | Where-Object {$_.SlideIndex -eq 1}).Shapes[1].TextFrame.TextRange.Text -notlike '*VBD Update*')
+                {
+                    Write-host 'Incorrect PPTx Template file!' -ForegroundColor DarkRed -BackgroundColor Green
+                    Write-host "Please use IPKit's PPTx Template File" -ForegroundColor DarkRed -BackgroundColor Green
+                    Exit
+                }
+
+            ($pres.Slides | Where-Object {$_.SlideIndex -eq 1}).Delete()
+
+            $Slide1 = $pres.Slides | Where-Object {$_.SlideIndex -eq 1}
+
+            ($Slide1.Shapes | Where-Object {$_.Id -eq 5}).TextFrame.TextRange.Text = ($CustomerName+ ' - ' + $WorkloadName)
+        }
+
+        ############# SLide 12
+        function Slide12 {
+            Write-Debug "Editing Slide 12 - Workload Summary"
+
+            $Slide12 = $pres.Slides | Where-Object {$_.SlideIndex -eq 12}
+
+            $TargetShape = ($Slide12.Shapes | Where-Object {$_.Id -eq 9})
+            $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
+            #$TargetShape.Delete()
+
+            $TargetShape = ($Slide12.Shapes | Where-Object {$_.Id -eq 8})
+            $TargetShape.Delete()
+
+            ($Slide12.Shapes | Where-Object {$_.Id -eq 3}).TextFrame.TextRange.Text = ('During the engagement, the Workload '+$WorkloadName+' has been reviewed. The solution is hosted in two Azure regions, and runs mainly IaaS resources, with some PaaS resources, which includes but is not limited to:')
+
+
+            $loop = 1
+            foreach ($ResourcesType in $ResourcesTypes)
+                {
+                    if($loop -eq 1)
+                        {
+                            $ResourceTemp = ($ResourcesType.Name + ' ('+$ResourcesType.'Count'+')')
+                            ($Slide12.Shapes | Where-Object {$_.Id -eq 6}).Table.Columns(1).Width = 685
+                            ($Slide12.Shapes | Where-Object {$_.Id -eq 6}).Table.Rows(1).Cells(1).Shape.TextFrame.TextRange.Text = $ResourceTemp 
+                            ($Slide12.Shapes | Where-Object {$_.Id -eq 6}).Table.Rows(1).Height = 20 
+                        }
+                    else
+                        {
+                            $ResourceTemp = ($ResourcesType.Name + ' ('+$ResourcesType.'Count'+')')
+                            ($Slide12.Shapes | Where-Object {$_.Id -eq 6}).Table.Rows.Add() | Out-Null
+                            ($Slide12.Shapes | Where-Object {$_.Id -eq 6}).Table.Rows($loop).Cells(1).Shape.TextFrame.TextRange.Text = $ResourceTemp
+                        }
+                    $loop ++
+                }
+
+        }
+
+        ############# Slide 16
+        function Slide16 {
+            Write-Debug "Editing Slide 16 - Health and Risk Dashboard"
+
+            $Slide16 = $pres.Slides | Where-Object {$_.SlideIndex -eq 16}
+
+            $TargetShape = ($Slide16.Shapes | Where-Object {$_.Id -eq 41})
+            $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
+            #$TargetShape.Delete()
+
+
             $count = 1
-            foreach ($Impact in $WAFHighImpact)
+            foreach ($Impact in $ServiceHighImpact)
                 {
                     if($count -lt 5)
                         {
-                            ($Slide16.Shapes | Where-Object {$_.Id -eq 12}).TextFrame.TextRange.Paragraphs($count).text = $Impact.'Recommendation Title'
+                            ($Slide16.Shapes | Where-Object {$_.Id -eq 9}).TextFrame.TextRange.Paragraphs($count).text = $Impact.'Recommendation Title'
                             $count ++
                         }
                 }
-        }
-    else
-        {
-            ($Slide16.Shapes | Where-Object {$_.Id -eq 12}).TextFrame.TextRange.Text = ' '
-        }
 
-    while (($Slide16.Shapes | Where-Object {$_.Id -eq 12}).TextFrame.TextRange.Paragraphs().count -gt 5)
-        {
-            ($Slide16.Shapes | Where-Object {$_.Id -eq 12}).TextFrame.TextRange.Paragraphs(6).Delete()
-        }
+                while (($Slide16.Shapes | Where-Object {$_.Id -eq 9}).TextFrame.TextRange.Paragraphs().count -gt 5)
+                    {
+                        ($Slide16.Shapes | Where-Object {$_.Id -eq 9}).TextFrame.TextRange.Paragraphs(6).Delete()
+                    }
 
-
-    #Total Recomendations
-    ($Slide16.Shapes | Where-Object {$_.Id -eq 44}).GroupItems[3].TextFrame.TextRange.Text = [string]($ExcelCore | Where-Object {$_."Number of Impacted Resources?" -gt 0}).count
-    #High Impact
-    ($Slide16.Shapes | Where-Object {$_.Id -eq 44}).GroupItems[4].TextFrame.TextRange.Text = [string]($ExcelCore | Where-Object {$_."Number of Impacted Resources?" -gt 0 -and $_.Impact -eq 'High'}).count
-    #Medium Impact
-    ($Slide16.Shapes | Where-Object {$_.Id -eq 44}).GroupItems[5].TextFrame.TextRange.Text = [string]($ExcelCore | Where-Object {$_."Number of Impacted Resources?" -gt 0 -and $_.Impact -eq 'Medium'}).count
-    #Low Impact
-    ($Slide16.Shapes | Where-Object {$_.Id -eq 44}).GroupItems[6].TextFrame.TextRange.Text = [string]($ExcelCore | Where-Object {$_."Number of Impacted Resources?" -gt 0 -and $_.Impact -eq 'Low'}).count
-    #Impacted Resources
-    ($Slide16.Shapes | Where-Object {$_.Id -eq 44}).GroupItems[7].TextFrame.TextRange.Text = [string]($ExcelContent.id | Where-Object {![string]::IsNullOrEmpty($_)} | Select-Object -Unique).count
-
-}
-
-############# Slide 17
-
-function Slide17 {
-    Write-Debug "Editing Slide 17"
-
-    $Slide17 = $pres.Slides | Where-Object {$_.SlideIndex -eq 17}
-
-    $TargetShape = ($Slide17.Shapes | Where-Object {$_.Id -eq 41})
-    $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
-    #$TargetShape.Delete()
-
-
-    Write-Debug "Finding Charts in the Excel File"
-    $WS2 = $Global:Ex.Worksheets | Where-Object { $_.Name -eq 'Charts' }
-
-    Write-Debug "Replacing Chart 1"
-    #Copy Excel Chart0
-    ($Slide17.Shapes | Where-Object {$_.Id -eq 3}).Chart.Delete()
-    $WS2.ChartObjects('ChartP0').copy()
-    $Slide17.Shapes.Paste() | Out-Null
-    Start-Sleep 2
-    foreach ($Shape in $Slide17.Shapes)
-        {
-            if($Shape.Name -eq 'ChartP0')
+            if($WAFHighImpact.count -ne 0)
                 {
-                    $Shape.IncrementLeft(240)
-                }
-        }
-
-    Write-Debug "Replacing Chart 2"
-    #Copy Excel Chart1
-    ($Slide17.Shapes | Where-Object {$_.Id -eq 5}).Chart.Delete()
-    $WS2.ChartObjects('ChartP1').copy()
-    $Slide17.Shapes.Paste() | Out-Null
-    Start-Sleep 2
-    foreach ($Shape in $Slide17.Shapes)
-        {
-            if($Shape.Name -eq 'ChartP1')
-                {
-                    $Shape.IncrementLeft(-260)
-                    $Shape.IncrementTop(45)
-                }
-        }
-
-}
-
-############# Slide 23
-
-function Slide23 {
-    Write-Debug "Editing Slide 23"
-
-    $FirstSlide = 23
-    $TableID = 6
-    $CurrentSlide = $pres.Slides | Where-Object {$_.SlideIndex -eq $FirstSlide}
-    $CoreSlide = $pres.Slides | Where-Object {$_.SlideIndex -eq $FirstSlide}
-
-    $TargetShape = ($CurrentSlide.Shapes | Where-Object {$_.Id -eq 41})
-    $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
-    #$TargetShape.Delete()
-
-    $row = 2
-    while ($row -lt 6)
-        {
-            $cell = 1
-            while($cell -lt 5)
-                {
-                    ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells($cell).Shape.TextFrame.TextRange.Text = ''
-                    $Cell ++
-                }
-            $row ++
-        }
-
-    $Counter = 1
-    $RecomNumber = 1
-    $row = 2    
-    foreach($Impact in $HighImpact)
-        {
-            if($Counter -lt 14)
-                {
-                    #Number
-                    ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(1).Shape.TextFrame.TextRange.Text = [string]$RecomNumber
-                    #Recommendation
-                    ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(2).Shape.TextFrame.TextRange.Text = $Impact.'Recommendation Title'
-                    #Service
-                    if($Impact.'Azure Service / Well-Architected' -eq 'Well Architected')
+                    $count = 1
+                    foreach ($Impact in $WAFHighImpact)
                         {
-                            $ServiceName = ('WAF - '+$Impact.'Azure Service / Well-Architected Topic')
-                        }
-                    else
-                        {
-                            $ServiceName = $Impact.'Azure Service / Well-Architected Topic'
-                        }
-                    ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(3).Shape.TextFrame.TextRange.Text = $ServiceName
-                    #Impacted Resources
-                    ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(4).Shape.TextFrame.TextRange.Text = [string]$Impact.'Number of Impacted Resources?'
-                    $counter ++
-                    $RecomNumber ++
-                    $row ++
-                }
-            else
-                {
-                    $Counter = 1
-                    $CustomLayout = $CurrentSlide.CustomLayout
-                    $FirstSlide ++
-                    $pres.Slides.addSlide($FirstSlide,$customLayout) | Out-Null
-
-                    $NextSlide = $pres.Slides | Where-Object {$_.SlideIndex -eq $FirstSlide}
-                    ($CoreSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Copy()
-                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 2}).TextFrame.TextRange.Paste() | Out-Null
-                    ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Copy()
-                    $NextSlide.Shapes.Paste() | Out-Null
-                    $TableID = 3
-                    ($CoreSlide.Shapes | Where-Object {$_.Id -eq 41}).Copy()
-                    $NextSlide.Shapes.Paste() | Out-Null
-
-                    $rowTemp = 2
-                    while ($rowTemp -lt 15)
-                        {
-                            $cell = 1
-                            while($cell -lt 5)
+                            if($count -lt 5)
                                 {
-                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($rowTemp).Cells($cell).Shape.TextFrame.TextRange.Text = ''
-                                    $Cell ++
+                                    ($Slide16.Shapes | Where-Object {$_.Id -eq 12}).TextFrame.TextRange.Paragraphs($count).text = $Impact.'Recommendation Title'
+                                    $count ++
                                 }
-                            $rowTemp ++
                         }
-
-                    $CurrentSlide = $NextSlide
-
-                    $row = 2
-                    #Number
-                    ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(1).Shape.TextFrame.TextRange.Text = [string]$RecomNumber
-                    #Recommendation
-                    ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(2).Shape.TextFrame.TextRange.Text = $Impact.'Recommendation Title'
-                    #Service
-                    if($Impact.'Azure Service / Well-Architected' -eq 'Well Architected')
-                        {
-                            $ServiceName = ('WAF - '+$Impact.'Azure Service / Well-Architected Topic')
-                        }
-                    else
-                        {
-                            $ServiceName = $Impact.'Azure Service / Well-Architected Topic'
-                        }
-                    ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(3).Shape.TextFrame.TextRange.Text = $ServiceName
-                    #Impacted Resources
-                    ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(4).Shape.TextFrame.TextRange.Text = [string]$Impact.'Number of Impacted Resources?'
-                    $Counter ++
-                    $RecomNumber ++
-                    $row ++
-                }
-        }
-
-}
-
-############# Slide 24
-
-function Slide24 {
-    Write-Debug "Editing Slide 24"
-
-    $FirstSlide = 24
-    $TableID = 6
-    $CurrentSlide = $pres.Slides | Where-Object {$_.SlideIndex -eq $FirstSlide}
-    $CoreSlide = $pres.Slides | Where-Object {$_.SlideIndex -eq $FirstSlide}
-
-    $TargetShape = ($CurrentSlide.Shapes | Where-Object {$_.Id -eq 41})
-    $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
-    #$TargetShape.Delete()
-
-    $row = 2
-    while ($row -lt 6)
-        {
-            $cell = 1
-            while($cell -lt 5)
-                {
-                    ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells($cell).Shape.TextFrame.TextRange.Text = ''
-                    $Cell ++
-                }
-            $row ++
-        }
-
-    $Counter = 1
-    $RecomNumber = 1
-    $row = 2    
-    foreach($Impact in $MediumImpact)
-        {
-            if($Counter -lt 14)
-                {
-                    #Number
-                    ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(1).Shape.TextFrame.TextRange.Text = [string]$RecomNumber
-                    #Recommendation
-                    ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(2).Shape.TextFrame.TextRange.Text = $Impact.'Recommendation Title'
-                    #Service
-                    if($Impact.'Azure Service / Well-Architected' -eq 'Well Architected')
-                        {
-                            $ServiceName = ('WAF - '+$Impact.'Azure Service / Well-Architected Topic')
-                        }
-                    else
-                        {
-                            $ServiceName = $Impact.'Azure Service / Well-Architected Topic'
-                        }
-                    ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(3).Shape.TextFrame.TextRange.Text = $ServiceName
-                    #Impacted Resources
-                    ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(4).Shape.TextFrame.TextRange.Text = [string]$Impact.'Number of Impacted Resources?'
-                    $counter ++
-                    $RecomNumber ++
-                    $row ++
                 }
             else
                 {
-                    $Counter = 1
-                    $CustomLayout = $CurrentSlide.CustomLayout
-                    $FirstSlide ++
-                    $pres.Slides.addSlide($FirstSlide,$customLayout) | Out-Null
+                    ($Slide16.Shapes | Where-Object {$_.Id -eq 12}).TextFrame.TextRange.Text = ' '
+                }
 
-                    $NextSlide = $pres.Slides | Where-Object {$_.SlideIndex -eq $FirstSlide}
-                    ($CoreSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Copy()
-                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 2}).TextFrame.TextRange.Paste() | Out-Null
-                    ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Copy()
-                    $NextSlide.Shapes.Paste() | Out-Null
-                    $TableID = 3
-                    ($CoreSlide.Shapes | Where-Object {$_.Id -eq 41}).Copy()
-                    $NextSlide.Shapes.Paste() | Out-Null
+            while (($Slide16.Shapes | Where-Object {$_.Id -eq 12}).TextFrame.TextRange.Paragraphs().count -gt 5)
+                {
+                    ($Slide16.Shapes | Where-Object {$_.Id -eq 12}).TextFrame.TextRange.Paragraphs(6).Delete()
+                }
 
-                    $rowTemp = 2
-                    while ($rowTemp -lt 15)
+
+            #Total Recomendations
+            ($Slide16.Shapes | Where-Object {$_.Id -eq 44}).GroupItems[3].TextFrame.TextRange.Text = [string]($ExcelCore | Where-Object {$_."Number of Impacted Resources?" -gt 0}).count
+            #High Impact
+            ($Slide16.Shapes | Where-Object {$_.Id -eq 44}).GroupItems[4].TextFrame.TextRange.Text = [string]($ExcelCore | Where-Object {$_."Number of Impacted Resources?" -gt 0 -and $_.Impact -eq 'High'}).count
+            #Medium Impact
+            ($Slide16.Shapes | Where-Object {$_.Id -eq 44}).GroupItems[5].TextFrame.TextRange.Text = [string]($ExcelCore | Where-Object {$_."Number of Impacted Resources?" -gt 0 -and $_.Impact -eq 'Medium'}).count
+            #Low Impact
+            ($Slide16.Shapes | Where-Object {$_.Id -eq 44}).GroupItems[6].TextFrame.TextRange.Text = [string]($ExcelCore | Where-Object {$_."Number of Impacted Resources?" -gt 0 -and $_.Impact -eq 'Low'}).count
+            #Impacted Resources
+            ($Slide16.Shapes | Where-Object {$_.Id -eq 44}).GroupItems[7].TextFrame.TextRange.Text = [string]($ExcelContent.id | Where-Object {![string]::IsNullOrEmpty($_)} | Select-Object -Unique).count
+
+        }
+
+        ############# Slide 17
+        function Slide17 {
+            Write-Debug "Editing Slide 17 - Health and Risk Dashboard"
+
+            $Slide17 = $pres.Slides | Where-Object {$_.SlideIndex -eq 17}
+
+            $TargetShape = ($Slide17.Shapes | Where-Object {$_.Id -eq 41})
+            $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
+            #$TargetShape.Delete()
+
+
+            Write-Debug "Finding Charts in the Excel File"
+            $WS2 = $Global:Ex.Worksheets | Where-Object { $_.Name -eq 'Charts' }
+
+            Write-Debug "Replacing Chart 1"
+            #Copy Excel Chart0
+            ($Slide17.Shapes | Where-Object {$_.Id -eq 3}).Chart.Delete()
+            Start-Sleep -Milliseconds 100
+            $WS2.ChartObjects('ChartP0').copy()
+            Start-Sleep -Milliseconds 100
+            $Slide17.Shapes.Paste() | Out-Null
+            Start-Sleep 2
+            foreach ($Shape in $Slide17.Shapes)
+                {
+                    if($Shape.Name -eq 'ChartP0')
                         {
-                            $cell = 1
-                            while($cell -lt 5)
+                            $Shape.IncrementLeft(240)
+                        }
+                }
+
+            Write-Debug "Replacing Chart 2"
+            #Copy Excel Chart1
+            ($Slide17.Shapes | Where-Object {$_.Id -eq 5}).Chart.Delete()
+            Start-Sleep -Milliseconds 100
+            $WS2.ChartObjects('ChartP1').copy()
+            Start-Sleep -Milliseconds 100
+            $Slide17.Shapes.Paste() | Out-Null
+            Start-Sleep 2
+            foreach ($Shape in $Slide17.Shapes)
+                {
+                    if($Shape.Name -eq 'ChartP1')
+                        {
+                            $Shape.IncrementLeft(-260)
+                            $Shape.IncrementTop(45)
+                        }
+                }
+
+        }
+
+        ############# Slide 21
+        function Slide21 {
+            Write-Debug "Editing Slide 21 - Service Health Alerts"
+
+            $FirstSlide = 21
+            $TableID = 6
+            $CurrentSlide = $pres.Slides | Where-Object {$_.SlideIndex -eq $FirstSlide}
+            $CoreSlide = $pres.Slides | Where-Object {$_.SlideIndex -eq $FirstSlide}
+
+            $TargetShape = ($CurrentSlide.Shapes | Where-Object {$_.Id -eq 41})
+            $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
+            #$TargetShape.Delete()
+
+            $row = 3
+            while ($row -lt 2)
+                {
+                    $cell = 1
+                    while($cell -lt 9)
+                        {
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells($cell).Shape.TextFrame.TextRange.Text = ''
+                            $Cell ++
+                        }
+                    $row ++
+                }
+
+            $Counter = 1
+            $row = 3    
+            foreach($Health in $Global:ServiceHealth)
+                {
+                    if($Counter -lt 18)
+                        {
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(1).Shape.TextFrame.TextRange.Text = [string]$Health.Subscription
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(2).Shape.TextFrame.TextRange.Text = $Health.Services
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(3).Shape.TextFrame.TextRange.Text = $Health.Regions
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(4).Shape.TextFrame.TextRange.Text = if($Health.'Event Type' -like '*Service Issues*' -or $Health.'Event Type' -eq 'All'){'Yes'}else{'No'}
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(5).Shape.TextFrame.TextRange.Text = if($Health.'Event Type' -like '*Planned Maintenance*' -or $Health.'Event Type' -eq 'All'){'Yes'}else{'No'}
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(6).Shape.TextFrame.TextRange.Text = if($Health.'Event Type' -like '*Health Advisories*' -or $Health.'Event Type' -eq 'All'){'Yes'}else{'No'}
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(7).Shape.TextFrame.TextRange.Text = if($Health.'Event Type' -like '*Security Advisory*' -or $Health.'Event Type' -eq 'All'){'Yes'}else{'No'}
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(8).Shape.TextFrame.TextRange.Text = $Health.'Action Group'
+                            $counter ++
+                            $row ++
+                        }
+                    else
+                        {
+                            $Counter = 1
+                            $CustomLayout = $CurrentSlide.CustomLayout
+                            $FirstSlide ++
+                            $pres.Slides.addSlide($FirstSlide,$customLayout) | Out-Null
+
+                            $NextSlide = $pres.Slides | Where-Object {$_.SlideIndex -eq $FirstSlide}
+                            ($CoreSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Copy()
+                            Start-Sleep -Milliseconds 100
+                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 2}).TextFrame.TextRange.Paste() | Out-Null
+                            Start-Sleep -Milliseconds 100
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Copy()
+                            Start-Sleep -Milliseconds 100
+                            $NextSlide.Shapes.Paste() | Out-Null
+                            Start-Sleep -Milliseconds 100
+                            $TableID = 3
+                            ($CoreSlide.Shapes | Where-Object {$_.Id -eq 41}).Copy()
+                            Start-Sleep -Milliseconds 100
+                            $NextSlide.Shapes.Paste() | Out-Null
+                            Start-Sleep -Milliseconds 100
+
+                            $rowTemp = 2
+                            while ($rowTemp -lt 18)
                                 {
-                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($rowTemp).Cells($cell).Shape.TextFrame.TextRange.Text = ''
-                                    $Cell ++
+                                    $cell = 1
+                                    while($cell -lt 5)
+                                        {
+                                            ($NextSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($rowTemp).Cells($cell).Shape.TextFrame.TextRange.Text = ''
+                                            $Cell ++
+                                        }
+                                    $rowTemp ++
                                 }
-                            $rowTemp ++
-                        }
 
-                    $CurrentSlide = $NextSlide
+                            $CurrentSlide = $NextSlide
 
-                    $row = 2
-                    #Number
-                    ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(1).Shape.TextFrame.TextRange.Text = [string]$RecomNumber
-                    #Recommendation
-                    ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(2).Shape.TextFrame.TextRange.Text = $Impact.'Recommendation Title'
-                    #Service
-                    if($Impact.'Azure Service / Well-Architected' -eq 'Well Architected')
-                        {
-                            $ServiceName = ('WAF - '+$Impact.'Azure Service / Well-Architected Topic')
+                            $row = 3
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(1).Shape.TextFrame.TextRange.Text = [string]$Health.Subscription
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(2).Shape.TextFrame.TextRange.Text = $Health.Services
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(3).Shape.TextFrame.TextRange.Text = $Health.Regions
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(4).Shape.TextFrame.TextRange.Text = if($Health.'Event Type' -like '*Service Issues*' -or $Health.'Event Type' -eq 'All'){'Yes'}else{'No'}
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(5).Shape.TextFrame.TextRange.Text = if($Health.'Event Type' -like '*Planned Maintenance*' -or $Health.'Event Type' -eq 'All'){'Yes'}else{'No'}
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(6).Shape.TextFrame.TextRange.Text = if($Health.'Event Type' -like '*Health Advisories*' -or $Health.'Event Type' -eq 'All'){'Yes'}else{'No'}
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(7).Shape.TextFrame.TextRange.Text = if($Health.'Event Type' -like '*Security Advisory*' -or $Health.'Event Type' -eq 'All'){'Yes'}else{'No'}
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(8).Shape.TextFrame.TextRange.Text = $Health.'Action Group'
+                            $Counter ++
+                            $row ++
                         }
-                    else
-                        {
-                            $ServiceName = $Impact.'Azure Service / Well-Architected Topic'
-                        }
-                    ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(3).Shape.TextFrame.TextRange.Text = $ServiceName
-                    #Impacted Resources
-                    ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(4).Shape.TextFrame.TextRange.Text = [string]$Impact.'Number of Impacted Resources?'
-                    $Counter ++
-                    $RecomNumber ++
-                    $row ++
                 }
         }
 
-}
+        ############# Slide 23
+        function Slide23 {
+            Write-Debug "Editing Slide 23 - High Impact Issues"
 
-############# Slide 25
-function Slide25 {
-    Write-Debug "Editing Slide 25"
+            $FirstSlide = 23
+            $TableID = 6
+            $CurrentSlide = $pres.Slides | Where-Object {$_.SlideIndex -eq $FirstSlide}
+            $CoreSlide = $pres.Slides | Where-Object {$_.SlideIndex -eq $FirstSlide}
 
-    $FirstSlide = 25
-    $TableID = 6
-    $CurrentSlide = $pres.Slides | Where-Object {$_.SlideIndex -eq $FirstSlide}
-    $CoreSlide = $pres.Slides | Where-Object {$_.SlideIndex -eq $FirstSlide}
+            $TargetShape = ($CurrentSlide.Shapes | Where-Object {$_.Id -eq 41})
+            $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
+            #$TargetShape.Delete()
 
-    $TargetShape = ($CurrentSlide.Shapes | Where-Object {$_.Id -eq 41})
-    $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
-    #$TargetShape.Delete()
-
-    $row = 2
-    while ($row -lt 6)
-        {
-            $cell = 1
-            while($cell -lt 5)
+            $row = 2
+            while ($row -lt 6)
                 {
-                    ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells($cell).Shape.TextFrame.TextRange.Text = ''
-                    $Cell ++
-                }
-            $row ++
-        }
-
-    $Counter = 1
-    $RecomNumber = 1
-    $row = 2    
-    foreach($Impact in $LowImpact)
-        {
-            if($Counter -lt 14)
-                {
-                    #Number
-                    ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(1).Shape.TextFrame.TextRange.Text = [string]$RecomNumber
-                    #Recommendation
-                    ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(2).Shape.TextFrame.TextRange.Text = $Impact.'Recommendation Title'
-                    #Service
-                    if($Impact.'Azure Service / Well-Architected' -eq 'Well Architected')
+                    $cell = 1
+                    while($cell -lt 5)
                         {
-                            $ServiceName = ('WAF - '+$Impact.'Azure Service / Well-Architected Topic')
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells($cell).Shape.TextFrame.TextRange.Text = ''
+                            $Cell ++
                         }
-                    else
-                        {
-                            $ServiceName = $Impact.'Azure Service / Well-Architected Topic'
-                        }
-                    ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(3).Shape.TextFrame.TextRange.Text = $ServiceName
-                    #Impacted Resources
-                    ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(4).Shape.TextFrame.TextRange.Text = [string]$Impact.'Number of Impacted Resources?'
-                    $counter ++
-                    $RecomNumber ++
                     $row ++
                 }
-            else
+
+            $Counter = 1
+            $RecomNumber = 1
+            $row = 2    
+            foreach($Impact in $HighImpact)
                 {
-                    $Counter = 1
-                    $CustomLayout = $CurrentSlide.CustomLayout
-                    $FirstSlide ++
-                    $pres.Slides.addSlide($FirstSlide,$customLayout) | Out-Null
-
-                    $NextSlide = $pres.Slides | Where-Object {$_.SlideIndex -eq $FirstSlide}
-                    ($CoreSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Copy()
-                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 2}).TextFrame.TextRange.Paste() | Out-Null
-                    ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Copy()
-                    $NextSlide.Shapes.Paste() | Out-Null
-                    $TableID = 3
-                    ($CoreSlide.Shapes | Where-Object {$_.Id -eq 41}).Copy()
-                    $NextSlide.Shapes.Paste() | Out-Null
-
-                    $rowTemp = 2
-                    while ($rowTemp -lt 15)
+                    if($Counter -lt 14)
                         {
-                            $cell = 1
-                            while($cell -lt 5)
+                            #Number
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(1).Shape.TextFrame.TextRange.Text = [string]$RecomNumber
+                            #Recommendation
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(2).Shape.TextFrame.TextRange.Text = $Impact.'Recommendation Title'
+                            #Service
+                            if($Impact.'Azure Service / Well-Architected' -eq 'Well Architected')
                                 {
-                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($rowTemp).Cells($cell).Shape.TextFrame.TextRange.Text = ''
-                                    $Cell ++
+                                    $ServiceName = ('WAF - '+$Impact.'Azure Service / Well-Architected Topic')
                                 }
-                            $rowTemp ++
-                        }
-
-                    $CurrentSlide = $NextSlide
-
-                    $row = 2
-                    #Number
-                    ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(1).Shape.TextFrame.TextRange.Text = [string]$RecomNumber
-                    #Recommendation
-                    ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(2).Shape.TextFrame.TextRange.Text = $Impact.'Recommendation Title'
-                    #Service
-                    if($Impact.'Azure Service / Well-Architected' -eq 'Well Architected')
-                        {
-                            $ServiceName = ('WAF - '+$Impact.'Azure Service / Well-Architected Topic')
+                            else
+                                {
+                                    $ServiceName = $Impact.'Azure Service / Well-Architected Topic'
+                                }
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(3).Shape.TextFrame.TextRange.Text = $ServiceName
+                            #Impacted Resources
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(4).Shape.TextFrame.TextRange.Text = [string]$Impact.'Number of Impacted Resources?'
+                            $counter ++
+                            $RecomNumber ++
+                            $row ++
                         }
                     else
                         {
-                            $ServiceName = $Impact.'Azure Service / Well-Architected Topic'
+                            $Counter = 1
+                            $CustomLayout = $CurrentSlide.CustomLayout
+                            $FirstSlide ++
+                            $pres.Slides.addSlide($FirstSlide,$customLayout) | Out-Null
+
+                            $NextSlide = $pres.Slides | Where-Object {$_.SlideIndex -eq $FirstSlide}
+                            ($CoreSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Copy()
+                            Start-Sleep -Milliseconds 100
+                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 2}).TextFrame.TextRange.Paste() | Out-Null
+                            Start-Sleep -Milliseconds 100
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Copy()
+                            Start-Sleep -Milliseconds 100
+                            $NextSlide.Shapes.Paste() | Out-Null
+                            Start-Sleep -Milliseconds 100
+                            $TableID = 3
+                            ($CoreSlide.Shapes | Where-Object {$_.Id -eq 41}).Copy()
+                            Start-Sleep -Milliseconds 100
+                            $NextSlide.Shapes.Paste() | Out-Null
+                            Start-Sleep -Milliseconds 100
+
+                            $rowTemp = 2
+                            while ($rowTemp -lt 15)
+                                {
+                                    $cell = 1
+                                    while($cell -lt 5)
+                                        {
+                                            ($NextSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($rowTemp).Cells($cell).Shape.TextFrame.TextRange.Text = ''
+                                            $Cell ++
+                                        }
+                                    $rowTemp ++
+                                }
+
+                            $CurrentSlide = $NextSlide
+
+                            $row = 2
+                            #Number
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(1).Shape.TextFrame.TextRange.Text = [string]$RecomNumber
+                            #Recommendation
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(2).Shape.TextFrame.TextRange.Text = $Impact.'Recommendation Title'
+                            #Service
+                            if($Impact.'Azure Service / Well-Architected' -eq 'Well Architected')
+                                {
+                                    $ServiceName = ('WAF - '+$Impact.'Azure Service / Well-Architected Topic')
+                                }
+                            else
+                                {
+                                    $ServiceName = $Impact.'Azure Service / Well-Architected Topic'
+                                }
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(3).Shape.TextFrame.TextRange.Text = $ServiceName
+                            #Impacted Resources
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(4).Shape.TextFrame.TextRange.Text = [string]$Impact.'Number of Impacted Resources?'
+                            $Counter ++
+                            $RecomNumber ++
+                            $row ++
                         }
-                    ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(3).Shape.TextFrame.TextRange.Text = $ServiceName
-                    #Impacted Resources
-                    ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(4).Shape.TextFrame.TextRange.Text = [string]$Impact.'Number of Impacted Resources?'
-                    $Counter ++
-                    $RecomNumber ++
+                }
+
+        }
+
+        ############# Slide 24
+        function Slide24 {
+            Write-Debug "Editing Slide 24 - Medium Impact Issues"
+
+            $FirstSlide = 24
+            $TableID = 6
+            $CurrentSlide = $pres.Slides | Where-Object {$_.SlideIndex -eq $FirstSlide}
+            $CoreSlide = $pres.Slides | Where-Object {$_.SlideIndex -eq $FirstSlide}
+
+            $TargetShape = ($CurrentSlide.Shapes | Where-Object {$_.Id -eq 41})
+            $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
+            #$TargetShape.Delete()
+
+            $row = 2
+            while ($row -lt 6)
+                {
+                    $cell = 1
+                    while($cell -lt 5)
+                        {
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells($cell).Shape.TextFrame.TextRange.Text = ''
+                            $Cell ++
+                        }
                     $row ++
                 }
-        }
 
-}
-
-############# Slide 28
-
-function Slide28 {
-    Write-Debug "Editing Slide 28"
-    $Loop = 1
-    $CurrentSlide = 28
-
-
-    foreach ($Outage in $Outageslist)
-        {
-            if($Loop -eq 1)
+            $Counter = 1
+            $RecomNumber = 1
+            $row = 2    
+            foreach($Impact in $MediumImpact)
                 {
-                    $OutageName = ($Outage.name+' - '+$Outage.properties.title)
-
-                    $OutageService = ''
-                    $OutageService = if(($Outage.properties.impact.impactedService).count -gt 1){[string]($Outage.properties.impact.impactedService | ForEach-Object {$_ + ' '})}else{[string]$Outage.properties.impact.impactedService}
-
-                    $HTML = New-Object -Com "HTMLFile"
-                    $HTML.write([ref]$Outage.properties.description)
-                    $OutageDescription = $Html.body.innerText
-
-                    $SplitDescription = $OutageDescription.split('How can we make our incident communications more useful?').split('How can customers make incidents like this less impactful?').split('How are we making incidents like this less likely or less impactful?').split('How did we respond?').split('What went wrong and why?').split('What happened?')
-                    $Slide28 = $pres.Slides | Where-Object {$_.SlideIndex -eq 28}
-
-                    $TargetShape = ($Slide28.Shapes | Where-Object {$_.Id -eq 4})
-                    $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
-                    #$TargetShape.Delete()
-
-                    ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(1).Text = $OutageName
-                    ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(2).Text = "What happened:"
-                    ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(3).Text = ($SplitDescription[1]).Split([Environment]::NewLine)[1]
-                    ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(2).Copy()
-                    ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(4).Paste() | Out-Null
-                    ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(4).Text = "Impacted Service:"
-                    ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(3).Copy()
-                    ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(5).Paste() | Out-Null
-                    ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(5).Text = $OutageService
-                    ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(4).Copy()
-                    ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(6).Paste() | Out-Null
-                    ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(6).Text = "How can customers make incidents like this less impactful:"
-                    ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(5).Copy()
-                    ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(7).Paste() | Out-Null
-                    ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(7).Text = ($SplitDescription[5]).Split([Environment]::NewLine)[1]
-
-                    while(($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs().count -gt 7)
+                    if($Counter -lt 14)
                         {
-                            ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(8).Delete()
-                        }
-                }
-            else
-                {
-                    ############### NEXT 9 SLIDES
-
-                    $OutageName = ($Outage.name+' - '+$Outage.properties.title)
-
-                    $OutageService = ''
-                    $OutageService = if(($Outage.properties.impact.impactedService).count -gt 1){[string]($Outage.properties.impact.impactedService | ForEach-Object {$_ + ' '})}else{[string]$Outage.properties.impact.impactedService}
-
-                    $HTML = New-Object -Com "HTMLFile"
-                    $HTML.write([ref]$Outage.properties.description)
-                    $OutageDescription = $Html.body.innerText
-
-                    $SplitDescription = $OutageDescription.split('How can we make our incident communications more useful?').split('How can customers make incidents like this less impactful?').split('How are we making incidents like this less likely or less impactful?').split('How did we respond?').split('What went wrong and why?').split('What happened?')
-
-                    $CustomLayout = $Slide28.CustomLayout
-                    $pres.Slides.addSlide($CurrentSlide,$customLayout) | Out-Null
-
-                    $NextSlide = $pres.Slides | Where-Object {$_.SlideIndex -eq $CurrentSlide}
-
-                    ($Slide28.Shapes | Where-Object {$_.Id -eq 6}).TextFrame.TextRange.Copy()
-
-                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 2}).TextFrame.TextRange.Paste() | Out-Null
-
-                    ($Slide28.Shapes | Where-Object {$_.Id -eq 4}).Copy()
-
-                    $NextSlide.Shapes.Paste() | Out-Null
-
-                    ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).Copy()
-
-                    $NextSlide.Shapes.Paste() | Out-Null
-
-                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(1).Text = $OutageName
-                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(2).Text = "What happened:"
-                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(3).Text = ($SplitDescription[1]).Split([Environment]::NewLine)[1]
-                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(2).Copy()
-                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(4).Paste() | Out-Null
-                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(4).Text = "Impacted Service:"
-                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(3).Copy()
-                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(5).Paste() | Out-Null
-                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(5).Text = $OutageService
-                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(4).Copy()
-                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(6).Paste() | Out-Null
-                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(6).Text = "How can customers make incidents like this less impactful:"
-                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(5).Copy()
-                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(7).Paste() | Out-Null
-                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(7).Text = ($SplitDescription[5]).Split([Environment]::NewLine)[1]
-                    
-                    ($Slide28.Shapes | Where-Object {$_.Id -eq 31}).Copy()
-
-                    $NextSlide.Shapes.Paste() | Out-Null
-
-                    while(($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs().count -gt 7)
-                        {
-                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(8).Delete()
-                        }
-                }
-                $Loop ++
-                $CurrentSlide ++
-        }
-    
-
-}
-
-
-
-function WordCore {
-    Write-Debug 'Editing Word Core File'
-    $MatchCase = $false
-    $MatchWholeWord = $true
-    $MatchWildcards = $false
-    $MatchSoundsLike = $false
-    $MatchAllWordForms = $false
-    $Forward = $true
-    $wrap = $wdFindContinue
-    $wdFindContinue = 1
-    $Format = $false
-    $ReplaceAll = 2
-
-    $FindText = '[Workload Name]'
-    $ReplaceWith = $WorkloadName
-    $Global:Document.Content.Find.Execute($FindText, $MatchCase, $MatchWholeWord, $MatchWildcards, $MatchSoundsLike, $MatchAllWordForms, $Forward, $wrap, $Format, $ReplaceWith, $ReplaceAll) | Out-Null
-
-    $FindText = 'Workload Name'
-    $ReplaceWith = $WorkloadName
-    $Global:Document.Content.Find.Execute($FindText, $MatchCase, $MatchWholeWord, $MatchWildcards, $MatchSoundsLike, $MatchAllWordForms, $Forward, $wrap, $Format, $ReplaceWith, $ReplaceAll) | Out-Null
-
-    $FindText = '[Customer Name]'
-    $ReplaceWith = $CustomerName
-    $Global:Document.Content.Find.Execute($FindText, $MatchCase, $MatchWholeWord, $MatchWildcards, $MatchSoundsLike, $MatchAllWordForms, $Forward, $wrap, $Format, $ReplaceWith, $ReplaceAll) | Out-Null
-
-    $FindText = '[Type Customer Name Here]'
-    $ReplaceWith = $CustomerName
-    $Global:Document.Content.Find.Execute($FindText, $MatchCase, $MatchWholeWord, $MatchWildcards, $MatchSoundsLike, $MatchAllWordForms, $Forward, $wrap, $Format, $ReplaceWith, $ReplaceAll) | Out-Null
-    $Global:Document.Sections(1).Headers(1).Range.Find.Execute($FindText, $MatchCase, $MatchWholeWord, $MatchWildcards, $MatchSoundsLike, $MatchAllWordForms, $Forward, $wrap, $Format, $ReplaceWith, $ReplaceAll) | Out-Null
-
-
-    # Total Recommendations
-    $Global:Document.Content.Paragraphs(145).Range.Text = [string]($ExcelCore | Where-Object {$_."Number of Impacted Resources?" -gt 0}).count
-    #High Impact
-    $Global:Document.Content.Paragraphs(155).Range.Text = [string]($ExcelCore | Where-Object {$_."Number of Impacted Resources?" -gt 0 -and $_.Impact -eq 'High'}).count
-    #Medium Impact
-    $Global:Document.Content.Paragraphs(157).Range.Text = [string]($ExcelCore | Where-Object {$_."Number of Impacted Resources?" -gt 0 -and $_.Impact -eq 'Medium'}).count
-    #Low Impact
-    $Global:Document.Content.Paragraphs(159).Range.Text = [string]($ExcelCore | Where-Object {$_."Number of Impacted Resources?" -gt 0 -and $_.Impact -eq 'Low'}).count
-    #Impacted Resources
-    $Global:Document.Content.Paragraphs(165).Range.Text = [string]($ExcelContent.id | Where-Object {![string]::IsNullOrEmpty($_)} | Select-Object -Unique).count
-
-
-    $HealthHigh = $ExcelCore | Where-Object {$_."Number of Impacted Resources?" -gt 1 -and $_.Impact -eq 'High' -and $_.'Health / Risk' -eq 'Health'} | Sort-Object -Property "Number of Impacted Resources?" -Descending
-
-    $RiskHigh = $ExcelCore | Where-Object {$_."Number of Impacted Resources?" -gt 1 -and $_.Impact -eq 'High' -and $_.'Health / Risk' -eq 'Risk'} | Sort-Object -Property "Number of Impacted Resources?" -Descending
-
-    #Risk Assessment Result
-    $Global:Document.Content.Paragraphs(176).Range.Text = ''
-    $Global:Document.Content.Paragraphs(175).Range.Text = ''
-
-    #$Global:Document.Content.Paragraphs(158).Range.ListFormat.ApplyListTemplate($Global:Word.Application.ListGalleries[1].ListTemplates[3])
-    $Global:Document.Content.Paragraphs(175).Range.Select()
-    $Loops = 1
-    Foreach($Risk in $RiskHigh)
-        {
-            if([string]::IsNullOrEmpty($Risk))
-                {
-                    $Global:Document.Content.Paragraphs(175).Range.Text = ''
-                }
-            $Title = $Risk.'Recommendation Title'
-            if($Loops -eq 1)
-                {
-                    $Global:Word.Selection.TypeText($Title) | Out-Null
-                }
-            else
-                {
-                    $Global:Word.Selection.TypeParagraph() | Out-Null
-                    $Global:Word.Selection.TypeText($Title) | Out-Null
-                }
-            $Loops ++
-            
-        }
-
-        #Health Assessment Result
-        $Global:Document.Content.Paragraphs(172).Range.Text = ''
-
-        #$Global:Document.Content.Paragraphs(158).Range.ListFormat.ApplyListTemplate($Global:Word.Application.ListGalleries[1].ListTemplates[3])
-        $Global:Document.Content.Paragraphs(171).Range.Select()
-        $Loops = 1
-        Foreach($Risk in $HealthHigh)
-            {
-                if([string]::IsNullOrEmpty($Risk))
-                    {
-                        $Global:Document.Content.Paragraphs(171).Range.Text = ''
-                    }
-                $Title = $Risk.'Recommendation Title'
-                if($Loops -eq 1)
-                    {
-                        $Global:Word.Selection.TypeText($Title) | Out-Null
-                    }
-                else
-                    {
-                        $Global:Word.Selection.TypeParagraph() | Out-Null
-                        $Global:Word.Selection.TypeText($Title) | Out-Null
-                    }
-                $Loops ++
-            }
-
-}
-function WordCharts {
-    Write-Debug 'Editing Word Charts'
-    #Charts
-    $WS2 = $Global:Ex.Worksheets | Where-Object { $_.Name -eq 'Charts' }
-
-    $Position = $Global:Document.Content.Paragraphs(181).Range.Start
-
-    $Global:Document.Content.InlineShapes(10).Delete() | Out-Null
-    $Global:Document.Content.InlineShapes(9).Delete() | Out-Null
-    $Global:Document.Content.InlineShapes(8).Delete() | Out-Null
-
-    $WS2.ChartObjects('ChartP0').copy()
-
-    $Global:Document.Range($Position,$Position).Select()
-    $Global:Word.Selection.Paste() | Out-Null
-
-    #$Global:Word.Selection.InsertParagraphAfter()
-
-    $WS2.ChartObjects('ChartP1').copy()
-    $Global:Word.Selection.Paste() | Out-Null
-
-    #$Global:Word.Selection.InsertParagraphAfter()
-
-    $WS2.ChartObjects('ChartP2').copy()
-    $Global:Word.Selection.Paste() | Out-Null
-
-    #$Global:Word.Selection.InsertParagraphAfter()
-}
-function WordOutages {
-    Write-Debug 'Editing Outages'
-    $Global:Document.Tables(10).Rows(2).Cells(1).Range.Text = ''
-    $Global:Document.Tables(10).Rows(2).Cells(2).Range.Text = ''
-    $Global:Document.Tables(10).Rows(2).Cells(3).Range.Text = ''
-
-    Write-Debug 'Looping Outages'
-    $LineCounter = 2
-    foreach ($Outage in $Outageslist)
-            {
-                if($LineCounter -gt 3)
-                    {
-                        $Global:Document.Tables(10).Rows.Add() | Out-Null
-                    }
-                $OutageName = ($Outage.name+' - '+$Outage.properties.title)
-
-                $HTML = New-Object -Com "HTMLFile"
-                $HTML.write([ref]$Outage.properties.description)
-                $OutageDescription = $Html.body.innerText
-
-                $SplitDescription = $OutageDescription.split('How can we make our incident communications more useful?').split('How can customers make incidents like this less impactful?').split('How are we making incidents like this less likely or less impactful?').split('How did we respond?').split('What went wrong and why?').split('What happened?')
-
-                $Global:Document.Tables(10).Rows($LineCounter).Cells(1).Range.Text = $OutageName
-                $Global:Document.Tables(10).Rows($LineCounter).Cells(2).Range.Text = ($SplitDescription[1]).Split([Environment]::NewLine)[1]
-                $Global:Document.Tables(10).Rows($LineCounter).Cells(3).Range.Text = ($SplitDescription[5]).Split([Environment]::NewLine)[1]
-            
-                $LineCounter ++
-            }
-
-}
-function WordTables {
-    Write-Debug 'Editing Tables'
-    #Clean the table 6
-    $row = 2
-    while ($row -lt 5)
-        {
-            $cell = 1
-            while($cell -lt 5)
-                {
-                    $Global:Document.Tables(6).Rows($row).Cells($cell).Range.Text = ''
-                    $Cell ++
-                }
-            $row ++
-        }
-
-    #Clean the table 7
-    $row = 2
-    while ($row -lt 3)
-        {
-            $cell = 1
-            while($cell -lt 5)
-                {
-                    $Global:Document.Tables(7).Rows($row).Cells($cell).Range.Text = ''
-                    $Cell ++
-                }
-            $row ++
-        }
-
-    #Clean the table 8
-    $row = 2
-    while ($row -lt 3)
-        {
-            $cell = 1
-            while($cell -lt 5)
-                {
-                    $Global:Document.Tables(8).Rows($row).Cells($cell).Range.Text = ''
-                    $Cell ++
-                }
-            $row ++
-        }
-
-    #Populate Table Health and Risk Summary High
-    $counter = 1
-    $row = 2
-    foreach($Impact in $HighImpact)
-        {
-            if ($counter -lt 14)
-                {
-                    #Number
-                    $Global:Document.Tables(6).Rows($row).Cells(1).Range.Text = [string]$counter
-                    #Recommendation
-                    $Global:Document.Tables(6).Rows($row).Cells(2).Range.Text = $Impact.'Recommendation Title'
-                    #Service
-                    if($Impact.'Azure Service / Well-Architected' -eq 'Well Architected')
-                        {
-                            $ServiceName = ('WAF - '+$Impact.'Azure Service / Well-Architected Topic')
+                            #Number
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(1).Shape.TextFrame.TextRange.Text = [string]$RecomNumber
+                            #Recommendation
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(2).Shape.TextFrame.TextRange.Text = $Impact.'Recommendation Title'
+                            #Service
+                            if($Impact.'Azure Service / Well-Architected' -eq 'Well Architected')
+                                {
+                                    $ServiceName = ('WAF - '+$Impact.'Azure Service / Well-Architected Topic')
+                                }
+                            else
+                                {
+                                    $ServiceName = $Impact.'Azure Service / Well-Architected Topic'
+                                }
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(3).Shape.TextFrame.TextRange.Text = $ServiceName
+                            #Impacted Resources
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(4).Shape.TextFrame.TextRange.Text = [string]$Impact.'Number of Impacted Resources?'
+                            $counter ++
+                            $RecomNumber ++
+                            $row ++
                         }
                     else
                         {
-                            $ServiceName = $Impact.'Azure Service / Well-Architected Topic'
+                            $Counter = 1
+                            $CustomLayout = $CurrentSlide.CustomLayout
+                            $FirstSlide ++
+                            $pres.Slides.addSlide($FirstSlide,$customLayout) | Out-Null
+
+                            $NextSlide = $pres.Slides | Where-Object {$_.SlideIndex -eq $FirstSlide}
+                            ($CoreSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Copy()
+                            Start-Sleep -Milliseconds 100
+                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 2}).TextFrame.TextRange.Paste() | Out-Null
+                            Start-Sleep -Milliseconds 100
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Copy()
+                            Start-Sleep -Milliseconds 100
+                            $NextSlide.Shapes.Paste() | Out-Null
+                            Start-Sleep -Milliseconds 100
+                            $TableID = 3
+                            ($CoreSlide.Shapes | Where-Object {$_.Id -eq 41}).Copy()
+                            Start-Sleep -Milliseconds 100
+                            $NextSlide.Shapes.Paste() | Out-Null
+                            Start-Sleep -Milliseconds 100
+
+                            $rowTemp = 2
+                            while ($rowTemp -lt 15)
+                                {
+                                    $cell = 1
+                                    while($cell -lt 5)
+                                        {
+                                            ($NextSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($rowTemp).Cells($cell).Shape.TextFrame.TextRange.Text = ''
+                                            $Cell ++
+                                        }
+                                    $rowTemp ++
+                                }
+
+                            $CurrentSlide = $NextSlide
+
+                            $row = 2
+                            #Number
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(1).Shape.TextFrame.TextRange.Text = [string]$RecomNumber
+                            #Recommendation
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(2).Shape.TextFrame.TextRange.Text = $Impact.'Recommendation Title'
+                            #Service
+                            if($Impact.'Azure Service / Well-Architected' -eq 'Well Architected')
+                                {
+                                    $ServiceName = ('WAF - '+$Impact.'Azure Service / Well-Architected Topic')
+                                }
+                            else
+                                {
+                                    $ServiceName = $Impact.'Azure Service / Well-Architected Topic'
+                                }
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(3).Shape.TextFrame.TextRange.Text = $ServiceName
+                            #Impacted Resources
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(4).Shape.TextFrame.TextRange.Text = [string]$Impact.'Number of Impacted Resources?'
+                            $Counter ++
+                            $RecomNumber ++
+                            $row ++
                         }
-                        $Global:Document.Tables(6).Rows($row).Cells(3).Range.Text = $ServiceName
-                    #Impacted Resources
-                    $Global:Document.Tables(6).Rows($row).Cells(4).Range.Text = [string]$Impact.'Number of Impacted Resources?'
-                    $counter ++
+                }
+
+        }
+
+        ############# Slide 25
+        function Slide25 {
+            Write-Debug "Editing Slide 25 - Low Impact Issues"
+
+            $FirstSlide = 25
+            $TableID = 6
+            $CurrentSlide = $pres.Slides | Where-Object {$_.SlideIndex -eq $FirstSlide}
+            $CoreSlide = $pres.Slides | Where-Object {$_.SlideIndex -eq $FirstSlide}
+
+            $TargetShape = ($CurrentSlide.Shapes | Where-Object {$_.Id -eq 41})
+            $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
+            #$TargetShape.Delete()
+
+            $row = 2
+            while ($row -lt 6)
+                {
+                    $cell = 1
+                    while($cell -lt 5)
+                        {
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells($cell).Shape.TextFrame.TextRange.Text = ''
+                            $Cell ++
+                        }
                     $row ++
                 }
-            else
+
+            $Counter = 1
+            $RecomNumber = 1
+            $row = 2    
+            foreach($Impact in $LowImpact)
                 {
-                    $Global:Document.Tables(6).Rows.add() | Out-Null
-                    #Number
-                    $Global:Document.Tables(6).Rows($row).Cells(1).Range.Text = [string]$counter
-                    #Recommendation
-                    $Global:Document.Tables(6).Rows($row).Cells(2).Range.Text = $Impact.'Recommendation Title'
-                    #Service
-                    if($Impact.'Azure Service / Well-Architected' -eq 'Well Architected')
+                    if($Counter -lt 14)
                         {
-                            $ServiceName = ('WAF - '+$Impact.'Azure Service / Well-Architected Topic')
+                            #Number
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(1).Shape.TextFrame.TextRange.Text = [string]$RecomNumber
+                            #Recommendation
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(2).Shape.TextFrame.TextRange.Text = $Impact.'Recommendation Title'
+                            #Service
+                            if($Impact.'Azure Service / Well-Architected' -eq 'Well Architected')
+                                {
+                                    $ServiceName = ('WAF - '+$Impact.'Azure Service / Well-Architected Topic')
+                                }
+                            else
+                                {
+                                    $ServiceName = $Impact.'Azure Service / Well-Architected Topic'
+                                }
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(3).Shape.TextFrame.TextRange.Text = $ServiceName
+                            #Impacted Resources
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(4).Shape.TextFrame.TextRange.Text = [string]$Impact.'Number of Impacted Resources?'
+                            $counter ++
+                            $RecomNumber ++
+                            $row ++
                         }
                     else
                         {
-                            $ServiceName = $Impact.'Azure Service / Well-Architected Topic'
+                            $Counter = 1
+                            $CustomLayout = $CurrentSlide.CustomLayout
+                            $FirstSlide ++
+                            $pres.Slides.addSlide($FirstSlide,$customLayout) | Out-Null
+
+                            $NextSlide = $pres.Slides | Where-Object {$_.SlideIndex -eq $FirstSlide}
+                            ($CoreSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Copy()
+                            Start-Sleep -Milliseconds 100
+                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 2}).TextFrame.TextRange.Paste() | Out-Null
+                            Start-Sleep -Milliseconds 100
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Copy()
+                            Start-Sleep -Milliseconds 100
+                            $NextSlide.Shapes.Paste() | Out-Null
+                            Start-Sleep -Milliseconds 100
+                            $TableID = 3
+                            ($CoreSlide.Shapes | Where-Object {$_.Id -eq 41}).Copy()
+                            Start-Sleep -Milliseconds 100
+                            $NextSlide.Shapes.Paste() | Out-Null
+                            Start-Sleep -Milliseconds 100
+
+                            $rowTemp = 2
+                            while ($rowTemp -lt 15)
+                                {
+                                    $cell = 1
+                                    while($cell -lt 5)
+                                        {
+                                            ($NextSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($rowTemp).Cells($cell).Shape.TextFrame.TextRange.Text = ''
+                                            $Cell ++
+                                        }
+                                    $rowTemp ++
+                                }
+
+                            $CurrentSlide = $NextSlide
+
+                            $row = 2
+                            #Number
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(1).Shape.TextFrame.TextRange.Text = [string]$RecomNumber
+                            #Recommendation
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(2).Shape.TextFrame.TextRange.Text = $Impact.'Recommendation Title'
+                            #Service
+                            if($Impact.'Azure Service / Well-Architected' -eq 'Well Architected')
+                                {
+                                    $ServiceName = ('WAF - '+$Impact.'Azure Service / Well-Architected Topic')
+                                }
+                            else
+                                {
+                                    $ServiceName = $Impact.'Azure Service / Well-Architected Topic'
+                                }
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(3).Shape.TextFrame.TextRange.Text = $ServiceName
+                            #Impacted Resources
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(4).Shape.TextFrame.TextRange.Text = [string]$Impact.'Number of Impacted Resources?'
+                            $Counter ++
+                            $RecomNumber ++
+                            $row ++
                         }
-                        $Global:Document.Tables(6).Rows($row).Cells(3).Range.Text = $ServiceName
-                    #Impacted Resources
-                    $Global:Document.Tables(6).Rows($row).Cells(4).Range.Text = [string]$Impact.'Number of Impacted Resources?'
-                    $counter ++
-                    $row ++
+                }
+
+        }
+
+        ############# Slide 28
+        function Slide28 {
+            Write-Debug "Editing Slide 28 - Recent Microsoft Outages"
+            $Loop = 1
+            $CurrentSlide = 28
+
+            foreach ($Outage in $Global:Outages)
+                {
+                    if($Loop -eq 1)
+                        {
+                            $OutageName = ($Outage.'Tracking ID'+' - '+$Outage.title)
+
+                            $OutageService = $Outage.'Impacted Service'
+
+                            $Slide28 = $pres.Slides | Where-Object {$_.SlideIndex -eq 28}
+
+                            $TargetShape = ($Slide28.Shapes | Where-Object {$_.Id -eq 4})
+                            $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
+                            #$TargetShape.Delete()
+
+                            ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(1).Text = $OutageName
+                            ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(2).Text = "What happened:"
+                            ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(3).Text = $Outage.'What happened'
+                            ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(2).Copy()
+                            Start-Sleep -Milliseconds 100
+                            ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(4).Paste() | Out-Null
+                            Start-Sleep -Milliseconds 100
+                            ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(4).Text = "Impacted Service:"
+                            ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(3).Copy()
+                            Start-Sleep -Milliseconds 100
+                            ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(5).Paste() | Out-Null
+                            Start-Sleep -Milliseconds 100
+                            ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(5).Text = $OutageService
+                            ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(4).Copy()
+                            Start-Sleep -Milliseconds 100
+                            ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(6).Paste() | Out-Null
+                            Start-Sleep -Milliseconds 100
+                            ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(6).Text = "How can customers make incidents like this less impactful:"
+                            ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(5).Copy()
+                            Start-Sleep -Milliseconds 100
+                            ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(7).Paste() | Out-Null
+                            Start-Sleep -Milliseconds 100
+                            ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(7).Text = $Outage.'How can customers make incidents like this less impactful'
+
+                            while(($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs().count -gt 7)
+                                {
+                                    ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(8).Delete()
+                                }
+                        }
+                    else
+                        {
+                            ############### NEXT 9 SLIDES
+
+                            $OutageName = ($Outage.'Tracking ID'+' - '+$Outage.title)
+
+                            $OutageService = $Outage.'Impacted Service'
+                            $CustomLayout = $Slide28.CustomLayout
+                            $pres.Slides.addSlide($CurrentSlide,$customLayout) | Out-Null
+
+                            $NextSlide = $pres.Slides | Where-Object {$_.SlideIndex -eq $CurrentSlide}
+
+                            ($Slide28.Shapes | Where-Object {$_.Id -eq 6}).TextFrame.TextRange.Copy()
+                            Start-Sleep -Milliseconds 100
+
+                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 2}).TextFrame.TextRange.Paste() | Out-Null
+                            Start-Sleep -Milliseconds 100
+
+                            ($Slide28.Shapes | Where-Object {$_.Id -eq 4}).Copy()
+                            Start-Sleep -Milliseconds 100
+
+                            $NextSlide.Shapes.Paste() | Out-Null
+                            Start-Sleep -Milliseconds 100
+
+                            ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).Copy()
+                            Start-Sleep -Milliseconds 100
+
+                            $NextSlide.Shapes.Paste() | Out-Null
+                            Start-Sleep -Milliseconds 100
+
+                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(1).Text = $OutageName
+                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(2).Text = "What happened:"
+                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(3).Text = $Outage.'What happened'
+                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(2).Copy()
+                            Start-Sleep -Milliseconds 100
+                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(4).Paste() | Out-Null
+                            Start-Sleep -Milliseconds 100
+                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(4).Text = "Impacted Service:"
+                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(3).Copy()
+                            Start-Sleep -Milliseconds 100
+                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(5).Paste() | Out-Null
+                            Start-Sleep -Milliseconds 100
+                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(5).Text = $OutageService
+                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(4).Copy()
+                            Start-Sleep -Milliseconds 100
+                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(6).Paste() | Out-Null
+                            Start-Sleep -Milliseconds 100
+                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(6).Text = "How can customers make incidents like this less impactful:"
+                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(5).Copy()
+                            Start-Sleep -Milliseconds 100
+                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(7).Paste() | Out-Null
+                            Start-Sleep -Milliseconds 100
+                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(7).Text = $Outage.'How can customers make incidents like this less impactful'
+                            
+                            ($Slide28.Shapes | Where-Object {$_.Id -eq 31}).Copy()
+
+                            $NextSlide.Shapes.Paste() | Out-Null
+
+                            while(($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs().count -gt 7)
+                                {
+                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(8).Delete()
+                                }
+                        }
+                        $Loop ++
+                        $CurrentSlide ++
                 }
         }
 
-    #Populate Table Health and Risk Summary Medium
-    $counter = 1
-    $row = 2
-    foreach($Impact in $MediumImpact)
-        {
-            if ($counter -lt 14)
+        ############# Slide 29
+        function Slide29 {
+            Write-Debug "Editing Slide 29 - Sev-A Support Requests"
+            $Loop = 1
+            $CurrentSlide = 29
+            $Slide = 1
+
+            foreach ($Tickets in $Global:SupportTickets)
                 {
-                    #Number
-                    $Global:Document.Tables(7).Rows($row).Cells(1).Range.Text = [string]$counter
-                    #Recommendation
-                    $Global:Document.Tables(7).Rows($row).Cells(2).Range.Text = $Impact.'Recommendation Title'
-                    #Service
-                    if($Impact.'Azure Service / Well-Architected' -eq 'Well Architected')
+                    $TicketName = ($Tickets.'Ticket ID'+' - '+$Tickets.Title)
+                    $TicketStatus = $Tickets.'Status'
+                    $TicketDate = $Tickets.'Creation Date'
+
+                    if($Slide -eq 1)
                         {
-                            $ServiceName = ('WAF - '+$Impact.'Azure Service / Well-Architected Topic')
+                            if($Loop -eq 1)
+                                {
+                                    $Slide29 = $pres.Slides | Where-Object {$_.SlideIndex -eq 29}
+
+                                    $TargetShape = ($Slide29.Shapes | Where-Object {$_.Id -eq 4})
+                                    $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
+                                    #$TargetShape.Delete()
+
+                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(1).Text = $TicketName
+                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(2).Text = "Status: $TicketStatus"
+                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(3).Text = "Creation Date: $TicketDate"
+                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(3).Copy()
+                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(4).Paste() | Out-Null
+                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(4).Text = "Recommendation: "
+
+                                    while(($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs().count -gt 4)
+                                        {
+                                            ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(5).Delete()
+                                        }
+                                    $ParagraphLoop = 5
+                                    $Loop ++
+                                }
+                            else
+                                {
+                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.InsertAfter(".") | Out-Null
+                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(1).Copy()
+                                    Start-Sleep -Milliseconds 100
+                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Paste() | Out-Null
+                                    Start-Sleep -Milliseconds 100
+                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Text = $TicketName
+                                    $ParagraphLoop ++
+                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.InsertAfter(".") | Out-Null
+                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(2).Copy()
+                                    Start-Sleep -Milliseconds 100
+                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Paste() | Out-Null
+                                    Start-Sleep -Milliseconds 100
+                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Text = "Status: $TicketStatus"
+                                    $ParagraphLoop ++
+                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.InsertAfter(".") | Out-Null
+                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(3).Copy()
+                                    Start-Sleep -Milliseconds 100
+                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Paste() | Out-Null
+                                    Start-Sleep -Milliseconds 100
+                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Text = "Creation Date: $TicketDate"
+                                    $ParagraphLoop ++
+                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.InsertAfter(".") | Out-Null
+                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(4).Copy()
+                                    Start-Sleep -Milliseconds 100
+                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Paste() | Out-Null
+                                    Start-Sleep -Milliseconds 100
+                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Text = "Recommendation: "
+                                    $ParagraphLoop ++
+
+                                    
+                                    if($Loop -eq 4)
+                                        {
+                                            $Loop = 1
+                                            $Slide ++
+                                            $CurrentSlide ++
+                                        }
+                                    else
+                                        {
+                                            $Loop ++
+                                        }
+                                    Start-Sleep -Milliseconds 500
+                                }
                         }
                     else
                         {
-                            $ServiceName = $Impact.'Azure Service / Well-Architected Topic'
+                            if($Loop -eq 1)
+                                {
+                                    $CustomLayout = $Slide29.CustomLayout
+                                    $pres.Slides.addSlide($CurrentSlide,$customLayout) | Out-Null
+
+                                    $NextSlide = $pres.Slides | Where-Object {$_.SlideIndex -eq $CurrentSlide}
+
+                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 6}).TextFrame.TextRange.Copy()
+                                    Start-Sleep -Milliseconds 200
+
+                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 2}).TextFrame.TextRange.Paste() | Out-Null
+                                    Start-Sleep -Milliseconds 100
+
+                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 4}).Copy()
+                                    Start-Sleep -Milliseconds 200
+
+                                    $NextSlide.Shapes.Paste() | Out-Null
+                                    Start-Sleep -Milliseconds 100
+
+                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).Copy()
+                                    Start-Sleep -Milliseconds 200
+
+                                    $NextSlide.Shapes.Paste() | Out-Null
+                                    Start-Sleep -Milliseconds 100
+
+                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(1).Text = $TicketName
+                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(2).Text = "Status: $TicketStatus"
+                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(3).Text = "Creation Date: $TicketDate"
+                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(4).Text = "Recommendation: "
+
+                                    while(($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs().count -gt 4)
+                                        {
+                                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(5).Delete()
+                                        }
+                                    $ParagraphLoop = 5
+                                    $Loop ++
+                                }
+                            else
+                                {
+                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.InsertAfter(".") | Out-Null
+                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(1).Copy()
+                                    Start-Sleep -Milliseconds 100
+                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Paste() | Out-Null
+                                    Start-Sleep -Milliseconds 100
+                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Text = $TicketName
+                                    $ParagraphLoop ++
+                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.InsertAfter(".") | Out-Null
+                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(2).Copy()
+                                    Start-Sleep -Milliseconds 100
+                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Paste() | Out-Null
+                                    Start-Sleep -Milliseconds 100
+                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Text = "Status: $TicketStatus"
+                                    $ParagraphLoop ++
+                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.InsertAfter(".") | Out-Null
+                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(3).Copy()
+                                    Start-Sleep -Milliseconds 100
+                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Paste() | Out-Null
+                                    Start-Sleep -Milliseconds 100
+                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Text = "Creation Date: $TicketDate"
+                                    $ParagraphLoop ++
+                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.InsertAfter(".") | Out-Null
+                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(4).Copy()
+                                    Start-Sleep -Milliseconds 100
+                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Paste() | Out-Null
+                                    Start-Sleep -Milliseconds 100
+                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Text = "Recommendation: "
+                                    $ParagraphLoop ++
+
+                                    if($Loop -eq 4)
+                                        {
+                                            $Loop = 1
+                                            $Slide ++
+                                            $CurrentSlide ++
+                                        }
+                                    else
+                                        {
+                                            $Loop ++
+                                        }
+                                }
                         }
-                        $Global:Document.Tables(7).Rows($row).Cells(3).Range.Text = $ServiceName
-                    #Impacted Resources
-                    $Global:Document.Tables(7).Rows($row).Cells(4).Range.Text = [string]$Impact.'Number of Impacted Resources?'
-                    $counter ++
-                    $row ++
-                }
-            else
-                {
-                    $Global:Document.Tables(7).Rows.add() | Out-Null
-                    #Number
-                    $Global:Document.Tables(7).Rows($row).Cells(1).Range.Text = [string]$counter
-                    #Recommendation
-                    $Global:Document.Tables(7).Rows($row).Cells(2).Range.Text = $Impact.'Recommendation Title'
-                    #Service
-                    if($Impact.'Azure Service / Well-Architected' -eq 'Well Architected')
-                        {
-                            $ServiceName = ('WAF - '+$Impact.'Azure Service / Well-Architected Topic')
-                        }
-                    else
-                        {
-                            $ServiceName = $Impact.'Azure Service / Well-Architected Topic'
-                        }
-                        $Global:Document.Tables(7).Rows($row).Cells(3).Range.Text = $ServiceName
-                    #Impacted Resources
-                    $Global:Document.Tables(7).Rows($row).Cells(4).Range.Text = [string]$Impact.'Number of Impacted Resources?'
-                    $counter ++
-                    $row ++
+                        Start-Sleep -Milliseconds 500
                 }
         }
 
-    #Populate Table Health and Risk Summary Low
-    $counter = 1
-    $row = 2
-    foreach($Impact in $LowImpact)
-        {
-            if ($counter -lt 14)
+        ############# Slide 30
+        function Slide30 {
+            Write-Debug "Editing Slide 30 - Service Retirement Notifications"
+            $Loop = 1
+
+            $Slide30 = $pres.Slides | Where-Object {$_.SlideIndex -eq 30}
+
+            $TargetShape = ($Slide30.Shapes | Where-Object {$_.Id -eq 4})
+            $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
+            #$TargetShape.Delete()
+
+            ($Slide30.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(1).Text = '.'
+
+            while(($Slide30.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs().count -gt 2)
                 {
-                    #Number
-                    $Global:Document.Tables(8).Rows($row).Cells(1).Range.Text = [string]$counter
-                    #Recommendation
-                    $Global:Document.Tables(8).Rows($row).Cells(2).Range.Text = $Impact.'Recommendation Title'
-                    #Service
-                    if($Impact.'Azure Service / Well-Architected' -eq 'Well Architected')
-                        {
-                            $ServiceName = ('WAF - '+$Impact.'Azure Service / Well-Architected Topic')
-                        }
-                    else
-                        {
-                            $ServiceName = $Impact.'Azure Service / Well-Architected Topic'
-                        }
-                        $Global:Document.Tables(8).Rows($row).Cells(3).Range.Text = $ServiceName
-                    #Impacted Resources
-                    $Global:Document.Tables(8).Rows($row).Cells(4).Range.Text = [string]$Impact.'Number of Impacted Resources?'
-                    $counter ++
-                    $row ++
+                    ($Slide30.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(2).Delete()
                 }
-            else
+
+            foreach ($Retirement in $Global:Retirements)
                 {
-                    $Global:Document.Tables(8).Rows.add() | Out-Null
-                    #Number
-                    $Global:Document.Tables(8).Rows($row).Cells(1).Range.Text = [string]$counter
-                    #Recommendation
-                    $Global:Document.Tables(8).Rows($row).Cells(2).Range.Text = $Impact.'Recommendation Title'
-                    #Service
-                    if($Impact.'Azure Service / Well-Architected' -eq 'Well Architected')
+                    if($Loop -lt 15)
                         {
-                            $ServiceName = ('WAF - '+$Impact.'Azure Service / Well-Architected Topic')
+                            if($Loop -eq 1)
+                                {
+                                    $RetireName = ($Retirement.'Tracking ID'+' - '+$Retirement.Status + ' : ' + $Retirement.title)
+
+                                    ($Slide30.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(1).Text = $RetireName
+                                    $Loop ++
+                                }
+                            else
+                                {
+                                    $RetireName = ($Retirement.'Tracking ID'+' - '+$Retirement.Status + ' : ' + $Retirement.title)
+
+                                    ($Slide30.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.InsertAfter(".") | Out-Null
+                                    Start-Sleep -Milliseconds 100
+                                    ($Slide30.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(1).Copy()
+                                    Start-Sleep -Milliseconds 100
+                                    ($Slide30.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs($Loop).Paste() | Out-Null
+                                    Start-Sleep -Milliseconds 100
+                                    ($Slide30.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs($Loop).Text = $RetireName
+                                    $Loop ++
+                                }
                         }
-                    else
-                        {
-                            $ServiceName = $Impact.'Azure Service / Well-Architected Topic'
-                        }
-                        $Global:Document.Tables(8).Rows($row).Cells(3).Range.Text = $ServiceName
-                    #Impacted Resources
-                    $Global:Document.Tables(8).Rows($row).Cells(4).Range.Text = [string]$Impact.'Number of Impacted Resources?'
-                    $counter ++
-                    $row ++
                 }
         }
-}
 
+        Slide1
+        Slide12
+        Slide16
+        Slide17
 
-#Call the functions
-Write-Debug "Version"
-$Version = 2.1.0
-
-if ($Help.IsPresent) {
-    Help
-    Exit
-}
-if ($IncludeOutages.IsPresent)
-    {
-        OutagesData
-    }
-Excel
-PPT
-Write-Host "Editing " -NoNewline
-Write-Host "PowerPoint" -BackgroundColor DarkRed -NoNewline
-Write-Host " "
-Slide1
-Slide12
-Slide16
-Slide17
-if ($IncludeOutages.IsPresent)
-    {
+        Slide30
+        Slide29
         Slide28
+        
+        Slide25
+        Slide24
+        Slide23
+
+        Slide21
     }
-Slide25
-Slide24
-Slide23
 
+    function Word_Orchestrator {
+        function WordCore {
+            Write-Debug 'Editing Word Core File'
+            $MatchCase = $false
+            $MatchWholeWord = $true
+            $MatchWildcards = $false
+            $MatchSoundsLike = $false
+            $MatchAllWordForms = $false
+            $Forward = $true
+            $wrap = $wdFindContinue
+            $wdFindContinue = 1
+            $Format = $false
+            $ReplaceAll = 2
+        
+            $FindText = '[Workload Name]'
+            $ReplaceWith = $WorkloadName
+            $Global:Document.Content.Find.Execute($FindText, $MatchCase, $MatchWholeWord, $MatchWildcards, $MatchSoundsLike, $MatchAllWordForms, $Forward, $wrap, $Format, $ReplaceWith, $ReplaceAll) | Out-Null
+        
+            $FindText = 'Workload Name'
+            $ReplaceWith = $WorkloadName
+            $Global:Document.Content.Find.Execute($FindText, $MatchCase, $MatchWholeWord, $MatchWildcards, $MatchSoundsLike, $MatchAllWordForms, $Forward, $wrap, $Format, $ReplaceWith, $ReplaceAll) | Out-Null
+        
+            $FindText = '[Customer Name]'
+            $ReplaceWith = $CustomerName
+            $Global:Document.Content.Find.Execute($FindText, $MatchCase, $MatchWholeWord, $MatchWildcards, $MatchSoundsLike, $MatchAllWordForms, $Forward, $wrap, $Format, $ReplaceWith, $ReplaceAll) | Out-Null
+        
+            $FindText = '[Type Customer Name Here]'
+            $ReplaceWith = $CustomerName
+            $Global:Document.Content.Find.Execute($FindText, $MatchCase, $MatchWholeWord, $MatchWildcards, $MatchSoundsLike, $MatchAllWordForms, $Forward, $wrap, $Format, $ReplaceWith, $ReplaceAll) | Out-Null
+            $Global:Document.Sections(1).Headers(1).Range.Find.Execute($FindText, $MatchCase, $MatchWholeWord, $MatchWildcards, $MatchSoundsLike, $MatchAllWordForms, $Forward, $wrap, $Format, $ReplaceWith, $ReplaceAll) | Out-Null
+        
+        
+            # Total Recommendations
+            $Global:Document.Content.Paragraphs(145).Range.Text = [string]($ExcelCore | Where-Object {$_."Number of Impacted Resources?" -gt 0}).count
+            #High Impact
+            $Global:Document.Content.Paragraphs(155).Range.Text = [string]($ExcelCore | Where-Object {$_."Number of Impacted Resources?" -gt 0 -and $_.Impact -eq 'High'}).count
+            #Medium Impact
+            $Global:Document.Content.Paragraphs(157).Range.Text = [string]($ExcelCore | Where-Object {$_."Number of Impacted Resources?" -gt 0 -and $_.Impact -eq 'Medium'}).count
+            #Low Impact
+            $Global:Document.Content.Paragraphs(159).Range.Text = [string]($ExcelCore | Where-Object {$_."Number of Impacted Resources?" -gt 0 -and $_.Impact -eq 'Low'}).count
+            #Impacted Resources
+            $Global:Document.Content.Paragraphs(165).Range.Text = [string]($ExcelContent.id | Where-Object {![string]::IsNullOrEmpty($_)} | Select-Object -Unique).count
+        
+        
+            $HealthHigh = $ExcelCore | Where-Object {$_."Number of Impacted Resources?" -gt 1 -and $_.Impact -eq 'High'} | Sort-Object -Property "Number of Impacted Resources?" -Descending
 
-$PPTFinalFile = ($PSScriptRoot+'\Executive Summary Presentation - ' + $CustomerName + ' - '+ (get-date -Format "yyyy-MM-dd-HH-mm") +'.pptx')
-$Global:pres.SaveAs($PPTFinalFile)
-#$pres.Save()
-$Global:pres.Close()
-$Global:Application.Quit()
-Get-Process -Name "POWERPNT" -ErrorAction Ignore | Where-Object { $_.CommandLine -like '*/automation*' } | Stop-Process
+            #Risk Assessment Result
+            $Global:Document.Content.Paragraphs(176).Range.Text = ''
+            $Global:Document.Content.Paragraphs(175).Range.Text = ''
+        
+            #$Global:Document.Content.Paragraphs(158).Range.ListFormat.ApplyListTemplate($Global:Word.Application.ListGalleries[1].ListTemplates[3])
 
+            #Health Assessment Result
+            $Global:Document.Content.Paragraphs(172).Range.Text = ''
+    
+            #$Global:Document.Content.Paragraphs(158).Range.ListFormat.ApplyListTemplate($Global:Word.Application.ListGalleries[1].ListTemplates[3])
+            $Global:Document.Content.Paragraphs(171).Range.Select()
+            $Loops = 1
+            Foreach($Risk in $HealthHigh)
+                {
+                    if([string]::IsNullOrEmpty($Risk))
+                        {
+                            $Global:Document.Content.Paragraphs(171).Range.Text = ''
+                        }
+                    $Title = $Risk.'Recommendation Title'
+                    if($Loops -eq 1)
+                        {
+                            $Global:Word.Selection.TypeText($Title) | Out-Null
+                        }
+                    else
+                        {
+                            $Global:Word.Selection.TypeParagraph() | Out-Null
+                            $Global:Word.Selection.TypeText($Title) | Out-Null
+                        }
+                    $Loops ++
+                }
+        
+        }
+        function WordCharts {
+            Write-Debug 'Editing Word Charts'
+            #Charts
+            $WS2 = $Global:Ex.Worksheets | Where-Object { $_.Name -eq 'Charts' }
 
-if ($WordTemplateFile)
-    {
-        Word
-        Write-Host "Editing " -NoNewline
-        Write-Host "Word" -BackgroundColor DarkBlue -NoNewline
-        Write-Host " "
+            $Position = $Global:Document.Content.Paragraphs(181).Range.Start
+
+            $Global:Document.Content.InlineShapes(10).Delete() | Out-Null
+            $Global:Document.Content.InlineShapes(9).Delete() | Out-Null
+            $Global:Document.Content.InlineShapes(8).Delete() | Out-Null
+
+            $WS2.ChartObjects('ChartP0').copy()
+
+            $Global:Document.Range($Position,$Position).Select()
+            $Global:Word.Selection.Paste() | Out-Null
+
+            #$Global:Word.Selection.InsertParagraphAfter()
+
+            $WS2.ChartObjects('ChartP1').copy()
+            $Global:Word.Selection.Paste() | Out-Null
+
+            #$Global:Word.Selection.InsertParagraphAfter()
+
+            #$Global:Word.Selection.InsertParagraphAfter()
+        }
+        function WordOutages {
+            Write-Debug 'Editing Outages'
+            $Global:Document.Tables(10).Rows(2).Cells(1).Range.Text = ''
+            $Global:Document.Tables(10).Rows(2).Cells(2).Range.Text = ''
+            $Global:Document.Tables(10).Rows(2).Cells(3).Range.Text = ''
+        
+            Write-Debug 'Looping Outages'
+            $LineCounter = 2
+            foreach ($Outage in $Global:Outages)
+                {
+                    if($LineCounter -gt 3)
+                        {
+                            $Global:Document.Tables(10).Rows.Add() | Out-Null
+                        }
+                    $OutageName = ($Outage.'Tracking ID'+' - '+$Outage.title)
+                    $OutageWhat = $Outage.'What happened'
+                    $OutageRecom = $Outage.'How can customers make incidents like this less impactful'
+
+                    $Global:Document.Tables(10).Rows($LineCounter).Cells(1).Range.Text = $OutageName
+                    $Global:Document.Tables(10).Rows($LineCounter).Cells(2).Range.Text = $OutageWhat
+                    $Global:Document.Tables(10).Rows($LineCounter).Cells(3).Range.Text = $OutageRecom
+
+                    $LineCounter ++
+                }
+    
+        }
+        function WordTables {
+            Write-Debug 'Editing Tables'
+            #Clean the table 6
+            $row = 2
+            while ($row -lt 5)
+                {
+                    $cell = 1
+                    while($cell -lt 5)
+                        {
+                            $Global:Document.Tables(6).Rows($row).Cells($cell).Range.Text = ''
+                            $Cell ++
+                        }
+                    $row ++
+                }
+        
+            #Clean the table 7
+            $row = 2
+            while ($row -lt 3)
+                {
+                    $cell = 1
+                    while($cell -lt 5)
+                        {
+                            $Global:Document.Tables(7).Rows($row).Cells($cell).Range.Text = ''
+                            $Cell ++
+                        }
+                    $row ++
+                }
+        
+            #Clean the table 8
+            $row = 2
+            while ($row -lt 3)
+                {
+                    $cell = 1
+                    while($cell -lt 5)
+                        {
+                            $Global:Document.Tables(8).Rows($row).Cells($cell).Range.Text = ''
+                            $Cell ++
+                        }
+                    $row ++
+                }
+        
+            #Populate Table Health and Risk Summary High
+            $counter = 1
+            $row = 2
+            foreach($Impact in $HighImpact)
+                {
+                    if ($counter -lt 14)
+                        {
+                            #Number
+                            $Global:Document.Tables(6).Rows($row).Cells(1).Range.Text = [string]$counter
+                            #Recommendation
+                            $Global:Document.Tables(6).Rows($row).Cells(2).Range.Text = $Impact.'Recommendation Title'
+                            #Service
+                            if($Impact.'Azure Service / Well-Architected' -eq 'Well Architected')
+                                {
+                                    $ServiceName = ('WAF - '+$Impact.'Azure Service / Well-Architected Topic')
+                                }
+                            else
+                                {
+                                    $ServiceName = $Impact.'Azure Service / Well-Architected Topic'
+                                }
+                                $Global:Document.Tables(6).Rows($row).Cells(3).Range.Text = $ServiceName
+                            #Impacted Resources
+                            $Global:Document.Tables(6).Rows($row).Cells(4).Range.Text = [string]$Impact.'Number of Impacted Resources?'
+                            $counter ++
+                            $row ++
+                        }
+                    else
+                        {
+                            $Global:Document.Tables(6).Rows.add() | Out-Null
+                            #Number
+                            $Global:Document.Tables(6).Rows($row).Cells(1).Range.Text = [string]$counter
+                            #Recommendation
+                            $Global:Document.Tables(6).Rows($row).Cells(2).Range.Text = $Impact.'Recommendation Title'
+                            #Service
+                            if($Impact.'Azure Service / Well-Architected' -eq 'Well Architected')
+                                {
+                                    $ServiceName = ('WAF - '+$Impact.'Azure Service / Well-Architected Topic')
+                                }
+                            else
+                                {
+                                    $ServiceName = $Impact.'Azure Service / Well-Architected Topic'
+                                }
+                                $Global:Document.Tables(6).Rows($row).Cells(3).Range.Text = $ServiceName
+                            #Impacted Resources
+                            $Global:Document.Tables(6).Rows($row).Cells(4).Range.Text = [string]$Impact.'Number of Impacted Resources?'
+                            $counter ++
+                            $row ++
+                        }
+                }
+        
+            #Populate Table Health and Risk Summary Medium
+            $counter = 1
+            $row = 2
+            foreach($Impact in $MediumImpact)
+                {
+                    if ($counter -lt 14)
+                        {
+                            #Number
+                            $Global:Document.Tables(7).Rows($row).Cells(1).Range.Text = [string]$counter
+                            #Recommendation
+                            $Global:Document.Tables(7).Rows($row).Cells(2).Range.Text = $Impact.'Recommendation Title'
+                            #Service
+                            if($Impact.'Azure Service / Well-Architected' -eq 'Well Architected')
+                                {
+                                    $ServiceName = ('WAF - '+$Impact.'Azure Service / Well-Architected Topic')
+                                }
+                            else
+                                {
+                                    $ServiceName = $Impact.'Azure Service / Well-Architected Topic'
+                                }
+                                $Global:Document.Tables(7).Rows($row).Cells(3).Range.Text = $ServiceName
+                            #Impacted Resources
+                            $Global:Document.Tables(7).Rows($row).Cells(4).Range.Text = [string]$Impact.'Number of Impacted Resources?'
+                            $counter ++
+                            $row ++
+                        }
+                    else
+                        {
+                            $Global:Document.Tables(7).Rows.add() | Out-Null
+                            #Number
+                            $Global:Document.Tables(7).Rows($row).Cells(1).Range.Text = [string]$counter
+                            #Recommendation
+                            $Global:Document.Tables(7).Rows($row).Cells(2).Range.Text = $Impact.'Recommendation Title'
+                            #Service
+                            if($Impact.'Azure Service / Well-Architected' -eq 'Well Architected')
+                                {
+                                    $ServiceName = ('WAF - '+$Impact.'Azure Service / Well-Architected Topic')
+                                }
+                            else
+                                {
+                                    $ServiceName = $Impact.'Azure Service / Well-Architected Topic'
+                                }
+                                $Global:Document.Tables(7).Rows($row).Cells(3).Range.Text = $ServiceName
+                            #Impacted Resources
+                            $Global:Document.Tables(7).Rows($row).Cells(4).Range.Text = [string]$Impact.'Number of Impacted Resources?'
+                            $counter ++
+                            $row ++
+                        }
+                }
+        
+            #Populate Table Health and Risk Summary Low
+            $counter = 1
+            $row = 2
+            foreach($Impact in $LowImpact)
+                {
+                    if ($counter -lt 14)
+                        {
+                            #Number
+                            $Global:Document.Tables(8).Rows($row).Cells(1).Range.Text = [string]$counter
+                            #Recommendation
+                            $Global:Document.Tables(8).Rows($row).Cells(2).Range.Text = $Impact.'Recommendation Title'
+                            #Service
+                            if($Impact.'Azure Service / Well-Architected' -eq 'Well Architected')
+                                {
+                                    $ServiceName = ('WAF - '+$Impact.'Azure Service / Well-Architected Topic')
+                                }
+                            else
+                                {
+                                    $ServiceName = $Impact.'Azure Service / Well-Architected Topic'
+                                }
+                                $Global:Document.Tables(8).Rows($row).Cells(3).Range.Text = $ServiceName
+                            #Impacted Resources
+                            $Global:Document.Tables(8).Rows($row).Cells(4).Range.Text = [string]$Impact.'Number of Impacted Resources?'
+                            $counter ++
+                            $row ++
+                        }
+                    else
+                        {
+                            $Global:Document.Tables(8).Rows.add() | Out-Null
+                            #Number
+                            $Global:Document.Tables(8).Rows($row).Cells(1).Range.Text = [string]$counter
+                            #Recommendation
+                            $Global:Document.Tables(8).Rows($row).Cells(2).Range.Text = $Impact.'Recommendation Title'
+                            #Service
+                            if($Impact.'Azure Service / Well-Architected' -eq 'Well Architected')
+                                {
+                                    $ServiceName = ('WAF - '+$Impact.'Azure Service / Well-Architected Topic')
+                                }
+                            else
+                                {
+                                    $ServiceName = $Impact.'Azure Service / Well-Architected Topic'
+                                }
+                                $Global:Document.Tables(8).Rows($row).Cells(3).Range.Text = $ServiceName
+                            #Impacted Resources
+                            $Global:Document.Tables(8).Rows($row).Cells(4).Range.Text = [string]$Impact.'Number of Impacted Resources?'
+                            $counter ++
+                            $row ++
+                        }
+                }
+        }
+        function WordRetirements {
+            Write-Debug 'Editing Retirements'
+            $Global:Document.Tables(12).Rows(2).Cells(1).Range.Text = ''
+            $Global:Document.Tables(12).Rows(2).Cells(2).Range.Text = ''
+            $Global:Document.Tables(12).Rows(2).Cells(3).Range.Text = ''
+
+            $LineCounter = 2
+            foreach ($Retires in $Global:Retirements)
+                {
+                    if($LineCounter -gt 3)
+                        {
+                            $Global:Document.Tables(12).Rows.Add() | Out-Null
+                        }
+                    $RetireName = ($Retires.'Tracking ID'+' - '+ $Retires.Status + ' : ' + $Retires.title)
+                    $RetireSub = $Retires.Subscription
+                    $RetireDetails = $Retires.Details
+
+                    $Global:Document.Tables(12).Rows($LineCounter).Cells(1).Range.Text = $RetireName
+                    $Global:Document.Tables(12).Rows($LineCounter).Cells(2).Range.Text = $RetireSub
+                    $Global:Document.Tables(12).Rows($LineCounter).Cells(3).Range.Text = $RetireDetails
+
+                    $LineCounter ++
+                }
+        }
+        function WordSupports {
+            Write-Debug 'Editing Support Tickets'
+            $Global:Document.Tables(11).Rows(2).Cells(1).Range.Text = ''
+            $Global:Document.Tables(11).Rows(2).Cells(2).Range.Text = ''
+            $Global:Document.Tables(11).Rows(2).Cells(3).Range.Text = ''
+            $Global:Document.Tables(11).Rows(2).Cells(4).Range.Text = ''
+
+            $LineCounter = 2
+            foreach ($Ticket in $Global:SupportTickets)
+                {
+                    if($LineCounter -gt 3)
+                        {
+                            $Global:Document.Tables(11).Rows.Add() | Out-Null
+                        }
+                    $TicketName = ($Ticket.'Ticket ID'+' - '+ $Ticket.Title)
+                    $CreatedDate = $Ticket.'Creation Date'
+
+                    $Global:Document.Tables(11).Rows($LineCounter).Cells(1).Range.Text = $TicketName
+                    $Global:Document.Tables(11).Rows($LineCounter).Cells(2).Range.Text = $CreatedDate
+                    $Global:Document.Tables(11).Rows($LineCounter).Cells(3).Range.Text = " "
+                    $Global:Document.Tables(11).Rows($LineCounter).Cells(4).Range.Text = " "
+
+                    $LineCounter ++
+                }
+        }
+        function WordHealths {
+            Write-Debug 'Editing Service Health Alerts'
+            $Global:Document.Tables(5).Rows(3).Cells(1).Range.Text = ''
+            $Global:Document.Tables(5).Rows(3).Cells(2).Range.Text = ''
+            $Global:Document.Tables(5).Rows(3).Cells(3).Range.Text = ''
+            $Global:Document.Tables(5).Rows(3).Cells(4).Range.Text = ''
+            $Global:Document.Tables(5).Rows(3).Cells(5).Range.Text = ''
+            $Global:Document.Tables(5).Rows(3).Cells(6).Range.Text = ''
+            $Global:Document.Tables(5).Rows(3).Cells(7).Range.Text = ''
+            $Global:Document.Tables(5).Rows(3).Cells(8).Range.Text = ''
+
+            $LineCounter = 3
+            foreach ($Health in $Global:ServiceHealth)
+                {
+                    if($LineCounter -gt 4)
+                        {
+                            $Global:Document.Tables(5).Rows.Add() | Out-Null
+                        }
+                    $ActionGroup = $Health.'Action Group'
+
+                    $Global:Document.Tables(5).Rows($LineCounter).Cells(1).Range.Text = $Health.Subscription
+                    $Global:Document.Tables(5).Rows($LineCounter).Cells(2).Range.Text = $Health.Services
+                    $Global:Document.Tables(5).Rows($LineCounter).Cells(3).Range.Text = $Health.Regions
+                    $Global:Document.Tables(5).Rows($LineCounter).Cells(4).Range.Text = if($Health.'Event Type' -like '*Service Issues*' -or $Health.'Event Type' -eq 'All'){'Yes'}else{'No'}
+                    $Global:Document.Tables(5).Rows($LineCounter).Cells(5).Range.Text = if($Health.'Event Type' -like '*Planned Maintenance*' -or $Health.'Event Type' -eq 'All'){'Yes'}else{'No'}
+                    $Global:Document.Tables(5).Rows($LineCounter).Cells(6).Range.Text = if($Health.'Event Type' -like '*Health Advisories*' -or $Health.'Event Type' -eq 'All'){'Yes'}else{'No'}
+                    $Global:Document.Tables(5).Rows($LineCounter).Cells(7).Range.Text = if($Health.'Event Type' -like '*Security Advisory*' -or $Health.'Event Type' -eq 'All'){'Yes'}else{'No'}
+                    $Global:Document.Tables(5).Rows($LineCounter).Cells(8).Range.Text = $ActionGroup
+                    $LineCounter ++
+                }
+        }
+
         WordCharts
         WordCore
-        if ($IncludeOutages.IsPresent)
-            {
-                WordOutages
-            }
+        WordRetirements
+        WordSupports
+        WordOutages
         WordTables
+        WordHealths
     }
+
+
+
+    #Call the functions
+    $Version = 2.2.0
+    Write-Debug "Version $Version" 
+
+    if ($Help.IsPresent) {
+        Help
+        Exit
+    }
+
+    Excel
+    PPT
+    Write-Host "Editing " -NoNewline
+    Write-Host "PowerPoint" -ForegroundColor DarkRed -NoNewline
+    Write-Host " "
+    PPT_Orchestrator
+
+    $PPTFinalFile = ($PSScriptRoot+'\Executive Summary Presentation - ' + $CustomerName + ' - '+ (get-date -Format "yyyy-MM-dd-HH-mm") +'.pptx')
+    $Global:pres.SaveAs($PPTFinalFile)
+    $Global:pres.Close()
+    $Global:Application.Quit()
+    Get-Process -Name "POWERPNT" -ErrorAction Ignore | Where-Object { $_.CommandLine -like '*/automation*' } | Stop-Process
+
+    if ($WordTemplateFile)
+        {
+            Word
+            Write-Host "Editing " -NoNewline
+            Write-Host "Word" -ForegroundColor DarkBlue -NoNewline
+            Write-Host " "
+            Word_Orchestrator
+        }
+}
+
+$TotalTime = $Global:Runtime.Totalminutes.ToString('#######.##')
 
 ################ Finishing
 
@@ -1210,6 +1554,10 @@ $Global:ExcelApplication.Quit()
 # Ensures the Excel process opened by the API is closed
 Get-Process -Name "excel" -ErrorAction Ignore | Where-Object { $_.CommandLine -like '*/automation*' } | Stop-Process
 
+Write-Host "---------------------------------------------------------------------"
+Write-Host ('Execution Complete. Total Runtime was: ') -NoNewline
+Write-Host $TotalTime -NoNewline -ForegroundColor Cyan
+Write-Host (' Minutes')
 Write-Host 'PowerPoint File Saved As: ' -NoNewline
 Write-Host $PPTFinalFile -ForegroundColor Cyan
 
@@ -1223,3 +1571,4 @@ if ($WordTemplateFile)
         $Global:Word.Quit()
         Get-Process -Name "WINWORD" -ErrorAction Ignore | Where-Object { $_.CommandLine -like '*/automation*' } | Stop-Process
     }
+Write-Host "---------------------------------------------------------------------"
