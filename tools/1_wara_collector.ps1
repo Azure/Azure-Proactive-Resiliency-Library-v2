@@ -161,7 +161,8 @@ $Global:Runtime = Measure-Command -Expression {
 
             # Getting Outages
             Write-Debug "Exporting Outages"
-            $Date = (Get-Date).AddMonths(-6)
+            $Date = (Get-Date).AddMonths(-9)
+            $DateCore = (Get-Date).AddMonths(-3)
             $Date = $Date.ToString("MM/dd/yyyy")
             $Outages = @()
             $SupTickets = @()
@@ -190,10 +191,8 @@ $Global:Runtime = Measure-Command -Expression {
                     catch{}
                 }
 
-
             $Global:Outageslist = $Outages.value | Sort-Object @{Expression = "properties.eventlevel"; Descending = $false},@{Expression = "properties.status"; Descending = $false} | Select-Object -Property name,properties -First 50
-            $Global:SupportTickets = $SupTickets.value | Where-Object {$_.properties.severity -ne 'Minimal'} | Select-Object -Property name,properties
-
+            $Global:SupportTickets = $SupTickets.value | Where-Object {$_.properties.severity -ne 'Minimal' -and $_.properties.createdDate -gt $DateCore} | Select-Object -Property name,properties
     }
 
     function Runbook {
@@ -1072,8 +1071,9 @@ $Global:Runtime = Measure-Command -Expression {
 
 
     #Call the functions
-    $Version = 2.2.0
-    Write-Debug "Version $Version" 
+    $Version = "2.2.0"
+    Write-Host "Version: " -NoNewline
+    Write-Host $Version -ForegroundColor DarkGreen
 
 
     if ($Help.IsPresent) {
