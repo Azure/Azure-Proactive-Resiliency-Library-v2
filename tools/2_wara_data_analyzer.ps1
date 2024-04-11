@@ -233,7 +233,7 @@ $Global:Runtime = Measure-Command -Expression {
         function Outages {
             ####################    Creates the Outages sheet
             $Global:OutagesSheet = @()
-            $RealOutages = $Global:Outages | Where-Object {$_.properties.description -like '*How can customers make incidents like this less impactful?*' }
+            $RealOutages = $Global:Outages | Where-Object {$_.properties.description -like '*How can customers make incidents like this less impactful?*' -and $_.properties.impactStartTime -gt ((Get-Date).AddMonths(-3))}
             foreach ($Outage in  $RealOutages)
                 {
                     if(![string]::IsNullOrEmpty($Outage.name))
@@ -313,10 +313,17 @@ $Global:Runtime = Measure-Command -Expression {
                             $HTML.write([ref]$Retires.Summary)
                             $RetirementDescription = $Html.body.innerText
 
-                            $HTML = New-Object -Com "HTMLFile"
-                            $HTML.write([ref]$OutageRetirement.properties.description)
-                            $RetirementDescriptionFull = $Html.body.innerText
-                            $SplitDescription = $RetirementDescriptionFull.split('Help and support').split('Required action')
+                            if(![string]::IsNullOrEmpty($OutageRetirement))
+                                {
+                                    $HTML = New-Object -Com "HTMLFile"
+                                    $HTML.write([ref]$OutageRetirement.properties.description)
+                                    $RetirementDescriptionFull = $Html.body.innerText
+                                    $SplitDescription = $RetirementDescriptionFull.split('Help and support').split('Required action')
+                                }
+                            else
+                                {
+                                    $SplitDescription = ''
+                                }
 
                             $tmp = @{
                                 'Subscription'         = [string]$Retires.Subscription;
@@ -734,8 +741,9 @@ $Global:Runtime = Measure-Command -Expression {
     }
 
     #Call the functions
-    $Version = 2.2.0
-    Write-Debug "Version $Version" 
+    $Version = "2.2.0"
+    Write-Host "Version: " -NoNewline
+    Write-Host $Version -ForegroundColor DarkGreen
 
     if ($Help.IsPresent) {
         Help
