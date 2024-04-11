@@ -1,5 +1,5 @@
 // Azure Resource Graph Query
-// Find Database for PostgreSQL instances that are not zone redundant
+// Find Database for MySQL instances that are not zone redundant
 resources
 | where type == "microsoft.dbformysql/flexibleservers"
 | where properties.highAvailability.mode != "ZoneRedundant"
