@@ -36,4 +36,4 @@ geekdocHidden: false
 
 ## General Workload Guidance
 
-{{< azure-waf-workloads-recommendationlist name="azure-waf-workloads-recommendationlist" >}}
+{{< azure-specialized-workloads-recommendationlist name="azure-specialized-workloads-recommendationlist" >}}

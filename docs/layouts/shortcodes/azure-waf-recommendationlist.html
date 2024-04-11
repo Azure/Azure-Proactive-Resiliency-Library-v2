@@ -14,7 +14,6 @@ Azure WAF and Specialized Workloads Recommendation List
       <th>Recommendation</th>
       <th>Impact</th>
       <th>Category</th>
-      <th>Automation Available</th>
       <th>PG Verified</th>
     </tr>
     <!-- Loop through recommendations under category -->
@@ -27,7 +26,6 @@ Azure WAF and Specialized Workloads Recommendation List
       </td>
       <td>{{ .recommendationImpact }}</td>
       <td>{{ .recommendationControl }}</td>
-      <td>{{ if eq .automationAvailable "arg" }}Yes{{ else }}No{{ end }}</td>
       <td>{{ .pgVerified }}</td>
     </tr>
     {{ end }} {{ end }}
@@ -83,9 +81,6 @@ Azure WAF and Specialized Workloads Recommendation List
     </tr>
     {{ end }}
   </table>
-  {{ partial "queries-scripts/azure-waf-workloads-scripts-tabs" (dict "category" $category "recommendation" . "aprlGuid"
-  .aprlGuid)
-  }}
   <br>
 </div>
 {{ end }} {{ end }} {{ end }}
