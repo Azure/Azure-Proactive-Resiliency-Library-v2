@@ -1,5 +1,5 @@
 // Azure Resource Graph Query
-// 38f3d542-6de6-a44b-86c6-97e3be690281 - Disable health probes when there is only one origin in an origin group
+// Disable health probes when there is only one origin in an origin group
 cdnresources
 | where type =~ "microsoft.cdn/profiles/origingroups"
 | extend healthprobe=tostring(properties.healthProbeSettings)

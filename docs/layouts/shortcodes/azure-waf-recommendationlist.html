@@ -1,0 +1,86 @@
+<!--
+Azure WAF and Specialized Workloads Recommendation List
+-->
+
+<!-- Get category from page path -->
+{{ $pageDir := path.Dir $.Page.File.Path }}
+{{ $category := path.BaseName $pageDir }}
+{{ with (index $.Site.Data $category) }}
+
+<div>
+  <h2>Summary</h2>
+  <table>
+    <tr>
+      <th>Recommendation</th>
+      <th>Impact</th>
+      <th>Category</th>
+      <th>PG Verified</th>
+    </tr>
+    <!-- Loop through recommendations under category -->
+    {{ range sort .recommendations "recommendation" "asc" }}
+    {{ if and (eq .recommendationMetadataState "Active") (or (not (eq .recommendationMetadataState "Removed"))
+    ($.Site.Params.aprlDevMode true)) }}
+    <tr>
+      <td>
+        <a href="#{{ anchorize .description }}">{{ .description }}</a>
+      </td>
+      <td>{{ .recommendationImpact }}</td>
+      <td>{{ .recommendationControl }}</td>
+      <td>{{ if eq .pgVerified true }}Verified{{ else }}Preview{{ end }}</td>
+    </tr>
+    {{ end }} {{ end }}
+  </table>
+</div>
+
+<div>
+  <br>
+  <h2>Details</h2>
+</div>
+
+<!-- Create a detail entry for each recommendation under category -->
+{{ range sort .recommendations "recommendation" "asc" }}
+{{ if and (eq .recommendationMetadataState "Active") (or (not (eq .recommendationMetadataState "Removed"))
+($.Site.Params.aprlDevMode true)) }}
+<div id="{{ anchorize .description }}">
+  <hr style="height: 5px" />
+  <h3>{{ .description }}
+    <a href="#{{ anchorize .description }}">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link"
+        viewBox="0 0 16 16">
+        <path
+          d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z" />
+        <path
+          d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z" />
+      </svg>
+    </a>
+  </h3>
+  <h4>
+    <span style="font-weight: bold">Impact:</span>&nbsp;
+    <span style="font-weight: normal">{{ .recommendationImpact }}</span>
+    <span style="margin-right: 40px"></span>
+    <span style="font-weight: bold">Category:</span>&nbsp;
+    <span style="font-weight: normal">{{ .recommendationControl }}</span>
+    <span style="margin-right: 40px"></span>
+    <span style="font-weight: bold">PG Verified:</span>&nbsp;
+    <span style="font-weight: normal">{{ if eq .pgVerified true }}Verified{{ else }}Preview{{ end }}</span>
+    <span style="margin-right: 40px"></span>
+  </h4>
+  <div style="max-width: 100%; word-wrap: break-word; overflow-wrap: break-word">
+    <h4>Description:</h4>
+    <pre style="white-space: pre-wrap">{{ .longDescription }}</pre>
+  </div>
+  <div style="max-width: 100%; word-wrap: break-word; overflow-wrap: break-word">
+    <h4>Potential Benefits:</h4>
+    <pre style="white-space: pre-wrap">{{ .potentialBenefits }}</pre>
+  </div>
+  <h5 style="margin-bottom: 5px">Learn More:</h5>
+  <table style="margin-top: 5px">
+    {{ range .learnMoreLink }}
+    <tr>
+      <td><a href="{{ .url }}" target="_blank">{{ .name }}</a></td>
+    </tr>
+    {{ end }}
+  </table>
+  <br>
+</div>
+{{ end }} {{ end }} {{ end }}

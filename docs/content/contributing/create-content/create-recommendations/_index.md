@@ -18,19 +18,19 @@ To contribute a new recommendation for an Azure resource, follow these steps:
 
     ```yaml
     - description: Your Recommendation Title Here (less than 100 characters)
-      aprlGuid: Generate a Unique GUID for Your Recommendation
+      aprlGuid: Generate a Unique GUID using https://guidgenerator.com/online-guid-generator.aspx
       recommendationTypeId: null
+      recommendationControl: High Availability/Business Continuity/Disaster Recovery/Scalability/Monitoring and Alerting/Service Upgrade and Retirement/Other Best Practices/Personalized/Governance
       recommendationImpact: Low/Medium/High
       recommendationResourceType: Friendly name to identity resource type
-      recommendationControl: High Availability/Business Continuity/Disaster Recovery/Scalability/Monitoring and Alerting/Service Upgrade and Retirement/Other Best Practices/Personalized/Governance
       recommendationMetadataState: Active
       longDescription: |
         Your Long Description Here
         (less than 300 characters)
       potentialBenefits: Potential Benefits of Implementing the Recommendation (less than 60 characters)
+      pgVerified: false
       publishedToLearn: false
       publishedToAdvisor: false
-      pgVerified: false
       automationAvailable: false
       tags: null
       learnMoreLink:
@@ -48,22 +48,20 @@ To contribute a new recommendation for an Azure resource, follow these steps:
     hugo server --disableFastRender
     ```
 
-    {{< hint type=note >}}
-
-    If you encounter inconsistencies on the local version of the website that do not reflect your content updates, or errors unrelated to your changes, follow these steps:
-
-    1. Press **CTRL** **+** **C** to terminate the Hugo local web server.
-    2. Restart the Hugo web server by running `hugo server --disableFastRender` from the root of the repository.
-
-    {{< /hint >}}
-
 1. Submit your changes by creating a pull request in the repository.
 
 1. That's all! Your suggestion will be reviewed for potential inclusion in the Azure Proactive Resiliency Library.
 
 1. Questions or need assistance? Don't hesitate to create a GitHub Issue for support.
 
-Got questions or need assistance? Create a GitHub Issue for help.
+{{< hint type=note >}}
+
+If you encounter inconsistencies on the local version of the website that do not reflect your content updates, or errors unrelated to your changes, follow these steps:
+
+1. Press **CTRL** **+** **C** to terminate the Hugo local web server.
+2. Restart the Hugo web server by running `hugo server --disableFastRender` from the root of the repository.
+
+{{< /hint >}}
 
 ### Recommendation Structure
 

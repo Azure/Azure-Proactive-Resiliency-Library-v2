@@ -11,6 +11,8 @@ geekdocHidden: false
 | [(Personal) Create a validation pool for testing of planned updates](../../../Azure-Proactive-Resiliency-Library-v2/azure-resources/DesktopVirtualization/hostPools/#personal-create-a-validation-pool-for-testing-of-planned-updates)                                            | DesktopVirtualization |       hostPools        |
 | [(Pooled) Configure scheduled agent updates](../../../Azure-Proactive-Resiliency-Library-v2/azure-resources/DesktopVirtualization/hostPools/#pooled-configure-scheduled-agent-updates)                                                                                            | DesktopVirtualization |       hostPools        |
 | [(Pooled) Create a validation pool for testing of planned updates](../../../Azure-Proactive-Resiliency-Library-v2/azure-resources/DesktopVirtualization/hostPools/#pooled-create-a-validation-pool-for-testing-of-planned-updates)                                                | DesktopVirtualization |       hostPools        |
+| [Monitor Service Health and Resource Health of AVD](../../../Azure-Proactive-Resiliency-Library-v2/azure-resources/DesktopVirtualization/hostPools/#monitor-service-health-and-resource-health-of-avd)                                                                            | DesktopVirtualization |       hostPools        |
+| [Scaling plans should be created per region and not scaled across regions](../../../Azure-Proactive-Resiliency-Library-v2/azure-resources/DesktopVirtualization/hostPools/#scaling-plans-should-be-created-per-region-and-not-scaled-across-regions)                              | DesktopVirtualization |       hostPools        |
 | [Replicate your Image Templates to a secondary region](../../../Azure-Proactive-Resiliency-Library-v2/azure-resources/VirtualMachineImages/imageTemplates/)                                                                                                                       | VirtualMachineImages  |     imageTemplates     |
 | [Zone redundant storage should be used for image versions](../../../Azure-Proactive-Resiliency-Library-v2/azure-resources/VirtualMachineImages/imageTemplates/#replicate-your-image-templates-to-a-secondary-regions)                                                             |        Compute        |       galleries        |
 | [Deploy VMs across Availability Zones](../../../Azure-Proactive-Resiliency-Library-v2/azure-resources/Compute/virtualMachines/#deploy-vms-across-availability-zones)                                                                                                              |        Compute        |    virtualMachines     |
@@ -36,4 +38,4 @@ geekdocHidden: false
 
 ## General Workload Guidance
 
-{{< azure-waf-workloads-recommendationlist name="azure-waf-workloads-recommendationlist" >}}
+{{< azure-specialized-workloads-recommendationlist name="azure-specialized-workloads-recommendationlist" >}}

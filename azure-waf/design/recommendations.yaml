@@ -1,170 +1,216 @@
-- description: Consider deploying your application across multiple zones
+﻿- description: Consider deploying your application across multiple zones
   aprlGuid: 063d7237-5f68-5d42-b3d1-43144b3630b5
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: WellArchitected/Design
   recommendationMetadataState: Active
   longDescription: |
-    Design your application architecture to use availability zones within a region. Availability zones can be used to optimize application availability within a region by providing datacenter-level fault tolerance. However, the application architecture must not share dependencies between zones to use them effectively. Consider if component proximity is required for application performance reasons. If all or part of the application is highly sensitive to latency, components might need to be co-located which can limit the applicability of multi-region and multi-zone strategies.
-  potentialBenefits: Enhanced app availability & fault tolerance
-  pgVerified: Verified
+    Design your application architecture to use availability zones within a region. Availability zones can be used to optimize application availability within a region by providing datacenter-level fault tolerance. However, the application architecture must not share dependencies between zones to use them effectively.
+
+    Consider if component proximity is required for application performance reasons. If all or part of the application is highly sensitive to latency, components might need to be co-located which can limit the applicability of multi-region and multi-zone strategies.
+  potentialBenefits: Enhanced app availability and fault tolerance
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
-  tags:
+  tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Use Availability Zones
       url: "https://learn.microsoft.com/azure/reliability/availability-zones-overview#availability-zones"
 
 - description: Consider deploying your application across multiple regions
   aprlGuid: 8a497b6d-d065-0d43-a7d9-e3f8eebfe0f4
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: High
   recommendationResourceType: WellArchitected/Design
   recommendationMetadataState: Active
   longDescription: |
-    If your application is deployed to a single region, and the region becomes unavailable, your application will also be unavailable. This might be unacceptable under the terms of your application's SLA. If so, consider deploying your application and its services across multiple regions. A multiregional deployment can use an active-active or active-passive configuration. An active-active configuration distributes requests across multiple active regions. An active-passive configuration keeps warm instances in the secondary region, but doesn't send traffic there unless the primary region fails.
-  potentialBenefits: Enhances app availability & SLA compliance
-  pgVerified: Verified
+    If your application is deployed to a single region, and the region becomes unavailable, your application will also be unavailable. This might be unacceptable under the terms of your application's SLA.
+
+    If so, consider deploying your application and its services across multiple regions. A multiregional deployment can use an active-active or active-passive configuration.
+
+    An active-active configuration distributes requests across multiple active regions. An active-passive configuration keeps warm instances in the secondary region, but doesn't send traffic there unless the primary region fails.
+  potentialBenefits: Enhances app availability and SLA compliance
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
-  tags:
+  tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Design reliable Azure applications
       url: "https://learn.microsoft.com/azure/well-architected/resiliency/app-design"
+    - name: Cross-region replication in Azure Business continuity and disaster recovery
+      url: "https://learn.microsoft.com/azure/reliability/cross-region-replication-azure"
 
 - description: Ensure that all fault-points and fault-modes are understood and operationalized
   aprlGuid: 99ebe682-6306-6446-bfc7-cf6610ebfa02
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: WellArchitected/Design
   recommendationMetadataState: Active
   longDescription: |
-    Ensure that all fault-points and fault-modes are understood and operationalized. Failure mode analysis (FMA) is a process for building resiliency into a system, by identifying possible failure points in the system. The FMA should be part of the architecture and design phases, so that you can build failure recovery into the system from the beginning. Identify all fault-points and fault-modes. Fault-points describe the elements within an application architecture which can fail, while fault-modes capture the various ways by which a fault-point may fail. To ensure an application is resilient to end-to-end failures, it is essential that all fault-points and fault-modes are understood and operationalized.
+    Ensure that all fault-points and fault-modes are understood and operationalized.
+
+    Failure mode analysis (FMA) is a process for building resiliency into a system, by identifying possible failure points in the system. The FMA should be part of the architecture and design phases, so that you can build failure recovery into the system from the beginning.
+
+    Identify all fault-points and fault-modes. Fault-points describe the elements within an application architecture which can fail, while fault-modes capture the various ways by which a fault-point may fail. To ensure an application is resilient to end-to-end failures, it is essential that all fault-points and fault-modes are understood and operationalized.
   potentialBenefits: Enhanced system resiliency
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
-  tags:
+  tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Failure mode analysis for Azure applications
       url: "https://learn.microsoft.com/azure/architecture/resiliency/failure-mode-analysis"
 
 - description: Use PaaS Azure services instead of IaaS
   aprlGuid: 097651d8-6e62-314a-9299-a0234ffd190e
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Scalability
   recommendationImpact: Medium
   recommendationResourceType: WellArchitected/Design
   recommendationMetadataState: Active
   longDescription: |
-    PaaS provides a framework for developing and running apps. As with IaaS, the PaaS provider hosts and maintains the platform's servers, networks, storage, and other computing resources. But PaaS also includes tools, services, and systems that support the web application lifecycle. Developers use the platform to build apps without having to manage backups, security solutions, upgrades, and other administrative tasks.
+    PaaS provides a framework for developing and running apps. As with IaaS, the PaaS provider hosts and maintains the platform's servers, networks, storage, and other computing resources. But PaaS also includes tools, services, and systems that support the web application lifecycle.
+
+    Developers use the platform to build apps without having to manage backups, security solutions, upgrades, and other administrative tasks.
   potentialBenefits: Saves time, enhances security, simplifies app lifecycle
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
-  tags:
+  tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Use platform as a service (PaaS) options
       url: "https://learn.microsoft.com/azure/architecture/guide/design-principles/managed-services"
 
 - description: Design the application to scale out
   aprlGuid: 7f4c76d7-f9d4-d643-ab73-4d8f27fd7ed9
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Scalability
   recommendationImpact: High
   recommendationResourceType: WellArchitected/Design
   recommendationMetadataState: Active
   longDescription: |
-    Azure provides elastic scalability and you should design to scale out. However, applications must leverage a scale-unit approach to navigate service and subscription limits to ensure that individual components and the application as a whole can scale horizontally. Don't forget about scale in, which is important to reduce cost. For example, scale in and out for App Service is done via rules. Often customers write scale out rules and never write scale in rules, which leaves the App Service more expensive.
-  potentialBenefits: Enhances scalability & cost efficiency
-  pgVerified: Verified
+    Azure provides elastic scalability and you should design to scale out. However, applications must leverage a scale-unit approach to navigate service and subscription limits to ensure that individual components and the application as a whole can scale horizontally. Don't forget about scale in, which is important to reduce cost.
+
+    For example, scale in and out for App Service is done via rules. Often customers write scale out rules and never write scale in rules, which leaves the App Service more expensive.
+  potentialBenefits: Enhances scalability and cost efficiency
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
-  tags:
+  tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Design to scale out
       url: "https://learn.microsoft.com/azure/architecture/guide/design-principles/scale-out"
 
 - description: Create a landing zone for the workload following the Microsoft Cloud Adoption Framework
   aprlGuid: 6132a11a-3ea0-e64c-877b-f01ca1de79d4
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Governance
   recommendationImpact: Low
   recommendationResourceType: WellArchitected/Design
   recommendationMetadataState: Active
   longDescription: |
-    From a workload perspective, a landing zone refers to a prepared platform into which the application gets deployed. A landing zone implementation can have compute, data sources, access controls, and networking components already provisioned. With the required plumbing ready in place; the workload needs to plug into it. When considering the overall security, a landing zone offers centralized security capabilities that adds a threat mitigation layer for the workload. Implementations can vary but here are some common strategies that enhance the security posture. - Isolation through segmentation. You can isolate assets at several layers from Azure enrollment down to a subscription that has the resources for the workload. - Consistent adoption of organizational policies, enforce creation and deletion of services and their configuration through Azure Policy. - Configurations that align with principles of Zero Trust . For instance an implementation might have network connectivity to on-premises data centers.
-  potentialBenefits: Enhances security & speeds deployment
-  pgVerified: Verified
+    From a workload perspective, a landing zone refers to a prepared platform into which the application gets deployed. A landing zone implementation can have compute, data sources, access controls, and networking components already provisioned. With the required plumbing ready in place; the workload needs to plug into it. When considering the overall security, a landing zone offers centralized security capabilities that adds a threat mitigation layer for the workload.
+
+    Implementations can vary but here are some common strategies that enhance the security posture.
+    - Isolation through segmentation. You can isolate assets at several layers from Azure enrollment down to a subscription that has the resources for the workload.
+    - Consistent adoption of organizational policies, enforce creation and deletion of services and their configuration through Azure Policy.
+    - Configurations that align with principles of Zero Trust. For instance an implementation might have network connectivity to on-premises data centers.
+  potentialBenefits: Enhances security and speeds deployment
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
-  tags:
+  tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Azure landing zone integration
       url: "https://learn.microsoft.com/azure/well-architected/security/design-governance-landing-zone"
 
 - description: Design a BCDR strategy that will help to meet the business requirements
   aprlGuid: b09061cb-d536-1347-9957-390c2d0cfa3d
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: High
   recommendationResourceType: WellArchitected/Design
   recommendationMetadataState: Active
   longDescription: |
-    Disaster recovery is the process of restoring application functionality after a catastrophic loss. In cloud environments, we acknowledge up front that failures happen. Instead of trying to prevent failures altogether, the goal is to minimize the effects of a single failing component. Testing is one way to minimize these effects. You should automate testing of your applications where possible, but you also need to be prepared for when they fail. When a failure happens, having backup and recovery strategies becomes important. Your tolerance for reduced functionality during a disaster is a business decision that varies from one application to the next. It might be acceptable for some applications to be temporarily unavailable, or partially available with reduced functionality or delayed processing. For other applications, any reduced functionality is unacceptable. Key points: - Create and test a disaster recovery plan regularly using key failure scenarios. - Design a disaster recovery strategy to run most applications with reduced functionality. - Design a backup strategy that's tailored for the business requirements and circumstances of the application. - Automate failover and failback steps and processes. - Test and validate the failover and failback approach successfully at least once.
-  potentialBenefits: Minimizes disaster impact, ensures operational continuity
-  pgVerified: Verified
+    Disaster recovery is the process of restoring application functionality after a catastrophic loss. In cloud environments, we acknowledge up front that failures happen. Instead of trying to prevent failures altogether, the goal is to minimize the effects of a single failing component.
+
+    Testing is one way to minimize these effects. You should automate testing of your applications where possible, but you also need to be prepared for when they fail. When a failure happens, having backup and recovery strategies becomes important. Your tolerance for reduced functionality during a disaster is a business decision that varies from one application to the next.
+
+    It might be acceptable for some applications to be temporarily unavailable, or partially available with reduced functionality or delayed processing. For other applications, any reduced functionality is unacceptable.
+
+    Key points:
+
+    - Create and test a disaster recovery plan regularly using key failure scenarios.
+    - Design a disaster recovery strategy to run most applications with reduced functionality.
+    - Design a backup strategy that's tailored for the business requirements and circumstances of the application.
+    - Automate failover and failback steps and processes.
+    - Test and validate the failover and failback approach successfully at least once.
+      potentialBenefits: Minimizes disaster impact, ensures operational continuity
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
-  tags:
+  tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Backup and disaster recovery for Azure applications
       url: "https://learn.microsoft.com/azure/well-architected/resiliency/backup-and-recovery"
 
 - description: Provide security assurance through identity management
   aprlGuid: 835e616d-78e6-7f4c-a48b-6f80382a48cf
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Security
   recommendationImpact: Medium
   recommendationResourceType: WellArchitected/Design
   recommendationMetadataState: Active
   longDescription: |
-    Provide security assurance through identity management: the process of authenticating and authorizing security principals. Use identity management services to authenticate and grant permission to users, partners, customers, applications, services, and other entities. Identity management is typically a centralized function not controlled by the workload team as a part of the workload's architecture. - Define clear lines of responsibility and separation of duties for each function. Restrict access based on a need-to-know basis and least privilege security principles. - Assign permissions to users, groups, and applications at a certain scope through Azure RBAC. Use built-in roles when possible. - Prevent deletion or modification of a resource, resource group, or subscription through management locks. - Use managed identities to access resources in Azure.
-  potentialBenefits: Enhanced access control & security
-  pgVerified: Verified
+    Provide security assurance through identity management: the process of authenticating and authorizing security principals. Use identity management services to authenticate and grant permission to users, partners, customers, applications, services, and other entities. Identity management is typically a centralized function not controlled by the workload team as a part of the workload's architecture.
+
+    - Define clear lines of responsibility and separation of duties for each function. Restrict access based on a need-to-know basis and least privilege security principles.
+    - Assign permissions to users, groups, and applications at a certain scope through Azure RBAC. Use built-in roles when possible.
+    - Prevent deletion or modification of a resource, resource group, or subscription through management locks.
+    - Use managed identities to access resources in Azure.
+  potentialBenefits: Enhanced access control and security
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
-  tags:
+  tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Azure identity and access management considerations
       url: "https://learn.microsoft.com/azure/well-architected/security/design-identity"
 
 - description: Addressing security risks minimizes downtime and data loss from exposures
   aprlGuid: c5d8f87e-45ef-1644-a4aa-95ec08b88109
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Security
   recommendationImpact: High
   recommendationResourceType: WellArchitected/Design
   recommendationMetadataState: Active
   longDescription: |
-    Security is one of the most important aspects of any architecture. It provides the following assurances against deliberate attacks and abuse of your valuable data and systems: Confidentiality ,Integrity, and Availability. The security of complex systems depends on understanding the business context, social context, and technical context. As you design your system, cover these areas: - Ensure that the identity provider (AAD/ADFS/AD/Other) is highly available and aligns with application availability and recovery targets. - All external application endpoints are secured. - Communication to Azure PaaS services secured using Virtual Network Service Endpoints or Private Link. - Keys and secrets are backed-up to geo-redundant storage, and are still available in a failover case. - Ensure that the process for key rotation is automated and tested. - Emergency access break glass accounts have been tested and secured for recovering from Identity provider failure scenarios.
-  potentialBenefits: Minimizes downtime & data loss
-  pgVerified: Verified
+    Security is one of the most important aspects of any architecture. It provides the following assurances against deliberate attacks and abuse of your valuable data and systems: Confidentiality ,Integrity, and Availability.
+    The security of complex systems depends on understanding the business context, social context, and technical context. As you design your system, cover these areas:
+
+    - Ensure that the identity provider (AAD/ADFS/AD/Other) is highly available and aligns with application availability and recovery targets.
+    - All external application endpoints are secured.
+    - Communication to Azure PaaS services secured using Virtual Network Service Endpoints or Private Link.
+    - Keys and secrets are backed-up to geo-redundant storage, and are still available in a failover case.
+    - Ensure that the process for key rotation is automated and tested.
+    - Emergency access break glass accounts have been tested and secured for recovering from Identity provider failure scenarios.
+  potentialBenefits: Minimizes downtime and data loss
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
-  tags:
+  tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Security design principles
       url: "https://learn.microsoft.com/azure/well-architected/security/security-principles"

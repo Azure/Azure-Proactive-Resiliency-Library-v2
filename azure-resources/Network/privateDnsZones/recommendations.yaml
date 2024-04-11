@@ -1,4 +1,4 @@
-- description: Protect private DNS zones and records
+﻿- description: Protect private DNS zones and records
   aprlGuid: 2820f6d6-a23c-7a40-aec5-506f3bd1aeb6
   recommendationTypeId: null
   recommendationControl: Security
@@ -8,13 +8,13 @@
   longDescription: |
     Private DNS zones and records are critical and their deletion can cause service outages. To protect against unauthorized or accidental changes, the Private DNS Zone Contributor role, a built-in role for managing these resources, should be assigned to specific users or groups.
   potentialBenefits: Prevents DNS outages
-  pgVerified: Preview
+  pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Protecting private DNS Zones and Records - Azure DNS
       url: "https://learn.microsoft.com/en-us/azure/dns/dns-protect-private-zones-recordsets"
 
 - description: Monitor Private DNS Zones health and set up alerts
@@ -26,14 +26,14 @@
   recommendationMetadataState: Active
   longDescription: |
     The records in a private DNS zone are only resolvable from linked virtual networks. You can link a private DNS zone to multiple networks and enable autoregistration to manage DNS records for virtual machines automatically.
-  potentialBenefits: Enhanced DNS reliability & alerting
-  pgVerified: Preview
+  potentialBenefits: Enhanced DNS reliability and alerting
+  pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Scenarios for Azure Private DNS zones
       url: "https://learn.microsoft.com/en-us/azure/dns/private-dns-scenarios"
 
 - description: Align Production and DR zones with identical workload and resource failover entries
@@ -46,11 +46,11 @@
   longDescription: |
     Azure Private DNS offers a reliable, secure way to handle domain names within virtual networks, using custom domains instead of default Azure names. Records in these zones aren't internet-accessible, only resolvable within linked virtual networks.
   potentialBenefits: Ensures seamless failover for DNS
-  pgVerified: Preview
+  pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Scenarios for Azure Private DNS zones
       url: "https://learn.microsoft.com/en-us/azure/dns/private-dns-scenarios"

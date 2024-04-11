@@ -1,6 +1,6 @@
 ---
 title: Create ARG Queries
-weight: 30
+weight: 40
 geekdocCollapseSection: true
 ---
 

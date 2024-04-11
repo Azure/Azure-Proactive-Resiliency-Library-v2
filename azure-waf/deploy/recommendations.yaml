@@ -1,37 +1,48 @@
-- description: Avoid manual configuration to enforce consistency with Infrastructure as code
+﻿- description: Avoid manual configuration to enforce consistency with Infrastructure as code
   aprlGuid: 6bf9e5d5-fe57-c647-8daa-4903770e1302
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Automation
   recommendationImpact: Medium
   recommendationResourceType: WellArchitected/Deploy
   recommendationMetadataState: Active
   longDescription: |
-    Infrastructure as code (IaC) uses DevOps methodology and versioning with a descriptive model to define and deploy infrastructure, such as networks, virtual machines, load balancers, and connection topologies. Just as the same source code always generates the same binary, an IaC model generates the same environment every time it deploys. IaC is a key DevOps practice and a component of continuous delivery. With IaC, DevOps teams can work together with a unified set of practices and tools to deliver applications and their supporting infrastructure rapidly and reliably at scale. Key Points: - Avoid manual configuration to enforce consistency - Deliver stable test environments rapidly at scale - Use declarative definition files
+    Infrastructure as code (IaC) uses DevOps methodology and versioning with a descriptive model to define and deploy infrastructure, such as networks, virtual machines, load balancers, and connection topologies. Just as the same source code always generates the same binary, an IaC model generates the same environment every time it deploys.
+
+    IaC is a key DevOps practice and a component of continuous delivery. With IaC, DevOps teams can work together with a unified set of practices and tools to deliver applications and their supporting infrastructure rapidly and reliably at scale.
+
+    Key Points:
+    - Avoid manual configuration to enforce consistency
+    - Deliver stable test environments rapidly at scale
+    - Use declarative definition files
   potentialBenefits: Ensures consistent, scalable deployments
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
-  tags:
+  tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Avoid manual configuration to enforce consistency
       url: "https://learn.microsoft.com/devops/deliver/what-is-infrastructure-as-code#avoid-manual-configuration-to-enforce-consistency"
 
 - description: Validated all changes in development environments before applying them to production
   aprlGuid: e42e646c-7d67-dd4b-96dc-16a3439fa030
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Automation
   recommendationImpact: Medium
   recommendationResourceType: WellArchitected/Deploy
   recommendationMetadataState: Active
   longDescription: |
-    Continuously delivering value has become a mandatory requirement for organizations. To deliver value to your end users, you must release continually and without errors. Continuous delivery (CD) is the process of automating build, test, configuration, and deployment from a build to a production environment. A release pipeline can create multiple testing or staging environments to automate infrastructure creation and deploy new builds. Successive environments support progressively longer-running integration, load, and user acceptance testing activities.
+    Continuously delivering value has become a mandatory requirement for organizations. To deliver value to your end users, you must release continually and without errors.
+
+    Continuous delivery (CD) is the process of automating build, test, configuration, and deployment from a build to a production environment.
+
+    A release pipeline can create multiple testing or staging environments to automate infrastructure creation and deploy new builds. Successive environments support progressively longer-running integration, load, and user acceptance testing activities.
   potentialBenefits: Ensures error-free releases
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
-  tags:
+  tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Safe deployment practices
       url: "https://learn.microsoft.com/devops/operate/safe-deployment-practices"
