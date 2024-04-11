@@ -1,6 +1,7 @@
 Param(
     [switch]$Help,
     [switch] $Debugging,
+    [switch] $VisualDebugging,
     [string] $CustomerName,
     [string] $WorkloadName,
     [Parameter(mandatory=$true)]
@@ -88,13 +89,13 @@ $Global:Runtime = Measure-Command -Expression {
 
         $Global:ExcelContent = Import-Excel -Path $ExcelFile -WorksheetName ImpactedResources
 
-        $Global:Outages = Import-Excel -Path $ExcelFile -WorksheetName Outages
+        $Global:Outages = try{Import-Excel -Path $ExcelFile -WorksheetName Outages}catch{}
 
-        $Global:SupportTickets = Import-Excel -Path $ExcelFile -WorksheetName "Support Tickets" -AsText 'Ticket ID'
+        $Global:SupportTickets = try{Import-Excel -Path $ExcelFile -WorksheetName "Support Tickets" -AsText 'Ticket ID'}catch{}
 
-        $Global:ServiceHealth = Import-Excel -Path $ExcelFile -WorksheetName "Health Alerts"
+        $Global:ServiceHealth = try{Import-Excel -Path $ExcelFile -WorksheetName "Health Alerts"}catch{}
 
-        $Global:Retirements = Import-Excel -Path $ExcelFile -WorksheetName "Retirements"
+        $Global:Retirements = try{Import-Excel -Path $ExcelFile -WorksheetName "Retirements"}catch{}
 
         $ResourceIDs = $ExcelContent.id | Select-Object -Unique
         $Resources = @()
@@ -130,15 +131,11 @@ $Global:Runtime = Measure-Command -Expression {
     ############# PowerPoint and Word
 
     function PPT {
-        Write-Host "Openning PowerPoint"
+        Write-Debug "Openning PowerPoint"
 
         $Global:Application = New-Object -ComObject PowerPoint.Application
 
-        #$msoFalse = [Microsoft.Office.Core.MsoTristate]::msoFalse
-        #$msoTrue = [Microsoft.Office.Core.MsoTristate]::msoTrue
-
-        #$Global:pres = $Application.Presentations.Open($PPTTemplateFile, $msoTrue, $msoFalse, $msoFalse)
-        $Global:pres = $Application.Presentations.Open($PPTTemplateFile, $null, $null, $null)
+        if($VisualDebugging.IsPresent){$Global:pres = $Application.Presentations.Open($PPTTemplateFile)}else{$Global:pres = $Application.Presentations.Open($PPTTemplateFile, $null, $null, $null)}
 
     }
 
@@ -147,7 +144,7 @@ $Global:Runtime = Measure-Command -Expression {
 
         $Global:Word = New-Object -Com Word.Application
 
-        #$Global:Word.Visible = $true
+        if($VisualDebugging.IsPresent){$Global:Word.Visible = $true}
 
         $Global:Document = $Word.documents.open($WordTemplateFile)
     }
@@ -352,13 +349,13 @@ $Global:Runtime = Measure-Command -Expression {
                     if($Counter -lt 18)
                         {
                             ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(1).Shape.TextFrame.TextRange.Text = [string]$Health.Subscription
-                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(2).Shape.TextFrame.TextRange.Text = $Health.Services
-                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(3).Shape.TextFrame.TextRange.Text = $Health.Regions
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(2).Shape.TextFrame.TextRange.Text = if($Health.Services -eq 'All'){'Yes'}else{'No'}
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(3).Shape.TextFrame.TextRange.Text = if($Health.Regions -eq 'All'){'Yes'}else{'No'}
                             ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(4).Shape.TextFrame.TextRange.Text = if($Health.'Event Type' -like '*Service Issues*' -or $Health.'Event Type' -eq 'All'){'Yes'}else{'No'}
                             ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(5).Shape.TextFrame.TextRange.Text = if($Health.'Event Type' -like '*Planned Maintenance*' -or $Health.'Event Type' -eq 'All'){'Yes'}else{'No'}
                             ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(6).Shape.TextFrame.TextRange.Text = if($Health.'Event Type' -like '*Health Advisories*' -or $Health.'Event Type' -eq 'All'){'Yes'}else{'No'}
                             ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(7).Shape.TextFrame.TextRange.Text = if($Health.'Event Type' -like '*Security Advisory*' -or $Health.'Event Type' -eq 'All'){'Yes'}else{'No'}
-                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(8).Shape.TextFrame.TextRange.Text = $Health.'Action Group'
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(8).Shape.TextFrame.TextRange.Text = ' '
                             $counter ++
                             $row ++
                         }
@@ -400,13 +397,13 @@ $Global:Runtime = Measure-Command -Expression {
 
                             $row = 3
                             ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(1).Shape.TextFrame.TextRange.Text = [string]$Health.Subscription
-                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(2).Shape.TextFrame.TextRange.Text = $Health.Services
-                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(3).Shape.TextFrame.TextRange.Text = $Health.Regions
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(2).Shape.TextFrame.TextRange.Text = if($Health.Services -eq 'All'){'Yes'}else{'No'}
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(3).Shape.TextFrame.TextRange.Text = if($Health.Regions -eq 'All'){'Yes'}else{'No'}
                             ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(4).Shape.TextFrame.TextRange.Text = if($Health.'Event Type' -like '*Service Issues*' -or $Health.'Event Type' -eq 'All'){'Yes'}else{'No'}
                             ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(5).Shape.TextFrame.TextRange.Text = if($Health.'Event Type' -like '*Planned Maintenance*' -or $Health.'Event Type' -eq 'All'){'Yes'}else{'No'}
                             ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(6).Shape.TextFrame.TextRange.Text = if($Health.'Event Type' -like '*Health Advisories*' -or $Health.'Event Type' -eq 'All'){'Yes'}else{'No'}
                             ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(7).Shape.TextFrame.TextRange.Text = if($Health.'Event Type' -like '*Security Advisory*' -or $Health.'Event Type' -eq 'All'){'Yes'}else{'No'}
-                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(8).Shape.TextFrame.TextRange.Text = $Health.'Action Group'
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(8).Shape.TextFrame.TextRange.Text = ' '
                             $Counter ++
                             $row ++
                         }
@@ -758,114 +755,117 @@ $Global:Runtime = Measure-Command -Expression {
             $Loop = 1
             $CurrentSlide = 28
 
-            foreach ($Outage in $Global:Outages)
+            if(![string]::IsNullOrEmpty($Global:Outages))
                 {
-                    if($Loop -eq 1)
+                    foreach ($Outage in $Global:Outages)
                         {
-                            $OutageName = ($Outage.'Tracking ID'+' - '+$Outage.title)
-
-                            $OutageService = $Outage.'Impacted Service'
-
-                            $Slide28 = $pres.Slides | Where-Object {$_.SlideIndex -eq 28}
-
-                            $TargetShape = ($Slide28.Shapes | Where-Object {$_.Id -eq 4})
-                            $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
-                            #$TargetShape.Delete()
-
-                            ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(1).Text = $OutageName
-                            ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(2).Text = "What happened:"
-                            ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(3).Text = $Outage.'What happened'
-                            ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(2).Copy()
-                            Start-Sleep -Milliseconds 100
-                            ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(4).Paste() | Out-Null
-                            Start-Sleep -Milliseconds 100
-                            ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(4).Text = "Impacted Service:"
-                            ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(3).Copy()
-                            Start-Sleep -Milliseconds 100
-                            ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(5).Paste() | Out-Null
-                            Start-Sleep -Milliseconds 100
-                            ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(5).Text = $OutageService
-                            ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(4).Copy()
-                            Start-Sleep -Milliseconds 100
-                            ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(6).Paste() | Out-Null
-                            Start-Sleep -Milliseconds 100
-                            ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(6).Text = "How can customers make incidents like this less impactful:"
-                            ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(5).Copy()
-                            Start-Sleep -Milliseconds 100
-                            ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(7).Paste() | Out-Null
-                            Start-Sleep -Milliseconds 100
-                            ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(7).Text = $Outage.'How can customers make incidents like this less impactful'
-
-                            while(($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs().count -gt 7)
+                            if($Loop -eq 1)
                                 {
-                                    ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(8).Delete()
+                                    $OutageName = ($Outage.'Tracking ID'+' - '+$Outage.title)
+        
+                                    $OutageService = $Outage.'Impacted Service'
+        
+                                    $Slide28 = $pres.Slides | Where-Object {$_.SlideIndex -eq 28}
+        
+                                    $TargetShape = ($Slide28.Shapes | Where-Object {$_.Id -eq 4})
+                                    $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
+                                    #$TargetShape.Delete()
+        
+                                    ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(1).Text = $OutageName
+                                    ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(2).Text = "What happened:"
+                                    ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(3).Text = $Outage.'What happened'
+                                    ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(2).Copy()
+                                    Start-Sleep -Milliseconds 100
+                                    ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(4).Paste() | Out-Null
+                                    Start-Sleep -Milliseconds 100
+                                    ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(4).Text = "Impacted Service:"
+                                    ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(3).Copy()
+                                    Start-Sleep -Milliseconds 100
+                                    ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(5).Paste() | Out-Null
+                                    Start-Sleep -Milliseconds 100
+                                    ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(5).Text = $OutageService
+                                    ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(4).Copy()
+                                    Start-Sleep -Milliseconds 100
+                                    ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(6).Paste() | Out-Null
+                                    Start-Sleep -Milliseconds 100
+                                    ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(6).Text = "How can customers make incidents like this less impactful:"
+                                    ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(5).Copy()
+                                    Start-Sleep -Milliseconds 100
+                                    ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(7).Paste() | Out-Null
+                                    Start-Sleep -Milliseconds 100
+                                    ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(7).Text = $Outage.'How can customers make incidents like this less impactful'
+        
+                                    while(($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs().count -gt 7)
+                                        {
+                                            ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(8).Delete()
+                                        }
                                 }
-                        }
-                    else
-                        {
-                            ############### NEXT 9 SLIDES
-
-                            $OutageName = ($Outage.'Tracking ID'+' - '+$Outage.title)
-
-                            $OutageService = $Outage.'Impacted Service'
-                            $CustomLayout = $Slide28.CustomLayout
-                            $pres.Slides.addSlide($CurrentSlide,$customLayout) | Out-Null
-
-                            $NextSlide = $pres.Slides | Where-Object {$_.SlideIndex -eq $CurrentSlide}
-
-                            ($Slide28.Shapes | Where-Object {$_.Id -eq 6}).TextFrame.TextRange.Copy()
-                            Start-Sleep -Milliseconds 100
-
-                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 2}).TextFrame.TextRange.Paste() | Out-Null
-                            Start-Sleep -Milliseconds 100
-
-                            ($Slide28.Shapes | Where-Object {$_.Id -eq 4}).Copy()
-                            Start-Sleep -Milliseconds 100
-
-                            $NextSlide.Shapes.Paste() | Out-Null
-                            Start-Sleep -Milliseconds 100
-
-                            ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).Copy()
-                            Start-Sleep -Milliseconds 100
-
-                            $NextSlide.Shapes.Paste() | Out-Null
-                            Start-Sleep -Milliseconds 100
-
-                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(1).Text = $OutageName
-                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(2).Text = "What happened:"
-                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(3).Text = $Outage.'What happened'
-                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(2).Copy()
-                            Start-Sleep -Milliseconds 100
-                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(4).Paste() | Out-Null
-                            Start-Sleep -Milliseconds 100
-                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(4).Text = "Impacted Service:"
-                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(3).Copy()
-                            Start-Sleep -Milliseconds 100
-                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(5).Paste() | Out-Null
-                            Start-Sleep -Milliseconds 100
-                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(5).Text = $OutageService
-                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(4).Copy()
-                            Start-Sleep -Milliseconds 100
-                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(6).Paste() | Out-Null
-                            Start-Sleep -Milliseconds 100
-                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(6).Text = "How can customers make incidents like this less impactful:"
-                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(5).Copy()
-                            Start-Sleep -Milliseconds 100
-                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(7).Paste() | Out-Null
-                            Start-Sleep -Milliseconds 100
-                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(7).Text = $Outage.'How can customers make incidents like this less impactful'
-                            
-                            ($Slide28.Shapes | Where-Object {$_.Id -eq 31}).Copy()
-
-                            $NextSlide.Shapes.Paste() | Out-Null
-
-                            while(($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs().count -gt 7)
+                            else
                                 {
-                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(8).Delete()
+                                    ############### NEXT 9 SLIDES
+        
+                                    $OutageName = ($Outage.'Tracking ID'+' - '+$Outage.title)
+        
+                                    $OutageService = $Outage.'Impacted Service'
+                                    $CustomLayout = $Slide28.CustomLayout
+                                    $pres.Slides.addSlide($CurrentSlide,$customLayout) | Out-Null
+        
+                                    $NextSlide = $pres.Slides | Where-Object {$_.SlideIndex -eq $CurrentSlide}
+        
+                                    ($Slide28.Shapes | Where-Object {$_.Id -eq 6}).TextFrame.TextRange.Copy()
+                                    Start-Sleep -Milliseconds 100
+        
+                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 2}).TextFrame.TextRange.Paste() | Out-Null
+                                    Start-Sleep -Milliseconds 100
+        
+                                    ($Slide28.Shapes | Where-Object {$_.Id -eq 4}).Copy()
+                                    Start-Sleep -Milliseconds 100
+        
+                                    $NextSlide.Shapes.Paste() | Out-Null
+                                    Start-Sleep -Milliseconds 100
+        
+                                    ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).Copy()
+                                    Start-Sleep -Milliseconds 100
+        
+                                    $NextSlide.Shapes.Paste() | Out-Null
+                                    Start-Sleep -Milliseconds 100
+        
+                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(1).Text = $OutageName
+                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(2).Text = "What happened:"
+                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(3).Text = $Outage.'What happened'
+                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(2).Copy()
+                                    Start-Sleep -Milliseconds 100
+                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(4).Paste() | Out-Null
+                                    Start-Sleep -Milliseconds 100
+                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(4).Text = "Impacted Service:"
+                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(3).Copy()
+                                    Start-Sleep -Milliseconds 100
+                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(5).Paste() | Out-Null
+                                    Start-Sleep -Milliseconds 100
+                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(5).Text = $OutageService
+                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(4).Copy()
+                                    Start-Sleep -Milliseconds 100
+                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(6).Paste() | Out-Null
+                                    Start-Sleep -Milliseconds 100
+                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(6).Text = "How can customers make incidents like this less impactful:"
+                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(5).Copy()
+                                    Start-Sleep -Milliseconds 100
+                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(7).Paste() | Out-Null
+                                    Start-Sleep -Milliseconds 100
+                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(7).Text = $Outage.'How can customers make incidents like this less impactful'
+                                    
+                                    ($Slide28.Shapes | Where-Object {$_.Id -eq 31}).Copy()
+        
+                                    $NextSlide.Shapes.Paste() | Out-Null
+        
+                                    while(($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs().count -gt 7)
+                                        {
+                                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(8).Delete()
+                                        }
                                 }
+                                $Loop ++
+                                $CurrentSlide ++
                         }
-                        $Loop ++
-                        $CurrentSlide ++
                 }
         }
 
@@ -876,165 +876,175 @@ $Global:Runtime = Measure-Command -Expression {
             $CurrentSlide = 29
             $Slide = 1
 
-            foreach ($Tickets in $Global:SupportTickets)
+            if(![string]::IsNullOrEmpty($Global:SupportTickets))
                 {
-                    $TicketName = ($Tickets.'Ticket ID'+' - '+$Tickets.Title)
-                    $TicketStatus = $Tickets.'Status'
-                    $TicketDate = $Tickets.'Creation Date'
-
-                    if($Slide -eq 1)
+                    foreach ($Tickets in $Global:SupportTickets)
                         {
-                            if($Loop -eq 1)
+                            $TicketName = ($Tickets.'Ticket ID'+' - '+$Tickets.Title)
+                            $TicketStatus = $Tickets.'Status'
+                            $TicketDate = $Tickets.'Creation Date'
+
+                            if($Slide -eq 1)
                                 {
-                                    $Slide29 = $pres.Slides | Where-Object {$_.SlideIndex -eq 29}
-
-                                    $TargetShape = ($Slide29.Shapes | Where-Object {$_.Id -eq 4})
-                                    $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
-                                    #$TargetShape.Delete()
-
-                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(1).Text = $TicketName
-                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(2).Text = "Status: $TicketStatus"
-                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(3).Text = "Creation Date: $TicketDate"
-                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(3).Copy()
-                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(4).Paste() | Out-Null
-                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(4).Text = "Recommendation: "
-
-                                    while(($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs().count -gt 4)
+                                    if($Loop -eq 1)
                                         {
-                                            ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(5).Delete()
-                                        }
-                                    $ParagraphLoop = 5
-                                    $Loop ++
-                                }
-                            else
-                                {
-                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.InsertAfter(".") | Out-Null
-                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(1).Copy()
-                                    Start-Sleep -Milliseconds 100
-                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Paste() | Out-Null
-                                    Start-Sleep -Milliseconds 100
-                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Text = $TicketName
-                                    $ParagraphLoop ++
-                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.InsertAfter(".") | Out-Null
-                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(2).Copy()
-                                    Start-Sleep -Milliseconds 100
-                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Paste() | Out-Null
-                                    Start-Sleep -Milliseconds 100
-                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Text = "Status: $TicketStatus"
-                                    $ParagraphLoop ++
-                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.InsertAfter(".") | Out-Null
-                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(3).Copy()
-                                    Start-Sleep -Milliseconds 100
-                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Paste() | Out-Null
-                                    Start-Sleep -Milliseconds 100
-                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Text = "Creation Date: $TicketDate"
-                                    $ParagraphLoop ++
-                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.InsertAfter(".") | Out-Null
-                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(4).Copy()
-                                    Start-Sleep -Milliseconds 100
-                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Paste() | Out-Null
-                                    Start-Sleep -Milliseconds 100
-                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Text = "Recommendation: "
-                                    $ParagraphLoop ++
+                                            $Slide29 = $pres.Slides | Where-Object {$_.SlideIndex -eq 29}
 
-                                    
-                                    if($Loop -eq 4)
-                                        {
-                                            $Loop = 1
-                                            $Slide ++
-                                            $CurrentSlide ++
+                                            $TargetShape = ($Slide29.Shapes | Where-Object {$_.Id -eq 4})
+                                            $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
+                                            #$TargetShape.Delete()
+
+                                            ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(1).Text = $TicketName
+                                            ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(2).Text = "Status: $TicketStatus"
+                                            ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(3).Text = "Creation Date: $TicketDate"
+                                            ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(3).Copy()
+                                            ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(4).Paste() | Out-Null
+                                            ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(4).Text = "Recommendation: "
+
+                                            while(($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs().count -gt 4)
+                                                {
+                                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(5).Delete()
+                                                }
+                                            $ParagraphLoop = 5
+                                            $Loop ++
                                         }
                                     else
                                         {
-                                            $Loop ++
+                                            ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.InsertAfter(".") | Out-Null
+                                            ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(1).Copy()
+                                            Start-Sleep -Milliseconds 100
+                                            ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Paste() | Out-Null
+                                            Start-Sleep -Milliseconds 100
+                                            ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Text = $TicketName
+                                            $ParagraphLoop ++
+                                            ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.InsertAfter(".") | Out-Null
+                                            ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(2).Copy()
+                                            Start-Sleep -Milliseconds 100
+                                            ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Paste() | Out-Null
+                                            Start-Sleep -Milliseconds 100
+                                            ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Text = "Status: $TicketStatus"
+                                            $ParagraphLoop ++
+                                            ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.InsertAfter(".") | Out-Null
+                                            ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(3).Copy()
+                                            Start-Sleep -Milliseconds 100
+                                            ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Paste() | Out-Null
+                                            Start-Sleep -Milliseconds 100
+                                            ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Text = "Creation Date: $TicketDate"
+                                            $ParagraphLoop ++
+                                            ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.InsertAfter(".") | Out-Null
+                                            ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(4).Copy()
+                                            Start-Sleep -Milliseconds 100
+                                            ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Paste() | Out-Null
+                                            Start-Sleep -Milliseconds 100
+                                            ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Text = "Recommendation: "
+                                            $ParagraphLoop ++
+
+                                            
+                                            if($Loop -eq 4)
+                                                {
+                                                    $Loop = 1
+                                                    $Slide ++
+                                                    $CurrentSlide ++
+                                                }
+                                            else
+                                                {
+                                                    $Loop ++
+                                                }
+                                            Start-Sleep -Milliseconds 500
                                         }
-                                    Start-Sleep -Milliseconds 500
-                                }
-                        }
-                    else
-                        {
-                            if($Loop -eq 1)
-                                {
-                                    $CustomLayout = $Slide29.CustomLayout
-                                    $pres.Slides.addSlide($CurrentSlide,$customLayout) | Out-Null
-
-                                    $NextSlide = $pres.Slides | Where-Object {$_.SlideIndex -eq $CurrentSlide}
-
-                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 6}).TextFrame.TextRange.Copy()
-                                    Start-Sleep -Milliseconds 200
-
-                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 2}).TextFrame.TextRange.Paste() | Out-Null
-                                    Start-Sleep -Milliseconds 100
-
-                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 4}).Copy()
-                                    Start-Sleep -Milliseconds 200
-
-                                    $NextSlide.Shapes.Paste() | Out-Null
-                                    Start-Sleep -Milliseconds 100
-
-                                    ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).Copy()
-                                    Start-Sleep -Milliseconds 200
-
-                                    $NextSlide.Shapes.Paste() | Out-Null
-                                    Start-Sleep -Milliseconds 100
-
-                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(1).Text = $TicketName
-                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(2).Text = "Status: $TicketStatus"
-                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(3).Text = "Creation Date: $TicketDate"
-                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(4).Text = "Recommendation: "
-
-                                    while(($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs().count -gt 4)
-                                        {
-                                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(5).Delete()
-                                        }
-                                    $ParagraphLoop = 5
-                                    $Loop ++
                                 }
                             else
                                 {
-                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.InsertAfter(".") | Out-Null
-                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(1).Copy()
-                                    Start-Sleep -Milliseconds 100
-                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Paste() | Out-Null
-                                    Start-Sleep -Milliseconds 100
-                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Text = $TicketName
-                                    $ParagraphLoop ++
-                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.InsertAfter(".") | Out-Null
-                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(2).Copy()
-                                    Start-Sleep -Milliseconds 100
-                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Paste() | Out-Null
-                                    Start-Sleep -Milliseconds 100
-                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Text = "Status: $TicketStatus"
-                                    $ParagraphLoop ++
-                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.InsertAfter(".") | Out-Null
-                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(3).Copy()
-                                    Start-Sleep -Milliseconds 100
-                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Paste() | Out-Null
-                                    Start-Sleep -Milliseconds 100
-                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Text = "Creation Date: $TicketDate"
-                                    $ParagraphLoop ++
-                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.InsertAfter(".") | Out-Null
-                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(4).Copy()
-                                    Start-Sleep -Milliseconds 100
-                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Paste() | Out-Null
-                                    Start-Sleep -Milliseconds 100
-                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Text = "Recommendation: "
-                                    $ParagraphLoop ++
-
-                                    if($Loop -eq 4)
+                                    if($Loop -eq 1)
                                         {
-                                            $Loop = 1
-                                            $Slide ++
-                                            $CurrentSlide ++
+                                            $CustomLayout = $Slide29.CustomLayout
+                                            $pres.Slides.addSlide($CurrentSlide,$customLayout) | Out-Null
+
+                                            $NextSlide = $pres.Slides | Where-Object {$_.SlideIndex -eq $CurrentSlide}
+
+                                            ($Slide29.Shapes | Where-Object {$_.Id -eq 6}).TextFrame.TextRange.Copy()
+                                            Start-Sleep -Milliseconds 200
+
+                                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 2}).TextFrame.TextRange.Paste() | Out-Null
+                                            Start-Sleep -Milliseconds 100
+
+                                            ($Slide29.Shapes | Where-Object {$_.Id -eq 4}).Copy()
+                                            Start-Sleep -Milliseconds 200
+
+                                            $NextSlide.Shapes.Paste() | Out-Null
+                                            Start-Sleep -Milliseconds 100
+
+                                            ($Slide29.Shapes | Where-Object {$_.Id -eq 2}).Copy()
+                                            Start-Sleep -Milliseconds 200
+
+                                            $NextSlide.Shapes.Paste() | Out-Null
+                                            Start-Sleep -Milliseconds 100
+
+                                            ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).Copy()
+                                            Start-Sleep -Milliseconds 200
+
+                                            $NextSlide.Shapes.Paste() | Out-Null
+                                            Start-Sleep -Milliseconds 100
+
+                                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 9}).TextFrame.TextRange.Paragraphs(1).Text = $TicketName
+                                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 9}).TextFrame.TextRange.Paragraphs(2).Text = "Status: $TicketStatus"
+                                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 9}).TextFrame.TextRange.Paragraphs(3).Text = "Creation Date: $TicketDate"
+                                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 9}).TextFrame.TextRange.Paragraphs(4).Text = "Recommendation: "
+
+                                            while(($NextSlide.Shapes | Where-Object {$_.Id -eq 9}).TextFrame.TextRange.Paragraphs().count -gt 4)
+                                                {
+                                                    ($NextSlide.Shapes | Where-Object {$_.Id -eq 9}).TextFrame.TextRange.Paragraphs(5).Delete()
+                                                }
+                                            $ParagraphLoop = 5
+                                            $Loop ++
                                         }
                                     else
                                         {
-                                            $Loop ++
+                                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 9}).TextFrame.TextRange.InsertAfter(".") | Out-Null
+                                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 9}).TextFrame.TextRange.Paragraphs(1).Copy()
+                                            Start-Sleep -Milliseconds 100
+                                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 9}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Paste() | Out-Null
+                                            Start-Sleep -Milliseconds 100
+                                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 9}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Text = $TicketName
+                                            $ParagraphLoop ++
+                                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 9}).TextFrame.TextRange.InsertAfter(".") | Out-Null
+                                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 9}).TextFrame.TextRange.Paragraphs(2).Copy()
+                                            Start-Sleep -Milliseconds 100
+                                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 9}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Paste() | Out-Null
+                                            Start-Sleep -Milliseconds 100
+                                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 9}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Text = "Status: $TicketStatus"
+                                            $ParagraphLoop ++
+                                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 9}).TextFrame.TextRange.InsertAfter(".") | Out-Null
+                                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 9}).TextFrame.TextRange.Paragraphs(3).Copy()
+                                            Start-Sleep -Milliseconds 100
+                                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 9}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Paste() | Out-Null
+                                            Start-Sleep -Milliseconds 100
+                                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 9}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Text = "Creation Date: $TicketDate"
+                                            $ParagraphLoop ++
+                                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 9}).TextFrame.TextRange.InsertAfter(".") | Out-Null
+                                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 9}).TextFrame.TextRange.Paragraphs(4).Copy()
+                                            Start-Sleep -Milliseconds 100
+                                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 9}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Paste() | Out-Null
+                                            Start-Sleep -Milliseconds 100
+                                            ($NextSlide.Shapes | Where-Object {$_.Id -eq 9}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Text = "Recommendation: "
+                                            $ParagraphLoop ++
+
+                                            if($Loop -eq 4)
+                                                {
+                                                    $Loop = 1
+                                                    $Slide ++
+                                                    $CurrentSlide ++
+                                                }
+                                            else
+                                                {
+                                                    $Loop ++
+                                                }
                                         }
                                 }
+                                Start-Sleep -Milliseconds 500
                         }
-                        Start-Sleep -Milliseconds 500
                 }
+            
         }
 
         ############# Slide 30
@@ -1042,45 +1052,49 @@ $Global:Runtime = Measure-Command -Expression {
             Write-Debug "Editing Slide 30 - Service Retirement Notifications"
             $Loop = 1
 
-            $Slide30 = $pres.Slides | Where-Object {$_.SlideIndex -eq 30}
-
-            $TargetShape = ($Slide30.Shapes | Where-Object {$_.Id -eq 4})
-            $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
-            #$TargetShape.Delete()
-
-            ($Slide30.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(1).Text = '.'
-
-            while(($Slide30.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs().count -gt 2)
+            if(![string]::IsNullOrEmpty($Global:Retirements))
                 {
-                    ($Slide30.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(2).Delete()
-                }
+                    $Slide30 = $pres.Slides | Where-Object {$_.SlideIndex -eq 30}
 
-            foreach ($Retirement in $Global:Retirements)
-                {
-                    if($Loop -lt 15)
+                    $TargetShape = ($Slide30.Shapes | Where-Object {$_.Id -eq 4})
+                    $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
+                    #$TargetShape.Delete()
+        
+                    ($Slide30.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(1).Text = '.'
+        
+                    while(($Slide30.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs().count -gt 2)
                         {
-                            if($Loop -eq 1)
+                            ($Slide30.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(2).Delete()
+                        }
+        
+                    foreach ($Retirement in $Global:Retirements)
+                        {
+                            if($Loop -lt 15)
                                 {
-                                    $RetireName = ($Retirement.'Tracking ID'+' - '+$Retirement.Status + ' : ' + $Retirement.title)
-
-                                    ($Slide30.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(1).Text = $RetireName
-                                    $Loop ++
-                                }
-                            else
-                                {
-                                    $RetireName = ($Retirement.'Tracking ID'+' - '+$Retirement.Status + ' : ' + $Retirement.title)
-
-                                    ($Slide30.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.InsertAfter(".") | Out-Null
-                                    Start-Sleep -Milliseconds 100
-                                    ($Slide30.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(1).Copy()
-                                    Start-Sleep -Milliseconds 100
-                                    ($Slide30.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs($Loop).Paste() | Out-Null
-                                    Start-Sleep -Milliseconds 100
-                                    ($Slide30.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs($Loop).Text = $RetireName
-                                    $Loop ++
+                                    if($Loop -eq 1)
+                                        {
+                                            $RetireName = ($Retirement.'Tracking ID'+' - '+$Retirement.Status + ' : ' + $Retirement.title)
+        
+                                            ($Slide30.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(1).Text = $RetireName
+                                            $Loop ++
+                                        }
+                                    else
+                                        {
+                                            $RetireName = ($Retirement.'Tracking ID'+' - '+$Retirement.Status + ' : ' + $Retirement.title)
+        
+                                            ($Slide30.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.InsertAfter(".") | Out-Null
+                                            Start-Sleep -Milliseconds 100
+                                            ($Slide30.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(1).Copy()
+                                            Start-Sleep -Milliseconds 100
+                                            ($Slide30.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs($Loop).Paste() | Out-Null
+                                            Start-Sleep -Milliseconds 100
+                                            ($Slide30.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs($Loop).Text = $RetireName
+                                            $Loop ++
+                                        }
                                 }
                         }
                 }
+            
         }
 
         Slide1
@@ -1091,7 +1105,7 @@ $Global:Runtime = Measure-Command -Expression {
         Slide30
         Slide29
         Slide28
-        
+
         Slide25
         Slide24
         Slide23
@@ -1210,23 +1224,25 @@ $Global:Runtime = Measure-Command -Expression {
         
             Write-Debug 'Looping Outages'
             $LineCounter = 2
-            foreach ($Outage in $Global:Outages)
+            if(![string]::IsNullOrEmpty($Global:Outages))
                 {
-                    if($LineCounter -gt 3)
-                        {
-                            $Global:Document.Tables(10).Rows.Add() | Out-Null
-                        }
-                    $OutageName = ($Outage.'Tracking ID'+' - '+$Outage.title)
-                    $OutageWhat = $Outage.'What happened'
-                    $OutageRecom = $Outage.'How can customers make incidents like this less impactful'
-
-                    $Global:Document.Tables(10).Rows($LineCounter).Cells(1).Range.Text = $OutageName
-                    $Global:Document.Tables(10).Rows($LineCounter).Cells(2).Range.Text = $OutageWhat
-                    $Global:Document.Tables(10).Rows($LineCounter).Cells(3).Range.Text = $OutageRecom
-
-                    $LineCounter ++
-                }
+                    foreach ($Outage in $Global:Outages)
+                    {
+                        if($LineCounter -gt 3)
+                            {
+                                $Global:Document.Tables(10).Rows.Add() | Out-Null
+                            }
+                        $OutageName = ($Outage.'Tracking ID'+' - '+$Outage.title)
+                        $OutageWhat = $Outage.'What happened'
+                        $OutageRecom = $Outage.'How can customers make incidents like this less impactful'
     
+                        $Global:Document.Tables(10).Rows($LineCounter).Cells(1).Range.Text = $OutageName
+                        $Global:Document.Tables(10).Rows($LineCounter).Cells(2).Range.Text = $OutageWhat
+                        $Global:Document.Tables(10).Rows($LineCounter).Cells(3).Range.Text = $OutageRecom
+    
+                        $LineCounter ++
+                    }
+                }
         }
         function WordTables {
             Write-Debug 'Editing Tables'
@@ -1426,21 +1442,24 @@ $Global:Runtime = Measure-Command -Expression {
             $Global:Document.Tables(12).Rows(2).Cells(3).Range.Text = ''
 
             $LineCounter = 2
-            foreach ($Retires in $Global:Retirements)
+            if(![string]::IsNullOrEmpty($Global:Retirements))
                 {
-                    if($LineCounter -gt 3)
-                        {
-                            $Global:Document.Tables(12).Rows.Add() | Out-Null
-                        }
-                    $RetireName = ($Retires.'Tracking ID'+' - '+ $Retires.Status + ' : ' + $Retires.title)
-                    $RetireSub = $Retires.Subscription
-                    $RetireDetails = $Retires.Details
-
-                    $Global:Document.Tables(12).Rows($LineCounter).Cells(1).Range.Text = $RetireName
-                    $Global:Document.Tables(12).Rows($LineCounter).Cells(2).Range.Text = $RetireSub
-                    $Global:Document.Tables(12).Rows($LineCounter).Cells(3).Range.Text = $RetireDetails
-
-                    $LineCounter ++
+                    foreach ($Retires in $Global:Retirements)
+                    {
+                        if($LineCounter -gt 3)
+                            {
+                                $Global:Document.Tables(12).Rows.Add() | Out-Null
+                            }
+                        $RetireName = ($Retires.'Tracking ID'+' - '+ $Retires.Status + ' : ' + $Retires.title)
+                        $RetireSub = $Retires.Subscription
+                        $RetireDetails = $Retires.Details
+    
+                        $Global:Document.Tables(12).Rows($LineCounter).Cells(1).Range.Text = $RetireName
+                        $Global:Document.Tables(12).Rows($LineCounter).Cells(2).Range.Text = $RetireSub
+                        $Global:Document.Tables(12).Rows($LineCounter).Cells(3).Range.Text = $RetireDetails
+    
+                        $LineCounter ++
+                    }
                 }
         }
         function WordSupports {
@@ -1451,21 +1470,24 @@ $Global:Runtime = Measure-Command -Expression {
             $Global:Document.Tables(11).Rows(2).Cells(4).Range.Text = ''
 
             $LineCounter = 2
-            foreach ($Ticket in $Global:SupportTickets)
+            if(![string]::IsNullOrEmpty($Global:SupportTickets))
                 {
-                    if($LineCounter -gt 3)
+                    foreach ($Ticket in $Global:SupportTickets)
                         {
-                            $Global:Document.Tables(11).Rows.Add() | Out-Null
+                            if($LineCounter -gt 3)
+                                {
+                                    $Global:Document.Tables(11).Rows.Add() | Out-Null
+                                }
+                            $TicketName = ($Ticket.'Ticket ID'+' - '+ $Ticket.Title)
+                            $CreatedDate = $Ticket.'Creation Date'
+
+                            $Global:Document.Tables(11).Rows($LineCounter).Cells(1).Range.Text = $TicketName
+                            $Global:Document.Tables(11).Rows($LineCounter).Cells(2).Range.Text = $CreatedDate
+                            $Global:Document.Tables(11).Rows($LineCounter).Cells(3).Range.Text = " "
+                            $Global:Document.Tables(11).Rows($LineCounter).Cells(4).Range.Text = " "
+
+                            $LineCounter ++
                         }
-                    $TicketName = ($Ticket.'Ticket ID'+' - '+ $Ticket.Title)
-                    $CreatedDate = $Ticket.'Creation Date'
-
-                    $Global:Document.Tables(11).Rows($LineCounter).Cells(1).Range.Text = $TicketName
-                    $Global:Document.Tables(11).Rows($LineCounter).Cells(2).Range.Text = $CreatedDate
-                    $Global:Document.Tables(11).Rows($LineCounter).Cells(3).Range.Text = " "
-                    $Global:Document.Tables(11).Rows($LineCounter).Cells(4).Range.Text = " "
-
-                    $LineCounter ++
                 }
         }
         function WordHealths {
@@ -1480,23 +1502,26 @@ $Global:Runtime = Measure-Command -Expression {
             $Global:Document.Tables(5).Rows(3).Cells(8).Range.Text = ''
 
             $LineCounter = 3
-            foreach ($Health in $Global:ServiceHealth)
+            if(![string]::IsNullOrEmpty($Global:ServiceHealth))
                 {
-                    if($LineCounter -gt 4)
+                    foreach ($Health in $Global:ServiceHealth)
                         {
-                            $Global:Document.Tables(5).Rows.Add() | Out-Null
-                        }
-                    $ActionGroup = $Health.'Action Group'
+                            if($LineCounter -gt 4)
+                                {
+                                    $Global:Document.Tables(5).Rows.Add() | Out-Null
+                                }
+                            $ActionGroup = $Health.'Action Group'
 
-                    $Global:Document.Tables(5).Rows($LineCounter).Cells(1).Range.Text = $Health.Subscription
-                    $Global:Document.Tables(5).Rows($LineCounter).Cells(2).Range.Text = $Health.Services
-                    $Global:Document.Tables(5).Rows($LineCounter).Cells(3).Range.Text = $Health.Regions
-                    $Global:Document.Tables(5).Rows($LineCounter).Cells(4).Range.Text = if($Health.'Event Type' -like '*Service Issues*' -or $Health.'Event Type' -eq 'All'){'Yes'}else{'No'}
-                    $Global:Document.Tables(5).Rows($LineCounter).Cells(5).Range.Text = if($Health.'Event Type' -like '*Planned Maintenance*' -or $Health.'Event Type' -eq 'All'){'Yes'}else{'No'}
-                    $Global:Document.Tables(5).Rows($LineCounter).Cells(6).Range.Text = if($Health.'Event Type' -like '*Health Advisories*' -or $Health.'Event Type' -eq 'All'){'Yes'}else{'No'}
-                    $Global:Document.Tables(5).Rows($LineCounter).Cells(7).Range.Text = if($Health.'Event Type' -like '*Security Advisory*' -or $Health.'Event Type' -eq 'All'){'Yes'}else{'No'}
-                    $Global:Document.Tables(5).Rows($LineCounter).Cells(8).Range.Text = $ActionGroup
-                    $LineCounter ++
+                            $Global:Document.Tables(5).Rows($LineCounter).Cells(1).Range.Text = $Health.Subscription
+                            $Global:Document.Tables(5).Rows($LineCounter).Cells(2).Range.Text = $Health.Services
+                            $Global:Document.Tables(5).Rows($LineCounter).Cells(3).Range.Text = $Health.Regions
+                            $Global:Document.Tables(5).Rows($LineCounter).Cells(4).Range.Text = if($Health.'Event Type' -like '*Service Issues*' -or $Health.'Event Type' -eq 'All'){'Yes'}else{'No'}
+                            $Global:Document.Tables(5).Rows($LineCounter).Cells(5).Range.Text = if($Health.'Event Type' -like '*Planned Maintenance*' -or $Health.'Event Type' -eq 'All'){'Yes'}else{'No'}
+                            $Global:Document.Tables(5).Rows($LineCounter).Cells(6).Range.Text = if($Health.'Event Type' -like '*Health Advisories*' -or $Health.'Event Type' -eq 'All'){'Yes'}else{'No'}
+                            $Global:Document.Tables(5).Rows($LineCounter).Cells(7).Range.Text = if($Health.'Event Type' -like '*Security Advisory*' -or $Health.'Event Type' -eq 'All'){'Yes'}else{'No'}
+                            $Global:Document.Tables(5).Rows($LineCounter).Cells(8).Range.Text = $ActionGroup
+                            $LineCounter ++
+                        }
                 }
         }
 
@@ -1512,8 +1537,9 @@ $Global:Runtime = Measure-Command -Expression {
 
 
     #Call the functions
-    $Version = 2.2.0
-    Write-Debug "Version $Version" 
+    $Version = "2.2.0"
+    Write-Host "Version: " -NoNewline
+    Write-Host $Version -ForegroundColor DarkGreen
 
     if ($Help.IsPresent) {
         Help
