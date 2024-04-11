@@ -8,7 +8,7 @@
   longDescription: |
     Azure leverages a multi-tier isolation approach (rack, DC, zone, region) for Cosmos DB's default resilience with four replicas.
   potentialBenefits: Enhances SLA and resilience
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -29,7 +29,7 @@
   longDescription: |
     Cosmos DB boasts high uptime and resiliency. Even so, issues may arise. With Service-Managed failover, if a region is down, Cosmos DB automatically switches to the next available region, requiring no user action.
   potentialBenefits: Auto failover for high uptime
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -48,7 +48,7 @@
   longDescription: |
     Multi-region write capability allows for designing applications that are highly available across multiple regions, though it demands careful attention to consistency requirements and conflict resolution. Improper setup may decrease availability and cause data corruption due to unhandled conflicts.
   potentialBenefits: Enhances high availability
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -69,7 +69,7 @@
   longDescription: |
     In a globally distributed database, consistency level impacts data durability in region-wide outages. For business continuity, gauge data loss tolerance post-disruption.
   potentialBenefits: Enhances data durability and recovery
-  pgVerified: Preview
+  pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
@@ -88,7 +88,7 @@
   longDescription: |
     Cosmos DB's backup is always on, offering protection against data mishaps. Continuous mode allows for self-serve restoration to a pre-mishap point, unlike periodic mode which requires contacting Microsoft support, leading to longer restore times.
   potentialBenefits: Faster self-serve data restore
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -107,7 +107,7 @@
   longDescription: |
     Cosmos DB has a 4 MB response limit, leading to paginated results for large or partition-spanning queries. Each page shows availability and provides a continuation token for the next. A while loop in code is necessary to traverse all pages until completion.
   potentialBenefits: Maximizes data retrieval efficiency
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
@@ -126,7 +126,7 @@
   longDescription: |
     Establishing and maintaining database connections is costly. Using a single instance of the SDK client for each account and application is crucial as connections are tied to the client. Compute environments have a limit on open connections, affecting connectivity when exceeded.
   potentialBenefits: Reduces costs and prevents connectivity issues
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
@@ -145,7 +145,7 @@
   longDescription: |
     Cosmos DB SDKs automatically manage many transient errors through retries. Despite this, it's crucial for applications to implement additional retry policies targeting specific cases that the SDKs can't generically address, ensuring more robust error handling.
   potentialBenefits: Enhances error handling resilience
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
@@ -164,7 +164,7 @@
   longDescription: |
     Monitoring the availability and responsiveness of Azure Cosmos DB resources and having alerts set up for your workload is a good practice. This ensures you stay proactive in handling unforeseen events.
   potentialBenefits: Proactive issue management
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no

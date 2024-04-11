@@ -8,7 +8,7 @@
   longDescription: |
     Production VM workloads should be deployed on multiple VMs and grouped in a VMSS Flex instance to intelligently distribute across the platform, minimizing the impact of platform faults and updates.
   potentialBenefits: Enhanced fault/update resilience
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -29,7 +29,7 @@
   longDescription: |
     Azure Availability Zones, within each Azure region, are tolerant to local failures, protecting applications and data against unlikely Datacenter failures by being physically separate.
   potentialBenefits: Enhanced VM resilience to failures
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -48,7 +48,7 @@
   longDescription: |
     Availability sets will soon be retired. Migrate workloads from VMs to VMSS Flex for deployment across zones or within the same zone across different fault domains (FDs) and update domains (UDs) for better reliability.
   potentialBenefits: Enhances reliability and future-proofs VMs
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -67,7 +67,7 @@
   longDescription: |
     Replicating Azure VMs via Site Recovery entails continuous, asynchronous disk replication to a target region. Recovery points are generated every few minutes, ensuring a Recovery Point Objective (RPO) in minutes.
   potentialBenefits: Minimize downtime in disasters
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -88,7 +88,7 @@
   longDescription: |
     Azure is retiring unmanaged disks on September 30, 2025. Users should plan the migration to avoid disruptions and maintain service reliability.
   potentialBenefits: Avoid retirement disruption, enhance reliability
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -111,7 +111,7 @@
   longDescription: |
     A data disk is a managed disk attached to a virtual machine for storing database or other essential data. These disks are SCSI drives labeled as per choice.
   potentialBenefits: Enhances performance, recovery, migration flexibility
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -132,7 +132,7 @@
   longDescription: |
     Enable backups for your virtual machines with Azure Backup to secure and quickly recover your data. This service offers simple, secure, and cost-effective solutions for backing up and recovering data from the Microsoft Azure cloud.
   potentialBenefits: Secure data recovery and backup
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -151,7 +151,7 @@
   longDescription: |
     Premium SSD disks support I/O-intensive apps with high performance, low latency, ideal for production. Standard SSDs offer cost-effective solutions for less critical workloads with consistent performance.
   potentialBenefits: High-performance and reliability for critical apps
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -170,7 +170,7 @@
   longDescription: |
     Azure Virtual Machines (VM) instances have various states, like provisioning and power states. A non-running VM may indicate issues or it being unnecessary, suggesting removal could help cut costs.
   potentialBenefits: Reduce costs by removing unused VMs
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -189,7 +189,7 @@
   longDescription: |
     Accelerated networking enables SR-IOV to a VM, greatly improving its networking performance by bypassing the host from the data path, which reduces latency, jitter, and CPU utilization for demanding network workloads on supported VM types.
   potentialBenefits: Reduces latency, jitter and CPU use
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -208,7 +208,7 @@
   longDescription: |
     When Accelerated Networking is enabled, the default Azure VNet interface in GuestOS is swapped for a Mellanox, and its driver comes from a 3rd party. Marketplace images have the latest Mellanox drivers, but post-deployment, updating the driver is the user's responsibility.
   potentialBenefits: Enhanced VM network efficiency
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
@@ -227,7 +227,7 @@
   longDescription: |
     For outbound internet connectivity of Virtual Machines, using NAT Gateway or Azure Firewall is recommended to enhance security and service resilience, thanks to their higher availability and SNAT ports.
   potentialBenefits: Enhanced security and service resiliency
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -246,7 +246,7 @@
   longDescription: |
     Unless you have a specific reason, it's advised to associate a network security group to a subnet or a network interface, but not both, to avoid unexpected communication issues and troubleshooting due to potential rule conflicts between the two associations.
   potentialBenefits: Reduces communication problems
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -265,7 +265,7 @@
   longDescription: |
     IP forwarding allows a virtual machine network interface to receive and send network traffic not destined for or originating from its assigned IP addresses.
   potentialBenefits: Enhances network appliance function
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -284,7 +284,7 @@
   longDescription: |
     Configure the DNS Server at the Virtual Network level to prevent any inconsistency across the environment.
   potentialBenefits: Ensures DNS consistency
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -303,7 +303,7 @@
   longDescription: |
     Azure shared disks let you attach a disk to multiple VMs at once for deploying or migrating clustered applications, suitable only when a disk is shared among VM cluster members.
   potentialBenefits: Enhances clustered server performance
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -324,7 +324,7 @@
   longDescription: |
     Recommended changing to "Disable public access and enable private access" and creating a Private Endpoint to improve security by restricting direct public access and ensuring connections are made privately, enhancing data protection and minimizing potential external threats.
   potentialBenefits: Enhances VM security and privacy
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -343,7 +343,7 @@
   longDescription: |
     Keeping your virtual machine (VM) secure is crucial for the applications you run. This involves using various Azure services and features to ensure secure access to your VMs and the secure storage of your data, aiming for overall security of your VM and applications.
   potentialBenefits: Secure VMs and applications
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -364,7 +364,7 @@
   longDescription: |
     Azure Disk Storage encrypts data at rest automatically for managed disks, including OS and data disks.
   potentialBenefits: Enhances data security and integrity
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
@@ -383,7 +383,7 @@
   longDescription: |
     VM Insights monitors VM and scale set performance, health, running processes, and dependencies. It enhances the predictability of application performance and availability by pinpointing performance bottlenecks and network issues, and it clarifies if problems are related to other dependencies.
   potentialBenefits: Improves VM performance and health
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -404,7 +404,7 @@
   longDescription: |
     Azure Monitor Metrics automatically receives platform metrics, but platform logs, which offer detailed diagnostics and auditing for resources and their Azure platform, need to be manually routed for collection.
   potentialBenefits: Enhanced diagnostics and auditing capability
-  pgVerified: Preview
+  pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -423,7 +423,7 @@
   longDescription: |
     The maintenance configuration settings let users schedule and manage updates, making sure the updates or interruptions on the VM are performed within a planned timeframe.
   potentialBenefits: Scheduled updates for VMs
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -442,7 +442,7 @@
   longDescription: |
     A-series VMs are tailored for entry-level workloads like development and testing, including use cases such as development and test servers, low traffic web servers, and small to medium databases.
   potentialBenefits: Ensures full CPU usage for heavy tasks
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -461,7 +461,7 @@
   longDescription: |
     Azure Premium SSDs provide high-performance, low-latency for IO-intensive VM workloads. Premium SSD v2 offers better performance at a lower cost, with adjustable capacity, throughput, IOPS, ideal for shifting needs, but not as OS Disks.
   potentialBenefits: Enhanced performance and cost efficiency
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -480,7 +480,7 @@
   longDescription: |
     If the workload is Maintenance sensitive, consider using Azure Boost compatible VMs designed to lessen the impact on customers when Azure maintenance activities occur.
   potentialBenefits: Less maintenance impact
-  pgVerified: Preview
+  pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
@@ -501,7 +501,7 @@
   longDescription: |
     If your workload is Maintenance sensitive, enable Scheduled Events. This Azure Metadata Service lets your app prepare for virtual machine maintenance by providing information on upcoming events like reboots, reducing disruptions.
   potentialBenefits: Minimize downtime for VMs
-  pgVerified: Preview
+  pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no

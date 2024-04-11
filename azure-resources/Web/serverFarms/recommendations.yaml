@@ -8,7 +8,7 @@
   longDescription: |
     Azure's feature of deploying App Service plans across availability zones enhances resiliency and reliability by ensuring operation during datacenter failures, providing redundancy without needing different regions, thus minimizing downtime and maintaining uninterrupted services.
   potentialBenefits: Enhances app resiliency and reliability
-  pgVerified: Preview
+  pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -29,7 +29,7 @@
   longDescription: |
     Choose Standard/Premium Azure App Service Plan for robust apps with advanced scaling, high availability, better performance, and multiple slots, ensuring resilience and continuous operation.
   potentialBenefits: Enhanced scaling and reliability
-  pgVerified: Preview
+  pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -48,7 +48,7 @@
   longDescription: |
     Avoid frequent scaling up/down of Azure App Service instances to prevent service disruptions. Choose the right tier and size for the workload and scale out for traffic changes, as scaling adjustments can trigger application restarts.
   potentialBenefits: Minimizes restarts, enhances stability
-  pgVerified: Preview
+  pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -67,7 +67,7 @@
   longDescription: |
     It is strongly recommended to create separate App Service plans for production and test environments to avoid using slots within your production deployment for testing purposes.
   potentialBenefits: Protects prod performance; avoids test impact
-  pgVerified: Preview
+  pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
@@ -86,7 +86,7 @@
   longDescription: |
     Enabling Autoscale/Automatic Scaling for your Azure App Service ensures sufficient resources for incoming requests. Autoscaling is rule-based, whereas Automatic Scaling, a newer feature, automatically adjusts resources based on HTTP traffic.
   potentialBenefits: Optimizes resources for traffic
-  pgVerified: Preview
+  pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no

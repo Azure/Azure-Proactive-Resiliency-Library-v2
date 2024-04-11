@@ -17,7 +17,7 @@
     - Communicating with stakeholders about the problem.
     - After the problem has been remediated, you can then learn from the incident through a post-incident review process. That's an important subject which has a whole separate module worth of discussion.
   potentialBenefits: Quicker recovery, less impact
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
@@ -38,7 +38,7 @@
   longDescription: |
     This is just a test recommendation.
   potentialBenefits: Quicker recovery, less impact
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No

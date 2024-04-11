@@ -8,7 +8,7 @@
   longDescription: |
     If your primary database fails, perform a manual failover to the secondary database which remains read-only until then. Active geo-replication allows creating readable replicas and manual failover in case of a datacenter outage or application upgrade.
   potentialBenefits: Enhanced disaster recovery and read scalability
-  pgVerified: Preview
+  pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -27,7 +27,7 @@
   longDescription: |
     You can use the readable secondary databases to offload read-only query workloads. Autofailover groups involve multiple databases configured on a primary server, supporting replication of all databases in the group to only one secondary server or instance in a different region.
   potentialBenefits: Improves load balancing and disaster recovery
-  pgVerified: Preview
+  pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -48,7 +48,7 @@
   longDescription: |
     By default, the premium availability model clusters nodes in one datacenter.
   potentialBenefits: Enhanced reliability, no extra cost
-  pgVerified: Preview
+  pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -67,7 +67,7 @@
   longDescription: |
     Azure SQL Database, known for its resilience to infrastructure failures, can occasionally encounter connectivity issues due to transient errors. Implementing retry logic in your code ensures continued operation by reattempting failed calls, maintaining smooth database interaction.
   potentialBenefits: Enhanced connectivity stability
-  pgVerified: Preview
+  pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
@@ -86,7 +86,7 @@
   longDescription: |
     Use available solutions to monitor SQL Database to detect reliability incidents early, making your databases more reliable. Opt for near real-time monitoring to rapidly react to incidents.
   potentialBenefits: Quick incident detection and response
-  pgVerified: Preview
+  pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -109,7 +109,7 @@
   longDescription: |
     It is highly recommended to use Azure Key Vault to store encryption keys for Always Encrypted configurations. Though not mandatory, if not using AKV, ensure keys are properly backed up.
   potentialBenefits: Enhanced security and data recovery
-  pgVerified: Preview
+  pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no

@@ -8,7 +8,7 @@
   longDescription: |
     Ensure Azure Service Health notifications are set for Azure VMware Solution across all used regions and subscriptions. This communicates service/security issues and maintenance activities like host replacements and upgrades, reducing service request submissions.
   potentialBenefits: Prompt mitigation of issues.
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -27,7 +27,7 @@
   longDescription: |
     Set an alert for when the node count in Azure VMware Solution Private Cloud hits or exceeds 90 hosts, enabling timely planning for a new private cloud.
   potentialBenefits: Proactive capacity planning
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
@@ -46,7 +46,7 @@
   longDescription: |
     Alert when the cluster size reaches 14 hosts. Set up periodic alerts for planning new clusters or datastores due to growth, especially from storage needs. Beyond 14 hosts, trigger alerts for each new host addition for proactive resource monitoring.
   potentialBenefits: Proactive resource management
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
@@ -65,7 +65,7 @@
   longDescription: |
     For Azure VMware Solution, enabling Stretched Clusters offers 99.99% SLA, synchronous storage replication (RPO=0), and spreads vSAN datastore across two AZs. Must be done at initial setup, needing double quota due to extension across AZs.
   potentialBenefits: 99.99% SLA, 0 RPO, Multi-AZ
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -86,7 +86,7 @@
   longDescription: |
     Ensure VMware vSAN datastore slack space is maintained for SLA by monitoring storage utilization and setting alerts at 70% and 75% utilization to allow for capacity planning. To expand, add hosts or external storage like Azure Elastic SAN, Azure NetApp Files, if CPU and RAM requirements are met.
   potentialBenefits: Optimized capacity planning for vSAN
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -105,7 +105,7 @@
   longDescription: |
     Ensure Diagnostic Settings are configured for each private cloud to send syslogs to external sources for analysis and/or archiving. Azure VMware Solution Syslogs contain data for troubleshooting and performance, aiding quicker issue resolution and early detection of issues.
   potentialBenefits: Faster issue resolution, early detection
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
@@ -124,7 +124,7 @@
   longDescription: |
     Ensure sufficient compute resources to avoid host resource exhaustion in Azure VMware Solution, which utilizes vSphere DRS and HA for dynamic workload resource management. However, sustained CPU utilization over 95% may increase CPU Ready times, impacting workloads.
   potentialBenefits: Avoids resource exhaustion, optimizes performance
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -143,7 +143,7 @@
   longDescription: |
     Ensure sufficient memory resources to prevent host resource exhaustion in Azure VMware Solution. It uses vSphere DRS and vSphere HA for dynamic workload management. Yet, continuous memory use over 95% leads to disk swapping, affecting workloads.
   potentialBenefits: Avoids host exhaustion and swapping
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -162,7 +162,7 @@
   longDescription: |
     Applying a resource delete lock to the Azure VMware Solution Private Cloud resource group prevents unauthorized or accidental deletion by anyone with contributor access, ensuring the protection and reliability of the Azure VMware Solution Private Cloud.
   potentialBenefits: Prevents accidental deletion
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
@@ -181,7 +181,7 @@
   longDescription: |
     When using customer-managed keys for encrypting vSAN datastores, leveraging Azure Key Vault for central management and accessing them via a managed identity linked to the private cloud is advised. The expiration of these keys can render the vSAN datastore and its associated workloads inaccessible.
   potentialBenefits: Avoid outages with key auto-rotation
-  pgVerified: Preview
+  pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
@@ -200,7 +200,7 @@
   longDescription: |
     Azure VMware Solution private clouds support up to three DNS servers for a single FQDN, preventing a single DNS server from becoming a point of failure. It's crucial to use multiple DNS servers for on-premises FQDN resolution from each private cloud.
   potentialBenefits: Enhances reliability and avoids failure
-  pgVerified: Preview
+  pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no

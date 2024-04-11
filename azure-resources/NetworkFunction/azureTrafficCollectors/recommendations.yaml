@@ -8,7 +8,7 @@
   longDescription: |
     ExpressRoute Traffic Collector samples network flows over ExpressRoute Direct circuits, sending flow logs to a Log Analytics workspace for analysis or export to visualization tools/SIEM.
   potentialBenefits: Enhanced network flow analysis and DR readiness
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no

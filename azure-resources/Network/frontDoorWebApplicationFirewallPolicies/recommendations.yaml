@@ -8,7 +8,7 @@
   longDescription: |
     WAF may mistakenly block legitimate requests (false positives). These can be identified by examining the last 24 hours of blocked requests in Log Analytics.
   potentialBenefits: Reduces false positives, improves access
-  pgVerified: Preview
+  pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
@@ -33,7 +33,7 @@
   longDescription: |
     WAF may block legitimate requests as false positives. Identifying blocked requests within the last 24 hours through Log Analytics can help manage and mitigate these incorrect blockages efficiently.
   potentialBenefits: Improve false positive identification
-  pgVerified: Preview
+  pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
@@ -54,7 +54,7 @@
   longDescription: |
     Monitoring the health of your Web Application Firewall and the applications it protects is crucial. This can be achieved through integration with Microsoft Defender for Cloud, Azure Monitor, and Azure Monitor logs, ensuring optimal performance and security.
   potentialBenefits: Enhanced security and health insight
-  pgVerified: Preview
+  pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no

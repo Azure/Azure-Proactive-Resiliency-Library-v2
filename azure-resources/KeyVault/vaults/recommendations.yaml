@@ -8,7 +8,7 @@
   longDescription: |
     Key Vault's soft-delete feature enables recovery of deleted vaults and objects like keys, secrets, and certificates. When enabled, marked resources are retained for 90 days, allowing for their recovery, essentially undoing deletion.
   potentialBenefits: Enables recovery of deleted items
-  pgVerified: Preview
+  pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -27,7 +27,7 @@
   longDescription: |
     Purge protection secures against malicious deletions by enforcing a retention period for soft deleted key vaults, ensuring no one, not even insiders or Microsoft, can purge your key vaults during this period, preventing permanent data loss.
   potentialBenefits: Protects from insider attacks, avoids data loss
-  pgVerified: Preview
+  pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -46,7 +46,7 @@
   longDescription: |
     Azure Private Link Service lets you securely and privately connect to Azure Key Vault via a Private Endpoint in your VNet, using a private IP and eliminating public Internet exposure.
   potentialBenefits: Secure Key Vault with Private Link
-  pgVerified: Preview
+  pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -65,7 +65,7 @@
   longDescription: |
     Key vaults are security boundaries for secret storage. Grouping secrets together increases risk during a security event, as attacks could access multiple secrets.
   potentialBenefits: Enhanced security, Reduced risk
-  pgVerified: Preview
+  pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
@@ -84,7 +84,7 @@
   longDescription: |
     Enable logs, set up alerts, and adhere to retention requirements for improved monitoring and security of Key Vault access, detailing the frequency and identity of users.
   potentialBenefits: Enhanced monitoring and security compliance
-  pgVerified: Preview
+  pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg

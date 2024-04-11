@@ -10,7 +10,7 @@
 
     Consider if component proximity is required for application performance reasons. If all or part of the application is highly sensitive to latency, components might need to be co-located which can limit the applicability of multi-region and multi-zone strategies.
   potentialBenefits: Enhanced app availability and fault tolerance
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
@@ -33,7 +33,7 @@
 
     An active-active configuration distributes requests across multiple active regions. An active-passive configuration keeps warm instances in the secondary region, but doesn't send traffic there unless the primary region fails.
   potentialBenefits: Enhances app availability and SLA compliance
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
@@ -58,7 +58,7 @@
 
     Identify all fault-points and fault-modes. Fault-points describe the elements within an application architecture which can fail, while fault-modes capture the various ways by which a fault-point may fail. To ensure an application is resilient to end-to-end failures, it is essential that all fault-points and fault-modes are understood and operationalized.
   potentialBenefits: Enhanced system resiliency
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
@@ -79,7 +79,7 @@
 
     Developers use the platform to build apps without having to manage backups, security solutions, upgrades, and other administrative tasks.
   potentialBenefits: Saves time, enhances security, simplifies app lifecycle
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
@@ -100,7 +100,7 @@
 
     For example, scale in and out for App Service is done via rules. Often customers write scale out rules and never write scale in rules, which leaves the App Service more expensive.
   potentialBenefits: Enhances scalability and cost efficiency
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
@@ -124,7 +124,7 @@
     - Consistent adoption of organizational policies, enforce creation and deletion of services and their configuration through Azure Policy.
     - Configurations that align with principles of Zero Trust. For instance an implementation might have network connectivity to on-premises data centers.
   potentialBenefits: Enhances security and speeds deployment
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
@@ -155,7 +155,7 @@
     - Automate failover and failback steps and processes.
     - Test and validate the failover and failback approach successfully at least once.
       potentialBenefits: Minimizes disaster impact, ensures operational continuity
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
@@ -179,7 +179,7 @@
     - Prevent deletion or modification of a resource, resource group, or subscription through management locks.
     - Use managed identities to access resources in Azure.
   potentialBenefits: Enhanced access control and security
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
@@ -206,7 +206,7 @@
     - Ensure that the process for key rotation is automated and tested.
     - Emergency access break glass accounts have been tested and secured for recovering from Identity provider failure scenarios.
   potentialBenefits: Minimizes downtime and data loss
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
