@@ -6,7 +6,9 @@
   recommendationResourceType: WellArchitected/Design
   recommendationMetadataState: Active
   longDescription: |
-    Design your application architecture to use availability zones within a region. Availability zones can be used to optimize application availability within a region by providing datacenter-level fault tolerance. However, the application architecture must not share dependencies between zones to use them effectively. Consider if component proximity is required for application performance reasons. If all or part of the application is highly sensitive to latency, components might need to be co-located which can limit the applicability of multi-region and multi-zone strategies.
+    Design your application architecture to use availability zones within a region. Availability zones can be used to optimize application availability within a region by providing datacenter-level fault tolerance. However, the application architecture must not share dependencies between zones to use them effectively.
+
+    Consider if component proximity is required for application performance reasons. If all or part of the application is highly sensitive to latency, components might need to be co-located which can limit the applicability of multi-region and multi-zone strategies.
   potentialBenefits: Enhanced app availability and fault tolerance
   pgVerified: Verified
   publishedToLearn: false
@@ -25,7 +27,11 @@
   recommendationResourceType: WellArchitected/Design
   recommendationMetadataState: Active
   longDescription: |
-    If your application is deployed to a single region, and the region becomes unavailable, your application will also be unavailable. This might be unacceptable under the terms of your application's SLA. If so, consider deploying your application and its services across multiple regions. A multiregional deployment can use an active-active or active-passive configuration. An active-active configuration distributes requests across multiple active regions. An active-passive configuration keeps warm instances in the secondary region, but doesn't send traffic there unless the primary region fails.
+    If your application is deployed to a single region, and the region becomes unavailable, your application will also be unavailable. This might be unacceptable under the terms of your application's SLA.
+
+    If so, consider deploying your application and its services across multiple regions. A multiregional deployment can use an active-active or active-passive configuration.
+
+    An active-active configuration distributes requests across multiple active regions. An active-passive configuration keeps warm instances in the secondary region, but doesn't send traffic there unless the primary region fails.
   potentialBenefits: Enhances app availability and SLA compliance
   pgVerified: Verified
   publishedToLearn: false
@@ -46,7 +52,11 @@
   recommendationResourceType: WellArchitected/Design
   recommendationMetadataState: Active
   longDescription: |
-    Ensure that all fault-points and fault-modes are understood and operationalized. Failure mode analysis (FMA) is a process for building resiliency into a system, by identifying possible failure points in the system. The FMA should be part of the architecture and design phases, so that you can build failure recovery into the system from the beginning. Identify all fault-points and fault-modes. Fault-points describe the elements within an application architecture which can fail, while fault-modes capture the various ways by which a fault-point may fail. To ensure an application is resilient to end-to-end failures, it is essential that all fault-points and fault-modes are understood and operationalized.
+    Ensure that all fault-points and fault-modes are understood and operationalized.
+
+    Failure mode analysis (FMA) is a process for building resiliency into a system, by identifying possible failure points in the system. The FMA should be part of the architecture and design phases, so that you can build failure recovery into the system from the beginning.
+
+    Identify all fault-points and fault-modes. Fault-points describe the elements within an application architecture which can fail, while fault-modes capture the various ways by which a fault-point may fail. To ensure an application is resilient to end-to-end failures, it is essential that all fault-points and fault-modes are understood and operationalized.
   potentialBenefits: Enhanced system resiliency
   pgVerified: Verified
   publishedToLearn: false
@@ -65,7 +75,9 @@
   recommendationResourceType: WellArchitected/Design
   recommendationMetadataState: Active
   longDescription: |
-    PaaS provides a framework for developing and running apps. As with IaaS, the PaaS provider hosts and maintains the platform's servers, networks, storage, and other computing resources. But PaaS also includes tools, services, and systems that support the web application lifecycle. Developers use the platform to build apps without having to manage backups, security solutions, upgrades, and other administrative tasks.
+    PaaS provides a framework for developing and running apps. As with IaaS, the PaaS provider hosts and maintains the platform's servers, networks, storage, and other computing resources. But PaaS also includes tools, services, and systems that support the web application lifecycle.
+
+    Developers use the platform to build apps without having to manage backups, security solutions, upgrades, and other administrative tasks.
   potentialBenefits: Saves time, enhances security, simplifies app lifecycle
   pgVerified: Verified
   publishedToLearn: false
@@ -129,8 +141,20 @@
   recommendationResourceType: WellArchitected/Design
   recommendationMetadataState: Active
   longDescription: |
-    Disaster recovery is the process of restoring application functionality after a catastrophic loss. In cloud environments, we acknowledge up front that failures happen. Instead of trying to prevent failures altogether, the goal is to minimize the effects of a single failing component. Testing is one way to minimize these effects. You should automate testing of your applications where possible, but you also need to be prepared for when they fail. When a failure happens, having backup and recovery strategies becomes important. Your tolerance for reduced functionality during a disaster is a business decision that varies from one application to the next. It might be acceptable for some applications to be temporarily unavailable, or partially available with reduced functionality or delayed processing. For other applications, any reduced functionality is unacceptable. Key points: - Create and test a disaster recovery plan regularly using key failure scenarios. - Design a disaster recovery strategy to run most applications with reduced functionality. - Design a backup strategy that's tailored for the business requirements and circumstances of the application. - Automate failover and failback steps and processes. - Test and validate the failover and failback approach successfully at least once.
-  potentialBenefits: Minimizes disaster impact, ensures operational continuity
+    Disaster recovery is the process of restoring application functionality after a catastrophic loss. In cloud environments, we acknowledge up front that failures happen. Instead of trying to prevent failures altogether, the goal is to minimize the effects of a single failing component.
+
+    Testing is one way to minimize these effects. You should automate testing of your applications where possible, but you also need to be prepared for when they fail. When a failure happens, having backup and recovery strategies becomes important. Your tolerance for reduced functionality during a disaster is a business decision that varies from one application to the next.
+
+    It might be acceptable for some applications to be temporarily unavailable, or partially available with reduced functionality or delayed processing. For other applications, any reduced functionality is unacceptable.
+
+    Key points:
+
+    - Create and test a disaster recovery plan regularly using key failure scenarios.
+    - Design a disaster recovery strategy to run most applications with reduced functionality.
+    - Design a backup strategy that's tailored for the business requirements and circumstances of the application.
+    - Automate failover and failback steps and processes.
+    - Test and validate the failover and failback approach successfully at least once.
+      potentialBenefits: Minimizes disaster impact, ensures operational continuity
   pgVerified: Verified
   publishedToLearn: false
   publishedToAdvisor: false
@@ -148,7 +172,12 @@
   recommendationResourceType: WellArchitected/Design
   recommendationMetadataState: Active
   longDescription: |
-    Provide security assurance through identity management: the process of authenticating and authorizing security principals. Use identity management services to authenticate and grant permission to users, partners, customers, applications, services, and other entities. Identity management is typically a centralized function not controlled by the workload team as a part of the workload's architecture. - Define clear lines of responsibility and separation of duties for each function. Restrict access based on a need-to-know basis and least privilege security principles. - Assign permissions to users, groups, and applications at a certain scope through Azure RBAC. Use built-in roles when possible. - Prevent deletion or modification of a resource, resource group, or subscription through management locks. - Use managed identities to access resources in Azure.
+    Provide security assurance through identity management: the process of authenticating and authorizing security principals. Use identity management services to authenticate and grant permission to users, partners, customers, applications, services, and other entities. Identity management is typically a centralized function not controlled by the workload team as a part of the workload's architecture.
+
+    - Define clear lines of responsibility and separation of duties for each function. Restrict access based on a need-to-know basis and least privilege security principles.
+    - Assign permissions to users, groups, and applications at a certain scope through Azure RBAC. Use built-in roles when possible.
+    - Prevent deletion or modification of a resource, resource group, or subscription through management locks.
+    - Use managed identities to access resources in Azure.
   potentialBenefits: Enhanced access control and security
   pgVerified: Verified
   publishedToLearn: false
@@ -167,7 +196,15 @@
   recommendationResourceType: WellArchitected/Design
   recommendationMetadataState: Active
   longDescription: |
-    Security is one of the most important aspects of any architecture. It provides the following assurances against deliberate attacks and abuse of your valuable data and systems: Confidentiality ,Integrity, and Availability. The security of complex systems depends on understanding the business context, social context, and technical context. As you design your system, cover these areas: - Ensure that the identity provider (AAD/ADFS/AD/Other) is highly available and aligns with application availability and recovery targets. - All external application endpoints are secured. - Communication to Azure PaaS services secured using Virtual Network Service Endpoints or Private Link. - Keys and secrets are backed-up to geo-redundant storage, and are still available in a failover case. - Ensure that the process for key rotation is automated and tested. - Emergency access break glass accounts have been tested and secured for recovering from Identity provider failure scenarios.
+    Security is one of the most important aspects of any architecture. It provides the following assurances against deliberate attacks and abuse of your valuable data and systems: Confidentiality ,Integrity, and Availability.
+    The security of complex systems depends on understanding the business context, social context, and technical context. As you design your system, cover these areas:
+
+    - Ensure that the identity provider (AAD/ADFS/AD/Other) is highly available and aligns with application availability and recovery targets.
+    - All external application endpoints are secured.
+    - Communication to Azure PaaS services secured using Virtual Network Service Endpoints or Private Link.
+    - Keys and secrets are backed-up to geo-redundant storage, and are still available in a failover case.
+    - Ensure that the process for key rotation is automated and tested.
+    - Emergency access break glass accounts have been tested and secured for recovering from Identity provider failure scenarios.
   potentialBenefits: Minimizes downtime and data loss
   pgVerified: Verified
   publishedToLearn: false
