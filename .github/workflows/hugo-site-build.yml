@@ -10,6 +10,11 @@ on:
       - "docs/**"
       - "azure-resources/**/recommendations.yaml"
       - "azure-resources/**/*.md"
+      - "azure-specialized-workloads/**/recommendations.yaml"
+      - "azure-specialized-workloads/**/*.md"
+      - "azure-waf/**/recommendations.yaml"
+      - "azure-waf/**/*.md"
+
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch: {}
