@@ -17,7 +17,7 @@
     - name: Setup network mapping for site recovery
       url: "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-network-mapping#set-up-ip-addressing-for-target-vms"
 
-- description: Validate VM functionality with a Site Recovery test failover in Site to check performance at target
+- description: Validate VM functionality with a Site Recovery test failover to check performance at target
   aprlGuid: 17e877f7-3a89-4205-8a24-0670de54ddcd
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
