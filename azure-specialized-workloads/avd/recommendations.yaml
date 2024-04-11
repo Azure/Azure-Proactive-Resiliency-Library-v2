@@ -19,27 +19,6 @@
     - name: Private Link
       url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-virtual-desktop/networking#private-endpoints-private-link"
 
-- description: Monitor Service Health and Resource Health of AVD
-  aprlGuid: a75a20e7-8cc0-4f7b-b4a9-e2476bd72429
-  recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
-  recommendationImpact: High
-  recommendationResourceType: n/a
-  recommendationMetadataState: Active
-  longDescription: |
-    Use Service Health to stay informed about the health of the Azure services and regions that you use to insure their availability.
-    Set up Service Health alerts so that you stay aware of service issues, planned maintenance, or other changes that might affect your Azure Virtual Desktop resources.
-    Use Resource Health to monitor your VMs and storage solutions.
-  potentialBenefits: Enhanced AVD uptime and awareness
-  pgVerified: Verified
-  publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
-  tags: null
-  learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-virtual-desktop/monitoring#resource-health"
-
 - description: Deploy Domain Controllers and DNS Servers in Azure Virtual Network Across Availability Zones
   aprlGuid: 99bf5c94-aa68-4bb3-8b7f-45d1c5f09b5d
   recommendationTypeId: null
@@ -189,25 +168,6 @@
       url: "https://learn.microsoft.com/en-us/fslogix/overview-what-is-fslogix"
     - name: Backup Storage Account
       url: https://learn.microsoft.com/en-us/azure/backup/blob-backup-configure-manage?tabs=operational-backup
-
-- description: Scaling plans should be created per region and not scaled across regions
-  aprlGuid: e091419d-10ba-4a8e-bdb0-67380cc021a9
-  recommendationTypeId: null
-  recommendationControl: Disaster Recovery
-  recommendationImpact: Medium
-  recommendationResourceType: n/a
-  recommendationMetadataState: Active
-  longDescription: |
-    Each region has its own scaling plans assigned to host pools within that region. However, these plans can become inaccessible if there's a regional failure. To mitigate this risk, it's advisable to create a secondary scaling plan in another region.
-  potentialBenefits: Enhances reliability across failures
-  pgVerified: Verified
-  publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
-  tags: null
-  learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/virtual-desktop/autoscale-scaling-plan?tabs=portal"
 
 - description: Validate AVD Session Host Connectivity to the AVD Control Plane and UDP Ports open if in use
   aprlGuid: e718ac1a-ebab-4f75-9e4a-1a5ccef20d1f
