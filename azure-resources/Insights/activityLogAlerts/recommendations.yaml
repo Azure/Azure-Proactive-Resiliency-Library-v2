@@ -8,7 +8,7 @@
   longDescription: |
     Configure Resource Health Alerts for all applicable resources to stay informed about the current and historical health status of your Azure resources. They notify you when these resources have a change in their health status.
   potentialBenefits: Stay informed on resource status
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
@@ -31,7 +31,7 @@
   longDescription: |
     Service health gives a personalized health view of Azure services and regions used, offering the best place for notifications on outages, planned maintenance, and health advisories by knowing the services used.
   potentialBenefits: Proactive outage and maintenance alerts
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg

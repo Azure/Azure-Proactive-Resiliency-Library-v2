@@ -14,7 +14,7 @@
 
     For example, if you are striving to achieve an application Service Level Objective (SLO) of 99.999%, the level of inherent operational action required by the application is going to be far greater than if an SLO of 99.9% was the goal.
   potentialBenefits: Enhances reliability and communication
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
@@ -45,7 +45,7 @@
     - Mean Time Between Failures (MTBF) — The average time between failures of a particular component.
     - Mean Time to Recover (MTTR) — The average time it takes to restore a component after a failure.
   potentialBenefits: Improved recovery times and data loss prevention
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No

@@ -8,7 +8,7 @@
   longDescription: |
     Enable HA with zone redundancy on flexible server instances to deploy a standby replica in a different zone, offering automatic failover capability for improved reliability and disaster recovery.
   potentialBenefits: Enhanced uptime and data protection
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -27,7 +27,7 @@
   longDescription: |
     Use custom maintenance schedule on flexible server instances to select a preferred time for service updates to be applied.
   potentialBenefits: Control update timings
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg

@@ -8,7 +8,7 @@
   longDescription: |
     Service levels, part of capacity pool attributes, determine the maximum throughput per volume quota in Azure NetApp Files. It combines read and write speed, offering three levels: Standard (16 MiB/s per 1TiB), Premium (64 MiB/s per 1TiB), and Ultra (128 MiB/s per 1TiB) throughput.
   potentialBenefits: Optimized performance and cost efficiency
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
@@ -27,7 +27,7 @@
   longDescription: |
     Standard network feature in Azure NetApp Files enhances IP limits and VNet capabilities, including network security groups, user-defined routes on subnets, and diverse connectivity options.
   potentialBenefits: Enhanced connectivity and security
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -46,7 +46,7 @@
   longDescription: |
     Azure availability zones are distinct locations within each Azure region designed to withstand local failures through redundancy and logical isolation, improving service resiliency with at least three zones in enabled regions.
   potentialBenefits: Enhances disaster recovery
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -65,7 +65,7 @@
   longDescription: |
     Azure NetApp Files snapshot technology ensures stability, scalability, and swift data recoverability without affecting performance. It supports automatic snapshot creation via policies for Azure NetApp Files data.
   potentialBenefits: Stable, scalable, swift recovery, no perf impact
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -84,7 +84,7 @@
   longDescription: |
     Azure NetApp Files offers a fully managed backup solution enhancing long-term recovery, archiving, and compliance.
   potentialBenefits: Enhances data recovery and compliance
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -103,7 +103,7 @@
   longDescription: |
     Azure NetApp Files replication offers data protection by allowing asynchronous cross-region volume replication for application failover in case of regional outages. Volumes can be replicated across regions, not concurrently with cross-zone replication.
   potentialBenefits: Enhanced data protection and disaster recovery
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -122,7 +122,7 @@
   longDescription: |
     The cross-zone replication (CZR) feature enables asynchronous data replication between Azure NetApp Files volumes across different availability zones, ensuring data protection and critical application failover in case of zone-wide disasters.
   potentialBenefits: Enhances disaster recovery
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -141,7 +141,7 @@
   longDescription: |
     Azure NetApp Files offers metrics like allocated storage, actual usage, volume IOPS, and latency, enabling a better understanding of usage patterns and volume performance for NetApp accounts.
   potentialBenefits: Optimize usage and performance
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
@@ -160,7 +160,7 @@
   longDescription: |
     Azure NetApp Files supports Azure policy integration using either built-in policy definitions or by creating custom ones to maintain organizational standards and compliance.
   potentialBenefits: Enforce standards and assess compliance
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
@@ -181,7 +181,7 @@
   longDescription: |
     Access to the delegated subnet should be limited to specific Azure Virtual Networks. SMB-enabled volumes' share permissions should move away from 'Everyone/Full control'. NFS-enabled volumes' access needs to be controlled via export policies and/or NFSv4.1 ACLs.
   potentialBenefits: Enhanced security, Reduced data breach risk
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
@@ -208,7 +208,7 @@
   longDescription: |
     Certain SMB applications need SMB Transparent Failover for maintenance without interrupting server connectivity. Azure NetApp Files provides this through SMB Continuous Availability for applications like Citrix App Layering, FSLogix user/profile containers, Microsoft SQL Server, MSIX app attach.
   potentialBenefits: Zero downtime for SMB apps
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
@@ -227,7 +227,7 @@
   longDescription: |
     Azure NetApp Files might undergo occasional planned maintenance such as platform updates or service and software upgrades. It's important to be aware of the application's resiliency settings to cope with these storage service maintenance events.
   potentialBenefits: Minimizes downtime during maintenance
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no

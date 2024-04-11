@@ -18,7 +18,7 @@
     - Troubleshoot issues to gain an overall view of application health.
     - Document how to analyze, diagnose, and respond to signals being monitored
   potentialBenefits: Enhanced availability and issue tracking
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
@@ -45,7 +45,7 @@
     - Ensure the consistent use of diagnostic settings across the application.
     - Use critical system flows in your health model.
   potentialBenefits: Enhanced system health insights
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
@@ -66,7 +66,7 @@
 
     Examples include Workbook, Dashboards or email alerts. With Azure Workbooks and/or dashboards, you can build a single pane of glass view of monitoring graphs originating from Application Insights, Log Analytics, Azure Monitor metrics and service health. With Azure Monitor alerts, you can create alerts on service health and resource health.
   potentialBenefits: Quick issue detection and response
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
@@ -91,7 +91,7 @@
     - Health advisories - Changes in Azure services that require your attention. Examples include deprecation of Azure features or upgrade requirements (e.g upgrade to a supported PHP framework).
     - Security advisories - Security related notifications or violations that may affect the availability of your Azure services.
   potentialBenefits: Quick issue alerts to key personnel
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
@@ -110,7 +110,7 @@
   longDescription: |
     Utilize Azure's built-in Resilience policies to audit and enforce resilient configurations of Azure services. Azure Policy helps to enforce organizational standards and to assess compliance at-scale.
   potentialBenefits: Ensures compliance and upscale resilience
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No

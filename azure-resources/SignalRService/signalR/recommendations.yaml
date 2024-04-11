@@ -8,7 +8,7 @@
   longDescription: |
     Use SignalR with zone redundancy for production to improve uptime. This feature, available in the Premium tier, is activated upon creating or upgrading to Premium. Standard can upgrade to Premium without downtime.
   potentialBenefits: Enhances reliability and uptime
-  pgVerified: Preview
+  pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
