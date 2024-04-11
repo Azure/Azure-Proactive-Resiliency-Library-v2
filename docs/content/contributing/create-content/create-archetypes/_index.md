@@ -1,6 +1,6 @@
 ---
 title: Create Content from Templates
-weight: 20
+weight: 30
 geekdocCollapseSection: true
 ---
 

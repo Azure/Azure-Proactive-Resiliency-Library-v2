@@ -18,7 +18,7 @@ To contribute a new recommendation for an Azure resource, follow these steps:
 
     ```yaml
     - description: Your Recommendation Title Here (less than 100 characters)
-      aprlGuid: Generate a Unique GUID for Your Recommendation
+      aprlGuid: Generate a Unique GUID using https://guidgenerator.com/online-guid-generator.aspx
       recommendationTypeId: null
       recommendationControl: High Availability/Business Continuity/Disaster Recovery/Scalability/Monitoring and Alerting/Service Upgrade and Retirement/Other Best Practices/Personalized/Governance
       recommendationImpact: Low/Medium/High
