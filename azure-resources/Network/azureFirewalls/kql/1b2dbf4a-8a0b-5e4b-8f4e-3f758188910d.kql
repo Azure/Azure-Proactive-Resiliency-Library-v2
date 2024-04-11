@@ -13,5 +13,5 @@ resources
     )
     on $left.vNet == $right.vNet
 | where ddosProtectionPlan == ''
-| project recommendationId = "afw-5", name, id = firewallId, tags, param1 = "ddosProtectionPlan:false"
+| project recommendationId = "1b2dbf4a-8a0b-5e4b-8f4e-3f758188910d", name, id = firewallId, tags, param1 = "ddosProtectionPlan:false"
 

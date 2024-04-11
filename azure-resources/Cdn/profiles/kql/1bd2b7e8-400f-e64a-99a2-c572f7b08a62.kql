@@ -1,6 +1,5 @@
-// under-development
 // Azure Resource Graph Query
-// 1bd2b7e8-400f-e64a-99a2-c572f7b08a62 - Enable the WAF
+// Enable the WAF
 
 resources
 | where type =~ "microsoft.cdn/profiles" and sku has "AzureFrontDoor"
