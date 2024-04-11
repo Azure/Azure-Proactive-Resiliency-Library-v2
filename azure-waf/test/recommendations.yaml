@@ -114,7 +114,7 @@
   tags: null
   learnMoreLink:
     - name: Use chaos engineering to test Azure applications
-      url: "https://learn.microsoft.com/azure/well-architected/resiliency/chaos-engineering"
+      url: "https://learn.microsoft.com/en-us/azure/well-architected/reliability/testing-strategy#fault-injection-and-chaos-engineering-guidance"
 
 - description: Test application fault resiliency
   aprlGuid: c8ba80d4-20d9-456f-a2bd-8e6d488d8ff9
