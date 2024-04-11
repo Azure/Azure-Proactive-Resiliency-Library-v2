@@ -48,7 +48,7 @@
   recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
-    When using an AD DS identity solution with AVD, it is recommended to deploy domain controllers and DNS servers on Azure virtual machines across availability zones. This improves the environment�s reliability by removing a dependency on an on-premises service and improves performance by creating a shorter path for user authentication.
+    When using an AD DS identity solution with AVD, it is recommended to deploy domain controllers and DNS servers on Azure virtual machines across availability zones. This improves the environment's reliability by removing a dependency on an on-premises service and improves performance by creating a shorter path for user authentication.
     This recommendation is not relevant when you are utilizing Microsoft Entra as the identity provider.
   potentialBenefits: Enhanced reliability and performance
   pgVerified: Verified
@@ -335,7 +335,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Hybrid VMs should be in a unique OU.
-    When using AD-joined session hosts will benefit from using a unique OU to target specific AVD configurations per hostpool. Examples include Fslogix, time out limits, session controls, and much more. It�s also important to segment Prod and DR organization units to ensure resources are configured per environment.
+    When using AD-joined session hosts will benefit from using a unique OU to target specific AVD configurations per hostpool. Examples include Fslogix, time out limits, session controls, and much more. It's also important to segment Prod and DR organization units to ensure resources are configured per environment.
   potentialBenefits: Improved AVD hostpool config & segmentation
   pgVerified: Verified
   publishedToLearn: false
