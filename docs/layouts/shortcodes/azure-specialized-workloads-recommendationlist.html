@@ -28,7 +28,7 @@ Azure WAF and Specialized Workloads Recommendation List
       <td>{{ .recommendationImpact }}</td>
       <td>{{ .recommendationControl }}</td>
       <td>{{ if eq .automationAvailable "arg" }}Yes{{ else }}No{{ end }}</td>
-      <td>{{ .pgVerified }}</td>
+      <td>{{ if eq .pgVerified true }}Verified{{ else }}Preview{{ end }}</td>
     </tr>
     {{ end }} {{ end }}
   </table>
@@ -64,7 +64,7 @@ Azure WAF and Specialized Workloads Recommendation List
     <span style="font-weight: normal">{{ .recommendationControl }}</span>
     <span style="margin-right: 40px"></span>
     <span style="font-weight: bold">PG Verified:</span>&nbsp;
-    <span style="font-weight: normal">{{ .pgVerified }}</span>
+    <span style="font-weight: normal">{{ if eq .pgVerified true }}Verified{{ else }}Preview{{ end }}</span>
     <span style="margin-right: 40px"></span>
   </h4>
   <div style="max-width: 100%; word-wrap: break-word; overflow-wrap: break-word">

@@ -8,7 +8,7 @@
   longDescription: |
     Create Alerts with Azure Monitor for operations like Create or Update Route Table to spot unauthorized/undesired changes in production resources. This setup aids in identifying improper routing changes, including efforts to evade firewalls or access resources from outside.
   potentialBenefits: Enhanced security and change detection
-  pgVerified: Preview
+  pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -27,7 +27,7 @@
   longDescription: |
     As an administrator, you can protect Azure subscriptions, resource groups, or resources from accidental deletions and modifications by setting locks.
   potentialBenefits: Prevents accidental edits/deletions
-  pgVerified: Preview
+  pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no

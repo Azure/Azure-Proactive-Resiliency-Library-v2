@@ -8,7 +8,7 @@
   longDescription: |
     Set up disaster recovery for Automation accounts and resources like Modules, Connections, Credentials, Certificates, Variables, and Schedules to deal with region or zone failures. A replica Automation account should be ready in a secondary region for failover.
   potentialBenefits: Ensures continuity during outages
-  pgVerified: Preview
+  pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
@@ -18,4 +18,3 @@
       url: "https://learn.microsoft.com/en-us/azure/automation/automation-disaster-recovery?tabs=win-hrw%2Cps-script%2Coption-one"
     - name: Disaster recovery scenarios for cloud and hybrid jobs
       url: "https://learn.microsoft.com/en-us/azure/automation/automation-disaster-recovery?tabs=win-hrw%2Cps-script%2Coption-one#scenarios-for-cloud-and-hybrid-jobs"
-

@@ -24,7 +24,7 @@
     - Conduct load testing with expected peak volumes to Test scalability and performance under load.
     - Perform chaos testing by injecting faults.
   potentialBenefits: Improves uptime and speeds recovery
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
@@ -52,7 +52,7 @@
     - Configure and test health probes for your load balancers and traffic managers.
     - Segregate read operations from update operations across application data stores.
   potentialBenefits: Enhances recovery and error management
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
@@ -82,7 +82,7 @@
     - Automate failover and failback steps and processes.
     - Test and validate the failover and failback approach successfully at least once.
   potentialBenefits: Enhances recovery speed and reliability
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
@@ -107,7 +107,7 @@
     - Observe changes in usage patterns.
     - Mitigate problems.
   potentialBenefits: Early issue detection, prevents compounding
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
@@ -130,7 +130,7 @@
 
     Because the restart operation is intrusive and a large number of them could stress the platform, only one failover call is allowed every 15 minutes for each database or elastic pool.
   potentialBenefits: Enhances fault resilience testing
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No

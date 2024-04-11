@@ -8,7 +8,7 @@
   longDescription: |
     ExpressRoute gateways facilitate network traffic and route exchanges. FastPath enhances on-premises to virtual network data path performance by directing traffic straight to virtual machines, bypassing the gateway for improved resiliency through reduced gateway utilization.
   potentialBenefits: Enhances speed and resiliency
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
@@ -27,7 +27,7 @@
   longDescription: |
     Configure an Azure Resource lock for Gateway Connection resources to prevent accidental deletion and maintain connectivity between on-premises networks and Azure workloads.
   potentialBenefits: Prevents accidental deletion of connections
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no

@@ -15,7 +15,7 @@
     - Deliver stable test environments rapidly at scale
     - Use declarative definition files
   potentialBenefits: Ensures consistent, scalable deployments
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No
@@ -38,7 +38,7 @@
 
     A release pipeline can create multiple testing or staging environments to automate infrastructure creation and deploy new builds. Successive environments support progressively longer-running integration, load, and user acceptance testing activities.
   potentialBenefits: Ensures error-free releases
-  pgVerified: Verified
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: No

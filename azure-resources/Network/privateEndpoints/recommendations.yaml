@@ -8,7 +8,7 @@
   longDescription: |
     A private endpoint has two custom properties, static IP address and the network interface name, which must be set at creation. If not in Succeeded state, there may be issues with the endpoint or associated resource.
   potentialBenefits: Enhanced connection reliability
-  pgVerified: Preview
+  pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -16,4 +16,3 @@
   learnMoreLink:
     - name: Private endpoint connections
       url: "https://learn.microsoft.com/azure/private-link/manage-private-endpoint?tabs=manage-private-link-powershell#private-endpoint-connections"
-

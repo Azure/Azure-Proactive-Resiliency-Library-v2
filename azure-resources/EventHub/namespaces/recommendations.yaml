@@ -8,7 +8,7 @@
   longDescription: |
     Event Hubs leverages Availability Zones to offer fault-isolated locations within an Azure region, ensuring support in regions with availability zones. It ensures both metadata and events are replicated across data centers within the availability zone.
   potentialBenefits: Enhanced fault tolerance for Event Hub
-  pgVerified: Preview
+  pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -27,7 +27,7 @@
   longDescription: |
     Enable auto-inflate on Event Hub Standard tier namespaces to automatically scale up TUs, meeting usage needs and preventing data ingress or egress throttle scenarios by adjusting to allowed rates.
   potentialBenefits: Prevents throttling by autoscaling TUs
-  pgVerified: Preview
+  pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -35,4 +35,3 @@
   learnMoreLink:
     - name: Azure Event Hubs - Automatically scale throughput units
       url: "https://learn.microsoft.com/azure/event-hubs/event-hubs-auto-inflate"
-
