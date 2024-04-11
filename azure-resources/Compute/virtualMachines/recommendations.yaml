@@ -27,7 +27,7 @@
   recommendationResourceType: Microsoft.Compute/virtualMachines
   recommendationMetadataState: Active
   longDescription: |
-    Azure Availability Zones, within each Azure region, are tolerant to local failures, protecting applications and data against unlikely datacenter failures by being physically separate.
+    Azure Availability Zones, within each Azure region, are tolerant to local failures, protecting applications and data against unlikely Datacenter failures by being physically separate.
   potentialBenefits: Enhanced VM resilience to failures
   pgVerified: Verified
   publishedToLearn: false
@@ -46,7 +46,7 @@
   recommendationResourceType: Microsoft.Compute/virtualMachines
   recommendationMetadataState: Active
   longDescription: |
-    Availability sets will soon be retired. Migrate workloads from VMs to VMSS Flex for deployment across zones or within the same zone across different fault domains (FDs) and update domains (UD) for better reliability.
+    Availability sets will soon be retired. Migrate workloads from VMs to VMSS Flex for deployment across zones or within the same zone across different fault domains (FDs) and update domains (UDs) for better reliability.
   potentialBenefits: Enhances reliability and future-proofs VMs
   pgVerified: Verified
   publishedToLearn: false
