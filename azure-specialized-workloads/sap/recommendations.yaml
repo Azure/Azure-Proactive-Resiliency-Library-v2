@@ -146,7 +146,7 @@
   recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
-    When executing a migrate command in a Linux Pacemaker cluster, the system generates a temporary "prefer" location constraint, aiming to move a resource to a specified node. This constraint prioritizes the target node for the resource temporarily without permanently altering the cluster�s configuration.
+    When executing a migrate command in a Linux Pacemaker cluster, the system generates a temporary "prefer" location constraint, aiming to move a resource to a specified node. This constraint prioritizes the target node for the resource temporarily without permanently altering the cluster's configuration.
 
     During planned maintenances and fail over testing, you can leverage the migrate command for temporary resource relocation during maintenance or administrative tasks to ensure minimal disruption. This constraint is not permanent and does not survive reboots or cluster resets. It's designed for short-term adjustments.
 
@@ -189,7 +189,7 @@
   recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
-    Replicate production databases (ASYNC) to the DR location using the database vendor�s replication technology.
+    Replicate production databases (ASYNC) to the DR location using the database vendor's replication technology.
   potentialBenefits: Enhanced DR resilience
   pgVerified: Verified
   publishedToLearn: false
