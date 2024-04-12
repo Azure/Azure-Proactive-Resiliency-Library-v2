@@ -31,7 +31,7 @@ To contribute a new recommendation for an Azure resource, follow these steps:
       pgVerified: false
       publishedToLearn: false
       publishedToAdvisor: false
-      automationAvailable: false
+      automationAvailable: no/arg
       tags: null
       learnMoreLink:
         - name: Learn More
@@ -71,15 +71,15 @@ The YAML structure for adding new recommendations consists of several key-value 
 | description | Monitor Batch Account quota | String | Less than 100 characters | Summarization of your recommendation |
 | aprlGuid | 3464854d-6f75-4922-95e4-a2a308b53ce6 | String | 32-character hexadecimal string | The unique identifier for the recommendation in the context of APRL and CXObserve. Generate a [GUID](https://guidgenerator.com/online-guid-generator.aspx) for each new recommendation |
 | recommendationTypeId | 3464854d-6f75-4922-95e4-a2a308b53ce6 | String | `null` until updated by the Azure Advisor team | The unique identifier for the recommendation in the context of Advisor. |
+| recommendationControl | Monitoring and Alerting | String | [High Availability, Business Continuity, Disaster Recovery, Scalability, Monitoring and Alerting, Service Upgrade and Retirement, Other Best Practices, Personalized, Governance](#recommendation-categories) | Resiliency category associated with the recommendation |
 | recommendationImpact | Medium | String | Low, Medium, High | Importance of adopting the recommendation and/or the risk of choosing not to adopt |
 | recommendationResourceType | Storage Account | String | Align with the resource type | Friendly name to identity resource type |
-| recommendationControl | Monitoring and Alerting | String | [High Availability, Business Continuity, Disaster Recovery, Scalability, Monitoring and Alerting, Service Upgrade and Retirement, Other Best Practices, Personalized, Governance](#recommendation-categories) | Resiliency category associated with the recommendation |
 | recommendationMetadataState | Active | String | Active, Disabled | Indicates whether the recommendation is visible |
 | longDescription | To enable Cross-region disaster recovery and business continuity, ensure that the appropriate quotas are set for all user subscription Batch accounts. | String | The length should be less than 300 characters | Detailed description of the recommendation and its implications |
 | potentialBenefits | Enhanced data redundancy and boosts availability | String | The length should be less than 60 characters | The potential benefits of implementing the recommendation |
+| pgVerified | false | Boolean | true, false | Indicates whether the recommendation is verified by the relevant product group |
 | publishedToLearn | false | Boolean | true, false | Indicates whether the recommendation is published to [Microsoft Learn](https://learn.microsoft.com/en-us/azure/well-architected/pillars) |
 | publishedToAdvisor | false | Boolean | true, false | Indicates whether the recommendation is published to Azure Advisor |
-| pgVerified | false | Boolean | true, false | Indicates whether the recommendation is verified by the relevant product group |
 | automationAvailable | false | Boolean | no, arg | Indicates whether automation is available for validating the recommendation |
 | tags | null | String | null | Generalized tags used for incorporating fields to automate |
 | learnMoreLink | - name: Learn More url: "<https://learn.microsoft.com/en-us/azure/reliability/reliability-batch#cross-region-disaster-recovery-and-business-continuity>" | Object | Only 1 link per recommendation | Links related to the recommendation, such as announcements or documentation |
