@@ -307,8 +307,11 @@ $Global:Runtime = Measure-Command -Expression {
             $OutagesWorksheet.Add('How can customers make incidents like this less impactful')
 
 
-            $Global:OutagesSheet | ForEach-Object { [PSCustomObject]$_ } | Select-Object $OutagesWorksheet |
-            Export-Excel -Path $ExcelFile -WorksheetName 'Outages' -TableName 'TableOutage' -AutoSize -TableStyle $tableStyle -Style $Styles3
+            if(![string]::IsNullOrEmpty($Global:OutagesSheet))
+                {
+                    $Global:OutagesSheet | ForEach-Object { [PSCustomObject]$_ } | Select-Object $OutagesWorksheet |
+                    Export-Excel -Path $ExcelFile -WorksheetName 'Outages' -TableName 'TableOutage' -AutoSize -TableStyle $tableStyle -Style $Styles3
+                }
 
         }
 
@@ -319,34 +322,17 @@ $Global:Runtime = Measure-Command -Expression {
                 {
                     if(![string]::IsNullOrEmpty($Retires))
                         {
-                            $OutageRetirement = $Global:Outages | Where-Object {$_.name -eq $Retires.TrackingId}
-                            $HTML = New-Object -Com "HTMLFile"
-                            $HTML.write([ref]$Retires.Summary)
-                            $RetirementDescription = $Html.body.innerText
-
-                            if(![string]::IsNullOrEmpty($OutageRetirement))
-                                {
-                                    $HTML = New-Object -Com "HTMLFile"
-                                    $HTML.write([ref]$OutageRetirement.properties.description)
-                                    $RetirementDescriptionFull = $Html.body.innerText
-                                    $SplitDescription = $RetirementDescriptionFull.split('Help and support').split('Required action')
-                                }
-                            else
-                                {
-                                    $SplitDescription = ''
-                                }
-
                             $tmp = @{
                                 'Subscription'         = [string]$Retires.Subscription;
                                 'Tracking ID'          = [string]$Retires.TrackingId;
                                 'Status'               = [string]$Retires.Status;
-                                'Last Update Time'     = [string]$OutageRetirement.properties.lastUpdateTime;
-                                'End Time'             = [string]$OutageRetirement.properties.impactMitigationTime;
+                                'Last Update Time'     = [string]$Retires.LastUpdateTime;
+                                'End Time'             = [string]$Retires.Endtime;
                                 'Impacted Service'     = [string]$Retires.ImpactedService;
                                 'Title'                = [string]$Retires.Title;
-                                'Summary'              = [string]$RetirementDescription;
-                                'Required Action'      = [string]$SplitDescription[1];
-                                'Details'              = [string]$SplitDescription[0]
+                                'Summary'              = [string]$Retires.Summary;
+                                'Required Action'      = [string]$Retires.RequiredAction;
+                                'Details'              = [string]$Retires.Details
                             }
                             $Global:RetirementSheet += $tmp
                         }
@@ -416,7 +402,7 @@ $Global:Runtime = Measure-Command -Expression {
                 New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 35 -Range "G1"
                 New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 50 -Range "H1"
                 New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 95 -Range "I1"
-                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 60 -Range "J1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 120 -Range "J1"
                 #New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 35 -Range "K1"
                 New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -VerticalAlignment Center -WrapText -NumberFormat '0' -Range "A:J"
             )
@@ -517,7 +503,7 @@ $Global:Runtime = Measure-Command -Expression {
                     if($Service.recommendationResourceType -in $Global:AllResourceTypesOrdered.'Resource Type' -or $Global:FilterRecommendations -eq $false)
                         {
                             $ID = $Service.aprlGuid
-                            $resourceType = $Service.recommendationResourceType.ToLower()
+                            $resourceType = $Service.recommendationResourceType
                             $tmp = @{
                                 'Implemented?Yes/No'                                                                             = ('=IF((COUNTIF(ImpactedResources!A:A,"' + $ID + '")=0),"Yes","No")');
                                 'Number of Impacted Resources?'                                                                  = ('=COUNTIF(ImpactedResources!A:A,"' + $ID + '")');
@@ -532,7 +518,8 @@ $Global:Runtime = Measure-Command -Expression {
                                 'Read More'                                                                                      = [string]$Service.learnMoreLink.url;
                                 'Potential Benefits'                                                                             = [string]$Service.potentialBenefits;
                                 'Add associated Outage TrackingID and/or Support Request # and/or Service Retirement TrackingID' = '';
-                                'Observation / Annotation'                                                                       = ''
+                                'Observation / Annotation'                                                                       = '';
+                                'Recommendation Id'                                                                              = [string]$Service.aprlGuid
                             }
                             $Global:Recommendations += $tmp
                         }
@@ -557,7 +544,8 @@ $Global:Runtime = Measure-Command -Expression {
                         'Read More'                                                                                      = '';
                         'Potential Benefits'                                                                             = '';
                         'Add associated Outage TrackingID and/or Support Request # and/or Service Retirement TrackingID' = '';
-                        'Observation / Annotation'                                                                       = ''
+                        'Observation / Annotation'                                                                       = '';
+                        'Recommendation Id'                                                                              = [string]$advisor.recommendationId
                     }
                     $Global:Recommendations += $tmp
                 }
@@ -565,6 +553,7 @@ $Global:Runtime = Measure-Command -Expression {
             # Builds the WAF recommendations 
             foreach ($WAFYAML in $Global:WAFYAMLContent)
                 {
+                    $resourceType = $WAFYAML.recommendationResourceType
                     $ID = $WAFYAML.aprlGuid
                     $tmp = @{
                         'Implemented?Yes/No'                                                                             = ('=IF((COUNTIF(ImpactedResources!A:A,"' + $ID + '")=0),"Yes","No")');
@@ -572,15 +561,16 @@ $Global:Runtime = Measure-Command -Expression {
                         'Azure Service / Well-Architected'                                                               = 'Well Architected';
                         'Recommendation Source'                                                                          = 'APRL';
                         'Resiliency Category'                                                                            = $WAFYAML.recommendationControl;
-                        'Azure Service Category / Well-Architected Area'                                                 = '';
-                        'Azure Service / Well-Architected Topic'                                                         = '';
+                        'Azure Service Category / Well-Architected Area'                                                 = ($resourceType.split('/')[0]);
+                        'Azure Service / Well-Architected Topic'                                                         = ($resourceType.split('/')[1]);
                         'Recommendation Title'                                                                           = $WAFYAML.description;
                         'Impact'                                                                                         = $WAFYAML.recommendationImpact;
                         'Best Practices Guidance'                                                                        = [string]$WAFYAML.longDescription;
                         'Read More'                                                                                      = [string]$WAFYAML.learnMoreLink.url;
                         'Potential Benefits'                                                                             = [string]$WAFYAML.potentialBenefits;
                         'Add associated Outage TrackingID and/or Support Request # and/or Service Retirement TrackingID' = '';
-                        'Observation / Annotation'                                                                       = ''
+                        'Observation / Annotation'                                                                       = '';
+                        'Recommendation Id'                                                                              = [string]$Service.aprlGuid
                     }
                     $Global:Recommendations += $tmp
                 }
@@ -597,7 +587,8 @@ $Global:Runtime = Measure-Command -Expression {
                 New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 90 -Range "J1"
                 New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 45 -Range "K1"
                 New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 35 -Range "L1:M1"
-                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -VerticalAlignment Center -WrapText -Range "A:M"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 45 -Range "N1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -VerticalAlignment Center -WrapText -Range "A:N"
             )
 
             # Configure the array of fields to be used in the Recommendations sheet
@@ -615,6 +606,7 @@ $Global:Runtime = Measure-Command -Expression {
             $FinalWorksheet.Add('Read More')
             $FinalWorksheet.Add('Add associated Outage TrackingID and/or Support Request # and/or Service Retirement TrackingID')
             $FinalWorksheet.Add('Observation / Annotation')
+            $FinalWorksheet.Add('Recommendation Id')
 
             ####################    Creates the recommendations sheet in Excel
             $Global:Recommendations | ForEach-Object { [PSCustomObject]$_ } | Select-Object $FinalWorksheet |
@@ -759,7 +751,7 @@ $Global:Runtime = Measure-Command -Expression {
     }
 
     #Call the functions
-    $Global:Version = "2.0.1"
+    $Global:Version = "2.0.2"
     Write-Host "Version: " -NoNewline
     Write-Host $Global:Version -ForegroundColor DarkBlue
 
