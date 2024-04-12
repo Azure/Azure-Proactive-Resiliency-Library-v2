@@ -181,7 +181,7 @@
   longDescription: |
     When using customer-managed keys for encrypting vSAN datastores, leveraging Azure Key Vault for central management and accessing them via a managed identity linked to the private cloud is advised. The expiration of these keys can render the vSAN datastore and its associated workloads inaccessible.
   potentialBenefits: Avoid outages with key auto-rotation
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
@@ -200,7 +200,7 @@
   longDescription: |
     Azure VMware Solution private clouds support up to three DNS servers for a single FQDN, preventing a single DNS server from becoming a point of failure. It's crucial to use multiple DNS servers for on-premises FQDN resolution from each private cloud.
   potentialBenefits: Enhances reliability and avoids failure
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no

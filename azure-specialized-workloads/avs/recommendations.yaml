@@ -109,7 +109,7 @@
   longDescription: |
     Microsoft suggests using two or more ExpressRoute circuits at distinct peering locations for critical workloads. Connect these circuits and your Azure VMware Solutions private clouds using Global Reach.
   potentialBenefits: Enhanced circuit resilience for Azure VMware
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
