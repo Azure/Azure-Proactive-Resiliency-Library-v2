@@ -154,7 +154,7 @@
     - Design a backup strategy that's tailored for the business requirements and circumstances of the application.
     - Automate failover and failback steps and processes.
     - Test and validate the failover and failback approach successfully at least once.
-      potentialBenefits: Minimizes disaster impact, ensures operational continuity
+  potentialBenefits: Minimizes disaster impact, ensures operational continuity
   pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
