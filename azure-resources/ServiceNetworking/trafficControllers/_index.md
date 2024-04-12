@@ -1,5 +1,5 @@
 ---
-title: Trafficcontrollers
+title: trafficControllers
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

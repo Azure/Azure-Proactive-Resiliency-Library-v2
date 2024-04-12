@@ -1,5 +1,5 @@
 ---
-title: Availabilitysets
+title: availabilitySets
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

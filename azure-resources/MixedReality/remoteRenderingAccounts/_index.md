@@ -1,5 +1,5 @@
 ---
-title: Remoterenderingaccounts
+title: remoteRenderingAccounts
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

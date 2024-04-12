@@ -1,5 +1,5 @@
 ---
-title: Virtualmachineinstances
+title: virtualMachineInstances
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

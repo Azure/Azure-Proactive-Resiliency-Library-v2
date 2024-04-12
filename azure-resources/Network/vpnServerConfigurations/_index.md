@@ -1,5 +1,5 @@
 ---
-title: Vpnserverconfigurations
+title: vpnServerConfigurations
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

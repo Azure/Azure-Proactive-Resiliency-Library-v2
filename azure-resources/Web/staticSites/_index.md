@@ -1,5 +1,5 @@
 ---
-title: Staticsites
+title: staticSites
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

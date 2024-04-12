@@ -1,5 +1,5 @@
 ---
-title: Elasticsans
+title: elasticSans
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

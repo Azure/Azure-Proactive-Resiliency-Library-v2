@@ -1,5 +1,5 @@
 ---
-title: Networkfunction
+title: NetworkFunction
 geekdocCollapseSection: true
 geekdocHidden: false
 ---

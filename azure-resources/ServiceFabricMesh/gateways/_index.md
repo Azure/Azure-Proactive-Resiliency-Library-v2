@@ -1,5 +1,5 @@
 ---
-title: Gateways
+title: gateways
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

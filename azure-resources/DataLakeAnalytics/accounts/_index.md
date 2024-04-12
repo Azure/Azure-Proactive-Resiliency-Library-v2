@@ -1,5 +1,5 @@
 ---
-title: Accounts
+title: accounts
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

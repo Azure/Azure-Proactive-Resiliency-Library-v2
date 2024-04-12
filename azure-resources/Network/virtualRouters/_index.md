@@ -1,5 +1,5 @@
 ---
-title: Virtualrouters
+title: virtualRouters
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

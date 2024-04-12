@@ -1,5 +1,5 @@
 ---
-title: Azurestackhci
+title: AzureStackHCI
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

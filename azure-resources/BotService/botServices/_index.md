@@ -1,5 +1,5 @@
 ---
-title: Botservices
+title: botServices
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

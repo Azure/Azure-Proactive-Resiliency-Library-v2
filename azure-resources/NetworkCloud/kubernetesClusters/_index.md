@@ -1,5 +1,5 @@
 ---
-title: Kubernetesclusters
+title: kubernetesClusters
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

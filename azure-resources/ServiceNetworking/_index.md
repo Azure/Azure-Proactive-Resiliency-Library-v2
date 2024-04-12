@@ -1,5 +1,5 @@
 ---
-title: Servicenetworking
+title: ServiceNetworking
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

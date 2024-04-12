@@ -1,5 +1,5 @@
 ---
-title: Devtestlab
+title: DevTestLab
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

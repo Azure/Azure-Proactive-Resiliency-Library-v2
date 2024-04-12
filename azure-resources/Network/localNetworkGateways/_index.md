@@ -1,5 +1,5 @@
 ---
-title: Localnetworkgateways
+title: localNetworkGateways
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

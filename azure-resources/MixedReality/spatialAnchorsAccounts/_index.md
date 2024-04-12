@@ -1,5 +1,5 @@
 ---
-title: Spatialanchorsaccounts
+title: spatialAnchorsAccounts
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

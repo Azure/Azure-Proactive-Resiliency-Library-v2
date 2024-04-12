@@ -1,5 +1,5 @@
 ---
-title: Azurelargestorageinstances
+title: azureLargeStorageInstances
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

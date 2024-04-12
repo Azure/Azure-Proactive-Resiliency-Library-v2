@@ -1,5 +1,5 @@
 ---
-title: hostingEnvironments/multiRolePools
+title: hostingEnvironments
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

@@ -1,5 +1,5 @@
 ---
-title: Meshvpns
+title: meshVpns
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

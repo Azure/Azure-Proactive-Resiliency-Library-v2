@@ -1,5 +1,5 @@
 ---
-title: Redisenterprise
+title: redisEnterprise
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

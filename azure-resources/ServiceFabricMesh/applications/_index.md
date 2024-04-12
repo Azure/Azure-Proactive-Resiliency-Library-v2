@@ -1,5 +1,5 @@
 ---
-title: Applications
+title: applications
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

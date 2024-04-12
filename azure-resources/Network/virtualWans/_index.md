@@ -1,5 +1,5 @@
 ---
-title: Virtualwans
+title: virtualWans
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

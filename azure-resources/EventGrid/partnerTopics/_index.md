@@ -1,5 +1,5 @@
 ---
-title: Partnertopics
+title: partnerTopics
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

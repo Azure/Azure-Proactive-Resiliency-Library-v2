@@ -1,5 +1,5 @@
 ---
-title: Baremetalmachines
+title: bareMetalMachines
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

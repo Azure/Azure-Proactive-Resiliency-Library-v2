@@ -1,5 +1,5 @@
 ---
-title: Objectanchorsaccounts
+title: objectAnchorsAccounts
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

@@ -1,5 +1,5 @@
 ---
-title: Dnsforwardingrulesets
+title: dnsForwardingRulesets
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

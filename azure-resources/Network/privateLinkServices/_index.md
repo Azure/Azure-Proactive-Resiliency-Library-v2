@@ -1,5 +1,5 @@
 ---
-title: Privatelinkservices
+title: privateLinkServices
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

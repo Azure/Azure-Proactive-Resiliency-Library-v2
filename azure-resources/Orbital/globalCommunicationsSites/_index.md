@@ -1,5 +1,5 @@
 ---
-title: Globalcommunicationssites
+title: globalCommunicationsSites
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

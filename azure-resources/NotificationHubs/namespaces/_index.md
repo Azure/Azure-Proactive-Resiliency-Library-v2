@@ -1,5 +1,5 @@
 ---
-title: Namespaces
+title: namespaces
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

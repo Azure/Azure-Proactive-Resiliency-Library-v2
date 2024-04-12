@@ -1,5 +1,5 @@
 ---
-title: Cdnwebapplicationfirewallpolicies
+title: CdnWebApplicationFirewallPolicies
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

@@ -1,5 +1,5 @@
 ---
-title: Hdinsight
+title: HDInsight
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

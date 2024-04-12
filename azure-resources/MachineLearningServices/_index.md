@@ -1,5 +1,5 @@
 ---
-title: Machinelearningservices
+title: MachineLearningServices
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

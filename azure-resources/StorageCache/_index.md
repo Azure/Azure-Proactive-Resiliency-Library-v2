@@ -1,5 +1,5 @@
 ---
-title: Storagecache
+title: StorageCache
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

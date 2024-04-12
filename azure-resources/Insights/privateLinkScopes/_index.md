@@ -1,5 +1,5 @@
 ---
-title: Privatelinkscopes
+title: privateLinkScopes
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

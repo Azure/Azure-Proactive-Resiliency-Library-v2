@@ -1,5 +1,5 @@
 ---
-title: Instancepools
+title: instancePools
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

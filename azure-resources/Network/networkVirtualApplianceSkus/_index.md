@@ -1,5 +1,5 @@
 ---
-title: Networkvirtualapplianceskus
+title: networkVirtualApplianceSkus
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

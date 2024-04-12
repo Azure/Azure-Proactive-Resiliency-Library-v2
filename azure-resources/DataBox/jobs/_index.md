@@ -1,5 +1,5 @@
 ---
-title: Jobs
+title: jobs
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

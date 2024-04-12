@@ -1,5 +1,5 @@
 ---
-title: Labs
+title: labs
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

@@ -1,5 +1,5 @@
 ---
-title: Databoxedge
+title: DataBoxEdge
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

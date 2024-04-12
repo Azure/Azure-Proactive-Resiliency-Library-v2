@@ -1,5 +1,5 @@
 ---
-title: Eventsubscriptions
+title: eventSubscriptions
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

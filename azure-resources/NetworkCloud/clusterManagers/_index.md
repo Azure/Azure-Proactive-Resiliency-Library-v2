@@ -1,5 +1,5 @@
 ---
-title: Clustermanagers
+title: clusterManagers
 geekdocCollapseSection: true
 geekdocHidden: true
 ---
