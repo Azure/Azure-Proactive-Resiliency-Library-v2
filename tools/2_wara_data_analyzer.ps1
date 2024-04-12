@@ -82,6 +82,17 @@ $Global:Runtime = Measure-Command -Expression {
         else {
             git clone $repoUrl $Global:clonePath --quiet
         }
+        Write-Debug "Checking the version of the script"
+        $RepoVersion = Get-Content -Path "$clonePath\tools\Version.json" -ErrorAction SilentlyContinue | ConvertFrom-Json
+        if($Version -ne $RepoVersion.Analyzer)
+            {
+                Write-Host "This version of the script is outdated. " -BackgroundColor DarkRed
+                Write-Host "Please use a more recent version of the script." -BackgroundColor DarkRed
+            }
+        else
+            {
+                Write-Host "This version of the script is current version. " -BackgroundColor DarkGreen
+            }
     }
 
     function MGrid {
@@ -389,8 +400,8 @@ $Global:Runtime = Measure-Command -Expression {
                                 'Customer Contact'     = [string]$Ticket.properties.contactDetails.primaryEmailAddress;
                                 'Title'                = [string]$Ticket.properties.title;
                                 'Description'          = [string]$Ticket.properties.description;
-                                'Related Resource'     = [string]$Ticket.properties.technicalTicketDetails.resourceId;
-                                'Support Engineer'     = [string]$Ticket.properties.supportEngineer.emailAddress
+                                'Related Resource'     = [string]$Ticket.properties.technicalTicketDetails.resourceId
+                                #'Support Engineer'     = [string]$Ticket.properties.supportEngineer.emailAddress
                             }
                             $Global:TicketsSheet += $tmp
                         }
@@ -406,8 +417,8 @@ $Global:Runtime = Measure-Command -Expression {
                 New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 50 -Range "H1"
                 New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 95 -Range "I1"
                 New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 60 -Range "J1"
-                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 35 -Range "K1"
-                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -VerticalAlignment Center -WrapText -NumberFormat '0' -Range "A:K"
+                #New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 35 -Range "K1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -VerticalAlignment Center -WrapText -NumberFormat '0' -Range "A:J"
             )
 
             # Configure the array of fields to be used in the Tickets sheet
@@ -422,7 +433,7 @@ $Global:Runtime = Measure-Command -Expression {
             $TicketWorksheet.Add('Title')
             $TicketWorksheet.Add('Description')
             $TicketWorksheet.Add('Related Resource')
-            $TicketWorksheet.Add('Support Engineer')
+            #$TicketWorksheet.Add('Support Engineer')
 
             if(![string]::IsNullOrEmpty($Global:TicketsSheet))
                 {
@@ -678,47 +689,54 @@ $Global:Runtime = Measure-Command -Expression {
             Write-Host "Customizing Excel Charts. "
             # Open the Excel using the API to move the charts from the PivotTable sheet to the Charts sheet and change chart style, font, etc..
             if ($Global:ExcelApplication) {
-                Write-Debug 'Openning Excel File'
-                $Ex = $ExcelApplication.Workbooks.Open($ExcelFile)
-                Start-Sleep -Seconds 2
-                Write-Debug 'Openning Excel Sheets'
-                $WS = $ex.Worksheets | Where-Object { $_.Name -eq 'PivotTable' }
-                $WS2 = $ex.Worksheets | Where-Object { $_.Name -eq 'Charts' }
-                Write-Debug 'Moving Charts to Chart sheet'
-                ($WS.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Cut()
-                $WS2.Paste()
-                ($WS.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Cut()
-                $WS2.Paste()
+                try
+                    {
+                        Write-Debug 'Openning Excel File'
+                        $Ex = $ExcelApplication.Workbooks.Open($ExcelFile)
+                        Start-Sleep -Seconds 2
+                        Write-Debug 'Openning Excel Sheets'
+                        $WS = $ex.Worksheets | Where-Object { $_.Name -eq 'PivotTable' }
+                        $WS2 = $ex.Worksheets | Where-Object { $_.Name -eq 'Charts' }
+                        Write-Debug 'Moving Charts to Chart sheet'
+                        ($WS.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Cut()
+                        $WS2.Paste()
+                        ($WS.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Cut()
+                        $WS2.Paste()
 
-                Write-Debug 'Reloading Excel Chart Sheet'
-                $WS2 = $ex.Worksheets | Where-Object { $_.Name -eq 'Charts' }
+                        Write-Debug 'Reloading Excel Chart Sheet'
+                        $WS2 = $ex.Worksheets | Where-Object { $_.Name -eq 'Charts' }
 
-                Write-Debug 'Editing ChartP0'
-                ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartStyle = 222
-                ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartArea.Font.Name = 'Segoe UI'
-                ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartArea.Font.Size = 9
-                ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartArea.Left = 18
-                ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartArea.Top = 40
+                        Write-Debug 'Editing ChartP0'
+                        ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartStyle = 222
+                        ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartArea.Font.Name = 'Segoe UI'
+                        ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartArea.Font.Size = 9
+                        ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartArea.Left = 18
+                        ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartArea.Top = 40
 
-                Write-Debug 'Editing ChartP1'
-                ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartStyle = 222
-                ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartArea.Font.Name = 'Segoe UI'
-                ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartArea.Font.Size = 9
-                ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartArea.Left = 555
-                ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartArea.Top = 40
+                        Write-Debug 'Editing ChartP1'
+                        ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartStyle = 222
+                        ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartArea.Font.Name = 'Segoe UI'
+                        ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartArea.Font.Size = 9
+                        ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartArea.Left = 555
+                        ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartArea.Top = 40
 
-                Write-Debug 'Editing Pivot Filters'
-                $WS.Range("B1").Formula = 'No'
-                $WS.Range("I1").Formula = 'No'
+                        Write-Debug 'Editing Pivot Filters'
+                        $WS.Range("B1").Formula = 'No'
+                        $WS.Range("I1").Formula = 'No'
 
-                Write-Debug 'Saving File'
-                $Ex.Save()
-                Write-Debug 'Closing Excel Application'
-                $Ex.Close()
-                $ExcelApplication.Quit()
-                # Ensures the Excel process opened by the API is closed
-                Write-Debug 'Ensuring Excel Process is Closed.'
-                Get-Process -Name "excel" -ErrorAction Ignore | Where-Object { $_.CommandLine -like '*/automation*' } | Stop-Process
+                        Write-Debug 'Saving File'
+                        $Ex.Save()
+                        Write-Debug 'Closing Excel Application'
+                        $Ex.Close()
+                        $ExcelApplication.Quit()
+                        # Ensures the Excel process opened by the API is closed
+                        Write-Debug 'Ensuring Excel Process is Closed.'
+                        Get-Process -Name "excel" -ErrorAction Ignore | Where-Object { $_.CommandLine -like '*/automation*' } | Stop-Process
+                    }
+                catch
+                    {
+                        Write-Host "Error during the PivotTable + Charts customization" -BackgroundColor DarkRed
+                    }
             }
 
         }
@@ -741,9 +759,9 @@ $Global:Runtime = Measure-Command -Expression {
     }
 
     #Call the functions
-    $Version = "2.2.0"
+    $Global:Version = "2.0.1"
     Write-Host "Version: " -NoNewline
-    Write-Host $Version -ForegroundColor DarkGreen
+    Write-Host $Global:Version -ForegroundColor DarkBlue
 
     if ($Help.IsPresent) {
         Help
