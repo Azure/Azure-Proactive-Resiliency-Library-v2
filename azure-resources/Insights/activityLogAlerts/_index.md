@@ -1,5 +1,5 @@
 ---
-title: Activity Log Alerts
+title: activityLogAlerts
 geekdocCollapseSection: true
 geekdocHidden: false
 ---

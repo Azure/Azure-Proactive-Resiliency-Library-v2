@@ -1,5 +1,5 @@
 ---
-title: Maintenanceconfigurations
+title: maintenanceConfigurations
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

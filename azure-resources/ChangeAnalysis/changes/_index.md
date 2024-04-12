@@ -1,5 +1,5 @@
 ---
-title: Changes
+title: changes
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

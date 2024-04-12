@@ -1,5 +1,5 @@
 ---
-title: Videoindexer
+title: VideoIndexer
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

@@ -1,5 +1,5 @@
 ---
-title: Diagnosticsettings
+title: diagnosticSettings
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

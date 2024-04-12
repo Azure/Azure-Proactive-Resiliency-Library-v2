@@ -1,5 +1,5 @@
 ---
-title: Policydefinitions
+title: policyDefinitions
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

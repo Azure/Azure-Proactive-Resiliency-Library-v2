@@ -1,5 +1,5 @@
 ---
-title: Images
+title: images
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

@@ -1,5 +1,5 @@
 ---
-title: Dbforpostgresql
+title: DBforPostgreSQL
 geekdocCollapseSection: true
 geekdocHidden: false
 ---

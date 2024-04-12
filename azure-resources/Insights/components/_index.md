@@ -1,5 +1,5 @@
 ---
-title: Components
+title: components
 geekdocCollapseSection: true
 geekdocHidden: false
 ---

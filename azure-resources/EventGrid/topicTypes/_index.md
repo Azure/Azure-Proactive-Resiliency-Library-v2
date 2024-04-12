@@ -1,5 +1,5 @@
 ---
-title: Topictypes
+title: topicTypes
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

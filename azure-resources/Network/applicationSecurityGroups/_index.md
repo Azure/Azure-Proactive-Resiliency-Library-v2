@@ -1,5 +1,5 @@
 ---
-title: Applicationsecuritygroups
+title: applicationSecurityGroups
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

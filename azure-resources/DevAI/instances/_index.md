@@ -1,5 +1,5 @@
 ---
-title: Instances
+title: instances
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

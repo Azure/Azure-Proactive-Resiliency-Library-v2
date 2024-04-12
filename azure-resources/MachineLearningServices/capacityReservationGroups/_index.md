@@ -1,5 +1,5 @@
 ---
-title: Capacityreservationgroups
+title: capacityReservationGroups
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

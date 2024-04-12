@@ -1,5 +1,5 @@
 ---
-title: L2connections
+title: l2Connections
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

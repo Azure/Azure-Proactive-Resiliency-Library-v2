@@ -1,5 +1,5 @@
 ---
-title: Fullpath
+title: FullPath
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

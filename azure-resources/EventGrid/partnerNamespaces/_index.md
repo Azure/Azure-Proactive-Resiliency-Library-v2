@@ -1,5 +1,5 @@
 ---
-title: Partnernamespaces
+title: partnerNamespaces
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

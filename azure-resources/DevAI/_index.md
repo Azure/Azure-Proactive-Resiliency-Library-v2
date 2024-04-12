@@ -1,5 +1,5 @@
 ---
-title: Devai
+title: DevAI
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

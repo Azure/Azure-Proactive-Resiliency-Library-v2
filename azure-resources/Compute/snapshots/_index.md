@@ -1,5 +1,5 @@
 ---
-title: Snapshots
+title: snapshots
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

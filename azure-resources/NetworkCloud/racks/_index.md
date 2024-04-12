@@ -1,5 +1,5 @@
 ---
-title: Racks
+title: racks
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

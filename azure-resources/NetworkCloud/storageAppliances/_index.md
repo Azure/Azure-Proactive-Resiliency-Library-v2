@@ -1,5 +1,5 @@
 ---
-title: Storageappliances
+title: storageAppliances
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

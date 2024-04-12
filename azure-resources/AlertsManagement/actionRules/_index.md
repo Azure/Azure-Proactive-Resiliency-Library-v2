@@ -1,5 +1,5 @@
 ---
-title: Actionrules
+title: actionRules
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

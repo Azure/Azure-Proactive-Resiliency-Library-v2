@@ -1,5 +1,5 @@
 ---
-title: Capacities
+title: capacities
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

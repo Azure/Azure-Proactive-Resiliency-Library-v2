@@ -1,5 +1,5 @@
 ---
-title: Servers
+title: servers
 geekdocCollapseSection: true
 geekdocHidden: false
 ---

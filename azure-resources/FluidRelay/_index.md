@@ -1,5 +1,5 @@
 ---
-title: Fluidrelay
+title: FluidRelay
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

@@ -1,5 +1,5 @@
 ---
-title: Fluidrelayservers
+title: fluidRelayServers
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

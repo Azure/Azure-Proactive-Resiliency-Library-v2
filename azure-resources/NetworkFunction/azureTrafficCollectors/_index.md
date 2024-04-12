@@ -1,5 +1,5 @@
 ---
-title: Azure Traffic Collectors
+title: azureTrafficCollectors
 geekdocCollapseSection: true
 geekdocHidden: false
 ---

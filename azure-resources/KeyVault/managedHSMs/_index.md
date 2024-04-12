@@ -1,5 +1,5 @@
 ---
-title: Managedhsms
+title: managedHSMs
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

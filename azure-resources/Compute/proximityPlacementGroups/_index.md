@@ -1,5 +1,5 @@
 ---
-title: Proximityplacementgroups
+title: proximityPlacementGroups
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

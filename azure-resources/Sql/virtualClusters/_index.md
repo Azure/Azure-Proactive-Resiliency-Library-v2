@@ -1,5 +1,5 @@
 ---
-title: Virtualclusters
+title: virtualClusters
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

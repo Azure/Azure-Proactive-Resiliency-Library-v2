@@ -1,5 +1,5 @@
 ---
-title: HostPools
+title: hostPools
 geekdocCollapseSection: true
 geekdocHidden: false
 ---

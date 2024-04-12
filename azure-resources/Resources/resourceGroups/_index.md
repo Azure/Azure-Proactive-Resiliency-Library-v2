@@ -1,5 +1,5 @@
 ---
-title: Resource Groups
+title: resourceGroups
 geekdocCollapseSection: true
 geekdocHidden: false
 ---

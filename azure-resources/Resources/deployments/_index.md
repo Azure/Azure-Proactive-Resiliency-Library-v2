@@ -1,5 +1,5 @@
 ---
-title: Deployments
+title: deployments
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

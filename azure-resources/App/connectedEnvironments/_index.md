@@ -1,5 +1,5 @@
 ---
-title: Connectedenvironments
+title: connectedEnvironments
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

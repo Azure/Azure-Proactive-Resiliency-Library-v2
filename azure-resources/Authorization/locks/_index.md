@@ -1,5 +1,5 @@
 ---
-title: Locks
+title: locks
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

@@ -1,5 +1,5 @@
 ---
-title: Clusters
+title: clusters
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

@@ -1,5 +1,5 @@
 ---
-title: Networkmanagers
+title: networkManagers
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

@@ -1,5 +1,5 @@
 ---
-title: Monitors
+title: monitors
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

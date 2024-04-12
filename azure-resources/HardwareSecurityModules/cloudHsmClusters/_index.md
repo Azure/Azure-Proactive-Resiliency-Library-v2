@@ -1,5 +1,5 @@
 ---
-title: Cloudhsmclusters
+title: cloudHsmClusters
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

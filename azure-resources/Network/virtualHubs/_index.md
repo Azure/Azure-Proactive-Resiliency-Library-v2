@@ -1,5 +1,5 @@
 ---
-title: Virtualhubs
+title: virtualHubs
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

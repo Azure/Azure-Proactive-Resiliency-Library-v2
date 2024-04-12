@@ -1,5 +1,5 @@
 ---
-title: Secrets
+title: secrets
 geekdocCollapseSection: true
 geekdocHidden: true
 ---
