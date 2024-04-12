@@ -12,7 +12,7 @@
   pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
-  automationAvailable: false
+  automationAvailable: no/arg
   tags: null
   learnMoreLink:
     - name: Learn More
@@ -32,7 +32,7 @@
   pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
-  automationAvailable: false
+  automationAvailable: no/arg
   tags: null
   learnMoreLink:
     - name: Learn More
