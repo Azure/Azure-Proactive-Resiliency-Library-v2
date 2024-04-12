@@ -1,5 +1,5 @@
 ---
-title: Hardwaresecuritymodules
+title: HardwareSecurityModules
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

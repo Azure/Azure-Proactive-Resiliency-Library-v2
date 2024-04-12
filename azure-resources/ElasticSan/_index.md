@@ -1,5 +1,5 @@
 ---
-title: Elasticsan
+title: ElasticSan
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

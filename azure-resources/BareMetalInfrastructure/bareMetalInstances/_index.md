@@ -1,5 +1,5 @@
 ---
-title: Baremetalinstances
+title: bareMetalInstances
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

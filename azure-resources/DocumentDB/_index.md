@@ -1,5 +1,5 @@
 ---
-title: Documentdb
+title: DocumentDB
 geekdocCollapseSection: true
 geekdocHidden: false
 ---

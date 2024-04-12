@@ -1,5 +1,5 @@
 ---
-title: Vpnsites
+title: vpnSites
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

@@ -1,5 +1,5 @@
 ---
-title: Workloads
+title: workloads
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

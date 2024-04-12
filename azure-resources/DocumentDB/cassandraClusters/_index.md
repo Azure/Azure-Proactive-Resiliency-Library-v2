@@ -1,5 +1,5 @@
 ---
-title: Cassandraclusters
+title: cassandraClusters
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

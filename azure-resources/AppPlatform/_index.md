@@ -1,5 +1,5 @@
 ---
-title: Appplatform
+title: AppPlatform
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

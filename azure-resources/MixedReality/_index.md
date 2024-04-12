@@ -1,5 +1,5 @@
 ---
-title: Mixedreality
+title: MixedReality
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

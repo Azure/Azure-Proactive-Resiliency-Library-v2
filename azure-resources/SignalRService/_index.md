@@ -1,5 +1,5 @@
 ---
-title: Signalrservice
+title: SignalRService
 geekdocCollapseSection: true
 geekdocHidden: false
 ---

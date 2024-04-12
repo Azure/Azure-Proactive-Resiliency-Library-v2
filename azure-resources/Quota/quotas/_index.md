@@ -1,5 +1,5 @@
 ---
-title: Quotas
+title: quotas
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

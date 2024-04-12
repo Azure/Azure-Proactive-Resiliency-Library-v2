@@ -1,5 +1,5 @@
 ---
-title: Networks
+title: networks
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

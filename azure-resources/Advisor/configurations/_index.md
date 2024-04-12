@@ -1,5 +1,5 @@
 ---
-title: Configurations
+title: configurations
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

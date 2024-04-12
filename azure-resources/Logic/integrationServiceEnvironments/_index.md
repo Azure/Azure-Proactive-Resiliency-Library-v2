@@ -1,5 +1,5 @@
 ---
-title: Integrationserviceenvironments
+title: integrationServiceEnvironments
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

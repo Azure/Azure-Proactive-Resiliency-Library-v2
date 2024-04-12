@@ -1,5 +1,5 @@
 ---
-title: Azurelargeinstance
+title: AzureLargeInstance
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

@@ -1,5 +1,5 @@
 ---
-title: Servergroupsv2
+title: serverGroupsv2
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

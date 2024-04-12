@@ -1,5 +1,5 @@
 ---
-title: Datashare
+title: DataShare
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

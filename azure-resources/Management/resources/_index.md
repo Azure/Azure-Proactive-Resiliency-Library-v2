@@ -1,5 +1,5 @@
 ---
-title: Resources
+title: resources
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

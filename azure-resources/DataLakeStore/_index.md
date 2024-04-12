@@ -1,5 +1,5 @@
 ---
-title: Datalakestore
+title: DataLakeStore
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

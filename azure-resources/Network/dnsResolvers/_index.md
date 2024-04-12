@@ -1,5 +1,5 @@
 ---
-title: Dnsresolvers
+title: dnsResolvers
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

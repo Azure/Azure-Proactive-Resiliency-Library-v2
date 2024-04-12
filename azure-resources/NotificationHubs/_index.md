@@ -1,5 +1,5 @@
 ---
-title: Notificationhubs
+title: NotificationHubs
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

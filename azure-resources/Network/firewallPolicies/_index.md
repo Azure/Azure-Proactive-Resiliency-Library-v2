@@ -1,5 +1,5 @@
 ---
-title: Firewallpolicies
+title: firewallPolicies
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

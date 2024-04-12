@@ -1,5 +1,5 @@
 ---
-title: Healthbots
+title: healthBots
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

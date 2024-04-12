@@ -1,5 +1,5 @@
 ---
-title: Publicipprefixes
+title: publicIPPrefixes
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

@@ -1,5 +1,5 @@
 ---
-title: Mongoclusters
+title: mongoClusters
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

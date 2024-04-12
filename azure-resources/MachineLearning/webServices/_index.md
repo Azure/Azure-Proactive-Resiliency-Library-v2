@@ -1,5 +1,5 @@
 ---
-title: Webservices
+title: webServices
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

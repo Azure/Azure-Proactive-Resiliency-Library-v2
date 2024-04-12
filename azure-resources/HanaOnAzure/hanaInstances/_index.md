@@ -1,5 +1,5 @@
 ---
-title: Hanainstances
+title: hanaInstances
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

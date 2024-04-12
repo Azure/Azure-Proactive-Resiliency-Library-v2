@@ -1,5 +1,5 @@
 ---
-title: Groundstations
+title: groundStations
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

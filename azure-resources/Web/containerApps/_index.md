@@ -1,5 +1,5 @@
 ---
-title: Containerapps
+title: containerApps
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

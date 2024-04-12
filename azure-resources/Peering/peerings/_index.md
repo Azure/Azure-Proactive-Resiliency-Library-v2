@@ -1,5 +1,5 @@
 ---
-title: Peerings
+title: peerings
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

@@ -1,5 +1,5 @@
 ---
-title: Sites
+title: sites
 geekdocCollapseSection: true
 geekdocHidden: false
 ---

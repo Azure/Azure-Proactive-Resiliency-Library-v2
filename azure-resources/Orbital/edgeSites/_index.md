@@ -1,5 +1,5 @@
 ---
-title: Edgesites
+title: edgeSites
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

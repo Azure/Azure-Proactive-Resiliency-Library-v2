@@ -1,5 +1,5 @@
 ---
-title: Networkvirtualappliances
+title: networkVirtualAppliances
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

@@ -1,5 +1,5 @@
 ---
-title: Hostgroups
+title: hostGroups
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

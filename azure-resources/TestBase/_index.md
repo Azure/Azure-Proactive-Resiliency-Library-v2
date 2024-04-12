@@ -1,5 +1,5 @@
 ---
-title: Testbase
+title: TestBase
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

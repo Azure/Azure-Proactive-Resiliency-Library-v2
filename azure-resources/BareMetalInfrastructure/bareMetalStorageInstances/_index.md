@@ -1,5 +1,5 @@
 ---
-title: Baremetalstorageinstances
+title: bareMetalStorageInstances
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

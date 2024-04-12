@@ -1,5 +1,5 @@
 ---
-title: Spacecrafts
+title: spacecrafts
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

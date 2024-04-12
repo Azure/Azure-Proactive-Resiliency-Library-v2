@@ -1,5 +1,5 @@
 ---
-title: Usages
+title: usages
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

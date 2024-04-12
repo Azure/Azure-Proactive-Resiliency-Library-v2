@@ -1,5 +1,5 @@
 ---
-title: P2svpngateways
+title: p2sVpnGateways
 geekdocCollapseSection: true
 geekdocHidden: true
 ---

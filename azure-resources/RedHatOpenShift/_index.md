@@ -1,5 +1,5 @@
 ---
-title: Redhatopenshift
+title: RedHatOpenShift
 geekdocCollapseSection: true
 geekdocHidden: true
 ---
