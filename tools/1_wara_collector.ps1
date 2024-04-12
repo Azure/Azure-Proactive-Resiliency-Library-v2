@@ -108,7 +108,7 @@ $Global:Runtime = Measure-Command -Expression {
                 $Global:clonePath = "$workingFolderPath/Azure-Proactive-Resiliency-Library"
             }
         Write-Debug "Checking default folder"
-        if ((Get-ChildItem -Path $Global:clonePath -Force | Measure-Object).Count -gt 0) {
+        if ((Get-ChildItem -Path $Global:clonePath -Force -ErrorAction SilentlyContinue | Measure-Object).Count -gt 0) {
             Write-Debug "APRL Folder does exist. Reseting it..."
             Get-Item -Path $Global:clonePath | Remove-Item -Recurse -Force
             git clone $repoUrl $clonePath --quiet
@@ -117,7 +117,14 @@ $Global:Runtime = Measure-Command -Expression {
             git clone $repoUrl $clonePath --quiet
         }
         Write-Debug "Checking the version of the script"
-        $RepoVersion = Get-Content -Path "$clonePath\tools\Version.json" -ErrorAction SilentlyContinue | ConvertFrom-Json
+        if(!$Global:CShell)
+            {
+                $RepoVersion = Get-Content -Path "$clonePath/tools/Version.json" -ErrorAction SilentlyContinue | ConvertFrom-Json
+            }
+        else
+            {
+                $RepoVersion = Get-Content -Path "$clonePath\tools\Version.json" -ErrorAction SilentlyContinue | ConvertFrom-Json
+            }
         if($Version -ne $RepoVersion.Collector)
             {
                 Write-Host "This version of the script is outdated. " -BackgroundColor DarkRed
@@ -172,7 +179,8 @@ $Global:Runtime = Measure-Command -Expression {
 
             # Getting Outages
             Write-Debug "Exporting Outages"
-            $Date = (Get-Date).AddMonths(-9)
+            $Date = (Get-Date).AddMonths(-12)
+            $DateOutages = (Get-Date).AddMonths(-3)
             $DateCore = (Get-Date).AddMonths(-3)
             $Date = $Date.ToString("MM/dd/yyyy")
             $Outages = @()
@@ -202,7 +210,8 @@ $Global:Runtime = Measure-Command -Expression {
                     catch{}
                 }
 
-            $Global:Outageslist = $Outages.value | Sort-Object @{Expression = "properties.eventlevel"; Descending = $false},@{Expression = "properties.status"; Descending = $false} | Select-Object -Property name,properties -First 50
+            $Global:Outageslist = $Outages.value | Where-Object {$_.properties.impactStartTime -gt $DateOutages} | Sort-Object @{Expression = "properties.eventlevel"; Descending = $false},@{Expression = "properties.status"; Descending = $false} | Select-Object -Property name,properties -First 15
+            $Global:RetiredOutages = $Outages.value | Sort-Object @{Expression = "properties.eventlevel"; Descending = $false},@{Expression = "properties.status"; Descending = $false} | Select-Object -Property name,properties
             $Global:SupportTickets = $SupTickets.value | Where-Object {$_.properties.severity -ne 'Minimal' -and $_.properties.createdDate -gt $DateCore} | Select-Object -Property name,properties
     }
 
@@ -913,16 +922,29 @@ $Global:Runtime = Measure-Command -Expression {
 
                 foreach ($row in $queryResults)
                     {
+                        $OutagesRetired = $Global:RetiredOutages | Where-Object {$_.name -eq $row.properties.TrackingId}
+                        $HTML = New-Object -Com "HTMLFile"
+                        $HTML.write([ref]$row.properties.Summary)
+                        $RetirementSummary = $Html.body.innerText
+
+                        $HTML = New-Object -Com "HTMLFile"
+                        $HTML.write([ref]$OutagesRetired.properties.description)
+                        $RetirementDescriptionFull = $Html.body.innerText
+                        $SplitDescription = $RetirementDescriptionFull.split('Help and support').split('Required action')
+
                         $result = [PSCustomObject]@{
                             Subscription     = [string]$Subid
                             TrackingId       = [string]$row.properties.TrackingId
                             Status           = [string]$row.Properties.Status
-                            LastUpdateTime   = [string]$row.properties.LastUpdateTime
+                            LastUpdateTime   = [string]$OutagesRetired.properties.lastUpdateTime
+                            Endtime          = [string]$OutagesRetired.properties.impactMitigationTime
                             Level            = [string]$row.properties.Level
                             Title            = [string]$row.properties.Title
-                            Summary          = [string]$row.properties.Summary
+                            Summary          = [string]$RetirementSummary
                             Header           = [string]$row.properties.Header
                             ImpactedService  = [string]$row.properties.Impact.ImpactedService
+                            RequiredAction   = [string]$SplitDescription[1]
+                            Details          = [string]$SplitDescription[0]
                         }
                         $Global:AllRetirements += $result
                     }
@@ -940,16 +962,29 @@ $Global:Runtime = Measure-Command -Expression {
 
                     foreach ($row in $queryResults)
                     {
+                        $OutagesRetired = $Global:RetiredOutages | Where-Object {$_.name -eq $row.properties.TrackingId}
+                        $HTML = New-Object -Com "HTMLFile"
+                        $HTML.write([ref]$Retires.Summary)
+                        $RetirementSummary = $Html.body.innerText
+
+                        $HTML = New-Object -Com "HTMLFile"
+                        $HTML.write([ref]$OutagesRetired.properties.description)
+                        $RetirementDescriptionFull = $Html.body.innerText
+                        $SplitDescription = $RetirementDescriptionFull.split('Help and support').split('Required action')
+
                         $result = [PSCustomObject]@{
                             Subscription     = [string]$Subid
                             TrackingId       = [string]$row.properties.TrackingId
                             Status           = [string]$row.Properties.Status
-                            LastUpdateTime   = [string]$row.properties.LastUpdateTime
+                            LastUpdateTime   = [string]$OutagesRetired.properties.lastUpdateTime
+                            Endtime          = [string]$OutagesRetired.properties.impactMitigationTime
                             Level            = [string]$row.properties.Level
                             Title            = [string]$row.properties.Title
-                            Summary          = [string]$row.properties.Summary
+                            Summary          = [string]$RetirementSummary
                             Header           = [string]$row.properties.Header
                             ImpactedService  = [string]$row.properties.Impact.ImpactedService
+                            RequiredAction   = [string]$SplitDescription[1]
+                            Details          = [string]$SplitDescription[0]
                         }
                         $Global:AllRetirements += $result
                     }
@@ -1076,13 +1111,13 @@ $Global:Runtime = Measure-Command -Expression {
 
         $Global:JsonFile = ($PSScriptRoot + "\WARA_File_" + (get-date -Format "yyyy-MM-dd_HH_mm") + ".json")
 
-        $ExporterArray | ConvertTo-Json -Depth 8 | Out-File $Global:JsonFile
+        $ExporterArray | ConvertTo-Json -Depth 15 | Out-File $Global:JsonFile
 
     }
 
 
     #Call the functions
-    $Global:Version = "2.0.1"
+    $Global:Version = "2.0.2"
     Write-Host "Version: " -NoNewline
     Write-Host $Global:Version -ForegroundColor DarkBlue
 
