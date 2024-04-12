@@ -683,7 +683,7 @@ $Global:Runtime = Measure-Command -Expression {
 
             $Counter = 1
             $RecomNumber = 1
-            $row = 2    
+            $row = 2
             foreach($Impact in $LowImpact)
                 {
                     if($Counter -lt 14)
@@ -1557,7 +1557,7 @@ $Global:Runtime = Measure-Command -Expression {
 
 
     #Call the functions
-    $Global:Version = "2.0.1"
+    $Global:Version = "2.0.2"
     Write-Host "Version: " -NoNewline
     Write-Host $Global:Version -ForegroundColor DarkBlue
 
