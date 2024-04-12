@@ -3,7 +3,7 @@
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
-  recommendationResourceType: n/a
+  recommendationResourceType: WellArchitected/Test
   recommendationMetadataState: Active
   longDescription: |
     Applications should be tested to ensure availability and resiliency. Availability describes the amount of time that an application runs in a healthy state without significant downtime. Resiliency describes how quickly an application recovers from failure.
@@ -38,7 +38,7 @@
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
-  recommendationResourceType: n/a
+  recommendationResourceType: WellArchitected/Test
   recommendationMetadataState: Active
   longDescription: |
     In a distributed system, ensuring that your application can recover from errors is critical. You can test your applications to prevent errors and failure, but you need to prepare for a wide range of issues. Testing doesn't always catch everything, so you should understand how to handle errors and prevent potential failure.
@@ -66,7 +66,7 @@
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: High
-  recommendationResourceType: n/a
+  recommendationResourceType: WellArchitected/Test
   recommendationMetadataState: Active
   longDescription: |
     Disaster recovery is the process of restoring application functionality after a catastrophic loss.
@@ -96,7 +96,7 @@
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: Medium
-  recommendationResourceType: n/a
+  recommendationResourceType: WellArchitected/Test
   recommendationMetadataState: Active
   longDescription: |
     Ideally, you should apply chaos principles continuously. There's constant change in the environments in which software and hardware run, so monitoring the changes is key. By constantly applying stress or faults on components, you can help expose issues early, before small problems are compounded by many other factors.
@@ -121,7 +121,7 @@
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
-  recommendationResourceType: n/a
+  recommendationResourceType: WellArchitected/Test
   recommendationMetadataState: Active
   longDescription: |
     High availability is a fundamental part of the SQL Database platform that works transparently for your database application. However, we recognize that you may want to test how the automatic failover operations initiated during planned or unplanned events would impact an application before you deploy it to production. You can manually trigger a failover by calling a special API to restart a database, or an elastic pool.
