@@ -60,7 +60,7 @@ winget install --id 'Hugo.Hugo.Extended'
 Ensure you meet the following prerequisites:
 
 - [Create a GitHub profile/account](https://github.com/join)
-- Fork the [`Azure/Azure-Proactive-Resiliency-Library` repository](https://aka.ms/aprl/repo) to your GitHub organization/account and clone it locally to your machine.
+- Fork the [`Azure/Azure-Proactive-Resiliency-Library-v2` repository](https://aka.ms/aprl/repo) to your GitHub organization/account and clone it locally to your machine.
 - Instructions for forking a repository and cloning it can be found [here](https://docs.github.com/get-started/quickstart/fork-a-repo).
 
 ### Running and Accessing a Local Copy of APRL During Development
