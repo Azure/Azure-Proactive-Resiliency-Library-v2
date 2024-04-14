@@ -61,6 +61,7 @@ function Help {
     Write-Host " -PPTTemplateFile      :  Optional; specifies the PPTx template file to be used as source. If not specified the script will look for the file in the same path as the script. "
     Write-Host " -WordTemplateFile     :  Optional; specifies the DOCx template file to be used as source. If not specified the script will look for the file in the same path as the script. "
     Write-Host " -Debugging            :  Writes Debugging information of the script during the execution. "
+    Write-Host " -VisualDebugging      :  Runs the script showing the visual interactions with Microsoft PowerPoint and Microsoft Word. "
     Write-Host ""
     Write-Host "Examples: "
     Write-Host ""
@@ -75,6 +76,25 @@ function Help {
 }
 
 $Global:Runtime = Measure-Command -Expression {
+
+
+    function LocalFiles {
+        # Define script path as the default path to save files
+        $workingFolderPath = $PSScriptRoot
+        Set-Location -path $workingFolderPath;
+        $Global:clonePath = "$workingFolderPath\Azure-Proactive-Resiliency-Library"
+        Write-Debug "Checking the version of the script"
+        $RepoVersion = Get-Content -Path "$clonePath\tools\Version.json" -ErrorAction SilentlyContinue | ConvertFrom-Json
+        if($Version -ne $RepoVersion.Generator)
+            {
+                Write-Host "This version of the script is outdated. " -BackgroundColor DarkRed
+                Write-Host "Please use a more recent version of the script." -BackgroundColor DarkRed
+            }
+        else
+            {
+                Write-Host "This version of the script is current version. " -BackgroundColor DarkGreen
+            }
+    }
 
     ############# EXCEL 
     function Excel {
@@ -663,7 +683,7 @@ $Global:Runtime = Measure-Command -Expression {
 
             $Counter = 1
             $RecomNumber = 1
-            $row = 2    
+            $row = 2
             foreach($Impact in $LowImpact)
                 {
                     if($Counter -lt 14)
@@ -1537,15 +1557,16 @@ $Global:Runtime = Measure-Command -Expression {
 
 
     #Call the functions
-    $Version = "2.2.0"
+    $Global:Version = "2.0.2"
     Write-Host "Version: " -NoNewline
-    Write-Host $Version -ForegroundColor DarkGreen
+    Write-Host $Global:Version -ForegroundColor DarkBlue
 
     if ($Help.IsPresent) {
         Help
         Exit
     }
 
+    LocalFiles
     Excel
     PPT
     Write-Host "Editing " -NoNewline
