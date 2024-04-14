@@ -17,7 +17,7 @@ if ($Debugging.IsPresent) { $DebugPreference = 'Continue' } else { $DebugPrefere
 
 if (!$PPTTemplateFile)
     {
-        if ((Test-Path -Path ($PSScriptRoot+'\Mandatory - Executive Summary presentation - Template.pptx') -PathType Leaf) -eq $true) 
+        if ((Test-Path -Path ($PSScriptRoot+'\Mandatory - Executive Summary presentation - Template.pptx') -PathType Leaf) -eq $true)
             {
                 $PPTTemplateFile = ($PSScriptRoot+'\Mandatory - Executive Summary presentation - Template.pptx')
             }
@@ -30,7 +30,7 @@ if (!$PPTTemplateFile)
 
 if (!$WordTemplateFile)
     {
-        if ((Test-Path -Path ($PSScriptRoot+'\Optional - Assessment Report - Template.docx') -PathType Leaf) -eq $true) 
+        if ((Test-Path -Path ($PSScriptRoot+'\Optional - Assessment Report - Template.docx') -PathType Leaf) -eq $true)
             {
                 $WordTemplateFile = ($PSScriptRoot+'\Optional - Assessment Report - Template.docx')
             }
@@ -96,7 +96,7 @@ $Global:Runtime = Measure-Command -Expression {
             }
     }
 
-    ############# EXCEL 
+    ############# EXCEL
     function Excel {
         Write-Debug "Importing Core Excel Data"
 
@@ -130,7 +130,7 @@ $Global:Runtime = Measure-Command -Expression {
                             'Resource Type' = ($ID.split('/')[6]+'/'+$ID.split('/')[7])
                         }
                         $Resources += $obj
-                    }            
+                    }
             }
 
         $Global:ResourcesTypes = $Resources | Group-Object -Property 'Resource Type' | Sort-Object -Property 'Count' -Descending | Select-Object -First 10
@@ -212,8 +212,8 @@ $Global:Runtime = Measure-Command -Expression {
                         {
                             $ResourceTemp = ($ResourcesType.Name + ' ('+$ResourcesType.'Count'+')')
                             ($Slide12.Shapes | Where-Object {$_.Id -eq 6}).Table.Columns(1).Width = 685
-                            ($Slide12.Shapes | Where-Object {$_.Id -eq 6}).Table.Rows(1).Cells(1).Shape.TextFrame.TextRange.Text = $ResourceTemp 
-                            ($Slide12.Shapes | Where-Object {$_.Id -eq 6}).Table.Rows(1).Height = 20 
+                            ($Slide12.Shapes | Where-Object {$_.Id -eq 6}).Table.Rows(1).Cells(1).Shape.TextFrame.TextRange.Text = $ResourceTemp
+                            ($Slide12.Shapes | Where-Object {$_.Id -eq 6}).Table.Rows(1).Height = 20
                         }
                     else
                         {
@@ -363,7 +363,7 @@ $Global:Runtime = Measure-Command -Expression {
                 }
 
             $Counter = 1
-            $row = 3    
+            $row = 3
             foreach($Health in $Global:ServiceHealth)
                 {
                     if($Counter -lt 18)
@@ -457,7 +457,7 @@ $Global:Runtime = Measure-Command -Expression {
 
             $Counter = 1
             $RecomNumber = 1
-            $row = 2    
+            $row = 2
             foreach($Impact in $HighImpact)
                 {
                     if($Counter -lt 14)
@@ -570,7 +570,7 @@ $Global:Runtime = Measure-Command -Expression {
 
             $Counter = 1
             $RecomNumber = 1
-            $row = 2    
+            $row = 2
             foreach($Impact in $MediumImpact)
                 {
                     if($Counter -lt 14)
@@ -782,15 +782,15 @@ $Global:Runtime = Measure-Command -Expression {
                             if($Loop -eq 1)
                                 {
                                     $OutageName = ($Outage.'Tracking ID'+' - '+$Outage.title)
-        
+
                                     $OutageService = $Outage.'Impacted Service'
-        
+
                                     $Slide28 = $pres.Slides | Where-Object {$_.SlideIndex -eq 28}
-        
+
                                     $TargetShape = ($Slide28.Shapes | Where-Object {$_.Id -eq 4})
                                     $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
                                     #$TargetShape.Delete()
-        
+
                                     ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(1).Text = $OutageName
                                     ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(2).Text = "What happened:"
                                     ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(3).Text = $Outage.'What happened'
@@ -814,7 +814,7 @@ $Global:Runtime = Measure-Command -Expression {
                                     ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(7).Paste() | Out-Null
                                     Start-Sleep -Milliseconds 100
                                     ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(7).Text = $Outage.'How can customers make incidents like this less impactful'
-        
+
                                     while(($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs().count -gt 7)
                                         {
                                             ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(8).Delete()
@@ -823,33 +823,33 @@ $Global:Runtime = Measure-Command -Expression {
                             else
                                 {
                                     ############### NEXT 9 SLIDES
-        
+
                                     $OutageName = ($Outage.'Tracking ID'+' - '+$Outage.title)
-        
+
                                     $OutageService = $Outage.'Impacted Service'
                                     $CustomLayout = $Slide28.CustomLayout
                                     $pres.Slides.addSlide($CurrentSlide,$customLayout) | Out-Null
-        
+
                                     $NextSlide = $pres.Slides | Where-Object {$_.SlideIndex -eq $CurrentSlide}
-        
+
                                     ($Slide28.Shapes | Where-Object {$_.Id -eq 6}).TextFrame.TextRange.Copy()
                                     Start-Sleep -Milliseconds 100
-        
+
                                     ($NextSlide.Shapes | Where-Object {$_.Id -eq 2}).TextFrame.TextRange.Paste() | Out-Null
                                     Start-Sleep -Milliseconds 100
-        
+
                                     ($Slide28.Shapes | Where-Object {$_.Id -eq 4}).Copy()
                                     Start-Sleep -Milliseconds 100
-        
+
                                     $NextSlide.Shapes.Paste() | Out-Null
                                     Start-Sleep -Milliseconds 100
-        
+
                                     ($Slide28.Shapes | Where-Object {$_.Id -eq 7}).Copy()
                                     Start-Sleep -Milliseconds 100
-        
+
                                     $NextSlide.Shapes.Paste() | Out-Null
                                     Start-Sleep -Milliseconds 100
-        
+
                                     ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(1).Text = $OutageName
                                     ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(2).Text = "What happened:"
                                     ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(3).Text = $Outage.'What happened'
@@ -873,11 +873,11 @@ $Global:Runtime = Measure-Command -Expression {
                                     ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(7).Paste() | Out-Null
                                     Start-Sleep -Milliseconds 100
                                     ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(7).Text = $Outage.'How can customers make incidents like this less impactful'
-                                    
+
                                     ($Slide28.Shapes | Where-Object {$_.Id -eq 31}).Copy()
-        
+
                                     $NextSlide.Shapes.Paste() | Out-Null
-        
+
                                     while(($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs().count -gt 7)
                                         {
                                             ($NextSlide.Shapes | Where-Object {$_.Id -eq 4}).TextFrame.TextRange.Paragraphs(8).Delete()
@@ -959,7 +959,6 @@ $Global:Runtime = Measure-Command -Expression {
                                             ($Slide29.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs($ParagraphLoop).Text = "Recommendation: "
                                             $ParagraphLoop ++
 
-                                            
                                             if($Loop -eq 4)
                                                 {
                                                     $Loop = 1
@@ -1064,7 +1063,6 @@ $Global:Runtime = Measure-Command -Expression {
                                 Start-Sleep -Milliseconds 500
                         }
                 }
-            
         }
 
         ############# Slide 30
@@ -1079,14 +1077,14 @@ $Global:Runtime = Measure-Command -Expression {
                     $TargetShape = ($Slide30.Shapes | Where-Object {$_.Id -eq 4})
                     $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
                     #$TargetShape.Delete()
-        
+
                     ($Slide30.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(1).Text = '.'
-        
+
                     while(($Slide30.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs().count -gt 2)
                         {
                             ($Slide30.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(2).Delete()
                         }
-        
+
                     foreach ($Retirement in $Global:Retirements)
                         {
                             if($Loop -lt 15)
@@ -1094,14 +1092,14 @@ $Global:Runtime = Measure-Command -Expression {
                                     if($Loop -eq 1)
                                         {
                                             $RetireName = ($Retirement.'Tracking ID'+' - '+$Retirement.Status + ' : ' + $Retirement.title)
-        
+
                                             ($Slide30.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(1).Text = $RetireName
                                             $Loop ++
                                         }
                                     else
                                         {
                                             $RetireName = ($Retirement.'Tracking ID'+' - '+$Retirement.Status + ' : ' + $Retirement.title)
-        
+
                                             ($Slide30.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.InsertAfter(".") | Out-Null
                                             Start-Sleep -Milliseconds 100
                                             ($Slide30.Shapes | Where-Object {$_.Id -eq 7}).TextFrame.TextRange.Paragraphs(1).Copy()
@@ -1114,7 +1112,6 @@ $Global:Runtime = Measure-Command -Expression {
                                 }
                         }
                 }
-            
         }
 
         Slide1
@@ -1146,25 +1143,24 @@ $Global:Runtime = Measure-Command -Expression {
             $wdFindContinue = 1
             $Format = $false
             $ReplaceAll = 2
-        
+
             $FindText = '[Workload Name]'
             $ReplaceWith = $WorkloadName
             $Global:Document.Content.Find.Execute($FindText, $MatchCase, $MatchWholeWord, $MatchWildcards, $MatchSoundsLike, $MatchAllWordForms, $Forward, $wrap, $Format, $ReplaceWith, $ReplaceAll) | Out-Null
-        
+
             $FindText = 'Workload Name'
             $ReplaceWith = $WorkloadName
             $Global:Document.Content.Find.Execute($FindText, $MatchCase, $MatchWholeWord, $MatchWildcards, $MatchSoundsLike, $MatchAllWordForms, $Forward, $wrap, $Format, $ReplaceWith, $ReplaceAll) | Out-Null
-        
+
             $FindText = '[Customer Name]'
             $ReplaceWith = $CustomerName
             $Global:Document.Content.Find.Execute($FindText, $MatchCase, $MatchWholeWord, $MatchWildcards, $MatchSoundsLike, $MatchAllWordForms, $Forward, $wrap, $Format, $ReplaceWith, $ReplaceAll) | Out-Null
-        
+
             $FindText = '[Type Customer Name Here]'
             $ReplaceWith = $CustomerName
             $Global:Document.Content.Find.Execute($FindText, $MatchCase, $MatchWholeWord, $MatchWildcards, $MatchSoundsLike, $MatchAllWordForms, $Forward, $wrap, $Format, $ReplaceWith, $ReplaceAll) | Out-Null
             $Global:Document.Sections(1).Headers(1).Range.Find.Execute($FindText, $MatchCase, $MatchWholeWord, $MatchWildcards, $MatchSoundsLike, $MatchAllWordForms, $Forward, $wrap, $Format, $ReplaceWith, $ReplaceAll) | Out-Null
-        
-        
+
             # Total Recommendations
             $Global:Document.Content.Paragraphs(145).Range.Text = [string]($ExcelCore | Where-Object {$_."Number of Impacted Resources?" -gt 0}).count
             #High Impact
@@ -1175,19 +1171,18 @@ $Global:Runtime = Measure-Command -Expression {
             $Global:Document.Content.Paragraphs(159).Range.Text = [string]($ExcelCore | Where-Object {$_."Number of Impacted Resources?" -gt 0 -and $_.Impact -eq 'Low'}).count
             #Impacted Resources
             $Global:Document.Content.Paragraphs(165).Range.Text = [string]($ExcelContent.id | Where-Object {![string]::IsNullOrEmpty($_)} | Select-Object -Unique).count
-        
-        
+
             $HealthHigh = $ExcelCore | Where-Object {$_."Number of Impacted Resources?" -gt 1 -and $_.Impact -eq 'High'} | Sort-Object -Property "Number of Impacted Resources?" -Descending
 
             #Risk Assessment Result
             $Global:Document.Content.Paragraphs(176).Range.Text = ''
             $Global:Document.Content.Paragraphs(175).Range.Text = ''
-        
+
             #$Global:Document.Content.Paragraphs(158).Range.ListFormat.ApplyListTemplate($Global:Word.Application.ListGalleries[1].ListTemplates[3])
 
             #Health Assessment Result
             $Global:Document.Content.Paragraphs(172).Range.Text = ''
-    
+
             #$Global:Document.Content.Paragraphs(158).Range.ListFormat.ApplyListTemplate($Global:Word.Application.ListGalleries[1].ListTemplates[3])
             $Global:Document.Content.Paragraphs(171).Range.Select()
             $Loops = 1
@@ -1209,7 +1204,6 @@ $Global:Runtime = Measure-Command -Expression {
                         }
                     $Loops ++
                 }
-        
         }
         function WordCharts {
             Write-Debug 'Editing Word Charts'
@@ -1241,7 +1235,7 @@ $Global:Runtime = Measure-Command -Expression {
             $Global:Document.Tables(10).Rows(2).Cells(1).Range.Text = ''
             $Global:Document.Tables(10).Rows(2).Cells(2).Range.Text = ''
             $Global:Document.Tables(10).Rows(2).Cells(3).Range.Text = ''
-        
+
             Write-Debug 'Looping Outages'
             $LineCounter = 2
             if(![string]::IsNullOrEmpty($Global:Outages))
@@ -1255,11 +1249,11 @@ $Global:Runtime = Measure-Command -Expression {
                         $OutageName = ($Outage.'Tracking ID'+' - '+$Outage.title)
                         $OutageWhat = $Outage.'What happened'
                         $OutageRecom = $Outage.'How can customers make incidents like this less impactful'
-    
+
                         $Global:Document.Tables(10).Rows($LineCounter).Cells(1).Range.Text = $OutageName
                         $Global:Document.Tables(10).Rows($LineCounter).Cells(2).Range.Text = $OutageWhat
                         $Global:Document.Tables(10).Rows($LineCounter).Cells(3).Range.Text = $OutageRecom
-    
+
                         $LineCounter ++
                     }
                 }
@@ -1278,7 +1272,7 @@ $Global:Runtime = Measure-Command -Expression {
                         }
                     $row ++
                 }
-        
+
             #Clean the table 7
             $row = 2
             while ($row -lt 3)
@@ -1291,7 +1285,7 @@ $Global:Runtime = Measure-Command -Expression {
                         }
                     $row ++
                 }
-        
+
             #Clean the table 8
             $row = 2
             while ($row -lt 3)
@@ -1304,7 +1298,7 @@ $Global:Runtime = Measure-Command -Expression {
                         }
                     $row ++
                 }
-        
+
             #Populate Table Health and Risk Summary High
             $counter = 1
             $row = 2
@@ -1354,7 +1348,7 @@ $Global:Runtime = Measure-Command -Expression {
                             $row ++
                         }
                 }
-        
+
             #Populate Table Health and Risk Summary Medium
             $counter = 1
             $row = 2
@@ -1404,7 +1398,7 @@ $Global:Runtime = Measure-Command -Expression {
                             $row ++
                         }
                 }
-        
+
             #Populate Table Health and Risk Summary Low
             $counter = 1
             $row = 2
@@ -1473,11 +1467,11 @@ $Global:Runtime = Measure-Command -Expression {
                         $RetireName = ($Retires.'Tracking ID'+' - '+ $Retires.Status + ' : ' + $Retires.title)
                         $RetireSub = $Retires.Subscription
                         $RetireDetails = $Retires.Details
-    
+
                         $Global:Document.Tables(12).Rows($LineCounter).Cells(1).Range.Text = $RetireName
                         $Global:Document.Tables(12).Rows($LineCounter).Cells(2).Range.Text = $RetireSub
                         $Global:Document.Tables(12).Rows($LineCounter).Cells(3).Range.Text = $RetireDetails
-    
+
                         $LineCounter ++
                     }
                 }
@@ -1610,7 +1604,7 @@ Write-Host $PPTFinalFile -ForegroundColor Cyan
 
 if ($WordTemplateFile)
     {
-        $WordFinalFile = ($PSScriptRoot+'\Assessment Report - ' + $CustomerName + ' - '+ (get-date -Format "yyyy-MM-dd-HH-mm") +'.docx')        
+        $WordFinalFile = ($PSScriptRoot+'\Assessment Report - ' + $CustomerName + ' - '+ (get-date -Format "yyyy-MM-dd-HH-mm") +'.docx')
         $Global:Document.SaveAs($WordFinalFile)
         Write-Host 'Word File Saved As: ' -NoNewline
         Write-Host $WordFinalFile -ForegroundColor Cyan
