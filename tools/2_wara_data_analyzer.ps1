@@ -114,7 +114,7 @@ $Global:Runtime = Measure-Command -Expression {
 
         $Global:ServicesYAMLContent = @()
         foreach ($YAML in $Global:ServicesYAML)
-            {  
+            {
                 if(![string]::IsNullOrEmpty($YAML))
                     {
                         $Global:ServicesYAMLContent += Get-Content -Path $YAML | ConvertFrom-Yaml
@@ -150,7 +150,7 @@ $Global:Runtime = Measure-Command -Expression {
                         $Global:MergedRecommendation += $tmp
                     }
             }
-        
+
         foreach ($adv in $CoreAdvisories)
             {
                 if(![string]::IsNullOrEmpty($adv.recommendationId))
@@ -233,7 +233,6 @@ $Global:Runtime = Measure-Command -Expression {
             $TypeStyle = @(
                 New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -Bold -BackgroundColor "DarkSlateGray" -AutoSize -Range "A1:F1"
                 New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -AutoSize -NumberFormat '0' -Range "A:F"
-                
             )
 
             $Global:AllResourceTypesOrdered | ForEach-Object { [PSCustomObject]$_ } | Select-Object $ResourceTypeSheet |
@@ -392,7 +391,6 @@ $Global:Runtime = Measure-Command -Expression {
                             $Global:TicketsSheet += $tmp
                         }
                 }
-            
 
             $Styles5 = @(
                 New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 20 -NumberFormat '0' -Range "A1"
@@ -488,7 +486,7 @@ $Global:Runtime = Measure-Command -Expression {
             ####################    Starts to process the main sheet
             $Global:WAFYAMLContent = @()
             foreach ($YAML in $Global:WAFYAML)
-                {  
+                {
                     if(![string]::IsNullOrEmpty($YAML))
                         {
                             $Global:WAFYAMLContent += Get-Content -Path $YAML | ConvertFrom-Yaml
@@ -525,7 +523,7 @@ $Global:Runtime = Measure-Command -Expression {
                         }
                 }
 
-            # Builds the Advisor recommendations 
+            # Builds the Advisor recommendations
             foreach ($advisor in $Global:AdvisorContent)
                 {
                     $ID = $advisor.recommendationId
@@ -550,7 +548,7 @@ $Global:Runtime = Measure-Command -Expression {
                     $Global:Recommendations += $tmp
                 }
 
-            # Builds the WAF recommendations 
+            # Builds the WAF recommendations
             foreach ($WAFYAML in $Global:WAFYAMLContent)
                 {
                     $resourceType = $WAFYAML.recommendationResourceType
