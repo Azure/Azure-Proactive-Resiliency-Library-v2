@@ -82,6 +82,17 @@ $Global:Runtime = Measure-Command -Expression {
         else {
             git clone $repoUrl $Global:clonePath --quiet
         }
+        Write-Debug "Checking the version of the script"
+        $RepoVersion = Get-Content -Path "$clonePath\tools\Version.json" -ErrorAction SilentlyContinue | ConvertFrom-Json
+        if($Version -ne $RepoVersion.Analyzer)
+            {
+                Write-Host "This version of the script is outdated. " -BackgroundColor DarkRed
+                Write-Host "Please use a more recent version of the script." -BackgroundColor DarkRed
+            }
+        else
+            {
+                Write-Host "This version of the script is current version. " -BackgroundColor DarkGreen
+            }
     }
 
     function MGrid {
@@ -103,7 +114,7 @@ $Global:Runtime = Measure-Command -Expression {
 
         $Global:ServicesYAMLContent = @()
         foreach ($YAML in $Global:ServicesYAML)
-            {  
+            {
                 if(![string]::IsNullOrEmpty($YAML))
                     {
                         $Global:ServicesYAMLContent += Get-Content -Path $YAML | ConvertFrom-Yaml
@@ -139,7 +150,7 @@ $Global:Runtime = Measure-Command -Expression {
                         $Global:MergedRecommendation += $tmp
                     }
             }
-        
+
         foreach ($adv in $CoreAdvisories)
             {
                 if(![string]::IsNullOrEmpty($adv.recommendationId))
@@ -222,7 +233,6 @@ $Global:Runtime = Measure-Command -Expression {
             $TypeStyle = @(
                 New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -Bold -BackgroundColor "DarkSlateGray" -AutoSize -Range "A1:F1"
                 New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -AutoSize -NumberFormat '0' -Range "A:F"
-                
             )
 
             $Global:AllResourceTypesOrdered | ForEach-Object { [PSCustomObject]$_ } | Select-Object $ResourceTypeSheet |
@@ -296,8 +306,11 @@ $Global:Runtime = Measure-Command -Expression {
             $OutagesWorksheet.Add('How can customers make incidents like this less impactful')
 
 
-            $Global:OutagesSheet | ForEach-Object { [PSCustomObject]$_ } | Select-Object $OutagesWorksheet |
-            Export-Excel -Path $ExcelFile -WorksheetName 'Outages' -TableName 'TableOutage' -AutoSize -TableStyle $tableStyle -Style $Styles3
+            if(![string]::IsNullOrEmpty($Global:OutagesSheet))
+                {
+                    $Global:OutagesSheet | ForEach-Object { [PSCustomObject]$_ } | Select-Object $OutagesWorksheet |
+                    Export-Excel -Path $ExcelFile -WorksheetName 'Outages' -TableName 'TableOutage' -AutoSize -TableStyle $tableStyle -Style $Styles3
+                }
 
         }
 
@@ -308,34 +321,17 @@ $Global:Runtime = Measure-Command -Expression {
                 {
                     if(![string]::IsNullOrEmpty($Retires))
                         {
-                            $OutageRetirement = $Global:Outages | Where-Object {$_.name -eq $Retires.TrackingId}
-                            $HTML = New-Object -Com "HTMLFile"
-                            $HTML.write([ref]$Retires.Summary)
-                            $RetirementDescription = $Html.body.innerText
-
-                            if(![string]::IsNullOrEmpty($OutageRetirement))
-                                {
-                                    $HTML = New-Object -Com "HTMLFile"
-                                    $HTML.write([ref]$OutageRetirement.properties.description)
-                                    $RetirementDescriptionFull = $Html.body.innerText
-                                    $SplitDescription = $RetirementDescriptionFull.split('Help and support').split('Required action')
-                                }
-                            else
-                                {
-                                    $SplitDescription = ''
-                                }
-
                             $tmp = @{
                                 'Subscription'         = [string]$Retires.Subscription;
                                 'Tracking ID'          = [string]$Retires.TrackingId;
                                 'Status'               = [string]$Retires.Status;
-                                'Last Update Time'     = [string]$OutageRetirement.properties.lastUpdateTime;
-                                'End Time'             = [string]$OutageRetirement.properties.impactMitigationTime;
+                                'Last Update Time'     = [string]$Retires.LastUpdateTime;
+                                'End Time'             = [string]$Retires.Endtime;
                                 'Impacted Service'     = [string]$Retires.ImpactedService;
                                 'Title'                = [string]$Retires.Title;
-                                'Summary'              = [string]$RetirementDescription;
-                                'Required Action'      = [string]$SplitDescription[1];
-                                'Details'              = [string]$SplitDescription[0]
+                                'Summary'              = [string]$Retires.Summary;
+                                'Required Action'      = [string]$Retires.RequiredAction;
+                                'Details'              = [string]$Retires.Details
                             }
                             $Global:RetirementSheet += $tmp
                         }
@@ -389,13 +385,12 @@ $Global:Runtime = Measure-Command -Expression {
                                 'Customer Contact'     = [string]$Ticket.properties.contactDetails.primaryEmailAddress;
                                 'Title'                = [string]$Ticket.properties.title;
                                 'Description'          = [string]$Ticket.properties.description;
-                                'Related Resource'     = [string]$Ticket.properties.technicalTicketDetails.resourceId;
-                                'Support Engineer'     = [string]$Ticket.properties.supportEngineer.emailAddress
+                                'Related Resource'     = [string]$Ticket.properties.technicalTicketDetails.resourceId
+                                #'Support Engineer'     = [string]$Ticket.properties.supportEngineer.emailAddress
                             }
                             $Global:TicketsSheet += $tmp
                         }
                 }
-            
 
             $Styles5 = @(
                 New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 20 -NumberFormat '0' -Range "A1"
@@ -405,9 +400,9 @@ $Global:Runtime = Measure-Command -Expression {
                 New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 35 -Range "G1"
                 New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 50 -Range "H1"
                 New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 95 -Range "I1"
-                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 60 -Range "J1"
-                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 35 -Range "K1"
-                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -VerticalAlignment Center -WrapText -NumberFormat '0' -Range "A:K"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 120 -Range "J1"
+                #New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 35 -Range "K1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -VerticalAlignment Center -WrapText -NumberFormat '0' -Range "A:J"
             )
 
             # Configure the array of fields to be used in the Tickets sheet
@@ -422,7 +417,7 @@ $Global:Runtime = Measure-Command -Expression {
             $TicketWorksheet.Add('Title')
             $TicketWorksheet.Add('Description')
             $TicketWorksheet.Add('Related Resource')
-            $TicketWorksheet.Add('Support Engineer')
+            #$TicketWorksheet.Add('Support Engineer')
 
             if(![string]::IsNullOrEmpty($Global:TicketsSheet))
                 {
@@ -491,7 +486,7 @@ $Global:Runtime = Measure-Command -Expression {
             ####################    Starts to process the main sheet
             $Global:WAFYAMLContent = @()
             foreach ($YAML in $Global:WAFYAML)
-                {  
+                {
                     if(![string]::IsNullOrEmpty($YAML))
                         {
                             $Global:WAFYAMLContent += Get-Content -Path $YAML | ConvertFrom-Yaml
@@ -506,7 +501,7 @@ $Global:Runtime = Measure-Command -Expression {
                     if($Service.recommendationResourceType -in $Global:AllResourceTypesOrdered.'Resource Type' -or $Global:FilterRecommendations -eq $false)
                         {
                             $ID = $Service.aprlGuid
-                            $resourceType = $Service.recommendationResourceType.ToLower()
+                            $resourceType = $Service.recommendationResourceType
                             $tmp = @{
                                 'Implemented?Yes/No'                                                                             = ('=IF((COUNTIF(ImpactedResources!A:A,"' + $ID + '")=0),"Yes","No")');
                                 'Number of Impacted Resources?'                                                                  = ('=COUNTIF(ImpactedResources!A:A,"' + $ID + '")');
@@ -521,13 +516,14 @@ $Global:Runtime = Measure-Command -Expression {
                                 'Read More'                                                                                      = [string]$Service.learnMoreLink.url;
                                 'Potential Benefits'                                                                             = [string]$Service.potentialBenefits;
                                 'Add associated Outage TrackingID and/or Support Request # and/or Service Retirement TrackingID' = '';
-                                'Observation / Annotation'                                                                       = ''
+                                'Observation / Annotation'                                                                       = '';
+                                'Recommendation Id'                                                                              = [string]$Service.aprlGuid
                             }
                             $Global:Recommendations += $tmp
                         }
                 }
 
-            # Builds the Advisor recommendations 
+            # Builds the Advisor recommendations
             foreach ($advisor in $Global:AdvisorContent)
                 {
                     $ID = $advisor.recommendationId
@@ -546,14 +542,16 @@ $Global:Runtime = Measure-Command -Expression {
                         'Read More'                                                                                      = '';
                         'Potential Benefits'                                                                             = '';
                         'Add associated Outage TrackingID and/or Support Request # and/or Service Retirement TrackingID' = '';
-                        'Observation / Annotation'                                                                       = ''
+                        'Observation / Annotation'                                                                       = '';
+                        'Recommendation Id'                                                                              = [string]$advisor.recommendationId
                     }
                     $Global:Recommendations += $tmp
                 }
 
-            # Builds the WAF recommendations 
+            # Builds the WAF recommendations
             foreach ($WAFYAML in $Global:WAFYAMLContent)
                 {
+                    $resourceType = $WAFYAML.recommendationResourceType
                     $ID = $WAFYAML.aprlGuid
                     $tmp = @{
                         'Implemented?Yes/No'                                                                             = ('=IF((COUNTIF(ImpactedResources!A:A,"' + $ID + '")=0),"Yes","No")');
@@ -561,15 +559,16 @@ $Global:Runtime = Measure-Command -Expression {
                         'Azure Service / Well-Architected'                                                               = 'Well Architected';
                         'Recommendation Source'                                                                          = 'APRL';
                         'Resiliency Category'                                                                            = $WAFYAML.recommendationControl;
-                        'Azure Service Category / Well-Architected Area'                                                 = '';
-                        'Azure Service / Well-Architected Topic'                                                         = '';
+                        'Azure Service Category / Well-Architected Area'                                                 = ($resourceType.split('/')[0]);
+                        'Azure Service / Well-Architected Topic'                                                         = ($resourceType.split('/')[1]);
                         'Recommendation Title'                                                                           = $WAFYAML.description;
                         'Impact'                                                                                         = $WAFYAML.recommendationImpact;
                         'Best Practices Guidance'                                                                        = [string]$WAFYAML.longDescription;
                         'Read More'                                                                                      = [string]$WAFYAML.learnMoreLink.url;
                         'Potential Benefits'                                                                             = [string]$WAFYAML.potentialBenefits;
                         'Add associated Outage TrackingID and/or Support Request # and/or Service Retirement TrackingID' = '';
-                        'Observation / Annotation'                                                                       = ''
+                        'Observation / Annotation'                                                                       = '';
+                        'Recommendation Id'                                                                              = [string]$Service.aprlGuid
                     }
                     $Global:Recommendations += $tmp
                 }
@@ -586,7 +585,8 @@ $Global:Runtime = Measure-Command -Expression {
                 New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 90 -Range "J1"
                 New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 45 -Range "K1"
                 New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 35 -Range "L1:M1"
-                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -VerticalAlignment Center -WrapText -Range "A:M"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 45 -Range "N1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -VerticalAlignment Center -WrapText -Range "A:N"
             )
 
             # Configure the array of fields to be used in the Recommendations sheet
@@ -604,6 +604,7 @@ $Global:Runtime = Measure-Command -Expression {
             $FinalWorksheet.Add('Read More')
             $FinalWorksheet.Add('Add associated Outage TrackingID and/or Support Request # and/or Service Retirement TrackingID')
             $FinalWorksheet.Add('Observation / Annotation')
+            $FinalWorksheet.Add('Recommendation Id')
 
             ####################    Creates the recommendations sheet in Excel
             $Global:Recommendations | ForEach-Object { [PSCustomObject]$_ } | Select-Object $FinalWorksheet |
@@ -678,47 +679,54 @@ $Global:Runtime = Measure-Command -Expression {
             Write-Host "Customizing Excel Charts. "
             # Open the Excel using the API to move the charts from the PivotTable sheet to the Charts sheet and change chart style, font, etc..
             if ($Global:ExcelApplication) {
-                Write-Debug 'Openning Excel File'
-                $Ex = $ExcelApplication.Workbooks.Open($ExcelFile)
-                Start-Sleep -Seconds 2
-                Write-Debug 'Openning Excel Sheets'
-                $WS = $ex.Worksheets | Where-Object { $_.Name -eq 'PivotTable' }
-                $WS2 = $ex.Worksheets | Where-Object { $_.Name -eq 'Charts' }
-                Write-Debug 'Moving Charts to Chart sheet'
-                ($WS.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Cut()
-                $WS2.Paste()
-                ($WS.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Cut()
-                $WS2.Paste()
+                try
+                    {
+                        Write-Debug 'Openning Excel File'
+                        $Ex = $ExcelApplication.Workbooks.Open($ExcelFile)
+                        Start-Sleep -Seconds 2
+                        Write-Debug 'Openning Excel Sheets'
+                        $WS = $ex.Worksheets | Where-Object { $_.Name -eq 'PivotTable' }
+                        $WS2 = $ex.Worksheets | Where-Object { $_.Name -eq 'Charts' }
+                        Write-Debug 'Moving Charts to Chart sheet'
+                        ($WS.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Cut()
+                        $WS2.Paste()
+                        ($WS.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Cut()
+                        $WS2.Paste()
 
-                Write-Debug 'Reloading Excel Chart Sheet'
-                $WS2 = $ex.Worksheets | Where-Object { $_.Name -eq 'Charts' }
+                        Write-Debug 'Reloading Excel Chart Sheet'
+                        $WS2 = $ex.Worksheets | Where-Object { $_.Name -eq 'Charts' }
 
-                Write-Debug 'Editing ChartP0'
-                ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartStyle = 222
-                ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartArea.Font.Name = 'Segoe UI'
-                ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartArea.Font.Size = 9
-                ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartArea.Left = 18
-                ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartArea.Top = 40
+                        Write-Debug 'Editing ChartP0'
+                        ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartStyle = 222
+                        ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartArea.Font.Name = 'Segoe UI'
+                        ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartArea.Font.Size = 9
+                        ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartArea.Left = 18
+                        ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartArea.Top = 40
 
-                Write-Debug 'Editing ChartP1'
-                ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartStyle = 222
-                ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartArea.Font.Name = 'Segoe UI'
-                ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartArea.Font.Size = 9
-                ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartArea.Left = 555
-                ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartArea.Top = 40
+                        Write-Debug 'Editing ChartP1'
+                        ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartStyle = 222
+                        ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartArea.Font.Name = 'Segoe UI'
+                        ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartArea.Font.Size = 9
+                        ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartArea.Left = 555
+                        ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartArea.Top = 40
 
-                Write-Debug 'Editing Pivot Filters'
-                $WS.Range("B1").Formula = 'No'
-                $WS.Range("I1").Formula = 'No'
+                        Write-Debug 'Editing Pivot Filters'
+                        $WS.Range("B1").Formula = 'No'
+                        $WS.Range("I1").Formula = 'No'
 
-                Write-Debug 'Saving File'
-                $Ex.Save()
-                Write-Debug 'Closing Excel Application'
-                $Ex.Close()
-                $ExcelApplication.Quit()
-                # Ensures the Excel process opened by the API is closed
-                Write-Debug 'Ensuring Excel Process is Closed.'
-                Get-Process -Name "excel" -ErrorAction Ignore | Where-Object { $_.CommandLine -like '*/automation*' } | Stop-Process
+                        Write-Debug 'Saving File'
+                        $Ex.Save()
+                        Write-Debug 'Closing Excel Application'
+                        $Ex.Close()
+                        $ExcelApplication.Quit()
+                        # Ensures the Excel process opened by the API is closed
+                        Write-Debug 'Ensuring Excel Process is Closed.'
+                        Get-Process -Name "excel" -ErrorAction Ignore | Where-Object { $_.CommandLine -like '*/automation*' } | Stop-Process
+                    }
+                catch
+                    {
+                        Write-Host "Error during the PivotTable + Charts customization" -BackgroundColor DarkRed
+                    }
             }
 
         }
@@ -741,9 +749,9 @@ $Global:Runtime = Measure-Command -Expression {
     }
 
     #Call the functions
-    $Version = "2.2.0"
+    $Global:Version = "2.0.2"
     Write-Host "Version: " -NoNewline
-    Write-Host $Version -ForegroundColor DarkGreen
+    Write-Host $Global:Version -ForegroundColor DarkBlue
 
     if ($Help.IsPresent) {
         Help
