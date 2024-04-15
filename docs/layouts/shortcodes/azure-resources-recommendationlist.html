@@ -45,9 +45,11 @@ Recommendation List
 "Active") (or (not (eq .recommendationMetadataState "Removed")) ($.Site.Params.aprlDevMode true)) }}
 <div id="{{ anchorize .description }}">
   <hr style="height: 5px" />
-  <h3>{{ .description }}
+  <h3
+    style="font-size: 24px; font-weight: bold; padding: 10px; background-color:#939fa7; color:#494949; border-radius: 5px;">
+    <span style=" margin-right: 10px;">{{ .description }}</span>
     <a href="#{{ anchorize .description }}">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link"
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-link"
         viewBox="0 0 16 16">
         <path
           d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z" />
@@ -56,42 +58,41 @@ Recommendation List
       </svg>
     </a>
   </h3>
-  <h4>
-    <span style="font-weight: bold">Impact:</span>&nbsp;
-    <span style="font-weight: normal">{{ .recommendationImpact }}</span>
-    <span style="margin-right: 40px"></span>
-    <span style="font-weight: bold">Category:</span>&nbsp;
-    <span style="font-weight: normal">{{ .recommendationControl }}</span>
-    <span style="margin-right: 40px"></span>
-    <span style="font-weight: bold">PG Verified:</span>&nbsp;
-    <span style="font-weight: normal">{{ if eq .pgVerified true }}Verified{{ else }}Preview{{ end }}</span>
-    <span style="margin-right: 40px"></span>
-  </h4>
-  <h4>
-    <span style="font-weight: bold">ResourceType:</span>&nbsp;
-    <span style="font-weight: normal">{{ .recommendationResourceType }}</span>
-    <span style="margin-right: 40px"></span>
-  </h4>
-  <div style="max-width: 100%; word-wrap: break-word; overflow-wrap: break-word">
-    <h4>Description:</h4>
-    <pre style="white-space: pre-wrap">{{ .longDescription }}</pre>
+
+  <div style="padding-left: 25px;">
+    <h4>
+      <span style="font-weight: bold">Impact:</span>&nbsp;
+      <span style="font-weight: normal">{{ .recommendationImpact }}</span>
+      <span style="margin-right: 40px"></span>
+      <span style="font-weight: bold">Category:</span>&nbsp;
+      <span style="font-weight: normal">{{ .recommendationControl }}</span>
+      <span style="margin-right: 40px"></span>
+      <span style="font-weight: bold">PG Verified:</span>&nbsp;
+      <span style="font-weight: normal">{{ if eq .pgVerified true }}Verified{{ else }}Preview{{ end }}</span>
+      <span style="margin-right: 40px"></span>
+    </h4>
+    <div style="max-width: 100%; word-wrap: break-word; overflow-wrap: break-word;">
+      <h4>Description:</h4>
+      <pre
+        style="white-space: pre-wrap; padding: 5px; border-radius: 5px; font-family: sans-serif;">{{ .longDescription }}</pre>
+    </div>
+    <div style="max-width: 100%; word-wrap: break-word; overflow-wrap: break-word;">
+      <h4>Potential Benefits:</h4>
+      <pre
+        style="white-space: pre-wrap; padding: 5px; border-radius: 5px; font-family: sans-serif;">{{ .potentialBenefits }}</pre>
+    </div>
+    <h5 style="margin-bottom: 5px;">Learn More:</h5>
+    <table style="margin-top: 5px; overflow: hidden;">
+      {{ range .learnMoreLink }}
+      <tr>
+        <td><a href="{{ .url }}" target="_blank">{{ .name }}</a></td>
+      </tr>
+      {{ end }}
+    </table>
+    <h4>ARG Query:</h4>
+    {{ partial "queries-scripts/azure-resources-queries-scripts-tabs" (dict "category" $category
+    "type" $type "recommendation" . "aprlGuid" .aprlGuid)
+    }}
+    <br>
   </div>
-  <div style="max-width: 100%; word-wrap: break-word; overflow-wrap: break-word">
-    <h4>Potential Benefits:</h4>
-    <pre style="white-space: pre-wrap">{{ .potentialBenefits }}</pre>
-  </div>
-  <h5 style="margin-bottom: 5px">Learn More:</h5>
-  <table style="margin-top: 5px">
-    {{ range .learnMoreLink }}
-    <tr>
-      <td><a href="{{ .url }}" target="_blank">{{ .name }}</a></td>
-    </tr>
-    {{ end }}
-  </table>
-  <h4>ARG Query:</h4>
-  {{ partial "queries-scripts/azure-resources-queries-scripts-tabs" (dict "category" $category
-  "type" $type "recommendation" . "aprlGuid" .aprlGuid)
-  }}
-  <br>
-</div>
-{{ end }} {{ end }} {{ end }}
+  {{ end }} {{ end }} {{ end }}
