@@ -1,7 +1,7 @@
 ---
 title: Privacy
 geekdocCollapseSection: true
-weight: 70
+weight: 80
 ---
 
 ---
