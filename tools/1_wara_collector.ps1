@@ -195,7 +195,7 @@ $Global:Runtime = Measure-Command -Expression {
 
             # Getting Outages
             Write-Debug "Exporting Outages"
-            $Date = (Get-Date).AddMonths(-12)
+            $Date = (Get-Date).AddMonths(-24)
             $DateOutages = (Get-Date).AddMonths(-3)
             $DateCore = (Get-Date).AddMonths(-3)
             $Date = $Date.ToString("MM/dd/yyyy")
@@ -216,14 +216,14 @@ $Global:Runtime = Measure-Command -Expression {
                             $url = ('https://management.azure.com/subscriptions/'+ $Sub +'/providers/Microsoft.ResourceHealth/events?api-version=2022-10-01&queryStartTime='+$Date)
                             $Outages += Invoke-RestMethod -Uri $url -Headers $header -Method GET
                         }
-                    catch{}
+                    catch{$null}
 
                     try
                         {
                             $supurl = ('https://management.azure.com/subscriptions/'+ $sub +'/providers/Microsoft.Support/supportTickets?api-version=2020-04-01')
                             $SupTickets += Invoke-RestMethod -Uri $supurl -Headers $header -Method GET
                         }
-                    catch{}
+                    catch{$null}
                 }
 
             $Global:Outageslist = $Outages.value | Where-Object {$_.properties.impactStartTime -gt $DateOutages} | Sort-Object @{Expression = "properties.eventlevel"; Descending = $false},@{Expression = "properties.status"; Descending = $false} | Select-Object -Property name,properties -First 15
@@ -424,9 +424,9 @@ $Global:Runtime = Measure-Command -Expression {
 
                 Set-AzContext -Subscription $Subid -ErrorAction SilentlyContinue -WarningAction SilentlyContinue | Out-Null
 
-                Write-Host "Collecting: " -NoNewline
-                Write-Host "Advisories" -ForegroundColor Magenta
-                Advisory $Subid
+                #Write-Host "Collecting: " -NoNewline
+                #Write-Host "Advisories" -ForegroundColor Magenta
+                #Advisory $Subid
 
                 Write-Host "----------------------------"
                 Write-Host "Collecting: " -NoNewline
@@ -935,10 +935,18 @@ $Global:Runtime = Measure-Command -Expression {
                         $HTML.write([ref]$row.properties.Summary)
                         $RetirementSummary = $Html.body.innerText
 
-                        $HTML = New-Object -Com "HTMLFile"
-                        $HTML.write([ref]$OutagesRetired.properties.description)
-                        $RetirementDescriptionFull = $Html.body.innerText
-                        $SplitDescription = $RetirementDescriptionFull.split('Help and support').split('Required action')
+                        try
+                            {
+                                $HTML = New-Object -Com "HTMLFile"
+                                $HTML.write([ref]$OutagesRetired.properties.description)
+                                $RetirementDescriptionFull = $Html.body.innerText
+                                $SplitDescription = $RetirementDescriptionFull.split('Help and support').split('Required action')
+                            }
+                        catch
+                            {
+                                $SplitDescription = "",""
+                            }
+                        
 
                         $result = [PSCustomObject]@{
                             Subscription     = [string]$Subid
@@ -975,10 +983,17 @@ $Global:Runtime = Measure-Command -Expression {
                         $HTML.write([ref]$Retires.Summary)
                         $RetirementSummary = $Html.body.innerText
 
-                        $HTML = New-Object -Com "HTMLFile"
-                        $HTML.write([ref]$OutagesRetired.properties.description)
-                        $RetirementDescriptionFull = $Html.body.innerText
-                        $SplitDescription = $RetirementDescriptionFull.split('Help and support').split('Required action')
+                        try
+                            {
+                                $HTML = New-Object -Com "HTMLFile"
+                                $HTML.write([ref]$OutagesRetired.properties.description)
+                                $RetirementDescriptionFull = $Html.body.innerText
+                                $SplitDescription = $RetirementDescriptionFull.split('Help and support').split('Required action')
+                            }
+                        catch
+                            {
+                                $SplitDescription = "",""
+                            }
 
                         $result = [PSCustomObject]@{
                             Subscription     = [string]$Subid
@@ -1125,7 +1140,7 @@ $Global:Runtime = Measure-Command -Expression {
 
 
     #Call the functions
-    $Global:Version = "2.0.2"
+    $Global:Version = "2.0.3"
     Write-Host "Version: " -NoNewline
     Write-Host $Global:Version -ForegroundColor DarkBlue
 
@@ -1155,7 +1170,7 @@ $Global:Runtime = Measure-Command -Expression {
     Write-Debug "Calling Function: Subscriptions"
     Subscriptions
 
-    Write-Debug "Calling Function: PSExtraction"
+    #Write-Debug "Calling Function: PSExtraction"
     #PSExtraction
 
     Write-Debug "Calling Function: ResourceExtraction"
