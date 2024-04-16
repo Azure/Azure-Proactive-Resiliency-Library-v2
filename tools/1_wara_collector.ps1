@@ -944,9 +944,8 @@ $Global:Runtime = Measure-Command -Expression {
                             }
                         catch
                             {
-                                $SplitDescription = "",""
+                                $SplitDescription = " "," "
                             }
-                        
 
                         $result = [PSCustomObject]@{
                             Subscription     = [string]$Subid
@@ -992,7 +991,7 @@ $Global:Runtime = Measure-Command -Expression {
                             }
                         catch
                             {
-                                $SplitDescription = "",""
+                                $SplitDescription = " "," "
                             }
 
                         $result = [PSCustomObject]@{
