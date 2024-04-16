@@ -99,5 +99,5 @@ This section provides information about creating new content from Hugo archetype
 1. You should see similar output within your terminal as shown below:
 
     ```text
-    Content dir "C:\\Repos\\Reliability\\Azure-Proactive-Resiliency-Library-v2\\azure-waf\\Develop" created
+    Content dir "C:\\Repos\\Reliability\\Azure-Proactive-Resiliency-Library-v2\\azure-waf\\develop" created
     ```
