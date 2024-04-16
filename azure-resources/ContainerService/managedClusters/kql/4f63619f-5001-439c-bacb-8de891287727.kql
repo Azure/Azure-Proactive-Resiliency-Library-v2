@@ -2,7 +2,7 @@
 // Returns AKS clusters that do not have any availability zones enabled
 resources
 | where type == 'microsoft.containerservice/managedclusters'
-| project id, name, location, properties.agentPoolProfiles
+| project id, name, tags, location, properties.agentPoolProfiles
 | mv-expand properties_agentPoolProfiles
 | where isempty(array_length(properties_agentPoolProfiles.availabilityZones))
 | project recommendationId="4f63619f-5001-439c-bacb-8de891287727", id, name, tags, param1=strcat("nodePoolName: ", properties_agentPoolProfiles.name), param2=strcat("orchestratorVersion: ", properties_agentPoolProfiles.orchestratorVersion), param3=strcat("currentOrchestratorVersion: ", properties_agentPoolProfiles.currentOrchestratorVersion), param4=strcat("numberOfZones: ", iff(isempty(array_length(properties_agentPoolProfiles.availabilityZones)), 0, array_length(properties_agentPoolProfiles.availabilityZones)))
