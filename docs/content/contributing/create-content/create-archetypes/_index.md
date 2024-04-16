@@ -67,7 +67,7 @@ This section provides information about creating new content from Hugo archetype
 
    {{< hint type=important >}}
 
-   Replace `oracle` with the name of the you want to create.
+   Replace `oracle` with the name of the specialized workload you want to create.
 
    Also, ensure that it is formatted with no spaces and is using camel case. For example, `hpcOnAzure`.
 
@@ -80,3 +80,24 @@ This section provides information about creating new content from Hugo archetype
    ```
 
 1. You should now see a new directory created within the `azure-specialized` directory, named after the Azure specialized workload you specified. You can verify the creation by inspecting the directory in your local Hugo site, which should have been rebuilt automatically with the change.
+
+## Create a New WAF Reliability Stage
+
+1. Ensure you are in the root directory of the repository within your terminal
+1. Run the following hugo command within your terminal:
+
+    ```bash
+    hugo new --kind azure-waf 'azure-waf/develop'
+    ```
+
+    {{< hint type=important >}}
+
+    Replace `develop` with the name of the WAF reliability stage you want to create.
+
+    {{< /hint >}}
+
+1. You should see similar output within your terminal as shown below:
+
+    ```text
+    Content dir "C:\\Repos\\Reliability\\Azure-Proactive-Resiliency-Library-v2\\azure-waf\\Develop" created
+    ```

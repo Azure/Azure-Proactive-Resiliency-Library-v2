@@ -1,0 +1,39 @@
+- description: Your Recommendation Title Here (less than 100 characters)
+  aprlGuid: Generate a Unique GUID for Your Recommendation
+  recommendationTypeId: null
+  recommendationControl: High Availability/Business Continuity/Disaster Recovery/Scalability/Monitoring and Alerting/Service Upgrade and Retirement/Other Best Practices/Personalized/Governance
+  recommendationImpact: Low/Medium/High
+  recommendationResourceType: Friendly name to identity resource type
+  recommendationMetadataState: Active
+  longDescription: |
+    Your Long Description Here
+    (less than 300 characters)
+  potentialBenefits: Potential Benefits of Implementing the Recommendation (less than 60 characters)
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: no/arg
+  automationAvailable: no/arg
+  tags: null
+  learnMoreLink:
+    - name: Learn More
+      url: "Link URL"
+
+- description: Your Recommendation Title Here (less than 100 characters)
+  aprlGuid: Generate a Unique GUID for Your Recommendation
+  recommendationTypeId: null
+  recommendationControl: High Availability/Business Continuity/Disaster Recovery/Scalability/Monitoring and Alerting/Service Upgrade and Retirement/Other Best Practices/Personalized/Governance
+  recommendationImpact: Low/Medium/High
+  recommendationResourceType: Friendly name to identity resource type
+  recommendationMetadataState: Active
+  longDescription: |
+    Your Long Description Here
+    (less than 300 characters)
+  potentialBenefits: Potential Benefits of Implementing the Recommendation (less than 60 characters)
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: no/arg
+  automationAvailable: no/arg
+  tags: null
+  learnMoreLink:
+    - name: Learn More
+      url: "Link URL"
