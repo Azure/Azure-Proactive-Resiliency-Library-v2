@@ -27,9 +27,9 @@ This section provides information about creating new content from Hugo archetype
 
 3. You should see similar output within your terminal as shown below:
 
-   ```text
-   Content dir "C:\\Repos\\Reliability\\Azure-Proactive-Resiliency-Library-v2\\azure-resources\\Storage" created
-   ```
+    ```text
+    Content dir "C:\\Repos\\Reliability\\Azure-Proactive-Resiliency-Library-v2\\azure-resources\\Storage" created
+    ```
 
 ## Create a New Azure Resource Type within an Existing Provider Namespace
 
