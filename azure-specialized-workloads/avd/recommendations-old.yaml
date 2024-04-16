@@ -208,7 +208,7 @@
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/how-to-connect-install-multiple-domains"
 
-- description: Deploy paired Domain Controllers in the same region as AVD session hosts
+- description: Deploy a Domain Controllers in the same region as AVD session hosts
   aprlGuid: d61f6ee8-de1b-4fd9-9ce3-316cfe11ee05
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
