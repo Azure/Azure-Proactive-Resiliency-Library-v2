@@ -444,7 +444,7 @@ $Global:Runtime = Measure-Command -Expression {
                         $resultAllResourceTypes = @()
                         foreach ($RG in $ResourceGroups)
                             {
-                                $resultAllResourceTypes += Search-AzGraph -Query "resources | where resourceGroup == '$RG' | summarize count() by type" -Subscription $Subid
+                                $resultAllResourceTypes += Search-AzGraph -Query "resources | where resourceGroup contains '$RG' | summarize count() by type" -Subscription $Subid
                             }
                         $Global:AllResourceTypes += $resultAllResourceTypes
                     }
@@ -1139,7 +1139,7 @@ $Global:Runtime = Measure-Command -Expression {
 
 
     #Call the functions
-    $Global:Version = "2.0.3"
+    $Global:Version = "2.0.4"
     Write-Host "Version: " -NoNewline
     Write-Host $Global:Version -ForegroundColor DarkBlue
 
