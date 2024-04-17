@@ -45,7 +45,7 @@
   recommendationTypeId: null
   recommendationControl: Governance
   recommendationImpact: Medium
-  recommendationResourceType: n/a
+  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
   recommendationMetadataState: Active
   longDescription: |
     Hybrid VMs should be in a unique OU. When using AD-joined, session hosts will benefit from using a unique OU to target specific AVD configurations per host pool. Examples include Fslogix, time out limits, session controls, and much more. It’s also important to segment Prod and DR organization units to ensure resources are configured per environment.
