@@ -6,9 +6,9 @@
   recommendationResourceType: Microsoft.Sql/servers
   recommendationMetadataState: Active
   longDescription: |
-    If your primary database fails, perform a manual failover to the secondary database which remains read-only until then. Active geo-replication allows creating readable replicas and manual failover in case of a datacenter outage or application upgrade.
+    Active Geo Replication is a business continuity solution that utilizes a readable secondary database replica. In the event of a primary database failure, perform a manual failover to the secondary database and ensure your application points to the appropriate endpoint. Until you fail over, the secondary database remains read-only. Active geo-replication enables you to create readable replicas and manually failover to any replica if there is a datacenter outage. Up to four secondaries are supported in the same or different regions, and the secondaries can also be used for read-only access queries.
   potentialBenefits: Enhanced disaster recovery and read scalability
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -17,7 +17,7 @@
     - name: Active Geo Replication
       url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/active-geo-replication-overview"
 
-- description: Auto Failover Groups for apps should include all related databases for cohesion
+- description: Use Auto Failover Groups that can include one or multiple databases, typically used by the same application
   aprlGuid: 943c168a-2ec2-a94c-8015-85732a1b4859
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
@@ -25,9 +25,9 @@
   recommendationResourceType: Microsoft.Sql/servers
   recommendationMetadataState: Active
   longDescription: |
-    You can use the readable secondary databases to offload read-only query workloads. Autofailover groups involve multiple databases configured on a primary server, supporting replication of all databases in the group to only one secondary server or instance in a different region.
+    Failover Groups are a disaster recovery feature that enables you to configure databases contained on a logical server to replicate to a logical server in another region. Failover groups simplify the management of geo-replicated databases and enable a single endpoint that automatically routes connections to the replicated databases in the event of a failure of the primary logical server.
   potentialBenefits: Improves load balancing and disaster recovery
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -46,9 +46,9 @@
   recommendationResourceType: Microsoft.Sql/servers
   recommendationMetadataState: Active
   longDescription: |
-    By default, the premium availability model clusters nodes in one datacenter.
+    By default, when you provision an Azure SQL Database with the premium tier, multiple copies of the database are created within the same azure region. To support geo redundancy, Databases can be provisioned (or existing databases can be modified) as Zone Redundant, which locates the copies in different Azure Availability Zones. This will ensure database availability in the event of a regional outage.
   potentialBenefits: Enhanced reliability, no extra cost
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -65,9 +65,9 @@
   recommendationResourceType: Microsoft.Sql/servers
   recommendationMetadataState: Active
   longDescription: |
-    Azure SQL Database, known for its resilience to infrastructure failures, can occasionally encounter connectivity issues due to transient errors. Implementing retry logic in your code ensures continued operation by reattempting failed calls, maintaining smooth database interaction.
+    When transient failures occur between the application and the Azure SQL Database environment, it is important that the application manages connection retries in an appropriate manner. There is no configuration necessary at the Database layer, but the application must be configured to retry gracefully.
   potentialBenefits: Enhanced connectivity stability
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
@@ -84,9 +84,9 @@
   recommendationResourceType: Microsoft.Sql/servers
   recommendationMetadataState: Active
   longDescription: |
-    Use available solutions to monitor SQL Database to detect reliability incidents early, making your databases more reliable. Opt for near real-time monitoring to rapidly react to incidents.
+    Monitoring and alerting are an important part of database operations. When working with Azure SQL Database, make use of Azure Monitor and SQL Insights to ensure that you capture relevant database metrics.
   potentialBenefits: Quick incident detection and response
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -107,9 +107,9 @@
   recommendationResourceType: Microsoft.Sql/servers
   recommendationMetadataState: Active
   longDescription: |
-    It is highly recommended to use Azure Key Vault to store encryption keys for Always Encrypted configurations. Though not mandatory, if not using AKV, ensure keys are properly backed up.
+    It is highly recommended to use Azure Key Vault (AKV) to store encryption keys related to Always Encrypted configurations, however it is not required. If you are not using AKV, then ensure that your keys are properly backed up and stored in a secure manner.
   potentialBenefits: Enhanced security and data recovery
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
