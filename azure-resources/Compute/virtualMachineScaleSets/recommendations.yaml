@@ -166,7 +166,7 @@
   recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
   recommendationMetadataState: Active
   longDescription: |
-    Using current image versions prevents disruption from deprecation, ensuring uninterrupted deployment of VMs and VMSS.
+    Ensure current versions of images are in use to avoid disruption after image deprecation. Please review the publisher, offer, sku information of the VM to ensure you are running on a supported image. Enable Auto Guest Patching or Image Upgrades, to get notifications about image deprecation.
   potentialBenefits: Avoid disruptions by updating VMSS images.
   pgVerified: true
   publishedToLearn: false
