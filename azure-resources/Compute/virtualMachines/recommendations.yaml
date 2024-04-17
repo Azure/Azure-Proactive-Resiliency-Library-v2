@@ -362,7 +362,7 @@
   recommendationResourceType: Microsoft.Compute/virtualMachines
   recommendationMetadataState: Active
   longDescription: |
-    Azure Disk Storage encrypts data at rest automatically for managed disks, including OS and data disks.
+    Consider enabling Azure Disk Encryption (ADE) for encrypting Azure VM disks using DM-Crypt (Linux) or BitLocker (Windows). Additionally, consider Encryption at host and Confidential disk encryption for enhanced data security.
   potentialBenefits: Enhances data security and integrity
   pgVerified: true
   publishedToLearn: false
