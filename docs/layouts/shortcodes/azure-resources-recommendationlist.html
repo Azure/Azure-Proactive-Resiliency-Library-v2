@@ -18,10 +18,8 @@ Recommendation List
       <th>PG Verified</th>
     </tr>
     <!-- Loop through recommendations under category/type -->
-    {{ range sort .recommendations "recommendation" "asc" }} {{ if and (eq
-    .recommendationMetadataState "Active") (or (not (eq .recommendationMetadataState "Removed"))
-    ($.Site.Params.aprlDevMode
-    true)) }}
+    {{ range sort .recommendations "recommendation" "asc" }}
+    {{ if and (eq .recommendationMetadataState "Active") (or (not $.Site.Params.aprlDevMode) true) }}
     <tr>
       <td>
         <a href="#{{ anchorize .description }}">{{ .description }}</a>
@@ -41,8 +39,8 @@ Recommendation List
 </div>
 
 <!-- Create a detail entry for each recommendation under category/type -->
-{{ range sort .recommendations "recommendation" "asc" }} {{ if and (eq .recommendationMetadataState
-"Active") (or (not (eq .recommendationMetadataState "Removed")) ($.Site.Params.aprlDevMode true)) }}
+{{ range sort .recommendations "recommendation" "asc" }}
+{{ if and (eq .recommendationMetadataState "Active") (or (not $.Site.Params.aprlDevMode) true) }}
 <div id="{{ anchorize .description }}">
   <hr style="height: 5px" />
   <h3
