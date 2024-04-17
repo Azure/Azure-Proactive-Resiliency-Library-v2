@@ -1,12 +1,12 @@
-﻿- description: Enable zone redundancy for Event Hub namespace
+﻿- description: Don't disable zone redundancy
   aprlGuid: 84636c6c-b317-4722-b603-7b1ffc16384b
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.EventHub/namespaces
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
-    Event Hubs leverages Availability Zones to offer fault-isolated locations within an Azure region, ensuring support in regions with availability zones. It ensures both metadata and events are replicated across data centers within the availability zone.
+   When you use the Azure portal, zone redundancy via support for availability zones is automatically enabled. Avoid disabling this capability to continue replicating metadata and data (events) across data centers in an availability zone.
   potentialBenefits: Enhanced fault tolerance for Event Hub
   pgVerified: false
   publishedToLearn: false
