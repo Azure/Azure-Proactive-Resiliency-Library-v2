@@ -18,8 +18,7 @@ Azure WAF and Specialized Workloads Recommendation List
     </tr>
     <!-- Loop through recommendations under category -->
     {{ range sort .recommendations "recommendation" "asc" }}
-    {{ if and (eq .recommendationMetadataState "Active") (or (not (eq .recommendationMetadataState "Removed"))
-    ($.Site.Params.aprlDevMode true)) }}
+    {{ if and (eq .recommendationMetadataState "Active") (or (not $.Site.Params.aprlDevMode) true) }}
     <tr>
       <td>
         <a href="#{{ anchorize .description }}">{{ .description }}</a>
@@ -39,8 +38,7 @@ Azure WAF and Specialized Workloads Recommendation List
 
 <!-- Create a detail entry for each recommendation under category -->
 {{ range sort .recommendations "recommendation" "asc" }}
-{{ if and (eq .recommendationMetadataState "Active") (or (not (eq .recommendationMetadataState "Removed"))
-($.Site.Params.aprlDevMode true)) }}
+{{ if and (eq .recommendationMetadataState "Active") (or (not $.Site.Params.aprlDevMode) true) }}
 <div id="{{ anchorize .description }}">
   <hr style="height: 5px" />
   <h3
