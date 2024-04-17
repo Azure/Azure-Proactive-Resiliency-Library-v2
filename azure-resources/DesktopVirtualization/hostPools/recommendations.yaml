@@ -3,7 +3,7 @@
   recommendationTypeId: null
   recommendationControl: Governance
   recommendationImpact: Medium
-  recommendationResourceType: n/a
+  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
   recommendationMetadataState: Active
   longDescription: |
     At least one Validation Pool to have early warning if a planned update to AVD causes an issue. support to adjust limits based on your business requirements. To handle a large number of users, consider scaling horizontally by creating multiple host pools.
@@ -25,7 +25,7 @@
   recommendationTypeId: null
   recommendationControl: Governance
   recommendationImpact: Medium
-  recommendationResourceType: n/a
+  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
   recommendationMetadataState: Active
   longDescription: |
     Ensure schedules have been created to provide maintenance windows for AVD agent updates.
@@ -64,7 +64,7 @@
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: Medium
-  recommendationResourceType: n/a
+  recommendationResourceType: Microsoft.Compute/virtualMachines
   recommendationMetadataState: Active
   longDescription: |
     Leverage Azure Site Recovery (ASR) or implement Azure Backup for personal host pools for seamless failover and failback capabilities, enabling the replication of VMs supporting personal desktops to a secondary Azure region. In the event of a disaster or unexpected outage, this ensures the recovery of these VMs from a known-state.
