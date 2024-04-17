@@ -501,3 +501,24 @@
   learnMoreLink:
     - name: Resource quotas
       url: "https://learn.microsoft.com/azure/aks/operator-best-practices-scheduler#enforce-resource-quotas"
+
+- description: Enable AKS private cluster or set authorized IP address ranges
+  aprlGuid: ba3f7d17-9654-4038-b172-09f1b2569925
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.ContainerService/managedClusters
+  recommendationMetadataState: Active
+  longDescription: |
+    The AKS private cluster feature should be used to provide optimal connectivity between AKS worker nodes and the cluster control plane, and to remove a dependency on other services for this critical communication path. If private cluster is not enabled, we recommend securing access to the API server using authorized IP address ranges.
+  potentialBenefits: Provides network security and reliability, ensures stability, reduced disruptions
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: AKS private cluster
+      url: "https://learn.microsoft.com/azure/aks/private-clusters"
+    - name: Authorized IP ranges
+      url: "https://learn.microsoft.com/en-us/azure/aks/api-server-authorized-ip-ranges?tabs=azure-cli"
