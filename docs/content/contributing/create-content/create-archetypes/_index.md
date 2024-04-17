@@ -50,9 +50,9 @@ This section provides information about creating new content from Hugo archetype
 
 1. You should see similar output within your terminal as shown below:
 
-   ```text
-   Content dir "C:\\Repos\\Reliability\\Azure-Proactive-Resiliency-Library-v2\\azure-resources\\Storage\\locations" created
-   ```
+  ```text
+  Content dir "C:\\Repos\\Reliability\\Azure-Proactive-Resiliency-Library-v2\\azure-resources\\Storage\\locations" created
+  ```
 
 1. You should now see a new directory created within the `azure-resources/Storage` directory, named after the Azure resource type you specified and containing the relevant folders and files to build out the resource type. You can also verify the creation by inspecting the resource type within your local Hugo site, which should have been rebuilt automatically with the change.
 

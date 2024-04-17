@@ -28,7 +28,6 @@ If you add a new specialized workload recommendation, you will NOT need to updat
 
 {{< /hint >}}
 
-
 ## Example of a Dependent Azure Resource Recommendation Table
 
 See the markdown example below for a dependent Azure resource recommendation table:
