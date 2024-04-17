@@ -20,6 +20,14 @@ This section provides information about referecing dependent Azure resources for
 
     - **Resource Type**: The resource type of the Azure resource. Utilize the `recommendationResourceType` key within the dependent Azure Resource YAML file. So if the `recommendationResourceType` key is `Microsoft.Compute/virtualMachines`, the resource type would be `virtualMachines`.
 
+{{< hint type=important >}}
+
+You only need to update this table for dependent Azure resource recommendations that are located in the `azure-resources` directory.
+
+If you add a new specialized workload recommendation, you will NOT need to update the dependent Azure resource recommendations table in the `azure-specialized-workload` directory.
+
+{{< /hint >}}
+
 ## Example of a Dependent Azure Resource Recommendation Table
 
 See the markdown example below for a dependent Azure resource recommendation table:
