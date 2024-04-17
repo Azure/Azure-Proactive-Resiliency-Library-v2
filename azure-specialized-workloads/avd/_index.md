@@ -7,7 +7,7 @@ geekdocHidden: false
 ## Dependent Azure Resource Recommendations
 
 | Recommendation                                                                                                                                                                                                                                                                  |  Provider Namespace   |     Resource Type      |
-| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :-------------------: | :--------------------: | -------- | --- |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :-------------------: | :--------------------: |
 | [Create a validation host pool for testing of planned updates](.../../../Azure-Proactive-Resiliency-Library-v2/azure-resources/DesktopVirtualization/hostPools/#Create-a-validation-host-pool-for-testing-of-planned-updates)                                                   | DesktopVirtualization |       hostPools        |
 | [Configure host pool scheduled agent updates](.../../../Azure-Proactive-Resiliency-Library-v2/azure-resources/DesktopVirtualization/hostPools/#configure-host-pool-scheduled-agent-updates)                                                                                     | DesktopVirtualization |       hostPools        |
 | [Ensure a unique OU is used when deploying host pools with domain joined session hosts](.../../../Azure-Proactive-Resiliency-Library-v2/azure-resources/DesktopVirtualization/hostPools/#ensure-a-unique-ou-is-used-when-deploying-host-pools-with-domain-joined-session-hosts) | DesktopVirtualization |       hostPools        |
@@ -26,16 +26,16 @@ geekdocHidden: false
 | [Configure NSG Flow Logs](.../../../Azure-Proactive-Resiliency-Library-v2/azure-resources/Network/networkSecurityGroups/#configure-nsg-flow-logs)                                                                                                                               |        Network        | networkSecurityGroups  |
 | [Ensure that storage accounts are zone or region redundant](.../../../Azure-Proactive-Resiliency-Library-v2/azure-resources/Storage/storageAccounts/#ensure-that-storage-accounts-are-zone-or-region-redundant)                                                                 |        Storage        |    storageAccounts     |
 | [Enable Azure Private Link Service for Key vault](.../../../Azure-Proactive-Resiliency-Library-v2/azure-resources/KeyVault/vaults/#enable-azure-private-link-service-for-key-vault)                                                                                             |       Keyvault        |         vaults         |
-| [ALA-1 - Configure Service Health Alerts](.../../../Azure-Proactive-Resiliency-Library-v2/services/monitoring/service-health-alerts/#ala-1---configure-service-health-alerts)                                                                                                   |      Monitoring       |          High          | Verified | Yes |
+| [Configure Service Health Alerts](.../../../Azure-Proactive-Resiliency-Library-v2/azure-resources/Insights/activityLogAlerts/#configure-service-health-alerts)                                                                                                                  |       Insights        |   activityLogAlerts    |
 
 <br>
 
 ## Dependent Well-Architected Framework - Reliability Recommendations
 
 | Recommendation                                                                                                                                                                                                                       | Reliability Stage |
-| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------: | ------ |
-| [Ensure that all fault-points and fault-modes are understood and operationalized](.../../../Azure-Proactive-Resiliency-Library-v2/azure-waf/design/#ensure-that-all-fault-points-and-fault-modes-are-understood-and-operationalized) |        WAF        | Design |
-| [Design a BCDR strategy that will help to meet the business requirements](.../../../Azure-Proactive-Resiliency-Library-v2/azure-waf/design/#design-a-bcdr-strategy-that-will-help-to-meet-the-business-requirements)                 |        WAF        | Design |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------: |
+| [Ensure that all fault-points and fault-modes are understood and operationalized](.../../../Azure-Proactive-Resiliency-Library-v2/azure-waf/design/#ensure-that-all-fault-points-and-fault-modes-are-understood-and-operationalized) |      Design       |
+| [Design a BCDR strategy that will help to meet the business requirements](.../../../Azure-Proactive-Resiliency-Library-v2/azure-waf/design/#design-a-bcdr-strategy-that-will-help-to-meet-the-business-requirements)                 |      Design       |
 
 <br>
 
