@@ -34,7 +34,7 @@
   tags: null
   learnMoreLink:
     - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/virtual-desktop/insights?tabs=monitor"
+      url: "https://learn.microsoft.com/azure/virtual-desktop/insights?tabs=monitor"
 
 - description: Ensure separate log analytics workspaces for Prod and DR
   aprlGuid: 89b4d8f6-6345-4d66-9012-c3fc2aef94e8
@@ -53,7 +53,7 @@
   tags: null
   learnMoreLink:
     - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/virtual-desktop/diagnostics-log-analytics"
+      url: "https://learn.microsoft.com/azure/virtual-desktop/diagnostics-log-analytics"
 
 - description: Organize AVD resources using the AVD scale unit model described by the AVD landing zone methodology
   aprlGuid: 204b56b0-9710-4c16-b506-bafb5fb318ed
@@ -72,7 +72,7 @@
   tags: null
   learnMoreLink:
     - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/azure-virtual-desktop/enterprise-scale-landing-zone"
+      url: "https://learn.microsoft.com/azure/cloud-adoption-framework/scenarios/azure-virtual-desktop/enterprise-scale-landing-zone"
 
 - description: Monitor and plan capacity for AVD resources
   aprlGuid: ef4b3561-c85f-47cf-8cb0-51fae9ddf929
@@ -93,9 +93,9 @@
   tags: null
   learnMoreLink:
     - name: Capacity Planning
-      url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-virtual-desktop/business-continuity#capacity-planning"
+      url: "https://learn.microsoft.com/azure/well-architected/azure-virtual-desktop/business-continuity#capacity-planning"
     - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/architecture/example-scenario/wvd/windows-virtual-desktop#azure-virtual-desktop-limitations"
+      url: "https://learn.microsoft.com/azure/architecture/example-scenario/wvd/windows-virtual-desktop#azure-virtual-desktop-limitations"
 
 - description: Ensure DNS regions are replicated to avoid single point of failure
   aprlGuid: e1a34ac6-8761-4020-b537-d60c0be7514e
@@ -114,7 +114,7 @@
   tags: null
   learnMoreLink:
     - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/architecture/example-scenario/azure-virtual-desktop/azure-virtual-desktop-multi-region-bcdr"
+      url: "https://learn.microsoft.com/azure/architecture/example-scenario/azure-virtual-desktop/azure-virtual-desktop-multi-region-bcdr"
 
 - description: Implement a multi-region BCDR Plan
   aprlGuid: 0714d039-535e-468d-9732-e32b5c094faa
@@ -133,9 +133,9 @@
   tags: null
   learnMoreLink:
     - name: Multi-region BCDR
-      url: "https://learn.microsoft.com/en-us/azure/architecture/example-scenario/wvd/azure-virtual-desktop-multi-region-bcdr"
+      url: "https://learn.microsoft.com/azure/architecture/example-scenario/wvd/azure-virtual-desktop-multi-region-bcdr"
     - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-virtual-desktop/business-continuity#active-active-scenarios"
+      url: "https://learn.microsoft.com/azure/well-architected/azure-virtual-desktop/business-continuity#active-active-scenarios"
 
 - description: Create only one FSLogix file share per Storage Account
   aprlGuid: ed1f0327-0914-49e8-9518-16acb0d6b8d6
@@ -192,9 +192,9 @@
   tags: null
   learnMoreLink:
     - name: FSLogix
-      url: "https://learn.microsoft.com/en-us/fslogix/overview-what-is-fslogix"
+      url: "https://learn.microsoft.com/fslogix/overview-what-is-fslogix"
     - name: Backup Storage Account
-      url: https://learn.microsoft.com/en-us/azure/backup/blob-backup-configure-manage?tabs=operational-backup
+      url: https://learn.microsoft.com/azure/backup/blob-backup-configure-manage?tabs=operational-backup
 
 - description: Implement RDP shortpath for public or managed networks
   aprlGuid: 3835b4b3-0479-4be8-9ffd-34ae29fa33b9
@@ -213,7 +213,7 @@
   tags: null
   learnMoreLink:
     - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/virtual-desktop/rdp-shortpath?tabs=managed-networks"
+      url: "https://learn.microsoft.com/azure/virtual-desktop/rdp-shortpath?tabs=managed-networks"
 
 - description: Validate AVD session hosts connectivity to the AVD control plane and that UDP ports are allowed if RDP shortpath is in use
   aprlGuid: e718ac1a-ebab-4f75-9e4a-1a5ccef20d1f
@@ -232,7 +232,7 @@
   tags: null
   learnMoreLink:
     - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/virtual-desktop/troubleshoot-rdp-shortpath"
+      url: "https://learn.microsoft.com/azure/virtual-desktop/troubleshoot-rdp-shortpath"
     - name: Learn More
       url: "https://learn.microsoft.com/azure/virtual-desktop/check-access-validate-required-fqdn-endpoint"
 
@@ -254,7 +254,7 @@
   tags: null
   learnMoreLink:
     - name: Learn More
-      url: "https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/how-to-connect-install-multiple-domains"
+      url: "https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-install-multiple-domains"
 
 - description: Ensure virtual networks have route tables/route server configured for all regions
   aprlGuid: db1727d1-5c8e-4a01-a31e-f0d58cfd95b1
@@ -273,7 +273,7 @@
   tags: null
   learnMoreLink:
     - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/expressroute/designing-for-disaster-recovery-with-expressroute-privatepeering#need-for-redundant-connectivity-solution"
+      url: "https://learn.microsoft.com/azure/expressroute/designing-for-disaster-recovery-with-expressroute-privatepeering#need-for-redundant-connectivity-solution"
 
 - description: Ensure virtual networks isolation with separate IP space and NSGs for Prod and DR
   aprlGuid: 37d1091b-e599-4548-a067-a9286be16e45
@@ -293,7 +293,7 @@
   tags: null
   learnMoreLink:
     - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/plan-for-ip-addressing"
+      url: "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/plan-for-ip-addressing"
 
 - description: Ensure route tables accommodate failover
   aprlGuid: 4b1a45af-d35f-442d-922a-a3e7b6052de1
@@ -313,7 +313,7 @@
   tags:
   learnMoreLink:
     - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/management-business-continuity-disaster-recovery"
+      url: "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/management-business-continuity-disaster-recovery"
 
 - description: Configure static routes to allow session hosts traffic to AVD control plane to go directly out of the subnet to internet
   aprlGuid: 1c6c97d7-4d03-4f53-985d-fa239f715173
@@ -334,7 +334,7 @@
     - name: Learn More
       url: "https://learn.microsoft.com/azure/virtual-network/service-tags-overview"
     - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview"
+      url: "https://learn.microsoft.com/azure/virtual-network/virtual-networks-udr-overview"
 
 - description: Create updated image version and replace session hosts rather than updating host directly
   aprlGuid: 2831dab9-6a43-44a1-8aec-90a8e84894bc
@@ -353,7 +353,7 @@
   tags: null
   learnMoreLink:
     - name: Learn More
-      url: "https://learn.microsoft.com/en-us/training/modules/create-manage-session-host-image/"
+      url: "https://learn.microsoft.com/training/modules/create-manage-session-host-image/"
 
 - description: Ensure the standard FSLogix configuration is deployed
   aprlGuid: c15b2b73-52a1-4db2-88dd-d592424ff4e4
@@ -372,7 +372,7 @@
   tags: null
   learnMoreLink:
     - name: Learn More
-      url: "https://learn.microsoft.com/en-us/fslogix/reference-configuration-settings?tabs=profiles"
+      url: "https://learn.microsoft.com/fslogix/reference-configuration-settings?tabs=profiles"
 
 - description: Ensure user permissions are set correctly on FSLogix SMB shares
   aprlGuid: 7b170ddd-5770-4945-9bc3-cd1ccf5f8672
@@ -391,7 +391,7 @@
   tags:
   learnMoreLink:
     - name: Learn More
-      url: "https://learn.microsoft.com/en-us/fslogix/how-to-configure-storage-permissions"
+      url: "https://learn.microsoft.com/fslogix/how-to-configure-storage-permissions"
 
 - description: Configure Diagnostic Settings on FSLogix storage and capture session hosts FSLogix events
   aprlGuid: 483f5a00-84a0-49f7-903b-ef6f1fc0c389
@@ -410,7 +410,7 @@
   tags: null
   learnMoreLink:
     - name: Learn More
-      url: "https://learn.microsoft.com/en-us/fslogix/troubleshooting-events-logs-diagnostics"
+      url: "https://learn.microsoft.com/fslogix/troubleshooting-events-logs-diagnostics"
     - name: Learn More
       url: "https://learn.microsoft.com/azure/storage/files/storage-files-monitoring"
 
@@ -431,7 +431,7 @@
   tags: null
   learnMoreLink:
     - name: Learn More
-      url: "https://learn.microsoft.com/en-us/fslogix/how-to-install-fslogix"
+      url: "https://learn.microsoft.com/fslogix/how-to-install-fslogix"
 
 - description: Turn on continuous availability for ANF when using it for app attach
   aprlGuid: 9b2301af-9cac-4f1a-871a-f17475d01812
@@ -451,7 +451,7 @@
   tags: null
   learnMoreLink:
     - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/virtual-desktop/app-attach-overview?pivots=msix-app-attach"
+      url: "https://learn.microsoft.com/azure/virtual-desktop/app-attach-overview?pivots=msix-app-attach"
 
 - description: Use dedicated file share for App attach and include the storage in the disaster recovery plan
   aprlGuid: 7d9c96a6-1ce5-4cf0-ad1b-638a37f753cb
@@ -472,7 +472,7 @@
   tags: null
   learnMoreLink:
     - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/virtual-desktop/app-attach-overview?pivots=msix-app-attach"
+      url: "https://learn.microsoft.com/azure/virtual-desktop/app-attach-overview?pivots=msix-app-attach"
 
 - description: Ensure resilient deployment of key vaults for AVD Host Pools
   aprlGuid: 1f57434f-f884-41f3-b818-129bbe3c5d3b
@@ -491,7 +491,7 @@
   tags: null
   learnMoreLink:
     - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/key-vault/general/disaster-recovery-guidance"
+      url: "https://learn.microsoft.com/azure/key-vault/general/disaster-recovery-guidance"
 
 - description: Deploy a pair of domain controllers on Azure virtual machines across availability zones in the same region as AVD session hosts
   aprlGuid: d61f6ee8-de1b-4fd9-9ce3-316cfe11ee05
@@ -511,7 +511,7 @@
   tags: null
   learnMoreLink:
     - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/architecture/example-scenario/azure-virtual-desktop/azure-virtual-desktop-multi-region-bcdr"
+      url: "https://learn.microsoft.com/azure/architecture/example-scenario/azure-virtual-desktop/azure-virtual-desktop-multi-region-bcdr"
 
 - description: Deploy a pair of DNS on Azure virtual machines across availability zones in the same region as AVD session hosts
   aprlGuid: 99bf5c94-aa68-4bb3-8b7f-45d1c5f09b5d
@@ -530,4 +530,4 @@
   tags: null
   learnMoreLink:
     - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/architecture/example-scenario/identity/adds-extend-domain#reliability"
+      url: "https://learn.microsoft.com/azure/architecture/example-scenario/identity/adds-extend-domain#reliability"
