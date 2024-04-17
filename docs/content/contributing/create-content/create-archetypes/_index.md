@@ -23,7 +23,7 @@ This section provides information about creating new content from Hugo archetype
 
   Also, ensure that it is formatted with no spaces and is using pascal case. For example, `MachineLearningServices` or `VirtualMachineImages`.
 
-   {{< /hint >}}
+  {{< /hint >}}
 
 3. You should see similar output within your terminal as shown below:
 
