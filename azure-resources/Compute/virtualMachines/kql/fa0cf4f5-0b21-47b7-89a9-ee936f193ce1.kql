@@ -1,7 +1,7 @@
 // Azure Resource Graph Query
 // Find eligible Disks that are not zonal, nor zone Redundant
-Resources 
-| where type == 'microsoft.compute/disks' 
+Resources
+| where type == 'microsoft.compute/disks'
 | project recommendationId="fa0cf4f5-0b21-47b7-89a9-ee936f193ce1", subscriptionId, resourceGroup, name, location, type, sku, Zones = zones, ZoneResilient = sku.name has_cs 'ZRS' or array_length(zones) > 0
 | where sku has "Premium_LRS" or sku has "StandardSSD_LRS"
 | where ZoneResilient == 0
