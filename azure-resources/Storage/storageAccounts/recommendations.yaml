@@ -167,3 +167,24 @@
       url: "https://learn.microsoft.com/azure/storage/common/storage-account-overview#legacy-storage-account-types"
     - name: Upgrade to a general-purpose v2 storage account
       url: "https://learn.microsoft.com/azure/storage/common/storage-account-upgrade"
+
+- description: Enable Azure Private Link service for FSLogix storage account
+  aprlGuid: dc55be60-6f8c-461e-a9d5-a3c7686ed94e
+  recommendationTypeId: null
+  recommendationControl: Security
+  recommendationImpact: Medium
+  recommendationResourceType: n/a
+  recommendationMetadataState: Active
+  longDescription: |
+    Azure Private Link Service enables you to access Azure Storage Account and Azure hosted customer/partner services over a Private Endpoint in your virtual network. An Azure Private Endpoint is a network interface that connects you privately and securely to a service powered by Azure Private Link. The private endpoint uses a private IP address from your VNet, effectively bringing the service into your VNet. All traffic to the service can be routed through the private endpoint, so no gateways, NAT devices, ExpressRoute or VPN connections, or public IP addresses are needed. Traffic between your virtual network and the service traverses over the Microsoft backbone network, eliminating exposure from the public Internet. You can connect to an instance of an Azure resource, giving you the highest level of granularity in access control.
+  potentialBenefits: Enhances AVD reliability
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: ARG
+  tags: null
+  learnMoreLink:
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/architecture/example-scenario/wvd/windows-virtual-desktop#azure-virtual-desktop-limitations"
+    - name: Private Link
+      url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-virtual-desktop/networking#private-endpoints-private-link"
