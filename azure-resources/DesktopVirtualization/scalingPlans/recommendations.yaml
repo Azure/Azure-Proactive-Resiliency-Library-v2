@@ -3,7 +3,7 @@
   recommendationTypeId: null
   recommendationControl: Scaling
   recommendationImpact: Medium
-  recommendationResourceType: n/a
+  recommendationResourceType: Microsoft.DesktopVirtualization/scalingPlans
   recommendationMetadataState: Active
   longDescription: |
     Each region has its own scaling plans assigned to host pools within that region. However, these plans can become inaccessible if there's a regional failure. To mitigate this risk, it's advisable to create a secondary scaling plan in another region.

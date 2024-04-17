@@ -173,7 +173,7 @@
   recommendationTypeId: null
   recommendationControl: Security
   recommendationImpact: Medium
-  recommendationResourceType: n/a
+  recommendationResourceType: Microsoft.Storage/storageAccounts
   recommendationMetadataState: Active
   longDescription: |
     Azure Private Link Service enables you to access Azure Storage Account and Azure hosted customer/partner services over a Private Endpoint in your virtual network. An Azure Private Endpoint is a network interface that connects you privately and securely to a service powered by Azure Private Link. The private endpoint uses a private IP address from your VNet, effectively bringing the service into your VNet. All traffic to the service can be routed through the private endpoint, so no gateways, NAT devices, ExpressRoute or VPN connections, or public IP addresses are needed. Traffic between your virtual network and the service traverses over the Microsoft backbone network, eliminating exposure from the public Internet. You can connect to an instance of an Azure resource, giving you the highest level of granularity in access control.
