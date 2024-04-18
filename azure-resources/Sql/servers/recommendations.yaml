@@ -6,7 +6,7 @@
   recommendationResourceType: Microsoft.Sql/servers
   recommendationMetadataState: Active
   longDescription: |
-    Active Geo Replication is a business continuity solution that utilizes a readable secondary database replica. In the event of a primary database failure, perform a manual failover to the secondary database and ensure your application points to the appropriate endpoint. Until you fail over, the secondary database remains read-only. Active geo-replication enables you to create readable replicas and manually failover to any replica if there is a datacenter outage. Up to four secondaries are supported in the same or different regions, and the secondaries can also be used for read-only access queries.
+    Active Geo Replication ensures business continuity by utilizing readable secondary database replicas. In case of primary database failure, manually failover to secondary database. Secondaries, up to four, can be in same/different regions, used for read-only access.
   potentialBenefits: Enhanced disaster recovery and read scalability
   pgVerified: true
   publishedToLearn: false
@@ -46,7 +46,7 @@
   recommendationResourceType: Microsoft.Sql/servers
   recommendationMetadataState: Active
   longDescription: |
-    By default, when you provision an Azure SQL Database with the premium tier, multiple copies of the database are created within the same azure region. To support geo redundancy, Databases can be provisioned (or existing databases can be modified) as Zone Redundant, which locates the copies in different Azure Availability Zones. This will ensure database availability in the event of a regional outage.
+    When provisioning an Azure SQL Database with the premium tier, by default, multiple copies are created within the same region. For geo redundancy, databases can be provisioned or modified as Zone Redundant, placing copies in different Azure Availability Zones to ensure availability during regional outages. This will ensure database availability in the event of a regional outage.
   potentialBenefits: Enhanced reliability, no extra cost
   pgVerified: true
   publishedToLearn: false
