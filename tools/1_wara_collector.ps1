@@ -11,7 +11,8 @@ Param(
   $SubscriptionsFile,
   $SubscriptionIds,
   $ResourceGroups,
-  $TenantID, $AzureEnvironment = 'AzureCloud')
+  $TenantID,
+  $AzureEnvironment = 'AzureCloud')
 
 if ($Debugging.IsPresent) { $DebugPreference = 'Continue' } else { $DebugPreference = 'silentlycontinue' }
 
