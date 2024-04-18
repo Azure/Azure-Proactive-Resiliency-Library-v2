@@ -6,7 +6,7 @@
   recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
-    Use Service Health to stay informed about the health of the Azure services and regions that you use to insure their availability. Set up Service Health alerts so that you stay aware of service issues, planned maintenance, or other changes that might affect your Azure Virtual Desktop resources. Use Resource Health to monitor your VMs and storage solutions.
+    Set up Service Health alerts so that you stay aware of service issues, planned maintenance, or other changes that might affect your Azure Virtual Desktop resources. Use Resource Health to monitor your VMs and storage solutions.
   potentialBenefits: Enhanced AVD error tracking and resolution
   pgVerified: true
   publishedToLearn: false
@@ -25,7 +25,7 @@
   recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
-    AVD Insights is an Azure Workbook template provided by the AVD product team. It is highly recommended in order to monitor and troubleshoot AVD workloads across metrics, logs, events, and more. Both Production and DR workloads should be enabled with AVD Insights.
+    Configure AVD insights workbook template to monitor and troubleshoot AVD workloads across metrics, logs, events, and more. Both Production and DR workloads should be enabled with AVD Insights.
   potentialBenefits: Enhanced AVD monitoring and troubleshooting
   pgVerified: true
   publishedToLearn: false
@@ -82,8 +82,7 @@
   recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
-    Monitor and plan for subscription limits and API throttling limits. Closely monitor your Azure Virtual Desktop deployments, and keep track of resource usage within your subscription. By proactively monitoring capacity, you can identify potential challenges early on, and you can take suitable actions to avoid reaching limits.
-    Consider scaling across multiple subscriptions if further scaling is required, or work with Azure support to adjust limits based on your business requirements.
+    Monitor and plan for subscription limits and API throttling limits. Closely deployments, and keep track of resource usage within your subscription. Consider scaling across multiple subscriptions if further scaling is required, or work with Azure support to adjust limits based on your business requirements.
     To handle a large number of users, consider scaling horizontally by creating multiple host pools.
   potentialBenefits: Avoids limits, ensures smooth scaling
   pgVerified: true
