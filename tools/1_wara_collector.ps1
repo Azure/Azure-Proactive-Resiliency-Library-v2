@@ -12,6 +12,7 @@ Param(
     $SubscriptionIds,
     $ResourceGroups,
     $TenantID,
+    [ValidateSet("AzureCloud","AzureUSGovernment")]
     $AzureEnvironment = 'AzureCloud'
 )
 
