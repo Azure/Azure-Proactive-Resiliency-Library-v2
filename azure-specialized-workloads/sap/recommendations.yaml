@@ -157,8 +157,8 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-      - name: OpenSource Inventory Checks
-        url: "https://aka.ms/ACESInventoryCheckSAP"
+    - name: OpenSource Inventory Checks
+      url: "https://aka.ms/ACESInventoryCheckSAP"
 
 - description: Secure compute resource capacity for critical VM roles in DR region
   aprlGuid: 820b4c0c-8a74-442a-8ba7-b0cb840cd983
@@ -256,6 +256,8 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
+    - name: DR Guidance
+      url: "https://learn.microsoft.com/en-us/azure/sap/workloads/disaster-recovery-sap-guide?tabs=windows"
 
 - description: Document and test DR procedure ensure it meets RPO and RTO targets
   aprlGuid: c300e949-528d-4ac9-889b-cacf8b4a6e90
@@ -275,6 +277,8 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
+    - name: DR Guidance
+      url: "https://learn.microsoft.com/en-us/azure/sap/workloads/disaster-recovery-sap-guide?tabs=windows"
 
 - description: Ensure there is a robust monitoring and alerting solution in place for the entire DR solution
   aprlGuid: c27134b7-6917-4852-8276-3dbef5c71578
@@ -292,6 +296,8 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
+    - name: DR Guidance
+      url: "https://learn.microsoft.com/en-us/azure/sap/workloads/disaster-recovery-sap-guide?tabs=windows"
 
 - description: Configure scheduled events notification
   aprlGuid: 6b589ce6-c847-4cee-af35-f6e8eb1cf983
