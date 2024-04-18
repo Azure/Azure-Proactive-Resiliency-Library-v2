@@ -116,25 +116,6 @@
     - name: Use scale-in policies with Azure Virtual Machine Scale Sets
       url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-scale-in-policy"
 
-- description: Configure Allocation Policy Spreading algorithm to Max Spreading
-  aprlGuid: 457e1648-8aa2-214d-a854-11a4084ecdc9
-  recommendationTypeId: null
-  recommendationControl: Scalability
-  recommendationImpact: Medium
-  recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
-  recommendationMetadataState: Active
-  longDescription: |
-    Max spreading distributes VMs across multiple fault domains per zone, potentially more or less than five, enhancing resilience. Static spreading limits VMs to exactly five fault domains. If five distinct domains aren't available, allocation fails.
-  potentialBenefits: Enhances fault tolerance
-  pgVerified: false
-  publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
-  tags: null
-  learnMoreLink:
-    - name: Availability Considerations
-      url: "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-use-availability-zones#availability-considerations"
-
 - description: Deploy VMSS across availability zones with VMSS Flex
   aprlGuid: 1422c567-782c-7148-ac7c-5fc14cf45adc
   recommendationTypeId: null
@@ -185,9 +166,9 @@
   recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
   recommendationMetadataState: Active
   longDescription: |
-    Using current image versions prevents disruption from deprecation, ensuring uninterrupted deployment of VMs and VMSS.
+    Ensure current versions of images are in use to avoid disruption after image deprecation. Please review the publisher, offer, sku information of the VM to ensure you are running on a supported image. Enable Auto Guest Patching or Image Upgrades, to get notifications about image deprecation.
   potentialBenefits: Avoid disruptions by updating VMSS images.
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no

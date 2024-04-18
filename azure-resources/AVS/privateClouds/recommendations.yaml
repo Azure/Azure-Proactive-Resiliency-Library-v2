@@ -2,7 +2,7 @@
   aprlGuid: 74fcb9f2-9a25-49a6-8c42-d32851c4afb7
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
-  recommendationImpact: Medium
+  recommendationImpact: High
   recommendationResourceType: Microsoft.AVS/privateClouds
   recommendationMetadataState: Active
   longDescription: |
