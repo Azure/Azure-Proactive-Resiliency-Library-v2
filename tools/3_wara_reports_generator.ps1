@@ -366,16 +366,17 @@ $Global:Runtime = Measure-Command -Expression {
             $row = 3
             foreach($Health in $Global:ServiceHealth)
                 {
-                    if($Counter -lt 18)
+                    if($Counter -lt 17)
                         {
                             ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(1).Shape.TextFrame.TextRange.Text = [string]$Health.Subscription
-                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(2).Shape.TextFrame.TextRange.Text = if($Health.Services -eq 'All'){'Yes'}else{'No'}
-                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(3).Shape.TextFrame.TextRange.Text = if($Health.Regions -eq 'All'){'Yes'}else{'No'}
-                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(4).Shape.TextFrame.TextRange.Text = if($Health.'Event Type' -like '*Service Issues*' -or $Health.'Event Type' -eq 'All'){'Yes'}else{'No'}
-                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(5).Shape.TextFrame.TextRange.Text = if($Health.'Event Type' -like '*Planned Maintenance*' -or $Health.'Event Type' -eq 'All'){'Yes'}else{'No'}
-                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(6).Shape.TextFrame.TextRange.Text = if($Health.'Event Type' -like '*Health Advisories*' -or $Health.'Event Type' -eq 'All'){'Yes'}else{'No'}
-                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(7).Shape.TextFrame.TextRange.Text = if($Health.'Event Type' -like '*Security Advisory*' -or $Health.'Event Type' -eq 'All'){'Yes'}else{'No'}
-                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(8).Shape.TextFrame.TextRange.Text = ' '
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(2).Shape.TextFrame.TextRange.Text = [string]$Health.Name
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(3).Shape.TextFrame.TextRange.Text = if($Health.Services -eq 'All'){'Yes'}else{'No'}
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(4).Shape.TextFrame.TextRange.Text = if($Health.Regions -eq 'All'){'Yes'}else{'No'}
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(5).Shape.TextFrame.TextRange.Text = if($Health.'Event Type' -like '*Service Issues*' -or $Health.'Event Type' -eq 'All'){'Yes'}else{'No'}
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(6).Shape.TextFrame.TextRange.Text = if($Health.'Event Type' -like '*Planned Maintenance*' -or $Health.'Event Type' -eq 'All'){'Yes'}else{'No'}
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(7).Shape.TextFrame.TextRange.Text = if($Health.'Event Type' -like '*Health Advisories*' -or $Health.'Event Type' -eq 'All'){'Yes'}else{'No'}
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(8).Shape.TextFrame.TextRange.Text = if($Health.'Event Type' -like '*Security Advisory*' -or $Health.'Event Type' -eq 'All'){'Yes'}else{'No'}
+                            ($CurrentSlide.Shapes | Where-Object {$_.Id -eq $TableID}).Table.Rows($row).Cells(9).Shape.TextFrame.TextRange.Text = ' '
                             $counter ++
                             $row ++
                         }
@@ -1551,7 +1552,7 @@ $Global:Runtime = Measure-Command -Expression {
 
 
     #Call the functions
-    $Global:Version = "2.0.2"
+    $Global:Version = "2.0.3"
     Write-Host "Version: " -NoNewline
     Write-Host $Global:Version -ForegroundColor DarkBlue
 
