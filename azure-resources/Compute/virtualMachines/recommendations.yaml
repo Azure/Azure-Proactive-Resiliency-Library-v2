@@ -522,7 +522,7 @@
   recommendationResourceType: Microsoft.Compute/virtualMachines
   recommendationMetadataState: Active
   longDescription: |
-    Azure managed disks offer two storage redundancy options: zone-redundant storage (ZRS) and locally redundant storage (LRS). ZRS provides resiliency in the event of a zonal outage. However, the write latency for LRS disks is better than ZRS disks. If you are using an LRS disk, please follow "Redundancy options for managed disks" documentation and take action to protect it from a zonal failure.
+    Azure disks offer two redundancy options: zone-redundant storage (ZRS) and locally redundant storage (LRS). Use ZRS disk to let you recover from zonal failure, but it has higher write latency. If you use LRS disk, please follow the documentation and take action to protect it from zonal failure.
   potentialBenefits: Enhanced Disk resilience to failures
   pgVerified: true
   publishedToLearn: false
@@ -532,5 +532,3 @@
   learnMoreLink:
     - name: Redundancy options for managed disks
       url: "https://aka.ms/zrsdisksdoc"
-    - name: Convert a disk from LRS to ZRS
-      url: "https://aka.ms/migratedisksfromLRStoZRS"
