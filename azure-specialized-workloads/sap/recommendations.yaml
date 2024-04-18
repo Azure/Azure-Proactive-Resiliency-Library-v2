@@ -147,9 +147,7 @@
   recommendationMetadataState: Active
   longDescription: |
     When executing a migrate command in a Linux Pacemaker cluster, the system generates a temporary "prefer" location constraint, aiming to move a resource to a specified node. This constraint prioritizes the target node for the resource temporarily without permanently altering the cluster's configuration.
-
     During planned maintenances and fail over testing, you can leverage the migrate command for temporary resource relocation during maintenance or administrative tasks to ensure minimal disruption. This constraint is not permanent and does not survive reboots or cluster resets. It's designed for short-term adjustments.
-
     Once the planned task necessitating the resource migration is complete, manually remove the temporary constraint to revert to the cluster's original resource management policies.
     This approach allows for controlled resource movement within the cluster, facilitating maintenance while preserving the integrity and efficiency of the cluster's configuration.
   potentialBenefits: Enhanced maintenance and failover handling
@@ -159,6 +157,8 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
+      - name: OpenSource Inventory Checks
+      url: "https://aka.ms/ACESInventoryCheckSAP"
 
 - description: Secure compute resource capacity for critical VM roles in DR region
   aprlGuid: 820b4c0c-8a74-442a-8ba7-b0cb840cd983
