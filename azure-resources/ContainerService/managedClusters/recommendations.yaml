@@ -510,8 +510,7 @@
   recommendationResourceType: Microsoft.ContainerService/managedClusters
   recommendationMetadataState: Active
   longDescription: |
-    The AKS private cluster feature should be used to provide optimal connectivity between AKS worker nodes and the cluster control plane, and to remove a dependency on other services for this critical communication path. If private cluster is not enabled, we recommend securing access to the API server using authorized IP address ranges.
-  potentialBenefits: Provides network security and reliability, ensures stability, reduced disruptions
+    For optimal connectivity and security, enable private cluster in AKS to ensure direct communication between worker nodes and the control plane. If not enabled, secure API server access with authorized IP ranges.  potentialBenefits: Provides network security and reliability, ensures stability, reduced disruptions
   pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
