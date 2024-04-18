@@ -158,7 +158,7 @@
   tags: null
   learnMoreLink:
       - name: OpenSource Inventory Checks
-      url: "https://aka.ms/ACESInventoryCheckSAP"
+        url: "https://aka.ms/ACESInventoryCheckSAP"
 
 - description: Secure compute resource capacity for critical VM roles in DR region
   aprlGuid: 820b4c0c-8a74-442a-8ba7-b0cb840cd983
