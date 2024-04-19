@@ -17,7 +17,7 @@
     - name: Active Geo Replication
       url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/active-geo-replication-overview"
 
-- description: Use Auto Failover Groups that can include one or multiple databases, typically used by the same application
+- description: Auto Failover Groups can encompass one or multiple databases, usually used by the same app.
   aprlGuid: 943c168a-2ec2-a94c-8015-85732a1b4859
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
@@ -25,7 +25,7 @@
   recommendationResourceType: Microsoft.Sql/servers
   recommendationMetadataState: Active
   longDescription: |
-    Failover Groups are a disaster recovery feature that enables you to configure databases contained on a logical server to replicate to a logical server in another region. Failover groups simplify the management of geo-replicated databases and enable a single endpoint that automatically routes connections to the replicated databases in the event of a failure of the primary logical server.
+    Failover Groups facilitate disaster recovery by configuring databases on one logical server to replicate to another region's logical server. This streamlines geo-replicated database management, offering a single endpoint for connection routing to replicated databases if the primary server fails.
   potentialBenefits: Improves load balancing and disaster recovery
   pgVerified: true
   publishedToLearn: false
@@ -46,7 +46,7 @@
   recommendationResourceType: Microsoft.Sql/servers
   recommendationMetadataState: Active
   longDescription: |
-    When provisioning an Azure SQL Database with the premium tier, by default, multiple copies are created within the same region. For geo redundancy, databases can be provisioned or modified as Zone Redundant, placing copies in different Azure Availability Zones to ensure availability during regional outages. This will ensure database availability in the event of a regional outage.
+    By default, Azure SQL Database premium tier provisions multiple copies within the same region. For geo redundancy, databases can be set as Zone Redundant, distributing copies across Azure Availability Zones to maintain availability during regional outages.
   potentialBenefits: Enhanced reliability, no extra cost
   pgVerified: true
   publishedToLearn: false
@@ -65,7 +65,7 @@
   recommendationResourceType: Microsoft.Sql/servers
   recommendationMetadataState: Active
   longDescription: |
-    When transient failures occur between the application and the Azure SQL Database environment, it is important that the application manages connection retries in an appropriate manner. There is no configuration necessary at the Database layer, but the application must be configured to retry gracefully.
+    During transient failures, the application should handle connection retries effectively with Azure SQL Database. No Database layer configuration is needed; instead, the application must be set up for graceful retrying.
   potentialBenefits: Enhanced connectivity stability
   pgVerified: true
   publishedToLearn: false
