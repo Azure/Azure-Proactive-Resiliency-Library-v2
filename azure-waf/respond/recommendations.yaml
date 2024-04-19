@@ -34,7 +34,7 @@
   recommendationControl: Disaster Recovery
   recommendationImpact: High
   recommendationResourceType: WellArchitected/Respond
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     This is just a test recommendation.
   potentialBenefits: Quicker recovery, less impact
@@ -55,7 +55,7 @@
   recommendationControl: Disaster Recovery
   recommendationImpact: Medium
   recommendationResourceType: WellArchitected/Respond
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     This is just a test recommendation.
   potentialBenefits: Quicker recovery, less impact
