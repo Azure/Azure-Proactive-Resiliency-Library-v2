@@ -401,6 +401,77 @@ $Global:Runtime = Measure-Command -Expression {
 
     function ResourceExtraction {
 
+        function QueryCollector {
+            param($Subid,$type,$query,$checkId,$checkName,$validationAction)
+                try {
+                    $ResourceType = $Global:AllResourceTypes | Where-Object {$_.type -eq $type -and $_.subscriptionId -eq $Subid}
+                    if ($resourceType.count_ -lt 1000)
+                        {
+                            # Execute the query and collect the results
+                            $queryResults = Search-AzGraph -Query $query -First 1000 -Subscription $Subid -ErrorAction SilentlyContinue
+    
+                            # Filter out the resources based on Subscription
+                            # $queryResults = $queryResults | Where-Object {$_.id.split('/')[2] -eq $Subid}
+    
+                            foreach ($row in $queryResults) {
+    
+                                $result = [PSCustomObject]@{
+                                    validationAction = [string]$validationAction
+                                    recommendationId = [string]$checkId
+                                    name             = [string]$row.name
+                                    id               = [string]$row.id
+                                    tags             = [string]$row.tags
+                                    param1           = [string]$row.param1
+                                    param2           = [string]$row.param2
+                                    param3           = [string]$row.param3
+                                    param4           = [string]$row.param4
+                                    param5           = [string]$row.param5
+                                    checkName        = [string]$checkName
+                                    selector         = [string]$selector
+                                }
+                                $Global:results += $result
+                            }
+                        }
+                    else
+                        {
+                            $Loop = $resourceType.count_ / 1000
+                            $Loop = [math]::ceiling($Loop)
+                            $Looper = 0
+                            $Limit = 1
+    
+                            while ($Looper -lt $Loop) {
+                                $queryResults = Search-AzGraph -Query ($query + '| order by id') -Subscription $Subid -Skip $Limit -first 1000 -ErrorAction SilentlyContinue
+                                foreach ($row in $queryResults)
+                                    {
+                                        $result = [PSCustomObject]@{
+                                            validationAction = [string]$validationAction
+                                            recommendationId = [string]$checkId
+                                            name             = [string]$row.name
+                                            id               = [string]$row.id
+                                            tags             = [string]$row.tags
+                                            param1           = [string]$row.param1
+                                            param2           = [string]$row.param2
+                                            param3           = [string]$row.param3
+                                            param4           = [string]$row.param4
+                                            param5           = [string]$row.param5
+                                            checkName        = [string]$checkName
+                                            selector         = [string]$selector
+                                        }
+                                        $Global:results += $result
+                                    }
+                                $Looper ++
+                                $Limit = $Limit + 1000
+                            }
+                        }
+                    }
+                    catch {
+                        # Report Error
+                        $errorMessage = $_.Exception.Message
+                        Write-Host "Error processing query results: $errorMessage" -ForegroundColor Red
+                    }
+                }
+
+
         if (![string]::IsNullOrEmpty($SubscriptionIds) -and [string]::IsNullOrEmpty($SubscriptionsFile)) {
             $SubIds = $SubIds | Where-Object { $_.Id -in $SubscriptionIds }
         }
@@ -444,14 +515,14 @@ $Global:Runtime = Measure-Command -Expression {
                         $resultAllResourceTypes = @()
                         foreach ($RG in $ResourceGroups)
                             {
-                                $resultAllResourceTypes += Search-AzGraph -Query "resources | where resourceGroup contains '$RG' | summarize count() by type" -Subscription $Subid
+                                $resultAllResourceTypes += Search-AzGraph -Query "resources | where resourceGroup contains '$RG' | summarize count() by type, subscriptionId" -Subscription $Subid
                             }
                         $Global:AllResourceTypes += $resultAllResourceTypes
                     }
                 else
                     {
                         # Extract and display resource types with the query with subscriptions, we need this to filter the subscriptions later
-                        $resultAllResourceTypes = Search-AzGraph -Query "resources | summarize count() by type" -Subscription $Subid
+                        $resultAllResourceTypes = Search-AzGraph -Query "resources | summarize count() by type, subscriptionId" -Subscription $Subid
                         $Global:AllResourceTypes += $resultAllResourceTypes
                     }
 
@@ -473,10 +544,7 @@ $Global:Runtime = Measure-Command -Expression {
                                 if($GlueType -in $resultAllResourceTypes.type)
                                     {
                                         $aprlKqlFiles += Get-ChildItem -Path $SubDir -Filter "*.kql" -Recurse
-                                    }
-                                else
-                                    {
-                                        $GluedTypes += $GlueType
+                                        $GluedTypes += $GlueType.ToLower()
                                     }
                             }
                     }
@@ -619,134 +687,49 @@ $Global:Runtime = Measure-Command -Expression {
                         if ($query -match "development")
                             {
                                 Write-Host "Query $kqlshort under development - Validate Recommendation manually" -ForegroundColor Yellow
-                                $result = [PSCustomObject]@{
-                                    recommendationId = $checkId
-                                    name             = "Query under development - Validate Recommendation manually"
-                                    id               = ""
-                                    tags             = ""
-                                    param1           = ""
-                                    param2           = ""
-                                    param3           = ""
-                                    param4           = ""
-                                    param5           = ""
-                                    checkName        = ""
-                                    selector         = $selector
-                                }
-                                $Global:results += $result
+                                $query = "resources | where type contains '$type' | project name,id,tags"
+                                QueryCollector $Subid $type $query $checkId $checkName 'Query under development - Validate Recommendation manually'
                             }
                         elseif($query -match "cannot-be-validated-with-arg")
                             {
                                 Write-Host "IMPORTANT - Recommendation $checkId cannot be validated with ARGs - Validate Resources manually" -ForegroundColor Yellow
-                                $result = [PSCustomObject]@{
-                                    recommendationId = $checkId
-                                    name             = "IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually"
-                                    id               = ""
-                                    tags             = ""
-                                    param1           = ""
-                                    param2           = ""
-                                    param3           = ""
-                                    param4           = ""
-                                    param5           = ""
-                                    checkName        = ""
-                                    selector         = $selector
-                                }
-                                $Global:results += $result
+                                $query = "resources | where type contains '$type' | project name,id,tags"
+                                QueryCollector $Subid $type $query $checkId $checkName 'IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually'
                             }
                         else
                             {
-                                try {
-                                    if ($resourceType.count_ -lt 1000)
-                                        {
-                                            # Execute the query and collect the results
-                                            $queryResults = Search-AzGraph -Query $query -First 1000 -Subscription $Subid -ErrorAction SilentlyContinue
-
-                                            # Filter out the resources based on Subscription
-                                            # $queryResults = $queryResults | Where-Object {$_.id.split('/')[2] -eq $Subid}
-
-                                            foreach ($row in $queryResults) {
-
-                                                $result = [PSCustomObject]@{
-                                                    recommendationId = [string]$checkId
-                                                    name             = [string]$row.name
-                                                    id               = [string]$row.id
-                                                    tags             = [string]$row.tags
-                                                    param1           = [string]$row.param1
-                                                    param2           = [string]$row.param2
-                                                    param3           = [string]$row.param3
-                                                    param4           = [string]$row.param4
-                                                    param5           = [string]$row.param5
-                                                    checkName        = [string]$checkName
-                                                    selector         = [string]$selector
-                                                }
-                                                $Global:results += $result
-                                            }
-                                        }
-                                    else
-                                        {
-                                            $Loop = $resourceType.count_ / 1000
-                                            $Loop = [math]::ceiling($Loop)
-                                            $Looper = 0
-                                            $Limit = 1
-
-                                            while ($Looper -lt $Loop) {
-                                                $queryResults = Search-AzGraph -Query ($query + '| order by id') -Subscription $Subid -Skip $Limit -first 1000 -ErrorAction SilentlyContinue
-                                                foreach ($row in $queryResults)
-                                                    {
-                                                        $result = [PSCustomObject]@{
-                                                            recommendationId = [string]$checkId
-                                                            name             = [string]$row.name
-                                                            id               = [string]$row.id
-                                                            tags             = [string]$row.tags
-                                                            param1           = [string]$row.param1
-                                                            param2           = [string]$row.param2
-                                                            param3           = [string]$row.param3
-                                                            param4           = [string]$row.param4
-                                                            param5           = [string]$row.param5
-                                                            checkName        = [string]$checkName
-                                                            selector         = [string]$selector
-                                                        }
-                                                        $Global:results += $result
-                                                    }
-                                                $Looper ++
-                                                $Limit = $Limit + 1000
-                                            }
-                                        }
-
-                                    #After processing the ARG Queries, now is time to process the -ResourceGroups
-                                    if (![string]::IsNullOrEmpty($ResourceGroups))
-                                        {
-                                            $TempResult = $Global:results
-                                            $Global:results = @()
-
-                                            foreach ($result in $TempResult)
-                                                {
-                                                    $res = $result.id.split('/')
-                                                    if ($res[4] -in $ResourceGroups)
-                                                        {
-                                                            $Global:results += $result
-                                                        }
-                                                    if ($result.name -eq "Query under development - Validate Recommendation manually")
-                                                        {
-                                                            $Global:results += $result
-                                                        }
-                                                }
-                                        }
-                                }
-                                catch {
-                                    # Report Error
-                                    $errorMessage = $_.Exception.Message
-                                    Write-Host "Error processing query results: $errorMessage" -ForegroundColor Red
-                                }
+                                QueryCollector $Subid $type $query $checkId $checkName 'Azure Resource Graph'
                             }
                     }
+                        #After processing the ARG Queries, now is time to process the -ResourceGroups
+                        if (![string]::IsNullOrEmpty($ResourceGroups))
+                            {
+                                $TempResult = $Global:results
+                                $Global:results = @()
+
+                                foreach ($result in $TempResult)
+                                    {
+                                        $res = $result.id.split('/')
+                                        if ($res[4] -in $ResourceGroups)
+                                            {
+                                                $Global:results += $result
+                                            }
+                                        if ($result.name -eq "Query under development - Validate Recommendation manually")
+                                            {
+                                                $Global:results += $result
+                                            }
+                                    }
+                            }
+
                 #Store all resourcetypes not in APRL
                 foreach ($ResType in $GluedTypes)
                     {
                         $type = $ResType
                         Write-Host "Type $type Not Available In APRL - Validate Service manually" -ForegroundColor Yellow
                         $result = [PSCustomObject]@{
+                            validationAction = 'Service Not Available In APRL - Validate Service manually if Applicable, if not Delete this line'
                             recommendationId = $type
-                            name             = "Service Not Available In APRL - Validate Service manually if Applicable, if not Delete this line"
+                            name             = ""
                             id               = ""
                             tags             = ""
                             param1           = ""
@@ -764,12 +747,15 @@ $Global:Runtime = Measure-Command -Expression {
 
     function ResourceTypes {
         $TempTypes = $Global:results | Where-Object {$_.name -eq 'Service Not Available In APRL - Validate Service manually if Applicable, if not Delete this line'}
-        $Global:AllResourceTypes  = $Global:AllResourceTypes | Sort-Object -Property Count_ -Descending
+        $Global:AllResourceTypes = $Global:AllResourceTypes | Sort-Object -Property Count_ -Descending
         foreach($result in $Global:AllResourceTypes)
             {
                 if($result.type -in $TempTypes.recommendationId)
                     {
+                        $SubName = ''
+                        $SubName = ($SubIds | Where-Object {$_.Id -eq $result.subscriptionId}).Name
                         $tmp = [PSCustomObject]@{
+                            'Subscription'              = [string]$SubName
                             'Resource Type'             = [string]$result.type
                             'Number of Resources'       = [string]$result.count_
                             'Available in APRL?'        = "No"
@@ -781,7 +767,10 @@ $Global:Runtime = Measure-Command -Expression {
                     }
                 else
                     {
+                        $SubName = ''
+                        $SubName = ($SubIds | Where-Object {$_.Id -eq $result.subscriptionId}).Name
                         $tmp = [PSCustomObject]@{
+                            'Subscription'              = [string]$SubName
                             'Resource Type'             = [string]$result.type
                             'Number of Resources'       = [string]$result.count_
                             'Available in APRL?'        = "Yes"
@@ -801,10 +790,10 @@ $Global:Runtime = Measure-Command -Expression {
                 $Advisories = @()
                 foreach ($RG in $ResourceGroups)
                     {
-                        $Advisories = Search-AzGraph -Query "advisorresources | where type == 'microsoft.advisor/recommendations' and tostring(properties.category) == 'HighAvailability' | where resourceGroup == '$RG' | summarize count()" -Subscription $Subid
+                        $Advisories = Search-AzGraph -Query "advisorresources | where type == 'microsoft.advisor/recommendations' and tostring(properties.category) == 'HighAvailability' | where resourceGroup contains '$RG' | summarize count()" -Subscription $Subid
                         if ($Advisories.count_ -lt 1000)
                             {
-                                $advquery = "advisorresources | where type == 'microsoft.advisor/recommendations' and tostring(properties.category) == 'HighAvailability' | where resourceGroup == '$RG' | order by id"
+                                $advquery = "advisorresources | where type == 'microsoft.advisor/recommendations' and tostring(properties.category) == 'HighAvailability' | where resourceGroup contains '$RG' | order by id"
                                 $queryResults += Search-AzGraph -Query $advquery -First 1000 -Subscription $Subid -ErrorAction SilentlyContinue
 
                                 foreach ($row in $queryResults) {
@@ -834,7 +823,7 @@ $Global:Runtime = Measure-Command -Expression {
 
                                 while ($Looper -lt $Loop) {
 
-                                    $advquery = "advisorresources | where type == 'microsoft.advisor/recommendations' and tostring(properties.category) == 'HighAvailability' | where resourceGroup == '$RG' | order by id"
+                                    $advquery = "advisorresources | where type == 'microsoft.advisor/recommendations' and tostring(properties.category) == 'HighAvailability' | where resourceGroup contains '$RG' | order by id"
                                     $queryResults = Search-AzGraph -Query $advquery -Subscription $Subid -Skip $Limit -first 1000 -ErrorAction SilentlyContinue
                                     foreach ($row in $queryResults) {
 
@@ -1139,7 +1128,7 @@ $Global:Runtime = Measure-Command -Expression {
 
 
     #Call the functions
-    $Global:Version = "2.0.4"
+    $Global:Version = "2.0.5"
     Write-Host "Version: " -NoNewline
     Write-Host $Global:Version -ForegroundColor DarkBlue
 
