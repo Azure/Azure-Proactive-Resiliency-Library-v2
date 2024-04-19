@@ -117,7 +117,7 @@ $Global:Runtime = Measure-Command -Expression {
 
         $Global:Retirements = try{Import-Excel -Path $ExcelFile -WorksheetName "Retirements"}catch{}
 
-        $ResourceIDs = $ExcelContent.id | Select-Object -Unique
+        $ResourceIDs = $ExcelContent.id | Select-Object -Unique -CaseInsensitive
         $Resources = @()
         Foreach($ID in $ResourceIDs)
             {
