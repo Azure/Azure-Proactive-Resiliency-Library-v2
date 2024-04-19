@@ -31,29 +31,8 @@
 - description: test rosanto 0
   aprlGuid: e23933c9-fe33-495d-a7b3-b3e7f9befd49
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: Other
   recommendationImpact: High
-  recommendationResourceType: WellArchitected/Respond
-  recommendationMetadataState: Active
-  longDescription: |
-    This is just a test recommendation.
-  potentialBenefits: Quicker recovery, less impact
-  pgVerified: true
-  publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: No
-  tags: null
-  learnMoreLink:
-    - name: Importance of incident response
-      url: "https://learn.microsoft.com/training/modules/improve-reliability-incidents/2-importance"
-    - name: Incident tracking
-      url: "https://learn.microsoft.com/training/modules/improve-reliability-incidents/5-tracking"
-
-- description: test rosanto 1
-  aprlGuid: 0dfc07d4-a6fd-4472-bcbb-d7253c5e877b
-  recommendationTypeId: null
-  recommendationControl: High Availability
-  recommendationImpact: Medium
   recommendationResourceType: WellArchitected/Respond
   recommendationMetadataState: Disabled
   longDescription: |
