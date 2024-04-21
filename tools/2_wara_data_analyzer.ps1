@@ -97,6 +97,8 @@ $Global:Runtime = Measure-Command -Expression {
 
     function MGrid {
         Write-Host "Processing JSON File"
+        $JSONFile = get-item -Path $JSONFile
+        $JSONFile = $JSONFile.FullName
         $results = Get-Content -Path $JSONFile | ConvertFrom-Json -Depth 15
         $Global:AllResourceTypesOrdered = $results.ResourceType
         $Global:Outages = $results.Outages
@@ -759,7 +761,7 @@ $Global:Runtime = Measure-Command -Expression {
     }
 
     #Call the functions
-    $Global:Version = "2.0.4"
+    $Global:Version = "2.0.5"
     Write-Host "Version: " -NoNewline
     Write-Host $Global:Version -ForegroundColor DarkBlue
 
