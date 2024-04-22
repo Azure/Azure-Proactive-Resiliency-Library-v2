@@ -723,7 +723,7 @@ $Global:Runtime = Measure-Command -Expression {
   }
 
   function ResourceTypes {
-    $TempTypes = $Global:results | Where-Object { $_.name -eq 'Service Not Available In APRL - Validate Service manually if Applicable, if not Delete this line' }
+    $TempTypes = $Global:results | Where-Object { $_.validationAction -eq 'Service Not Available In APRL - Validate Service manually if Applicable, if not Delete this line' }
     $Global:AllResourceTypes = $Global:AllResourceTypes | Sort-Object -Property Count_ -Descending
     foreach ($result in $Global:AllResourceTypes) {
       if ($result.type -in $TempTypes.recommendationId) {
