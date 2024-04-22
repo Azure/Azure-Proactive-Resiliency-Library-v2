@@ -32,7 +32,7 @@ $Global:Runtime = Measure-Command -Expression {
         Write-Host "  .\2_wara_analyzer.ps1 -JSONFile 'C:\Temp\WARA_File_2024-04-01_10_01.json'"
         Write-Host ""
         Write-Host "  Run using JSON file with Debugging details"
-        Write-Host "  .\2_wara_analyzer.ps1 -JSONFile 'C:\Temp\WARA_File_2024-04-01_10_01.json' -Deubgging"
+        Write-Host "  .\2_wara_analyzer.ps1 -JSONFile 'C:\Temp\WARA_File_2024-04-01_10_01.json' -Debugging"
         Write-Host ""
         Write-Host ""
     }
@@ -126,26 +126,27 @@ $Global:Runtime = Measure-Command -Expression {
             {
                 $RecomTitle = $Global:ServicesYAMLContent | Where-Object {$_.aprlGuid -eq $Recom.recommendationId}
                 $Ticket = $Global:SupportTickets | Where-Object {$_.properties.technicalTicketDetails.resourceId -eq $Recom.id}
-                if($RecomTitle.recommendationMetadataState -eq 'Active' -or $Recom.name -eq 'Service Not Available In APRL - Validate Service manually if Applicable, if not Delete this line' -or $Recom.name -eq 'IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually' -or $Recom.name -eq 'Query under development - Validate Recommendation manually' )
+                if($RecomTitle.recommendationMetadataState -eq 'Active' -or $Recom.validationAction -eq 'Service Not Available In APRL - Validate Service manually if Applicable, if not Delete this line' -or $Recom.validationAction -eq 'IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually' -or $Recom.validationAction -eq 'Query under development - Validate Recommendation manually' )
                     {
                         $Tickets = if($Ticket.properties.supportTicketId.count -gt 1){$Ticket.properties.supportTicketId | ForEach-Object {$_ + ' /'}}else{$Ticket.properties.supportTicketId}
                         $Tickets = [string]$Tickets
                         $Tickets = if($Tickets -like '* /*'){$Tickets -replace ".$"}else{$Tickets}
                         $tmp = @{
-                            recommendationId        = [string]$Recom.recommendationId;
-                            recommendationTitle     = [string]$RecomTitle.description;
-                            resourceType            = [string]$RecomTitle.recommendationResourceType;
-                            name                    = [string]$Recom.name;
-                            id                      = [string]$Recom.id;
-                            tags                    = [string]$Recom.tags;
-                            param1                  = [string]$Recom.param1;
-                            param2                  = [string]$Recom.param2;
-                            param3                  = [string]$Recom.param3;
-                            param4                  = [string]$Recom.param4;
-                            param5                  = [string]$Recom.param5;
-                            supportTicketId         = $Tickets;
-                            source                  = [string]$Recom.selector;
-                            checkName               = [string]$Recom.checkName
+                            'How was the resource/recommendation validated or what actions need to be taken?'   = [string]$Recom.validationAction;
+                            recommendationId                                                                    = [string]$Recom.recommendationId;
+                            recommendationTitle                                                                 = [string]$RecomTitle.description;
+                            resourceType                                                                        = [string]$RecomTitle.recommendationResourceType;
+                            name                                                                                = [string]$Recom.name;
+                            id                                                                                  = [string]$Recom.id;
+                            tags                                                                                = [string]$Recom.tags;
+                            param1                                                                              = [string]$Recom.param1;
+                            param2                                                                              = [string]$Recom.param2;
+                            param3                                                                              = [string]$Recom.param3;
+                            param4                                                                              = [string]$Recom.param4;
+                            param5                                                                              = [string]$Recom.param5;
+                            supportTicketId                                                                     = $Tickets;
+                            source                                                                              = [string]$Recom.selector;
+                            checkName                                                                           = [string]$Recom.checkName
                         }
                         $Global:MergedRecommendation += $tmp
                     }
@@ -160,20 +161,21 @@ $Global:Runtime = Measure-Command -Expression {
                         $Tickets = [string]$Tickets
                         $Tickets = if($Tickets -like '* /*'){$Tickets -replace ".$"}else{$Tickets}
                         $tmp = @{
-                            recommendationId        = [string]$adv.recommendationId;
-                            recommendationTitle     = [string]$adv.description;
-                            resourceType            = [string]$adv.type;
-                            name                    = [string]$adv.name;
-                            id                      = [string]$adv.id;
-                            tags                    = "";
-                            param1                  = "";
-                            param2                  = "";
-                            param3                  = "";
-                            param4                  = "";
-                            param5                  = "";
-                            supportTicketId         = $Tickets;
-                            source                  = "ADVISOR";
-                            checkName               = ""
+                            'How was the resource/recommendation validated or what actions need to be taken?'   = '';
+                            recommendationId                                                                    = [string]$adv.recommendationId;
+                            recommendationTitle                                                                 = [string]$adv.description;
+                            resourceType                                                                        = [string]$adv.type;
+                            name                                                                                = [string]$adv.name;
+                            id                                                                                  = [string]$adv.id;
+                            tags                                                                                = "";
+                            param1                                                                              = "";
+                            param2                                                                              = "";
+                            param3                                                                              = "";
+                            param4                                                                              = "";
+                            param5                                                                              = "";
+                            supportTicketId                                                                     = $Tickets;
+                            source                                                                              = "ADVISOR";
+                            checkName                                                                           = ""
                         }
                         $Global:MergedRecommendation += $tmp
                     }
@@ -193,16 +195,25 @@ $Global:Runtime = Measure-Command -Expression {
         function ImpactedResources {
             ####################    Creates the first sheet (ImpactedResources)
             $Styles1 = @(
-                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -Bold -BackgroundColor "DarkSlateGray" -AutoSize -Range "A1:N1"
-                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -AutoSize -NumberFormat '0' -Range "A:D"
-                New-ExcelStyle -HorizontalAlignment Left -FontName 'Calibri' -FontSize 11 -Width 80 -Range "E:E"
-                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -AutoSize -NumberFormat '0' -Range "L:N"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -Bold -BackgroundColor "DarkSlateGray" -AutoSize -Range "A1:O1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -AutoSize -NumberFormat '0' -Range "A:B"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -Width 100 -WrapText -NumberFormat '0' -Range "C:C"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -AutoSize -NumberFormat '0' -Range "D:E"
+                New-ExcelStyle -HorizontalAlignment Left -FontName 'Calibri' -FontSize 11 -Width 80 -Range "F:F"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -AutoSize -NumberFormat '0' -Range "L:O"
             )
 
+            $cond = @()
+            $cond += New-ConditionalText 'Service Not Available In APRL' -Range A:A
+            $cond += New-ConditionalText 'Query under development' -Range A:A
+            $cond += New-ConditionalText 'IMPORTANT' -Range A:A
+
+
             $ImpactedResourcesSheet = New-Object System.Collections.Generic.List[System.Object]
-            $ImpactedResourcesSheet.Add('recommendationId')
-            $ImpactedResourcesSheet.Add('recommendationTitle')
+            $ImpactedResourcesSheet.Add('How was the resource/recommendation validated or what actions need to be taken?')
             $ImpactedResourcesSheet.Add('resourceType')
+            $ImpactedResourcesSheet.Add('recommendationTitle')
+            $ImpactedResourcesSheet.Add('recommendationId')
             $ImpactedResourcesSheet.Add('name')
             $ImpactedResourcesSheet.Add('id')
             $ImpactedResourcesSheet.Add('tags')
@@ -216,13 +227,14 @@ $Global:Runtime = Measure-Command -Expression {
             $ImpactedResourcesSheet.Add('checkName')
 
             $Global:MergedRecommendation | ForEach-Object { [PSCustomObject]$_ } | Select-Object $ImpactedResourcesSheet |
-            Export-Excel -Path $ExcelFile -WorksheetName 'ImpactedResources' -TableName 'Table2' -AutoSize -TableStyle $TableStyle -Style $Styles1
+            Export-Excel -Path $ExcelFile -WorksheetName 'ImpactedResources' -TableName 'Table2' -ConditionalText $cond -AutoSize -TableStyle $TableStyle -Style $Styles1
 
         }
 
         function ResourceTypes {
             ####################    Creates the second sheet (ResourceTypes)
             $ResourceTypeSheet = New-Object System.Collections.Generic.List[System.Object]
+            $ResourceTypeSheet.Add('Subscription')
             $ResourceTypeSheet.Add('Resource Type')
             $ResourceTypeSheet.Add('Number of Resources')
             $ResourceTypeSheet.Add('Available in APRL?')
@@ -231,8 +243,8 @@ $Global:Runtime = Measure-Command -Expression {
             $ResourceTypeSheet.Add('Custom3')
 
             $TypeStyle = @(
-                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -Bold -BackgroundColor "DarkSlateGray" -AutoSize -Range "A1:F1"
-                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -AutoSize -NumberFormat '0' -Range "A:F"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -Bold -BackgroundColor "DarkSlateGray" -AutoSize -Range "A1:G1"
+                New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -AutoSize -NumberFormat '0' -Range "A:G"
             )
 
             $Global:AllResourceTypesOrdered | ForEach-Object { [PSCustomObject]$_ } | Select-Object $ResourceTypeSheet |
@@ -494,7 +506,6 @@ $Global:Runtime = Measure-Command -Expression {
                 }
             #$TextInfo = (Get-Culture).TextInfo
 
-
             # Build the APRL Recommendations
             foreach ($Service in $Global:ServicesYAMLContent)
                 {
@@ -503,8 +514,8 @@ $Global:Runtime = Measure-Command -Expression {
                             $ID = $Service.aprlGuid
                             $resourceType = $Service.recommendationResourceType
                             $tmp = @{
-                                'Implemented?Yes/No'                                                                             = ('=IF((COUNTIF(ImpactedResources!A:A,"' + $ID + '")=0),"Yes","No")');
-                                'Number of Impacted Resources?'                                                                  = ('=COUNTIF(ImpactedResources!A:A,"' + $ID + '")');
+                                'Implemented?Yes/No'                                                                             = ('=IF((COUNTIF(ImpactedResources!D:D,"' + $ID + '")=0),"Yes","No")');
+                                'Number of Impacted Resources?'                                                                  = ('=COUNTIF(ImpactedResources!D:D,"' + $ID + '")');
                                 'Azure Service / Well-Architected'                                                               = 'Azure Service';
                                 'Recommendation Source'                                                                          = 'APRL';
                                 'Resiliency Category'                                                                            = $Service.recommendationControl;
@@ -572,7 +583,6 @@ $Global:Runtime = Measure-Command -Expression {
                     }
                     $Global:Recommendations += $tmp
                 }
-
 
             $Styles2 = @(
                 New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 14 -Range "A1:B1"
@@ -673,7 +683,7 @@ $Global:Runtime = Measure-Command -Expression {
         }
 
         function ExcelAPI {
-            Write-Host "Opening Excel in the background (hidden mode)..."
+            Write-Host "Openning Excel..."
             $Global:ExcelApplication = New-Object -ComObject Excel.Application
             Start-Sleep 2
             Write-Host "Customizing Excel Charts. "
@@ -681,10 +691,10 @@ $Global:Runtime = Measure-Command -Expression {
             if ($Global:ExcelApplication) {
                 try
                     {
-                        Write-Debug 'Opening Excel File in the background (hidden mode)'
+                        Write-Debug 'Openning Excel File'
                         $Ex = $ExcelApplication.Workbooks.Open($ExcelFile)
                         Start-Sleep -Seconds 2
-                        Write-Debug 'Opening Excel Sheets'
+                        Write-Debug 'Openning Excel Sheets'
                         $WS = $ex.Worksheets | Where-Object { $_.Name -eq 'PivotTable' }
                         $WS2 = $ex.Worksheets | Where-Object { $_.Name -eq 'Charts' }
                         Write-Debug 'Moving Charts to Chart sheet'
@@ -749,7 +759,7 @@ $Global:Runtime = Measure-Command -Expression {
     }
 
     #Call the functions
-    $Global:Version = "2.0.2"
+    $Global:Version = "2.0.4"
     Write-Host "Version: " -NoNewline
     Write-Host $Global:Version -ForegroundColor DarkBlue
 
