@@ -923,17 +923,20 @@ $Global:Runtime = Measure-Command -Expression {
 
       foreach ($Row in $Rowler) {
         $SubName = ($SubIds | Where-Object { $_.Id -eq ($Row.properties.scopes.split('/')[2]) }).Name
-        $EventType = $Row.Properties.condition.allOf.anyOf | Select-Object -Property equals | ForEach-Object { switch ($_.equals) { 'Incident' { 'Service Issues' } 'Informational' { 'Health Advisories' } 'ActionRequired' { 'Security Advisory' } 'Maintenance' { 'Planned Maintenance' } } }
-        $Services = $Row.Properties.condition.allOf | Where-Object { $_.field -eq 'properties.impactedServices[*].ServiceName' } | Select-Object -Property containsAny | ForEach-Object { $_.containsAny }
-        $Regions = $Row.Properties.condition.allOf | Where-Object { $_.field -eq 'properties.impactedServices[*].ImpactedRegions[*].RegionName' } | Select-Object -Property containsAny | ForEach-Object { $_.containsAny }
+        $PreRegion = $Row.Properties.condition.allOf | Where-Object { $_.field -eq 'properties.impactedServices[*].ImpactedRegions[*].RegionName' }
+        $PreService = $Row.Properties.condition.allOf | Where-Object { $_.field -eq 'properties.impactedServices[*].ServiceName' }
+        $PreEventType = $Row.Properties.condition.allOf.anyOf | Select-Object -Property equals | ForEach-Object { switch ($_.equals) { 'Incident' { 'Service Issues' } 'Informational' { 'Health Advisories' } 'ActionRequired' { 'Security Advisory' } 'Maintenance' { 'Planned Maintenance' } } }
+        if (![string]::IsNullOrEmpty($PreEventType)) { $EventType = $Row.Properties.condition.allOf.anyOf | Select-Object -Property equals | ForEach-Object { switch ($_.equals) { 'Incident' { 'Service Issues' } 'Informational' { 'Health Advisories' } 'ActionRequired' { 'Security Advisory' } 'Maintenance' { 'Planned Maintenance' } } } } Else { $EventType = 'All' }
+        if (![string]::IsNullOrEmpty($PreService)) { $Services = $Row.Properties.condition.allOf | Where-Object { $_.field -eq 'properties.impactedServices[*].ServiceName' } | Select-Object -Property containsAny | ForEach-Object { $_.containsAny } } Else { $Services = 'All' }
+        if (![string]::IsNullOrEmpty($PreRegion)) { $Regions = $Row.Properties.condition.allOf | Where-Object { $_.field -eq 'properties.impactedServices[*].ImpactedRegions[*].RegionName' } | Select-Object -Property containsAny | ForEach-Object { $_.containsAny } }Else { $Regions = 'All' }
 
         $result = [PSCustomObject]@{
           Name         = [string]$row.name
           Subscription = [string]$SubName
           Enabled      = [string]$Row.properties.enabled
-          EventType    = if (![string]::IsNullOrEmpty($EventType)) { $EventType }Else { 'All' }
-          Services     = if (![string]::IsNullOrEmpty($Services)) { $Services }Else { 'All' }
-          Regions      = if (![string]::IsNullOrEmpty($Regions)) { $Regions }Else { 'All' }
+          EventType    = $EventType
+          Services     = $Services
+          Regions      = $Regions
           ActionGroup  = $Row.Properties.actions.actionGroups.actionGroupId.split('/')[8]
         }
         $Global:AllServiceHealth += $result
