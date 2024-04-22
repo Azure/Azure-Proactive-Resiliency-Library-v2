@@ -574,7 +574,12 @@ $Global:Runtime = Measure-Command -Expression {
 
         # Read the query content from the file
         $baseQuery = Get-Content -Path $kqlFile.FullName | Out-String
-        $typeRaw = $kqlFile.DirectoryName.split('\')
+        if (!$Global:CShell) {
+          $typeRaw = $kqlFile.DirectoryName.split('\')
+        }
+        else {
+          $typeRaw = $kqlFile.DirectoryName.split('/')
+        }
         $kqltype = ($typeRaw[-3] + '/' + $typeRaw[-2])
 
         $checkId = $kqlname.Split("/")[-1].ToLower()
@@ -943,9 +948,10 @@ $Global:Runtime = Measure-Command -Expression {
 
       foreach ($Row in $Rowler) {
         $SubName = ($SubIds | Where-Object { $_.Id -eq ($Row.properties.scopes.split('/')[2]) }).Name
-        $EventType = try { $Row.Properties.condition.allOf.anyOf | Select-Object -Property equals | ForEach-Object { switch ($_.equals) { 'Incident' { 'Service Issues' } 'Informational' { 'Health Advisories' } 'ActionRequired' { 'Security Advisory' } 'Maintenance' { 'Planned Maintenance' } } } }catch { 'All' }
-        $Services = try { $Row.Properties.condition.allOf | Where-Object { $_.field -eq 'properties.impactedServices[*].ServiceName' } | Select-Object -Property containsAny | ForEach-Object { $_.containsAny } }catch { 'All' }
-        $Regions = try { $Row.Properties.condition.allOf | Where-Object { $_.field -eq 'properties.impactedServices[*].ImpactedRegions[*].RegionName' } | Select-Object -Property containsAny | ForEach-Object { $_.containsAny } }catch { 'All' }
+        $EventType = if ($Row.Properties.condition.allOf.anyOf | Select-Object -Property equals) { $Row.Properties.condition.allOf.anyOf | Select-Object -Property equals | ForEach-Object { switch ($_.equals) { 'Incident' { 'Service Issues' } 'Informational' { 'Health Advisories' } 'ActionRequired' { 'Security Advisory' } 'Maintenance' { 'Planned Maintenance' } } } } Else { 'All' }
+        $Services = if ($Row.Properties.condition.allOf | Where-Object { $_.field -eq 'properties.impactedServices[*].ServiceName' }) { $Row.Properties.condition.allOf | Where-Object { $_.field -eq 'properties.impactedServices[*].ServiceName' } | Select-Object -Property containsAny | ForEach-Object { $_.containsAny } } Else { 'All' }
+        $Regions = if ($Row.Properties.condition.allOf | Where-Object { $_.field -eq 'properties.impactedServices[*].ImpactedRegions[*].RegionName' }) { $Row.Properties.condition.allOf | Where-Object { $_.field -eq 'properties.impactedServices[*].ImpactedRegions[*].RegionName' } | Select-Object -Property containsAny | ForEach-Object { $_.containsAny } } Else { 'All' }
+        $ActionGroupName = if ($Row.Properties.actions.actionGroups.actionGroupId) { $Row.Properties.actions.actionGroups.actionGroupId.split('/')[8] } else { '' }
 
         $result = [PSCustomObject]@{
           Name         = [string]$row.name
@@ -954,7 +960,7 @@ $Global:Runtime = Measure-Command -Expression {
           EventType    = $EventType
           Services     = $Services
           Regions      = $Regions
-          ActionGroup  = $Row.Properties.actions.actionGroups.actionGroupId.split('/')[8]
+          ActionGroup  = $ActionGroupName
         }
         $Global:AllServiceHealth += $result
       }
