@@ -3,4 +3,4 @@
 Resources
 | where type == "microsoft.sql/servers/databases"
 | extend param1 = iif(isnotempty(properties.geoReplicationRole), "Part of Geo Replication", "Not part of Geo Replication")
-| project recommendationId = "74c2491d-048b-0041-a140-935960220e20", DatabaseName = name, id, tags, param1
+| project recommendationId = "74c2491d-048b-0041-a140-935960220e20", name, id, tags, param1
