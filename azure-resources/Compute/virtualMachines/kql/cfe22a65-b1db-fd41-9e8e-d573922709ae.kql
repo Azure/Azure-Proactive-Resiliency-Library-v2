@@ -1,19 +1,16 @@
 // Azure Resource Graph Query
 // Find all VMs that do NOT have replication with ASR enabled
-// Run query to see results.
 resources
-| where type =~ 'Microsoft.Compute/virtualMachines'
-| project name, id, tags
-| join kind=leftouter (
+| where type =~ "Microsoft.Compute/virtualMachines"
+| extend securityType = iif(isnull(properties.securityProfile.securityType), "Standard", properties.securityProfile.securityType)
+| where securityType !in~ ("TrustedLaunch", "ConfidentialVM")
+| project id, vmIdForJoin = tolower(id), name, tags
+| join kind = leftouter (
     recoveryservicesresources
-    | where type =~ 'Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers/replicationProtectedItems'
-    | where properties.providerSpecificDetails.dataSourceInfo.datasourceType =~ 'AzureVm'
-    | project id=properties.providerSpecificDetails.dataSourceInfo.resourceId
-    | extend name=strcat_array(array_slice(split(id, '/'), 8, -1), '/')
-) on name
-| where isnull(id1)
-| project-away id1
-| project-away name1
+    | where type =~ "Microsoft.RecoveryServices/vaults/replicationFabrics/replicationProtectionContainers/replicationProtectedItems"
+        and properties.providerSpecificDetails.dataSourceInfo.datasourceType =~ "AzureVm"
+    | project vmResourceId = tolower(properties.providerSpecificDetails.dataSourceInfo.resourceId)
+    )
+    on $left.vmIdForJoin == $right.vmResourceId
+| where isempty(vmResourceId)
 | project recommendationId = "cfe22a65-b1db-fd41-9e8e-d573922709ae", name, id, tags
-| order by id asc
-
