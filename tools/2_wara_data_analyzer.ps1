@@ -123,7 +123,7 @@ $Global:Runtime = Measure-Command -Expression {
     foreach ($Recom in $CoreResources) {
       $RecomTitle = $Global:ServicesYAMLContent | Where-Object { $_.aprlGuid -eq $Recom.recommendationId }
       $Ticket = $Global:SupportTickets | Where-Object { $_.properties.technicalTicketDetails.resourceId -eq $Recom.id }
-      if ($RecomTitle.recommendationMetadataState -eq 'Active' -or $Recom.validationAction -eq 'Service Not Available In APRL - Validate Service manually if Applicable, if not Delete this line' -or $Recom.validationAction -eq 'IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually' -or $Recom.validationAction -eq 'Query under development - Validate Recommendation manually' ) {
+      if ($RecomTitle.recommendationMetadataState -eq 'Active' -or $Recom.validationAction -eq 'IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually' -or $Recom.validationAction -eq 'Query under development - Validate Recommendation manually' ) {
         $Tickets = if ($Ticket.properties.supportTicketId.count -gt 1) { $Ticket.properties.supportTicketId | ForEach-Object { $_ + ' /' } }else { $Ticket.properties.supportTicketId }
         $Tickets = [string]$Tickets
         $Tickets = if ($Tickets -like '* /*') { $Tickets -replace ".$" }else { $Tickets }
@@ -144,8 +144,27 @@ $Global:Runtime = Measure-Command -Expression {
           source                                                                            = [string]$Recom.selector;
           checkName                                                                         = [string]$Recom.checkName
         }
-        $Global:MergedRecommendation += $tmp
       }
+      elseif ($Recom.validationAction -eq 'Service Not Available In APRL - Validate Service manually if Applicable, if not Delete this line' ) {
+        $tmp = @{
+          'How was the resource/recommendation validated or what actions need to be taken?' = [string]$Recom.validationAction;
+          recommendationId                                                                  = "";
+          recommendationTitle                                                               = [string]$RecomTitle.description;
+          resourceType                                                                      = [string]$Recom.recommendationId;
+          name                                                                              = [string]$Recom.name;
+          id                                                                                = [string]$Recom.id;
+          tags                                                                              = [string]$Recom.tags;
+          param1                                                                            = [string]$Recom.param1;
+          param2                                                                            = [string]$Recom.param2;
+          param3                                                                            = [string]$Recom.param3;
+          param4                                                                            = [string]$Recom.param4;
+          param5                                                                            = [string]$Recom.param5;
+          supportTicketId                                                                   = "";
+          source                                                                            = [string]$Recom.selector;
+          checkName                                                                         = [string]$Recom.checkName
+        }
+      }
+      $Global:MergedRecommendation += $tmp
     }
 
     foreach ($adv in $CoreAdvisories) {
