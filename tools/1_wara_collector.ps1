@@ -498,7 +498,12 @@ $Global:Runtime = Measure-Command -Expression {
       $GluedTypes = @()
 
       # Validates if queries are applicable based on Resource Types present in the current subscription
-      $RootTypes = Get-ChildItem -Path "$clonePath\azure-resources\" -Directory
+      if (!$Global:CShell) {
+        $RootTypes = Get-ChildItem -Path "$clonePath\azure-resources\" -Directory
+      }
+      else {
+        $RootTypes = Get-ChildItem -Path "$clonePath/azure-resources/" -Directory
+      }
       foreach ($RootType in $RootTypes) {
         $RootName = $RootType.Name
         $SubTypes = Get-ChildItem -Path $RootType -Directory
@@ -514,7 +519,12 @@ $Global:Runtime = Measure-Command -Expression {
 
       # Populates the QueryMap hashtable
       foreach ($aprlKqlFile in $aprlKqlFiles) {
-        $kqlShort = [string]$aprlKqlFile.FullName.split('\')[-1]
+        if (!$Global:CShell) {
+          $kqlShort = [string]$aprlKqlFile.FullName.split('\')[-1]
+        }
+        else {
+          $kqlShort = [string]$aprlKqlFile.FullName.split('/')[-1]
+        }
         $kqlName = $kqlShort.split('.')[0]
 
         # Create APRL query map based on recommendation
@@ -528,7 +538,12 @@ $Global:Runtime = Measure-Command -Expression {
           $overrideKqlFiles = Get-ChildItem -Path $queryOverridePath -Filter "*.kql" -Recurse
 
           foreach ($overrideKqlFile in $overrideKqlFiles) {
-            $kqlShort = [string]$overrideKqlFile.FullName.split('\')[-1]
+            if (!$Global:CShell) {
+              $kqlShort = [string]$overrideKqlFile.FullName.split('\')[-1]
+            }
+            else {
+              $kqlShort = [string]$overrideKqlFile.FullName.split('/')[-1]
+            }
             $kqlName = $kqlShort.split('.')[0]
 
             Write-Host "Override KQL file: $kqlName"
@@ -548,7 +563,12 @@ $Global:Runtime = Measure-Command -Expression {
       $queries = @()
       # Loop through each KQL file and execute the queries
       foreach ($kqlFile in $kqlFiles) {
-        $kqlshort = [string]$kqlFile.FullName.split('\')[-1]
+        if (!$Global:CShell) {
+          $kqlshort = [string]$kqlFile.FullName.split('\')[-1]
+        }
+        else {
+          $kqlshort = [string]$kqlFile.FullName.split('/')[-1]
+        }
 
         $kqlname = $kqlshort.split('.')[0]
 
@@ -923,12 +943,9 @@ $Global:Runtime = Measure-Command -Expression {
 
       foreach ($Row in $Rowler) {
         $SubName = ($SubIds | Where-Object { $_.Id -eq ($Row.properties.scopes.split('/')[2]) }).Name
-        $PreRegion = $Row.Properties.condition.allOf | Where-Object { $_.field -eq 'properties.impactedServices[*].ImpactedRegions[*].RegionName' }
-        $PreService = $Row.Properties.condition.allOf | Where-Object { $_.field -eq 'properties.impactedServices[*].ServiceName' }
-        $PreEventType = $Row.Properties.condition.allOf.anyOf | Select-Object -Property equals | ForEach-Object { switch ($_.equals) { 'Incident' { 'Service Issues' } 'Informational' { 'Health Advisories' } 'ActionRequired' { 'Security Advisory' } 'Maintenance' { 'Planned Maintenance' } } }
-        if (![string]::IsNullOrEmpty($PreEventType)) { $EventType = $Row.Properties.condition.allOf.anyOf | Select-Object -Property equals | ForEach-Object { switch ($_.equals) { 'Incident' { 'Service Issues' } 'Informational' { 'Health Advisories' } 'ActionRequired' { 'Security Advisory' } 'Maintenance' { 'Planned Maintenance' } } } } Else { $EventType = 'All' }
-        if (![string]::IsNullOrEmpty($PreService)) { $Services = $Row.Properties.condition.allOf | Where-Object { $_.field -eq 'properties.impactedServices[*].ServiceName' } | Select-Object -Property containsAny | ForEach-Object { $_.containsAny } } Else { $Services = 'All' }
-        if (![string]::IsNullOrEmpty($PreRegion)) { $Regions = $Row.Properties.condition.allOf | Where-Object { $_.field -eq 'properties.impactedServices[*].ImpactedRegions[*].RegionName' } | Select-Object -Property containsAny | ForEach-Object { $_.containsAny } }Else { $Regions = 'All' }
+        $EventType = try { $Row.Properties.condition.allOf.anyOf | Select-Object -Property equals | ForEach-Object { switch ($_.equals) { 'Incident' { 'Service Issues' } 'Informational' { 'Health Advisories' } 'ActionRequired' { 'Security Advisory' } 'Maintenance' { 'Planned Maintenance' } } } }catch { 'All' }
+        $Services = try { $Row.Properties.condition.allOf | Where-Object { $_.field -eq 'properties.impactedServices[*].ServiceName' } | Select-Object -Property containsAny | ForEach-Object { $_.containsAny } }catch { 'All' }
+        $Regions = try { $Row.Properties.condition.allOf | Where-Object { $_.field -eq 'properties.impactedServices[*].ImpactedRegions[*].RegionName' } | Select-Object -Property containsAny | ForEach-Object { $_.containsAny } }catch { 'All' }
 
         $result = [PSCustomObject]@{
           Name         = [string]$row.name
