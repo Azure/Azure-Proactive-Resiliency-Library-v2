@@ -4,4 +4,4 @@ resources
 | where type == 'microsoft.containerservice/managedclusters'
 | mv-expand properties.apiServerAccessProfile
 | where isempty(properties.apiServerAccessProfile.enablePrivateCluster) and isempty(properties.apiServerAccessProfile.authorizedIPRanges)
-| project recommendationId="ba3f7d17-9654-4038-b172-09f1b2569925", id, name
+| project recommendationId="ba3f7d17-9654-4038-b172-09f1b2569925", name, id
