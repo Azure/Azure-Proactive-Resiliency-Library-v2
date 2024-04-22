@@ -82,7 +82,7 @@
   recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
-    Monitor and plan for subscription limits and API throttling limits. Closely deployments, and keep track of resource usage within your subscription. Consider scaling across multiple subscriptions if further scaling is required, or work with Azure support to adjust limits based on your business requirements.
+    Monitor and plan for subscription limits and API throttling limits. Keep track of resource usage within your subscription. Consider scaling across multiple subscriptions if further scaling is required.
     To handle a large number of users, consider scaling horizontally by creating multiple host pools.
   potentialBenefits: Avoids limits, ensures smooth scaling
   pgVerified: true
@@ -203,7 +203,7 @@
   recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
-    It is recommended to enable RDP Shortpath for AVD. RDP Shortpath is a feature of Azure Virtual Desktop that establishes a direct UDP-based transport between a supported Windows Remote Desktop client and session host. By default, Remote Desktop Protocol (RDP) tries to establish connection using UDP and uses a TCP-based reverse connect transport as a fallback connection mechanism. TCP-based reverse connect transport provides the best compatibility with various networking configurations and has a high success rate for establishing RDP connections. UDP-based transport offers better connection reliability and more consistent latency.
+    RDP Shortpath establishes a direct UDP-based connection between a client and the session host. By default, Remote Desktop Protocol (RDP) tries to establish connection using UDP and uses a TCP-based reverse connect transport as a fallback connection mechanism. UDP-based transport offers better connection reliability and more consistent latency.
   potentialBenefits: Better reliability and consistent latency
   pgVerified: true
   publishedToLearn: false
@@ -222,7 +222,7 @@
   recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
-    Ensure that AVD session hosts can effectively communicate with the AVD control plane and that UDP ports are open if UDP is utilized. Validate the connectivity of VMs to the AVD Control Plane and confirm the accessibility of UDP TURN ports. Whitelist global URLs and ensure that UDP/TURN ports are open and accessible to facilitate smooth user connections. Proper connectivity validation guarantees optimal performance and user experience within the AVD environment.
+    Ensure that AVD session hosts can effectively communicate with the AVD control plane and that UDP ports are open if UDP is utilized. Validate the connectivity of VMs to the AVD Control Plane and confirm the accessibility of UDP TURN ports. Whitelist global URLs and ensure that UDP/TURN ports are open and accessible to facilitate smooth user connections.
   potentialBenefits: Enhanced performance & user experience
   pgVerified: true
   publishedToLearn: false
@@ -343,7 +343,7 @@
   recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
-    Establish a systematic process for handling image updates within your Azure Virtual Desktop environment. Instead of directly updating individual session hosts, create a new version of the updated image. This process involves creating and configuring a golden image with the necessary updates and configurations. Once the new image is prepared, replace existing session hosts with instances using the updated image. This approach ensures consistency across all session hosts and minimizes the risk of configuration drift. Additionally, it enables quick rollback to a previous image version in case of any issues with the update. Implementing this process helps streamline maintenance activities and ensures that all session hosts are up-to-date with the latest configurations and updates.
+    Establish a systematic process for handling image updates within your Azure Virtual Desktop environment. Instead of directly updating individual session hosts, create a new version of the updated image. This process involves creating and configuring a golden image with the necessary updates and configurations.
   potentialBenefits: Ensures consistency; minimizes drift
   pgVerified: true
   publishedToLearn: false
@@ -460,8 +460,7 @@
   recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
-    App Attach packages should be on a separate share from profiles. And App Attach files should be backed up.
-    Best practice is to separate App Attach VHD files in a separate file share away from user profiles, both for performance and scalability purposes. Requirements can vary greatly depending on how many packaged applications are stored in an image, and you need to test your applications to understand your requirements.
+    App Attach packages should be on a separate share from profiles. And App Attach files should be backed up. Requirements can vary greatly depending on how many packaged applications are stored in an image, and you need to test your applications to understand your requirements.
     Your file share should be in the same Azure region as your session hosts.
   potentialBenefits: Enhances performance and scalability
   pgVerified: true
