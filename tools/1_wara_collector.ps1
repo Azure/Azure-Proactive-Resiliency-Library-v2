@@ -855,19 +855,6 @@ $Global:Runtime = Measure-Command -Expression {
 
       foreach ($row in $queryResults) {
         $OutagesRetired = $Global:RetiredOutages | Where-Object { $_.name -eq $row.properties.TrackingId }
-        $HTML = New-Object -Com "HTMLFile"
-        $HTML.write([ref]$row.properties.Summary)
-        $RetirementSummary = $Html.body.innerText
-
-        try {
-          $HTML = New-Object -Com "HTMLFile"
-          $HTML.write([ref]$OutagesRetired.properties.description)
-          $RetirementDescriptionFull = $Html.body.innerText
-          $SplitDescription = $RetirementDescriptionFull.split('Help and support').split('Required action')
-        }
-        catch {
-          $SplitDescription = " ", " "
-        }
 
         $result = [PSCustomObject]@{
           Subscription    = [string]$Subid
@@ -877,11 +864,10 @@ $Global:Runtime = Measure-Command -Expression {
           Endtime         = [string]$OutagesRetired.properties.impactMitigationTime
           Level           = [string]$row.properties.Level
           Title           = [string]$row.properties.Title
-          Summary         = [string]$RetirementSummary
+          Summary         = [string]$row.properties.Summary
           Header          = [string]$row.properties.Header
           ImpactedService = [string]$row.properties.Impact.ImpactedService
-          RequiredAction  = [string]$SplitDescription[1]
-          Details         = [string]$SplitDescription[0]
+          Description     = [string]$OutagesRetired.properties.description
         }
         $Global:AllRetirements += $result
       }
@@ -898,19 +884,6 @@ $Global:Runtime = Measure-Command -Expression {
 
         foreach ($row in $queryResults) {
           $OutagesRetired = $Global:RetiredOutages | Where-Object { $_.name -eq $row.properties.TrackingId }
-          $HTML = New-Object -Com "HTMLFile"
-          $HTML.write([ref]$Retires.Summary)
-          $RetirementSummary = $Html.body.innerText
-
-          try {
-            $HTML = New-Object -Com "HTMLFile"
-            $HTML.write([ref]$OutagesRetired.properties.description)
-            $RetirementDescriptionFull = $Html.body.innerText
-            $SplitDescription = $RetirementDescriptionFull.split('Help and support').split('Required action')
-          }
-          catch {
-            $SplitDescription = " ", " "
-          }
 
           $result = [PSCustomObject]@{
             Subscription    = [string]$Subid
@@ -920,11 +893,10 @@ $Global:Runtime = Measure-Command -Expression {
             Endtime         = [string]$OutagesRetired.properties.impactMitigationTime
             Level           = [string]$row.properties.Level
             Title           = [string]$row.properties.Title
-            Summary         = [string]$RetirementSummary
+            Summary         = [string]$row.properties.Summary
             Header          = [string]$row.properties.Header
             ImpactedService = [string]$row.properties.Impact.ImpactedService
-            RequiredAction  = [string]$SplitDescription[1]
-            Details         = [string]$SplitDescription[0]
+            Description     = [string]$OutagesRetired.properties.description
           }
           $Global:AllRetirements += $result
         }
@@ -1047,7 +1019,7 @@ $Global:Runtime = Measure-Command -Expression {
 
 
   #Call the functions
-  $Global:Version = "2.0.5"
+  $Global:Version = "2.0.6"
   Write-Host "Version: " -NoNewline
   Write-Host $Global:Version -ForegroundColor DarkBlue
 
