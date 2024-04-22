@@ -511,8 +511,7 @@
   recommendationMetadataState: Active
   longDescription: |
     For optimal connectivity and security, enable private cluster in AKS to ensure direct communication between worker nodes and the control plane. If not enabled, secure API server access with authorized IP ranges.
-  potentialBenefits: Provides network security and reliability, ensures stability, reduced disruptions
-  pgVerified: false
+  potentialBenefits: Provides network reliability, reduced disruptions
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -520,5 +519,3 @@
   learnMoreLink:
     - name: AKS private cluster
       url: "https://learn.microsoft.com/azure/aks/private-clusters"
-    - name: Authorized IP ranges
-      url: "https://learn.microsoft.com/en-us/azure/aks/api-server-authorized-ip-ranges?tabs=azure-cli"
