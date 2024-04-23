@@ -1,7 +1,6 @@
 // Azure Resource Graph Query
-// Provides a list of SQL databases that are not configured for Geo-redundant storage.
-resources
+// Provides a list of SQL databases that are not part of Geo Replication.
+Resources
 | where type == "microsoft.sql/servers/databases"
-| where  (properties['currentBackupStorageRedundancy'] ) <> 'Geo'
-| project recommendationId = "74c2491d-048b-0041-a140-935960220e20", name, id, tags, param1=strcat("CurrentGeoRedudancy=", properties['currentBackupStorageRedundancy'] )
-
+| extend param1 = iif(isnotempty(properties.geoReplicationRole), "Part of Geo Replication", "Not part of Geo Replication")
+| project recommendationId = "74c2491d-048b-0041-a140-935960220e20", name, id, tags, param1
