@@ -81,3 +81,31 @@
       url: "https://learn.microsoft.com/azure/backup/backup-rbac-rs-vault#minimum-role-requirements-for-azure-vm-backup"
     - name: Recovery Services Vault
       url: "https://learn.microsoft.com/azure/backup/backup-azure-arm-vms-prepare"
+
+- description: Enable Soft Delete for Recovery Services Vaults in Azure Backup
+  aprlGuid: 9e39919b-78af-4a0b-b70f-c548dae97c25
+  recommendationTypeId: null
+  recommendationControl: Disaster Recovery
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.RecoveryServices/vaults
+  recommendationMetadataState: Active
+  longDescription: |
+    With soft delete, even if a malicious actor deletes a backup (or backup data is accidentally deleted), the backup data is retained for 14 additional days, allowing the recovery of that backup item with no data loss. The additional 14 days of retention for backup data in the "soft delete" state don't incur any cost to you.
+    Soft delete is enabled by default on newly created vaults to protect backup data from accidental or malicious deletes. Disabling this feature isn't recommended. The only circumstance where you should consider disabling soft delete is if you're planning on moving your protected items to a new vault, and can't wait the 14 days required before deleting and reprotecting (such as in a test environment).
+    Soft delete protection is available for certain services such as Azure VMs.  potentialBenefits: Enhances disaster recovery capabilities
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Soft Delete for Azure Backup
+      url: "https://learn.microsoft.com/azure/backup/backup-azure-security-feature-cloud?tabs=azure-portal"
+    - name: Soft Delete for Azure VMs
+      url: "https://learn.microsoft.com/azure/backup/soft-delete-virtual-machines"
+    - name: Soft delete for SQL server in Azure VM and soft delete for SAP HANA in Azure VM workloads
+      url: "https://learn.microsoft.com/azure/backup/soft-delete-sql-saphana-in-azure-vm"
+    - name: Overview of security features in Azure Backup
+      url: "https://learn.microsoft.com/azure/backup/security-overview"
+
+

@@ -1,0 +1,7 @@
+// Azure Resource Graph Query
+// Find all Azure Recovery Services vaults that do not have soft delete  enabled
+resources
+| where type == "microsoft.recoveryservices/vaults"
+| mv-expand issoftDelete=properties.securitySettings.softDeleteSettings.softDeleteState
+| where issoftDelete == 'Disabled'
+| project recommendationid = "bk-3", name, id, tags, issoftDelete
