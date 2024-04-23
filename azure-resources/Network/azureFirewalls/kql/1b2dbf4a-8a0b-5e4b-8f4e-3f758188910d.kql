@@ -3,12 +3,12 @@
 resources
 | where type == "microsoft.network/azurefirewalls"
 | mv-expand properties.ipConfigurations
-| project name, firewallId = id, vNet = substring(properties_ipConfigurations.properties.subnet.id, 0, indexof(properties_ipConfigurations.properties.subnet, "/subnet") - 7), tags
+| project name, firewallId = id, vNet = tolower(substring(properties_ipConfigurations.properties.subnet.id, 0, indexof(properties_ipConfigurations.properties.subnet, "/subnet") - 7)), tags
 | join kind=fullouter (
     resources
     | where type == "microsoft.network/ddosprotectionplans"
     | mv-expand properties.virtualNetworks
-    | extend vNet = tostring(properties_virtualNetworks.id)
+    | extend vNet = tolower(tostring(properties_virtualNetworks.id))
     | project ddosProtectionPlan = id, vNet
     )
     on $left.vNet == $right.vNet
