@@ -1439,7 +1439,7 @@ $Global:Runtime = Measure-Command -Expression {
                         $Loops ++
                       }
                   }
-                catch 
+                catch
                   {
                     $errorMessage = $_.Exception
                     $ErrorStack = $_.ScriptStackTrace
@@ -1450,7 +1450,7 @@ $Global:Runtime = Measure-Command -Expression {
               function WordCharts {
                 if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Word Charts..') | Out-File -FilePath $LogFile -Append }
 
-                try 
+                try
                   {
                     if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Looking for Charts in the Excel file..') | Out-File -FilePath $LogFile -Append }
                     #Charts
@@ -1471,9 +1471,8 @@ $Global:Runtime = Measure-Command -Expression {
                     if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Coping Chart 2..') | Out-File -FilePath $LogFile -Append }
                     $WS2.ChartObjects('ChartP1').copy()
                     $Global:Word.Selection.Paste() | Out-Null
-
                   }
-                catch 
+                catch
                   {
                     $errorMessage = $_.Exception
                     $ErrorStack = $_.ScriptStackTrace
@@ -1484,7 +1483,7 @@ $Global:Runtime = Measure-Command -Expression {
               function WordOutages {
                 if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Outages..') | Out-File -FilePath $LogFile -Append }
 
-                try 
+                try
                   {
                     $Global:Document.Tables(10).Rows(2).Cells(1).Range.Text = ''
                     $Global:Document.Tables(10).Rows(2).Cells(2).Range.Text = ''
@@ -1494,9 +1493,9 @@ $Global:Runtime = Measure-Command -Expression {
                     if (![string]::IsNullOrEmpty($Global:Outages)) 
                       {
                         if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Outages found..') | Out-File -FilePath $LogFile -Append }
-                        foreach ($Outage in $Global:Outages) 
+                        foreach ($Outage in $Global:Outages)
                           {
-                            if ($LineCounter -gt 3) 
+                            if ($LineCounter -gt 3)
                               {
                                 $Global:Document.Tables(10).Rows.Add() | Out-Null
                               }
@@ -1513,7 +1512,7 @@ $Global:Runtime = Measure-Command -Expression {
                           }
                       }
                   }
-                catch 
+                catch
                   {
                     $errorMessage = $_.Exception
                     $ErrorStack = $_.ScriptStackTrace
@@ -1524,14 +1523,14 @@ $Global:Runtime = Measure-Command -Expression {
               function WordTables {
                 if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Tables..') | Out-File -FilePath $LogFile -Append }
 
-                try 
+                try
                   {
                     if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Cleaning Table 6..') | Out-File -FilePath $LogFile -Append }
                     $row = 2
-                    while ($row -lt 5) 
+                    while ($row -lt 5)
                       {
                         $cell = 1
-                        while ($cell -lt 5) 
+                        while ($cell -lt 5)
                           {
                             $Global:Document.Tables(6).Rows($row).Cells($cell).Range.Text = ''
                             $Cell ++
@@ -1541,10 +1540,10 @@ $Global:Runtime = Measure-Command -Expression {
 
                     if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Cleaning Table 7..') | Out-File -FilePath $LogFile -Append }
                     $row = 2
-                    while ($row -lt 3) 
+                    while ($row -lt 3)
                       {
                         $cell = 1
-                        while ($cell -lt 5) 
+                        while ($cell -lt 5)
                           {
                             $Global:Document.Tables(7).Rows($row).Cells($cell).Range.Text = ''
                             $Cell ++
@@ -1554,10 +1553,10 @@ $Global:Runtime = Measure-Command -Expression {
 
                     if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Cleaning Table 8..') | Out-File -FilePath $LogFile -Append }
                     $row = 2
-                    while ($row -lt 3) 
+                    while ($row -lt 3)
                       {
                         $cell = 1
-                        while ($cell -lt 5) 
+                        while ($cell -lt 5)
                           {
                             $Global:Document.Tables(8).Rows($row).Cells($cell).Range.Text = ''
                             $Cell ++
@@ -1568,11 +1567,11 @@ $Global:Runtime = Measure-Command -Expression {
                     #Populate Table Health and Risk Summary High
                     $counter = 1
                     $row = 2
-                    foreach ($Impact in $HighImpact) 
+                    foreach ($Impact in $HighImpact)
                       {
                         $LogHighImpact = $Impact.'Recommendation Title'
                         if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Adding High Impact: ' + $LogHighImpact) | Out-File -FilePath $LogFile -Append }
-                        if ($counter -lt 14) 
+                        if ($counter -lt 14)
                           {
                             #Number
                             $Global:Document.Tables(6).Rows($row).Cells(1).Range.Text = [string]$counter
@@ -1591,7 +1590,7 @@ $Global:Runtime = Measure-Command -Expression {
                             $counter ++
                             $row ++
                           }
-                        else 
+                        else
                           {
                             if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Adding Row to High Impact table..') | Out-File -FilePath $LogFile -Append }
                             $Global:Document.Tables(6).Rows.add() | Out-Null
@@ -1617,22 +1616,22 @@ $Global:Runtime = Measure-Command -Expression {
                     #Populate Table Health and Risk Summary Medium
                     $counter = 1
                     $row = 2
-                    foreach ($Impact in $MediumImpact) 
+                    foreach ($Impact in $MediumImpact)
                       {
                         $LogMediumImpact = $Impact.'Recommendation Title'
                         if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Adding Medium Impact: ' + $LogMediumImpact) | Out-File -FilePath $LogFile -Append }
-                        if ($counter -lt 14) 
+                        if ($counter -lt 14)
                           {
                             #Number
                             $Global:Document.Tables(7).Rows($row).Cells(1).Range.Text = [string]$counter
                             #Recommendation
                             $Global:Document.Tables(7).Rows($row).Cells(2).Range.Text = $Impact.'Recommendation Title'
                             #Service
-                            if ($Impact.'Azure Service / Well-Architected' -eq 'Well Architected') 
+                            if ($Impact.'Azure Service / Well-Architected' -eq 'Well Architected')
                               {
                                 $ServiceName = ('WAF - ' + $Impact.'Azure Service / Well-Architected Topic')
                               }
-                            else 
+                            else
                               {
                                 $ServiceName = $Impact.'Azure Service / Well-Architected Topic'
                               }
@@ -1642,7 +1641,7 @@ $Global:Runtime = Measure-Command -Expression {
                             $counter ++
                             $row ++
                           }
-                        else 
+                        else
                           {
                             if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Adding Row to Medium Impact table..') | Out-File -FilePath $LogFile -Append }
                             $Global:Document.Tables(7).Rows.add() | Out-Null
@@ -1651,11 +1650,11 @@ $Global:Runtime = Measure-Command -Expression {
                             #Recommendation
                             $Global:Document.Tables(7).Rows($row).Cells(2).Range.Text = $Impact.'Recommendation Title'
                             #Service
-                            if ($Impact.'Azure Service / Well-Architected' -eq 'Well Architected') 
+                            if ($Impact.'Azure Service / Well-Architected' -eq 'Well Architected')
                               {
                                 $ServiceName = ('WAF - ' + $Impact.'Azure Service / Well-Architected Topic')
                               }
-                            else 
+                            else
                               {
                                 $ServiceName = $Impact.'Azure Service / Well-Architected Topic'
                               }
@@ -1670,22 +1669,22 @@ $Global:Runtime = Measure-Command -Expression {
                     #Populate Table Health and Risk Summary Low
                     $counter = 1
                     $row = 2
-                    foreach ($Impact in $LowImpact) 
+                    foreach ($Impact in $LowImpact)
                       {
                         $LogLowImpact = $Impact.'Recommendation Title'
                         if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Adding Low Impact: ' + $LogLowImpact) | Out-File -FilePath $LogFile -Append }
-                        if ($counter -lt 14) 
+                        if ($counter -lt 14)
                           {
                             #Number
                             $Global:Document.Tables(8).Rows($row).Cells(1).Range.Text = [string]$counter
                             #Recommendation
                             $Global:Document.Tables(8).Rows($row).Cells(2).Range.Text = $Impact.'Recommendation Title'
                             #Service
-                            if ($Impact.'Azure Service / Well-Architected' -eq 'Well Architected') 
+                            if ($Impact.'Azure Service / Well-Architected' -eq 'Well Architected')
                               {
                                 $ServiceName = ('WAF - ' + $Impact.'Azure Service / Well-Architected Topic')
                               }
-                            else 
+                            else
                               {
                                 $ServiceName = $Impact.'Azure Service / Well-Architected Topic'
                               }
@@ -1695,7 +1694,7 @@ $Global:Runtime = Measure-Command -Expression {
                             $counter ++
                             $row ++
                           }
-                        else 
+                        else
                           {
                             if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Adding Row to Low Impact table..') | Out-File -FilePath $LogFile -Append }
                             $Global:Document.Tables(8).Rows.add() | Out-Null
@@ -1704,11 +1703,11 @@ $Global:Runtime = Measure-Command -Expression {
                             #Recommendation
                             $Global:Document.Tables(8).Rows($row).Cells(2).Range.Text = $Impact.'Recommendation Title'
                             #Service
-                            if ($Impact.'Azure Service / Well-Architected' -eq 'Well Architected') 
+                            if ($Impact.'Azure Service / Well-Architected' -eq 'Well Architected')
                               {
                                 $ServiceName = ('WAF - ' + $Impact.'Azure Service / Well-Architected Topic')
                               }
-                            else 
+                            else
                               {
                                 $ServiceName = $Impact.'Azure Service / Well-Architected Topic'
                               }
@@ -1720,7 +1719,7 @@ $Global:Runtime = Measure-Command -Expression {
                           }
                       }
                   }
-                catch 
+                catch
                   {
                     $errorMessage = $_.Exception
                     $ErrorStack = $_.ScriptStackTrace
@@ -1731,19 +1730,19 @@ $Global:Runtime = Measure-Command -Expression {
               function WordRetirements {
                 if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Retirements..') | Out-File -FilePath $LogFile -Append }
 
-                try 
+                try
                   {
                     $Global:Document.Tables(12).Rows(2).Cells(1).Range.Text = ''
                     $Global:Document.Tables(12).Rows(2).Cells(2).Range.Text = ''
                     $Global:Document.Tables(12).Rows(2).Cells(3).Range.Text = ''
 
                     $LineCounter = 2
-                    if (![string]::IsNullOrEmpty($Global:Retirements)) 
+                    if (![string]::IsNullOrEmpty($Global:Retirements))
                       {
                         if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Retirements found..') | Out-File -FilePath $LogFile -Append }
-                        foreach ($Retires in $Global:Retirements) 
+                        foreach ($Retires in $Global:Retirements)
                           {
-                            if ($LineCounter -gt 3) 
+                            if ($LineCounter -gt 3)
                               {
                                 $Global:Document.Tables(12).Rows.Add() | Out-Null
                               }
@@ -1760,7 +1759,7 @@ $Global:Runtime = Measure-Command -Expression {
                           }
                       }
                   }
-                catch 
+                catch
                   {
                     $errorMessage = $_.Exception
                     $ErrorStack = $_.ScriptStackTrace
@@ -1771,7 +1770,7 @@ $Global:Runtime = Measure-Command -Expression {
               function WordSupports {
                 if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Support Tickets..') | Out-File -FilePath $LogFile -Append }
 
-                try 
+                try
                   {
                     $Global:Document.Tables(11).Rows(2).Cells(1).Range.Text = ''
                     $Global:Document.Tables(11).Rows(2).Cells(2).Range.Text = ''
@@ -1779,10 +1778,10 @@ $Global:Runtime = Measure-Command -Expression {
                     $Global:Document.Tables(11).Rows(2).Cells(4).Range.Text = ''
 
                     $LineCounter = 2
-                    if (![string]::IsNullOrEmpty($Global:SupportTickets)) 
+                    if (![string]::IsNullOrEmpty($Global:SupportTickets))
                       {
                         if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Support Tickets found..') | Out-File -FilePath $LogFile -Append }
-                        foreach ($Ticket in $Global:SupportTickets) 
+                        foreach ($Ticket in $Global:SupportTickets)
                           {
                             if ($LineCounter -gt 3) 
                               {
@@ -1801,7 +1800,7 @@ $Global:Runtime = Measure-Command -Expression {
                           }
                       }
                   }
-                catch 
+                catch
                   {
                     $errorMessage = $_.Exception
                     $ErrorStack = $_.ScriptStackTrace
@@ -1812,7 +1811,7 @@ $Global:Runtime = Measure-Command -Expression {
               function WordHealths {
                 if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Service Health Alerts..') | Out-File -FilePath $LogFile -Append }
 
-                try 
+                try
                   {
                     $Global:Document.Tables(5).Rows(3).Cells(1).Range.Text = ''
                     $Global:Document.Tables(5).Rows(3).Cells(2).Range.Text = ''
@@ -1824,14 +1823,14 @@ $Global:Runtime = Measure-Command -Expression {
                     $Global:Document.Tables(5).Rows(3).Cells(8).Range.Text = ''
 
                     $LineCounter = 3
-                    if (![string]::IsNullOrEmpty($Global:ServiceHealth)) 
+                    if (![string]::IsNullOrEmpty($Global:ServiceHealth))
                       {
                         if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Service Health Alerts found..') | Out-File -FilePath $LogFile -Append }
-                        foreach ($Health in $Global:ServiceHealth) 
+                        foreach ($Health in $Global:ServiceHealth)
                           {
                             $LogHealthName = $Health.Name
                             if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Adding Service Health Alert: ' + $LogHealthName) | Out-File -FilePath $LogFile -Append }
-                            if ($LineCounter -gt 4) 
+                            if ($LineCounter -gt 4)
                               {
                                 $Global:Document.Tables(5).Rows.Add() | Out-Null
                               }
@@ -1849,7 +1848,7 @@ $Global:Runtime = Measure-Command -Expression {
                           }
                       }
                   }
-                catch 
+                catch
                   {
                     $errorMessage = $_.Exception
                     $ErrorStack = $_.ScriptStackTrace
@@ -1859,7 +1858,7 @@ $Global:Runtime = Measure-Command -Expression {
               }
 
               if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Starting Word..') | Out-File -FilePath $LogFile -Append }
-              try 
+              try
                 {
                   $Global:Word = New-Object -Com Word.Application
 
@@ -1878,7 +1877,7 @@ $Global:Runtime = Measure-Command -Expression {
                   $Global:Document.Close()
                   $Global:Word.Quit()
                 }
-              catch 
+              catch
                 {
                   $errorMessage = $_.Exception
                   $ErrorStack = $_.ScriptStackTrace
@@ -1889,18 +1888,18 @@ $Global:Runtime = Measure-Command -Expression {
             }).AddArgument($ResourcesTypes).AddArgument($HighImpact).AddArgument($MediumImpact).AddArgument($LowImpact).AddArgument($ServiceHighImpact).AddArgument($WAFHighImpact).AddArgument($ExcelContent).AddArgument($Outages).AddArgument($SupportTickets).AddArgument($ServiceHealth).AddArgument($Retirements).AddArgument($Ex).AddArgument($CustomerName).AddArgument($WorkloadName).AddArgument($ExcelCore).AddArgument($WordTemplateFile).AddArgument($WordFinalFile).AddArgument($CoreDebugging).AddArgument($Logfile)
         }
 
-      try 
+      try
         {
           if ($CoreDebugging) { ('OfficeApps - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Invoking PPT Thread..') | Out-File -FilePath $LogFile -Append }
           $jobPPT = $PPT.BeginInvoke()
-          if ($WordTemplateFile) 
+          if ($WordTemplateFile)
             {
               if ($CoreDebugging) { ('OfficeApps - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Invoking Word Thread..') | Out-File -FilePath $LogFile -Append }
               $jobWord = $Word.BeginInvoke()
             }
 
           $job += $jobPPT
-          if ($WordTemplateFile) 
+          if ($WordTemplateFile)
             {
               $job += $jobWord
             }
@@ -1910,19 +1909,19 @@ $Global:Runtime = Measure-Command -Expression {
 
           if ($CoreDebugging) { ('OfficeApps - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Finishing Threads..') | Out-File -FilePath $LogFile -Append }
           $PPT.EndInvoke($jobPPT)
-          if ($WordTemplateFile) 
+          if ($WordTemplateFile)
             {
               $Word.EndInvoke($jobWord)
             }
 
           if ($CoreDebugging) { ('OfficeApps - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Disposing Threads..') | Out-File -FilePath $LogFile -Append }
           $PPT.Dispose()
-          if ($WordTemplateFile) 
+          if ($WordTemplateFile)
             {
               $Word.Dispose()
             }
         }
-      catch 
+      catch
         {
           $errorMessage = $_.Exception
           $ErrorStack = $_.ScriptStackTrace
@@ -1931,13 +1930,13 @@ $Global:Runtime = Measure-Command -Expression {
         }
 
       if ($CoreDebugging) { ('OfficeApps - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Closing Excel..') | Out-File -FilePath $LogFile -Append }
-      try 
+      try
         {
           $Global:Ex.Save()
           $Global:Ex.Close()
           $Global:ExcelApplication.Quit()
         }
-      catch 
+      catch
         {
           $errorMessage = $_.Exception
           $ErrorStack = $_.ScriptStackTrace
@@ -1960,10 +1959,10 @@ $Global:Runtime = Measure-Command -Expression {
   if ($Debugging.IsPresent) { ('RootProces - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Starting Report Generator Script..') | Out-File -FilePath $LogFile -Append }
   if ($Debugging.IsPresent) { ('RootProces - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Script Version: ' + $Global:Version) | Out-File -FilePath $LogFile -Append }
   if ($Debugging.IsPresent) { ('RootProces - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Excel File: ' + $ExcelFile) | Out-File -FilePath $LogFile -Append }
-  if ($Debugging.IsPresent) 
+  if ($Debugging.IsPresent)
     {
       $ImportExcel = Get-Module -Name ImportExcel -ListAvailable -ErrorAction silentlycontinue
-      foreach ($IExcel in $ImportExcel) 
+      foreach ($IExcel in $ImportExcel)
         {
           $IExcelPath = $IExcel.Path
           $IExcelVer = [string]$IExcel.Version
@@ -1972,7 +1971,7 @@ $Global:Runtime = Measure-Command -Expression {
         }
     }
 
-  if ($Help.IsPresent) 
+  if ($Help.IsPresent)
     {
       if ($Debugging.IsPresent) { ('RootProces - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Help menu invoked..') | Out-File -FilePath $LogFile -Append }
       Help
@@ -1987,7 +1986,7 @@ $Global:Runtime = Measure-Command -Expression {
   Excel
   Write-Host "Editing " -NoNewline
   $Global:PPTFinalFile = ($PSScriptRoot + '\Executive Summary Presentation - ' + $CustomerName + ' - ' + (get-date -Format "yyyy-MM-dd-HH-mm") + '.pptx')
-  if ($WordTemplateFile) 
+  if ($WordTemplateFile)
     {
       Write-Host "PowerPoint" -ForegroundColor DarkRed -NoNewline
       Write-Host " and " -NoNewline
@@ -1995,7 +1994,7 @@ $Global:Runtime = Measure-Command -Expression {
       Write-Host " "
       $Global:WordFinalFile = ($PSScriptRoot + '\Assessment Report - ' + $CustomerName + ' - ' + (get-date -Format "yyyy-MM-dd-HH-mm") + '.docx')
     }
-  else 
+  else
     {
       Write-Host "PowerPoint" -ForegroundColor DarkRed -NoNewline
       Write-Host " "
@@ -2005,7 +2004,7 @@ $Global:Runtime = Measure-Command -Expression {
   Orchestrator
 
   if ($Debugging.IsPresent) { ('RootProces - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Waiting for OfficeApps Job..') | Out-File -FilePath $LogFile -Append }
-  while (Get-Job -Name 'OfficeApps' | Where-Object { $_.State -eq 'Running' }) 
+  while (Get-Job -Name 'OfficeApps' | Where-Object { $_.State -eq 'Running' })
     {
       Write-Progress -Id 1 -activity "Processing Office Apps" -Status "60% Complete." -PercentComplete 60
       Start-Sleep -Seconds 2
@@ -2016,7 +2015,7 @@ $Global:Runtime = Measure-Command -Expression {
 
   if ($Debugging.IsPresent) { ('RootProces - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Trying to kill PowerPoint process.') }
   Get-Process -Name "POWERPNT" -ErrorAction Ignore | Where-Object { $_.CommandLine -like '*/automation*' } | Stop-Process
-  if ($WordTemplateFile) 
+  if ($WordTemplateFile)
     {
       if ($Debugging.IsPresent) { ('RootProces - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Trying to kill Word process..') | Out-File -FilePath $LogFile -Append }
       Get-Process -Name "WINWORD" -ErrorAction Ignore | Where-Object { $_.CommandLine -like '*/automation*' } | Stop-Process
@@ -2038,7 +2037,7 @@ Write-Host $TotalTime -NoNewline -ForegroundColor Cyan
 Write-Host (' Minutes')
 Write-Host 'PowerPoint File Saved As: ' -NoNewline
 Write-Host $PPTFinalFile -ForegroundColor Cyan
-if ($WordTemplateFile) 
+if ($WordTemplateFile)
   {
     Write-Host 'Word File Saved As: ' -NoNewline
     Write-Host $WordFinalFile -ForegroundColor Cyan

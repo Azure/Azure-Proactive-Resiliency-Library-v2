@@ -23,7 +23,7 @@ $Global:SubscriptionIds = $SubscriptionIds
 $Global:Runtime = Measure-Command -Expression {
 
   function CheckParameters {
-    if ([string]::IsNullOrEmpty($SubscriptionIds) -and [string]::IsNullOrEmpty($SubscriptionsFile)) 
+    if ([string]::IsNullOrEmpty($SubscriptionIds) -and [string]::IsNullOrEmpty($SubscriptionsFile))
       {
         Write-Host ""
         Write-Host "Suscription ID or Subscription File is required"
@@ -72,13 +72,13 @@ $Global:Runtime = Measure-Command -Expression {
 
   function Requirements {
     # Install required modules
-    try 
+    try
       {
         Write-Host "Validating " -NoNewline
         Write-Host "Az.ResourceGraph" -ForegroundColor Cyan -NoNewline
         Write-Host " Module.."
         $AzModules = Get-Module -Name Az.ResourceGraph -ListAvailable -ErrorAction silentlycontinue
-        if ($null -eq $AzModules) 
+        if ($null -eq $AzModules)
           {
             Write-Host "Installing Az Modules" -ForegroundColor Yellow
             Install-Module -Name Az.ResourceGraph -SkipPublisherCheck -InformationAction SilentlyContinue
@@ -87,13 +87,13 @@ $Global:Runtime = Measure-Command -Expression {
         Write-Host "Git" -ForegroundColor Cyan -NoNewline
         Write-Host " Installation.."
         $GitVersion = git --version
-        if ($null -eq $GitVersion) 
+        if ($null -eq $GitVersion)
           {
             Write-Host "Missing Git" -ForegroundColor Red
             Exit
           }
       }
-    catch 
+    catch
       {
         # Report Error
         $errorMessage = $_.Exception.Message
@@ -103,7 +103,7 @@ $Global:Runtime = Measure-Command -Expression {
 
   function LocalFiles {
     Write-Debug "Setting local path"
-    try 
+    try
       {
         # Clone the GitHub repository to a temporary folder
         #$repoUrl = "https://github.com/azure/Azure-Proactive-Resiliency-Library"
@@ -112,50 +112,50 @@ $Global:Runtime = Measure-Command -Expression {
         # Define script path as the default path to save files
         $workingFolderPath = $PSScriptRoot
         Set-Location -path $workingFolderPath;
-        if (!$Global:CShell) 
+        if (!$Global:CShell)
           {
             $Global:clonePath = "$workingFolderPath\Azure-Proactive-Resiliency-Library"
           }
-        else 
+        else
           {
             $Global:clonePath = "$workingFolderPath/Azure-Proactive-Resiliency-Library"
           }
         Write-Debug "Checking default folder"
-        if ((Get-ChildItem -Path $Global:clonePath -Force -ErrorAction SilentlyContinue | Measure-Object).Count -gt 0) 
+        if ((Get-ChildItem -Path $Global:clonePath -Force -ErrorAction SilentlyContinue | Measure-Object).Count -gt 0)
           {
             Write-Debug "APRL Folder does exist. Reseting it..."
             Get-Item -Path $Global:clonePath | Remove-Item -Recurse -Force
             git clone $repoUrl $clonePath --quiet
           }
-        else 
+        else
           {
             git clone $repoUrl $clonePath --quiet
           }
         Write-Debug "Checking the version of the script"
-        if (!$Global:CShell) 
+        if (!$Global:CShell)
           {
             $RepoVersion = Get-Content -Path "$clonePath/tools/Version.json" -ErrorAction SilentlyContinue | ConvertFrom-Json
           }
-        else 
+        else
           {
             $RepoVersion = Get-Content -Path "$clonePath\tools\Version.json" -ErrorAction SilentlyContinue | ConvertFrom-Json
           }
-        if ($Version -ne $RepoVersion.Collector) 
+        if ($Version -ne $RepoVersion.Collector)
           {
             Write-Host "This version of the script is outdated. " -BackgroundColor DarkRed
             Write-Host "Please use a more recent version of the script." -BackgroundColor DarkRed
           }
-        else 
+        else
           {
             Write-Host "This version of the script is current version. " -BackgroundColor DarkGreen
           }
 
         # Validates if queries are applicable based on Resource Types present in the current subscription
-        if (!$Global:CShell) 
+        if (!$Global:CShell)
           {
             $RootTypes = Get-ChildItem -Path "$clonePath\azure-resources\" -Directory
           }
-        else 
+        else
           {
             $RootTypes = Get-ChildItem -Path "$clonePath/azure-resources/" -Directory
           }
@@ -174,7 +174,7 @@ $Global:Runtime = Measure-Command -Expression {
               }
           }
       }
-    catch 
+    catch
       {
         # Report Error
         $errorMessage = $_.Exception.Message
@@ -185,21 +185,21 @@ $Global:Runtime = Measure-Command -Expression {
   function ConnectToAzure {
     # Connect To Azure Tenant
     Write-Host "Authenticating to Azure"
-    if (!$Global:CShell) 
+    if (!$Global:CShell)
       {
         az account clear | Out-Null
         Clear-AzContext -Force -ErrorAction SilentlyContinue -WarningAction SilentlyContinue -InformationAction SilentlyContinue
-        if ([string]::IsNullOrEmpty($TenantID)) 
+        if ([string]::IsNullOrEmpty($TenantID))
           {
             write-host "Tenant ID not specified."
             write-host ""
             Connect-AzAccount -WarningAction SilentlyContinue
             $Tenants = Get-AzTenant
-            if ($Tenants.count -gt 1) 
+            if ($Tenants.count -gt 1)
               {
                 Write-Host "Select the Azure Tenant to connect : "
                 $Selection = 1
-                foreach ($Tenant in $Tenants) 
+                foreach ($Tenant in $Tenants)
                   {
                     $TenantName = $Tenant.Name
                     write-host "$Selection)  $TenantName"
@@ -213,7 +213,7 @@ $Global:Runtime = Measure-Command -Expression {
                 #az login --tenant $TenantID --only-show-errors
               }
           }
-        else 
+        else
           {
             #az login --tenant $TenantID --only-show-errors
             Connect-AzAccount -Tenant $TenantID -WarningAction SilentlyContinue
@@ -221,7 +221,7 @@ $Global:Runtime = Measure-Command -Expression {
         #Set the default variable with the list of subscriptions in case no Subscription File was informed
         $Global:SubIds = Get-AzSubscription -TenantId $TenantID -WarningAction SilentlyContinue
       }
-    else 
+    else
       {
         Connect-AzAccount -Identity
         $Global:SubIds = Get-AzSubscription -WarningAction SilentlyContinue
@@ -235,7 +235,7 @@ $Global:Runtime = Measure-Command -Expression {
     $Date = $Date.ToString("MM/dd/yyyy")
     $Outages = @()
     $SupTickets = @()
-    foreach ($sub in $SubscriptionIds) 
+    foreach ($sub in $SubscriptionIds)
       {
         Select-AzSubscription -Subscription $sub -WarningAction SilentlyContinue -InformationAction SilentlyContinue | Out-Null
 
@@ -245,14 +245,14 @@ $Global:Runtime = Measure-Command -Expression {
           'Authorization' = 'Bearer ' + $Token.Token
         }
 
-        try 
+        try
           {
             $url = ('https://management.azure.com/subscriptions/' + $Sub + '/providers/Microsoft.ResourceHealth/events?api-version=2022-10-01&queryStartTime=' + $Date)
             $Outages += Invoke-RestMethod -Uri $url -Headers $header -Method GET
           }
         catch { $null }
 
-        try 
+        try
           {
             $supurl = ('https://management.azure.com/subscriptions/' + $sub + '/providers/Microsoft.Support/supportTickets?api-version=2020-04-01')
             $SupTickets += Invoke-RestMethod -Uri $supurl -Headers $header -Method GET
@@ -299,12 +299,12 @@ $Global:Runtime = Measure-Command -Expression {
 
   function Subscriptions {
     # Checks if the Subscription file  and TenantID were informed
-    if (![string]::IsNullOrEmpty($SubscriptionsFile)) 
+    if (![string]::IsNullOrEmpty($SubscriptionsFile))
       {
         #$filePath = Read-Host "Please provide the path to a text file containing subscription IDs (one SubId per line)"
 
         # Check if the file exists
-        if (Test-Path $SubscriptionsFile -PathType Leaf) 
+        if (Test-Path $SubscriptionsFile -PathType Leaf)
           {
             # Read the content of the file and split it into an array of subscription IDs
             $Global:SubIds = Get-Content $SubscriptionsFile -ErrorAction Stop | ForEach-Object { $_ -split ',' }
@@ -317,7 +317,7 @@ $Global:Runtime = Measure-Command -Expression {
             Write-Host "The following Subscription IDs were found: "
             Write-Host $SubIds
           }
-        else 
+        else
           {
             Write-Host "File not found: $SubscriptionsFile"
           }
@@ -428,71 +428,71 @@ $Global:Runtime = Measure-Command -Expression {
 
     function QueryCollector {
       param($Subid, $type, $query, $checkId, $checkName, $validationAction)
-      try 
+      try
         {
-        $ResourceType = $Global:AllResourceTypes | Where-Object { $_.type -eq $type -and $_.subscriptionId -eq $Subid }
-        if ($resourceType.count_ -lt 1000) 
-          {
-            # Execute the query and collect the results
-            $queryResults = Search-AzGraph -Query $query -First 1000 -Subscription $Subid -ErrorAction SilentlyContinue
+          $ResourceType = $Global:AllResourceTypes | Where-Object { $_.type -eq $type -and $_.subscriptionId -eq $Subid }
+          if ($resourceType.count_ -lt 1000)
+            {
+              # Execute the query and collect the results
+              $queryResults = Search-AzGraph -Query $query -First 1000 -Subscription $Subid -ErrorAction SilentlyContinue
 
-            # Filter out the resources based on Subscription
-            # $queryResults = $queryResults | Where-Object {$_.id.split('/')[2] -eq $Subid}
+              # Filter out the resources based on Subscription
+              # $queryResults = $queryResults | Where-Object {$_.id.split('/')[2] -eq $Subid}
 
-            foreach ($row in $queryResults) 
-              {
+              foreach ($row in $queryResults)
+                {
 
-                $result = [PSCustomObject]@{
-                  validationAction = [string]$validationAction
-                  recommendationId = [string]$checkId
-                  name             = [string]$row.name
-                  id               = [string]$row.id
-                  tags             = [string]$row.tags
-                  param1           = [string]$row.param1
-                  param2           = [string]$row.param2
-                  param3           = [string]$row.param3
-                  param4           = [string]$row.param4
-                  param5           = [string]$row.param5
-                  checkName        = [string]$checkName
-                  selector         = [string]$selector
-                }
-                $Global:results += $result
-              }
-          }
-        else 
-          {
-            $Loop = $resourceType.count_ / 1000
-            $Loop = [math]::ceiling($Loop)
-            $Looper = 0
-            $Limit = 1
-
-            while ($Looper -lt $Loop) 
-              {
-                $queryResults = Search-AzGraph -Query ($query + '| order by id') -Subscription $Subid -Skip $Limit -first 1000 -ErrorAction SilentlyContinue
-                foreach ($row in $queryResults) 
-                  {
-                    $result = [PSCustomObject]@{
-                      validationAction = [string]$validationAction
-                      recommendationId = [string]$checkId
-                      name             = [string]$row.name
-                      id               = [string]$row.id
-                      tags             = [string]$row.tags
-                      param1           = [string]$row.param1
-                      param2           = [string]$row.param2
-                      param3           = [string]$row.param3
-                      param4           = [string]$row.param4
-                      param5           = [string]$row.param5
-                      checkName        = [string]$checkName
-                      selector         = [string]$selector
-                    }
-                    $Global:results += $result
+                  $result = [PSCustomObject]@{
+                    validationAction = [string]$validationAction
+                    recommendationId = [string]$checkId
+                    name             = [string]$row.name
+                    id               = [string]$row.id
+                    tags             = [string]$row.tags
+                    param1           = [string]$row.param1
+                    param2           = [string]$row.param2
+                    param3           = [string]$row.param3
+                    param4           = [string]$row.param4
+                    param5           = [string]$row.param5
+                    checkName        = [string]$checkName
+                    selector         = [string]$selector
                   }
-                $Looper ++
-                $Limit = $Limit + 1000
+                  $Global:results += $result
+                }
             }
-          }
+          else
+            {
+              $Loop = $resourceType.count_ / 1000
+              $Loop = [math]::ceiling($Loop)
+              $Looper = 0
+              $Limit = 1
+
+              while ($Looper -lt $Loop)
+                {
+                  $queryResults = Search-AzGraph -Query ($query + '| order by id') -Subscription $Subid -Skip $Limit -first 1000 -ErrorAction SilentlyContinue
+                  foreach ($row in $queryResults)
+                    {
+                      $result = [PSCustomObject]@{
+                        validationAction = [string]$validationAction
+                        recommendationId = [string]$checkId
+                        name             = [string]$row.name
+                        id               = [string]$row.id
+                        tags             = [string]$row.tags
+                        param1           = [string]$row.param1
+                        param2           = [string]$row.param2
+                        param3           = [string]$row.param3
+                        param4           = [string]$row.param4
+                        param5           = [string]$row.param5
+                        checkName        = [string]$checkName
+                        selector         = [string]$selector
+                      }
+                      $Global:results += $result
+                    }
+                  $Looper ++
+                  $Limit = $Limit + 1000
+              }
+            }
         }
-      catch 
+      catch
         {
           # Report Error
           $errorMessage = $_.Exception.Message
@@ -501,15 +501,15 @@ $Global:Runtime = Measure-Command -Expression {
     }
 
 
-    if (![string]::IsNullOrEmpty($SubscriptionIds) -and [string]::IsNullOrEmpty($SubscriptionsFile)) 
+    if (![string]::IsNullOrEmpty($SubscriptionIds) -and [string]::IsNullOrEmpty($SubscriptionsFile))
       {
         $SubIds = $SubIds | Where-Object { $_.Id -in $SubscriptionIds }
       }
 
     # Set the variables used in the loop
-    foreach ($Subid in $SubIds) 
+    foreach ($Subid in $SubIds)
       {
-        if ([string]::IsNullOrEmpty($subid.name)) 
+        if ([string]::IsNullOrEmpty($subid.name))
           {
             # If the variable was set in the Subscription File only IDs will be available
             $Subid = $Subid
@@ -542,16 +542,16 @@ $Global:Runtime = Measure-Command -Expression {
         ServiceHealth $Subid
 
 
-        if (![string]::IsNullOrEmpty($ResourceGroups)) 
+        if (![string]::IsNullOrEmpty($ResourceGroups))
           {
             $resultAllResourceTypes = @()
-            foreach ($RG in $ResourceGroups) 
+            foreach ($RG in $ResourceGroups)
               {
                 $resultAllResourceTypes += Search-AzGraph -Query "resources | where resourceGroup contains '$RG' | summarize count() by type, subscriptionId" -Subscription $Subid
               }
             $Global:AllResourceTypes += $resultAllResourceTypes
           }
-        else 
+        else
           {
             # Extract and display resource types with the query with subscriptions, we need this to filter the subscriptions later
             $resultAllResourceTypes = Search-AzGraph -Query "resources | summarize count() by type, subscriptionId" -Subscription $Subid
@@ -563,9 +563,9 @@ $Global:Runtime = Measure-Command -Expression {
         $aprlKqlFiles = @()
         $ServiceNotAvailable = @()
 
-        foreach ($Type in $resultAllResourceTypes.type) 
+        foreach ($Type in $resultAllResourceTypes.type)
           {
-            if ($Type.ToLower() -in $Global:GluedTypes) 
+            if ($Type.ToLower() -in $Global:GluedTypes)
               {
                 $Type = $Type.ToLower()
                 $Type = $Type.replace('microsoft.', '')
@@ -573,31 +573,31 @@ $Global:Runtime = Measure-Command -Expression {
                 $ResourceType = $Type.split('/')[1]
 
                 $Path = ""
-                if (!$Global:CShell) 
+                if (!$Global:CShell)
                   {
                     $Path = ($clonePath + '\azure-resources\' + $Provider + '\' + $ResourceType)
                     $aprlKqlFiles += Get-ChildItem -Path $Path -Filter "*.kql" -Recurse
                   }
-                else 
+                else
                   {
                     $Path = ($clonePath + '/azure-resources/' + $Provider + '/' + $ResourceType)
                     $aprlKqlFiles += Get-ChildItem -Path $Path -Filter "*.kql" -Recurse
                   }
               }
-            else 
+            else
               {
                 $ServiceNotAvailable += $Type
               }
           }
 
         # Populates the QueryMap hashtable
-        foreach ($aprlKqlFile in $aprlKqlFiles) 
+        foreach ($aprlKqlFile in $aprlKqlFiles)
           {
-            if (!$Global:CShell) 
+            if (!$Global:CShell)
               {
                 $kqlShort = [string]$aprlKqlFile.FullName.split('\')[-1]
               }
-            else 
+            else
               {
                 $kqlShort = [string]$aprlKqlFile.FullName.split('/')[-1]
               }
@@ -638,13 +638,13 @@ $Global:Runtime = Measure-Command -Expression {
 
         $queries = @()
         # Loop through each KQL file and execute the queries
-        foreach ($kqlFile in $kqlFiles) 
+        foreach ($kqlFile in $kqlFiles)
           {
-            if (!$Global:CShell) 
+            if (!$Global:CShell)
               {
                 $kqlshort = [string]$kqlFile.FullName.split('\')[-1]
               }
-            else 
+            else
               {
                 $kqlshort = [string]$kqlFile.FullName.split('/')[-1]
               }
@@ -653,11 +653,11 @@ $Global:Runtime = Measure-Command -Expression {
 
             # Read the query content from the file
             $baseQuery = Get-Content -Path $kqlFile.FullName | Out-String
-            if (!$Global:CShell) 
+            if (!$Global:CShell)
               {
                 $typeRaw = $kqlFile.DirectoryName.split('\')
               }
-            else 
+            else
               {
                 $typeRaw = $kqlFile.DirectoryName.split('/')
               }
@@ -733,7 +733,7 @@ $Global:Runtime = Measure-Command -Expression {
             }
           }
 
-        foreach ($queryDef in $queries) 
+        foreach ($queryDef in $queries)
           {
             $checkId = $queryDef.checkId
             $checkName = $queryDef.checkName
@@ -751,38 +751,38 @@ $Global:Runtime = Measure-Command -Expression {
             Write-Host " +++++++++++++++"
 
             # Validating if Query is Under Development
-            if ($query -match "development") 
+            if ($query -match "development")
               {
                 Write-Host "Query $kqlshort under development - Validate Recommendation manually" -ForegroundColor Yellow
                 $query = "resources | where type contains '$type' | project name,id,tags"
                 QueryCollector $Subid $type $query $checkId $checkName 'Query under development - Validate Recommendation manually'
               }
-            elseif ($query -match "cannot-be-validated-with-arg") 
+            elseif ($query -match "cannot-be-validated-with-arg")
               {
                 Write-Host "IMPORTANT - Recommendation $checkId cannot be validated with ARGs - Validate Resources manually" -ForegroundColor Yellow
                 $query = "resources | where type contains '$type' | project name,id,tags"
                 QueryCollector $Subid $type $query $checkId $checkName 'IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually'
               }
-            else 
+            else
               {
                 QueryCollector $Subid $type $query $checkId $checkName 'Azure Resource Graph'
               }
           }
 
         #After processing the ARG Queries, now is time to process the -ResourceGroups
-        if (![string]::IsNullOrEmpty($ResourceGroups)) 
+        if (![string]::IsNullOrEmpty($ResourceGroups))
           {
             $TempResult = $Global:results
             $Global:results = @()
 
-            foreach ($result in $TempResult) 
+            foreach ($result in $TempResult)
               {
                 $res = $result.id.split('/')
-                if ($res[4] -in $ResourceGroups) 
+                if ($res[4] -in $ResourceGroups)
                   {
                     $Global:results += $result
                   }
-                if ($result.name -eq "Query under development - Validate Recommendation manually") 
+                if ($result.name -eq "Query under development - Validate Recommendation manually")
                   {
                     $Global:results += $result
                   }
@@ -790,7 +790,7 @@ $Global:Runtime = Measure-Command -Expression {
           }
 
         #Store all resourcetypes not in APRL
-        foreach ($type in $ServiceNotAvailable) 
+        foreach ($type in $ServiceNotAvailable)
           {
             Write-Host "Type $type Not Available In APRL - Validate Service manually" -ForegroundColor Yellow
             $result = [PSCustomObject]@{
@@ -815,9 +815,9 @@ $Global:Runtime = Measure-Command -Expression {
   function ResourceTypes {
     $TempTypes = $Global:results | Where-Object { $_.validationAction -eq 'Service Not Available In APRL - Validate Service manually if Applicable, if not Delete this line' }
     $Global:AllResourceTypes = $Global:AllResourceTypes | Sort-Object -Property Count_ -Descending
-    foreach ($result in $Global:AllResourceTypes) 
+    foreach ($result in $Global:AllResourceTypes)
       {
-        if ($result.type -in $TempTypes.recommendationId) 
+        if ($result.type -in $TempTypes.recommendationId)
           {
             $SubName = ''
             $SubName = ($SubIds | Where-Object { $_.Id -eq $result.subscriptionId }).Name
@@ -832,7 +832,7 @@ $Global:Runtime = Measure-Command -Expression {
             }
             $Global:AllResourceTypesOrdered += $tmp
           }
-        else 
+        else
           {
             $SubName = ''
             $SubName = ($SubIds | Where-Object { $_.Id -eq $result.subscriptionId }).Name
@@ -852,20 +852,20 @@ $Global:Runtime = Measure-Command -Expression {
 
   function Advisory {
     Param($Subid)
-    if (![string]::IsNullOrEmpty($ResourceGroups)) 
+    if (![string]::IsNullOrEmpty($ResourceGroups))
       {
         $Advisories = @()
-        foreach ($RG in $ResourceGroups) 
+        foreach ($RG in $ResourceGroups)
           {
             $Advisories = Search-AzGraph -Query "advisorresources | where type == 'microsoft.advisor/recommendations' and tostring(properties.category) == 'HighAvailability' | where resourceGroup contains '$RG' | summarize count()" -Subscription $Subid
-            if ($Advisories.count_ -lt 1000) 
+            if ($Advisories.count_ -lt 1000)
               {
                 $advquery = "advisorresources | where type == 'microsoft.advisor/recommendations' and tostring(properties.category) == 'HighAvailability' | where resourceGroup contains '$RG' | order by id"
                 $queryResults += Search-AzGraph -Query $advquery -First 1000 -Subscription $Subid -ErrorAction SilentlyContinue
 
-                foreach ($row in $queryResults) 
+                foreach ($row in $queryResults)
                   {
-                    if (![string]::IsNullOrEmpty($row.properties.resourceMetadata.resourceId)) 
+                    if (![string]::IsNullOrEmpty($row.properties.resourceMetadata.resourceId))
                       {
                         $result = [PSCustomObject]@{
                           recommendationId = [string]$row.properties.recommendationTypeId
@@ -880,20 +880,20 @@ $Global:Runtime = Measure-Command -Expression {
                     }
                   }
               }
-            else 
+            else
               {
                 $Loop = $Advisories.count_ / 1000
                 $Loop = [math]::ceiling($Loop)
                 $Looper = 0
                 $Limit = 1
 
-                while ($Looper -lt $Loop) 
+                while ($Looper -lt $Loop)
                   {
                     $advquery = "advisorresources | where type == 'microsoft.advisor/recommendations' and tostring(properties.category) == 'HighAvailability' | where resourceGroup contains '$RG' | order by id"
                     $queryResults = Search-AzGraph -Query $advquery -Subscription $Subid -Skip $Limit -first 1000 -ErrorAction SilentlyContinue
-                    foreach ($row in $queryResults) 
+                    foreach ($row in $queryResults)
                       {
-                        if (![string]::IsNullOrEmpty($row.properties.resourceMetadata.resourceId)) 
+                        if (![string]::IsNullOrEmpty($row.properties.resourceMetadata.resourceId))
                           {
                             $result = [PSCustomObject]@{
                               recommendationId = [string]$row.properties.recommendationTypeId
@@ -913,19 +913,19 @@ $Global:Runtime = Measure-Command -Expression {
               }
           }
       }
-    else 
+    else
       {
       $Advisories = Search-AzGraph -Query "advisorresources | where type == 'microsoft.advisor/recommendations' and tostring(properties.category) == 'HighAvailability' | summarize count()" -Subscription $Subid
 
-      if ($Advisories.count_ -lt 1000) 
+      if ($Advisories.count_ -lt 1000)
         {
           # Execute the query and collect the results
           $advquery = "advisorresources | where type == 'microsoft.advisor/recommendations' and tostring(properties.category) == 'HighAvailability' | order by id"
           $queryResults = Search-AzGraph -Query $advquery -First 1000 -Subscription $Subid -ErrorAction SilentlyContinue
 
-          foreach ($row in $queryResults) 
+          foreach ($row in $queryResults)
             {
-              if (![string]::IsNullOrEmpty($row.properties.resourceMetadata.resourceId)) 
+              if (![string]::IsNullOrEmpty($row.properties.resourceMetadata.resourceId))
                 {
                   $result = [PSCustomObject]@{
                     recommendationId = [string]$row.properties.recommendationTypeId
@@ -940,20 +940,20 @@ $Global:Runtime = Measure-Command -Expression {
                 }
             }
         }
-      else 
+      else
         {
         $Loop = $Advisories.count_ / 1000
         $Loop = [math]::ceiling($Loop)
         $Looper = 0
         $Limit = 1
 
-        while ($Looper -lt $Loop) 
+        while ($Looper -lt $Loop)
           {
             $advquery = "advisorresources | where type == 'microsoft.advisor/recommendations' and tostring(properties.category) == 'HighAvailability' | order by id"
             $queryResults = Search-AzGraph -Query $advquery -Subscription $Subid -Skip $Limit -first 1000 -ErrorAction SilentlyContinue
-            foreach ($row in $queryResults) 
+            foreach ($row in $queryResults)
               {
-                if (![string]::IsNullOrEmpty($row.properties.resourceMetadata.resourceId)) 
+                if (![string]::IsNullOrEmpty($row.properties.resourceMetadata.resourceId))
                   {
                     $result = [PSCustomObject]@{
                       recommendationId = [string]$row.properties.recommendationTypeId
@@ -978,12 +978,12 @@ $Global:Runtime = Measure-Command -Expression {
     param($Subid)
 
     $RetirementCount = Search-AzGraph -Query "servicehealthresources | where properties.EventSubType contains 'Retirement' | summarize count()" -Subscription $Subid
-    if ($RetirementCount.count_ -lt 1000) 
+    if ($RetirementCount.count_ -lt 1000)
       {
         $retquery = "servicehealthresources | where properties.EventSubType contains 'Retirement' | order by id"
         $queryResults = Search-AzGraph -Query $retquery -First 1000 -Subscription $Subid -ErrorAction SilentlyContinue
 
-        foreach ($row in $queryResults) 
+        foreach ($row in $queryResults)
           {
             $OutagesRetired = $Global:RetiredOutages | Where-Object { $_.name -eq $row.properties.TrackingId }
 
@@ -1003,19 +1003,19 @@ $Global:Runtime = Measure-Command -Expression {
             $Global:AllRetirements += $result
           }
       }
-    else 
+    else
       {
         $Loop = $RetirementCount.count_ / 1000
         $Loop = [math]::ceiling($Loop)
         $Looper = 0
         $Limit = 1
 
-        while ($Looper -lt $Loop) 
+        while ($Looper -lt $Loop)
           {
             $retquery = "servicehealthresources | where properties.EventSubType contains 'Retirement' | order by id"
             $queryResults = Search-AzGraph -Query $retquery -Subscription $Subid -Skip $Limit -first 1000 -ErrorAction SilentlyContinue
 
-            foreach ($row in $queryResults) 
+            foreach ($row in $queryResults)
               {
                 $OutagesRetired = $Global:RetiredOutages | Where-Object { $_.name -eq $row.properties.TrackingId }
 
@@ -1042,24 +1042,24 @@ $Global:Runtime = Measure-Command -Expression {
     param($Subid)
 
     $ServiceHealthCount = Search-AzGraph -Query "resources | where type == 'microsoft.insights/activitylogalerts' | summarize count()" -Subscription $Subid
-    if ($ServiceHealthCount.count_ -lt 1000) 
+    if ($ServiceHealthCount.count_ -lt 1000)
       {
         $Servicequery = "resources | where type == 'microsoft.insights/activitylogalerts' | order by id"
         $queryResults = Search-AzGraph -Query $Servicequery -First 1000 -Subscription $Subid -ErrorAction SilentlyContinue
 
         $Rowler = @()
-        foreach ($row in $queryResults) 
+        foreach ($row in $queryResults)
           {
-            foreach ($type in $row.properties.condition.allOf) 
+            foreach ($type in $row.properties.condition.allOf)
               {
-                if ($type.equals -eq 'ServiceHealth') 
+                if ($type.equals -eq 'ServiceHealth')
                   {
                     $Rowler += $row
                   }
               }
           }
 
-        foreach ($Row in $Rowler) 
+        foreach ($Row in $Rowler)
           {
             $SubName = ($SubIds | Where-Object { $_.Id -eq ($Row.properties.scopes.split('/')[2]) }).Name
             $EventType = if ($Row.Properties.condition.allOf.anyOf | Select-Object -Property equals) { $Row.Properties.condition.allOf.anyOf | Select-Object -Property equals | ForEach-Object { switch ($_.equals) { 'Incident' { 'Service Issues' } 'Informational' { 'Health Advisories' } 'ActionRequired' { 'Security Advisory' } 'Maintenance' { 'Planned Maintenance' } } } } Else { 'All' }
@@ -1079,7 +1079,7 @@ $Global:Runtime = Measure-Command -Expression {
             $Global:AllServiceHealth += $result
           }
       }
-    else 
+    else
       {
         $Loop = $ServiceHealthCount.count_ / 1000
         $Loop = [math]::ceiling($Loop)
@@ -1087,16 +1087,16 @@ $Global:Runtime = Measure-Command -Expression {
         $Limit = 1
         $Rowler = @()
 
-        while ($Looper -lt $Loop) 
+        while ($Looper -lt $Loop)
           {
             $Servicequery = "resources | where type == 'microsoft.insights/activitylogalerts' | order by id"
             $queryResults = Search-AzGraph -Query $Servicequery -Subscription $Subid -Skip $Limit -first 1000 -ErrorAction SilentlyContinue
 
-            foreach ($row in $queryResults) 
+            foreach ($row in $queryResults)
               {
-                foreach ($type in $row.properties.condition.allOf) 
+                foreach ($type in $row.properties.condition.allOf)
                     {
-                    if ($type.equals -eq 'ServiceHealth') 
+                    if ($type.equals -eq 'ServiceHealth')
                       {
                         $Rowler += $row
                       }
@@ -1104,7 +1104,7 @@ $Global:Runtime = Measure-Command -Expression {
               }
 
           }
-        foreach ($Row in $Rowler) 
+        foreach ($Row in $Rowler)
           {
             $SubName = ($SubIds | Where-Object { $_.Id -eq ($Row.properties.scopes.split('/')[2]) }).Name
             $EventType = $Row.Properties.condition.allOf.anyOf | Select-Object -Property equals | ForEach-Object { switch ($_.equals) { 'Incident' { 'Service Issues' } 'Informational' { 'Health Advisories' } 'ActionRequired' { 'Security Advisories' } 'Maintenance' { 'Planned Maintenance' } } }
@@ -1169,7 +1169,7 @@ $Global:Runtime = Measure-Command -Expression {
   Write-Host "Version: " -NoNewline
   Write-Host $Global:Version -ForegroundColor DarkBlue
 
-  if ($Help.IsPresent) 
+  if ($Help.IsPresent)
     {
       Help
       Exit
