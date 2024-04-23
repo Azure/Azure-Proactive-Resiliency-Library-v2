@@ -4,4 +4,3 @@ resources
 | where type =~'microsoft.sql/servers/databases'
 | where isnull(properties['failoverGroupId'])
 | project recommendationId = "943c168a-2ec2-a94c-8015-85732a1b4859", name, id, tags, param1= strcat("databaseId=", properties['databaseId'])
-

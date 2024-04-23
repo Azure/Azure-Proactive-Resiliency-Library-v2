@@ -292,7 +292,7 @@
   pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: arg
   tags: null
   learnMoreLink:
     - name: Ephemeral OS disk
@@ -315,7 +315,7 @@
   pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: arg
   tags: null
   learnMoreLink:
     - name: AKS Baseline - Policy Management
@@ -501,3 +501,21 @@
   learnMoreLink:
     - name: Resource quotas
       url: "https://learn.microsoft.com/azure/aks/operator-best-practices-scheduler#enforce-resource-quotas"
+
+- description: Enable AKS private cluster or set authorized IP address ranges
+  aprlGuid: ba3f7d17-9654-4038-b172-09f1b2569925
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.ContainerService/managedClusters
+  recommendationMetadataState: Active
+  longDescription: |
+    For optimal connectivity and security, enable private cluster in AKS to ensure direct communication between worker nodes and the control plane. If not enabled, secure API server access with authorized IP ranges.
+  potentialBenefits: Provides network reliability, reduced disruptions
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: AKS private cluster
+      url: "https://learn.microsoft.com/azure/aks/private-clusters"
