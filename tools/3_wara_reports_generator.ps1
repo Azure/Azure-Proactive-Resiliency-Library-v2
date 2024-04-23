@@ -226,7 +226,7 @@ $Global:Runtime = Measure-Command -Expression {
 
           $ExcelApplication = New-Object -ComObject Excel.Application
           Start-Sleep 1
-          if ($CoreDebugging) { ('OfficeApps - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Openning Excel file..') | Out-File -FilePath $LogFile -Append }
+          if ($CoreDebugging) { ('OfficeApps - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Opening Excel file..') | Out-File -FilePath $LogFile -Append }
           $Ex = $ExcelApplication.Workbooks.Open($ExcelFile)
           while ([string]::IsNullOrEmpty($Ex)) {
             Start-Sleep 2
@@ -1316,7 +1316,7 @@ $Global:Runtime = Measure-Command -Expression {
           if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Starting PowerPoint..') | Out-File -FilePath $LogFile -Append }
           try
             {
-              #Openning PPT
+              #Opening PPT
               $Global:Application = New-Object -ComObject PowerPoint.Application
 
               $Global:pres = $Application.Presentations.Open($PPTTemplateFile, $null, $null, $null)

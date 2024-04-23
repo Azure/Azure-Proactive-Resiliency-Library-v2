@@ -723,7 +723,7 @@ $Global:Runtime = Measure-Command -Expression {
     }
 
     function ExcelAPI {
-      Write-Host "Openning Excel..."
+      Write-Host "Opening Excel..."
       $Global:ExcelApplication = New-Object -ComObject Excel.Application
       Start-Sleep 2
       Write-Host "Customizing Excel Charts. "
@@ -732,10 +732,10 @@ $Global:Runtime = Measure-Command -Expression {
         {
           try
             {
-              Write-Debug 'Openning Excel File'
+              Write-Debug 'Opening Excel File'
               $Ex = $ExcelApplication.Workbooks.Open($ExcelFile)
               Start-Sleep -Seconds 2
-              Write-Debug 'Openning Excel Sheets'
+              Write-Debug 'Opening Excel Sheets'
               $WS = $ex.Worksheets | Where-Object { $_.Name -eq 'PivotTable' }
               $WS2 = $ex.Worksheets | Where-Object { $_.Name -eq 'Charts' }
               Write-Debug 'Moving Charts to Chart sheet'
