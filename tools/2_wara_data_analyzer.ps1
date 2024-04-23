@@ -43,7 +43,7 @@ $Global:Runtime = Measure-Command -Expression {
     Write-Host "ImportExcel" -ForegroundColor Cyan -NoNewline
     Write-Host " Module.."
     $ImportExcel = Get-Module -Name ImportExcel -ListAvailable -ErrorAction silentlycontinue
-    if ($null -eq $ImportExcel) 
+    if ($null -eq $ImportExcel)
       {
         Write-Host "Installing ImportExcel Module" -ForegroundColor Yellow
         Install-Module -Name ImportExcel -Force -SkipPublisherCheck
@@ -52,7 +52,7 @@ $Global:Runtime = Measure-Command -Expression {
     Write-Host "Powershell-YAML" -ForegroundColor Cyan -NoNewline
     Write-Host " Module.."
     $AzModules = Get-Module -Name powershell-yaml -ListAvailable -ErrorAction silentlycontinue
-    if ($null -eq $AzModules) 
+    if ($null -eq $AzModules)
       {
         Write-Host "Installing Az Modules" -ForegroundColor Yellow
         Install-Module -Name powershell-yaml -SkipPublisherCheck -InformationAction SilentlyContinue
@@ -61,7 +61,7 @@ $Global:Runtime = Measure-Command -Expression {
     Write-Host "Git" -ForegroundColor Cyan -NoNewline
     Write-Host " Installation.."
     $GitVersion = git --version
-    if ($null -eq $GitVersion) 
+    if ($null -eq $GitVersion)
       {
         Write-Host "Missing Git" -ForegroundColor Red
         Exit
@@ -77,24 +77,24 @@ $Global:Runtime = Measure-Command -Expression {
     Set-Location -path $workingFolderPath;
     $Global:clonePath = "$workingFolderPath\Azure-Proactive-Resiliency-Library"
     Write-Debug "Checking default folder"
-    if ((Get-ChildItem -Path $Global:clonePath -Force | Measure-Object).Count -gt 0) 
+    if ((Get-ChildItem -Path $Global:clonePath -Force | Measure-Object).Count -gt 0)
       {
         Write-Debug "APRL Folder does exist. Reseting it..."
         Get-Item -Path $Global:clonePath | Remove-Item -Recurse -Force
         git clone $repoUrl $Global:clonePath --quiet
       }
-    else 
+    else
       {
         git clone $repoUrl $Global:clonePath --quiet
       }
     Write-Debug "Checking the version of the script"
     $RepoVersion = Get-Content -Path "$clonePath\tools\Version.json" -ErrorAction SilentlyContinue | ConvertFrom-Json
-    if ($Version -ne $RepoVersion.Analyzer) 
+    if ($Version -ne $RepoVersion.Analyzer)
       {
         Write-Host "This version of the script is outdated. " -BackgroundColor DarkRed
         Write-Host "Please use a more recent version of the script." -BackgroundColor DarkRed
       }
-    else 
+    else
       {
         Write-Host "This version of the script is current version. " -BackgroundColor DarkGreen
       }
@@ -120,20 +120,20 @@ $Global:Runtime = Measure-Command -Expression {
     $Global:AdvisorContent = $CoreAdvisories | Select-Object -Property recommendationId, type, category, impact, description -Unique
 
     $Global:ServicesYAMLContent = @()
-    foreach ($YAML in $Global:ServicesYAML) 
+    foreach ($YAML in $Global:ServicesYAML)
       {
-        if (![string]::IsNullOrEmpty($YAML)) 
+        if (![string]::IsNullOrEmpty($YAML))
           {
             $Global:ServicesYAMLContent += Get-Content -Path $YAML | ConvertFrom-Yaml
           }
       }
 
     $Global:MergedRecommendation = @()
-    foreach ($Recom in $CoreResources) 
+    foreach ($Recom in $CoreResources)
       {
         $RecomTitle = $Global:ServicesYAMLContent | Where-Object { $_.aprlGuid -eq $Recom.recommendationId }
         $Ticket = $Global:SupportTickets | Where-Object { $_.properties.technicalTicketDetails.resourceId -eq $Recom.id }
-        if ($RecomTitle.recommendationMetadataState -eq 'Active' -or $Recom.validationAction -eq 'IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually' -or $Recom.validationAction -eq 'Query under development - Validate Recommendation manually' ) 
+        if ($RecomTitle.recommendationMetadataState -eq 'Active' -or $Recom.validationAction -eq 'IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually' -or $Recom.validationAction -eq 'Query under development - Validate Recommendation manually' )
           {
             $Tickets = if ($Ticket.properties.supportTicketId.count -gt 1) { $Ticket.properties.supportTicketId | ForEach-Object { $_ + ' /' } }else { $Ticket.properties.supportTicketId }
             $Tickets = [string]$Tickets
@@ -156,7 +156,7 @@ $Global:Runtime = Measure-Command -Expression {
               checkName                                                                         = [string]$Recom.checkName
             }
           }
-        elseif ($Recom.validationAction -eq 'Service Not Available In APRL - Validate Service manually if Applicable, if not Delete this line' ) 
+        elseif ($Recom.validationAction -eq 'Service Not Available In APRL - Validate Service manually if Applicable, if not Delete this line' )
           {
             $tmp = @{
               'How was the resource/recommendation validated or what actions need to be taken?' = [string]$Recom.validationAction;
@@ -179,9 +179,9 @@ $Global:Runtime = Measure-Command -Expression {
         $Global:MergedRecommendation += $tmp
       }
 
-    foreach ($adv in $CoreAdvisories) 
+    foreach ($adv in $CoreAdvisories)
       {
-        if (![string]::IsNullOrEmpty($adv.recommendationId)) 
+        if (![string]::IsNullOrEmpty($adv.recommendationId))
           {
             $Ticket = $Global:SupportTickets | Where-Object { $_.properties.technicalTicketDetails.resourceId -eq $adv.id }
             $Tickets = if ($Ticket.properties.supportTicketId.count -gt 1) { $Ticket.properties.supportTicketId | ForEach-Object { $_ + ' /' } }else { $Ticket.properties.supportTicketId }
@@ -283,9 +283,9 @@ $Global:Runtime = Measure-Command -Expression {
       ####################    Creates the Outages sheet
       $Global:OutagesSheet = @()
       $RealOutages = $Global:Outages | Where-Object { $_.properties.description -like '*How can customers make incidents like this less impactful?*' -and $_.properties.impactStartTime -gt ((Get-Date).AddMonths(-3)) }
-      foreach ($Outage in  $RealOutages) 
+      foreach ($Outage in  $RealOutages)
         {
-          if (![string]::IsNullOrEmpty($Outage.name)) 
+          if (![string]::IsNullOrEmpty($Outage.name))
             {
               $HTML = New-Object -Com "HTMLFile"
               $HTML.write([ref]$Outage.properties.description)
@@ -345,7 +345,7 @@ $Global:Runtime = Measure-Command -Expression {
       $OutagesWorksheet.Add('How can customers make incidents like this less impactful')
 
 
-      if (![string]::IsNullOrEmpty($Global:OutagesSheet)) 
+      if (![string]::IsNullOrEmpty($Global:OutagesSheet))
         {
           $Global:OutagesSheet | ForEach-Object { [PSCustomObject]$_ } | Select-Object $OutagesWorksheet |
           Export-Excel -Path $ExcelFile -WorksheetName 'Outages' -TableName 'TableOutage' -AutoSize -TableStyle $tableStyle -Style $Styles3
@@ -356,22 +356,22 @@ $Global:Runtime = Measure-Command -Expression {
     function Retirement {
       ####################    Creates the Retirement sheet
       $Global:RetirementSheet = @()
-      foreach ($Retires in $Global:Retirements) 
+      foreach ($Retires in $Global:Retirements)
         {
-          if (![string]::IsNullOrEmpty($Retires)) 
+          if (![string]::IsNullOrEmpty($Retires))
             {
               $HTML = New-Object -Com "HTMLFile"
               $HTML.write([ref]$Retires.Summary)
               $RetirementSummary = $Html.body.innerText
 
-              try 
+              try
                 {
                   $HTML = New-Object -Com "HTMLFile"
                   $HTML.write([ref]$Retires.Description)
                   $RetirementDescriptionFull = $Html.body.innerText
                   $SplitDescription = $RetirementDescriptionFull.split('Help and support').split('Required action')
                 }
-              catch 
+              catch
                 {
                   $SplitDescription = " ", " "
                 }
@@ -414,7 +414,7 @@ $Global:Runtime = Measure-Command -Expression {
       $RetirementWorksheet.Add('Details')
       $RetirementWorksheet.Add('Required Action')
 
-      if (![string]::IsNullOrEmpty($Global:RetirementSheet)) 
+      if (![string]::IsNullOrEmpty($Global:RetirementSheet))
         {
           $Global:RetirementSheet | ForEach-Object { [PSCustomObject]$_ } | Select-Object $RetirementWorksheet |
           Export-Excel -Path $ExcelFile -WorksheetName 'Retirements' -TableName 'TableRetires' -AutoSize -TableStyle $tableStyle -Style $Styles4
@@ -425,9 +425,9 @@ $Global:Runtime = Measure-Command -Expression {
     function Tickets {
       ####################    Creates the Tickets sheet
       $Global:TicketsSheet = @()
-      foreach ($Ticket in $Global:SupportTickets) 
+      foreach ($Ticket in $Global:SupportTickets)
         {
-          if (![string]::IsNullOrEmpty($Ticket)) 
+          if (![string]::IsNullOrEmpty($Ticket))
             {
               $tmp = @{
                 'Ticket ID'         = [string]$Ticket.properties.supportTicketId;
@@ -473,7 +473,7 @@ $Global:Runtime = Measure-Command -Expression {
       $TicketWorksheet.Add('Related Resource')
       #$TicketWorksheet.Add('Support Engineer')
 
-      if (![string]::IsNullOrEmpty($Global:TicketsSheet)) 
+      if (![string]::IsNullOrEmpty($Global:TicketsSheet))
         {
           $Global:TicketsSheet | ForEach-Object { [PSCustomObject]$_ } | Select-Object $TicketWorksheet |
           Export-Excel -Path $ExcelFile -WorksheetName 'Support Tickets' -TableName 'TableTickets' -AutoSize -TableStyle $tableStyle -Style $Styles5
@@ -483,9 +483,9 @@ $Global:Runtime = Measure-Command -Expression {
     function Health {
       ####################    Creates the Service Health sheet
       $Global:ServiceHealthSheet = @()
-      foreach ($Alert in $Global:ServiceHealth) 
+      foreach ($Alert in $Global:ServiceHealth)
         {
-          if (![string]::IsNullOrEmpty($Alert)) 
+          if (![string]::IsNullOrEmpty($Alert))
             {
               $Service = if ($Alert.Services.count -gt 1) { $Alert.Services | ForEach-Object { $_ + ' /' } }else { $Alert.Services }
               $Service = [string]$Service
@@ -529,7 +529,7 @@ $Global:Runtime = Measure-Command -Expression {
       $ServiceHealthtWorksheet.Add('Regions')
       $ServiceHealthtWorksheet.Add('Action Group')
 
-      if (![string]::IsNullOrEmpty($Global:ServiceHealthSheet)) 
+      if (![string]::IsNullOrEmpty($Global:ServiceHealthSheet))
         {
           $Global:ServiceHealthSheet | ForEach-Object { [PSCustomObject]$_ } | Select-Object $ServiceHealthtWorksheet |
           Export-Excel -Path $ExcelFile -WorksheetName 'Health Alerts' -TableName 'TableAlerts' -AutoSize -TableStyle $tableStyle -Style $Styles6
@@ -547,9 +547,9 @@ $Global:Runtime = Measure-Command -Expression {
       #$TextInfo = (Get-Culture).TextInfo
 
       # Build the APRL Recommendations
-      foreach ($Service in $Global:ServicesYAMLContent) 
+      foreach ($Service in $Global:ServicesYAMLContent)
         {
-          if ($Service.recommendationResourceType -in $Global:AllResourceTypesOrdered.'Resource Type' -or $Global:FilterRecommendations -eq $false) 
+          if ($Service.recommendationResourceType -in $Global:AllResourceTypesOrdered.'Resource Type' -or $Global:FilterRecommendations -eq $false)
             {
               $ID = $Service.aprlGuid
               $resourceType = $Service.recommendationResourceType
@@ -575,7 +575,7 @@ $Global:Runtime = Measure-Command -Expression {
         }
 
       # Builds the Advisor recommendations
-      foreach ($advisor in $Global:AdvisorContent) 
+      foreach ($advisor in $Global:AdvisorContent)
         {
           $ID = $advisor.recommendationId
           $resourceType = $advisor.type.ToLower()
@@ -600,7 +600,7 @@ $Global:Runtime = Measure-Command -Expression {
         }
 
       # Builds the WAF recommendations
-      foreach ($WAFYAML in $Global:WAFYAMLContent) 
+      foreach ($WAFYAML in $Global:WAFYAMLContent)
         {
           $resourceType = $WAFYAML.recommendationResourceType
           $ID = $WAFYAML.aprlGuid
@@ -619,7 +619,7 @@ $Global:Runtime = Measure-Command -Expression {
             'Potential Benefits'                                                                             = [string]$WAFYAML.potentialBenefits;
             'Add associated Outage TrackingID and/or Support Request # and/or Service Retirement TrackingID' = '';
             'Observation / Annotation'                                                                       = '';
-            'Recommendation Id'                                                                              = [string]$Service.aprlGuid
+            'Recommendation Id'                                                                              = [string]$WAFYAML.aprlGuid
           }
           $Global:Recommendations += $tmp
         }
@@ -728,9 +728,9 @@ $Global:Runtime = Measure-Command -Expression {
       Start-Sleep 2
       Write-Host "Customizing Excel Charts. "
       # Open the Excel using the API to move the charts from the PivotTable sheet to the Charts sheet and change chart style, font, etc..
-      if ($Global:ExcelApplication) 
+      if ($Global:ExcelApplication)
         {
-          try 
+          try
             {
               Write-Debug 'Openning Excel File'
               $Ex = $ExcelApplication.Workbooks.Open($ExcelFile)
@@ -774,7 +774,7 @@ $Global:Runtime = Measure-Command -Expression {
               Write-Debug 'Ensuring Excel Process is Closed.'
               Get-Process -Name "excel" -ErrorAction Ignore | Where-Object { $_.CommandLine -like '*/automation*' } | Stop-Process
             }
-          catch 
+          catch
             {
               Write-Host "Error during the PivotTable + Charts customization" -BackgroundColor DarkRed
             }
