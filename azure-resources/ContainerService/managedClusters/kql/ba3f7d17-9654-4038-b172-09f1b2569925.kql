@@ -1,0 +1,7 @@
+// Azure Resource Graph Query
+// Returns clusters that do not have private cluster or authorized IP ranges set up (both are not set)
+resources
+| where type == 'microsoft.containerservice/managedclusters'
+| mv-expand properties.apiServerAccessProfile
+| where isempty(properties.apiServerAccessProfile.enablePrivateCluster) and isempty(properties.apiServerAccessProfile.authorizedIPRanges)
+| project recommendationId="ba3f7d17-9654-4038-b172-09f1b2569925", name, id
