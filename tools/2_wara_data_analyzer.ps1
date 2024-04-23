@@ -43,26 +43,29 @@ $Global:Runtime = Measure-Command -Expression {
     Write-Host "ImportExcel" -ForegroundColor Cyan -NoNewline
     Write-Host " Module.."
     $ImportExcel = Get-Module -Name ImportExcel -ListAvailable -ErrorAction silentlycontinue
-    if ($null -eq $ImportExcel) {
-      Write-Host "Installing ImportExcel Module" -ForegroundColor Yellow
-      Install-Module -Name ImportExcel -Force -SkipPublisherCheck
-    }
+    if ($null -eq $ImportExcel) 
+      {
+        Write-Host "Installing ImportExcel Module" -ForegroundColor Yellow
+        Install-Module -Name ImportExcel -Force -SkipPublisherCheck
+      }
     Write-Host "Validating " -NoNewline
     Write-Host "Powershell-YAML" -ForegroundColor Cyan -NoNewline
     Write-Host " Module.."
     $AzModules = Get-Module -Name powershell-yaml -ListAvailable -ErrorAction silentlycontinue
-    if ($null -eq $AzModules) {
-      Write-Host "Installing Az Modules" -ForegroundColor Yellow
-      Install-Module -Name powershell-yaml -SkipPublisherCheck -InformationAction SilentlyContinue
-    }
+    if ($null -eq $AzModules) 
+      {
+        Write-Host "Installing Az Modules" -ForegroundColor Yellow
+        Install-Module -Name powershell-yaml -SkipPublisherCheck -InformationAction SilentlyContinue
+      }
     Write-Host "Validating " -NoNewline
     Write-Host "Git" -ForegroundColor Cyan -NoNewline
     Write-Host " Installation.."
     $GitVersion = git --version
-    if ($null -eq $GitVersion) {
-      Write-Host "Missing Git" -ForegroundColor Red
-      Exit
-    }
+    if ($null -eq $GitVersion) 
+      {
+        Write-Host "Missing Git" -ForegroundColor Red
+        Exit
+      }
   }
 
   function LocalFiles {
@@ -74,23 +77,27 @@ $Global:Runtime = Measure-Command -Expression {
     Set-Location -path $workingFolderPath;
     $Global:clonePath = "$workingFolderPath\Azure-Proactive-Resiliency-Library"
     Write-Debug "Checking default folder"
-    if ((Get-ChildItem -Path $Global:clonePath -Force | Measure-Object).Count -gt 0) {
-      Write-Debug "APRL Folder does exist. Reseting it..."
-      Get-Item -Path $Global:clonePath | Remove-Item -Recurse -Force
-      git clone $repoUrl $Global:clonePath --quiet
-    }
-    else {
-      git clone $repoUrl $Global:clonePath --quiet
-    }
+    if ((Get-ChildItem -Path $Global:clonePath -Force | Measure-Object).Count -gt 0) 
+      {
+        Write-Debug "APRL Folder does exist. Reseting it..."
+        Get-Item -Path $Global:clonePath | Remove-Item -Recurse -Force
+        git clone $repoUrl $Global:clonePath --quiet
+      }
+    else 
+      {
+        git clone $repoUrl $Global:clonePath --quiet
+      }
     Write-Debug "Checking the version of the script"
     $RepoVersion = Get-Content -Path "$clonePath\tools\Version.json" -ErrorAction SilentlyContinue | ConvertFrom-Json
-    if ($Version -ne $RepoVersion.Analyzer) {
-      Write-Host "This version of the script is outdated. " -BackgroundColor DarkRed
-      Write-Host "Please use a more recent version of the script." -BackgroundColor DarkRed
-    }
-    else {
-      Write-Host "This version of the script is current version. " -BackgroundColor DarkGreen
-    }
+    if ($Version -ne $RepoVersion.Analyzer) 
+      {
+        Write-Host "This version of the script is outdated. " -BackgroundColor DarkRed
+        Write-Host "Please use a more recent version of the script." -BackgroundColor DarkRed
+      }
+    else 
+      {
+        Write-Host "This version of the script is current version. " -BackgroundColor DarkGreen
+      }
   }
 
   function MGrid {
@@ -113,86 +120,93 @@ $Global:Runtime = Measure-Command -Expression {
     $Global:AdvisorContent = $CoreAdvisories | Select-Object -Property recommendationId, type, category, impact, description -Unique
 
     $Global:ServicesYAMLContent = @()
-    foreach ($YAML in $Global:ServicesYAML) {
-      if (![string]::IsNullOrEmpty($YAML)) {
-        $Global:ServicesYAMLContent += Get-Content -Path $YAML | ConvertFrom-Yaml
+    foreach ($YAML in $Global:ServicesYAML) 
+      {
+        if (![string]::IsNullOrEmpty($YAML)) 
+          {
+            $Global:ServicesYAMLContent += Get-Content -Path $YAML | ConvertFrom-Yaml
+          }
       }
-    }
 
     $Global:MergedRecommendation = @()
-    foreach ($Recom in $CoreResources) {
-      $RecomTitle = $Global:ServicesYAMLContent | Where-Object { $_.aprlGuid -eq $Recom.recommendationId }
-      $Ticket = $Global:SupportTickets | Where-Object { $_.properties.technicalTicketDetails.resourceId -eq $Recom.id }
-      if ($RecomTitle.recommendationMetadataState -eq 'Active' -or $Recom.validationAction -eq 'IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually' -or $Recom.validationAction -eq 'Query under development - Validate Recommendation manually' ) {
-        $Tickets = if ($Ticket.properties.supportTicketId.count -gt 1) { $Ticket.properties.supportTicketId | ForEach-Object { $_ + ' /' } }else { $Ticket.properties.supportTicketId }
-        $Tickets = [string]$Tickets
-        $Tickets = if ($Tickets -like '* /*') { $Tickets -replace ".$" }else { $Tickets }
-        $tmp = @{
-          'How was the resource/recommendation validated or what actions need to be taken?' = [string]$Recom.validationAction;
-          recommendationId                                                                  = [string]$Recom.recommendationId;
-          recommendationTitle                                                               = [string]$RecomTitle.description;
-          resourceType                                                                      = [string]$RecomTitle.recommendationResourceType;
-          name                                                                              = [string]$Recom.name;
-          id                                                                                = [string]$Recom.id;
-          tags                                                                              = [string]$Recom.tags;
-          param1                                                                            = [string]$Recom.param1;
-          param2                                                                            = [string]$Recom.param2;
-          param3                                                                            = [string]$Recom.param3;
-          param4                                                                            = [string]$Recom.param4;
-          param5                                                                            = [string]$Recom.param5;
-          supportTicketId                                                                   = $Tickets;
-          source                                                                            = [string]$Recom.selector;
-          checkName                                                                         = [string]$Recom.checkName
-        }
-      }
-      elseif ($Recom.validationAction -eq 'Service Not Available In APRL - Validate Service manually if Applicable, if not Delete this line' ) {
-        $tmp = @{
-          'How was the resource/recommendation validated or what actions need to be taken?' = [string]$Recom.validationAction;
-          recommendationId                                                                  = "";
-          recommendationTitle                                                               = [string]$RecomTitle.description;
-          resourceType                                                                      = [string]$Recom.recommendationId;
-          name                                                                              = [string]$Recom.name;
-          id                                                                                = [string]$Recom.id;
-          tags                                                                              = [string]$Recom.tags;
-          param1                                                                            = [string]$Recom.param1;
-          param2                                                                            = [string]$Recom.param2;
-          param3                                                                            = [string]$Recom.param3;
-          param4                                                                            = [string]$Recom.param4;
-          param5                                                                            = [string]$Recom.param5;
-          supportTicketId                                                                   = "";
-          source                                                                            = [string]$Recom.selector;
-          checkName                                                                         = [string]$Recom.checkName
-        }
-      }
-      $Global:MergedRecommendation += $tmp
-    }
-
-    foreach ($adv in $CoreAdvisories) {
-      if (![string]::IsNullOrEmpty($adv.recommendationId)) {
-        $Ticket = $Global:SupportTickets | Where-Object { $_.properties.technicalTicketDetails.resourceId -eq $adv.id }
-        $Tickets = if ($Ticket.properties.supportTicketId.count -gt 1) { $Ticket.properties.supportTicketId | ForEach-Object { $_ + ' /' } }else { $Ticket.properties.supportTicketId }
-        $Tickets = [string]$Tickets
-        $Tickets = if ($Tickets -like '* /*') { $Tickets -replace ".$" }else { $Tickets }
-        $tmp = @{
-          'How was the resource/recommendation validated or what actions need to be taken?' = '';
-          recommendationId                                                                  = [string]$adv.recommendationId;
-          recommendationTitle                                                               = [string]$adv.description;
-          resourceType                                                                      = [string]$adv.type;
-          name                                                                              = [string]$adv.name;
-          id                                                                                = [string]$adv.id;
-          tags                                                                              = "";
-          param1                                                                            = "";
-          param2                                                                            = "";
-          param3                                                                            = "";
-          param4                                                                            = "";
-          param5                                                                            = "";
-          supportTicketId                                                                   = $Tickets;
-          source                                                                            = "ADVISOR";
-          checkName                                                                         = ""
-        }
+    foreach ($Recom in $CoreResources) 
+      {
+        $RecomTitle = $Global:ServicesYAMLContent | Where-Object { $_.aprlGuid -eq $Recom.recommendationId }
+        $Ticket = $Global:SupportTickets | Where-Object { $_.properties.technicalTicketDetails.resourceId -eq $Recom.id }
+        if ($RecomTitle.recommendationMetadataState -eq 'Active' -or $Recom.validationAction -eq 'IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually' -or $Recom.validationAction -eq 'Query under development - Validate Recommendation manually' ) 
+          {
+            $Tickets = if ($Ticket.properties.supportTicketId.count -gt 1) { $Ticket.properties.supportTicketId | ForEach-Object { $_ + ' /' } }else { $Ticket.properties.supportTicketId }
+            $Tickets = [string]$Tickets
+            $Tickets = if ($Tickets -like '* /*') { $Tickets -replace ".$" }else { $Tickets }
+            $tmp = @{
+              'How was the resource/recommendation validated or what actions need to be taken?' = [string]$Recom.validationAction;
+              recommendationId                                                                  = [string]$Recom.recommendationId;
+              recommendationTitle                                                               = [string]$RecomTitle.description;
+              resourceType                                                                      = [string]$RecomTitle.recommendationResourceType;
+              name                                                                              = [string]$Recom.name;
+              id                                                                                = [string]$Recom.id;
+              tags                                                                              = [string]$Recom.tags;
+              param1                                                                            = [string]$Recom.param1;
+              param2                                                                            = [string]$Recom.param2;
+              param3                                                                            = [string]$Recom.param3;
+              param4                                                                            = [string]$Recom.param4;
+              param5                                                                            = [string]$Recom.param5;
+              supportTicketId                                                                   = $Tickets;
+              source                                                                            = [string]$Recom.selector;
+              checkName                                                                         = [string]$Recom.checkName
+            }
+          }
+        elseif ($Recom.validationAction -eq 'Service Not Available In APRL - Validate Service manually if Applicable, if not Delete this line' ) 
+          {
+            $tmp = @{
+              'How was the resource/recommendation validated or what actions need to be taken?' = [string]$Recom.validationAction;
+              recommendationId                                                                  = "";
+              recommendationTitle                                                               = [string]$RecomTitle.description;
+              resourceType                                                                      = [string]$Recom.recommendationId;
+              name                                                                              = [string]$Recom.name;
+              id                                                                                = [string]$Recom.id;
+              tags                                                                              = [string]$Recom.tags;
+              param1                                                                            = [string]$Recom.param1;
+              param2                                                                            = [string]$Recom.param2;
+              param3                                                                            = [string]$Recom.param3;
+              param4                                                                            = [string]$Recom.param4;
+              param5                                                                            = [string]$Recom.param5;
+              supportTicketId                                                                   = "";
+              source                                                                            = [string]$Recom.selector;
+              checkName                                                                         = [string]$Recom.checkName
+            }
+          }
         $Global:MergedRecommendation += $tmp
       }
-    }
+
+    foreach ($adv in $CoreAdvisories) 
+      {
+        if (![string]::IsNullOrEmpty($adv.recommendationId)) 
+          {
+            $Ticket = $Global:SupportTickets | Where-Object { $_.properties.technicalTicketDetails.resourceId -eq $adv.id }
+            $Tickets = if ($Ticket.properties.supportTicketId.count -gt 1) { $Ticket.properties.supportTicketId | ForEach-Object { $_ + ' /' } }else { $Ticket.properties.supportTicketId }
+            $Tickets = [string]$Tickets
+            $Tickets = if ($Tickets -like '* /*') { $Tickets -replace ".$" }else { $Tickets }
+            $tmp = @{
+              'How was the resource/recommendation validated or what actions need to be taken?' = '';
+              recommendationId                                                                  = [string]$adv.recommendationId;
+              recommendationTitle                                                               = [string]$adv.description;
+              resourceType                                                                      = [string]$adv.type;
+              name                                                                              = [string]$adv.name;
+              id                                                                                = [string]$adv.id;
+              tags                                                                              = "";
+              param1                                                                            = "";
+              param2                                                                            = "";
+              param3                                                                            = "";
+              param4                                                                            = "";
+              param5                                                                            = "";
+              supportTicketId                                                                   = $Tickets;
+              source                                                                            = "ADVISOR";
+              checkName                                                                         = ""
+            }
+            $Global:MergedRecommendation += $tmp
+          }
+      }
   }
 
   function ExcelFile {
@@ -269,34 +283,36 @@ $Global:Runtime = Measure-Command -Expression {
       ####################    Creates the Outages sheet
       $Global:OutagesSheet = @()
       $RealOutages = $Global:Outages | Where-Object { $_.properties.description -like '*How can customers make incidents like this less impactful?*' -and $_.properties.impactStartTime -gt ((Get-Date).AddMonths(-3)) }
-      foreach ($Outage in  $RealOutages) {
-        if (![string]::IsNullOrEmpty($Outage.name)) {
-          $HTML = New-Object -Com "HTMLFile"
-          $HTML.write([ref]$Outage.properties.description)
-          $OutageDescription = $Html.body.innerText
-          $SplitDescription = $OutageDescription.split('How can we make our incident communications more useful?').split('How can customers make incidents like this less impactful?').split('How are we making incidents like this less likely or less impactful?').split('How did we respond?').split('What went wrong and why?').split('What happened?')
+      foreach ($Outage in  $RealOutages) 
+        {
+          if (![string]::IsNullOrEmpty($Outage.name)) 
+            {
+              $HTML = New-Object -Com "HTMLFile"
+              $HTML.write([ref]$Outage.properties.description)
+              $OutageDescription = $Html.body.innerText
+              $SplitDescription = $OutageDescription.split('How can we make our incident communications more useful?').split('How can customers make incidents like this less impactful?').split('How are we making incidents like this less likely or less impactful?').split('How did we respond?').split('What went wrong and why?').split('What happened?')
 
-          $OutProps = $Outage.properties
-          $tmp = @{
-            'Tracking ID'                                                         = [string]$Outage.name;
-            'Event Type'                                                          = [string]$OutProps.eventType;
-            'Event Source'                                                        = [string]$OutProps.eventSource;
-            'Status'                                                              = [string]$OutProps.status;
-            'Title'                                                               = [string]$OutProps.title;
-            'Level'                                                               = [string]$OutProps.level;
-            'Event Level'                                                         = [string]$OutProps.eventLevel;
-            'Start Time'                                                          = [string]$OutProps.impactStartTime;
-            'Mitigation Time'                                                     = [string]$OutProps.impactMitigationTime;
-            'Impacted Service'                                                    = [string]$OutProps.impact.impactedService;
-            'What happened'                                                       = ($SplitDescription[1]).Split([Environment]::NewLine)[1];
-            'What went wrong and why'                                             = ($SplitDescription[2]).Split([Environment]::NewLine)[1];
-            'How did we respond'                                                  = ($SplitDescription[3]).Split([Environment]::NewLine)[1];
-            'How are we making incidents like this less likely or less impactful' = ($SplitDescription[4]).Split([Environment]::NewLine)[1];
-            'How can customers make incidents like this less impactful'           = ($SplitDescription[5]).Split([Environment]::NewLine)[1];
-          }
-          $Global:OutagesSheet += $tmp
+              $OutProps = $Outage.properties
+              $tmp = @{
+                'Tracking ID'                                                         = [string]$Outage.name;
+                'Event Type'                                                          = [string]$OutProps.eventType;
+                'Event Source'                                                        = [string]$OutProps.eventSource;
+                'Status'                                                              = [string]$OutProps.status;
+                'Title'                                                               = [string]$OutProps.title;
+                'Level'                                                               = [string]$OutProps.level;
+                'Event Level'                                                         = [string]$OutProps.eventLevel;
+                'Start Time'                                                          = [string]$OutProps.impactStartTime;
+                'Mitigation Time'                                                     = [string]$OutProps.impactMitigationTime;
+                'Impacted Service'                                                    = [string]$OutProps.impact.impactedService;
+                'What happened'                                                       = ($SplitDescription[1]).Split([Environment]::NewLine)[1];
+                'What went wrong and why'                                             = ($SplitDescription[2]).Split([Environment]::NewLine)[1];
+                'How did we respond'                                                  = ($SplitDescription[3]).Split([Environment]::NewLine)[1];
+                'How are we making incidents like this less likely or less impactful' = ($SplitDescription[4]).Split([Environment]::NewLine)[1];
+                'How can customers make incidents like this less impactful'           = ($SplitDescription[5]).Split([Environment]::NewLine)[1];
+              }
+              $Global:OutagesSheet += $tmp
+            }
         }
-      }
 
 
       $Styles3 = @(
@@ -329,47 +345,51 @@ $Global:Runtime = Measure-Command -Expression {
       $OutagesWorksheet.Add('How can customers make incidents like this less impactful')
 
 
-      if (![string]::IsNullOrEmpty($Global:OutagesSheet)) {
-        $Global:OutagesSheet | ForEach-Object { [PSCustomObject]$_ } | Select-Object $OutagesWorksheet |
-        Export-Excel -Path $ExcelFile -WorksheetName 'Outages' -TableName 'TableOutage' -AutoSize -TableStyle $tableStyle -Style $Styles3
-      }
+      if (![string]::IsNullOrEmpty($Global:OutagesSheet)) 
+        {
+          $Global:OutagesSheet | ForEach-Object { [PSCustomObject]$_ } | Select-Object $OutagesWorksheet |
+          Export-Excel -Path $ExcelFile -WorksheetName 'Outages' -TableName 'TableOutage' -AutoSize -TableStyle $tableStyle -Style $Styles3
+        }
 
     }
 
     function Retirement {
       ####################    Creates the Retirement sheet
       $Global:RetirementSheet = @()
-      foreach ($Retires in $Global:Retirements) {
+      foreach ($Retires in $Global:Retirements) 
+        {
+          if (![string]::IsNullOrEmpty($Retires)) 
+            {
+              $HTML = New-Object -Com "HTMLFile"
+              $HTML.write([ref]$Retires.Summary)
+              $RetirementSummary = $Html.body.innerText
 
-        if (![string]::IsNullOrEmpty($Retires)) {
-          $HTML = New-Object -Com "HTMLFile"
-          $HTML.write([ref]$Retires.Summary)
-          $RetirementSummary = $Html.body.innerText
-
-          try {
-            $HTML = New-Object -Com "HTMLFile"
-            $HTML.write([ref]$Retires.Description)
-            $RetirementDescriptionFull = $Html.body.innerText
-            $SplitDescription = $RetirementDescriptionFull.split('Help and support').split('Required action')
-          }
-          catch {
-            $SplitDescription = " ", " "
-          }
-          $tmp = @{
-            'Subscription'     = [string]$Retires.Subscription;
-            'Tracking ID'      = [string]$Retires.TrackingId;
-            'Status'           = [string]$Retires.Status;
-            'Last Update Time' = [string]$Retires.LastUpdateTime;
-            'End Time'         = [string]$Retires.Endtime;
-            'Impacted Service' = [string]$Retires.ImpactedService;
-            'Title'            = [string]$Retires.Title;
-            'Summary'          = [string]$RetirementSummary;
-            'Required Action'  = [string]$SplitDescription[1];
-            'Details'          = [string]$SplitDescription[0]
-          }
-          $Global:RetirementSheet += $tmp
+              try 
+                {
+                  $HTML = New-Object -Com "HTMLFile"
+                  $HTML.write([ref]$Retires.Description)
+                  $RetirementDescriptionFull = $Html.body.innerText
+                  $SplitDescription = $RetirementDescriptionFull.split('Help and support').split('Required action')
+                }
+              catch 
+                {
+                  $SplitDescription = " ", " "
+                }
+              $tmp = @{
+                'Subscription'     = [string]$Retires.Subscription;
+                'Tracking ID'      = [string]$Retires.TrackingId;
+                'Status'           = [string]$Retires.Status;
+                'Last Update Time' = [string]$Retires.LastUpdateTime;
+                'End Time'         = [string]$Retires.Endtime;
+                'Impacted Service' = [string]$Retires.ImpactedService;
+                'Title'            = [string]$Retires.Title;
+                'Summary'          = [string]$RetirementSummary;
+                'Required Action'  = [string]$SplitDescription[1];
+                'Details'          = [string]$SplitDescription[0]
+              }
+              $Global:RetirementSheet += $tmp
+            }
         }
-      }
 
       $Styles4 = @(
         New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 50 -Range "A1"
@@ -394,34 +414,37 @@ $Global:Runtime = Measure-Command -Expression {
       $RetirementWorksheet.Add('Details')
       $RetirementWorksheet.Add('Required Action')
 
-      if (![string]::IsNullOrEmpty($Global:RetirementSheet)) {
-        $Global:RetirementSheet | ForEach-Object { [PSCustomObject]$_ } | Select-Object $RetirementWorksheet |
-        Export-Excel -Path $ExcelFile -WorksheetName 'Retirements' -TableName 'TableRetires' -AutoSize -TableStyle $tableStyle -Style $Styles4
-      }
+      if (![string]::IsNullOrEmpty($Global:RetirementSheet)) 
+        {
+          $Global:RetirementSheet | ForEach-Object { [PSCustomObject]$_ } | Select-Object $RetirementWorksheet |
+          Export-Excel -Path $ExcelFile -WorksheetName 'Retirements' -TableName 'TableRetires' -AutoSize -TableStyle $tableStyle -Style $Styles4
+        }
 
     }
 
     function Tickets {
       ####################    Creates the Tickets sheet
       $Global:TicketsSheet = @()
-      foreach ($Ticket in $Global:SupportTickets) {
-        if (![string]::IsNullOrEmpty($Ticket)) {
-          $tmp = @{
-            'Ticket ID'         = [string]$Ticket.properties.supportTicketId;
-            'Severity'          = [string]$Ticket.properties.severity;
-            'Status'            = [string]$Ticket.properties.status;
-            'Support Plan Type' = [string]$Ticket.properties.supportPlanType;
-            'Creation Date'     = [string]$Ticket.properties.createdDate;
-            'Modified Date'     = [string]$Ticket.properties.modifiedDate;
-            'Customer Contact'  = [string]$Ticket.properties.contactDetails.primaryEmailAddress;
-            'Title'             = [string]$Ticket.properties.title;
-            'Description'       = [string]$Ticket.properties.description;
-            'Related Resource'  = [string]$Ticket.properties.technicalTicketDetails.resourceId
-            #'Support Engineer'     = [string]$Ticket.properties.supportEngineer.emailAddress
-          }
-          $Global:TicketsSheet += $tmp
+      foreach ($Ticket in $Global:SupportTickets) 
+        {
+          if (![string]::IsNullOrEmpty($Ticket)) 
+            {
+              $tmp = @{
+                'Ticket ID'         = [string]$Ticket.properties.supportTicketId;
+                'Severity'          = [string]$Ticket.properties.severity;
+                'Status'            = [string]$Ticket.properties.status;
+                'Support Plan Type' = [string]$Ticket.properties.supportPlanType;
+                'Creation Date'     = [string]$Ticket.properties.createdDate;
+                'Modified Date'     = [string]$Ticket.properties.modifiedDate;
+                'Customer Contact'  = [string]$Ticket.properties.contactDetails.primaryEmailAddress;
+                'Title'             = [string]$Ticket.properties.title;
+                'Description'       = [string]$Ticket.properties.description;
+                'Related Resource'  = [string]$Ticket.properties.technicalTicketDetails.resourceId
+                #'Support Engineer'     = [string]$Ticket.properties.supportEngineer.emailAddress
+              }
+              $Global:TicketsSheet += $tmp
+            }
         }
-      }
 
       $Styles5 = @(
         New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 20 -NumberFormat '0' -Range "A1"
@@ -450,41 +473,44 @@ $Global:Runtime = Measure-Command -Expression {
       $TicketWorksheet.Add('Related Resource')
       #$TicketWorksheet.Add('Support Engineer')
 
-      if (![string]::IsNullOrEmpty($Global:TicketsSheet)) {
-        $Global:TicketsSheet | ForEach-Object { [PSCustomObject]$_ } | Select-Object $TicketWorksheet |
-        Export-Excel -Path $ExcelFile -WorksheetName 'Support Tickets' -TableName 'TableTickets' -AutoSize -TableStyle $tableStyle -Style $Styles5
-      }
+      if (![string]::IsNullOrEmpty($Global:TicketsSheet)) 
+        {
+          $Global:TicketsSheet | ForEach-Object { [PSCustomObject]$_ } | Select-Object $TicketWorksheet |
+          Export-Excel -Path $ExcelFile -WorksheetName 'Support Tickets' -TableName 'TableTickets' -AutoSize -TableStyle $tableStyle -Style $Styles5
+        }
     }
 
     function Health {
       ####################    Creates the Service Health sheet
       $Global:ServiceHealthSheet = @()
-      foreach ($Alert in $Global:ServiceHealth) {
-        if (![string]::IsNullOrEmpty($Alert)) {
-          $Service = if ($Alert.Services.count -gt 1) { $Alert.Services | ForEach-Object { $_ + ' /' } }else { $Alert.Services }
-          $Service = [string]$Service
-          $Service = if ($Service -like '* /*') { $Service -replace ".$" }else { $Service }
-          $Event = if ($Alert.EventType.count -gt 1) { $Alert.EventType | ForEach-Object { $_ + ' /' } }else { $Alert.EventType }
-          $Event = [string]$Event
-          $Event = if ($Event -like '* /*') { $Event -replace ".$" }else { $Event }
-          $Region = if ($Alert.Regions.count -gt 1) { $Alert.Regions | ForEach-Object { $_ + ' /' } }else { $Alert.Regions }
-          $Region = [string]$Region
-          $Region = if ($Region -like '* /*') { $Region -replace ".$" }else { $Region }
-          $Action = if ($Alert.ActionGroup.count -gt 1) { $Alert.ActionGroup | ForEach-Object { $_ + ' /' } }else { $Alert.ActionGroup }
-          $Action = [string]$Action
-          $Action = if ($Action -like '* /*') { $Action -replace ".$" }else { $Action }
-          $tmp = @{
-            'Name'         = [string]$Alert.Name;
-            'Enabled'      = [string]$Alert.Enabled;
-            'Subscription' = [string]$Alert.Subscription;
-            'Services'     = $Service;
-            'Event Type'   = $Event;
-            'Regions'      = $Region;
-            'Action Group' = $Action
-          }
-          $Global:ServiceHealthSheet += $tmp
+      foreach ($Alert in $Global:ServiceHealth) 
+        {
+          if (![string]::IsNullOrEmpty($Alert)) 
+            {
+              $Service = if ($Alert.Services.count -gt 1) { $Alert.Services | ForEach-Object { $_ + ' /' } }else { $Alert.Services }
+              $Service = [string]$Service
+              $Service = if ($Service -like '* /*') { $Service -replace ".$" }else { $Service }
+              $Event = if ($Alert.EventType.count -gt 1) { $Alert.EventType | ForEach-Object { $_ + ' /' } }else { $Alert.EventType }
+              $Event = [string]$Event
+              $Event = if ($Event -like '* /*') { $Event -replace ".$" }else { $Event }
+              $Region = if ($Alert.Regions.count -gt 1) { $Alert.Regions | ForEach-Object { $_ + ' /' } }else { $Alert.Regions }
+              $Region = [string]$Region
+              $Region = if ($Region -like '* /*') { $Region -replace ".$" }else { $Region }
+              $Action = if ($Alert.ActionGroup.count -gt 1) { $Alert.ActionGroup | ForEach-Object { $_ + ' /' } }else { $Alert.ActionGroup }
+              $Action = [string]$Action
+              $Action = if ($Action -like '* /*') { $Action -replace ".$" }else { $Action }
+              $tmp = @{
+                'Name'         = [string]$Alert.Name;
+                'Enabled'      = [string]$Alert.Enabled;
+                'Subscription' = [string]$Alert.Subscription;
+                'Services'     = $Service;
+                'Event Type'   = $Event;
+                'Regions'      = $Region;
+                'Action Group' = $Action
+              }
+              $Global:ServiceHealthSheet += $tmp
+            }
         }
-      }
 
       $Styles6 = @(
         New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 25 -NumberFormat '0' -Range "A1"
@@ -503,10 +529,11 @@ $Global:Runtime = Measure-Command -Expression {
       $ServiceHealthtWorksheet.Add('Regions')
       $ServiceHealthtWorksheet.Add('Action Group')
 
-      if (![string]::IsNullOrEmpty($Global:ServiceHealthSheet)) {
-        $Global:ServiceHealthSheet | ForEach-Object { [PSCustomObject]$_ } | Select-Object $ServiceHealthtWorksheet |
-        Export-Excel -Path $ExcelFile -WorksheetName 'Health Alerts' -TableName 'TableAlerts' -AutoSize -TableStyle $tableStyle -Style $Styles6
-      }
+      if (![string]::IsNullOrEmpty($Global:ServiceHealthSheet)) 
+        {
+          $Global:ServiceHealthSheet | ForEach-Object { [PSCustomObject]$_ } | Select-Object $ServiceHealthtWorksheet |
+          Export-Excel -Path $ExcelFile -WorksheetName 'Health Alerts' -TableName 'TableAlerts' -AutoSize -TableStyle $tableStyle -Style $Styles6
+        }
     }
 
     function MainSheet {
@@ -520,78 +547,82 @@ $Global:Runtime = Measure-Command -Expression {
       #$TextInfo = (Get-Culture).TextInfo
 
       # Build the APRL Recommendations
-      foreach ($Service in $Global:ServicesYAMLContent) {
-        if ($Service.recommendationResourceType -in $Global:AllResourceTypesOrdered.'Resource Type' -or $Global:FilterRecommendations -eq $false) {
-          $ID = $Service.aprlGuid
-          $resourceType = $Service.recommendationResourceType
+      foreach ($Service in $Global:ServicesYAMLContent) 
+        {
+          if ($Service.recommendationResourceType -in $Global:AllResourceTypesOrdered.'Resource Type' -or $Global:FilterRecommendations -eq $false) 
+            {
+              $ID = $Service.aprlGuid
+              $resourceType = $Service.recommendationResourceType
+              $tmp = @{
+                'Implemented?Yes/No'                                                                             = ('=IF((COUNTIF(ImpactedResources!D:D,"' + $ID + '")=0),"Yes","No")');
+                'Number of Impacted Resources?'                                                                  = ('=COUNTIF(ImpactedResources!D:D,"' + $ID + '")');
+                'Azure Service / Well-Architected'                                                               = 'Azure Service';
+                'Recommendation Source'                                                                          = 'APRL';
+                'Resiliency Category'                                                                            = $Service.recommendationControl;
+                'Azure Service Category / Well-Architected Area'                                                 = ($resourceType.split('/')[0]);
+                'Azure Service / Well-Architected Topic'                                                         = ($resourceType.split('/')[1]);
+                'Recommendation Title'                                                                           = $Service.description;
+                'Impact'                                                                                         = $Service.recommendationImpact;
+                'Best Practices Guidance'                                                                        = [string]$Service.longDescription;
+                'Read More'                                                                                      = [string]$Service.learnMoreLink.url;
+                'Potential Benefits'                                                                             = [string]$Service.potentialBenefits;
+                'Add associated Outage TrackingID and/or Support Request # and/or Service Retirement TrackingID' = '';
+                'Observation / Annotation'                                                                       = '';
+                'Recommendation Id'                                                                              = [string]$Service.aprlGuid
+              }
+              $Global:Recommendations += $tmp
+            }
+        }
+
+      # Builds the Advisor recommendations
+      foreach ($advisor in $Global:AdvisorContent) 
+        {
+          $ID = $advisor.recommendationId
+          $resourceType = $advisor.type.ToLower()
           $tmp = @{
-            'Implemented?Yes/No'                                                                             = ('=IF((COUNTIF(ImpactedResources!D:D,"' + $ID + '")=0),"Yes","No")');
-            'Number of Impacted Resources?'                                                                  = ('=COUNTIF(ImpactedResources!D:D,"' + $ID + '")');
+            'Implemented?Yes/No'                                                                             = ('=IF((COUNTIF(ImpactedResources!A:A,"' + $ID + '")=0),"Yes","No")');
+            'Number of Impacted Resources?'                                                                  = ('=COUNTIF(ImpactedResources!A:A,"' + $ID + '")');
             'Azure Service / Well-Architected'                                                               = 'Azure Service';
-            'Recommendation Source'                                                                          = 'APRL';
-            'Resiliency Category'                                                                            = $Service.recommendationControl;
+            'Recommendation Source'                                                                          = 'ADVISOR';
+            'Resiliency Category'                                                                            = $advisor.category;
             'Azure Service Category / Well-Architected Area'                                                 = ($resourceType.split('/')[0]);
             'Azure Service / Well-Architected Topic'                                                         = ($resourceType.split('/')[1]);
-            'Recommendation Title'                                                                           = $Service.description;
-            'Impact'                                                                                         = $Service.recommendationImpact;
-            'Best Practices Guidance'                                                                        = [string]$Service.longDescription;
-            'Read More'                                                                                      = [string]$Service.learnMoreLink.url;
-            'Potential Benefits'                                                                             = [string]$Service.potentialBenefits;
+            'Recommendation Title'                                                                           = $advisor.description;
+            'Impact'                                                                                         = $advisor.impact;
+            'Best Practices Guidance'                                                                        = '';
+            'Read More'                                                                                      = '';
+            'Potential Benefits'                                                                             = '';
+            'Add associated Outage TrackingID and/or Support Request # and/or Service Retirement TrackingID' = '';
+            'Observation / Annotation'                                                                       = '';
+            'Recommendation Id'                                                                              = [string]$advisor.recommendationId
+          }
+          $Global:Recommendations += $tmp
+        }
+
+      # Builds the WAF recommendations
+      foreach ($WAFYAML in $Global:WAFYAMLContent) 
+        {
+          $resourceType = $WAFYAML.recommendationResourceType
+          $ID = $WAFYAML.aprlGuid
+          $tmp = @{
+            'Implemented?Yes/No'                                                                             = ('=IF((COUNTIF(ImpactedResources!A:A,"' + $ID + '")=0),"Yes","No")');
+            'Number of Impacted Resources?'                                                                  = ('=COUNTIF(ImpactedResources!A:A,"' + $ID + '")');
+            'Azure Service / Well-Architected'                                                               = 'Well Architected';
+            'Recommendation Source'                                                                          = 'APRL';
+            'Resiliency Category'                                                                            = $WAFYAML.recommendationControl;
+            'Azure Service Category / Well-Architected Area'                                                 = ($resourceType.split('/')[0]);
+            'Azure Service / Well-Architected Topic'                                                         = ($resourceType.split('/')[1]);
+            'Recommendation Title'                                                                           = $WAFYAML.description;
+            'Impact'                                                                                         = $WAFYAML.recommendationImpact;
+            'Best Practices Guidance'                                                                        = [string]$WAFYAML.longDescription;
+            'Read More'                                                                                      = [string]$WAFYAML.learnMoreLink.url;
+            'Potential Benefits'                                                                             = [string]$WAFYAML.potentialBenefits;
             'Add associated Outage TrackingID and/or Support Request # and/or Service Retirement TrackingID' = '';
             'Observation / Annotation'                                                                       = '';
             'Recommendation Id'                                                                              = [string]$Service.aprlGuid
           }
           $Global:Recommendations += $tmp
         }
-      }
-
-      # Builds the Advisor recommendations
-      foreach ($advisor in $Global:AdvisorContent) {
-        $ID = $advisor.recommendationId
-        $resourceType = $advisor.type.ToLower()
-        $tmp = @{
-          'Implemented?Yes/No'                                                                             = ('=IF((COUNTIF(ImpactedResources!A:A,"' + $ID + '")=0),"Yes","No")');
-          'Number of Impacted Resources?'                                                                  = ('=COUNTIF(ImpactedResources!A:A,"' + $ID + '")');
-          'Azure Service / Well-Architected'                                                               = 'Azure Service';
-          'Recommendation Source'                                                                          = 'ADVISOR';
-          'Resiliency Category'                                                                            = $advisor.category;
-          'Azure Service Category / Well-Architected Area'                                                 = ($resourceType.split('/')[0]);
-          'Azure Service / Well-Architected Topic'                                                         = ($resourceType.split('/')[1]);
-          'Recommendation Title'                                                                           = $advisor.description;
-          'Impact'                                                                                         = $advisor.impact;
-          'Best Practices Guidance'                                                                        = '';
-          'Read More'                                                                                      = '';
-          'Potential Benefits'                                                                             = '';
-          'Add associated Outage TrackingID and/or Support Request # and/or Service Retirement TrackingID' = '';
-          'Observation / Annotation'                                                                       = '';
-          'Recommendation Id'                                                                              = [string]$advisor.recommendationId
-        }
-        $Global:Recommendations += $tmp
-      }
-
-      # Builds the WAF recommendations
-      foreach ($WAFYAML in $Global:WAFYAMLContent) {
-        $resourceType = $WAFYAML.recommendationResourceType
-        $ID = $WAFYAML.aprlGuid
-        $tmp = @{
-          'Implemented?Yes/No'                                                                             = ('=IF((COUNTIF(ImpactedResources!A:A,"' + $ID + '")=0),"Yes","No")');
-          'Number of Impacted Resources?'                                                                  = ('=COUNTIF(ImpactedResources!A:A,"' + $ID + '")');
-          'Azure Service / Well-Architected'                                                               = 'Well Architected';
-          'Recommendation Source'                                                                          = 'APRL';
-          'Resiliency Category'                                                                            = $WAFYAML.recommendationControl;
-          'Azure Service Category / Well-Architected Area'                                                 = ($resourceType.split('/')[0]);
-          'Azure Service / Well-Architected Topic'                                                         = ($resourceType.split('/')[1]);
-          'Recommendation Title'                                                                           = $WAFYAML.description;
-          'Impact'                                                                                         = $WAFYAML.recommendationImpact;
-          'Best Practices Guidance'                                                                        = [string]$WAFYAML.longDescription;
-          'Read More'                                                                                      = [string]$WAFYAML.learnMoreLink.url;
-          'Potential Benefits'                                                                             = [string]$WAFYAML.potentialBenefits;
-          'Add associated Outage TrackingID and/or Support Request # and/or Service Retirement TrackingID' = '';
-          'Observation / Annotation'                                                                       = '';
-          'Recommendation Id'                                                                              = [string]$Service.aprlGuid
-        }
-        $Global:Recommendations += $tmp
-      }
 
       $Styles2 = @(
         New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 14 -Range "A1:B1"
@@ -697,54 +728,57 @@ $Global:Runtime = Measure-Command -Expression {
       Start-Sleep 2
       Write-Host "Customizing Excel Charts. "
       # Open the Excel using the API to move the charts from the PivotTable sheet to the Charts sheet and change chart style, font, etc..
-      if ($Global:ExcelApplication) {
-        try {
-          Write-Debug 'Openning Excel File'
-          $Ex = $ExcelApplication.Workbooks.Open($ExcelFile)
-          Start-Sleep -Seconds 2
-          Write-Debug 'Openning Excel Sheets'
-          $WS = $ex.Worksheets | Where-Object { $_.Name -eq 'PivotTable' }
-          $WS2 = $ex.Worksheets | Where-Object { $_.Name -eq 'Charts' }
-          Write-Debug 'Moving Charts to Chart sheet'
-                        ($WS.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Cut()
-          $WS2.Paste()
-                        ($WS.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Cut()
-          $WS2.Paste()
+      if ($Global:ExcelApplication) 
+        {
+          try 
+            {
+              Write-Debug 'Openning Excel File'
+              $Ex = $ExcelApplication.Workbooks.Open($ExcelFile)
+              Start-Sleep -Seconds 2
+              Write-Debug 'Openning Excel Sheets'
+              $WS = $ex.Worksheets | Where-Object { $_.Name -eq 'PivotTable' }
+              $WS2 = $ex.Worksheets | Where-Object { $_.Name -eq 'Charts' }
+              Write-Debug 'Moving Charts to Chart sheet'
+              ($WS.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Cut()
+              $WS2.Paste()
+              ($WS.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Cut()
+              $WS2.Paste()
 
-          Write-Debug 'Reloading Excel Chart Sheet'
-          $WS2 = $ex.Worksheets | Where-Object { $_.Name -eq 'Charts' }
+              Write-Debug 'Reloading Excel Chart Sheet'
+              $WS2 = $ex.Worksheets | Where-Object { $_.Name -eq 'Charts' }
 
-          Write-Debug 'Editing ChartP0'
-                        ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartStyle = 222
-                        ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartArea.Font.Name = 'Segoe UI'
-                        ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartArea.Font.Size = 9
-                        ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartArea.Left = 18
-                        ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartArea.Top = 40
+              Write-Debug 'Editing ChartP0'
+              ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartStyle = 222
+              ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartArea.Font.Name = 'Segoe UI'
+              ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartArea.Font.Size = 9
+              ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartArea.Left = 18
+              ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartArea.Top = 40
 
-          Write-Debug 'Editing ChartP1'
-                        ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartStyle = 222
-                        ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartArea.Font.Name = 'Segoe UI'
-                        ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartArea.Font.Size = 9
-                        ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartArea.Left = 555
-                        ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartArea.Top = 40
+              Write-Debug 'Editing ChartP1'
+              ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartStyle = 222
+              ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartArea.Font.Name = 'Segoe UI'
+              ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartArea.Font.Size = 9
+              ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartArea.Left = 555
+              ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartArea.Top = 40
 
-          Write-Debug 'Editing Pivot Filters'
-          $WS.Range("B1").Formula = 'No'
-          $WS.Range("I1").Formula = 'No'
+              Write-Debug 'Editing Pivot Filters'
+              $WS.Range("B1").Formula = 'No'
+              $WS.Range("I1").Formula = 'No'
 
-          Write-Debug 'Saving File'
-          $Ex.Save()
-          Write-Debug 'Closing Excel Application'
-          $Ex.Close()
-          $ExcelApplication.Quit()
-          # Ensures the Excel process opened by the API is closed
-          Write-Debug 'Ensuring Excel Process is Closed.'
-          Get-Process -Name "excel" -ErrorAction Ignore | Where-Object { $_.CommandLine -like '*/automation*' } | Stop-Process
+              Write-Debug 'Saving File'
+              $Ex.Save()
+              Write-Debug 'Closing Excel Application'
+              $Ex.Close()
+              $ExcelApplication.Quit()
+              # Ensures the Excel process opened by the API is closed
+              Write-Debug 'Ensuring Excel Process is Closed.'
+              Get-Process -Name "excel" -ErrorAction Ignore | Where-Object { $_.CommandLine -like '*/automation*' } | Stop-Process
+            }
+          catch 
+            {
+              Write-Host "Error during the PivotTable + Charts customization" -BackgroundColor DarkRed
+            }
         }
-        catch {
-          Write-Host "Error during the PivotTable + Charts customization" -BackgroundColor DarkRed
-        }
-      }
 
     }
 
@@ -757,11 +791,6 @@ $Global:Runtime = Measure-Command -Expression {
     MainSheet
     PivotTables
     ExcelAPI
-
-    # [Optional] - export errors to a separate file
-    if ($errors.Count -gt 0) {
-      $errors | Export-Csv -Path "Errors.csv" -NoTypeInformation
-    }
 
   }
 
