@@ -61,6 +61,7 @@ $Global:Runtime = Measure-Command -Expression {
     $Global:RunbookQueryOverrides = @()
     $Global:RunbookSelectors = @{}
     $Global:AllResourceTypes = @()
+    $Global:GluedTypes = @()
     $Global:AllResourceTypesOrdered = @()
     $Global:AllAdvisories = @()
     $Global:AllRetirements = @()
@@ -70,76 +71,111 @@ $Global:Runtime = Measure-Command -Expression {
 
   function Requirements {
     # Install required modules
-    try {
-      Write-Host "Validating " -NoNewline
-      Write-Host "Az.ResourceGraph" -ForegroundColor Cyan -NoNewline
-      Write-Host " Module.."
-      $AzModules = Get-Module -Name Az.ResourceGraph -ListAvailable -ErrorAction silentlycontinue
-      if ($null -eq $AzModules) {
-        Write-Host "Installing Az Modules" -ForegroundColor Yellow
-        Install-Module -Name Az.ResourceGraph -SkipPublisherCheck -InformationAction SilentlyContinue
+    try 
+      {
+        Write-Host "Validating " -NoNewline
+        Write-Host "Az.ResourceGraph" -ForegroundColor Cyan -NoNewline
+        Write-Host " Module.."
+        $AzModules = Get-Module -Name Az.ResourceGraph -ListAvailable -ErrorAction silentlycontinue
+        if ($null -eq $AzModules) 
+          {
+            Write-Host "Installing Az Modules" -ForegroundColor Yellow
+            Install-Module -Name Az.ResourceGraph -SkipPublisherCheck -InformationAction SilentlyContinue
+          }
+        Write-Host "Validating " -NoNewline
+        Write-Host "Git" -ForegroundColor Cyan -NoNewline
+        Write-Host " Installation.."
+        $GitVersion = git --version
+        if ($null -eq $GitVersion) 
+          {
+            Write-Host "Missing Git" -ForegroundColor Red
+            Exit
+          }
       }
-      Write-Host "Validating " -NoNewline
-      Write-Host "Git" -ForegroundColor Cyan -NoNewline
-      Write-Host " Installation.."
-      $GitVersion = git --version
-      if ($null -eq $GitVersion) {
-        Write-Host "Missing Git" -ForegroundColor Red
-        Exit
+    catch 
+      {
+        # Report Error
+        $errorMessage = $_.Exception.Message
+        Write-Host "Error executing function Requirements: $errorMessage" -ForegroundColor Red
       }
-    }
-    catch {
-      # Report Error
-      $errorMessage = $_.Exception.Message
-      Write-Host "Error executing function Requirements: $errorMessage" -ForegroundColor Red
-    }
   }
 
   function LocalFiles {
     Write-Debug "Setting local path"
-    try {
-      # Clone the GitHub repository to a temporary folder
-      #$repoUrl = "https://github.com/azure/Azure-Proactive-Resiliency-Library"
-      $repoUrl = "https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2"
+    try 
+      {
+        # Clone the GitHub repository to a temporary folder
+        #$repoUrl = "https://github.com/azure/Azure-Proactive-Resiliency-Library"
+        $repoUrl = "https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2"
 
-      # Define script path as the default path to save files
-      $workingFolderPath = $PSScriptRoot
-      Set-Location -path $workingFolderPath;
-      if (!$Global:CShell) {
-        $Global:clonePath = "$workingFolderPath\Azure-Proactive-Resiliency-Library"
+        # Define script path as the default path to save files
+        $workingFolderPath = $PSScriptRoot
+        Set-Location -path $workingFolderPath;
+        if (!$Global:CShell) 
+          {
+            $Global:clonePath = "$workingFolderPath\Azure-Proactive-Resiliency-Library"
+          }
+        else 
+          {
+            $Global:clonePath = "$workingFolderPath/Azure-Proactive-Resiliency-Library"
+          }
+        Write-Debug "Checking default folder"
+        if ((Get-ChildItem -Path $Global:clonePath -Force -ErrorAction SilentlyContinue | Measure-Object).Count -gt 0) 
+          {
+            Write-Debug "APRL Folder does exist. Reseting it..."
+            Get-Item -Path $Global:clonePath | Remove-Item -Recurse -Force
+            git clone $repoUrl $clonePath --quiet
+          }
+        else 
+          {
+            git clone $repoUrl $clonePath --quiet
+          }
+        Write-Debug "Checking the version of the script"
+        if (!$Global:CShell) 
+          {
+            $RepoVersion = Get-Content -Path "$clonePath/tools/Version.json" -ErrorAction SilentlyContinue | ConvertFrom-Json
+          }
+        else 
+          {
+            $RepoVersion = Get-Content -Path "$clonePath\tools\Version.json" -ErrorAction SilentlyContinue | ConvertFrom-Json
+          }
+        if ($Version -ne $RepoVersion.Collector) 
+          {
+            Write-Host "This version of the script is outdated. " -BackgroundColor DarkRed
+            Write-Host "Please use a more recent version of the script." -BackgroundColor DarkRed
+          }
+        else 
+          {
+            Write-Host "This version of the script is current version. " -BackgroundColor DarkGreen
+          }
+
+        # Validates if queries are applicable based on Resource Types present in the current subscription
+        if (!$Global:CShell) 
+          {
+            $RootTypes = Get-ChildItem -Path "$clonePath\azure-resources\" -Directory
+          }
+        else 
+          {
+            $RootTypes = Get-ChildItem -Path "$clonePath/azure-resources/" -Directory
+          }
+        foreach ($RootType in $RootTypes) 
+          {
+            $RootName = $RootType.Name
+            $SubTypes = Get-ChildItem -Path $RootType -Directory
+            foreach ($SubDir in $SubTypes) 
+              {
+                $SubDirName = $SubDir.Name
+                $GlueType = ('Microsoft.' + $RootName + '/' + $SubDirName)
+                $Global:GluedTypes += $GlueType.ToLower()
+              }
+          }
       }
-      else {
-        $Global:clonePath = "$workingFolderPath/Azure-Proactive-Resiliency-Library"
+    catch 
+      {
+        # Report Error
+        $errorMessage = $_.Exception.Message
+        Write-Host "Error executing function LocalFiles: $errorMessage" -ForegroundColor Red
       }
-      Write-Debug "Checking default folder"
-      if ((Get-ChildItem -Path $Global:clonePath -Force -ErrorAction SilentlyContinue | Measure-Object).Count -gt 0) {
-        Write-Debug "APRL Folder does exist. Reseting it..."
-        Get-Item -Path $Global:clonePath | Remove-Item -Recurse -Force
-        git clone $repoUrl $clonePath --quiet
-      }
-      else {
-        git clone $repoUrl $clonePath --quiet
-      }
-      Write-Debug "Checking the version of the script"
-      if (!$Global:CShell) {
-        $RepoVersion = Get-Content -Path "$clonePath/tools/Version.json" -ErrorAction SilentlyContinue | ConvertFrom-Json
-      }
-      else {
-        $RepoVersion = Get-Content -Path "$clonePath\tools\Version.json" -ErrorAction SilentlyContinue | ConvertFrom-Json
-      }
-      if ($Version -ne $RepoVersion.Collector) {
-        Write-Host "This version of the script is outdated. " -BackgroundColor DarkRed
-        Write-Host "Please use a more recent version of the script." -BackgroundColor DarkRed
-      }
-      else {
-        Write-Host "This version of the script is current version. " -BackgroundColor DarkGreen
-      }
-    }
-    catch {
-      # Report Error
-      $errorMessage = $_.Exception.Message
-      Write-Host "Error executing function LocalFiles: $errorMessage" -ForegroundColor Red
-    }
   }
 
   function ConnectToAzure {
@@ -495,25 +531,28 @@ $Global:Runtime = Measure-Command -Expression {
       # Create the arrays used to store the kusto queries
       $kqlQueryMap = @{}
       $aprlKqlFiles = @()
-      $GluedTypes = @()
+      $ServiceNotAvailable = @()
 
-      # Validates if queries are applicable based on Resource Types present in the current subscription
-      if (!$Global:CShell) {
-        $RootTypes = Get-ChildItem -Path "$clonePath\azure-resources\" -Directory
-      }
-      else {
-        $RootTypes = Get-ChildItem -Path "$clonePath/azure-resources/" -Directory
-      }
-      foreach ($RootType in $RootTypes) {
-        $RootName = $RootType.Name
-        $SubTypes = Get-ChildItem -Path $RootType -Directory
-        foreach ($SubDir in $SubTypes) {
-          $SubDirName = $SubDir.Name
-          $GlueType = ('Microsoft.' + $RootName + '/' + $SubDirName)
-          if ($GlueType -in $resultAllResourceTypes.type) {
-            $aprlKqlFiles += Get-ChildItem -Path $SubDir -Filter "*.kql" -Recurse
-            $GluedTypes += $GlueType.ToLower()
+
+      foreach ($Type in $resultAllResourceTypes.type) {
+        if ($Type.ToLower() -in $Global:GluedTypes) {
+          $Type = $Type.ToLower()
+          $Type = $Type.replace('microsoft.', '')
+          $Provider = $Type.split('/')[0]
+          $ResourceType = $Type.split('/')[1]
+
+          $Path = ""
+          if (!$Global:CShell) {
+            $Path = ($clonePath + '\azure-resources\' + $Provider + '\' + $ResourceType)
+            $aprlKqlFiles += Get-ChildItem -Path $Path -Filter "*.kql" -Recurse
           }
+          else {
+            $Path = ($clonePath + '/azure-resources/' + $Provider + '/' + $ResourceType)
+            $aprlKqlFiles += Get-ChildItem -Path $Path -Filter "*.kql" -Recurse
+          }
+        }
+        else {
+          $ServiceNotAvailable += $Type
         }
       }
 
@@ -700,8 +739,7 @@ $Global:Runtime = Measure-Command -Expression {
       }
 
       #Store all resourcetypes not in APRL
-      foreach ($ResType in $GluedTypes) {
-        $type = $ResType
+      foreach ($type in $ServiceNotAvailable) {
         Write-Host "Type $type Not Available In APRL - Validate Service manually" -ForegroundColor Yellow
         $result = [PSCustomObject]@{
           validationAction = 'Service Not Available In APRL - Validate Service manually if Applicable, if not Delete this line'
