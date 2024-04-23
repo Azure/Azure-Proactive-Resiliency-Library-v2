@@ -240,7 +240,7 @@ $Global:Runtime = Measure-Command -Expression {
             $count = 1
             foreach ($Impact in $ServiceHighImpact)
                 {
-                    if($count -lt 5)
+                    if($count -le 5)
                         {
                             ($Slide16.Shapes | Where-Object {$_.Id -eq 9}).TextFrame.TextRange.Paragraphs($count).text = $Impact.'Recommendation Title'
                             $count ++
