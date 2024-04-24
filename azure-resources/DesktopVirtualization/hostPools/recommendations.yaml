@@ -63,7 +63,7 @@
   recommendationResourceType: Microsoft.Compute/virtualMachines
   recommendationMetadataState: Active
   longDescription: |
-    Leverage Azure Site Recovery (ASR) or implement Azure Backup for personal host pools for seamless failover and failback capabilities, enabling the replication of VMs supporting personal desktops to a secondary Azure region. In the event of a disaster or unexpected outage, this ensures the recovery of these VMs from a known-state.
+    Implement Azure Site Recovery (ASR) or Azure Backup for personal host pools to enable seamless failover and failback. This replicates VMs supporting personal desktops to a secondary Azure region, ensuring recovery from a known state in case of a disaster or outage.
   potentialBenefits: Ensures VM recovery & failover
   pgVerified: true
   publishedToLearn: false
