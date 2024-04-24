@@ -45,19 +45,25 @@ def get_resource_dirs_and_info():
     return [resource_folders, list_of_azure_rps, list_of_azure_rps_and_types]
 
 # Get all recommendations data from yaml files and filter out to only the high impact and pg verified recommendations
-def get_recommendations_data_and_filter(recommendations=get_recommendations()):
+def get_recommendations_data_and_filter(recommendations=get_recommendations(), filter_impact_level='High', filter_pg_verified=True):
   azure_resources_dir = os.path.join('..', '..', 'azure-resources')  # Path to the azure-resources directory
   azure_resources_dir = os.path.normpath(azure_resources_dir)
 
   total_number_of_recommendations = 0
-  total_number_of_high_impact_recommendations = 0
+  total_number_of_impact_recommendations = 0
   total_number_of_pg_verified_recommendations = 0
-  total_number_of_high_impact_and_pg_verified_recommendations = 0
-  high_impact_and_pg_verified_recommendations = {}
+  total_number_of_impact_and_pg_verified_recommendations = 0
+  impact_and_pg_verified_recommendations = {}
+  aprl_base_url = 'https://azure.github.io/Azure-Proactive-Resiliency-Library-v2/azure-resources/'
 
   for recommendation in recommendations:
       recommendation_path = os.path.join(azure_resources_dir, recommendation)  # Constructs an absolute path to the recommendation file
       recommendation_path = os.path.normpath(recommendation_path)  # Normalize the path to ensure it's correctly formatted
+      if "\\" in recommendation_path:
+        recommendation_path_parts = recommendation_path.split('\\')
+      else:
+        recommendation_path_parts = recommendation_path.split('/')
+      aprl_resource_complete_url = aprl_base_url + recommendation_path_parts[3] + '/' + recommendation_path_parts[4]  # Construct the complete URL to the APRL resource
       try:
           with open(recommendation_path, 'r', encoding='utf-8-sig') as file:
               # Load the file as a list of dictionaries
@@ -67,45 +73,75 @@ def get_recommendations_data_and_filter(recommendations=get_recommendations()):
               if isinstance(recommendations_data, list):
                   for rec in recommendations_data:
                       total_number_of_recommendations += 1
-                      if rec.get('recommendationImpact') == 'High':
-                          total_number_of_high_impact_recommendations += 1
-                      if rec.get('pgVerified') == True:
+                      if rec.get('recommendationImpact') == filter_impact_level:
+                          total_number_of_impact_recommendations += 1
+                      if filter_pg_verified == True and rec.get('pgVerified') == True:
                           total_number_of_pg_verified_recommendations += 1
-                      if rec.get('recommendationImpact') == 'High' and rec.get('pgVerified') == True:
-                          total_number_of_high_impact_and_pg_verified_recommendations += 1
-                          high_impact_and_pg_verified_recommendations.update({rec["aprlGuid"]: {"recommendationResourceType": rec["recommendationResourceType"], "description": rec["description"], "publishedToLearn": rec["publishedToLearn"], "publishedToAdvisor": rec["publishedToAdvisor"], "automationAvailable": rec["automationAvailable"]}})
+                      if filter_pg_verified == True:
+                        if rec.get('recommendationImpact') == filter_impact_level and rec.get('pgVerified') == True:
+                            total_number_of_impact_and_pg_verified_recommendations += 1
+                            impact_and_pg_verified_recommendations.update({rec["aprlGuid"]:\
+                            {"recommendationResourceType": rec["recommendationResourceType"],\
+                            "description": rec["description"],\
+                            "recommendationControl": rec["recommendationControl"],\
+                            "recommendationImpact": rec["recommendationImpact"],\
+                            "recommendationMetadataState": rec["recommendationMetadataState"],\
+                            "publishedToLearn": rec["publishedToLearn"],\
+                            "publishedToAdvisor": rec["publishedToAdvisor"],\
+                            "automationAvailable": rec["automationAvailable"],\
+                            "aprlUrlForResource": aprl_resource_complete_url,\
+                            "recommendationFilePath": recommendation_path}})
+                      if filter_pg_verified == False:
+                        if rec.get('recommendationImpact') == filter_impact_level:
+                            impact_and_pg_verified_recommendations.update({rec["aprlGuid"]:\
+                            {"recommendationResourceType": rec["recommendationResourceType"],\
+                            "description": rec["description"],\
+                            "recommendationControl": rec["recommendationControl"],\
+                            "recommendationImpact": rec["recommendationImpact"],\
+                            "recommendationMetadataState": rec["recommendationMetadataState"],\
+                            "publishedToLearn": rec["publishedToLearn"],\
+                            "publishedToAdvisor": rec["publishedToAdvisor"],\
+                            "automationAvailable": rec["automationAvailable"],\
+                            "aprlUrlForResource": aprl_resource_complete_url,\
+                            "recommendationFilePath": recommendation_path}})
               else:
                   print(f"Unexpected data structure in {recommendation_path}: {type(recommendations_data)}")
       except FileNotFoundError:
           print(f"File not found: {recommendation_path}")
-  return total_number_of_recommendations, total_number_of_high_impact_recommendations, total_number_of_pg_verified_recommendations, total_number_of_high_impact_and_pg_verified_recommendations, high_impact_and_pg_verified_recommendations
+  return total_number_of_recommendations, total_number_of_impact_recommendations, total_number_of_pg_verified_recommendations, total_number_of_impact_and_pg_verified_recommendations, impact_and_pg_verified_recommendations
 
 # Write the high impact and pg verified recommendations from APRL to an Excel file
-def write_to_excel(high_impact_and_pg_verified_recommendations=get_recommendations_data_and_filter()[4]):
-  df = pd.DataFrame(data=high_impact_and_pg_verified_recommendations)
-  df = df.T  # Transpose the DataFrame
-  writer = pd.ExcelWriter('aprlPgVerifiedAndHighImpactRecommendations.xlsx', engine='xlsxwriter')
-  df.to_excel(writer, sheet_name='APRL High Impact & PG Verified', index=False)
+def write_to_excel(high_impact_and_pg_verified_recommendations=get_recommendations_data_and_filter()[4], output_file_name='aprlFilteredRecommendations.xlsx'):
+  try:
+      df = pd.DataFrame(data=high_impact_and_pg_verified_recommendations)
+      df = df.T  # Transpose the DataFrame
+      writer = pd.ExcelWriter(output_file_name, engine='xlsxwriter')
+      df.to_excel(writer, sheet_name='APRL Filtered Recommendations', index=False)
 
-  workbook = writer.book
-  worksheet = writer.sheets['APRL High Impact & PG Verified']
-  (max_row, max_col) = df.shape
+      workbook = writer.book
+      worksheet = writer.sheets['APRL Filtered Recommendations']
+      (max_row, max_col) = df.shape
 
-  # Create a center alignment format
-  center_format = workbook.add_format({'align': 'center'})
+      # Create a center alignment format
+      center_format = workbook.add_format({'align': 'center'})
 
-  # Apply center alignment format to all columns except the first two
-  worksheet.set_column(2, max_col - 1, None, center_format)  # Start from the third column
+      # Apply center alignment format to all columns except the first two
+      worksheet.set_column(2, max_col - 1, None, center_format)  # Start from the third column
 
-  # Define the table with column settings
-  column_settings = [{"header": column} for column in df.columns]
-  worksheet.add_table(0, 0, max_row, max_col - 1, {"columns": column_settings})
+      # Define the table with column settings
+      column_settings = [{"header": column} for column in df.columns]
+      worksheet.add_table(0, 0, max_row, max_col - 1, {"columns": column_settings})
 
-  # Autofit the columns
-  worksheet.autofit()
+      # Autofit the columns
+      worksheet.autofit()
 
-  # Close the Pandas Excel writer and output the Excel file
-  writer.close()
+      # Close the Pandas Excel writer and output the Excel file
+      writer.close()
+      print(colored(f'Excel file created: {output_file_name}', 'light_green'), end='\n')
+  except PermissionError as e:
+      print(colored(f"Failed to save the file {output_file_name}: {e}. Please ensure the file is not open in another program and you have write permissions to the directory and file.", 'red'), end='\n')
+  except Exception as e:
+      print(colored(f"An unexpected error occurred: {e}", 'red'), end='\n')
 
 # *** Variables ***
 out_get_number_of_folders_root = get_number_of_folders()[0]
