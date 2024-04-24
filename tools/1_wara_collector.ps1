@@ -567,7 +567,6 @@ $Global:Runtime = Measure-Command -Expression {
           {
             if ($Type.ToLower() -in $Global:GluedTypes)
               {
-                $Type = $Type.ToLower()
                 $Type = $Type.replace('microsoft.', '')
                 $Provider = $Type.split('/')[0]
                 $ResourceType = $Type.split('/')[1]
@@ -580,8 +579,9 @@ $Global:Runtime = Measure-Command -Expression {
                   }
                 else
                   {
-                    $Path = ($clonePath + '/azure-resources/' + $Provider + '/' + $ResourceType)
-                    $aprlKqlFiles += Get-ChildItem -Path $Path -Filter "*.kql" -Recurse
+                    $Path = ($clonePath + '/azure-resources/')
+                    $ProvPath = ($Provider + '/' + $ResourceType)
+                    $aprlKqlFiles += Get-ChildItem -Path $Path -Filter "*.kql" -Recurse | Where-Object {$_.FullName -like "*$ProvPath*"}
                   }
               }
             else
@@ -1165,7 +1165,7 @@ $Global:Runtime = Measure-Command -Expression {
 
 
   #Call the functions
-  $Global:Version = "2.0.6"
+  $Global:Version = "2.0.7"
   Write-Host "Version: " -NoNewline
   Write-Host $Global:Version -ForegroundColor DarkBlue
 
