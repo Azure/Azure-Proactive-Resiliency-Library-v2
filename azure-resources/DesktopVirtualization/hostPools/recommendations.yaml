@@ -6,10 +6,7 @@
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
   recommendationMetadataState: Active
   longDescription: |
-    At least one Validation Pool to have early warning if a planned update to AVD causes an issue. support to adjust limits based on your business requirements. To handle a large number of users, consider scaling horizontally by creating multiple host pools.
-    Also check that the host pool has been used regularly to test planned updates.
-    Host pools are a collection of one or more identical virtual machines within Azure Virtual Desktop environment. We highly recommend you create a validation host pool where service updates are applied first. Validation host pools let you monitor service updates before the service applies them to your standard or non-validation environment. Without a validation host pool, you may not discover changes that introduce errors, which could result in downtime for users in your standard environment.
-    To ensure your apps work with the latest updates, the validation host pool should be as similar to host pools in your non-validation environment as possible. Users should connect as frequently to the validation host pool as they do to the standard host pool. If you have automated testing on your host pool, you should include automated testing on the validation host pool.
+    Create a Validation Pool for early issue detection with planned AVD updates. Adjust limits based on needs. Scale by adding multiple host pools for more users. Regularly test updates on host pools. Validate changes before applying to main environment to avoid downtime.
   potentialBenefits: Enhanced environment stability
   pgVerified: true
   publishedToLearn: false
