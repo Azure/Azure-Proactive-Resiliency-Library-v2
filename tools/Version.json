@@ -1,7 +1,7 @@
 [
-    {
-        "Collector": "2.0.5",
-        "Analyzer": "2.0.4",
-        "Generator": "2.0.3"
-    }
+  {
+    "Collector": "2.0.6",
+    "Analyzer": "2.0.5",
+    "Generator": "2.0.4"
+  }
 ]
