@@ -15,15 +15,9 @@ parser.add_argument('--allow_non_pg_verified', action='store_true', help='Only P
 parser.add_argument('--output_file_name', type=str, default='aprlFilteredRecommendations.xlsx', help='Name of the output Excel file. This will be output to the directory where you are running this script from.')
 args = parser.parse_args()
 
-print(colored(f'Path to recommendations: {args.path_to_recommendations}', 'light_yellow'), end='\n')
-print(colored(f'Filter impact level: {args.filter_impact_level}', 'light_yellow'), end='\n')
-print(colored(f'Allow non-PG Verified: {args.allow_non_pg_verified}', 'light_yellow'), end='\n')
-print(colored(f'Output file name: {args.output_file_name}', 'light_yellow'), end='\n')
-
-
 # *** Functions ***
 # **Find all recommendations.yaml files in the azure-resources directory and child folders**
-def get_number_of_folders(path_to_recommendations='../../azure-resources'):
+def get_number_of_folders(path_to_recommendations=args.path_to_recommendations):
     root_folders = glob.glob('*', root_dir=path_to_recommendations, recursive=False)
     number_of_root_folders = len(root_folders)-1
 
@@ -35,7 +29,7 @@ def get_number_of_folders(path_to_recommendations='../../azure-resources'):
     return number_of_root_folders, number_of_child_folders
 
 # Get all recommendations.yml from the /azure-resources directory and child folders
-def get_recommendations(path_to_recommendations='../../azure-resources'):
+def get_recommendations(path_to_recommendations=args.path_to_recommendations):
     recommendations = glob.glob('./**/recommendations.yaml', root_dir=path_to_recommendations, recursive=True)
     return recommendations
 
@@ -61,8 +55,7 @@ def get_resource_dirs_and_info():
 
 # Get all recommendations data from yaml files and filter out to only the high impact and pg verified recommendations
 def get_recommendations_data_and_filter(recommendations=get_recommendations(path_to_recommendations=args.path_to_recommendations), filter_impact_level=args.filter_impact_level, allow_non_pg_verified=args.allow_non_pg_verified):
-  azure_resources_dir = os.path.join('..', '..', 'azure-resources')  # Path to the azure-resources directory
-  azure_resources_dir = os.path.normpath(azure_resources_dir)
+  azure_resources_dir = os.path.normpath(args.path_to_recommendations)
 
   aprl_filtered_recommendations = {}
   aprl_base_url = 'https://azure.github.io/Azure-Proactive-Resiliency-Library-v2/azure-resources/'
@@ -74,7 +67,7 @@ def get_recommendations_data_and_filter(recommendations=get_recommendations(path
         recommendation_path_parts = recommendation_path.split('\\')
       else:
         recommendation_path_parts = recommendation_path.split('/')
-      aprl_resource_complete_url = aprl_base_url + recommendation_path_parts[3] + '/' + recommendation_path_parts[4]  # Construct the complete URL to the APRL resource
+      aprl_resource_complete_url = aprl_base_url + recommendation_path_parts[-3] + '/' + recommendation_path_parts[-2]  # Construct the complete URL to the APRL resource
       try:
           with open(recommendation_path, 'r', encoding='utf-8-sig') as file:
               # Load the file as a list of dictionaries
@@ -187,7 +180,7 @@ def write_to_excel(aprl_filtered_recommendations=get_recommendations_data_and_fi
 
       # Close the Pandas Excel writer and output the Excel file
       writer.close()
-      print(colored(f'Excel file created: {output_file_name}', 'light_green'), end='\n')
+      print(colored(f'XLSX file created successfully: {os.path.abspath(output_file_name)}', 'light_green'), end='\n')
   except PermissionError as e:
       print(colored(f"Failed to save the file {output_file_name}: {e}. Please ensure the file is not open in another program and you have write permissions to the directory and file.", 'red'), end='\n')
   except Exception as e:
@@ -202,7 +195,13 @@ out_azure_rps = out_get_resource_dirs_and_info[1]
 out_azure_rps_and_types = out_get_resource_dirs_and_info[2]
 
 # *** Main ***
-print(colored(f'*** Recommendation Reporter ***', 'black', 'on_light_yellow'), end='\n\n')
+print(colored(f'*** APRL Recommendation Filtering Tool ***', 'black', 'on_light_yellow'), end='\n\n')
+
+print(colored(f'---> Arguments provided (or default values) to be used for script run...', 'black', 'on_light_grey'), end='\n')
+print(colored(f'     --path_to_recommendations: {args.path_to_recommendations}', 'black', 'on_light_grey'), end='\n')
+print(colored(f'     --filter_impact_level: {args.filter_impact_level}', 'black', 'on_light_grey'), end='\n')
+print(colored(f'     --allow_non_pg_verified: {args.allow_non_pg_verified}', 'black', 'on_light_grey'), end='\n')
+print(colored(f'     --Output file name: {args.output_file_name}', 'black', 'on_light_grey'), end='\n\n')
 
 print(colored(f'Found {len(out_get_recommendations)} recommendations.yaml files in the azure-resources directory out of a total number of {out_get_number_of_folders_child} Azure resource directories...', 'light_cyan'), end='\n')
 
@@ -216,39 +215,19 @@ else:
   color = 'light_green'
 print(colored(f'{percentage}%', color, attrs=['bold']), end='\n\n')
 
-# print(f'Recommendation\'s Path: {out_get_recommendations}', end='\n\n')
-
-print(colored(f'Found recommendations for the following {len(out_azure_rps)} Azure RP Namespaces:', 'light_cyan'))
+print(colored(f'---> Found recommendations for the following {len(out_azure_rps)} Azure Resource Provider Namespaces:', 'light_cyan'))
 index = 0
 for azure_rp in out_azure_rps:
-    index += 1
-    print(colored(f'{index}: Microsoft.{azure_rp}', 'light_yellow'))
+  index += 1
+  print(colored(f'     {index}: Microsoft.{azure_rp}', 'light_cyan'))
 
 index = 0
-print(colored(f'\nFound recommendations for the following {len(out_azure_rps_and_types)} Azure Resource Types:', 'light_cyan'))
+print(colored(f'\n---> Found recommendations for the following {len(out_azure_rps_and_types)} Azure Resource Types:', 'light_cyan'))
 for azure_rp_w_type in out_azure_rps_and_types:
-    index += 1
-    print(colored(f'{index}: Microsoft.{azure_rp_w_type}', 'light_yellow'))
+  index += 1
+  print(colored(f'     {index}: Microsoft.{azure_rp_w_type}', 'light_cyan'))
+print()
 
-
-
-
+print(colored(f'---> Filtering APRL recommendations to Recommendation Impact Level: {args.filter_impact_level}, Allow Non-PG Verified Recommendations?: {args.allow_non_pg_verified}...', 'black', 'on_light_grey'), end='\n\n')
 write_to_excel()
-
-# high_impact_vs_total_percentage = round((total_number_of_high_impact_recommendations/total_number_of_recommendations)*100, 2)
-# pg_verified_vs_total_percentage = round((total_number_of_pg_verified_recommendations/total_number_of_recommendations)*100, 2)
-# pg_verified_vs_high_impact_percentage = round((total_number_of_high_impact_and_pg_verified_recommendations/total_number_of_high_impact_recommendations)*100, 2)
-# pg_verified_and_high_impact_vs_total_percentage = round((total_number_of_high_impact_and_pg_verified_recommendations/total_number_of_recommendations)*100, 2)
-# print(high_impact_vs_total_percentage)
-# print(pg_verified_vs_total_percentage)
-# print(pg_verified_vs_high_impact_percentage)
-# print(pg_verified_and_high_impact_vs_total_percentage)
-# print(total_number_of_recommendations)
-# print(len(high_impact_and_pg_verified_recommendations))
-# print(total_number_of_high_impact_and_pg_verified_recommendations)
-# print(high_impact_and_pg_verified_recommendations)
-# print()
-# print(json.dumps(high_impact_and_pg_verified_recommendations))
-# print(total_number_of_high_impact_recommendations)
-# print(total_number_of_pg_verified_recommendations)
 
