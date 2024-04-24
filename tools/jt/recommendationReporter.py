@@ -1,10 +1,25 @@
 import os
+import argparse
 import glob
 from termcolor import colored, cprint
 import yaml
 import json
 import pandas as pd
 import xlsxwriter
+
+# *** Arguments ***
+parser = argparse.ArgumentParser(description='Process some integers.')
+parser.add_argument('--path_to_recommendations', type=str, default='../../azure-resources', help='Path to the azure-resources directory in the APRL repo that you have cloned locally.')
+parser.add_argument('--filter_impact_level', type=str, default='High', choices=['High', 'Medium', 'Low', 'All'] , help='Filter level for impact (e.g., High, Medium, Low, All)')
+parser.add_argument('--allow_non_pg_verified', action='store_true', help='Only PG verified recommendations are exported by default. Use this flag to include non-PG verified recommendations also.')
+parser.add_argument('--output_file_name', type=str, default='aprlFilteredRecommendations.xlsx', help='Name of the output Excel file. This will be output to the directory where you are running this script from.')
+args = parser.parse_args()
+
+print(colored(f'Path to recommendations: {args.path_to_recommendations}', 'light_yellow'), end='\n')
+print(colored(f'Filter impact level: {args.filter_impact_level}', 'light_yellow'), end='\n')
+print(colored(f'Allow non-PG Verified: {args.allow_non_pg_verified}', 'light_yellow'), end='\n')
+print(colored(f'Output file name: {args.output_file_name}', 'light_yellow'), end='\n')
+
 
 # *** Functions ***
 # **Find all recommendations.yaml files in the azure-resources directory and child folders**
@@ -45,7 +60,7 @@ def get_resource_dirs_and_info():
     return [resource_folders, list_of_azure_rps, list_of_azure_rps_and_types]
 
 # Get all recommendations data from yaml files and filter out to only the high impact and pg verified recommendations
-def get_recommendations_data_and_filter(recommendations=get_recommendations(), filter_impact_level='High', filter_pg_verified=True):
+def get_recommendations_data_and_filter(recommendations=get_recommendations(path_to_recommendations=args.path_to_recommendations), filter_impact_level=args.filter_impact_level, allow_non_pg_verified=args.allow_non_pg_verified):
   azure_resources_dir = os.path.join('..', '..', 'azure-resources')  # Path to the azure-resources directory
   azure_resources_dir = os.path.normpath(azure_resources_dir)
 
@@ -68,37 +83,65 @@ def get_recommendations_data_and_filter(recommendations=get_recommendations(), f
           with open(recommendation_path, 'r', encoding='utf-8-sig') as file:
               # Load the file as a list of dictionaries
               recommendations_data = yaml.safe_load(file)
-              print(colored(f'\n{recommendation_path} has {len(recommendations_data)} recommendations in total', 'light_green'), end='\n')
+              # print(colored(f'\n{recommendation_path} has {len(recommendations_data)} recommendations in total', 'light_green'), end='\n')
               # Check if recommendations_data is a list and iterate over it
               if isinstance(recommendations_data, list):
                   for rec in recommendations_data:
                       total_number_of_recommendations += 1
-                      if rec.get('recommendationImpact') == filter_impact_level:
-                          total_number_of_impact_recommendations += 1
-                      if filter_pg_verified == True and rec.get('pgVerified') == True:
-                          total_number_of_pg_verified_recommendations += 1
-                      if filter_pg_verified == True:
-                        if rec.get('recommendationImpact') == filter_impact_level and rec.get('pgVerified') == True:
-                            total_number_of_impact_and_pg_verified_recommendations += 1
-                            impact_and_pg_verified_recommendations.update({rec["aprlGuid"]:\
-                            {"recommendationResourceType": rec["recommendationResourceType"],\
-                            "description": rec["description"],\
-                            "recommendationControl": rec["recommendationControl"],\
-                            "recommendationImpact": rec["recommendationImpact"],\
-                            "recommendationMetadataState": rec["recommendationMetadataState"],\
-                            "publishedToLearn": rec["publishedToLearn"],\
-                            "publishedToAdvisor": rec["publishedToAdvisor"],\
-                            "automationAvailable": rec["automationAvailable"],\
-                            "aprlUrlForResource": aprl_resource_complete_url,\
-                            "recommendationFilePath": recommendation_path}})
-                      if filter_pg_verified == False:
+                      if filter_impact_level == 'All':
+                          if rec.get('recommendationImpact') == 'High' or rec.get('recommendationImpact') == 'Medium' or rec.get('recommendationImpact') == 'Low':
+                            total_number_of_impact_recommendations += 1
+                      elif filter_impact_level != 'All':
                         if rec.get('recommendationImpact') == filter_impact_level:
+                            total_number_of_impact_recommendations += 1
+                      if rec.get('pgVerified') == True:
+                          total_number_of_pg_verified_recommendations += 1
+                      if allow_non_pg_verified == False:
+                        if filter_impact_level == 'All':
+                          if rec.get('recommendationImpact') == 'High' or rec.get('recommendationImpact') == 'Medium' or rec.get('recommendationImpact') == 'Low':
+                            if rec.get('pgVerified') == True:
+                                total_number_of_impact_and_pg_verified_recommendations += 1
+                                impact_and_pg_verified_recommendations.update({rec["aprlGuid"]:\
+                                {"recommendationResourceType": rec["recommendationResourceType"],\
+                                "aprlGuid": rec["aprlGuid"],\
+                                "description": rec["description"],\
+                                "recommendationControl": rec["recommendationControl"],\
+                                "recommendationImpact": rec["recommendationImpact"],\
+                                "recommendationMetadataState": rec["recommendationMetadataState"],\
+                                "pgVerified": rec["pgVerified"],\
+                                "publishedToLearn": rec["publishedToLearn"],\
+                                "publishedToAdvisor": rec["publishedToAdvisor"],\
+                                "automationAvailable": rec["automationAvailable"],\
+                                "aprlUrlForResource": aprl_resource_complete_url,\
+                                "recommendationFilePath": recommendation_path}})
+                        elif filter_impact_level != 'All':
+                          if rec.get('recommendationImpact') == filter_impact_level and rec.get('pgVerified') == True:
+                              print(f"Only PG verified recommendations are allowed.")
+                              total_number_of_impact_and_pg_verified_recommendations += 1
+                              impact_and_pg_verified_recommendations.update({rec["aprlGuid"]:\
+                              {"recommendationResourceType": rec["recommendationResourceType"],\
+                              "aprlGuid": rec["aprlGuid"],\
+                              "description": rec["description"],\
+                              "recommendationControl": rec["recommendationControl"],\
+                              "recommendationImpact": rec["recommendationImpact"],\
+                              "recommendationMetadataState": rec["recommendationMetadataState"],\
+                              "pgVerified": rec["pgVerified"],\
+                              "publishedToLearn": rec["publishedToLearn"],\
+                              "publishedToAdvisor": rec["publishedToAdvisor"],\
+                              "automationAvailable": rec["automationAvailable"],\
+                              "aprlUrlForResource": aprl_resource_complete_url,\
+                              "recommendationFilePath": recommendation_path}})
+                      if allow_non_pg_verified == True:
+                          if rec.get('recommendationImpact') == filter_impact_level:
+                            print(f"Non-PG verified recommendations are allowed.")
                             impact_and_pg_verified_recommendations.update({rec["aprlGuid"]:\
                             {"recommendationResourceType": rec["recommendationResourceType"],\
+                            "aprlGuid": rec["aprlGuid"],\
                             "description": rec["description"],\
                             "recommendationControl": rec["recommendationControl"],\
                             "recommendationImpact": rec["recommendationImpact"],\
                             "recommendationMetadataState": rec["recommendationMetadataState"],\
+                            "pgVerified": rec.get("pgVerified", False),\
                             "publishedToLearn": rec["publishedToLearn"],\
                             "publishedToAdvisor": rec["publishedToAdvisor"],\
                             "automationAvailable": rec["automationAvailable"],\
@@ -111,7 +154,7 @@ def get_recommendations_data_and_filter(recommendations=get_recommendations(), f
   return total_number_of_recommendations, total_number_of_impact_recommendations, total_number_of_pg_verified_recommendations, total_number_of_impact_and_pg_verified_recommendations, impact_and_pg_verified_recommendations
 
 # Write the high impact and pg verified recommendations from APRL to an Excel file
-def write_to_excel(high_impact_and_pg_verified_recommendations=get_recommendations_data_and_filter()[4], output_file_name='aprlFilteredRecommendations.xlsx'):
+def write_to_excel(high_impact_and_pg_verified_recommendations=get_recommendations_data_and_filter(filter_impact_level=args.filter_impact_level, allow_non_pg_verified=args.allow_non_pg_verified)[4], output_file_name=args.output_file_name):
   try:
       df = pd.DataFrame(data=high_impact_and_pg_verified_recommendations)
       df = df.T  # Transpose the DataFrame
