@@ -25,8 +25,7 @@
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
   recommendationMetadataState: Active
   longDescription: |
-    Ensure schedules have been created to provide maintenance windows for AVD agent updates.
-    The Scheduled Agent Updates feature lets you create up to two maintenance windows for the Azure Virtual Desktop agent, side-by-side stack, and Geneva Monitoring agent to get updated so that updates don't happen during peak business hours.
+    Create maintenance schedules for AVD agent updates to avoid disruptions. Use Scheduled Agent Updates to set maintenance windows for updating Azure Virtual Desktop agent, side-by-side stack, and Geneva Monitoring agent.
   potentialBenefits: Enhanced environment stability
   pgVerified: true
   publishedToLearn: false
