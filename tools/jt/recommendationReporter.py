@@ -64,11 +64,7 @@ def get_recommendations_data_and_filter(recommendations=get_recommendations(path
   azure_resources_dir = os.path.join('..', '..', 'azure-resources')  # Path to the azure-resources directory
   azure_resources_dir = os.path.normpath(azure_resources_dir)
 
-  total_number_of_recommendations = 0
-  total_number_of_impact_recommendations = 0
-  total_number_of_pg_verified_recommendations = 0
-  total_number_of_impact_and_pg_verified_recommendations = 0
-  impact_and_pg_verified_recommendations = {}
+  aprl_filtered_recommendations = {}
   aprl_base_url = 'https://azure.github.io/Azure-Proactive-Resiliency-Library-v2/azure-resources/'
 
   for recommendation in recommendations:
@@ -87,76 +83,87 @@ def get_recommendations_data_and_filter(recommendations=get_recommendations(path
               # Check if recommendations_data is a list and iterate over it
               if isinstance(recommendations_data, list):
                   for rec in recommendations_data:
-                      total_number_of_recommendations += 1
-                      if filter_impact_level == 'All':
-                          if rec.get('recommendationImpact') == 'High' or rec.get('recommendationImpact') == 'Medium' or rec.get('recommendationImpact') == 'Low':
-                            total_number_of_impact_recommendations += 1
-                      elif filter_impact_level != 'All':
-                        if rec.get('recommendationImpact') == filter_impact_level:
-                            total_number_of_impact_recommendations += 1
-                      if rec.get('pgVerified') == True:
-                          total_number_of_pg_verified_recommendations += 1
                       if allow_non_pg_verified == False:
                         if filter_impact_level == 'All':
                           if rec.get('recommendationImpact') == 'High' or rec.get('recommendationImpact') == 'Medium' or rec.get('recommendationImpact') == 'Low':
                             if rec.get('pgVerified') == True:
-                                total_number_of_impact_and_pg_verified_recommendations += 1
-                                impact_and_pg_verified_recommendations.update({rec["aprlGuid"]:\
-                                {"recommendationResourceType": rec["recommendationResourceType"],\
-                                "aprlGuid": rec["aprlGuid"],\
-                                "description": rec["description"],\
-                                "recommendationControl": rec["recommendationControl"],\
-                                "recommendationImpact": rec["recommendationImpact"],\
-                                "recommendationMetadataState": rec["recommendationMetadataState"],\
-                                "pgVerified": rec["pgVerified"],\
-                                "publishedToLearn": rec["publishedToLearn"],\
-                                "publishedToAdvisor": rec["publishedToAdvisor"],\
-                                "automationAvailable": rec["automationAvailable"],\
-                                "aprlUrlForResource": aprl_resource_complete_url,\
-                                "recommendationFilePath": recommendation_path}})
+                                aprl_filtered_recommendations.update({rec["aprlGuid"]:\
+                                {
+                                  "recommendationResourceType": rec.get("recommendationResourceType", "defaultType"),
+                                  "aprlGuid": rec.get("aprlGuid", "defaultGuid"),
+                                  "description": rec.get("description", "No description available"),
+                                  "recommendationControl": rec.get("recommendationControl", "defaultControl"),
+                                  "recommendationImpact": rec.get("recommendationImpact", "defaultImpact"),
+                                  "recommendationMetadataState": rec.get("recommendationMetadataState", "defaultState"),
+                                  "pgVerified": rec.get("pgVerified", False),
+                                  "publishedToLearn": rec.get("publishedToLearn", False),
+                                  "publishedToAdvisor": rec.get("publishedToAdvisor", False),
+                                  "automationAvailable": rec.get("automationAvailable", False),
+                                  "aprlUrlForResource": aprl_resource_complete_url,  # Assuming this is defined elsewhere and always available
+                                  "recommendationFilePath": recommendation_path  # Assuming this is defined elsewhere and always available
+                                }})
                         elif filter_impact_level != 'All':
                           if rec.get('recommendationImpact') == filter_impact_level and rec.get('pgVerified') == True:
-                              print(f"Only PG verified recommendations are allowed.")
-                              total_number_of_impact_and_pg_verified_recommendations += 1
-                              impact_and_pg_verified_recommendations.update({rec["aprlGuid"]:\
-                              {"recommendationResourceType": rec["recommendationResourceType"],\
-                              "aprlGuid": rec["aprlGuid"],\
-                              "description": rec["description"],\
-                              "recommendationControl": rec["recommendationControl"],\
-                              "recommendationImpact": rec["recommendationImpact"],\
-                              "recommendationMetadataState": rec["recommendationMetadataState"],\
-                              "pgVerified": rec["pgVerified"],\
-                              "publishedToLearn": rec["publishedToLearn"],\
-                              "publishedToAdvisor": rec["publishedToAdvisor"],\
-                              "automationAvailable": rec["automationAvailable"],\
-                              "aprlUrlForResource": aprl_resource_complete_url,\
-                              "recommendationFilePath": recommendation_path}})
+                              aprl_filtered_recommendations.update({rec["aprlGuid"]:\
+                              {
+                                  "recommendationResourceType": rec.get("recommendationResourceType", "defaultType"),
+                                  "aprlGuid": rec.get("aprlGuid", "defaultGuid"),
+                                  "description": rec.get("description", "No description available"),
+                                  "recommendationControl": rec.get("recommendationControl", "defaultControl"),
+                                  "recommendationImpact": rec.get("recommendationImpact", "defaultImpact"),
+                                  "recommendationMetadataState": rec.get("recommendationMetadataState", "defaultState"),
+                                  "pgVerified": rec.get("pgVerified", False),
+                                  "publishedToLearn": rec.get("publishedToLearn", False),
+                                  "publishedToAdvisor": rec.get("publishedToAdvisor", False),
+                                  "automationAvailable": rec.get("automationAvailable", False),
+                                  "aprlUrlForResource": aprl_resource_complete_url,  # Assuming this is defined elsewhere and always available
+                                  "recommendationFilePath": recommendation_path  # Assuming this is defined elsewhere and always available
+                                }})
                       if allow_non_pg_verified == True:
-                          if rec.get('recommendationImpact') == filter_impact_level:
-                            print(f"Non-PG verified recommendations are allowed.")
-                            impact_and_pg_verified_recommendations.update({rec["aprlGuid"]:\
-                            {"recommendationResourceType": rec["recommendationResourceType"],\
-                            "aprlGuid": rec["aprlGuid"],\
-                            "description": rec["description"],\
-                            "recommendationControl": rec["recommendationControl"],\
-                            "recommendationImpact": rec["recommendationImpact"],\
-                            "recommendationMetadataState": rec["recommendationMetadataState"],\
-                            "pgVerified": rec.get("pgVerified", False),\
-                            "publishedToLearn": rec["publishedToLearn"],\
-                            "publishedToAdvisor": rec["publishedToAdvisor"],\
-                            "automationAvailable": rec["automationAvailable"],\
-                            "aprlUrlForResource": aprl_resource_complete_url,\
-                            "recommendationFilePath": recommendation_path}})
+                          if filter_impact_level == 'All':
+                            if rec.get('recommendationImpact') == 'High' or rec.get('recommendationImpact') == 'Medium' or rec.get('recommendationImpact') == 'Low':
+                                aprl_filtered_recommendations.update({rec["aprlGuid"]:\
+                                {
+                                  "recommendationResourceType": rec.get("recommendationResourceType", "defaultType"),
+                                  "aprlGuid": rec.get("aprlGuid", "defaultGuid"),
+                                  "description": rec.get("description", "No description available"),
+                                  "recommendationControl": rec.get("recommendationControl", "defaultControl"),
+                                  "recommendationImpact": rec.get("recommendationImpact", "defaultImpact"),
+                                  "recommendationMetadataState": rec.get("recommendationMetadataState", "defaultState"),
+                                  "pgVerified": rec.get("pgVerified", False),
+                                  "publishedToLearn": rec.get("publishedToLearn", False),
+                                  "publishedToAdvisor": rec.get("publishedToAdvisor", False),
+                                  "automationAvailable": rec.get("automationAvailable", False),
+                                  "aprlUrlForResource": aprl_resource_complete_url,  # Assuming this is defined elsewhere and always available
+                                  "recommendationFilePath": recommendation_path  # Assuming this is defined elsewhere and always available
+                                }})
+                          elif filter_impact_level != 'All':
+                            if rec.get('recommendationImpact') == filter_impact_level:
+                              aprl_filtered_recommendations.update({rec["aprlGuid"]:\
+                              {
+                                  "recommendationResourceType": rec.get("recommendationResourceType", "defaultType"),
+                                  "aprlGuid": rec.get("aprlGuid", "defaultGuid"),
+                                  "description": rec.get("description", "No description available"),
+                                  "recommendationControl": rec.get("recommendationControl", "defaultControl"),
+                                  "recommendationImpact": rec.get("recommendationImpact", "defaultImpact"),
+                                  "recommendationMetadataState": rec.get("recommendationMetadataState", "defaultState"),
+                                  "pgVerified": rec.get("pgVerified", False),
+                                  "publishedToLearn": rec.get("publishedToLearn", False),
+                                  "publishedToAdvisor": rec.get("publishedToAdvisor", False),
+                                  "automationAvailable": rec.get("automationAvailable", False),
+                                  "aprlUrlForResource": aprl_resource_complete_url,  # Assuming this is defined elsewhere and always available
+                                  "recommendationFilePath": recommendation_path  # Assuming this is defined elsewhere and always available
+                                }})
               else:
                   print(f"Unexpected data structure in {recommendation_path}: {type(recommendations_data)}")
       except FileNotFoundError:
           print(f"File not found: {recommendation_path}")
-  return total_number_of_recommendations, total_number_of_impact_recommendations, total_number_of_pg_verified_recommendations, total_number_of_impact_and_pg_verified_recommendations, impact_and_pg_verified_recommendations
+  return aprl_filtered_recommendations
 
 # Write the high impact and pg verified recommendations from APRL to an Excel file
-def write_to_excel(high_impact_and_pg_verified_recommendations=get_recommendations_data_and_filter(filter_impact_level=args.filter_impact_level, allow_non_pg_verified=args.allow_non_pg_verified)[4], output_file_name=args.output_file_name):
+def write_to_excel(aprl_filtered_recommendations=get_recommendations_data_and_filter(filter_impact_level=args.filter_impact_level, allow_non_pg_verified=args.allow_non_pg_verified), output_file_name=args.output_file_name):
   try:
-      df = pd.DataFrame(data=high_impact_and_pg_verified_recommendations)
+      df = pd.DataFrame(data=aprl_filtered_recommendations)
       df = df.T  # Transpose the DataFrame
       writer = pd.ExcelWriter(output_file_name, engine='xlsxwriter')
       df.to_excel(writer, sheet_name='APRL Filtered Recommendations', index=False)
