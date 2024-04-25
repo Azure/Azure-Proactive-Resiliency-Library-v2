@@ -53,6 +53,8 @@
   learnMoreLink:
     - name: Health modeling for reliability
       url: "https://learn.microsoft.com/azure/well-architected/resiliency/monitor-model"
+    - name: Health Modeling for Workloads
+      url: "https://learn.microsoft.com/en-us/azure/well-architected/cross-cutting-guides/health-modeling"
 
 - description: Create Dashboards and Alerts for Azure Platform resources
   aprlGuid: 1691bfea-c9fd-0948-969a-03e5abcab299
@@ -120,3 +122,22 @@
       url: "https://github.com/Azure/azure-policy/tree/master/built-in-policies/policyDefinitions/Resilience"
     - name: Get policy compliance data
       url: "https://learn.microsoft.com/azure/governance/policy/how-to/get-compliance-data"
+
+- description: Define metrics to track reliability in relation to business requirements
+  aprlGuid: 3e2f722e-7d94-4efa-96f1-78bd3e256a41
+  recommendationTypeId: null
+  recommendationControl: Monitoring and Alerting
+  recommendationImpact: Low
+  recommendationResourceType: WellArchitected/Monitor
+  recommendationMetadataState: Active
+  longDescription: |
+    To measure and improve the reliability of your cloud solution, you need to define metrics that reflect how well your solution meets your business requirements. For example, you can use availability, latency, throughput, error rate, and durability as metrics to quantify the performance and reliability of your solution. These metrics can help you track the progress of your reliability goals, such as SLAs and SLOs, and identify areas for improvement. You should also align your metrics with your customer expectations and feedback, and use them to prioritize your reliability efforts.
+  potentialBenefits: Gain insight into the performance of your application in relation to business requirements
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: no
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Recommendations for defining reliability targets
+      url: "https://learn.microsoft.com/azure/well-architected/reliability/metrics"
