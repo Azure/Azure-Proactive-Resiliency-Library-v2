@@ -354,5 +354,4 @@ docs/resources/_gen/assets/scss/azure-proactive-resiliency-library/css/ace.scss_
 .gitignore
 docs/resources/_gen/assets/scss/azure-proactive-resiliency-library/css/ace.scss_b95b077eb505d5c0aff8055eaced30ad.json
 .gitignore
-tools/jt/aprlFilteredRecommendations.xlsx
 tools/aprlRecommendationsFilteredToExcel/aprlFilteredRecommendations.xlsx
