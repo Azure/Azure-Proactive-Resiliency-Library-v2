@@ -23,7 +23,7 @@ You also need a clone/copy of the [APRLv2 repo (this repo)](https://github.com/A
 
 The below script can be used on Windows to install all the prerequisites using [winget](https://learn.microsoft.com/windows/package-manager/winget/):
 
-```
+```powershell
 winget install Python.Python.3.12
 python -m pip install -U pip
 
@@ -69,7 +69,7 @@ This will output all the High Impact and PG Verified APRL recommendations to a f
 
 > This assumes you are running the script from its stored location of: `<path to root of clone of APRLv2 repo (this repo)>\tools\aprlRecommendationsFilteredToExcel`
 
-```
+```powershell
 python .\aprlFilteredRecommendations.xlsx
 ```
 
@@ -77,6 +77,6 @@ python .\aprlFilteredRecommendations.xlsx
 
 This will output all of the APRL recommendations, regardless of Impact level (e.g. High, Medium & Low recommendations will be included), it will also include recommendations that have not been verified by a Product Group (PG) yet and will output to a file called: `myCustomAprlFilteredRecommendation.xlsx` that will be stored in the current directory where you invoked the script from. You will also notice that the `--path_to_recommendations` argument has been provided as the script is not being run from its stored location within the APRLv2 repo, so you **must** provide this argument with the path to your clone/copy of the APRLv2 repo and to its `azure-resources` directory within the repo.
 
-```
+```powershell
 python .\aprlRecommendationsFilteredToExcel.py --path_to_recommendations "D:\GitRepos\GitHub-Azure\Azure-Proactive-Resiliency-Library-v2\azure-resources\" --filter_impact_level "All" --allow_non_pg_verified --output_file_name "myCustomAprlFilteredRecommendation.xlsx"
 ```
