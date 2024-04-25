@@ -249,4 +249,3 @@ print()
 
 print(colored(f'---> Filtering APRL recommendations to Recommendation Impact Level: {args.filter_impact_level}, Allow Non-PG Verified Recommendations?: {args.allow_non_pg_verified}...', 'black', 'on_light_grey'), end='\n\n')
 write_to_excel()
-
