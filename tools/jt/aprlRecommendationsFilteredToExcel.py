@@ -1,3 +1,22 @@
+required_packages = {
+    "termcolor": "termcolor",
+    "PyYAML": "yaml",
+    "pandas": "pandas",
+    "XlsxWriter": "xlsxwriter"
+}
+
+missing_packages = []
+for package, module in required_packages.items():
+    try:
+        __import__(module)
+    except ImportError:
+        missing_packages.append(package)
+
+if missing_packages:
+    print("Missing required packages. Please install them by running:")
+    print(f"pip install {' '.join(missing_packages)}")
+    exit(1)
+
 import os
 import argparse
 import glob
