@@ -547,7 +547,7 @@ $Global:Runtime = Measure-Command -Expression {
             $resultAllResourceTypes = @()
             foreach ($RG in $ResourceGroups)
               {
-                $resultAllResourceTypes += Search-AzGraph -Query "resources | where resourceGroup contains '$RG' | summarize count() by type, subscriptionId" -Subscription $Subid
+                $resultAllResourceTypes += Search-AzGraph -Query "resources | where resourceGroup =~ '$RG' | summarize count() by type, subscriptionId" -Subscription $Subid
               }
             $Global:AllResourceTypes += $resultAllResourceTypes
           }
