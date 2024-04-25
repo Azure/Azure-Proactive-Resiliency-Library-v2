@@ -754,13 +754,13 @@ $Global:Runtime = Measure-Command -Expression {
             if ($query -match "development")
               {
                 Write-Host "Query $kqlshort under development - Validate Recommendation manually" -ForegroundColor Yellow
-                $query = "resources | where type contains '$type' | project name,id,tags"
+                $query = "resources | where type =~ '$type' | project name,id,tags"
                 QueryCollector $Subid $type $query $checkId $checkName 'Query under development - Validate Recommendation manually'
               }
             elseif ($query -match "cannot-be-validated-with-arg")
               {
                 Write-Host "IMPORTANT - Recommendation $checkId cannot be validated with ARGs - Validate Resources manually" -ForegroundColor Yellow
-                $query = "resources | where type contains '$type' | project name,id,tags"
+                $query = "resources | where type =~ '$type' | project name,id,tags"
                 QueryCollector $Subid $type $query $checkId $checkName 'IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually'
               }
             else
