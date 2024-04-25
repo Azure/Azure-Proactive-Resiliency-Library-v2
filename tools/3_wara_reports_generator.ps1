@@ -23,25 +23,7 @@ if (!$PPTTemplateFile) {
     Exit
   }
 }
-if (!$PPTTemplateFile) {
-  if ((Test-Path -Path ($PSScriptRoot + '\Mandatory - Executive Summary presentation - Template.pptx') -PathType Leaf) -eq $true) {
-    $PPTTemplateFile = ($PSScriptRoot + '\Mandatory - Executive Summary presentation - Template.pptx')
-  }
-  else {
-    Write-Host "This script requires specific Microsoft PowerPoint and Word templates, only available to Microsoft Cloud Solution Architects at this moment. If you are participating on a Well-Architected Reliability Assessment, reach out to the CSA coordinating the engagement."
-    Exit
-  }
-}
 
-if (!$WordTemplateFile) {
-  if ((Test-Path -Path ($PSScriptRoot + '\Optional - Assessment Report - Template.docx') -PathType Leaf) -eq $true) {
-    $WordTemplateFile = ($PSScriptRoot + '\Optional - Assessment Report - Template.docx')
-  }
-  else {
-    Write-Host "This script requires specific Microsoft PowerPoint and Word templates, only available to Microsoft Cloud Solution Architects at this moment. If you are participating on a Well-Architected Reliability Assessment, reach out to the CSA coordinating the engagement."
-    Exit
-  }
-}
 if (!$WordTemplateFile) {
   if ((Test-Path -Path ($PSScriptRoot + '\Optional - Assessment Report - Template.docx') -PathType Leaf) -eq $true) {
     $WordTemplateFile = ($PSScriptRoot + '\Optional - Assessment Report - Template.docx')
@@ -55,13 +37,7 @@ if (!$WordTemplateFile) {
 if (!$CustomerName) {
   $CustomerName = '[Customer Name]'
 }
-if (!$CustomerName) {
-  $CustomerName = '[Customer Name]'
-}
 
-if (!$WorkloadName) {
-  $WorkloadName = '[Workload Name]'
-}
 if (!$WorkloadName) {
   $WorkloadName = '[Workload Name]'
 }
@@ -108,32 +84,11 @@ $Global:Runtime = Measure-Command -Expression {
     # Define script path as the default path to save files
     try
       {
-  function Requirements {
-    # Install required modules
-    Write-Host "Validating " -NoNewline
-    Write-Host "ImportExcel" -ForegroundColor Cyan -NoNewline
-    Write-Host " Module.."
-    $ImportExcel = Get-Module -Name ImportExcel -ListAvailable -ErrorAction silentlycontinue
-    if ($null -eq $ImportExcel)
-      {
-        Write-Host "Installing ImportExcel Module" -ForegroundColor Yellow
-        Install-Module -Name ImportExcel -Force -SkipPublisherCheck
-      }
-  }
-  function LocalFiles {
-    # Define script path as the default path to save files
-    try
-      {
         $workingFolderPath = $PSScriptRoot
         Set-Location -path $workingFolderPath;
         $Global:clonePath = "$workingFolderPath\Azure-Proactive-Resiliency-Library"
         Write-Debug "Checking the version of the script"
         $RepoVersion = Get-Content -Path "$clonePath\tools\Version.json" -ErrorAction SilentlyContinue | ConvertFrom-Json
-        if ($Version -ne $RepoVersion.Generator)
-          {
-            Write-Host "This version of the script is outdated. " -BackgroundColor DarkRed
-            Write-Host "Please use a more recent version of the script." -BackgroundColor DarkRed
-          }
         if ($Version -ne $RepoVersion.Generator)
           {
             Write-Host "This version of the script is outdated. " -BackgroundColor DarkRed
@@ -313,9 +268,6 @@ $Global:Runtime = Measure-Command -Expression {
           ############# Slide 1
           function Slide1 {
             if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Removing Slide 1..') | Out-File -FilePath $LogFile -Append }
-          ############# Slide 1
-          function Slide1 {
-            if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Removing Slide 1..') | Out-File -FilePath $LogFile -Append }
 
             try
               {
@@ -339,19 +291,11 @@ $Global:Runtime = Measure-Command -Expression {
           ############# SLide 12
           function Slide12 {
             if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 12 - Workload Summary..') | Out-File -FilePath $LogFile -Append }
-          ############# SLide 12
-          function Slide12 {
-            if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 12 - Workload Summary..') | Out-File -FilePath $LogFile -Append }
 
             try
               {
                 $Slide12 = $pres.Slides | Where-Object { $_.SlideIndex -eq 12 }
-            try
-              {
-                $Slide12 = $pres.Slides | Where-Object { $_.SlideIndex -eq 12 }
 
-                $TargetShape = ($Slide12.Shapes | Where-Object { $_.Id -eq 9 })
-                $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
                 $TargetShape = ($Slide12.Shapes | Where-Object { $_.Id -eq 9 })
                 $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
 
@@ -361,22 +305,7 @@ $Global:Runtime = Measure-Command -Expression {
 
                 if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 12 - Adding Workload name: ' + $WorkloadName) | Out-File -FilePath $LogFile -Append }
                 ($Slide12.Shapes | Where-Object { $_.Id -eq 3 }).TextFrame.TextRange.Text = ('During the engagement, the Workload ' + $WorkloadName + ' has been reviewed. The solution is hosted in two Azure regions, and runs mainly IaaS resources, with some PaaS resources, which includes but is not limited to:')
-                if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 12 - Adding Workload name: ' + $WorkloadName) | Out-File -FilePath $LogFile -Append }
-                ($Slide12.Shapes | Where-Object { $_.Id -eq 3 }).TextFrame.TextRange.Text = ('During the engagement, the Workload ' + $WorkloadName + ' has been reviewed. The solution is hosted in two Azure regions, and runs mainly IaaS resources, with some PaaS resources, which includes but is not limited to:')
 
-                $loop = 1
-                foreach ($ResourcesType in $ResourcesTypes)
-                  {
-                    $LogResName = $ResourcesType.Name
-                    $LogResCount = $ResourcesType.'Count'
-                    if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 12 - Adding Resource Type: ' + $LogResName + '. Count: ' + $LogResCount) | Out-File -FilePath $LogFile -Append }
-                    if ($loop -eq 1)
-                      {
-                        $ResourceTemp = ($ResourcesType.Name + ' (' + $ResourcesType.'Count' + ')')
-                        ($Slide12.Shapes | Where-Object { $_.Id -eq 6 }).Table.Columns(1).Width = 685
-                        ($Slide12.Shapes | Where-Object { $_.Id -eq 6 }).Table.Rows(1).Cells(1).Shape.TextFrame.TextRange.Text = $ResourceTemp
-                        ($Slide12.Shapes | Where-Object { $_.Id -eq 6 }).Table.Rows(1).Height = 20
-                      }
                 $loop = 1
                 foreach ($ResourcesType in $ResourcesTypes)
                   {
@@ -408,20 +337,7 @@ $Global:Runtime = Measure-Command -Expression {
                 if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Error - ' + $ErrorStack) | Out-File -FilePath $LogFile -Append }
               }
           }
-                  }
-              }
-            catch
-              {
-                $errorMessage = $_.Exception
-                $ErrorStack = $_.ScriptStackTrace
-                if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Error - ' + $errorMessage) | Out-File -FilePath $LogFile -Append }
-                if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Error - ' + $ErrorStack) | Out-File -FilePath $LogFile -Append }
-              }
-          }
 
-          ############# Slide 16
-          function Slide16 {
-            if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 16 - Health and Risk Dashboard..') | Out-File -FilePath $LogFile -Append }
           ############# Slide 16
           function Slide16 {
             if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 16 - Health and Risk Dashboard..') | Out-File -FilePath $LogFile -Append }
@@ -429,12 +345,7 @@ $Global:Runtime = Measure-Command -Expression {
             try
               {
                 $Slide16 = $pres.Slides | Where-Object { $_.SlideIndex -eq 16 }
-            try
-              {
-                $Slide16 = $pres.Slides | Where-Object { $_.SlideIndex -eq 16 }
 
-                $TargetShape = ($Slide16.Shapes | Where-Object { $_.Id -eq 41 })
-                $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
                 $TargetShape = ($Slide16.Shapes | Where-Object { $_.Id -eq 41 })
                 $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
 
@@ -459,8 +370,6 @@ $Global:Runtime = Measure-Command -Expression {
 
                 if ($WAFHighImpact.count -ne 0)
                   {
-                if ($WAFHighImpact.count -ne 0)
-                  {
                     $count = 1
                     foreach ($Impact in $WAFHighImpact)
                       {
@@ -479,10 +388,6 @@ $Global:Runtime = Measure-Command -Expression {
                     ($Slide16.Shapes | Where-Object { $_.Id -eq 12 }).TextFrame.TextRange.Text = ' '
                   }
 
-                while (($Slide16.Shapes | Where-Object { $_.Id -eq 12 }).TextFrame.TextRange.Paragraphs().count -gt 5)
-                  {
-                    ($Slide16.Shapes | Where-Object { $_.Id -eq 12 }).TextFrame.TextRange.Paragraphs(6).Delete()
-                  }
                 while (($Slide16.Shapes | Where-Object { $_.Id -eq 12 }).TextFrame.TextRange.Paragraphs().count -gt 5)
                   {
                     ($Slide16.Shapes | Where-Object { $_.Id -eq 12 }).TextFrame.TextRange.Paragraphs(6).Delete()
@@ -517,24 +422,14 @@ $Global:Runtime = Measure-Command -Expression {
           ############# Slide 17
           function Slide17 {
             if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 17 - Health and Risk Dashboard..') | Out-File -FilePath $LogFile -Append }
-          ############# Slide 17
-          function Slide17 {
-            if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 17 - Health and Risk Dashboard..') | Out-File -FilePath $LogFile -Append }
 
-            try
-              {
-                $Slide17 = $pres.Slides | Where-Object { $_.SlideIndex -eq 17 }
             try
               {
                 $Slide17 = $pres.Slides | Where-Object { $_.SlideIndex -eq 17 }
 
                 $TargetShape = ($Slide17.Shapes | Where-Object { $_.Id -eq 41 })
                 $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
-                $TargetShape = ($Slide17.Shapes | Where-Object { $_.Id -eq 41 })
-                $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
 
-                if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 17 - Looking Charts in Excel File...') | Out-File -FilePath $LogFile -Append }
-                $WS2 = $Global:Ex.Worksheets | Where-Object { $_.Name -eq 'Charts' }
                 if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 17 - Looking Charts in Excel File...') | Out-File -FilePath $LogFile -Append }
                 $WS2 = $Global:Ex.Worksheets | Where-Object { $_.Name -eq 'Charts' }
 
@@ -583,16 +478,7 @@ $Global:Runtime = Measure-Command -Expression {
           ############# Slide 21
           function Slide21 {
             if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 21 - Service Health Alerts..') | Out-File -FilePath $LogFile -Append }
-          ############# Slide 21
-          function Slide21 {
-            if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 21 - Service Health Alerts..') | Out-File -FilePath $LogFile -Append }
 
-            try
-              {
-                $FirstSlide = 21
-                $TableID = 6
-                $CurrentSlide = $pres.Slides | Where-Object { $_.SlideIndex -eq $FirstSlide }
-                $CoreSlide = $pres.Slides | Where-Object { $_.SlideIndex -eq $FirstSlide }
             try
               {
                 $FirstSlide = 21
@@ -602,13 +488,7 @@ $Global:Runtime = Measure-Command -Expression {
 
                 $TargetShape = ($CurrentSlide.Shapes | Where-Object { $_.Id -eq 41 })
                 $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
-                $TargetShape = ($CurrentSlide.Shapes | Where-Object { $_.Id -eq 41 })
-                $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
 
-                if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 21 - Cleaning Table..') | Out-File -FilePath $LogFile -Append }
-                $row = 3
-                while ($row -lt 2)
-                  {
                 if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 21 - Cleaning Table..') | Out-File -FilePath $LogFile -Append }
                 $row = 3
                 while ($row -lt 2)
@@ -622,28 +502,7 @@ $Global:Runtime = Measure-Command -Expression {
                       }
                     $row ++
                   }
-                  }
 
-                $Counter = 1
-                $row = 3
-                foreach ($Health in $Global:ServiceHealth)
-                  {
-                    $LogHealthName = $Health.Name
-                    if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 21 - Adding Service Health Alert: ' + $LogHealthName) | Out-File -FilePath $LogFile -Append }
-                    if ($Counter -lt 17)
-                      {
-                        ($CurrentSlide.Shapes | Where-Object { $_.Id -eq $TableID }).Table.Rows($row).Cells(1).Shape.TextFrame.TextRange.Text = [string]$Health.Subscription
-                        ($CurrentSlide.Shapes | Where-Object { $_.Id -eq $TableID }).Table.Rows($row).Cells(2).Shape.TextFrame.TextRange.Text = [string]$Health.Name
-                        ($CurrentSlide.Shapes | Where-Object { $_.Id -eq $TableID }).Table.Rows($row).Cells(3).Shape.TextFrame.TextRange.Text = if ($Health.Services -eq 'All') { 'Yes' }else { 'No' }
-                        ($CurrentSlide.Shapes | Where-Object { $_.Id -eq $TableID }).Table.Rows($row).Cells(4).Shape.TextFrame.TextRange.Text = if ($Health.Regions -eq 'All') { 'Yes' }else { 'No' }
-                        ($CurrentSlide.Shapes | Where-Object { $_.Id -eq $TableID }).Table.Rows($row).Cells(5).Shape.TextFrame.TextRange.Text = if ($Health.'Event Type' -like '*Service Issues*' -or $Health.'Event Type' -eq 'All') { 'Yes' }else { 'No' }
-                        ($CurrentSlide.Shapes | Where-Object { $_.Id -eq $TableID }).Table.Rows($row).Cells(6).Shape.TextFrame.TextRange.Text = if ($Health.'Event Type' -like '*Planned Maintenance*' -or $Health.'Event Type' -eq 'All') { 'Yes' }else { 'No' }
-                        ($CurrentSlide.Shapes | Where-Object { $_.Id -eq $TableID }).Table.Rows($row).Cells(7).Shape.TextFrame.TextRange.Text = if ($Health.'Event Type' -like '*Health Advisories*' -or $Health.'Event Type' -eq 'All') { 'Yes' }else { 'No' }
-                        ($CurrentSlide.Shapes | Where-Object { $_.Id -eq $TableID }).Table.Rows($row).Cells(8).Shape.TextFrame.TextRange.Text = if ($Health.'Event Type' -like '*Security Advisory*' -or $Health.'Event Type' -eq 'All') { 'Yes' }else { 'No' }
-                        ($CurrentSlide.Shapes | Where-Object { $_.Id -eq $TableID }).Table.Rows($row).Cells(9).Shape.TextFrame.TextRange.Text = ' '
-                        $counter ++
-                        $row ++
-                      }
                 $Counter = 1
                 $row = 3
                 foreach ($Health in $Global:ServiceHealth)
@@ -665,12 +524,6 @@ $Global:Runtime = Measure-Command -Expression {
                         $row ++
                       }
                     else
-                      {
-                        if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 21 - Creating new slide for Service Health Alerts..') | Out-File -FilePath $LogFile -Append }
-                        $Counter = 1
-                        $CustomLayout = $CurrentSlide.CustomLayout
-                        $FirstSlide ++
-                        $pres.Slides.addSlide($FirstSlide, $customLayout) | Out-Null
                       {
                         if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 21 - Creating new slide for Service Health Alerts..') | Out-File -FilePath $LogFile -Append }
                         $Counter = 1
@@ -704,44 +557,9 @@ $Global:Runtime = Measure-Command -Expression {
                               }
                             $rowTemp ++
                           }
-                        $rowTemp = 2
-                        while ($rowTemp -lt 18)
-                          {
-                            $cell = 1
-                            while ($cell -lt 5)
-                              {
-                                ($NextSlide.Shapes | Where-Object { $_.Id -eq $TableID }).Table.Rows($rowTemp).Cells($cell).Shape.TextFrame.TextRange.Text = ''
-                                $Cell ++
-                              }
-                            $rowTemp ++
-                          }
 
                         $CurrentSlide = $NextSlide
-                        $CurrentSlide = $NextSlide
 
-                        $row = 3
-                        ($CurrentSlide.Shapes | Where-Object { $_.Id -eq $TableID }).Table.Rows($row).Cells(1).Shape.TextFrame.TextRange.Text = [string]$Health.Subscription
-                        ($CurrentSlide.Shapes | Where-Object { $_.Id -eq $TableID }).Table.Rows($row).Cells(2).Shape.TextFrame.TextRange.Text = [string]$Health.Name
-                        ($CurrentSlide.Shapes | Where-Object { $_.Id -eq $TableID }).Table.Rows($row).Cells(3).Shape.TextFrame.TextRange.Text = if ($Health.Services -eq 'All') { 'Yes' }else { 'No' }
-                        ($CurrentSlide.Shapes | Where-Object { $_.Id -eq $TableID }).Table.Rows($row).Cells(4).Shape.TextFrame.TextRange.Text = if ($Health.Regions -eq 'All') { 'Yes' }else { 'No' }
-                        ($CurrentSlide.Shapes | Where-Object { $_.Id -eq $TableID }).Table.Rows($row).Cells(5).Shape.TextFrame.TextRange.Text = if ($Health.'Event Type' -like '*Service Issues*' -or $Health.'Event Type' -eq 'All') { 'Yes' }else { 'No' }
-                        ($CurrentSlide.Shapes | Where-Object { $_.Id -eq $TableID }).Table.Rows($row).Cells(6).Shape.TextFrame.TextRange.Text = if ($Health.'Event Type' -like '*Planned Maintenance*' -or $Health.'Event Type' -eq 'All') { 'Yes' }else { 'No' }
-                        ($CurrentSlide.Shapes | Where-Object { $_.Id -eq $TableID }).Table.Rows($row).Cells(7).Shape.TextFrame.TextRange.Text = if ($Health.'Event Type' -like '*Health Advisories*' -or $Health.'Event Type' -eq 'All') { 'Yes' }else { 'No' }
-                        ($CurrentSlide.Shapes | Where-Object { $_.Id -eq $TableID }).Table.Rows($row).Cells(8).Shape.TextFrame.TextRange.Text = if ($Health.'Event Type' -like '*Security Advisory*' -or $Health.'Event Type' -eq 'All') { 'Yes' }else { 'No' }
-                        ($CurrentSlide.Shapes | Where-Object { $_.Id -eq $TableID }).Table.Rows($row).Cells(9).Shape.TextFrame.TextRange.Text = ' '
-                        $Counter ++
-                        $row ++
-                      }
-                  }
-              }
-            catch
-              {
-                $errorMessage = $_.Exception
-                $ErrorStack = $_.ScriptStackTrace
-                if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Error - ' + $errorMessage) | Out-File -FilePath $LogFile -Append }
-                if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Error - ' + $ErrorStack) | Out-File -FilePath $LogFile -Append }
-              }
-          }
                         $row = 3
                         ($CurrentSlide.Shapes | Where-Object { $_.Id -eq $TableID }).Table.Rows($row).Cells(1).Shape.TextFrame.TextRange.Text = [string]$Health.Subscription
                         ($CurrentSlide.Shapes | Where-Object { $_.Id -eq $TableID }).Table.Rows($row).Cells(2).Shape.TextFrame.TextRange.Text = [string]$Health.Name
@@ -769,16 +587,7 @@ $Global:Runtime = Measure-Command -Expression {
           ############# Slide 23
           function Slide23 {
             if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 23 - High Impact Issues..') | Out-File -FilePath $LogFile -Append }
-          ############# Slide 23
-          function Slide23 {
-            if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 23 - High Impact Issues..') | Out-File -FilePath $LogFile -Append }
 
-            try
-              {
-                $FirstSlide = 23
-                $TableID = 6
-                $CurrentSlide = $pres.Slides | Where-Object { $_.SlideIndex -eq $FirstSlide }
-                $CoreSlide = $pres.Slides | Where-Object { $_.SlideIndex -eq $FirstSlide }
             try
               {
                 $FirstSlide = 23
@@ -788,13 +597,7 @@ $Global:Runtime = Measure-Command -Expression {
 
                 $TargetShape = ($CurrentSlide.Shapes | Where-Object { $_.Id -eq 41 })
                 $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
-                $TargetShape = ($CurrentSlide.Shapes | Where-Object { $_.Id -eq 41 })
-                $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
 
-                if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 23 - Cleaning Table..') | Out-File -FilePath $LogFile -Append }
-                $row = 2
-                while ($row -lt 6)
-                  {
                 if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 23 - Cleaning Table..') | Out-File -FilePath $LogFile -Append }
                 $row = 2
                 while ($row -lt 6)
@@ -808,35 +611,7 @@ $Global:Runtime = Measure-Command -Expression {
                       }
                     $row ++
                   }
-                  }
 
-                $Counter = 1
-                $RecomNumber = 1
-                $row = 2
-                foreach ($Impact in $HighImpact)
-                  {
-                    $LogHighImpact = $Impact.'Recommendation Title'
-                    if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 23 - Adding High Impact: ' + $LogHighImpact ) | Out-File -FilePath $LogFile -Append }
-                    if ($Counter -lt 14)
-                      {
-                        #Number
-                        ($CurrentSlide.Shapes | Where-Object { $_.Id -eq $TableID }).Table.Rows($row).Cells(1).Shape.TextFrame.TextRange.Text = [string]$RecomNumber
-                        #Recommendation
-                        ($CurrentSlide.Shapes | Where-Object { $_.Id -eq $TableID }).Table.Rows($row).Cells(2).Shape.TextFrame.TextRange.Text = $Impact.'Recommendation Title'
-                        #Service
-                        if ($Impact.'Azure Service / Well-Architected' -eq 'Well Architected') {
-                          $ServiceName = ('WAF - ' + $Impact.'Azure Service / Well-Architected Topic')
-                        }
-                        else {
-                          $ServiceName = $Impact.'Azure Service / Well-Architected Topic'
-                        }
-                        ($CurrentSlide.Shapes | Where-Object { $_.Id -eq $TableID }).Table.Rows($row).Cells(3).Shape.TextFrame.TextRange.Text = $ServiceName
-                        #Impacted Resources
-                        ($CurrentSlide.Shapes | Where-Object { $_.Id -eq $TableID }).Table.Rows($row).Cells(4).Shape.TextFrame.TextRange.Text = [string]$Impact.'Number of Impacted Resources?'
-                        $counter ++
-                        $RecomNumber ++
-                        $row ++
-                      }
                 $Counter = 1
                 $RecomNumber = 1
                 $row = 2
@@ -865,12 +640,6 @@ $Global:Runtime = Measure-Command -Expression {
                         $row ++
                       }
                     else
-                      {
-                        if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 23 - Adding new Slide..') | Out-File -FilePath $LogFile -Append }
-                        $Counter = 1
-                        $CustomLayout = $CurrentSlide.CustomLayout
-                        $FirstSlide ++
-                        $pres.Slides.addSlide($FirstSlide, $customLayout) | Out-Null
                       {
                         if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 23 - Adding new Slide..') | Out-File -FilePath $LogFile -Append }
                         $Counter = 1
@@ -907,7 +676,6 @@ $Global:Runtime = Measure-Command -Expression {
                             $rowTemp ++
                           }
 
-                        $CurrentSlide = $NextSlide
                         $CurrentSlide = $NextSlide
 
                         $row = 2
@@ -946,16 +714,7 @@ $Global:Runtime = Measure-Command -Expression {
           ############# Slide 24
           function Slide24 {
             if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 24 - Medium Impact Issues..') | Out-File -FilePath $LogFile -Append }
-          ############# Slide 24
-          function Slide24 {
-            if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 24 - Medium Impact Issues..') | Out-File -FilePath $LogFile -Append }
 
-            try
-              {
-                $FirstSlide = 24
-                $TableID = 6
-                $CurrentSlide = $pres.Slides | Where-Object { $_.SlideIndex -eq $FirstSlide }
-                $CoreSlide = $pres.Slides | Where-Object { $_.SlideIndex -eq $FirstSlide }
             try
               {
                 $FirstSlide = 24
@@ -965,13 +724,7 @@ $Global:Runtime = Measure-Command -Expression {
 
                 $TargetShape = ($CurrentSlide.Shapes | Where-Object { $_.Id -eq 41 })
                 $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
-                $TargetShape = ($CurrentSlide.Shapes | Where-Object { $_.Id -eq 41 })
-                $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
 
-                if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 24 - Cleaning Table..') | Out-File -FilePath $LogFile -Append }
-                $row = 2
-                while ($row -lt 6)
-                  {
                 if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 24 - Cleaning Table..') | Out-File -FilePath $LogFile -Append }
                 $row = 2
                 while ($row -lt 6)
@@ -984,7 +737,6 @@ $Global:Runtime = Measure-Command -Expression {
                         if ($Heavy) {Start-Sleep -Milliseconds 100}
                       }
                     $row ++
-                  }
                   }
 
                 $Counter = 1
@@ -1024,12 +776,6 @@ $Global:Runtime = Measure-Command -Expression {
                         $CustomLayout = $CurrentSlide.CustomLayout
                         $FirstSlide ++
                         $pres.Slides.addSlide($FirstSlide, $customLayout) | Out-Null
-                      {
-                        if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 24 - Creating new slide..') | Out-File -FilePath $LogFile -Append }
-                        $Counter = 1
-                        $CustomLayout = $CurrentSlide.CustomLayout
-                        $FirstSlide ++
-                        $pres.Slides.addSlide($FirstSlide, $customLayout) | Out-Null
 
                         $NextSlide = $pres.Slides | Where-Object { $_.SlideIndex -eq $FirstSlide }
                         ($CoreSlide.Shapes | Where-Object { $_.Id -eq 4 }).TextFrame.TextRange.Copy()
@@ -1058,20 +804,7 @@ $Global:Runtime = Measure-Command -Expression {
                               }
                             $rowTemp ++
                           }
-                        if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 24 - Cleaning Table of new slide..') | Out-File -FilePath $LogFile -Append }
-                        $rowTemp = 2
-                        while ($rowTemp -lt 15)
-                          {
-                            $cell = 1
-                            while ($cell -lt 5)
-                              {
-                                ($NextSlide.Shapes | Where-Object { $_.Id -eq $TableID }).Table.Rows($rowTemp).Cells($cell).Shape.TextFrame.TextRange.Text = ''
-                                $Cell ++
-                              }
-                            $rowTemp ++
-                          }
 
-                        $CurrentSlide = $NextSlide
                         $CurrentSlide = $NextSlide
 
                         $row = 2
@@ -1110,16 +843,7 @@ $Global:Runtime = Measure-Command -Expression {
           ############# Slide 25
           function Slide25 {
             if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 25 - Low Impact Issues..') | Out-File -FilePath $LogFile -Append }
-          ############# Slide 25
-          function Slide25 {
-            if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 25 - Low Impact Issues..') | Out-File -FilePath $LogFile -Append }
 
-            try
-              {
-                $FirstSlide = 25
-                $TableID = 6
-                $CurrentSlide = $pres.Slides | Where-Object { $_.SlideIndex -eq $FirstSlide }
-                $CoreSlide = $pres.Slides | Where-Object { $_.SlideIndex -eq $FirstSlide }
             try
               {
                 $FirstSlide = 25
@@ -1129,13 +853,7 @@ $Global:Runtime = Measure-Command -Expression {
 
                 $TargetShape = ($CurrentSlide.Shapes | Where-Object { $_.Id -eq 41 })
                 $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
-                $TargetShape = ($CurrentSlide.Shapes | Where-Object { $_.Id -eq 41 })
-                $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
 
-                if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 25 - Cleaning Table..') | Out-File -FilePath $LogFile -Append }
-                $row = 2
-                while ($row -lt 6)
-                  {
                 if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 25 - Cleaning Table..') | Out-File -FilePath $LogFile -Append }
                 $row = 2
                 while ($row -lt 6)
@@ -1148,7 +866,6 @@ $Global:Runtime = Measure-Command -Expression {
                         if ($Heavy) {Start-Sleep -Milliseconds 100}
                       }
                     $row ++
-                  }
                   }
 
                 $Counter = 1
@@ -1188,12 +905,6 @@ $Global:Runtime = Measure-Command -Expression {
                         $CustomLayout = $CurrentSlide.CustomLayout
                         $FirstSlide ++
                         $pres.Slides.addSlide($FirstSlide, $customLayout) | Out-Null
-                      {
-                        if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 25 - Creating new Slide..') | Out-File -FilePath $LogFile -Append }
-                        $Counter = 1
-                        $CustomLayout = $CurrentSlide.CustomLayout
-                        $FirstSlide ++
-                        $pres.Slides.addSlide($FirstSlide, $customLayout) | Out-Null
 
                         $NextSlide = $pres.Slides | Where-Object { $_.SlideIndex -eq $FirstSlide }
                         ($CoreSlide.Shapes | Where-Object { $_.Id -eq 4 }).TextFrame.TextRange.Copy()
@@ -1224,7 +935,6 @@ $Global:Runtime = Measure-Command -Expression {
                             $rowTemp ++
                           }
 
-                        $CurrentSlide = $NextSlide
                         $CurrentSlide = $NextSlide
 
                         $row = 2
@@ -1268,18 +978,7 @@ $Global:Runtime = Measure-Command -Expression {
               {
                 $Loop = 1
                 $CurrentSlide = 28
-          ############# Slide 28
-          function Slide28 {
-            if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 28 - Recent Microsoft Outages..') | Out-File -FilePath $LogFile -Append }
 
-            try
-              {
-                $Loop = 1
-                $CurrentSlide = 28
-
-                if (![string]::IsNullOrEmpty($Global:Outages))
-                  {
-                    if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 28 - Outages found..') | Out-File -FilePath $LogFile -Append }
                 if (![string]::IsNullOrEmpty($Global:Outages))
                   {
                     if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 28 - Outages found..') | Out-File -FilePath $LogFile -Append }
@@ -1289,16 +988,9 @@ $Global:Runtime = Measure-Command -Expression {
                           {
                             $OutageName = ($Outage.'Tracking ID' + ' - ' + $Outage.title)
                             if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 28 - Adding Outage: ' + $OutageName) | Out-File -FilePath $LogFile -Append }
-                      {
-                        if ($Loop -eq 1)
-                          {
-                            $OutageName = ($Outage.'Tracking ID' + ' - ' + $Outage.title)
-                            if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 28 - Adding Outage: ' + $OutageName) | Out-File -FilePath $LogFile -Append }
 
                             $OutageService = $Outage.'Impacted Service'
-                            $OutageService = $Outage.'Impacted Service'
 
-                            $Slide28 = $pres.Slides | Where-Object { $_.SlideIndex -eq 28 }
                             $Slide28 = $pres.Slides | Where-Object { $_.SlideIndex -eq 28 }
 
                             $TargetShape = ($Slide28.Shapes | Where-Object { $_.Id -eq 4 })
@@ -1337,29 +1029,14 @@ $Global:Runtime = Measure-Command -Expression {
                           {
                             if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 28 - Creating new Slide..') | Out-File -FilePath $LogFile -Append }
                             ############### NEXT 9 SLIDES
-                            while (($Slide28.Shapes | Where-Object { $_.Id -eq 7 }).TextFrame.TextRange.Paragraphs().count -gt 7)
-                              {
-                                ($Slide28.Shapes | Where-Object { $_.Id -eq 7 }).TextFrame.TextRange.Paragraphs(8).Delete()
-                              }
-                          }
-                        else
-                          {
-                            if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 28 - Creating new Slide..') | Out-File -FilePath $LogFile -Append }
-                            ############### NEXT 9 SLIDES
 
-                            $OutageName = ($Outage.'Tracking ID' + ' - ' + $Outage.title)
-                            if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 28 - Adding Outage: ' + $OutageName) | Out-File -FilePath $LogFile -Append }
                             $OutageName = ($Outage.'Tracking ID' + ' - ' + $Outage.title)
                             if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 28 - Adding Outage: ' + $OutageName) | Out-File -FilePath $LogFile -Append }
 
                             $OutageService = $Outage.'Impacted Service'
                             $CustomLayout = $Slide28.CustomLayout
                             $pres.Slides.addSlide($CurrentSlide, $customLayout) | Out-Null
-                            $OutageService = $Outage.'Impacted Service'
-                            $CustomLayout = $Slide28.CustomLayout
-                            $pres.Slides.addSlide($CurrentSlide, $customLayout) | Out-Null
 
-                            $NextSlide = $pres.Slides | Where-Object { $_.SlideIndex -eq $CurrentSlide }
                             $NextSlide = $pres.Slides | Where-Object { $_.SlideIndex -eq $CurrentSlide }
 
                             ($Slide28.Shapes | Where-Object { $_.Id -eq 6 }).TextFrame.TextRange.Copy()
@@ -1405,9 +1082,7 @@ $Global:Runtime = Measure-Command -Expression {
                             ($NextSlide.Shapes | Where-Object { $_.Id -eq 4 }).TextFrame.TextRange.Paragraphs(7).Text = $Outage.'How can customers make incidents like this less impactful'
 
                             ($Slide28.Shapes | Where-Object { $_.Id -eq 31 }).Copy()
-                            ($Slide28.Shapes | Where-Object { $_.Id -eq 31 }).Copy()
 
-                            $NextSlide.Shapes.Paste() | Out-Null
                             $NextSlide.Shapes.Paste() | Out-Null
 
                             while (($NextSlide.Shapes | Where-Object { $_.Id -eq 4 }).TextFrame.TextRange.Paragraphs().count -gt 7)
@@ -1439,28 +1114,11 @@ $Global:Runtime = Measure-Command -Expression {
                 $Loop = 1
                 $CurrentSlide = 29
                 $Slide = 1
-          ############# Slide 29
-          function Slide29 {
-            if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 29 - Sev-A Support Requests..') | Out-File -FilePath $LogFile -Append }
 
-            try
-              {
-                $Loop = 1
-                $CurrentSlide = 29
-                $Slide = 1
-
-                if (![string]::IsNullOrEmpty($Global:SupportTickets))
-                  {
-                    if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 29 - Support Tickets found..') | Out-File -FilePath $LogFile -Append }
                 if (![string]::IsNullOrEmpty($Global:SupportTickets))
                   {
                     if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 29 - Support Tickets found..') | Out-File -FilePath $LogFile -Append }
                     foreach ($Tickets in $Global:SupportTickets)
-                      {
-                        $TicketName = ($Tickets.'Ticket ID' + ' - ' + $Tickets.Title)
-                        if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 29 - Adding Ticket: ' + $TicketName) | Out-File -FilePath $LogFile -Append }
-                        $TicketStatus = $Tickets.'Status'
-                        $TicketDate = $Tickets.'Creation Date'
                       {
                         $TicketName = ($Tickets.'Ticket ID' + ' - ' + $Tickets.Title)
                         if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 29 - Adding Ticket: ' + $TicketName) | Out-File -FilePath $LogFile -Append }
@@ -1541,26 +1199,7 @@ $Global:Runtime = Measure-Command -Expression {
                             if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 29 - Adding new Slide..') | Out-File -FilePath $LogFile -Append }
                             $CustomLayout = $Slide29.CustomLayout
                             $pres.Slides.addSlide($CurrentSlide, $customLayout) | Out-Null
-                                if ($Loop -eq 4)
-                                  {
-                                    $Loop = 1
-                                    $Slide ++
-                                    $CurrentSlide ++
-                                  }
-                                else
-                                  {
-                                    $Loop ++
-                                  }
-                                Start-Sleep -Milliseconds 500
-                              }
-                          }
-                        else {
-                          if ($Loop -eq 1) {
-                            if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 29 - Adding new Slide..') | Out-File -FilePath $LogFile -Append }
-                            $CustomLayout = $Slide29.CustomLayout
-                            $pres.Slides.addSlide($CurrentSlide, $customLayout) | Out-Null
 
-                            $NextSlide = $pres.Slides | Where-Object { $_.SlideIndex -eq $CurrentSlide }
                             $NextSlide = $pres.Slides | Where-Object { $_.SlideIndex -eq $CurrentSlide }
 
                             ($Slide29.Shapes | Where-Object { $_.Id -eq 6 }).TextFrame.TextRange.Copy()
@@ -1652,36 +1291,7 @@ $Global:Runtime = Measure-Command -Expression {
                 if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Error - ' + $ErrorStack) | Out-File -FilePath $LogFile -Append }
               }
           }
-                            if ($Loop -eq 4) {
-                              $Loop = 1
-                              $Slide ++
-                              $CurrentSlide ++
-                            }
-                            else {
-                              $Loop ++
-                            }
-                          }
-                        }
-                        Start-Sleep -Milliseconds 500
-                      }
-                  }
-              }
-            catch
-              {
-                $errorMessage = $_.Exception
-                $ErrorStack = $_.ScriptStackTrace
-                if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Error - ' + $errorMessage) | Out-File -FilePath $LogFile -Append }
-                if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Error - ' + $ErrorStack) | Out-File -FilePath $LogFile -Append }
-              }
-          }
 
-          ############# Slide 30
-          function Slide30 {
-            if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 30 - Service Retirement Notifications..') | Out-File -FilePath $LogFile -Append }
-
-            try
-              {
-                $Loop = 1
           ############# Slide 30
           function Slide30 {
             if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 30 - Service Retirement Notifications..') | Out-File -FilePath $LogFile -Append }
@@ -1694,17 +1304,11 @@ $Global:Runtime = Measure-Command -Expression {
                   {
                     if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 30 - Service Retirement found..') | Out-File -FilePath $LogFile -Append }
                     $Slide30 = $pres.Slides | Where-Object { $_.SlideIndex -eq 30 }
-                if (![string]::IsNullOrEmpty($Global:Retirements))
-                  {
-                    if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 30 - Service Retirement found..') | Out-File -FilePath $LogFile -Append }
-                    $Slide30 = $pres.Slides | Where-Object { $_.SlideIndex -eq 30 }
 
-                    $TargetShape = ($Slide30.Shapes | Where-Object { $_.Id -eq 4 })
                     $TargetShape = ($Slide30.Shapes | Where-Object { $_.Id -eq 4 })
                     $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
                     #$TargetShape.Delete()
 
-                    ($Slide30.Shapes | Where-Object { $_.Id -eq 7 }).TextFrame.TextRange.Paragraphs(1).Text = '.'
                     ($Slide30.Shapes | Where-Object { $_.Id -eq 7 }).TextFrame.TextRange.Paragraphs(1).Text = '.'
 
                     while (($Slide30.Shapes | Where-Object { $_.Id -eq 7 }).TextFrame.TextRange.Paragraphs().count -gt 2)
@@ -1721,20 +1325,7 @@ $Global:Runtime = Measure-Command -Expression {
                               {
                                 $RetireName = ($Retirement.'Tracking ID' + ' - ' + $Retirement.Status + ' : ' + $Retirement.title)
                                 if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 30 - Adding Retirement: ' + $RetireName) | Out-File -FilePath $LogFile -Append }
-                      {
-                        if ($Loop -lt 15)
-                          {
-                            if ($Loop -eq 1)
-                              {
-                                $RetireName = ($Retirement.'Tracking ID' + ' - ' + $Retirement.Status + ' : ' + $Retirement.title)
-                                if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 30 - Adding Retirement: ' + $RetireName) | Out-File -FilePath $LogFile -Append }
 
-                                ($Slide30.Shapes | Where-Object { $_.Id -eq 7 }).TextFrame.TextRange.Paragraphs(1).Text = $RetireName
-                                $Loop ++
-                              }
-                            else
-                              {
-                                $RetireName = ($Retirement.'Tracking ID' + ' - ' + $Retirement.Status + ' : ' + $Retirement.title)
                                 ($Slide30.Shapes | Where-Object { $_.Id -eq 7 }).TextFrame.TextRange.Paragraphs(1).Text = $RetireName
                                 $Loop ++
                               }
@@ -1776,21 +1367,11 @@ $Global:Runtime = Measure-Command -Expression {
               Slide12
               Slide16
               Slide17
-              Slide1
-              Slide12
-              Slide16
-              Slide17
 
               Slide30
               Slide29
               Slide28
-              Slide30
-              Slide29
-              Slide28
 
-              Slide25
-              Slide24
-              Slide23
               Slide25
               Slide24
               Slide23
@@ -1877,30 +1458,16 @@ $Global:Runtime = Measure-Command -Expression {
                     if ($Heavy) {Start-Sleep -Milliseconds 100}
 
                     $HealthHigh = $ExcelCore | Where-Object { $_."Number of Impacted Resources?" -gt 1 -and $_.Impact -eq 'High' } | Sort-Object -Property "Number of Impacted Resources?" -Descending
-                    $HealthHigh = $ExcelCore | Where-Object { $_."Number of Impacted Resources?" -gt 1 -and $_.Impact -eq 'High' } | Sort-Object -Property "Number of Impacted Resources?" -Descending
 
                     #Risk Assessment Result
                     $Global:Document.Content.Paragraphs(176).Range.Text = ''
                     $Global:Document.Content.Paragraphs(175).Range.Text = ''
-                    #Risk Assessment Result
-                    $Global:Document.Content.Paragraphs(176).Range.Text = ''
-                    $Global:Document.Content.Paragraphs(175).Range.Text = ''
 
-                    #$Global:Document.Content.Paragraphs(158).Range.ListFormat.ApplyListTemplate($Global:Word.Application.ListGalleries[1].ListTemplates[3])
                     #$Global:Document.Content.Paragraphs(158).Range.ListFormat.ApplyListTemplate($Global:Word.Application.ListGalleries[1].ListTemplates[3])
 
                     #Health Assessment Result
                     $Global:Document.Content.Paragraphs(172).Range.Text = ''
-                    #Health Assessment Result
-                    $Global:Document.Content.Paragraphs(172).Range.Text = ''
 
-                    #$Global:Document.Content.Paragraphs(158).Range.ListFormat.ApplyListTemplate($Global:Word.Application.ListGalleries[1].ListTemplates[3])
-                    $Global:Document.Content.Paragraphs(171).Range.Select()
-                    $Loops = 1
-                    Foreach ($Risk in $HealthHigh)
-                      {
-                        if ([string]::IsNullOrEmpty($Risk))
-                          {
                     #$Global:Document.Content.Paragraphs(158).Range.ListFormat.ApplyListTemplate($Global:Word.Application.ListGalleries[1].ListTemplates[3])
                     $Global:Document.Content.Paragraphs(171).Range.Select()
                     $Loops = 1
@@ -1913,14 +1480,7 @@ $Global:Runtime = Measure-Command -Expression {
                         $Title = $Risk.'Recommendation Title'
                         if ($Loops -eq 1)
                           {
-                          }
-                        $Title = $Risk.'Recommendation Title'
-                        if ($Loops -eq 1)
-                          {
                             $Global:Word.Selection.TypeText($Title) | Out-Null
-                          }
-                        else
-                          {
                           }
                         else
                           {
@@ -1946,28 +1506,7 @@ $Global:Runtime = Measure-Command -Expression {
                     if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Looking for Charts in the Excel file..') | Out-File -FilePath $LogFile -Append }
                     #Charts
                     $WS2 = $Global:Ex.Worksheets | Where-Object { $_.Name -eq 'Charts' }
-                          }
-                        $Loops ++
-                      }
-                  }
-                catch
-                  {
-                    $errorMessage = $_.Exception
-                    $ErrorStack = $_.ScriptStackTrace
-                    if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Error - ' + $errorMessage) | Out-File -FilePath $LogFile -Append }
-                    if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Error - ' + $ErrorStack) | Out-File -FilePath $LogFile -Append }
-                  }
-              }
-              function WordCharts {
-                if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Word Charts..') | Out-File -FilePath $LogFile -Append }
 
-                try
-                  {
-                    if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Looking for Charts in the Excel file..') | Out-File -FilePath $LogFile -Append }
-                    #Charts
-                    $WS2 = $Global:Ex.Worksheets | Where-Object { $_.Name -eq 'Charts' }
-
-                    $Position = $Global:Document.Content.Paragraphs(181).Range.Start
                     $Position = $Global:Document.Content.Paragraphs(181).Range.Start
 
                     $Global:Document.Content.InlineShapes(10).Delete() | Out-Null
@@ -1977,8 +1516,6 @@ $Global:Runtime = Measure-Command -Expression {
                     $Global:Document.Content.InlineShapes(8).Delete() | Out-Null
                     if ($Heavy) {Start-Sleep -Milliseconds 100}
 
-                    if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Coping Chart 1..') | Out-File -FilePath $LogFile -Append }
-                    $WS2.ChartObjects('ChartP0').copy()
                     if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Coping Chart 1..') | Out-File -FilePath $LogFile -Append }
                     $WS2.ChartObjects('ChartP0').copy()
 
@@ -2027,34 +1564,7 @@ $Global:Runtime = Measure-Command -Expression {
                             $Global:Document.Tables(10).Rows($LineCounter).Cells(1).Range.Text = $OutageName
                             $Global:Document.Tables(10).Rows($LineCounter).Cells(2).Range.Text = $OutageWhat
                             $Global:Document.Tables(10).Rows($LineCounter).Cells(3).Range.Text = $OutageRecom
-                            $Global:Document.Tables(10).Rows($LineCounter).Cells(1).Range.Text = $OutageName
-                            $Global:Document.Tables(10).Rows($LineCounter).Cells(2).Range.Text = $OutageWhat
-                            $Global:Document.Tables(10).Rows($LineCounter).Cells(3).Range.Text = $OutageRecom
 
-                            $LineCounter ++
-                          }
-                      }
-                  }
-                catch
-                  {
-                    $errorMessage = $_.Exception
-                    $ErrorStack = $_.ScriptStackTrace
-                    if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Error - ' + $errorMessage) | Out-File -FilePath $LogFile -Append }
-                    if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Error - ' + $ErrorStack) | Out-File -FilePath $LogFile -Append }
-                  }
-              }
-              function WordTables {
-                if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Tables..') | Out-File -FilePath $LogFile -Append }
-
-                try
-                  {
-                    if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Cleaning Table 6..') | Out-File -FilePath $LogFile -Append }
-                    $row = 2
-                    while ($row -lt 5)
-                      {
-                        $cell = 1
-                        while ($cell -lt 5)
-                          {
                             $LineCounter ++
                           }
                       }
@@ -2084,17 +1594,7 @@ $Global:Runtime = Measure-Command -Expression {
                           }
                         $row ++
                       }
-                          }
-                        $row ++
-                      }
 
-                    if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Cleaning Table 7..') | Out-File -FilePath $LogFile -Append }
-                    $row = 2
-                    while ($row -lt 3)
-                      {
-                        $cell = 1
-                        while ($cell -lt 5)
-                          {
                     if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Cleaning Table 7..') | Out-File -FilePath $LogFile -Append }
                     $row = 2
                     while ($row -lt 3)
@@ -2107,17 +1607,7 @@ $Global:Runtime = Measure-Command -Expression {
                           }
                         $row ++
                       }
-                          }
-                        $row ++
-                      }
 
-                    if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Cleaning Table 8..') | Out-File -FilePath $LogFile -Append }
-                    $row = 2
-                    while ($row -lt 3)
-                      {
-                        $cell = 1
-                        while ($cell -lt 5)
-                          {
                     if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Cleaning Table 8..') | Out-File -FilePath $LogFile -Append }
                     $row = 2
                     while ($row -lt 3)
@@ -2130,19 +1620,7 @@ $Global:Runtime = Measure-Command -Expression {
                           }
                         $row ++
                       }
-                          }
-                        $row ++
-                      }
 
-                    #Populate Table Health and Risk Summary High
-                    $counter = 1
-                    $row = 2
-                    foreach ($Impact in $HighImpact)
-                      {
-                        $LogHighImpact = $Impact.'Recommendation Title'
-                        if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Adding High Impact: ' + $LogHighImpact) | Out-File -FilePath $LogFile -Append }
-                        if ($counter -lt 14)
-                          {
                     #Populate Table Health and Risk Summary High
                     $counter = 1
                     $row = 2
@@ -2157,13 +1635,6 @@ $Global:Runtime = Measure-Command -Expression {
                             #Recommendation
                             $Global:Document.Tables(6).Rows($row).Cells(2).Range.Text = $Impact.'Recommendation Title'
                             #Service
-                            if ($Impact.'Azure Service / Well-Architected' -eq 'Well Architected') {
-                              $ServiceName = ('WAF - ' + $Impact.'Azure Service / Well-Architected Topic')
-                            }
-                            else {
-                              $ServiceName = $Impact.'Azure Service / Well-Architected Topic'
-                            }
-                            $Global:Document.Tables(6).Rows($row).Cells(3).Range.Text = $ServiceName
                             if ($Impact.'Azure Service / Well-Architected' -eq 'Well Architected') {
                               $ServiceName = ('WAF - ' + $Impact.'Azure Service / Well-Architected Topic')
                             }
@@ -2212,15 +1683,6 @@ $Global:Runtime = Measure-Command -Expression {
                         if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Adding Medium Impact: ' + $LogMediumImpact) | Out-File -FilePath $LogFile -Append }
                         if ($counter -lt 14)
                           {
-                    #Populate Table Health and Risk Summary Medium
-                    $counter = 1
-                    $row = 2
-                    foreach ($Impact in $MediumImpact)
-                      {
-                        $LogMediumImpact = $Impact.'Recommendation Title'
-                        if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Adding Medium Impact: ' + $LogMediumImpact) | Out-File -FilePath $LogFile -Append }
-                        if ($counter -lt 14)
-                          {
                             #Number
                             $Global:Document.Tables(7).Rows($row).Cells(1).Range.Text = [string]$counter
                             #Recommendation
@@ -2230,15 +1692,7 @@ $Global:Runtime = Measure-Command -Expression {
                               {
                                 $ServiceName = ('WAF - ' + $Impact.'Azure Service / Well-Architected Topic')
                               }
-                            if ($Impact.'Azure Service / Well-Architected' -eq 'Well Architected')
-                              {
-                                $ServiceName = ('WAF - ' + $Impact.'Azure Service / Well-Architected Topic')
-                              }
                             else
-                              {
-                                $ServiceName = $Impact.'Azure Service / Well-Architected Topic'
-                              }
-                            $Global:Document.Tables(7).Rows($row).Cells(3).Range.Text = $ServiceName
                               {
                                 $ServiceName = $Impact.'Azure Service / Well-Architected Topic'
                               }
@@ -2262,15 +1716,7 @@ $Global:Runtime = Measure-Command -Expression {
                               {
                                 $ServiceName = ('WAF - ' + $Impact.'Azure Service / Well-Architected Topic')
                               }
-                            if ($Impact.'Azure Service / Well-Architected' -eq 'Well Architected')
-                              {
-                                $ServiceName = ('WAF - ' + $Impact.'Azure Service / Well-Architected Topic')
-                              }
                             else
-                              {
-                                $ServiceName = $Impact.'Azure Service / Well-Architected Topic'
-                              }
-                            $Global:Document.Tables(7).Rows($row).Cells(3).Range.Text = $ServiceName
                               {
                                 $ServiceName = $Impact.'Azure Service / Well-Architected Topic'
                               }
@@ -2292,15 +1738,6 @@ $Global:Runtime = Measure-Command -Expression {
                         if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Adding Low Impact: ' + $LogLowImpact) | Out-File -FilePath $LogFile -Append }
                         if ($counter -lt 14)
                           {
-                    #Populate Table Health and Risk Summary Low
-                    $counter = 1
-                    $row = 2
-                    foreach ($Impact in $LowImpact)
-                      {
-                        $LogLowImpact = $Impact.'Recommendation Title'
-                        if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Adding Low Impact: ' + $LogLowImpact) | Out-File -FilePath $LogFile -Append }
-                        if ($counter -lt 14)
-                          {
                             #Number
                             $Global:Document.Tables(8).Rows($row).Cells(1).Range.Text = [string]$counter
                             #Recommendation
@@ -2310,15 +1747,7 @@ $Global:Runtime = Measure-Command -Expression {
                               {
                                 $ServiceName = ('WAF - ' + $Impact.'Azure Service / Well-Architected Topic')
                               }
-                            if ($Impact.'Azure Service / Well-Architected' -eq 'Well Architected')
-                              {
-                                $ServiceName = ('WAF - ' + $Impact.'Azure Service / Well-Architected Topic')
-                              }
                             else
-                              {
-                                $ServiceName = $Impact.'Azure Service / Well-Architected Topic'
-                              }
-                            $Global:Document.Tables(8).Rows($row).Cells(3).Range.Text = $ServiceName
                               {
                                 $ServiceName = $Impact.'Azure Service / Well-Architected Topic'
                               }
@@ -2342,15 +1771,7 @@ $Global:Runtime = Measure-Command -Expression {
                               {
                                 $ServiceName = ('WAF - ' + $Impact.'Azure Service / Well-Architected Topic')
                               }
-                            if ($Impact.'Azure Service / Well-Architected' -eq 'Well Architected')
-                              {
-                                $ServiceName = ('WAF - ' + $Impact.'Azure Service / Well-Architected Topic')
-                              }
                             else
-                              {
-                                $ServiceName = $Impact.'Azure Service / Well-Architected Topic'
-                              }
-                            $Global:Document.Tables(8).Rows($row).Cells(3).Range.Text = $ServiceName
                               {
                                 $ServiceName = $Impact.'Azure Service / Well-Architected Topic'
                               }
@@ -2388,29 +1809,13 @@ $Global:Runtime = Measure-Command -Expression {
                           {
                             if ($LineCounter -gt 3)
                               {
-                    $LineCounter = 2
-                    if (![string]::IsNullOrEmpty($Global:Retirements))
-                      {
-                        if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Retirements found..') | Out-File -FilePath $LogFile -Append }
-                        foreach ($Retires in $Global:Retirements)
-                          {
-                            if ($LineCounter -gt 3)
-                              {
                                 $Global:Document.Tables(12).Rows.Add() | Out-Null
                               }
                             $RetireName = ($Retires.'Tracking ID' + ' - ' + $Retires.Status + ' : ' + $Retires.title)
                             if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Adding Retirement: ' + $RetireName) | Out-File -FilePath $LogFile -Append }
                             $RetireSub = $Retires.Subscription
                             $RetireDetails = $Retires.Details
-                              }
-                            $RetireName = ($Retires.'Tracking ID' + ' - ' + $Retires.Status + ' : ' + $Retires.title)
-                            if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Adding Retirement: ' + $RetireName) | Out-File -FilePath $LogFile -Append }
-                            $RetireSub = $Retires.Subscription
-                            $RetireDetails = $Retires.Details
 
-                            $Global:Document.Tables(12).Rows($LineCounter).Cells(1).Range.Text = $RetireName
-                            $Global:Document.Tables(12).Rows($LineCounter).Cells(2).Range.Text = $RetireSub
-                            $Global:Document.Tables(12).Rows($LineCounter).Cells(3).Range.Text = $RetireDetails
                             $Global:Document.Tables(12).Rows($LineCounter).Cells(1).Range.Text = $RetireName
                             $Global:Document.Tables(12).Rows($LineCounter).Cells(2).Range.Text = $RetireSub
                             $Global:Document.Tables(12).Rows($LineCounter).Cells(3).Range.Text = $RetireDetails
@@ -2496,27 +1901,11 @@ $Global:Runtime = Measure-Command -Expression {
                               {
                                 $Global:Document.Tables(5).Rows.Add() | Out-Null
                               }
-                    $LineCounter = 3
-                    if (![string]::IsNullOrEmpty($Global:ServiceHealth))
-                      {
-                        if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Service Health Alerts found..') | Out-File -FilePath $LogFile -Append }
-                        foreach ($Health in $Global:ServiceHealth)
-                          {
-                            $LogHealthName = $Health.Name
-                            if ($CoreDebugging) { ('WordThread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Adding Service Health Alert: ' + $LogHealthName) | Out-File -FilePath $LogFile -Append }
-                            if ($LineCounter -gt 4)
-                              {
-                                $Global:Document.Tables(5).Rows.Add() | Out-Null
-                              }
                             $ActionGroup = $Health.'Action Group'
 
                             $Global:Document.Tables(5).Rows($LineCounter).Cells(1).Range.Text = $Health.Subscription
                             $Global:Document.Tables(5).Rows($LineCounter).Cells(2).Range.Text = $Health.Services
                             $Global:Document.Tables(5).Rows($LineCounter).Cells(3).Range.Text = $Health.Regions
-                            $Global:Document.Tables(5).Rows($LineCounter).Cells(4).Range.Text = if ($Health.'Event Type' -like '*Service Issues*' -or $Health.'Event Type' -eq 'All') { 'Yes' }else { 'No' }
-                            $Global:Document.Tables(5).Rows($LineCounter).Cells(5).Range.Text = if ($Health.'Event Type' -like '*Planned Maintenance*' -or $Health.'Event Type' -eq 'All') { 'Yes' }else { 'No' }
-                            $Global:Document.Tables(5).Rows($LineCounter).Cells(6).Range.Text = if ($Health.'Event Type' -like '*Health Advisories*' -or $Health.'Event Type' -eq 'All') { 'Yes' }else { 'No' }
-                            $Global:Document.Tables(5).Rows($LineCounter).Cells(7).Range.Text = if ($Health.'Event Type' -like '*Security Advisory*' -or $Health.'Event Type' -eq 'All') { 'Yes' }else { 'No' }
                             $Global:Document.Tables(5).Rows($LineCounter).Cells(4).Range.Text = if ($Health.'Event Type' -like '*Service Issues*' -or $Health.'Event Type' -eq 'All') { 'Yes' }else { 'No' }
                             $Global:Document.Tables(5).Rows($LineCounter).Cells(5).Range.Text = if ($Health.'Event Type' -like '*Planned Maintenance*' -or $Health.'Event Type' -eq 'All') { 'Yes' }else { 'No' }
                             $Global:Document.Tables(5).Rows($LineCounter).Cells(6).Range.Text = if ($Health.'Event Type' -like '*Health Advisories*' -or $Health.'Event Type' -eq 'All') { 'Yes' }else { 'No' }
@@ -2656,34 +2045,6 @@ $Global:Runtime = Measure-Command -Expression {
       if ($Debugging.IsPresent) { ('RootProces - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Help menu invoked..') | Out-File -FilePath $LogFile -Append }
       Help
       Exit
-  #Call the functions
-  $Global:LogFile = ($PSScriptRoot + '\wara_reports_generator.log')
-  $Global:Version = "2.0.4"
-  Write-Host "Version: " -NoNewline
-  Write-Host $Global:Version -ForegroundColor DarkBlue -NoNewline
-  Write-Host " "
-
-  if ($Debugging.IsPresent) { (' ---------------------------------- STARTING REPORT GENERATOR SCRIPT --------------------------------------- ') | Out-File -FilePath $LogFile -Append }
-  if ($Debugging.IsPresent) { ('RootProces - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Starting Report Generator Script..') | Out-File -FilePath $LogFile -Append }
-  if ($Debugging.IsPresent) { ('RootProces - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Script Version: ' + $Global:Version) | Out-File -FilePath $LogFile -Append }
-  if ($Debugging.IsPresent) { ('RootProces - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Excel File: ' + $ExcelFile) | Out-File -FilePath $LogFile -Append }
-  if ($Debugging.IsPresent)
-    {
-      $ImportExcel = Get-Module -Name ImportExcel -ListAvailable -ErrorAction silentlycontinue
-      foreach ($IExcel in $ImportExcel)
-        {
-          $IExcelPath = $IExcel.Path
-          $IExcelVer = [string]$IExcel.Version
-          ('RootProces - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - ImportExcel Module Path: ' + $IExcelPath) | Out-File -FilePath $LogFile -Append
-          ('RootProces - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - ImportExcel Module Version: ' + $IExcelVer) | Out-File -FilePath $LogFile -Append
-        }
-    }
-
-  if ($Help.IsPresent)
-    {
-      if ($Debugging.IsPresent) { ('RootProces - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Help menu invoked..') | Out-File -FilePath $LogFile -Append }
-      Help
-      Exit
     }
 
   Write-Progress -Id 1 -activity "Processing Office Apps" -Status "10% Complete." -PercentComplete 10
@@ -2751,11 +2112,6 @@ Write-Host (' Minutes')
 Write-Host 'PowerPoint File Saved As: ' -NoNewline
 Write-Host $PPTFinalFile -ForegroundColor Cyan
 if ($WordTemplateFile)
-  {
-    Write-Host 'Word File Saved As: ' -NoNewline
-    Write-Host $WordFinalFile -ForegroundColor Cyan
-  }
-
   {
     Write-Host 'Word File Saved As: ' -NoNewline
     Write-Host $WordFinalFile -ForegroundColor Cyan
