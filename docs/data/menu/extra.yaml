@@ -1,7 +1,7 @@
 ---
 header:
-  - name: Tools
-    ref: "https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/tree/main/tools"
+  - name: Public Tools
+    ref: "https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/tree/main/tools/public"
     icon: gdoc_path
     external: true
 
