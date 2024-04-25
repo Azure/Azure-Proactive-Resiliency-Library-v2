@@ -513,3 +513,22 @@
       url: "https://learn.microsoft.com/azure/virtual-machines/linux/scheduled-events"
     - name: Azure Metadata Service Scheduled Events for Windows VMs
       url: "https://learn.microsoft.com/azure/virtual-machines/windows/scheduled-events"
+
+- description: Use ZRS Disks or Protect LRS Disks from Availability Zone Failure
+  aprlGuid: fa0cf4f5-0b21-47b7-89a9-ee936f193ce1
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Compute/virtualMachines
+  recommendationMetadataState: Active
+  longDescription: |
+    Azure disks offers a zone-redundant storage (ZRS) option for workloads that need to be resilient to an entire zone being down. Due to the cross-zone data replication, ZRS disks have higher write latency when compared to the locally-redundant option (LRS), so make sure to benchmark your disks.
+  potentialBenefits: Enhanced Disk resilience to failures
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Redundancy options for managed disks
+      url: "https://aka.ms/zrsdisksdoc"

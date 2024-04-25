@@ -1,57 +1,13 @@
-﻿- description: (Personal) Create a validation pool for testing of planned updates
-  aprlGuid: 97d4d8c1-eeb4-4506-b338-79a4949c993b
-  recommendationTypeId: null
-  recommendationControl: Governance
-  recommendationImpact: Low
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
-  recommendationMetadataState: Active
-  longDescription: |
-    At least one Validation Pool to have early warning if a planned update to AVD causes an issue. Also check that the host pool has been used regularly to test planned updates.
-    Host pools are a collection of one or more identical virtual machines within Azure Virtual Desktop environment. We highly recommend you create a validation host pool where service updates are applied first. Validation host pools let you monitor service updates before the service applies them to your standard or non-validation environment. Without a validation host pool, you may not discover changes that introduce errors, which could result in downtime for users in your standard environment.
-    To ensure your apps work with the latest updates, the validation host pool should be as similar to host pools in your non-validation environment as possible. Users should connect as frequently to the validation host pool as they do to the standard host pool. If you have automated testing on your host pool, you should include automated testing on the validation host pool.
-  potentialBenefits: Early issue detection and testing for AVD updates
-  pgVerified: true
-  publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
-  tags: null
-  learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/virtual-desktop/configure-validation-environment?tabs=azure-portal"
-
-- description: (Pooled) Configure scheduled agent updates
-  aprlGuid: 9fc522c1-d5b0-4bad-8169-1e1d32855afd
-  recommendationTypeId: null
-  recommendationControl: Scalability
-  recommendationImpact: Medium
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
-  recommendationMetadataState: Active
-  longDescription: |
-    Ensure schedules have been created to provide maintenance windows for AVD agent updates.
-    The Scheduled Agent Updates feature lets you create up to two maintenance windows for the Azure Virtual Desktop agent, side-by-side stack, and Geneva Monitoring agent to get updated so that updates don't happen during peak business hours.
-  potentialBenefits: Minimizes disruptions, ensures updates
-  pgVerified: true
-  publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
-  tags: null
-  learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/virtual-desktop/scheduled-agent-updates"
-
-- description: (Pooled) Create a validation pool for testing of planned updates
-  aprlGuid: 0a22b144-6fa7-4032-be77-fa64152858eb
+﻿- description: Create a validation host pool for testing of planned updates
+  aprlGuid: 013ac34e-7c4b-425f-9e0c-216f0cc06181
   recommendationTypeId: null
   recommendationControl: Governance
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
   recommendationMetadataState: Active
   longDescription: |
-    At least one Validation Pool to have early warning if a planned update to AVD causes an issue. support to adjust limits based on your business requirements. To handle a large number of users, consider scaling horizontally by creating multiple host pools.
-    Also check that the host pool has been used regularly to test planned updates.
-    Host pools are a collection of one or more identical virtual machines within Azure Virtual Desktop environment. We highly recommend you create a validation host pool where service updates are applied first. Validation host pools let you monitor service updates before the service applies them to your standard or non-validation environment. Without a validation host pool, you may not discover changes that introduce errors, which could result in downtime for users in your standard environment.
-    To ensure your apps work with the latest updates, the validation host pool should be as similar to host pools in your non-validation environment as possible. Users should connect as frequently to the validation host pool as they do to the standard host pool. If you have automated testing on your host pool, you should include automated testing on the validation host pool.
-  potentialBenefits: Early detection of update issues.
+    Create a Validation Pool for early issue detection with planned AVD updates. Adjust limits based on needs. Scale by adding multiple host pools for more users. Regularly test updates on host pools. Validate changes before applying to main environment to avoid downtime.
+  potentialBenefits: Enhanced environment stability
   pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
@@ -59,20 +15,18 @@
   tags: null
   learnMoreLink:
     - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/virtual-desktop/configure-validation-environment?tabs=azure-portal"
+      url: "https://learn.microsoft.com/azure/virtual-desktop/configure-validation-environment?tabs=azure-portal"
 
-- description: Monitor Service Health and Resource Health of AVD
-  aprlGuid: a75a20e7-8cc0-4f7b-b4a9-e2476bd72429
+- description: Configure host pool scheduled agent updates
+  aprlGuid: 979ff8be-5f3a-4d8e-9aa3-407ecdd6d6f7
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
-  recommendationImpact: High
+  recommendationControl: Governance
+  recommendationImpact: Medium
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
   recommendationMetadataState: Active
   longDescription: |
-    Use Service Health to stay informed about the health of the Azure services and regions that you use to insure their availability.
-    Set up Service Health alerts so that you stay aware of service issues, planned maintenance, or other changes that might affect your Azure Virtual Desktop resources.
-    Use Resource Health to monitor your VMs and storage solutions.
-  potentialBenefits: Enhanced AVD uptime and awareness
+    Create maintenance schedules for AVD agent updates to avoid disruptions. Use Scheduled Agent Updates to set maintenance windows for updating Azure Virtual Desktop agent, side-by-side stack, and Geneva Monitoring agent.
+  potentialBenefits: Enhanced environment stability
   pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
@@ -80,18 +34,37 @@
   tags: null
   learnMoreLink:
     - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-virtual-desktop/monitoring#resource-health"
+      url: "https://learn.microsoft.com/azure/virtual-desktop/scheduled-agent-updates"
 
-- description: Scaling plans should be created per region and not scaled across regions
-  aprlGuid: e091419d-10ba-4a8e-bdb0-67380cc021a9
+- description: Ensure a unique OU is used when deploying host pools with domain joined session hosts
+  aprlGuid: 939cb85c-102a-4e0a-ab82-5c92116d3778
+  recommendationTypeId: null
+  recommendationControl: Governance
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationMetadataState: Active
+  longDescription: |
+    Hybrid VMs should be in a unique OU. When using AD-joined, session hosts will benefit from using a unique OU to target specific AVD configurations per host pool. Examples include Fslogix, time out limits, session controls, and much more. It’s also important to segment Prod and DR organization units to ensure resources are configured per environment.
+  potentialBenefits: Improved AVD hostpool config & segmentation
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/deploy/virtual-dc/adds-on-azure-vm#configure-the-vms-and-install-active-directory-domain-services"
+
+- description: Use Azure Site Recovery or backups to protect VMs supporting personal desktops
+  aprlGuid: 38721758-2cc2-4d6b-b7b7-8b47dadbf7df
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: Medium
-  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationResourceType: Microsoft.Compute/virtualMachines
   recommendationMetadataState: Active
   longDescription: |
-    Each region has its own scaling plans assigned to host pools within that region. However, these plans can become inaccessible if there's a regional failure. To mitigate this risk, it's advisable to create a secondary scaling plan in another region.
-  potentialBenefits: Enhances reliability across failures
+    Implement Azure Site Recovery (ASR) or Azure Backup for personal host pools to enable seamless failover and failback. This replicates VMs supporting personal desktops to a secondary Azure region, ensuring recovery from a known state in case of a disaster or outage.
+  potentialBenefits: Ensures VM recovery & failover
   pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
@@ -99,4 +72,4 @@
   tags: null
   learnMoreLink:
     - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/virtual-desktop/autoscale-scaling-plan?tabs=portal"
+      url: "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-overview"
