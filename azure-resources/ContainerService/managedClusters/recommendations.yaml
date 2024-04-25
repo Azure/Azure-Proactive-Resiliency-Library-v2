@@ -512,6 +512,7 @@
   longDescription: |
     For optimal connectivity and security, enable private cluster in AKS to ensure direct communication between worker nodes and the control plane. If not enabled, secure API server access with authorized IP ranges.
   potentialBenefits: Provides network reliability, reduced disruptions
+  pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg

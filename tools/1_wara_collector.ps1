@@ -563,32 +563,23 @@ $Global:Runtime = Measure-Command -Expression {
         $aprlKqlFiles = @()
         $ServiceNotAvailable = @()
 
-        foreach ($Type in $resultAllResourceTypes.type)
-          {
-            if ($Type.ToLower() -in $Global:GluedTypes)
-              {
-                $Type = $Type.replace('microsoft.', '')
-                $Provider = $Type.split('/')[0]
-                $ResourceType = $Type.split('/')[1]
-
-                $Path = ""
-                if (!$Global:CShell)
-                  {
-                    $Path = ($clonePath + '\azure-resources\' + $Provider + '\' + $ResourceType)
-                    $aprlKqlFiles += Get-ChildItem -Path $Path -Filter "*.kql" -Recurse
-                  }
-                else
-                  {
-                    $Path = ($clonePath + '/azure-resources/')
-                    $ProvPath = ($Provider + '/' + $ResourceType)
-                    $aprlKqlFiles += Get-ChildItem -Path $Path -Filter "*.kql" -Recurse | Where-Object {$_.FullName -like "*$ProvPath*"}
-                  }
-              }
-            else
-              {
-                $ServiceNotAvailable += $Type
-              }
-          }
+                # Validates if queries are applicable based on Resource Types present in the current subscription
+                $RootTypes = Get-ChildItem -Path "$clonePath\azure-resources\" -Directory
+                foreach ($RootType in $RootTypes)
+                    {
+                        $RootName = $RootType.Name
+                        $SubTypes = Get-ChildItem -Path $RootType -Directory
+                        foreach($SubDir in $SubTypes)
+                            {
+                                $SubDirName = $SubDir.Name
+                                $GlueType = ('Microsoft.'+$RootName+'/'+$SubDirName)
+                                if($GlueType -in $resultAllResourceTypes.type)
+                                    {
+                                        $aprlKqlFiles += Get-ChildItem -Path $SubDir -Filter "*.kql" -Recurse
+                                        $GluedTypes += $GlueType.ToLower()
+                                    }
+                            }
+                    }
 
         # Populates the QueryMap hashtable
         foreach ($aprlKqlFile in $aprlKqlFiles)
@@ -1164,10 +1155,10 @@ $Global:Runtime = Measure-Command -Expression {
   }
 
 
-  #Call the functions
-  $Global:Version = "2.0.7"
-  Write-Host "Version: " -NoNewline
-  Write-Host $Global:Version -ForegroundColor DarkBlue
+    #Call the functions
+    $Global:Version = "2.0.5"
+    Write-Host "Version: " -NoNewline
+    Write-Host $Global:Version -ForegroundColor DarkBlue
 
   if ($Help.IsPresent)
     {
