@@ -5,30 +5,28 @@ weight: 0
 
 ---
 
-Welcome to the home of the Azure Proactive Resiliency Library v2 (APRL).
+Welcome to the home of the Azure Proactive Resiliency Library v2 (APRL). The purpose of this site is to provide a curated catalog of resiliency recommendations for workloads running in Azure. Many of the recommendations contain supporting [Azure Resource Graph (ARG)](https://learn.microsoft.com/azure/governance/resource-graph/overview) queries to help identify non-compliant resources.
 
-{{< figure src="../img/aprl-white.png" width="40%" >}}
+The site content is organized into four main sections:
 
-This library is built with the intention of being a staging area for guidance and recommendations that can be used by customers, partners and the field in Well-Architected Framework reliability engagements/assessments; with the intent of the guidance and recommendations being promoted, once tested and validated with customers and partners, into the official [Well-Architected Framework documentation](https://aka.ms/waf).
+1. [**Azure Resources:**]({{< ref "azure-resources/_index.md">}}) This section provides recommendations for individual Azure resources. Recommendations are organized by Azure resource provider and resource type.
 
-The library also contains supporting [Azure Resource Graph (ARG)](https://learn.microsoft.com/azure/governance/resource-graph/overview) queries that can help customers, partners and the field identify resources that may or may not be compliant with the guidance and recommendations. The intent for these queries, in the long-term, is to make them part of the [Azure Advisor](https://learn.microsoft.com/azure/advisor/advisor-overview) resource.
+1. [**Specialized Workloads:**]({{< ref "azure-specialized-workloads/_index.md">}}) This section provides recommendations for popular workload types. The recommendations cover multiple resource types and include workload specific guidance.
 
-## Get Started
+1. [**Well-Architected Framework:**]({{< ref "azure-waf/_index.md">}}) This section provides resiliency recommendations from the [Azure Well-Architected Framework](https://aka.ms/waf)
 
-To get started head over to the [Azure Resources section]({{< ref "azure-resources/_index.md">}}) and then navigate via the appropriate category to find guidance, recommendations alongside supporting Azure Resource Graph queries to help you discover compliant/non-compliant resources in your environment.
+1. [**Tools:**]({{< ref "tools/_index.md">}}) This section provides automation scripts for workload evaluation. The scripts execute the ARG queries and create documents for analysis, reporting, and triage.
+
+### Get Started
+
+To get started head over to the [Azure Resources section]({{< ref "azure-resources/_index.md">}}) and then navigate to your chosen resource provider and resource type. Each of the listed resource types will provide recommendations, supporting documentation, and, when available, ARG queries.
 
 {{< hint type=note >}}
 
-You can also use the basic search functionality provided by this site to locate the Azure Resource you are looking for guidance, recommendations and supporting queries and scripts for.
+You can also use the basic search functionality provided by this site to locate the Azure resource you are looking for.
 
 {{< /hint >}}
 
-## Contributing
+### Contributing
 
 Please see the [contribution guide here]({{< ref "contributing/_index.md">}}).
-
-{{< hint type=note >}}
-
-Please note that this site is built upon [GithHub Pages](https://pages.github.com) using [Hugo](https://gohugo.io/)
-
-{{< /hint >}}

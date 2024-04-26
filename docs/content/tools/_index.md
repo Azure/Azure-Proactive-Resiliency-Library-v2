@@ -8,19 +8,19 @@ This section lists of all of the information pertaining to the APRL tooling/scri
 
 {{< toc >}}
 
-## Collector Script
+## 1 - Collector Script
 
 [GitHub Link to Download](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/1_wara_collector.ps1)
 
 The Collector PowerShell script is the first script to be run in the Azure Proactive Resiliency Library (APRL) tooling suite. It is designed to collect data from the Azure environment to help identify potential issues and areas for improvement using the Azure Resource Graph queries within this repository. The script leverages the Az.ResourceGraph module to query Azure Resource Graph for relevant data.
 
-## Data Analyzer Script
+## 2 - Data Analyzer Script
 
 [GitHub Link to Download](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/2_wara_data_analyzer.ps1)
 
 The Data Analyzer PowerShell script is the second script in the Azure Proactive Resiliency Library (APRL) tooling suite. It compares the output collected by the Collector script with the Azure Proactive Resiliency Guidelines (APRL) and generates an ActionPlan Excel spreadsheet. The goal of this tool is to summarize the collected data and provide actionable insights into the health and resiliency of the Azure environment.
 
-## Reports Generator Script
+## 3 - Reports Generator Script
 
 [GitHub Link to Download](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/3_wara_reports_generator.ps1)
 
