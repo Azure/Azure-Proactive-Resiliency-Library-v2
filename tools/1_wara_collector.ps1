@@ -17,7 +17,7 @@ if ($Debugging.IsPresent) { $DebugPreference = 'Continue' } else { $DebugPrefere
 
 Clear-Host
 
-$Global:CShell = try { Get-CloudDrive } catch { "" }
+$Global:CShell = try { Get-CloudshellTip } catch { "" }
 $Global:SubscriptionIds = $SubscriptionIds
 
 $Global:Runtime = Measure-Command -Expression {
