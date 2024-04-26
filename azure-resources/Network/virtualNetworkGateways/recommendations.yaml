@@ -128,7 +128,7 @@
   longDescription: |
     Azure VPN gateway offers variable SLAs based on deployment in one or two availability zones. Deploying zone-redundant virtual network gateways across availability zones ensures zone-resiliency, improving access to mission-critical, scalable services on Azure.
   potentialBenefits: Enhanced reliability and scalability
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -151,7 +151,7 @@
   longDescription: |
     The active-active mode is available for all SKUs except Basic, allowing for two Gateway IP configurations and two public IP addresses, enhancing redundancy and traffic handling.
   potentialBenefits: Enhanced reliability and network capacity
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -172,7 +172,7 @@
   longDescription: |
     Deploying active-active VPN concentrators and Azure VPN Gateways maximizes resilience and availability using a fully-meshed topology with four IPSec tunnels.
   potentialBenefits: Maximizes resilience and availability
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
@@ -191,7 +191,7 @@
   longDescription: |
     Set up monitoring and alerts for Virtual Network Gateway health to utilize a variety of metrics for ensuring operational efficiency and prompt response to any disruptions.
   potentialBenefits: Improved uptime and issue awareness
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
@@ -210,7 +210,7 @@
   longDescription: |
     VPN gateway leverages service health to inform users about both planned and unplanned maintenance, ensuring they are notified about modifications to their VPN connectivity.
   potentialBenefits: Improves VPN maintenance alerts
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
@@ -231,7 +231,7 @@
   longDescription: |
     For zone-redundant VPN gateways, always use zone-redundant Standard SKU public IPs to avoid deploying all instances in one zone. This ensures the gateway's reliability, applying to both active-passive (single IP) and active-active (dual IP) setups.
   potentialBenefits: Enhanced reliability and disaster recovery
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
