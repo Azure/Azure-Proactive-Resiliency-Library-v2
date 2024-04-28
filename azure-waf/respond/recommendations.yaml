@@ -27,24 +27,3 @@
       url: "https://learn.microsoft.com/training/modules/improve-reliability-incidents/2-importance"
     - name: Incident tracking
       url: "https://learn.microsoft.com/training/modules/improve-reliability-incidents/5-tracking"
-
-- description: deleteme
-  aprlGuid: e23933c9-fe33-495d-a7b3-b3e7f9befd49
-  recommendationTypeId: null
-  recommendationControl: Other
-  recommendationImpact: Low
-  recommendationResourceType: WellArchitected/Respond
-  recommendationMetadataState: Active
-  longDescription: |
-    This is just a test recommendation.
-  potentialBenefits: Quicker recovery, less impact
-  pgVerified: false
-  publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: No
-  tags: null
-  learnMoreLink:
-    - name: Importance of incident response
-      url: "https://learn.microsoft.com/training/modules/improve-reliability-incidents/2-importance"
-    - name: Incident tracking
-      url: "https://learn.microsoft.com/training/modules/improve-reliability-incidents/5-tracking"
