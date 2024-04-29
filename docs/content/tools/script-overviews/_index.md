@@ -10,6 +10,8 @@ geekdocCollapseSection: false
 
 The Collector PowerShell script is the first script to be run in the Azure Proactive Resiliency Library (APRL) tooling suite. It is designed to collect data from the Azure environment to help identify potential issues and areas for improvement using the Azure Resource Graph queries within this repository. The script leverages the Az.ResourceGraph module to query Azure Resource Graph for relevant data.
 
+---
+
 You have two options for running the collector script:
 
 1. Cloud Shell
