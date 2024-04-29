@@ -21,7 +21,7 @@ The Collector PowerShell script is the first script to be run in the Azure Proac
 
 ### 1.1 - Cloud Shell
 
-1. From the [Azure Portal](https://portal.azure.com/) open Cloud Shell
+1. From the [Azure Portal](https://portal.azure.com/) open Cloud Shell, select PowerShell instead of BASH
    - If this is your first time using Cloud Shell, refer to the getting started guide from Microsoft Learn - [Azure Cloud Shell](https://learn.microsoft.com/en-us/azure/cloud-shell/get-started/classic?tabs=azurecli#start-cloud-shell).
    - ![Cloud Shell](/docs/static/img/tools/collector-1.png)
 2. Upload the WARA Collector Script to Cloud Shell
