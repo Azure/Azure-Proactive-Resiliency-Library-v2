@@ -132,4 +132,4 @@ The Reports Generator PowerShell script serves as the final step in the Azure Pr
       - ![Local Machine Reports Generator](/docs/static/img/tools/generator-2.png)
 4. Select "R" to allow script to run
    - ![Local Machine Security Warning](/docs/static/img/tools/generator-3.png)
-5. After the script successfully runs, you will find two new files saved in your folder. Some of the information will be automatically populated based on the Action Plan however, updates will need to be made prior to presenting to any audience.
+5. After the script successfully runs, you will find two new files saved in your folder. Some of the information will be automatically populated based on the Action Plan however, **updates will need to be made prior to presenting to any audience**.
