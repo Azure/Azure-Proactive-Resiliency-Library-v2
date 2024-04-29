@@ -1,5 +1,5 @@
 ---
-title: Tools
+title: Tools Wiki
 weight: 10
 geekdocCollapseSection: false
 ---
@@ -9,6 +9,17 @@ geekdocCollapseSection: false
 [GitHub Link to Download](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/1_wara_collector.ps1)
 
 The Collector PowerShell script is the first script to be run in the Azure Proactive Resiliency Library (APRL) tooling suite. It is designed to collect data from the Azure environment to help identify potential issues and areas for improvement using the Azure Resource Graph queries within this repository. The script leverages the Az.ResourceGraph module to query Azure Resource Graph for relevant data.
+
+You have two options for running the collector script:
+
+1. Cloud Shell
+   - Requires Cloud Shell be configured with write access to a fileshare within the same tenant
+2. Local Machine
+   - Requires current modules leveraged in the script be installed
+
+### 1.1 - Cloud Shell
+
+
 
 ## 2 - Data Analyzer Script
 
