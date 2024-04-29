@@ -88,12 +88,12 @@ The Data Analyzer PowerShell script is the second script in the Azure Proactive 
 **The Data Analyzer script must be run from a Windows Machine with Excel installed.**
 
 1. Change your directory to the same location that you have downloaded the WARA Data Analyzer script to.
-    - We recommend running this as close to your C:\ as path to avoid errors related to file path length.
-    - ![Local Machine CD](/docs/static/img/tools/collector-7.png)
+   - We recommend running this as close to your C:\ as path to avoid errors related to file path length.
+   - ![Local Machine CD](/docs/static/img/tools/collector-7.png)
 1. Execute script pointing the -JSONFile parameter to file created by the WARA Collector script.
-    - ![Local Machine Analyzer](/docs/static/img/tools/analyzer-1.png)
+   - ![Local Machine Analyzer](/docs/static/img/tools/analyzer-1.png)
 1. Select "R" to allow script to run
-    - ![Local Machine Security Warning](/docs/static/img/tools/analyzer-2.png)
+   - ![Local Machine Security Warning](/docs/static/img/tools/analyzer-2.png)
 1. After the script completes it will save a WARA Action Plan.xlsx file to the same file path.
 
 ### Local Machine - Action Plan Analysis
