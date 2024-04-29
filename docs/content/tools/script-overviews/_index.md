@@ -12,7 +12,7 @@ The Collector PowerShell script is the first script to be run in the Azure Proac
 
 ---
 
-You have two options for running the collector script:
+**You have two options for running the collector script:**
 
 1. Cloud Shell
    - Requires Cloud Shell be configured with write access to a fileshare within the same tenant
