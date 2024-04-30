@@ -25,44 +25,57 @@ The Collector PowerShell script is the first script to be run in the Azure Proac
 ### 1.1 - Cloud Shell
 
 1. From the [Azure Portal](https://portal.azure.com/) open Cloud Shell, select PowerShell instead of BASH
-   - If this is your first time using Cloud Shell, refer to the getting started guide from Microsoft Learn - [Azure Cloud Shell](https://learn.microsoft.com/en-us/azure/cloud-shell/get-started/classic?tabs=azurecli#start-cloud-shell).
-   - ![Cloud Shell](/img/tools/collector-1.png)
+
+    - If this is your first time using Cloud Shell, refer to the getting started guide from Microsoft Learn - [Azure Cloud Shell](https://learn.microsoft.com/en-us/azure/cloud-shell/get-started/classic?tabs=azurecli#start-cloud-shell).
+
+    {{< figure src="../../img/tools/collector-1.png" width="100%" >}}
+
 1. Upload the WARA Collector Script to Cloud Shell
-   - ![Cloud Shell Upload](/img/tools/collector-2.png)
+  {{< figure src="../../img/tools/collector-2.png" width="60%" >}}
+
 1. Execute script leveraging optional parameters
-   - Parameters include:
+
+    - Parameters include:
       - **TenantID**:  *Optional* ; tenant to be used.
       - **SubscriptionIds**:  *Optional (or SubscriptionsFile)* ; Specifies Subscription(s) to be included in the analysis: Subscription1,Subscription2.
       - **SubscriptionsFile**:  *Optional (or SubscriptionIds)* ; specifies the file with the subscription list to be analysed (one subscription per line).
       - **RunbookFile**:  *Optional* ; specifies the file with the runbook (selectors & checks) to be used.
       - **ResourceGroups**:  *Optional* ; specifies Resource Group(s) to be included in the analysis: ResourceGroup1,ResourceGroup2.
       - **Debug**: *Optional* ; Writes Debugging information of the script during the execution.
-   - ![Cloud Shell Execute](/docs/static/img/tools/collector-3.png)
+
+   {{< figure src="../../img/tools/collector-3.png" width="100%" >}}
+
 1. Select "A" to allow modules to install
-   - ![Cloud Shell Allow](/docs/static/img/tools/collector-4.png)
+  {{< figure src="../../img/tools/collector-4.png" width="100%" >}}
+
 1. After Script completes, download the results
-   - ![Cloud Shell Download](/docs/static/img/tools/collector-5.png)
+  {{< figure src="../../img/tools/collector-5.png" width="100%" >}}
 
 ### 1.2 Local Machine
 
 1. To run the script there are 5 prerequisites that must be completed first:
-   1. **The script must be executed from PowerShell 7, not Windows PowerShell or PowerShell ISE.**
-      - ![Local Machine PS7](/docs/static/img/tools/collector-6.png)
-   1. **Git must be installed on the local machine - [Git](https://git-scm.com/download/win)**
-   1. **Install required PowerShell Modules:**
-      - Install-Module -Name ImportExcel -Force -SkipPublisherCheck
-      - Install-Module -Name Az.ResourceGraph -SkipPublisherCheck
-      - Install-Module -Name Az.Accounts -SkipPublisherCheck
-   1. **Unblock the Script**
-      - The script is digitally signed, but the PowerShell module ImportExcel is not. So at this moment, you need to allow the execution of scripts not signed locally:
-        - Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser
-        - Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope LocalMachine
-   1. **Reader permissions to target subscription(s)**
+    1. **The script must be executed from PowerShell 7, not Windows PowerShell or PowerShell ISE.**
+      {{< figure src="../../img/tools/collector-6.png" width="40%" >}}
+    1. **Git must be installed on the local machine - [Git](https://git-scm.com/download/win)**
+    1. **Install required PowerShell Modules:**
+        - Install-Module -Name ImportExcel -Force -SkipPublisherCheck
+        - Install-Module -Name Az.ResourceGraph -SkipPublisherCheck
+        - Install-Module -Name Az.Accounts -SkipPublisherCheck
+    1. **Unblock the Script**
+        - The script is digitally signed, but the PowerShell module ImportExcel is not. So at this moment, you need to allow the execution of scripts not signed locally:
+          - Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser
+          - Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope LocalMachine
+    1. **Reader permissions to target subscription(s)**
+
 1. Open a new PowerShell 7 session after completeing prerequisites
+
 1. Change your directory to the same location that you have downloaded the WARA collector script to.
-   - We recommend running this as close to your C:\ as path to avoid errors related to file path length.
-   - ![Local Machine CD](/docs/static/img/tools/collector-7.png)
+
+    - We recommend running this as close to your C:\ as path to avoid errors related to file path length.
+    {{< figure src="../../img/tools/collector-7.png" width="40%" >}}
+
 1. Execute script leveraging optional parameters
+
       - Parameters include:
         - **TenantID**:  Optional; tenant to be used.
         - **SubscriptionIds**:  Optional (or SubscriptionsFile); Specifies Subscription(s) to be included in the analysis: Subscription1,Subscription2.
@@ -70,9 +83,11 @@ The Collector PowerShell script is the first script to be run in the Azure Proac
         - **RunbookFile**:  Optional; specifies the file with the runbook (selectors & checks) to be used.
         - **ResourceGroups**:  Optional; specifies Resource Group(s) to be included in the analysis: ResourceGroup1,ResourceGroup2.
         - **Debug**:  Writes Debugging information of the script during the execution.
-      - ![Local Machine Execute](/docs/static/img/tools/collector-8.png)
+        {{< figure src="../../img/tools/collector-8.png" width="100%" >}}
+
 1. Authenticate with the account that has Reader permissions to the target subscription(s)
-   - ![Local Machine Authentication](/docs/static/img/tools/collector-9.png)
+  {{< figure src="../../img/tools/collector-9.png" width="40%" >}}
+
 1. After script completes, the results will be saved to the same folder location.
 
 ## 2 - Data Analyzer Script
@@ -88,29 +103,37 @@ The Data Analyzer PowerShell script is the second script in the Azure Proactive 
 **The Data Analyzer script must be run from a Windows Machine with Excel installed.**
 
 1. Change your directory to the same location that you have downloaded the WARA Data Analyzer script to.
-   - We recommend running this as close to your C:\ as path to avoid errors related to file path length.
-   - ![Local Machine CD](/docs/static/img/tools/collector-7.png)
+
+    - We recommend running this as close to your C:\ as path to avoid errors related to file path length.
+    {{< figure src="../../img/tools/collector-7.png" width="40%" >}}
+
 1. Execute script pointing the -JSONFile parameter to file created by the WARA Collector script.
-   - ![Local Machine Analyzer](/docs/static/img/tools/analyzer-1.png)
+  {{< figure src="../../img/tools/analyzer-1.png" width="100%" >}}
+
 1. Select "R" to allow script to run
-   - ![Local Machine Security Warning](/docs/static/img/tools/analyzer-2.png)
+  {{< figure src="../../img/tools/analyzer-2.png" width="100%" >}}
+
 1. After the script completes it will save a WARA Action Plan.xlsx file to the same file path.
 
 ### Local Machine - Action Plan Analysis
 
 1. Once the script has completed, open the Excel Action Plan and familiarize yourself with the structure of the file, generated data, resources collected, pivot tables, and charts created.
-   - These are the worksheets:
+
+    - These are the worksheets:
       - **Recommendations**: you will find all Recommendations, their category, impact, description, learn more links, and much more.
         - Note that Columns A and B are counting the number of Azure Resources associated with the RecommendationID.
       - **ImpactedResources**: you will find a list of Azure Resources associated with a RecommendationID. These are the Azure Resources NOT following Microsoft best practices for Reliability.
       - **PivotTable**: you will find a couple of pivot tables used to automatically create the charts
       - **Charts**: you will find 3 charts that will be used in the Executive Summary PPTx
       - **ResourceTypes**: you will find a list of all ResourceTypes the customer is using, number of Resources deployed for each one, and if there are Recommendations for the ResourceType in APRL.
-   - At this point, all Azure Resources with recommendations and Azure Resource Graph queries available in APRL, were automatically validated. Follow the next steps to validate the remaining services without automation or that does not exist in APRL yet.
+    - At this point, all Azure Resources with recommendations and Azure Resource Graph queries available in APRL, were automatically validated. Follow the next steps to validate the remaining services without automation or that does not exist in APRL yet.
+
 1. Go to the "ImpactedResources" worksheet, filter Column "B" by "IMPORTANT", and validate manually the remaining resource configurations for reliabilty patterns.
-   - "IMPORTANT - Query under development"
-   - "IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually"
-   - "IMPORTANT - ServiceType Not Available in APRL - Validate Resources manually if Applicable, if not delete this line"
+
+    - "IMPORTANT - Query under development"
+    - "IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually"
+    - "IMPORTANT - ServiceType Not Available in APRL - Validate Resources manually if Applicable, if not delete this line"
+
 1. Remove/add any recommendations based on your analysis prior to generating reports
 
 ## 3 - Reports Generator Script
@@ -124,20 +147,26 @@ The Reports Generator PowerShell script serves as the final step in the Azure Pr
 ### Local Machine - Report Generation
 
 1. You will need to have both the Word and PowerPoint templates downloaded to the same file location.
-   - ![Local Machine - Folder](/docs/static/img/tools/generator-1.png)
-2. Change your directory to the same location that you have downloaded the WARA Reports Generator script to.
-   - We recommend running this as close to your C:\ as path to avoid errors related to file path length.
-   - ![Local Machine CD](/docs/static/img/tools/collector-7.png)
-3. Execute script leveraging needed parameters
-      - Parameters include:
-        - **ExcelFile**:  *Mandatory*; WARA Excel file generated by '2_wara_data_analyzer.ps1' script and customized.
-        - **CustomerName**:  *Optional*; specifies the Name of the Customer to be added to the PPTx and DOCx files.
-        - **Heavy**:  *Optional*; runs the script at a lower pace to handle heavy environments.
-        - **WorkloadName**:  *Optional*; specifies the Name of the Workload of the analyses to be added to the PPTx and DOCx files.
-        - **PPTTemplateFile**:  *Optional*; specifies the PPTx template file to be used as source. If not specified the script will look for the file in the same path as the script.
-        - **WordTemplateFile**:  *Optional*; specifies the DOCx template file to be used as source. If not specified the script will look for the file in the same path as the script.
-        - **Debugging**: *Optional*; Writes a Debugging information to a log file.
-      - ![Local Machine Reports Generator](/docs/static/img/tools/generator-2.png)
-4. Select "R" to allow script to run
-   - ![Local Machine Security Warning](/docs/static/img/tools/generator-3.png)
-5. After the script successfully runs, you will find two new files saved in your folder. Some of the information will be automatically populated based on the Action Plan however, **updates will need to be made prior to presenting to any audience**.
+  {{< figure src="../../img/tools/generator-1.png" width="80%" >}}
+
+1. Change your directory to the same location that you have downloaded chine - Folder](/docs/static/img/tools/generator-1.png)the WARA Reports Generator script to.
+
+    - We recommend running this as close to your C:\ as path to avoid errors related to file path length.
+    {{< figure src="../../img/tools/collector-7.png" width="40%" >}}
+
+1. Execute script leveraging needed parameters
+
+    - Parameters include:
+      - **ExcelFile**:  *Mandatory*; WARA Excel file generated by '2_wara_data_analyzer.ps1' script and customized.
+      - **CustomerName**:  *Optional*; specifies the Name of the Customer to be added to the PPTx and DOCx files.
+      - **Heavy**:  *Optional*; runs the script at a lower pace to handle heavy environments.
+      - **WorkloadName**:  *Optional*; specifies the Name of the Workload of the analyses to be added to the PPTx and DOCx files.
+      - **PPTTemplateFile**:  *Optional*; specifies the PPTx template file to be used as source. If not specified the script will look for the file in the same path as the script.
+      - **WordTemplateFile**:  *Optional*; specifies the DOCx template file to be used as source. If not specified the script will look for the file in the same path as the script.
+      - **Debugging**: *Optional*; Writes a Debugging information to a log file.
+    {{< figure src="../../img/tools/generator-2.png" width="100%" >}}
+
+1. Select "R" to allow script to run
+  {{< figure src="../../img/tools/generator-3.png" width="100%" >}}
+
+1. After the script successfully runs, you will find two new files saved in your folder. Some of the information will be automatically populated based on the Action Plan however, **updates will need to be made prior to presenting to any audience**.
