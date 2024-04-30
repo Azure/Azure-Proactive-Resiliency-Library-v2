@@ -1,17 +1,20 @@
 // Azure Resource Graph Query
 // List all in-scope Azure Firewall resources, where the VNet is not associated to a DDoS Protection Plan
 resources
-| where type == "microsoft.network/azurefirewalls"
-| mv-expand properties.ipConfigurations
-| project name, firewallId = id, vNet = tolower(substring(properties_ipConfigurations.properties.subnet.id, 0, indexof(properties_ipConfigurations.properties.subnet, "/subnet") - 7)), tags
+| where type =~ "Microsoft.Network/azureFirewalls"
+| mv-expand ipConfig = properties.ipConfigurations
+| project
+    name,
+    firewallId = id,
+    tags,
+    vNetName = split(ipConfig.properties.subnet.id, "/", 8)[0],
+    vNetId = tolower(substring(ipConfig.properties.subnet.id, 0, indexof(ipConfig.properties.subnet.id, "/subnet")))
 | join kind=fullouter (
     resources
-    | where type == "microsoft.network/ddosprotectionplans"
-    | mv-expand properties.virtualNetworks
-    | extend vNet = tolower(tostring(properties_virtualNetworks.id))
-    | project ddosProtectionPlan = id, vNet
+    | where type =~ "Microsoft.Network/ddosProtectionPlans"
+    | mv-expand vNet = properties.virtualNetworks
+    | project ddosProtectionPlanId = id, vNetId = tolower(vNet.id)
     )
-    on $left.vNet == $right.vNet
-| where ddosProtectionPlan == ''
-| project recommendationId = "1b2dbf4a-8a0b-5e4b-8f4e-3f758188910d", name, id = firewallId, tags, param1 = "ddosProtectionPlan:false"
-
+    on vNetId
+| where isempty(ddosProtectionPlanId)
+| project recommendationId = "1b2dbf4a-8a0b-5e4b-8f4e-3f758188910d", name, id = firewallId, tags, param1 = strcat("vNet: ", vNetName), param2 = "ddosProtectionPlan: Not associated"
