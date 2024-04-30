@@ -81,3 +81,23 @@
       url: "https://learn.microsoft.com/azure/backup/backup-rbac-rs-vault#minimum-role-requirements-for-azure-vm-backup"
     - name: Recovery Services Vault
       url: "https://learn.microsoft.com/azure/backup/backup-azure-arm-vms-prepare"
+
+- description: Enable Soft Delete for Recovery Services Vaults in Azure Backup
+  aprlGuid: 9e39919b-78af-4a0b-b70f-c548dae97c25
+  recommendationTypeId: null
+  recommendationControl: Disaster Recovery
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.RecoveryServices/vaults
+  recommendationMetadataState: Active
+  longDescription: |
+    With soft delete, if backup data is deleted, the backup data is retained for 14 additional days, allowing the recovery of that backup item with no data loss with no cost to you. Soft delete is enabled by default. Disabling this feature isn't recommended.
+  potentialBenefits: Enhances disaster recovery capabilities
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Soft Delete for Azure Backup
+      url: "https://learn.microsoft.com/azure/backup/backup-azure-security-feature-cloud?tabs=azure-portal"
+
