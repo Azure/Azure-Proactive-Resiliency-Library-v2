@@ -17,4 +17,4 @@ resources
     )
     on vNetId
 | where isempty(ddosProtectionPlanId)
-| project recommendationId = "1b2dbf4a-8a0b-5e4b-8f4e-3f758188910d", name, id = firewallId, tags, param1 = strcat("vNet: ", vNetName), param2 = "ddosProtectionPlan: Disabled"
+| project recommendationId = "1b2dbf4a-8a0b-5e4b-8f4e-3f758188910d", name, id = firewallId, tags, param1 = strcat("vNet: ", vNetName), param2 = "ddosProtection: Disabled"
