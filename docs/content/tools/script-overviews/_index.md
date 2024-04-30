@@ -149,7 +149,7 @@ The Reports Generator PowerShell script serves as the final step in the Azure Pr
 1. You will need to have both the Word and PowerPoint templates downloaded to the same file location.
   {{< figure src="../../img/tools/generator-1.png" width="80%" >}}
 
-1. Change your directory to the same location that you have downloaded chine - Folder](/docs/static/img/tools/generator-1.png)the WARA Reports Generator script to.
+1. Change your directory to the same location that you have downloaded the WARA Reports Generator script to.
 
     - We recommend running this as close to your C:\ as path to avoid errors related to file path length.
     {{< figure src="../../img/tools/collector-7.png" width="40%" >}}
@@ -169,4 +169,7 @@ The Reports Generator PowerShell script serves as the final step in the Azure Pr
 1. Select "R" to allow script to run
   {{< figure src="../../img/tools/generator-3.png" width="100%" >}}
 
-1. After the script successfully runs, you will find two new files saved in your folder. Some of the information will be automatically populated based on the Action Plan however, **updates will need to be made prior to presenting to any audience**.
+1. After the script successfully runs, you will find two new files saved in your folder. Some of the information will be automatically populated based on the Action Plan.
+{{< hint type=important >}}
+Updates will need to be made prior to presenting to any audience.
+{{< /hint >}}
