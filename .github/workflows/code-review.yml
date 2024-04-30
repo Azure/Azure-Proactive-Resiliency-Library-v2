@@ -31,6 +31,7 @@ jobs:
           VALIDATE_MARKDOWN: true
           VALIDATE_POWERSHELL: true
           VALIDATE_YAML: true
+          VALIDATE_PYTHON: true
           VALIDATE_BASH: true
           VALIDATE_EDITORCONFIG: true
           FILTER_REGEX_EXCLUDE: ".*docs/themes/hugo-geekdoc/.*"
