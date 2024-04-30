@@ -1,6 +1,6 @@
 ---
 title: Tools
-weight: 70
+weight: 45
 geekdocCollapseSection: true
 ---
 
