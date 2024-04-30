@@ -6,7 +6,7 @@ geekdocCollapseSection: true
 
 This section lists of all of the information pertaining to the APRL tooling/scripts. The guidance is broken down into the following sections:
 
-- [Overview and Usage of APRL Scripts](/Azure-Proactive-Resiliency-Library-v2/docs/content/tools/script-overviews/_index.md)
+- [Overview and Usage of APRL Scripts](/Azure-Proactive-Resiliency-Library-v2/docs/content/tools/script-overviews)
 
 {{< toc >}}
 
