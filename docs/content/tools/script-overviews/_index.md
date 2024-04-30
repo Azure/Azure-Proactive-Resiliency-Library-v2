@@ -43,7 +43,7 @@ The Collector PowerShell script is the first script to be run in the Azure Proac
       - **ResourceGroups**:  *Optional* ; specifies Resource Group(s) to be included in the analysis: ResourceGroup1,ResourceGroup2.
       - **Debug**: *Optional* ; Writes Debugging information of the script during the execution.
 
-   {{< figure src="../../img/tools/collector-3.png" width="100%" >}}
+    {{< figure src="../../img/tools/collector-3.png" width="100%" >}}
 
 1. Select "A" to allow modules to install
   {{< figure src="../../img/tools/collector-4.png" width="100%" >}}
