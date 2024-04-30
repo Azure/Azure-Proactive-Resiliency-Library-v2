@@ -1,6 +1,6 @@
 ---
 title: Well-Architected Framework
-weight: 45
+weight: 40
 geekdocCollapseSection: true
 geekdocHidden: false
 ---

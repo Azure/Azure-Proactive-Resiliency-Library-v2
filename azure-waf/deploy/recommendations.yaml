@@ -46,3 +46,100 @@
   learnMoreLink:
     - name: Safe deployment practices
       url: "https://learn.microsoft.com/devops/operate/safe-deployment-practices"
+
+- description: Ensure the deployment method used is aligned to reliability strategy
+  aprlGuid: e067b48e-7f91-40d9-bed9-bccac945417a
+  recommendationTypeId: null
+  recommendationControl: Automation
+  recommendationImpact: Medium
+  recommendationResourceType: WellArchitected/Deploy
+  recommendationMetadataState: Active
+  longDescription: |
+    Another aspect of reliability is the deployment method used to update or roll back your workload. You should ensure that the deployment method used is aligned to your reliability strategy and supports the availability and performance requirements of your workload. For example, you may choose to use blue-green deployments, canary deployments, or rolling deployments depending on the level of risk and impact you want to mitigate. You should also consider the trade-offs between speed and safety when deploying changes, and use appropriate testing and validation methods to ensure the quality of your code and configuration. Additionally, you should have a clear and documented process for handling deployment failures and communicate any changes or issues to your stakeholders and customers.
+  potentialBenefits: Ensure deployment strategy satisfies reliability requirements
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: No
+  tags: null
+  learnMoreLink:
+    - name: Deployment and testing for mission-critical workloads on Azure
+      url: "https://learn.microsoft.com/azure/well-architected/mission-critical/mission-critical-deployment-testing"
+    - name: Safe deployment practices
+      url: "https://learn.microsoft.com/devops/operate/safe-deployment-practices"
+
+- description: Implement a full suite of tests during deployment
+  aprlGuid: e435d7c1-afd7-4350-9130-b410482df2b9
+  recommendationTypeId: null
+  recommendationControl: Automation
+  recommendationImpact: Medium
+  recommendationResourceType: WellArchitected/Deploy
+  recommendationMetadataState: Active
+  longDescription: |
+    Testing your cloud solution at different stages of deployment can help you improve the quality and reliability of your solution and reduce the risk of costly and damaging incidents in production. By adopting a "shift left" approach, you can perform unit testing, smoke testing, load testing, and chaos testing to verify the functionality, integration, performance, scalability, resilience, and fault tolerance of your solution. These tests can help you identify and fix any issues or bugs before they affect your customers or users.
+  potentialBenefits: Code has been extensively tested during build process
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: No
+  tags: null
+  learnMoreLink:
+    - name: Deployment and testing for mission-critical workloads on Azure
+      url: "https://learn.microsoft.com/azure/well-architected/mission-critical/mission-critical-deployment-testing"
+
+- description: Ensure that failure scenarios are tested regularly
+  aprlGuid: 59f2b6c5-a7ba-422a-aa52-eb1380e9a22b
+  recommendationTypeId: null
+  recommendationControl: Automation
+  recommendationImpact: Medium
+  recommendationResourceType: WellArchitected/Deploy
+  recommendationMetadataState: Active
+  longDescription: |
+    Failure scenarios are situations where your cloud solution may not perform as expected or meet your service level objectives (SLOs) due to internal or external factors. For example, failure scenarios can include hardware failures, network outages, security breaches, configuration errors, unexpected spikes in demand, or dependencies on third-party services. Testing these scenarios regularly can help you assess the impact of failures on your solution and prepare contingency plans to mitigate them. You can use tools and techniques such as fault injection, disaster recovery drills, game days, and chaos engineering to simulate and test failure scenarios in a controlled environment.
+  potentialBenefits: Gain confidence that your application can handle failure scenarios correctly
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: No
+  tags: null
+  learnMoreLink:
+    - name: Deployment and testing for mission-critical workloads on Azure
+      url: "https://learn.microsoft.com/azure/well-architected/mission-critical/mission-critical-deployment-testing"
+
+- description: Regularly test regional failovers
+  aprlGuid: 770dbc38-bd28-4669-83a5-81f1a49b682b
+  recommendationTypeId: null
+  recommendationControl: Automation
+  recommendationImpact: Medium
+  recommendationResourceType: WellArchitected/Deploy
+  recommendationMetadataState: Active
+  longDescription: |
+    A regional failover is a process of switching to a secondary region in case of a major disruption or outage in the primary region of your cloud solution. Regional failovers can help you maintain availability and performance of your solution across different geographic areas. However, regional failovers are not trivial and require careful planning and testing. You should regularly test regional failovers to verify that your backup region can handle the load and functionality of your solution, that your data is consistent and secure across regions, and that your failover and failback procedures are working as expected. Testing regional failovers can also help you identify and resolve potential issues or gaps in your failover strategy before they affect your users or customers.
+  potentialBenefits: Gain confidence that your application can handle regional failovers correctly
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: No
+  tags: null
+  learnMoreLink:
+    - name: Deployment and testing for mission-critical workloads on Azure
+      url: "https://learn.microsoft.com/azure/well-architected/mission-critical/mission-critical-deployment-testing"
+
+- description: Ensure failover automation is available during outages
+  aprlGuid: 0b0893f6-7c47-4580-83b2-ff6711ac8406
+  recommendationTypeId: null
+  recommendationControl: Automation
+  recommendationImpact: Medium
+  recommendationResourceType: WellArchitected/Deploy
+  recommendationMetadataState: Active
+  longDescription: |
+    One of the key aspects of a reliable failover strategy is automation. Automation can reduce the human error, latency, and complexity involved in switching to a secondary region during an outage. However, automation itself can be vulnerable to failures or disruptions, especially if it depends on components or services that are affected by the outage. Therefore, you should ensure that your failover automation is available and resilient during outages, and that it can be triggered without manual intervention. You should also monitor and test your failover automation regularly to ensure that it performs as expected under different scenarios and conditions. As an example, if you are using regional failover as a mitigation for a potential regional outage, the automation used to orchestrate the failover to the backup region should not be hosted in the region that suffers the outage. Consider hosting your automation in a region that does not contain the production environment of your workload.
+  potentialBenefits: Gain confidence in your failover automation being available during outages
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: No
+  tags: null
+  learnMoreLink:
+    - name: Deployment and testing for mission-critical workloads on Azure
+      url: "https://learn.microsoft.com/azure/well-architected/mission-critical/mission-critical-deployment-testing"

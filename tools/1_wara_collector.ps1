@@ -20,7 +20,7 @@ if ($Debugging.IsPresent) { $DebugPreference = 'Continue' } else { $DebugPrefere
 
 Clear-Host
 
-$Global:CShell = try { Get-CloudDrive } catch { "" }
+$Global:CShell = try { Get-CloudshellTip } catch { "" }
 $Global:SubscriptionIds = $SubscriptionIds
 
 $Global:Runtime = Measure-Command -Expression {
@@ -555,7 +555,7 @@ $Global:Runtime = Measure-Command -Expression {
             $resultAllResourceTypes = @()
             foreach ($RG in $ResourceGroups)
               {
-                $resultAllResourceTypes += Search-AzGraph -Query "resources | where resourceGroup contains '$RG' | summarize count() by type, subscriptionId" -Subscription $Subid
+                $resultAllResourceTypes += Search-AzGraph -Query "resources | where resourceGroup =~ '$RG' | summarize count() by type, subscriptionId" -Subscription $Subid
               }
             $Global:AllResourceTypes += $resultAllResourceTypes
           }
@@ -575,7 +575,6 @@ $Global:Runtime = Measure-Command -Expression {
           {
             if ($Type.ToLower() -in $Global:GluedTypes)
               {
-                $Type = $Type.ToLower()
                 $Type = $Type.replace('microsoft.', '')
                 $Provider = $Type.split('/')[0]
                 $ResourceType = $Type.split('/')[1]
@@ -588,8 +587,9 @@ $Global:Runtime = Measure-Command -Expression {
                   }
                 else
                   {
-                    $Path = ($clonePath + '/azure-resources/' + $Provider + '/' + $ResourceType)
-                    $aprlKqlFiles += Get-ChildItem -Path $Path -Filter "*.kql" -Recurse
+                    $Path = ($clonePath + '/azure-resources/')
+                    $ProvPath = ($Provider + '/' + $ResourceType)
+                    $aprlKqlFiles += Get-ChildItem -Path $Path -Filter "*.kql" -Recurse | Where-Object {$_.FullName -like "*$ProvPath*"}
                   }
               }
             else
@@ -762,13 +762,13 @@ $Global:Runtime = Measure-Command -Expression {
             if ($query -match "development")
               {
                 Write-Host "Query $kqlshort under development - Validate Recommendation manually" -ForegroundColor Yellow
-                $query = "resources | where type contains '$type' | project name,id,tags"
+                $query = "resources | where type =~ '$type' | project name,id,tags"
                 QueryCollector $Subid $type $query $checkId $checkName 'Query under development - Validate Recommendation manually'
               }
             elseif ($query -match "cannot-be-validated-with-arg")
               {
                 Write-Host "IMPORTANT - Recommendation $checkId cannot be validated with ARGs - Validate Resources manually" -ForegroundColor Yellow
-                $query = "resources | where type contains '$type' | project name,id,tags"
+                $query = "resources | where type =~ '$type' | project name,id,tags"
                 QueryCollector $Subid $type $query $checkId $checkName 'IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually'
               }
             else
@@ -1173,7 +1173,7 @@ $Global:Runtime = Measure-Command -Expression {
 
 
   #Call the functions
-  $Global:Version = "2.0.6"
+  $Global:Version = "2.0.7"
   Write-Host "Version: " -NoNewline
   Write-Host $Global:Version -ForegroundColor DarkBlue
 
