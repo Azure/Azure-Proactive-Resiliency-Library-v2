@@ -580,7 +580,7 @@ $Global:Runtime = Measure-Command -Expression {
           $ID = $advisor.recommendationId
           $resourceType = $advisor.type.ToLower()
           $tmp = @{
-            'Implemented?Yes/No'                                                                             = ('=IF((COUNTIF(ImpactedResources!A:A,"' + $ID + '")=0),"Yes","No")');
+            'Implemented?Yes/No'                                                                             = ('=IF((COUNTIF(ImpactedResources!D:D,"' + $ID + '")=0),"Yes","No")');
             'Number of Impacted Resources?'                                                                  = ('=COUNTIF(ImpactedResources!A:A,"' + $ID + '")');
             'Azure Service / Well-Architected'                                                               = 'Azure Service';
             'Recommendation Source'                                                                          = 'ADVISOR';
@@ -605,7 +605,7 @@ $Global:Runtime = Measure-Command -Expression {
           $resourceType = $WAFYAML.recommendationResourceType
           $ID = $WAFYAML.aprlGuid
           $tmp = @{
-            'Implemented?Yes/No'                                                                             = ('=IF((COUNTIF(ImpactedResources!A:A,"' + $ID + '")=0),"Yes","No")');
+            'Implemented?Yes/No'                                                                             = ('=IF((COUNTIF(ImpactedResources!D:D,"' + $ID + '")=0),"Yes","No")');
             'Number of Impacted Resources?'                                                                  = ('=COUNTIF(ImpactedResources!A:A,"' + $ID + '")');
             'Azure Service / Well-Architected'                                                               = 'Well Architected';
             'Recommendation Source'                                                                          = 'APRL';
@@ -795,7 +795,7 @@ $Global:Runtime = Measure-Command -Expression {
   }
 
   #Call the functions
-  $Global:Version = "2.0.5"
+  $Global:Version = "2.0.6"
   Write-Host "Version: " -NoNewline
   Write-Host $Global:Version -ForegroundColor DarkBlue
 
