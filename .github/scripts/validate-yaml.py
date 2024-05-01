@@ -63,8 +63,21 @@ def validate_long_description(longDescription):
         return False, "Long Description should be less than 300 characters."
     return True, ""
 
-#Validate aprlGuid
+# Validate aprlGuid
 def validate_aprlGuid(aprlGuid):
     if not valid_uuid(aprlGuid):
         return False, "aprlGuid is not a valid UUID."
     return True, ""
+
+# Validate recommendationControl
+def validate_recommendationControl(recommendationControl):
+    if recommendationControl not in ['High Availability', 'Business Continuity', 'Disaster Recovery', 'Scalability', 'Monitoring and Alerting', 'Service Upgrade and Retirement', 'Other Best Practices', 'Personalized', 'Governance']:
+        return False, "Recommendation Control should be one of the following: High Availability, Business Continuity, Disaster Recovery, Scalability, Monitoring and Alerting, Service Upgrade and Retirement, Other Best Practices, Personalized, Governance."
+    return True, ""
+
+# Validate recommendationImpact
+def validate_recommendationImpact(recommendationImpact):
+    if recommendationImpact not in ['High', 'Medium', 'Low']:
+        return False, "Recommendation Impact should be one of the following: High, Medium, Low."
+    return True, ""
+
