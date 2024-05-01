@@ -28,7 +28,7 @@ import xlsxwriter
 
 # *** Arguments ***
 parser = argparse.ArgumentParser(description='Get all APRL recommendations and filter to only high impact and PG verified recommendations, by default; can be changed via inputs. Write the filtered recommendations to an Excel file.')
-parser.add_argument('--path_to_recommendations', type=str, default='../../azure-resources', help='Path to the azure-resources directory in the APRL repo that you have cloned locally.')
+parser.add_argument('--path_to_recommendations', type=str, default='../../../azure-resources', help='Path to the azure-resources directory in the APRL repo that you have cloned locally.')
 parser.add_argument('--filter_impact_level', type=str, default='High', choices=['High', 'Medium', 'Low', 'All'] , help='Filter level for impact (e.g., High, Medium, Low, All)')
 parser.add_argument('--allow_non_pg_verified', action='store_true', help='Only PG verified recommendations are exported by default. Use this flag to include non-PG verified recommendations also.')
 parser.add_argument('--output_file_name', type=str, default='aprlFilteredRecommendations.xlsx', help='Name of the output Excel file. This will be output to the directory where you are running this script from.')
