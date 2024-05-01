@@ -11,7 +11,10 @@ Param(
   $SubscriptionsFile,
   $SubscriptionIds,
   $ResourceGroups,
-  $TenantID)
+  $TenantID,
+  [ValidateSet("AzureCloud","AzureUSGovernment")]
+  $AzureEnvironment = 'AzureCloud'
+  )
 
 if ($Debugging.IsPresent) { $DebugPreference = 'Continue' } else { $DebugPreference = "silentlycontinue" }
 
@@ -193,7 +196,7 @@ $Global:Runtime = Measure-Command -Expression {
           {
             write-host "Tenant ID not specified."
             write-host ""
-            Connect-AzAccount -WarningAction SilentlyContinue
+            Connect-AzAccount -WarningAction SilentlyContinue -Environment $AzureEnvironment
             $Tenants = Get-AzTenant
             if ($Tenants.count -gt 1)
               {
@@ -209,21 +212,21 @@ $Global:Runtime = Measure-Command -Expression {
                 [int]$SelectedTenant = read-host "Select Tenant"
                 $defaultTenant = --$SelectedTenant
                 $TenantID = $Tenants[$defaultTenant]
-                Connect-AzAccount -Tenant $TenantID -WarningAction SilentlyContinue
+                Connect-AzAccount -Tenant $TenantID -WarningAction SilentlyContinue -Environment $AzureEnvironment
                 #az login --tenant $TenantID --only-show-errors
               }
           }
         else
           {
             #az login --tenant $TenantID --only-show-errors
-            Connect-AzAccount -Tenant $TenantID -WarningAction SilentlyContinue
+            Connect-AzAccount -Tenant $TenantID -WarningAction SilentlyContinue -Environment $AzureEnvironment
           }
         #Set the default variable with the list of subscriptions in case no Subscription File was informed
         $Global:SubIds = Get-AzSubscription -TenantId $TenantID -WarningAction SilentlyContinue
       }
     else
       {
-        Connect-AzAccount -Identity
+        Connect-AzAccount -Identity -Environment $AzureEnvironment
         $Global:SubIds = Get-AzSubscription -WarningAction SilentlyContinue
       }
 
@@ -235,6 +238,11 @@ $Global:Runtime = Measure-Command -Expression {
     $Date = $Date.ToString("MM/dd/yyyy")
     $Outages = @()
     $SupTickets = @()
+    if ($AzureEnvironment -eq 'AzureUSGovernment') {
+        $BaseURL = 'management.usgovcloudapi.net'
+    } else {
+        $BaseURL = 'management.azure.com'
+    }
     foreach ($sub in $SubscriptionIds)
       {
         Select-AzSubscription -Subscription $sub -WarningAction SilentlyContinue -InformationAction SilentlyContinue | Out-Null
@@ -247,14 +255,14 @@ $Global:Runtime = Measure-Command -Expression {
 
         try
           {
-            $url = ('https://management.azure.com/subscriptions/' + $Sub + '/providers/Microsoft.ResourceHealth/events?api-version=2022-10-01&queryStartTime=' + $Date)
+            $url = ('https://'+ $BaseURL + '/subscriptions/' + $Sub + '/providers/Microsoft.ResourceHealth/events?api-version=2022-10-01&queryStartTime=' + $Date)
             $Outages += Invoke-RestMethod -Uri $url -Headers $header -Method GET
           }
         catch { $null }
 
         try
           {
-            $supurl = ('https://management.azure.com/subscriptions/' + $sub + '/providers/Microsoft.Support/supportTickets?api-version=2020-04-01')
+            $supurl = ('https://'+ $BaseURL + '/subscriptions/' + $sub + '/providers/Microsoft.Support/supportTickets?api-version=2020-04-01')
             $SupTickets += Invoke-RestMethod -Uri $supurl -Headers $header -Method GET
           }
         catch { $null }
