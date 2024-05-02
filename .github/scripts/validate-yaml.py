@@ -45,6 +45,7 @@ def validate_yaml_fields(recommendation):
         return False, "Learn More Link should be a list."
 
     return True, ""
+
 # Validate UUID
 def valid_uuid(uuid):
     regex = re.compile('^[a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12}\Z', re.I)
@@ -80,4 +81,11 @@ def validate_recommendationImpact(recommendationImpact):
     if recommendationImpact not in ['High', 'Medium', 'Low']:
         return False, "Recommendation Impact should be one of the following: High, Medium, Low."
     return True, ""
+
+#Validate potentialBenefits
+def validate_potentialBenefits(potentialBenefits):
+    if len(potentialBenefits) > 60:
+        return False, "Potential Benefits should be less than 60 characters."
+    return True, ""
+
 
