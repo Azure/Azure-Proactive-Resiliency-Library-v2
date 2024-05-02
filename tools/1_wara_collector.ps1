@@ -11,13 +11,16 @@ Param(
   $SubscriptionsFile,
   $SubscriptionIds,
   $ResourceGroups,
-  $TenantID)
+  $TenantID,
+  [ValidateSet("AzureCloud","AzureUSGovernment")]
+  $AzureEnvironment = 'AzureCloud'
+  )
 
 if ($Debugging.IsPresent) { $DebugPreference = 'Continue' } else { $DebugPreference = "silentlycontinue" }
 
 Clear-Host
 
-$Global:CShell = try { Get-CloudDrive } catch { "" }
+$Global:CShell = try { Get-CloudshellTip } catch { "" }
 $Global:SubscriptionIds = $SubscriptionIds
 
 $Global:Runtime = Measure-Command -Expression {
@@ -193,7 +196,7 @@ $Global:Runtime = Measure-Command -Expression {
           {
             write-host "Tenant ID not specified."
             write-host ""
-            Connect-AzAccount -WarningAction SilentlyContinue
+            Connect-AzAccount -WarningAction SilentlyContinue -Environment $AzureEnvironment
             $Tenants = Get-AzTenant
             if ($Tenants.count -gt 1)
               {
@@ -209,21 +212,21 @@ $Global:Runtime = Measure-Command -Expression {
                 [int]$SelectedTenant = read-host "Select Tenant"
                 $defaultTenant = --$SelectedTenant
                 $TenantID = $Tenants[$defaultTenant]
-                Connect-AzAccount -Tenant $TenantID -WarningAction SilentlyContinue
+                Connect-AzAccount -Tenant $TenantID -WarningAction SilentlyContinue -Environment $AzureEnvironment
                 #az login --tenant $TenantID --only-show-errors
               }
           }
         else
           {
             #az login --tenant $TenantID --only-show-errors
-            Connect-AzAccount -Tenant $TenantID -WarningAction SilentlyContinue
+            Connect-AzAccount -Tenant $TenantID -WarningAction SilentlyContinue -Environment $AzureEnvironment
           }
         #Set the default variable with the list of subscriptions in case no Subscription File was informed
         $Global:SubIds = Get-AzSubscription -TenantId $TenantID -WarningAction SilentlyContinue
       }
     else
       {
-        Connect-AzAccount -Identity
+        Connect-AzAccount -Identity -Environment $AzureEnvironment
         $Global:SubIds = Get-AzSubscription -WarningAction SilentlyContinue
       }
 
@@ -235,6 +238,11 @@ $Global:Runtime = Measure-Command -Expression {
     $Date = $Date.ToString("MM/dd/yyyy")
     $Outages = @()
     $SupTickets = @()
+    if ($AzureEnvironment -eq 'AzureUSGovernment') {
+        $BaseURL = 'management.usgovcloudapi.net'
+    } else {
+        $BaseURL = 'management.azure.com'
+    }
     foreach ($sub in $SubscriptionIds)
       {
         Select-AzSubscription -Subscription $sub -WarningAction SilentlyContinue -InformationAction SilentlyContinue | Out-Null
@@ -247,14 +255,14 @@ $Global:Runtime = Measure-Command -Expression {
 
         try
           {
-            $url = ('https://management.azure.com/subscriptions/' + $Sub + '/providers/Microsoft.ResourceHealth/events?api-version=2022-10-01&queryStartTime=' + $Date)
+            $url = ('https://'+ $BaseURL + '/subscriptions/' + $Sub + '/providers/Microsoft.ResourceHealth/events?api-version=2022-10-01&queryStartTime=' + $Date)
             $Outages += Invoke-RestMethod -Uri $url -Headers $header -Method GET
           }
         catch { $null }
 
         try
           {
-            $supurl = ('https://management.azure.com/subscriptions/' + $sub + '/providers/Microsoft.Support/supportTickets?api-version=2020-04-01')
+            $supurl = ('https://'+ $BaseURL + '/subscriptions/' + $sub + '/providers/Microsoft.Support/supportTickets?api-version=2020-04-01')
             $SupTickets += Invoke-RestMethod -Uri $supurl -Headers $header -Method GET
           }
         catch { $null }
@@ -547,7 +555,7 @@ $Global:Runtime = Measure-Command -Expression {
             $resultAllResourceTypes = @()
             foreach ($RG in $ResourceGroups)
               {
-                $resultAllResourceTypes += Search-AzGraph -Query "resources | where resourceGroup contains '$RG' | summarize count() by type, subscriptionId" -Subscription $Subid
+                $resultAllResourceTypes += Search-AzGraph -Query "resources | where resourceGroup =~ '$RG' | summarize count() by type, subscriptionId" -Subscription $Subid
               }
             $Global:AllResourceTypes += $resultAllResourceTypes
           }
@@ -567,7 +575,6 @@ $Global:Runtime = Measure-Command -Expression {
           {
             if ($Type.ToLower() -in $Global:GluedTypes)
               {
-                $Type = $Type.ToLower()
                 $Type = $Type.replace('microsoft.', '')
                 $Provider = $Type.split('/')[0]
                 $ResourceType = $Type.split('/')[1]
@@ -580,8 +587,9 @@ $Global:Runtime = Measure-Command -Expression {
                   }
                 else
                   {
-                    $Path = ($clonePath + '/azure-resources/' + $Provider + '/' + $ResourceType)
-                    $aprlKqlFiles += Get-ChildItem -Path $Path -Filter "*.kql" -Recurse
+                    $Path = ($clonePath + '/azure-resources/')
+                    $ProvPath = ($Provider + '/' + $ResourceType)
+                    $aprlKqlFiles += Get-ChildItem -Path $Path -Filter "*.kql" -Recurse | Where-Object {$_.FullName -like "*$ProvPath*"}
                   }
               }
             else
@@ -754,13 +762,13 @@ $Global:Runtime = Measure-Command -Expression {
             if ($query -match "development")
               {
                 Write-Host "Query $kqlshort under development - Validate Recommendation manually" -ForegroundColor Yellow
-                $query = "resources | where type contains '$type' | project name,id,tags"
+                $query = "resources | where type =~ '$type' | project name,id,tags"
                 QueryCollector $Subid $type $query $checkId $checkName 'Query under development - Validate Recommendation manually'
               }
             elseif ($query -match "cannot-be-validated-with-arg")
               {
                 Write-Host "IMPORTANT - Recommendation $checkId cannot be validated with ARGs - Validate Resources manually" -ForegroundColor Yellow
-                $query = "resources | where type contains '$type' | project name,id,tags"
+                $query = "resources | where type =~ '$type' | project name,id,tags"
                 QueryCollector $Subid $type $query $checkId $checkName 'IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually'
               }
             else
@@ -1165,7 +1173,7 @@ $Global:Runtime = Measure-Command -Expression {
 
 
   #Call the functions
-  $Global:Version = "2.0.6"
+  $Global:Version = "2.0.7"
   Write-Host "Version: " -NoNewline
   Write-Host $Global:Version -ForegroundColor DarkBlue
 
