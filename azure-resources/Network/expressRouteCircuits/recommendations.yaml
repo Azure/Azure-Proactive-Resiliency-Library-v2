@@ -80,7 +80,7 @@
   aprlGuid: 9771a435-d031-814e-9827-9b5fdafc0f87
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
-  recommendationImpact: Medium
+  recommendationImpact: High
   recommendationResourceType: Microsoft.Network/expressRouteCircuits
   recommendationMetadataState: Active
   longDescription: |
@@ -103,7 +103,7 @@
   aprlGuid: 26cb547f-aabc-dc40-be02-d0a9b6b04b1a
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
-  recommendationImpact: Medium
+  recommendationImpact: High
   recommendationResourceType: Microsoft.Network/expressRouteCircuits
   recommendationMetadataState: Active
   longDescription: |

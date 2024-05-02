@@ -23,7 +23,7 @@
   aprlGuid: 3c8fa7c6-6b78-a24a-a63f-348a7c71acb9
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
-  recommendationImpact: Medium
+  recommendationImpact: High
   recommendationResourceType: Microsoft.Network/azureFirewalls
   recommendationMetadataState: Active
   longDescription: |
@@ -101,7 +101,7 @@
   aprlGuid: 8faace2d-a36e-425c-aa58-2ad99e3e0b7a
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
-  recommendationImpact: Medium
+  recommendationImpact: High
   recommendationResourceType: Microsoft.Network/azureFirewalls
   recommendationMetadataState: Active
   longDescription: |

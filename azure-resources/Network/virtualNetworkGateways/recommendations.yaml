@@ -185,7 +185,7 @@
   aprlGuid: 9eab120e-f6d3-ee49-ba0d-766562ce7df1
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
-  recommendationImpact: Medium
+  recommendationImpact: High
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
   recommendationMetadataState: Active
   longDescription: |
@@ -204,7 +204,7 @@
   aprlGuid: 9186dae0-7ddc-8f4b-bea5-55538cea4893
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
-  recommendationImpact: Medium
+  recommendationImpact: High
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
   recommendationMetadataState: Active
   longDescription: |
