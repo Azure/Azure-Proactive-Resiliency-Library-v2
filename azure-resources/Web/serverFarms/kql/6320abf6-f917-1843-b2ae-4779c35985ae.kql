@@ -1,2 +1,8 @@
-// under-development
+// Azure Resource Graph Query
+// Provides a list of Azure App Service Plans where Autoscale/Automatic scaling is not enabled to ensure adequate resources are available to service requests
 
+resources
+| where type == "microsoft.web/serverfarms"
+| where properties['elasticScaleEnabled'] contains 'true' and properties['maximumElasticWorkerCount'] > 1
+| project recommendationId = '6320abf6-f917-1843-b2ae-4779c35985ae', name, id, tags ="", param1= "Automatic Scaling enabled"
+| order by id
