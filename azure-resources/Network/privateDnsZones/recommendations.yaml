@@ -21,7 +21,7 @@
   aprlGuid: ab896e8c-49b9-2c44-adec-98339aff7821
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
-  recommendationImpact: Low
+  recommendationImpact: High
   recommendationResourceType: Microsoft.Network/privateDnsZones
   recommendationMetadataState: Active
   longDescription: |
