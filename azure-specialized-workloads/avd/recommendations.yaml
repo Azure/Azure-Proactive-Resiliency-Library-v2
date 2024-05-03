@@ -2,7 +2,7 @@
   aprlGuid: 0bf1a2bb-7617-4ab2-a784-e7ea40c5f01b
   recommendationTypeId: null
   recommendationControl: Governance
-  recommendationImpact: Low
+  recommendationImpact: High
   recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
@@ -100,7 +100,7 @@
   aprlGuid: e1a34ac6-8761-4020-b537-d60c0be7514e
   recommendationTypeId: null
   recommendationControl: High Availability
-  recommendationImpact: Medium
+  recommendationImpact: High
   recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
@@ -358,7 +358,7 @@
   aprlGuid: c15b2b73-52a1-4db2-88dd-d592424ff4e4
   recommendationTypeId: null
   recommendationControl: Governance
-  recommendationImpact: High
+  recommendationImpact: Medium
   recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
@@ -377,7 +377,7 @@
   aprlGuid: 7b170ddd-5770-4945-9bc3-cd1ccf5f8672
   recommendationTypeId:
   recommendationControl: Security
-  recommendationImpact: High
+  recommendationImpact: Medium
   recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
