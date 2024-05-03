@@ -33,6 +33,7 @@ jobs:
           VALIDATE_YAML: true
           VALIDATE_BASH: true
           VALIDATE_EDITORCONFIG: true
+          VALIDATE_PYTHON: true
           FILTER_REGEX_EXCLUDE: ".*docs/themes/hugo-geekdoc/.*"
 
   markdown-link-check:
