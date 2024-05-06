@@ -53,7 +53,7 @@
   pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: arg
   tags: null
   learnMoreLink:
     - name: Data retention and archive in Azure Monitor Logs
