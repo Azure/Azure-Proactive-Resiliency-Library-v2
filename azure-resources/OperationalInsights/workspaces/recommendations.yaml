@@ -48,7 +48,7 @@
   recommendationResourceType: Microsoft.OperationalInsights/workspaces
   recommendationMetadataState: Active
   longDescription: |
-    Azure Monitor Logs retain log data for specific periods depending on the data type, e.g., 30 days for platform logs. For compliance or business reasons, you might need longer retention. Data retention settings are adjustable.
+    Azure Monitor Logs retain log data for specific periods depending on the data type, e.g., 30 days for platform logs. For compliance or business reasons, you might need longer retention. Data retention settings are adjustable. Discuss/check the tables of the workspaces listed.
   potentialBenefits: Cost-saving and compliance with data rules
   pgVerified: true
   publishedToLearn: false
