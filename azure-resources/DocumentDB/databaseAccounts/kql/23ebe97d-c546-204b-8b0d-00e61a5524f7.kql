@@ -1,2 +1,6 @@
-// under-development
-
+// Azure Resource Graph Query
+// Provides a list of CosmosDB resources that do not use the session consistency consistency level
+resources
+| where type =~ 'Microsoft.DocumentDb/databaseAccounts'
+   and toupper(properties.consistencyPolicy.defaultConsistencyLevel) != 'SESSION'
+| project recommendationId='23ebe97d-c546-204b-8b0d-00e61a5524f7', name, id, tags, param1=strcat("consistency: ", properties.consistencyPolicy.defaultConsistencyLevel)

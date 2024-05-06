@@ -72,7 +72,7 @@
   pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: yes
   tags: null
   learnMoreLink:
     - name: Consistency level choices - Azure Cosmos DB | Microsoft Learn
