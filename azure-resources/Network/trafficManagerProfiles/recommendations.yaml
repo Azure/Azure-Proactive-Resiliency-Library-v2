@@ -73,7 +73,7 @@
   pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
-  automationAvailable: yes
+  automationAvailable: arg
   tags: null
   learnMoreLink:
     - name: Add an endpoint configured to "All (World)"
