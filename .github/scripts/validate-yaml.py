@@ -4,7 +4,6 @@ import glob
 import yaml
 from termcolor import colored, cprint
 import pandas as pd
-import xlsxwriter
 import re
 
 # Required packages
@@ -12,7 +11,6 @@ required_packages = {
     "termcolor": "termcolor",
     "PyYAML": "yaml",
     "pandas": "pandas",
-    "XlsxWriter": "xlsxwriter"
 }
 
 # Check for missing packages
