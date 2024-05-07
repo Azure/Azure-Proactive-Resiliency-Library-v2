@@ -1,3 +1,5 @@
+// Azure Resource Graph Query
+// finds non-zone redundant SQL databases and lists them
 Resources
 | where type =~ 'microsoft.sql/servers/databases'
 | where tolower(tostring(properties.zoneRedundant))=~'false'
