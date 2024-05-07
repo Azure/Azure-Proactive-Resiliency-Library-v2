@@ -1,3 +1,5 @@
+// Azure Resource Graph Query
+// Query to find Azure Cosmos DB accounts that have less than 2 regions or less than 3 regions with strong consistency level
 Resources
 | where type =~ 'Microsoft.DocumentDb/databaseAccounts'
 | where
