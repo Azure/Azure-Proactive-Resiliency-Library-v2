@@ -1,3 +1,5 @@
+// Azure Resource Graph Query
+// Finds Cosmos DBs with periodic backup, single write region, and no analytics storage.
 Resources
 | where type =~ 'Microsoft.DocumentDb/databaseAccounts'
 | where

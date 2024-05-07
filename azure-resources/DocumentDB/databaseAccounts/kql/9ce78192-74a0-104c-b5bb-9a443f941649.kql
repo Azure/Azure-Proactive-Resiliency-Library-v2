@@ -1,3 +1,5 @@
+// Azure Resource Graph Query
+// Finds CosmosDB accounts with multiple regions but no multiple write locations
 Resources
 | where type =~ 'Microsoft.DocumentDb/databaseAccounts'
 | where

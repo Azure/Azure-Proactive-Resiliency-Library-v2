@@ -1,3 +1,5 @@
+// Azure Resource Graph Query
+// Lists single-region Cosmos DBs or those with less than three regions and strong consistency
 Resources
 | where type =~ 'Microsoft.DocumentDb/databaseAccounts'
 | where

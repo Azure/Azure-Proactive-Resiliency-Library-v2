@@ -1,3 +1,5 @@
+// Azure Resource Graph Query
+// Retrieve a list of multi-region Cosmos DB accounts without automatic failover and multiple write locations.
 Resources
 | where type =~ 'Microsoft.DocumentDb/databaseAccounts'
 | where
