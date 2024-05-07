@@ -3,7 +3,7 @@
 Resources
 | where type =~ 'Microsoft.DocumentDb/databaseAccounts'
 | where
-     array_length(properties.locations) < 2 or
+    array_length(properties.locations) < 2 or
     (array_length(properties.locations) < 3 and properties.consistencyPolicy.defaultConsistencyLevel == 'Strong')
 | project recommendationId='43663217-a1d3-844b-80ea-571a2ce37c6c', name, id, tags
 
