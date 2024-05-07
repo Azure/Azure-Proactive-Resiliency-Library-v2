@@ -51,3 +51,4 @@ jobs:
           config-file: ".github/linters/mlc_config.json"
           use-verbose-mode: "yes"
           use-quiet-mode: "yes"
+          check-modified-files-only: "yes"
