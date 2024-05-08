@@ -540,7 +540,7 @@
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
   longDescription: |
-    Azure Databricks transitioned from a shared to dedicated in-region control planes to prevent regional outages affecting customer workspaces. Legacy workspaces, established before this change, differ from newer workspaces that utilize in-region control planes.
+    Move workspaces to in-region control plane for increased regional isolation. Identify current control plane region using the workspace URL and nslookup. When region from CNAME differs from workspace region and an in-region control is available, consider migration using tools provided below.
   potentialBenefits: Improves resilience and data sovereignty
   pgVerified: false
   publishedToLearn: false
@@ -548,8 +548,8 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Azure Databricks regions - IP addresses and domains
-      url: "https://learn.microsoft.com/azure/databricks/resources/supported-regions#--ip-addresses-and-domains"
+    - name: Azure Databricks control plane addresses
+      url: "https://learn.microsoft.com/azure/databricks/resources/supported-regions#--azure-databricks-control-plane-addresses"
     - name: Migrate - maintained by Databricks Inc.
       url: "https://github.com/databrickslabs/migrate"
     - name: Databricks Terraform Exporter - maintained by Databricks Inc. (Experimental)
