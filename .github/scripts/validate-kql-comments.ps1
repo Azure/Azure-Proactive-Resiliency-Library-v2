@@ -1,5 +1,5 @@
 #Functions
-Function Validate-KqlComments([array]$filearray) {
+Function Invoke-ValidateKqlComments([array]$filearray) {
 $kqlresults = @()
 ForEach($file in $filearray){
 
@@ -47,11 +47,11 @@ ForEach($file in $filearray){
 
 $kqlfiles = Get-ChildItem -Path . -Filter *.kql -Recurse
 
-$test = Validate-KqlComments($kqlfiles)
+$test = Invoke-ValidateKqlComments($kqlfiles)
 
-if ($test | Where {$_.Result -eq "FAIL"}) {
+if ($test | Where-Object {$_.Result -eq "FAIL"}) {
   Write-Output "KQL Comment Validation Failed"
-  $test | Where {$_.Result -eq "FAIL"} | Format-Table -AutoSize
+  $test | Where-Object {$_.Result -eq "FAIL"} | Format-Table -AutoSize
   exit 1
 }
 else {
