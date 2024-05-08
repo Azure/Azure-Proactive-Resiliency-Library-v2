@@ -50,12 +50,12 @@ $kqlfiles = Get-ChildItem -Path . -Filter *.kql -Recurse
 $test = Validate-KqlComments($kqlfiles)
 
 if ($test | Where {$_.Result -eq "FAIL"}) {
-  Write-Host "KQL Comment Validation Failed"
+  Write-Output "KQL Comment Validation Failed"
   $test | Where {$_.Result -eq "FAIL"} | Format-Table -AutoSize
   exit 1
 }
 else {
-  Write-Host "KQL Comment Validation Passed"
+  Write-Output "KQL Comment Validation Passed"
   exit 0
 }
 
