@@ -1,5 +1,5 @@
 // Azure Resource Graph query
-// filters Application Insights resources with ‘Classic’ deployment type
+// Filters Application Insights resources with ‘Classic’ deployment type
 resources
 | where type =~ "microsoft.insights/components"
 | extend IngestionMode = properties.IngestionMode
