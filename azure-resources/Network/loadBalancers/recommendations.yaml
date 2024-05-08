@@ -75,3 +75,24 @@
   learnMoreLink:
     - name: Load Balancer and Availability Zones
       url: "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-standard-availability-zones#zone-redundant"
+
+- description: Use Health Probes to detect backend instances availability
+  aprlGuid: e5f5fcea-f925-4578-8599-9a391e888a60
+  recommendationTypeId: null
+  recommendationControl: Monitoring and Alerting
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/loadBalancers
+  recommendationMetadataState: Active
+  longDescription: |
+    Health probes are used by Azure Load Balancers to determine the status of backend endpoints. Using custom health probes enhances understanding of backend availability and facilitates monitoring of backend services for any impact.
+  potentialBenefits: Ensures backend uptime monitoring.
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Load Balancer Health Probe Overview
+      url: "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-custom-probe-overview"
+    - name: Create a custom HTTP/HTTPS health probe for load balancer
+      url: "https://learn.microsoft.com/en-us/azure/load-balancer/create-custom-http-health-probe-howto"
