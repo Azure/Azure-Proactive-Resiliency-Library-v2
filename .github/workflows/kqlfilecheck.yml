@@ -17,4 +17,4 @@ jobs:
 
       - name: Run KQL file check
         run: |
-          pwsh ../scripts/validate-kql-comments.ps1
+          pwsh .github/scripts/validate-kql-comments.ps1
