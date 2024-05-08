@@ -3,6 +3,6 @@
 
 resources
 | where type == "microsoft.web/serverfarms"
-| where properties['elasticScaleEnabled'] contains 'true' and properties['maximumElasticWorkerCount'] > 1
-| project recommendationId = '6320abf6-f917-1843-b2ae-4779c35985ae', name, id, tags ="", param1= "Automatic Scaling enabled"
+| where properties['elasticScaleEnabled'] contains 'false' and properties['maximumElasticWorkerCount'] < 2
+| project recommendationId = '6320abf6-f917-1843-b2ae-4779c35985ae', name, id, param1= "Automatic Scaling not enabled"
 | order by id
