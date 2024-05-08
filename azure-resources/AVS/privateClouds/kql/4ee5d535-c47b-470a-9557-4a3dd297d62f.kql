@@ -1,5 +1,5 @@
 // Azure Resource Graph Query
-// Provides a list of Azure VMware Solution resources that don't have a Cluster CPU capacity critical alert with a threshold of 95%.
+//Provides a list of Azure VMware Solution resources that don't have a Cluster CPU capacity critical alert with a threshold of 95%.
 resources
 | where ['type'] == "microsoft.avs/privateclouds"
 | extend scopeId = tolower(tostring(id))
