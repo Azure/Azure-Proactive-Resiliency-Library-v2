@@ -1,0 +1,20 @@
+name: KQL File Check
+
+on:
+  push:
+    branches:
+      - kyle/dev
+    paths:
+      - '**/*.kql'
+
+jobs:
+  kql_file_check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Run KQL file check
+        run: |
+          pwsh ../scripts/validate-kql-comments.ps1
