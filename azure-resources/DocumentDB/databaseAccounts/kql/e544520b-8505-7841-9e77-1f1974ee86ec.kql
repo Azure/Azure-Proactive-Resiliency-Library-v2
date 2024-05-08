@@ -1,5 +1,5 @@
 // Azure Resource Graph Query
-// Finds Cosmos DBs with periodic backup, single write region, and no analytics storage.
+// Query all Azure Cosmos DB accounts that do not have continuous backup mode configured
 Resources
 | where type =~ 'Microsoft.DocumentDb/databaseAccounts'
 | where
@@ -7,4 +7,3 @@ Resources
     properties.enableMultipleWriteLocations == false and
     properties.enableAnalyticalStorage == false
 | project recommendationId='e544520b-8505-7841-9e77-1f1974ee86ec', name, id, tags
-
