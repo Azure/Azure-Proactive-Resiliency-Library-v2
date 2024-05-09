@@ -1,5 +1,5 @@
 // Azure Resource Graph Query
-//Provides a list of Azure App Service resources that don't have App Settings configured
+// Provides a list of Azure App Service resources that don't have App Settings configured
 
 appserviceresources
 | where type == "microsoft.web/sites/config"
