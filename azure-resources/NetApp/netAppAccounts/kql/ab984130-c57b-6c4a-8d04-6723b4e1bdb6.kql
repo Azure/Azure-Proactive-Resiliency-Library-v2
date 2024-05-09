@@ -1,3 +1,4 @@
+// Azure Resource Graph Query
 // This Resource Graph query will return all Azure NetApp Files volumes without standard network features.
 resources
 | where type =~ "microsoft.netapp/netappaccounts/capacitypools/volumes"
