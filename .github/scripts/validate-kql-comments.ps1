@@ -51,7 +51,7 @@ $test = Invoke-ValidateKqlComment($kqlfiles)
 
 if ($test | Where-Object {$_.Result -eq "FAIL"}) {
   Write-Output "KQL Comment Validation Failed"
-  $test | Where-Object {$_.Result -eq "FAIL"} | Format-Table -AutoSize
+  $test | Where-Object {$_.Result -eq "FAIL"} | Format-List
   exit 1
 }
 else {
