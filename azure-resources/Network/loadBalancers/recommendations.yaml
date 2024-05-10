@@ -94,5 +94,3 @@
   learnMoreLink:
     - name: Load Balancer Health Probe Overview
       url: "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-custom-probe-overview"
-    - name: Create a custom HTTP/HTTPS health probe for load balancer
-      url: "https://learn.microsoft.com/en-us/azure/load-balancer/create-custom-http-health-probe-howto"
