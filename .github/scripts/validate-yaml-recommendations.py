@@ -28,12 +28,34 @@ if missing_packages:
         print(missing_packages)
         exit(1)
 
-# Import Yamale and make a schema object:
+import os
 import yamale
-schema = yamale.make_schema('.\\recommendation-schema.yaml')
 
-# Create a Data object
-data = yamale.make_data('.\\recommendations.yaml')
+# Define the path to the schema file
+schema_path = '.\\recommendation-schema.yaml'
 
-# Validate data against the schema. Throws a ValueError if data is invalid.
-yamale.validate(schema, data)
+# Define the directory containing YAML files
+directory = '..\\..\\azure-resources'
+
+# Make a schema object
+schema = yamale.make_schema(schema_path)
+
+# Function to validate a YAML file against the schema
+def validate_yaml_file(file_path):
+    # Create a Data object
+    data = yamale.make_data(file_path)
+    # Validate data against the schema. Throws a ValueError if data is invalid.
+    yamale.validate(schema, data)
+
+# Loop through directories within azure-resources
+for root, dirs, files in os.walk(directory):
+    for file in files:
+        if file.endswith('.yaml'):
+            file_path = os.path.join(root, file)
+            try:
+                validate_yaml_file(file_path)
+                print(f'{file_path}: Valid YAML')
+            except ValueError as e:
+                print(f'{file_path}: {e}')
+
+
