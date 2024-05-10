@@ -1,0 +1,34 @@
+list(include('recommendation'), min=1)
+
+---
+recommendation:
+  description: str(max=100)
+  aprlGuid: any(regex('^[a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12}$'), null())
+  recommendationTypeId: any(regex('^[a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12}$'), null())
+  recommendationControl: enum('High Availability', 'Business Continuity', 'Disaster Recovery', 'Scalability', 'Monitoring and Alerting', 'Service Upgrade and Retirement', 'Other Best Practices', 'Personalized', 'Governance')
+  recommendationImpact: enum('Low', 'Medium', 'High')
+  recommendationResourceType: regex('^Microsoft/.[a-zA-Z]+/[a-zA-Z]+$')
+  recommendationMetadataState: enum('Active', 'Disabled')
+  longDescription: str(max=300)
+  potentialBenefits: str(max=60)
+  pgVerified: bool()
+  publishedToLearn: bool()
+  publishedToAdvisor: bool()
+  automationAvailable: any(enum('arg'), bool())
+  tags: null()
+  learnMoreLink:
+    name: enum('Learn More')
+    url: regex('^https://.+?$')
+
+
+
+
+
+
+
+
+
+
+
+
+
