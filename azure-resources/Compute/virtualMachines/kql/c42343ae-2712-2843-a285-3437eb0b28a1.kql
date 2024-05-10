@@ -1,28 +1,40 @@
 // Azure Resource Graph Query
-// Find all VMs in "NonCompliant" state with Azure Policies
-PolicyResources
+// Find all VMs in "Non-compliant" state with Azure Policies
+policyresources
 | where type =~ "Microsoft.PolicyInsights/policyStates" and properties.resourceType =~ "Microsoft.Compute/virtualMachines" and properties.complianceState =~ "NonCompliant"
 | project
-    policyAssignmentName = properties.policyAssignmentName,
-    policyDefinitionName = properties.policyDefinitionName,
-    lowerCasePolicyDefinitionIdOfPolicyState = tolower(properties.policyDefinitionId),
-    lowerCaseVmIdOfPolicyState = tolower(properties.resourceId)
+    policyDefinitionId = tolower(properties.policyDefinitionId),
+    policyAssignmentId = tolower(properties.policyAssignmentId),
+    targetResourceId = tolower(properties.resourceId)
+// Join the policy definition details
 | join kind = leftouter (
-    PolicyResources
+    policyresources
     | where type =~ "Microsoft.Authorization/policyDefinitions"
-    | project lowerCasePolicyDefinitionId = tolower(id), policyDefinitionDisplayName = properties.displayName
+    | project policyDefinitionId = tolower(id), policyDefinitionDisplayName = properties.displayName
     )
-    on $left.lowerCasePolicyDefinitionIdOfPolicyState == $right.lowerCasePolicyDefinitionId
-| project policyAssignmentName, policyDefinitionName, policyDefinitionDisplayName, lowerCaseVmIdOfPolicyState
+    on policyDefinitionId
+| project policyDefinitionId, policyDefinitionDisplayName, policyAssignmentId, targetResourceId
+// Join the policy assignment details
 | join kind = leftouter (
-    Resources
-    | where type =~ "Microsoft.Compute/virtualMachines"
-    | project vmName = name, vmId = id, vmTags = tags, lowerCaseVmId = tolower(id)
+    policyresources
+    | where type =~ "Microsoft.Authorization/policyAssignments"
+    | project policyAssignmentId = tolower(id), policyAssignmentDisplayName = properties.displayName
     )
-    on $left.lowerCaseVmIdOfPolicyState == $right.lowerCaseVmId
-| extend
-    param1 = strcat("AssignmentName: ", policyAssignmentName),
-    param2 = strcat("DefinitionName: ", policyDefinitionDisplayName),  // Align to Azure portal's term.
-    param3 = strcat("DefinitionID: ", policyDefinitionName)            // Align to Azure portal's term.
-| project recommendationId = "c42343ae-2712-2843-a285-3437eb0b28a1", name = vmName, id = vmId, tags = vmTags, param1, param2, param3
-
+    on policyAssignmentId
+| project policyDefinitionId, policyDefinitionDisplayName, policyAssignmentId, policyAssignmentDisplayName, targetResourceId
+// Join the target resource details
+| join kind = leftouter (
+    resources
+    | where type =~ "Microsoft.Compute/virtualMachines"
+    | project targetResourceId = tolower(id), targetResourceIdPreservedCase = id, targetResourceName = name, targetResourceTags = tags
+    )
+    on targetResourceId
+| project
+    recommendationId = "c42343ae-2712-2843-a285-3437eb0b28a1",
+    name = targetResourceName,
+    id = targetResourceIdPreservedCase,
+    tags = targetResourceTags,
+    param1 = strcat("DefinitionName: ", policyDefinitionDisplayName),
+    param2 = strcat("DefinitionID: ", policyDefinitionId),
+    param3 = strcat("AssignmentName: ", policyAssignmentDisplayName),
+    param4 = strcat("AssignmentID: ", policyAssignmentId)

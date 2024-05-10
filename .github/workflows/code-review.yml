@@ -7,6 +7,12 @@ on:
       - main
   workflow_dispatch: {}
 
+permissions:
+  contents: read
+  packages: read
+      # To report GitHub Actions status checks
+  statuses: write
+
 jobs:
   lint:
     name: Lint code base
@@ -30,6 +36,7 @@ jobs:
           VALIDATE_JSON: true
           VALIDATE_MARKDOWN: true
           VALIDATE_POWERSHELL: true
+          VALIDATE_PYTHON: true
           VALIDATE_YAML: true
           VALIDATE_PYTHON: true
           VALIDATE_BASH: true
@@ -52,3 +59,6 @@ jobs:
           config-file: ".github/linters/mlc_config.json"
           use-verbose-mode: "yes"
           use-quiet-mode: "yes"
+          check-modified-files-only: "yes"
+          base-branch: "main"
+

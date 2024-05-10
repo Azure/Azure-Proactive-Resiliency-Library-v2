@@ -92,7 +92,7 @@
   aprlGuid: 5d035919-898d-a047-8d5d-454e199692e5
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
-  recommendationImpact: Medium
+  recommendationImpact: High
   recommendationResourceType: Microsoft.Network/applicationGateways
   recommendationMetadataState: Active
   longDescription: |
@@ -113,7 +113,7 @@
   aprlGuid: 847a8d88-21c4-bc48-a94e-562206edd767
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
-  recommendationImpact: Medium
+  recommendationImpact: High
   recommendationResourceType: Microsoft.Network/applicationGateways
   recommendationMetadataState: Active
   longDescription: |

@@ -447,7 +447,7 @@ $Global:Runtime = Measure-Command -Expression {
         }
 
       $Styles5 = @(
-        New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 20 -NumberFormat '0' -Range "A1"
+        New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 20 -Range "A1"
         New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 15 -Range "B1:C1"
         New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 35 -Range "D1"
         New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 20 -Range "E1:F1"
@@ -456,7 +456,7 @@ $Global:Runtime = Measure-Command -Expression {
         New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 95 -Range "I1"
         New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 120 -Range "J1"
         #New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -VerticalAlignment Center -Bold -WrapText -BackgroundColor "DarkSlateGray" -Width 35 -Range "K1"
-        New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -VerticalAlignment Center -WrapText -NumberFormat '0' -Range "A:J"
+        New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -VerticalAlignment Center -WrapText -Range "A:J"
       )
 
       # Configure the array of fields to be used in the Tickets sheet
@@ -476,7 +476,7 @@ $Global:Runtime = Measure-Command -Expression {
       if (![string]::IsNullOrEmpty($Global:TicketsSheet))
         {
           $Global:TicketsSheet | ForEach-Object { [PSCustomObject]$_ } | Select-Object $TicketWorksheet |
-          Export-Excel -Path $ExcelFile -WorksheetName 'Support Tickets' -TableName 'TableTickets' -AutoSize -TableStyle $tableStyle -Style $Styles5
+          Export-Excel -Path $ExcelFile -WorksheetName 'Support Tickets' -TableName 'TableTickets' -AutoSize -TableStyle $tableStyle -Style $Styles5 -NoNumberConversion *
         }
     }
 
@@ -795,7 +795,7 @@ $Global:Runtime = Measure-Command -Expression {
   }
 
   #Call the functions
-  $Global:Version = "2.0.6"
+  $Global:Version = "2.0.7"
   Write-Host "Version: " -NoNewline
   Write-Host $Global:Version -ForegroundColor DarkBlue
 
