@@ -326,7 +326,7 @@
 - description: Enable GitOps when using DevOps frameworks
   aprlGuid: 5f3cbd68-692a-4121-988c-9770914859a9
   recommendationTypeId: null
-  recommendationControl: Automation
+  recommendationControl: Other Best Practices
   recommendationImpact: Low
   recommendationResourceType: Microsoft.ContainerService/managedClusters
   recommendationMetadataState: Active

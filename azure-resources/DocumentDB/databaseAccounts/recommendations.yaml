@@ -6,7 +6,7 @@
   recommendationResourceType: Microsoft.DocumentDB/databaseAccounts
   recommendationMetadataState: Active
   longDescription: |
-    It is crucial to enable a secondary region on your Cosmos DB to achieve higher SLA. Doing so does not incur any downtime and it is as easy as selecting a pin on map. Cosmos DB instances utilizing Strong consistency need to configure at least three regions to retain write availability in case of one region failure.
+    Enable a secondary region in Cosmos DB for higher SLA without downtime. Simple as pinning a location on a map. For Strong consistency, configure at least three regions for write availability in case of failure.
   potentialBenefits: Enhances SLA and resilience
   pgVerified: true
   publishedToLearn: false

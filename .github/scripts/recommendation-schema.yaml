@@ -3,9 +3,9 @@ list(include('recommendation'), min=1)
 ---
 recommendation:
   description: str(max=100)
-  aprlGuid: any(regex('^[a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12}$'), null())
-  recommendationTypeId: any(regex('^[a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12}$'), null())
-  recommendationControl: enum('High Availability', 'Business Continuity', 'Disaster Recovery', 'Scalability', 'Monitoring and Alerting', 'Service Upgrade and Retirement', 'Other Best Practices', 'Personalized', 'Governance')
+  aprlGuid: any(regex('^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'), null())
+  recommendationTypeId: any(regex('^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'), null())
+  recommendationControl: enum('High Availability', 'Business Continuity', 'Disaster Recovery', 'Scalability', 'Monitoring and Alerting', 'Service Upgrade and Retirement', 'Other Best Practices', 'Personalized', 'Governance', 'Security')
   recommendationImpact: enum('Low', 'Medium', 'High')
   recommendationResourceType: str()
   recommendationMetadataState: enum('Active', 'Disabled')
