@@ -1,4 +1,4 @@
-﻿- description: Run production workloads on two or more VMs using VMSS Flex
+- description: Run production workloads on two or more VMs using VMSS Flex
   aprlGuid: 273f6b30-68e0-4241-85ea-acf15ffb60bf
   recommendationTypeId: null
   recommendationControl: High Availability

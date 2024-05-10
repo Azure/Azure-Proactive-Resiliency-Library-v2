@@ -1,4 +1,4 @@
-﻿- description: Configure Azure Service Health notifications and alerts for Azure VMware Solution
+- description: Configure Azure Service Health notifications and alerts for Azure VMware Solution
   aprlGuid: 74fcb9f2-9a25-49a6-8c42-d32851c4afb7
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting

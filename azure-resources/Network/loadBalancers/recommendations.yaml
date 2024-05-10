@@ -1,4 +1,4 @@
-﻿- description: Use Standard Load Balancer SKU
+- description: Use Standard Load Balancer SKU
   aprlGuid: 38c3bca1-97a1-eb42-8cd3-838b243f35ba
   recommendationTypeId: null
   recommendationControl: High Availability

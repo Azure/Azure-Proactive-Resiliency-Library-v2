@@ -1,4 +1,4 @@
-﻿- description: Scaling plans should be created per region and not scaled across regions
+- description: Scaling plans should be created per region and not scaled across regions
   aprlGuid: 499769ae-67c9-492e-9ca5-cfd4cece5209
   recommendationTypeId: null
   recommendationControl: Scaling

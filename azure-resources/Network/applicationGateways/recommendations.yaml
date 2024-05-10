@@ -1,4 +1,4 @@
-﻿- description: Set a minimum instance count of 2
+- description: Set a minimum instance count of 2
   aprlGuid: 823b0cff-05c0-2e4e-a1e7-9965e1cfa16f
   recommendationTypeId: null
   recommendationControl: Scalability

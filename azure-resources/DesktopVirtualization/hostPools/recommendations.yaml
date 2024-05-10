@@ -1,4 +1,4 @@
-﻿- description: Create a validation host pool for testing of planned updates
+- description: Create a validation host pool for testing of planned updates
   aprlGuid: 013ac34e-7c4b-425f-9e0c-216f0cc06181
   recommendationTypeId: null
   recommendationControl: Governance

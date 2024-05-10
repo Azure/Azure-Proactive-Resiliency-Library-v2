@@ -1,4 +1,4 @@
-﻿- description: The Admin State of both Links of an ExpressRoute Direct should be in Enabled state
+- description: The Admin State of both Links of an ExpressRoute Direct should be in Enabled state
   aprlGuid: 60077378-7cb1-4b35-89bb-393884d9921d
   recommendationTypeId: null
   recommendationControl: High Availability

@@ -1,4 +1,4 @@
-﻿- description: Deploy VMSS with Flex orchestration mode instead of Uniform
+- description: Deploy VMSS with Flex orchestration mode instead of Uniform
   aprlGuid: e7495e1c-0c75-0946-b266-b429b5c7f3bf
   recommendationTypeId: null
   recommendationControl: Scalability

@@ -1,4 +1,4 @@
-﻿- description: Configure at least two regions for high availability
+- description: Configure at least two regions for high availability
   aprlGuid: 43663217-a1d3-844b-80ea-571a2ce37c6c
   recommendationTypeId: null
   recommendationControl: High Availability

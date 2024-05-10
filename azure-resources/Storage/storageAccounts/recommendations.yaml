@@ -1,4 +1,4 @@
-﻿- description: Ensure that storage accounts are zone or region redundant
+- description: Ensure that storage accounts are zone or region redundant
   aprlGuid: e6c7e1cc-2f47-264d-aa50-1da421314472
   recommendationTypeId: null
   recommendationControl: High Availability

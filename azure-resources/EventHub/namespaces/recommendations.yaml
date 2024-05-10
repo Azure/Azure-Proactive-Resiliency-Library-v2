@@ -1,4 +1,4 @@
-﻿- description: Don't disable zone redundancy
+- description: Don't disable zone redundancy
   aprlGuid: 84636c6c-b317-4722-b603-7b1ffc16384b
   recommendationTypeId: null
   recommendationControl: High Availability

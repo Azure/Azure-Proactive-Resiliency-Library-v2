@@ -1,4 +1,4 @@
-﻿- description: Configure Diagnostic Settings for all Azure Event Grid resources
+- description: Configure Diagnostic Settings for all Azure Event Grid resources
   aprlGuid: 54c3191b-b535-1946-bba9-b754f44060f6
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
