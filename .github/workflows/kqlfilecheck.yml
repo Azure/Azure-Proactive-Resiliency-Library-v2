@@ -16,6 +16,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Run KQL file check
+      - name: Run KQL Comment Check
         run: |
           pwsh .github/scripts/validate-kql-comments.ps1
+
+      - name: Run KQL Syntax Check
+        run: |
+          pwsh .github/scripts/validate-kql-syntax.ps1
