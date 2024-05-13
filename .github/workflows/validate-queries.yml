@@ -1,4 +1,4 @@
-name: Validate Schemas Check
+name: Validate ARG Queries
 
 on:
   pull_request:
@@ -18,15 +18,5 @@ jobs:
       - name: Run KQL file check
         run: |
           pwsh .github/scripts/validate-kql-comments.ps1
-
-  yaml_file_check:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Run YAML file check
-        run: |
-          python .github/scripts/validate-yaml-recommmendations.py
 
 
