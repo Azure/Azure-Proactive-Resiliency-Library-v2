@@ -1,3 +1,4 @@
+// Azure Resource Graph Query
 // This Resource Graph query will return all Recovery services vault with Classic alerts enabled.
 resources
 | where type in~ ('microsoft.recoveryservices/vaults')
