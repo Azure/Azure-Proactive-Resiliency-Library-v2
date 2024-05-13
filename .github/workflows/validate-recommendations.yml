@@ -17,6 +17,6 @@ jobs:
 
       - name: Run YAML file check
         run: |
-          python .github/scripts/validate-yaml-recommmendations.py
+          python .github/scripts/validate-yaml-recommendations.py
 
 
