@@ -115,7 +115,7 @@
   recommendationMetadataState: Active
   longDescription: |
     A regional failover is a process of switching to a secondary region in case of a major disruption or outage in the primary region of your cloud solution. Regional failovers can help you maintain availability and performance of your solution across different geographic areas. However, regional failovers are not trivial and require careful planning and testing. You should regularly test regional failovers to verify that your backup region can handle the load and functionality of your solution, that your data is consistent and secure across regions, and that your failover and failback procedures are working as expected. Testing regional failovers can also help you identify and resolve potential issues or gaps in your failover strategy before they affect your users or customers.
-  potentialBenefits: Gain confidence that your application can handle regional failovers correctly
+  potentialBenefits: Ensure app resilience with regional failover testing
   pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
@@ -134,7 +134,7 @@
   recommendationMetadataState: Active
   longDescription: |
     One of the key aspects of a reliable failover strategy is automation. Automation can reduce the human error, latency, and complexity involved in switching to a secondary region during an outage. However, automation itself can be vulnerable to failures or disruptions, especially if it depends on components or services that are affected by the outage. Therefore, you should ensure that your failover automation is available and resilient during outages, and that it can be triggered without manual intervention. You should also monitor and test your failover automation regularly to ensure that it performs as expected under different scenarios and conditions. As an example, if you are using regional failover as a mitigation for a potential regional outage, the automation used to orchestrate the failover to the backup region should not be hosted in the region that suffers the outage. Consider hosting your automation in a region that does not contain the production environment of your workload.
-  potentialBenefits: Gain confidence in your failover automation being available during outages
+  potentialBenefits: Gain confidence in your failover automation
   pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false

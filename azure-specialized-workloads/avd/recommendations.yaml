@@ -314,10 +314,10 @@
     - name: Learn More
       url: "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/management-business-continuity-disaster-recovery"
 
-- description: Configure static routes to allow session hosts traffic to AVD control plane to go directly out of the subnet to internet
+- description: Configure static routes for session hosts to directly access the AVD control plane subnet
   aprlGuid: 1c6c97d7-4d03-4f53-985d-fa239f715173
   recommendationTypeId: null
-  recommendationControl: Performance
+  recommendationControl: Other Best Practices
   recommendationImpact: Medium
   recommendationResourceType: n/a
   recommendationMetadataState: Active
@@ -491,7 +491,7 @@
     - name: Learn More
       url: "https://learn.microsoft.com/azure/key-vault/general/disaster-recovery-guidance"
 
-- description: Deploy a pair of domain controllers on Azure virtual machines across availability zones in the same region as AVD session hosts
+- description: Deploy domain controllers on Azure VMs across availability zones in the AVD region
   aprlGuid: d61f6ee8-de1b-4fd9-9ce3-316cfe11ee05
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
@@ -511,7 +511,7 @@
     - name: Learn More
       url: "https://learn.microsoft.com/azure/architecture/example-scenario/azure-virtual-desktop/azure-virtual-desktop-multi-region-bcdr"
 
-- description: Deploy a pair of DNS on Azure virtual machines across availability zones in the same region as AVD session hosts
+- description: Deploy domain controllers on Azure VMs across availability zones in the AVD region
   aprlGuid: 99bf5c94-aa68-4bb3-8b7f-45d1c5f09b5d
   recommendationTypeId: null
   recommendationControl: High Availability

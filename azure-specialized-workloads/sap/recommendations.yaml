@@ -77,7 +77,7 @@
     - name: SAP Storage Planning Guide
       url: "https://learn.microsoft.com/en-us/azure/sap/workloads/planning-guide-storage"
 
-- description: Ensure that the data is replicated synchronously (SYNC mode) between the primary and secondary database hosting VM nodes
+- description: Ensure synchronous data replication (SYNC mode) between primary and secondary VM nodes
   aprlGuid: 094400a5-f112-408d-a334-afd68873ff0f
   recommendationTypeId: null
   recommendationControl: High Availability
@@ -98,7 +98,7 @@
     - name: OpenSource Quality Checks
       url: "https://github.com/Azure/SAP-on-Azure-Scripts-and-Utilities/tree/main/QualityCheck"
 
-- description: Ensure that SAP shared file systems are designed for high availability and when possible using availability zones
+- description: Design SAP shared file systems for high availability, utilizing availability zones when possible
   aprlGuid: e09ca960-20b7-4831-b85b-83ec84c1390e
   recommendationTypeId: null
   recommendationControl: High Availability
@@ -181,7 +181,7 @@
     - name: Capacity Reservation
       url: "https://learn.microsoft.com/en-us/azure/virtual-machines/capacity-reservation-overview"
 
-- description: Ensure that the production databases are replicated (ASYNC) to DR location using the database vendor's replication technology
+- description: Replicate production databases to DR location (ASYNC) using the vendor's replication technology
   aprlGuid: fb8bdcee-d88f-408d-8572-a76a4aaa733b
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
@@ -326,7 +326,7 @@
     - name: Configure Pacemaker for Azure Scheduled Events
       url: "https://learn.microsoft.com/en-us/azure/sap/workloads/high-availability-guide-suse-pacemaker?tabs=msi#configure-pacemaker-for-azure-scheduled-events"
 
-- description: ASCS-Pacemaker (Central Server Instance) Ensure Pacemaker cluster has been setup for SAP ASCS high availability
+- description: Configure a Pacemaker cluster for SAP ASCS high availability
   aprlGuid: 9d8f6678-694c-4da4-8384-415201f65194
   recommendationTypeId: null
   recommendationControl: High Availability
@@ -349,7 +349,7 @@
     - name: ASCS-Pacemaker - Central Server Instance
       url: "https://docs.microsoft.com/en-us/azure/advisor/advisor-reference-reliability-recommendations"
 
-- description: ASCS-LB (Central Server Instance) Ensure the load balancer is configured correctly for SAP ASCS High availability
+- description: Ensure the central server load balancer is configured correctly for SAP ASCS High availability
   aprlGuid: 5c2e52d0-25be-4b1c-833c-b98b5ef1a26b
   recommendationTypeId: null
   recommendationControl: High Availability
@@ -372,7 +372,7 @@
     - name: ASCS-LB - Central Server Instance
       url: "https://docs.microsoft.com/en-us/azure/advisor/advisor-reference-reliability-recommendations"
 
-- description: DBHANA-Pacemaker (DB Instance) Ensure the Pacemaker cluster has been setup for high availability
+- description: Ensure the Pacemaker cluster has been setup for high availability
   aprlGuid: 6648fe61-880d-4a96-8d2d-190a23d5580b
   recommendationTypeId: null
   recommendationControl: High Availability
@@ -395,7 +395,7 @@
     - name: DBHANA-Pacemaker - Database Instance
       url: "https://docs.microsoft.com/en-us/azure/advisor/advisor-reference-reliability-recommendations"
 
-- description: DBHANA-LB (DB Instance) Ensure the load balancer is configured correctly for SAP HANA DB High availability
+- description: Ensure the load balancer is configured correctly for SAP HANA DB High availability
   aprlGuid: 2e4c2171-a83f-4238-a8e3-b51c90d86a99
   recommendationTypeId: null
   recommendationControl: High Availability
