@@ -372,7 +372,7 @@
     - name: ASCS-LB - Central Server Instance
       url: "https://docs.microsoft.com/en-us/azure/advisor/advisor-reference-reliability-recommendations"
 
-- description: DBHANA-Pacemaker (Database Instance) Ensure the Pacemaker cluster has been setup for SAP HANA DB high availability
+- description: DBHANA-Pacemaker (DB Instance) Ensure the Pacemaker cluster has been setup for high availability
   aprlGuid: 6648fe61-880d-4a96-8d2d-190a23d5580b
   recommendationTypeId: null
   recommendationControl: High Availability
@@ -380,7 +380,7 @@
   recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
-    For the DBHANA-Pacemaker (Database Instance), ensure that the Pacemaker cluster configuration parameters are correctly set up for SAP HANA DB high availability.
+    For the DBHANA-Pacemaker (DB Instance), ensure that the Pacemaker cluster configuration parameters are correctly set up for SAP HANA DB high availability.
   potentialBenefits: Enhances SAP HANA DB uptime
   pgVerified: true
   publishedToLearn: false
@@ -395,7 +395,7 @@
     - name: DBHANA-Pacemaker - Database Instance
       url: "https://docs.microsoft.com/en-us/azure/advisor/advisor-reference-reliability-recommendations"
 
-- description: DBHANA-LB (Database Instance) Ensure the load balancer is configured correctly for SAP HANA DB High availability
+- description: DBHANA-LB (DB Instance) Ensure the load balancer is configured correctly for SAP HANA DB High availability
   aprlGuid: 2e4c2171-a83f-4238-a8e3-b51c90d86a99
   recommendationTypeId: null
   recommendationControl: High Availability
@@ -403,7 +403,7 @@
   recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
-    For the DBHANA-LB (Database Instance), make sure the load balancer is configured correctly for SAP HANA DB high availability.
+    For the DBHANA-LB (DB Instance), make sure the load balancer is configured correctly for SAP HANA DB high availability.
   potentialBenefits: Enhanced DB availability
   pgVerified: true
   publishedToLearn: false

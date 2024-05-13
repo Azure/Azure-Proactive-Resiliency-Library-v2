@@ -17,18 +17,3 @@ recommendation:
   automationAvailable: any(enum('arg'), bool())
   tags: null()
   learnMoreLink: list()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

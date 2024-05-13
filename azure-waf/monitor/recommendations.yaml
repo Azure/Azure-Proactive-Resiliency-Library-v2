@@ -1,4 +1,4 @@
-﻿- description: Make sure your application's health is being monitored
+- description: Make sure your application's health is being monitored
   aprlGuid: 46fb4540-ecac-6e49-bc10-34c7792eb35d
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
@@ -132,7 +132,7 @@
   recommendationMetadataState: Active
   longDescription: |
     To measure and improve the reliability of your cloud solution, you need to define metrics that reflect how well your solution meets your business requirements. For example, you can use availability, latency, throughput, error rate, and durability as metrics to quantify the performance and reliability of your solution. These metrics can help you track the progress of your reliability goals, such as SLAs and SLOs, and identify areas for improvement. You should also align your metrics with your customer expectations and feedback, and use them to prioritize your reliability efforts.
-  potentialBenefits: Gain insight into the performance of your application in relation to business requirements
+  potentialBenefits: Performance insights align with business requirements
   pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: no

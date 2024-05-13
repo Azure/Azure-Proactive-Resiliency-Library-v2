@@ -11,7 +11,7 @@
   pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
-  automationAvailable: ARG
+  automationAvailable: arg
   tags: null
   learnMoreLink:
     - name: Learn More
@@ -139,7 +139,7 @@
 - description: Create only one FSLogix file share per Storage Account
   aprlGuid: ed1f0327-0914-49e8-9518-16acb0d6b8d6
   recommendationTypeId: null
-  recommendationControl: Storage
+  recommendationControl: Scalability
   recommendationImpact: Medium
   recommendationResourceType: n/a
   recommendationMetadataState: Active
@@ -158,7 +158,7 @@
 - description: Create a dedicated FSLogix file share and setup per host pool
   aprlGuid: ff916698-7507-4519-b545-c94dd81d73c5
   recommendationTypeId: null
-  recommendationControl: Storage
+  recommendationControl: Scalability
   recommendationImpact: Medium
   recommendationResourceType: n/a
   recommendationMetadataState: Active
@@ -214,7 +214,7 @@
     - name: Learn More
       url: "https://learn.microsoft.com/azure/virtual-desktop/rdp-shortpath?tabs=managed-networks"
 
-- description: Validate AVD session hosts connectivity to the AVD control plane and that UDP ports are allowed if RDP shortpath is in use
+- description: Ensure AVD session hosts connect to control plane & allow UDP ports for RDP shortpath
   aprlGuid: e718ac1a-ebab-4f75-9e4a-1a5ccef20d1f
   recommendationTypeId: null
   recommendationControl: Governance
