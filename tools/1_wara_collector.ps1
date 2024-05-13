@@ -411,7 +411,6 @@ $Global:Runtime = Measure-Command -Expression {
               recommendationId = [string]$data.recommendationId
               name             = [string]$data.name
               id               = [string]$data.id
-              tags             = [string]$data.tags
               param1           = [string]$data.param1
               param2           = [string]$data.param2
               param3           = [string]$data.param3
@@ -444,8 +443,7 @@ $Global:Runtime = Measure-Command -Expression {
               # Execute the query and collect the results
               $queryResults = Search-AzGraph -Query $query -First 1000 -Subscription $Subid -ErrorAction SilentlyContinue
 
-              # Filter out the resources based on Subscription
-              # $queryResults = $queryResults | Where-Object {$_.id.split('/')[2] -eq $Subid}
+              $queryResults = $queryResults | Select-Object -Property name,id,param1,param2,param3,param4,param5 -Unique
 
               foreach ($row in $queryResults)
                 {
@@ -455,7 +453,6 @@ $Global:Runtime = Measure-Command -Expression {
                     recommendationId = [string]$checkId
                     name             = [string]$row.name
                     id               = [string]$row.id
-                    tags             = [string]$row.tags
                     param1           = [string]$row.param1
                     param2           = [string]$row.param2
                     param3           = [string]$row.param3
@@ -484,7 +481,6 @@ $Global:Runtime = Measure-Command -Expression {
                         recommendationId = [string]$checkId
                         name             = [string]$row.name
                         id               = [string]$row.id
-                        tags             = [string]$row.tags
                         param1           = [string]$row.param1
                         param2           = [string]$row.param2
                         param3           = [string]$row.param3
@@ -762,13 +758,13 @@ $Global:Runtime = Measure-Command -Expression {
             if ($query -match "development")
               {
                 Write-Host "Query $kqlshort under development - Validate Recommendation manually" -ForegroundColor Yellow
-                $query = "resources | where type =~ '$type' | project name,id,tags"
+                $query = "resources | where type =~ '$type' | project name,id"
                 QueryCollector $Subid $type $query $checkId $checkName 'Query under development - Validate Recommendation manually'
               }
             elseif ($query -match "cannot-be-validated-with-arg")
               {
                 Write-Host "IMPORTANT - Recommendation $checkId cannot be validated with ARGs - Validate Resources manually" -ForegroundColor Yellow
-                $query = "resources | where type =~ '$type' | project name,id,tags"
+                $query = "resources | where type =~ '$type' | project name,id"
                 QueryCollector $Subid $type $query $checkId $checkName 'IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually'
               }
             else
@@ -806,7 +802,6 @@ $Global:Runtime = Measure-Command -Expression {
               recommendationId = $type
               name             = ""
               id               = ""
-              tags             = ""
               param1           = ""
               param2           = ""
               param3           = ""
@@ -982,6 +977,25 @@ $Global:Runtime = Measure-Command -Expression {
       }
   }
 
+  function SupportTickets {
+    $Tickets = $Global:SupportTickets
+    $Global:SupportTickets = @()
+    foreach ($Ticket in $Tickets)
+        {
+              $tmp = @{
+                'Ticket ID'         = [string]$Ticket.properties.supportTicketId;
+                'Severity'          = [string]$Ticket.properties.severity;
+                'Status'            = [string]$Ticket.properties.status;
+                'Support Plan Type' = [string]$Ticket.properties.supportPlanType;
+                'Creation Date'     = [string]$Ticket.properties.createdDate;
+                'Modified Date'     = [string]$Ticket.properties.modifiedDate;
+                'Title'             = [string]$Ticket.properties.title;
+                'Related Resource'  = [string]$Ticket.properties.technicalTicketDetails.resourceId
+              }
+              $Global:SupportTickets += $tmp
+        }
+  }
+
   function Retirement {
     param($Subid)
 
@@ -1137,6 +1151,7 @@ $Global:Runtime = Measure-Command -Expression {
     $ResourceExporter = @{
       Resource = $Global:results
     }
+    $Global:results = ''
     $ResourceTypeExporter = @{
       ResourceType = $Global:AllResourceTypesOrdered
     }
@@ -1152,6 +1167,7 @@ $Global:Runtime = Measure-Command -Expression {
     $SupportExporter = @{
       SupportTickets = $Global:SupportTickets
     }
+    $Global:SupportTickets = ''
     $ServiceHealthExporter = @{
       ServiceHealth = $Global:AllServiceHealth
     }
@@ -1212,6 +1228,9 @@ $Global:Runtime = Measure-Command -Expression {
 
   Write-Debug "Calling Function: ResourceTypes"
   ResourceTypes
+
+  Write-Debug "Calling Function: SupportTickets"
+  SupportTickets
 
   Write-Debug "Calling Function: JsonFile"
   JsonFile
