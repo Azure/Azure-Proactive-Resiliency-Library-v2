@@ -61,6 +61,9 @@ print("Test Message: Validating YAML files against schemas")
 # Loop through directories
 for directory, schema_path in directories.items():
     print(f"Validating YAML files in directory: {directory}")
+    if not os.path.exists(directory):
+        print(f"Directory {directory} does not exist.")
+        continue
     for root, dirs, files in os.walk(directory):
         print(f"Validating YAML files in directory: {root}")
         for file in files:
