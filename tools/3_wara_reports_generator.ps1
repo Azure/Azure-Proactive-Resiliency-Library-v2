@@ -1334,7 +1334,7 @@ $Global:Runtime = Measure-Command -Expression {
                                 $RetireName = ($Retirement.'Tracking ID' + ' - ' + $Retirement.Status + ' : ' + $Retirement.title)
 
                                 ($Slide30.Shapes | Where-Object { $_.Id -eq 7 }).TextFrame.TextRange.InsertAfter(".") | Out-Null
-                                Sif ($Heavy) {Start-Sleep -Milliseconds 500} else {Start-Sleep -Milliseconds 100}
+                                if ($Heavy) {Start-Sleep -Milliseconds 500} else {Start-Sleep -Milliseconds 100}
                                 ($Slide30.Shapes | Where-Object { $_.Id -eq 7 }).TextFrame.TextRange.Paragraphs(1).Copy()
                                 if ($Heavy) {Start-Sleep -Milliseconds 500} else {Start-Sleep -Milliseconds 100}
                                 ($Slide30.Shapes | Where-Object { $_.Id -eq 7 }).TextFrame.TextRange.Paragraphs($Loop).Paste() | Out-Null
