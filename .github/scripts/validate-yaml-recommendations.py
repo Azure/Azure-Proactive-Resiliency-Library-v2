@@ -56,6 +56,9 @@ def validate_yaml_file(file_path, schema_path):
     except ValueError as e:
         print(f'{file_path}: {Fore.RED}{e}{Style.RESET_ALL}')
 
+filePath = __file__
+print("This script file path is ", filePath)
+
 print("Test Message: Validating YAML files against schemas")
 
 # Loop through directories
