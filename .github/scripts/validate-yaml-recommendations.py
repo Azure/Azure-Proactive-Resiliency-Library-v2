@@ -38,9 +38,9 @@ init()
 
 # Directories containing YAML files to validate
 directories = {
-    './azure-resources': '/schemas/azure-resources-schema.yaml',
-    './azure-specialized-workloads': '/schemas/azure-specialized-workloads-schema.yaml',
-    './azure-waf': '/schemas/azure-waf-schema.yaml'
+    './azure-resources': './.github/schemas/azure-resources-schema.yaml',
+    './azure-specialized-workloads': './.github/schemas/azure-specialized-workloads-schema.yaml',
+    './azure-waf': './.github/schemas/azure-waf-schema.yaml'
 }
 
 # Function to validate a YAML file against the schema
