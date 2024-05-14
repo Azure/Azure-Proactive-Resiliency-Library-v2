@@ -31,7 +31,10 @@ if missing_packages:
 
 import os
 import yamale
-from colorama import Fore, Style
+from colorama import init, Fore, Style
+
+# Initialize colorama
+init()
 
 # Directories containing YAML files to validate
 directories = {
