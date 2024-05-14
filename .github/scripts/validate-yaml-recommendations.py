@@ -56,12 +56,14 @@ def validate_yaml_file(file_path, schema_path):
     except ValueError as e:
         print(f'{file_path}: {Fore.RED}{e}{Style.RESET_ALL}')
 
+print("Test Message: Validating YAML files against schemas")
+
 # Loop through directories
 for directory, schema_path in directories.items():
+    print(f"Validating YAML files in directory: {directory}")
     for root, dirs, files in os.walk(directory):
+        print(f"Validating YAML files in directory: {root}")
         for file in files:
             if file.endswith('.yaml'):
                 file_path = os.path.join(root, file)
                 validate_yaml_file(file_path, schema_path)
-
-
