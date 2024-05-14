@@ -31,14 +31,11 @@ if missing_packages:
 import os
 import yamale
 
-# Initialize error flag
-error_encountered = False
-
 # Directories containing YAML files to validate
 directories = {
-    './azure-resources': './.github/scripts/schemas/azure-resources-schema.yaml',
-    './azure-specialized-workloads': './.github/scripts/schemas/azure-specialized-workloads-schema.yaml',
-    './azure-waf': './.github/scripts/schemas/azure-waf-schema.yaml'
+    '../../azure-resources': '../../.github/scripts/schemas/azure-resources-schema.yaml',
+    '../../azure-specialized-workloads': '../../.github/scripts/schemas/azure-specialized-workloads-schema.yaml',
+    '../../azure-waf': '../../.github/scripts/schemas/azure-waf-schema.yaml'
 }
 
 # Function to validate a YAML file against the schema
@@ -52,7 +49,11 @@ def validate_yaml_file(file_path, schema_path):
         yamale.validate(schema_obj, data)
         print(f'{file_path}: Valid YAML')
     except ValueError as e:
-        print(f'{file_path}:{e}')
+        print(f'{file_path}: {e}')
+        raise RuntimeError(f"YAML validation failed for {file_path}.")
+
+# Initialize error counter
+error_count = 0
 
 # Loop through directories
 print("Validating YAML files against schemas...")
@@ -66,12 +67,12 @@ for directory, schema_path in directories.items():
                 file_path = os.path.join(root, file)
                 try:
                     validate_yaml_file(file_path, schema_path)
-                except ValueError as e:
-                    print(f'Error validating {file_path}: {e}')
-                    error_encountered = True
+                except RuntimeError as e:
+                    print(e)
+                    error_count += 1
 
 # Check if any errors were encountered
-if error_encountered:
-    raise RuntimeError("There were errors validating one or more YAML files.")
+if error_count > 0:
+    raise RuntimeError(f"{error_count} YAML files failed validation.")
 else:
     print("All YAML files are valid.")
