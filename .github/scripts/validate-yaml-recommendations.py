@@ -1,6 +1,5 @@
 required_packages = {
     "yamale": "yamale",
-    "colorama": "colorama"
 }
 
 missing_packages = []
@@ -31,10 +30,9 @@ if missing_packages:
 
 import os
 import yamale
-from colorama import init, Fore, Style
 
-# Initialize colorama
-init()
+# Initialize error flag
+error_encountered = False
 
 # Directories containing YAML files to validate
 directories = {
@@ -52,21 +50,28 @@ def validate_yaml_file(file_path, schema_path):
     try:
         # Validate data against the schema
         yamale.validate(schema_obj, data)
-        print(f'{file_path}: {Fore.GREEN}Valid YAML{Style.RESET_ALL}')
+        print(f'{file_path}: Valid YAML')
     except ValueError as e:
-        print(f'{file_path}: {Fore.RED}{e}{Style.RESET_ALL}')
-
-filePath = __file__
-print("This script file path is ", filePath)
-
-print("Test Message: Validating YAML files against schemas")
+        print(f'{file_path}:{e}')
 
 # Loop through directories
+print("Validating YAML files against schemas...")
 for directory, schema_path in directories.items():
     if not os.path.exists(directory):
         print(f"Directory {directory} does not exist.")
+        continue  # Skip validation for this directory
     for root, dirs, files in os.walk(directory):
         for file in files:
             if file.endswith('.yaml'):
                 file_path = os.path.join(root, file)
-                validate_yaml_file(file_path, schema_path)
+                try:
+                    validate_yaml_file(file_path, schema_path)
+                except ValueError as e:
+                    print(f'Error validating {file_path}: {e}')
+                    error_encountered = True
+
+# Check if any errors were encountered
+if error_encountered:
+    raise RuntimeError("There were errors validating one or more YAML files.")
+else:
+    print("All YAML files are valid.")
