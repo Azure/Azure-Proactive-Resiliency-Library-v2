@@ -56,7 +56,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Another aspect of reliability is the deployment method used to update or roll back your workload. You should ensure that the deployment method used is aligned to your reliability strategy and supports the availability and performance requirements of your workload. For example, you may choose to use blue-green deployments, canary deployments, or rolling deployments depending on the level of risk and impact you want to mitigate. You should also consider the trade-offs between speed and safety when deploying changes, and use appropriate testing and validation methods to ensure the quality of your code and configuration. Additionally, you should have a clear and documented process for handling deployment failures and communicate any changes or issues to your stakeholders and customers.
-  potentialBenefits: Ensure deployment strategy adheres reliability requirements
+  potentialBenefits: Align deployment strategy to reliability requirements
   pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
