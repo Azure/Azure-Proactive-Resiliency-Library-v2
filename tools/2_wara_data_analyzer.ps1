@@ -785,7 +785,7 @@ $Global:Runtime = Measure-Command -Expression {
   }
 
   #Call the functions
-  $Global:Version = "2.0.7"
+  $Global:Version = "2.0.8"
   Write-Host "Version: " -NoNewline
   Write-Host $Global:Version -ForegroundColor DarkBlue
 
