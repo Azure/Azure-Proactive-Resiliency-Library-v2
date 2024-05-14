@@ -72,7 +72,9 @@ for directory, schema_path in directories.items():
                     error_count += 1
 
 # Check if any errors were encountered
-if error_count > 0:
+if error_count == 1:
+    raise RuntimeError(f"{error_count} YAML file failed validation.")
+elif error_count > 1:
     raise RuntimeError(f"{error_count} YAML files failed validation.")
 else:
     print("All YAML files are valid.")
