@@ -176,7 +176,7 @@ $Script:Runtime = Measure-Command -Expression {
       {
         $RecomTitle = $Script:ServicesYAMLContent | Where-Object { $_.aprlGuid -eq $Recom.recommendationId }
         $Ticket = $Script:SupportTickets | Where-Object { $_.'Related Resource' -eq $Recom.id }
-        if ($RecomTitle.recommendationMetadataState -eq 'Active' -or $Recom.validationAction -eq 'IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually' -or $Recom.validationAction -eq 'Query under development - Validate Recommendation manually' )
+        if ($RecomTitle.recommendationMetadataState -eq 'Active' -or $Recom.validationAction -eq 'IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually' -or $Recom.validationAction -eq 'IMPORTANT - Query under development - Validate Recommendation manually' )
           {
             $Tickets = if ($Ticket.'Ticket ID'.count -gt 1) { $Ticket.'Ticket ID' | ForEach-Object { $_ + ' /' } }else { $Ticket.'Ticket ID' }
             $Tickets = [string]$Tickets
@@ -199,7 +199,7 @@ $Script:Runtime = Measure-Command -Expression {
               checkName                                                                         = [string]$Recom.checkName
             }
           }
-        elseif ($Recom.validationAction -eq 'Service Not Available In APRL - Validate Service manually if Applicable, if not Delete this line' )
+        elseif ($Recom.validationAction -eq 'IMPORTANT - Service Not Available In APRL - Validate Service manually if Applicable, if not Delete this line' )
           {
             $tmp = @{
               'How was the resource/recommendation validated or what actions need to be taken?' = [string]$Recom.validationAction;
@@ -254,7 +254,7 @@ $Script:Runtime = Measure-Command -Expression {
     foreach ($WAF in $Script:WAFYAMLContent)
       {
         $tmp = @{
-          'How was the resource/recommendation validated or what actions need to be taken?' = '';
+          'How was the resource/recommendation validated or what actions need to be taken?' = 'Update this item based on Discovery Workshop Questionnaire';
           recommendationId                                                                  = [string]$WAF.aprlGuid;
           recommendationTitle                                                               = [string]$WAF.description;
           resourceType                                                                      = [string]$WAF.recommendationResourceType;
@@ -295,8 +295,7 @@ $Script:Runtime = Measure-Command -Expression {
       )
 
       $cond = @()
-      $cond += New-ConditionalText 'Service Not Available In APRL' -Range A:A
-      $cond += New-ConditionalText 'Query under development' -Range A:A
+      $cond += New-ConditionalText 'Update this item based on Discovery Workshop Questionnaire' -Range A:A
       $cond += New-ConditionalText 'IMPORTANT' -Range A:A
 
 
