@@ -53,7 +53,7 @@
   tags: null
   learnMoreLink:
     - name: Manage availability zone volume placement for Azure NetApp Files | Microsoft Learn
-      url: "https://learn.microsoft.com/en-us/azure/azure-netapp-files/manage-availability-zone-volume-placement"
+      url: "https://learn.microsoft.com/azure/azure-netapp-files/manage-availability-zone-volume-placement"
 
 - description: Use snapshots for data protection in Azure NetApp Files
   aprlGuid: 72827434-c773-4345-9493-34848ddf5803
