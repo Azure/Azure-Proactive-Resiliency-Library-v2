@@ -403,7 +403,7 @@
   recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
-    For the DBHANA-LB (Database Instance), make sure the load balancer is configured correctly for SAP HANA DB high availability.
+    For the DBHANA-LB (Database Instance), make sure the load balancer is configured correctly for SAP HANA database high availability.
   potentialBenefits: Enhanced DB availability
   pgVerified: true
   publishedToLearn: false
