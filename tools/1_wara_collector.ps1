@@ -849,7 +849,7 @@ $Script:Runtime = Measure-Command -Expression {
                   {
                     Write-Host "Query $checkId under development - Validate Recommendation manually" -ForegroundColor Yellow
                     $query = "resources | where type =~ '$type' | project name,id"
-                    Invoke-QueryExecution -Subid $Subid -type $type -query $query -checkId $checkId -checkName $checkName -validationAction 'Query under development - Validate Recommendation manually'
+                    Invoke-QueryExecution -Subid $Subid -type $type -query $query -checkId $checkId -checkName $checkName -validationAction 'IMPORTANT - Query under development - Validate Recommendation manually'
                   }
                 elseif ($query -match "cannot-be-validated-with-arg")
                   {
@@ -887,30 +887,27 @@ $Script:Runtime = Measure-Command -Expression {
             foreach ($type in $ServiceNotAvailable)
               {
                 Write-Host "Type $type Not Available In APRL - Validate Service manually" -ForegroundColor Yellow
-                $result = [PSCustomObject]@{
-                  validationAction = 'Service Not Available In APRL - Validate Service manually if Applicable, if not Delete this line'
-                  recommendationId = $type
-                  name             = ""
-                  id               = ""
-                  param1           = ""
-                  param2           = ""
-                  param3           = ""
-                  param4           = ""
-                  param5           = ""
-                  checkName        = ""
-                  selector         = "APRL"
-                }
-                $Script:results += $result
+                $query = "resources | where type =~ '$type' | project name,id"
+                Invoke-QueryExecution -Subid $Subid -type $type -query $query -checkId $type -checkName '' -validationAction 'IMPORTANT - Service Not Available In APRL - Validate Service manually if Applicable, if not Delete this line'
               }
           }
       }
   }
 
   function Resolve-ResourceType {
-    $TempTypes = $Script:results | Where-Object { $_.validationAction -eq 'Service Not Available In APRL - Validate Service manually if Applicable, if not Delete this line' }
+    $TempTypes = $Script:results | Where-Object { $_.validationAction -eq 'IMPORTANT - Service Not Available In APRL - Validate Service manually if Applicable, if not Delete this line' }
     $Script:AllResourceTypes = $Script:AllResourceTypes | Sort-Object -Property Count_ -Descending
-    foreach ($result in $Script:AllResourceTypes)
+    $Looper = $Script:AllResourceTypes | Select-Object -Property type,subscriptionId -Unique
+    foreach ($result in $Looper)
       {
+        if(($Script:AllResourceTypes | Where-Object {$_.type -eq $result.type -and $_.SubscriptionId -eq $result.subscriptionId}).count -eq 1) 
+          {
+            $ResourceTypeCount = ($Script:AllResourceTypes | Where-Object {$_.type -eq $result.type -and $_.SubscriptionId -eq $result.subscriptionId}).count_
+          }
+        else
+          {
+            $ResourceTypeCount = (($Script:AllResourceTypes | Where-Object {$_.type -eq $result.type -and $_.SubscriptionId -eq $result.subscriptionId}).count_ | Measure-Object -Sum).Sum
+          }
         if ($result.type -in $TempTypes.recommendationId)
           {
             $SubName = ''
@@ -918,7 +915,7 @@ $Script:Runtime = Measure-Command -Expression {
             $tmp = [PSCustomObject]@{
               'Subscription'        = [string]$SubName
               'Resource Type'       = [string]$result.type
-              'Number of Resources' = [string]$result.count_
+              'Number of Resources' = [string]$ResourceTypeCount
               'Available in APRL?'  = "No"
               'Custom1'             = ""
               'Custom2'             = ""
@@ -926,14 +923,14 @@ $Script:Runtime = Measure-Command -Expression {
             }
             $Script:AllResourceTypesOrdered += $tmp
           }
-        else
+        elseif ($result.type -notin $TempTypes.recommendationId)
           {
             $SubName = ''
             $SubName = ($SubIds | Where-Object { $_.Id -eq $result.subscriptionId }).Name
             $tmp = [PSCustomObject]@{
               'Subscription'        = [string]$SubName
               'Resource Type'       = [string]$result.type
-              'Number of Resources' = [string]$result.count_
+              'Number of Resources' = [string]$ResourceTypeCount
               'Available in APRL?'  = "Yes"
               'Custom1'             = ""
               'Custom2'             = ""
