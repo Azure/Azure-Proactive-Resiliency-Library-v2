@@ -36,7 +36,7 @@
     - name: Guidelines for Azure NetApp Files network planning | Microsoft Learn
       url: "https://learn.microsoft.com/azure/azure-netapp-files/azure-netapp-files-network-topologies"
 
-- description: Use availability zones for high availability in Azure NetApp Files
+- description: Deploy ANF volumes in the same availability zone with Azure compute and other services
   aprlGuid: 47d100a5-7f85-5742-967a-67eb5081240a
   recommendationTypeId: null
   recommendationControl: High Availability
@@ -44,16 +44,16 @@
   recommendationResourceType: Microsoft.NetApp/netAppAccounts
   recommendationMetadataState: Active
   longDescription: |
-    Azure availability zones are distinct locations within each Azure region designed to withstand local failures through redundancy and logical isolation, improving service resiliency with at least three zones in enabled regions.
-  potentialBenefits: Enhances disaster recovery
+    Azure NetApp Files' availability zone (AZ) volume placement feature lets you deploy volumes in the same AZ with Azure compute and other services to have within AZ latency and share the same AZ failure domain.
+  potentialBenefits: Tolerate failure of other AZ and within AZ latency
   pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Use availability zones for high availability in Azure NetApp Files | Microsoft Learn
-      url: "https://learn.microsoft.com/azure/azure-netapp-files/use-availability-zones"
+    - name: Manage availability zone volume placement for Azure NetApp Files | Microsoft Learn
+      url: "https://learn.microsoft.com/en-us/azure/azure-netapp-files/manage-availability-zone-volume-placement"
 
 - description: Use snapshots for data protection in Azure NetApp Files
   aprlGuid: 72827434-c773-4345-9493-34848ddf5803
