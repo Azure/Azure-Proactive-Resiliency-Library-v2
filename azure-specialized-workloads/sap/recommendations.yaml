@@ -380,7 +380,7 @@
   recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
-    For the DBHANA-Pacemaker (DB Instance), ensure that the Pacemaker cluster configuration parameters are correctly set up for SAP HANA DB high availability.
+    For the DBHANA-Pacemaker (Database Instance), ensure that the Pacemaker cluster configuration parameters are correctly set up for SAP HANA database high availability.
   potentialBenefits: Enhances SAP HANA DB uptime
   pgVerified: true
   publishedToLearn: false
@@ -403,7 +403,7 @@
   recommendationResourceType: n/a
   recommendationMetadataState: Active
   longDescription: |
-    For the DBHANA-LB (DB Instance), make sure the load balancer is configured correctly for SAP HANA DB high availability.
+    For the DBHANA-LB (Database Instance), make sure the load balancer is configured correctly for SAP HANA DB high availability.
   potentialBenefits: Enhanced DB availability
   pgVerified: true
   publishedToLearn: false
