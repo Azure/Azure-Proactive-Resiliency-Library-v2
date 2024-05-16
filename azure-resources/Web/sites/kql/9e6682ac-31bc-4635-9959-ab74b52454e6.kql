@@ -1,0 +1,13 @@
+// Azure Resource Graph Query
+// Check if App Service has minimum instance count of 2
+
+resources
+| where type =~ 'microsoft.web/sites'
+| where properties.kind has 'app'
+| join kind = inner
+    (
+    appserviceresources
+    | where properties.PreWarmedInstanceCount < 2
+    | project name
+    ) on name
+| project recommendationId = "", name, id, kind, param1 = "PreWarmedInstanceCount is less than 2"

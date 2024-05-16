@@ -1,0 +1,14 @@
+// Azure Resource Graph Query
+// Check if Network access restrictions defined for App service
+
+resources
+| where type =~ 'microsoft.web/sites'
+| where properties.kind has 'app'
+| join kind = inner
+    (
+    appserviceresources
+    | mv-expand IpSecurityRestrictions = properties.IpSecurityRestrictions
+    | where isnotnull(IpSecurityRestrictions) == false
+    | project name
+    ) on name
+| project recommendationId = "aab6b4a4-9981-43a4-8728-35c7ecbb746d", name, id,kind, param1 = "No network restrictions set"
