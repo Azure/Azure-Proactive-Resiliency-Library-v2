@@ -1,0 +1,56 @@
+- description: Scale a NAT gateway to meet the demand of a dynamic workload
+  aprlGuid: 4281631c-3d19-4994-8d96-084c2a51a534
+  recommendationTypeId: null
+  recommendationControl: Scalability
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Network/natGateways
+  recommendationMetadataState: Active
+  longDescription: |
+    When you scale your workload, assume that each flow requires a new SNAT port, and then scale the total number of available IP addresses for outbound traffic. Carefully consider the scale you're designing for, and then allocate IP addresses accordingly.
+  potentialBenefits: Enhances reliability and scalability
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Scale a NAT gateway to meet the demand of a dynamic workload
+      url: "https://learn.microsoft.com/en-us/azure/nat-gateway/nat-gateway-design#scale-a-nat-gateway-to-meet-the-demand-of-a-dynamic-workload"
+
+- description: Connect to Azure services with Private Link
+  aprlGuid: 419df1ea-336b-460a-b6b2-fefe2588fcef
+  recommendationTypeId: null
+  recommendationControl: Scalability
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Network/natGateways
+  recommendationMetadataState: Active
+  longDescription: |
+    Connecting from your Azure virtual network to Azure PaaS services can be done directly over the Azure backbone and bypass the internet. When you bypass the internet to connect to other Azure PaaS services, you free up SNAT ports and reduce the risk of SNAT port exhaustion.
+  potentialBenefits: Enhances reliability and scalability
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Connect to Azure services with Private Link
+      url: "https://learn.microsoft.com/en-us/azure/nat-gateway/nat-gateway-design#connect-to-azure-services-with-private-link"
+
+- description: Configure monitoring and alerting for NAT gateway
+  aprlGuid: babf75d6-6407-4d90-b01e-5a1768e621f5
+  recommendationTypeId: null
+  recommendationControl: Monitoring and Alerting
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/natGateways
+  recommendationMetadataState: Active
+  longDescription: |
+    Use Network Insights for monitoring and alerting on your NAT gateway.Use Total SNAT connection count metric to determine if you're nearing the connection limit of NAT gateway. Set alerts to proactively notify you when important conditions are found in your monitoring data
+  potentialBenefits: Enhanced network performance and health
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: What is Azure NAT Gateway metrics and alerts?
+      url: "https://learn.microsoft.com/en-us/azure/nat-gateway/nat-metrics"
