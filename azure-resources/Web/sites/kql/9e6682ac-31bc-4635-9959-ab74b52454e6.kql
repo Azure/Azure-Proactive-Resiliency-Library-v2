@@ -10,4 +10,4 @@ resources
     | where properties.PreWarmedInstanceCount < 2
     | project name
     ) on name
-| project recommendationId = "", name, id, kind, param1 = "PreWarmedInstanceCount is less than 2"
+| project recommendationId = "9e6682ac-31bc-4635-9959-ab74b52454e6", name, id, kind, param1 = "PreWarmedInstanceCount is less than 2"
