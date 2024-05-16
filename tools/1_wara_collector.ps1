@@ -665,7 +665,7 @@ $Global:Runtime = Measure-Command -Expression {
               {
                 $typeRaw = $kqlFile.DirectoryName.split('/')
               }
-            $kqltype = ($typeRaw[-3] + '/' + $typeRaw[-2])
+            $kqltype = ('microsoft.' + $typeRaw[-3] + '/' + $typeRaw[-2])
 
             $checkId = $kqlname.Split("/")[-1].ToLower()
 
@@ -757,7 +757,7 @@ $Global:Runtime = Measure-Command -Expression {
             # Validating if Query is Under Development
             if ($query -match "development")
               {
-                Write-Host "Query $kqlshort under development - Validate Recommendation manually" -ForegroundColor Yellow
+                Write-Host "Query $checkId under development - Validate Recommendation manually" -ForegroundColor Yellow
                 $query = "resources | where type =~ '$type' | project name,id"
                 QueryCollector $Subid $type $query $checkId $checkName 'Query under development - Validate Recommendation manually'
               }
@@ -1189,7 +1189,7 @@ $Global:Runtime = Measure-Command -Expression {
 
 
   #Call the functions
-  $Global:Version = "2.0.8"
+  $Global:Version = "2.0.9"
   Write-Host "Version: " -NoNewline
   Write-Host $Global:Version -ForegroundColor DarkBlue
 
