@@ -6,7 +6,7 @@
   recommendationResourceType: Microsoft.Network/applicationGateways
   recommendationMetadataState: Active
   longDescription: |
-    Azure Application Gateways v2 are deployed highly available with multiple instances by default. Enabling autoscale ensures the services is not relient on manual intervention for scaling.
+    Azure Application Gateways v2 are always deployed in a highly available fashion with multiple instances by default. Enabling autoscale ensures the service is not reliant on manual intervention for scaling.
   potentialBenefits: Enhances uptime and enables autoscaling
   pgVerified: true
   publishedToLearn: false
