@@ -18,7 +18,7 @@ It is crucial to enable a secondary region on your Cosmos DB to achieve higher S
 
 **Potential benefits:** Enhances SLA and resilience.
 
-# [Azure Resource Graph](#tab/graph)
+##### Azure Resource Graph
 
 :::code language="kusto" source="~/azure-proactive-resiliency-library/docs/content/services/database/cosmosdb/code/cosmos-1/cosmos-1.kql":::
 
@@ -32,7 +32,7 @@ It is crucial to enable a secondary region on your Cosmos DB to achieve higher S
 
 Cosmos DB boasts high uptime and resiliency. Even so, issues may arise. With Service-Managed failover, if a region is down, Cosmos DB automatically switches to the next available region, requiring no user action. **[Learn More](https://learn.microsoft.com/)**
 
-# [Azure Resource Graph](#tab/graph)
+##### Azure Resource Graph
 
 :::code language="kusto" source="~/azure-proactive-resiliency-library/docs/content/services/database/cosmosdb/code/cosmos-2/cosmos-2.kql":::
 
@@ -46,7 +46,7 @@ Multi-region write capability allows for designing applications that are highly 
 
 **Potential benefits:** Enhances high availability.
 
-# [Azure Resource Graph](#tab/graph)
+##### Azure Resource Graph
 
 :::code language="kusto" source="~/azure-proactive-resiliency-library/docs/content/services/database/cosmosdb/code/cosmos-3/cosmos-3.kql":::
 
@@ -60,7 +60,7 @@ In a globally distributed database, consistency level impacts data durability du
 
 **Potential benefits:** Enhances data durability and recovery.
 
-# [Azure Resource Graph](#tab/graph)
+##### Azure Resource Graph
 
 :::code language="kusto" source="~/azure-proactive-resiliency-library/docs/content/services/database/cosmosdb/code/cosmos-5/cosmos-5.kql":::
 
@@ -74,7 +74,7 @@ Cosmos DB's backup is always on, offering protection against data mishaps. Conti
 
 **Potential Benefits:** Faster self-serve data restore.
 
-# [Azure Resource Graph](#tab/graph)
+##### Azure Resource Graph
 
 :::code language="kusto" source="~/azure-proactive-resiliency-library/docs/content/services/database/cosmosdb/code/cosmos-5/cosmos-5.kql":::
 
