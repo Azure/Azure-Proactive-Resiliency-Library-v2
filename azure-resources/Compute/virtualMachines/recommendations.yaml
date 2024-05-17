@@ -141,25 +141,6 @@
     - name: What is the Azure Backup service?
       url: "https://learn.microsoft.com/azure/backup/backup-overview"
 
-- description: Production VMs should be using SSD disks
-  aprlGuid: d3f3ee41-b9aa-d34d-b442-5d46d20232b2
-  recommendationTypeId: null
-  recommendationControl: Scalability
-  recommendationImpact: High
-  recommendationResourceType: Microsoft.Compute/virtualMachines
-  recommendationMetadataState: Active
-  longDescription: |
-    Premium SSD disks support I/O-intensive apps with high performance, low latency, ideal for production. Standard SSDs offer cost-effective solutions for less critical workloads with consistent performance.
-  potentialBenefits: High-performance and reliability for critical apps
-  pgVerified: true
-  publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
-  tags: null
-  learnMoreLink:
-    - name: Azure managed disk types
-      url: "https://learn.microsoft.com/azure/virtual-machines/disks-types#premium-ssd"
-
 - description: Review VMs in stopped state
   aprlGuid: 98b334c0-8578-6046-9e43-b6e8fce6318e
   recommendationTypeId: null
