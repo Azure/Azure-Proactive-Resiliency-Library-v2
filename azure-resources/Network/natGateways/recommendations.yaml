@@ -6,7 +6,7 @@
   recommendationResourceType: Microsoft.Network/natGateways
   recommendationMetadataState: Active
   longDescription: |
-    When you scale your workload, assume that each flow requires a new SNAT port, and then scale the total number of available IP addresses for outbound traffic. NAT Gateway provides 64,512 SNAT ports per public IP address and supports up to 16 public IP addresses. Monitor "Total SNAT connection count" metric to determine if you're nearing the connection limit of NAT gateway. If you're nearing the limit, you can scale the NAT gateway by adding more public IP addresses.
+    NAT Gateway provides 64,512 SNAT ports per public IP address and supports up to 16 public IP addresses. Monitor "Total SNAT connection count" metric to determine if you're nearing the connection limit of NAT gateway. You can scale the NAT gateway by adding more public IP addresses.
   potentialBenefits: Enhances reliability and scalability
   pgVerified: false
   publishedToLearn: false
