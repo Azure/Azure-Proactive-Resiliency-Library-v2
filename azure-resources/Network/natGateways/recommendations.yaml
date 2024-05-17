@@ -6,7 +6,7 @@
   recommendationResourceType: Microsoft.Network/natGateways
   recommendationMetadataState: Active
   longDescription: |
-    When you scale your workload, assume that each flow requires a new SNAT port, and then scale the total number of available IP addresses for outbound traffic. Carefully consider the scale you're designing for, and then allocate IP addresses accordingly.
+    When you scale your workload, assume that each flow requires a new SNAT port, and then scale the total number of available IP addresses for outbound traffic. NAT Gateway provides 64,512 SNAT ports per public IP address and supports up to 16 public IP addresses. Monitor "Total SNAT connection count" metric to determine if you're nearing the connection limit of NAT gateway. If you're nearing the limit, you can scale the NAT gateway by adding more public IP addresses.
   potentialBenefits: Enhances reliability and scalability
   pgVerified: false
   publishedToLearn: false
@@ -16,25 +16,8 @@
   learnMoreLink:
     - name: Scale a NAT gateway to meet the demand of a dynamic workload
       url: "https://learn.microsoft.com/en-us/azure/nat-gateway/nat-gateway-design#scale-a-nat-gateway-to-meet-the-demand-of-a-dynamic-workload"
-
-- description: Connect to Azure services with Private Link
-  aprlGuid: 419df1ea-336b-460a-b6b2-fefe2588fcef
-  recommendationTypeId: null
-  recommendationControl: Scalability
-  recommendationImpact: Medium
-  recommendationResourceType: Microsoft.Network/natGateways
-  recommendationMetadataState: Active
-  longDescription: |
-    Connecting from your Azure virtual network to Azure PaaS services can be done directly over the Azure backbone and bypass the internet. When you bypass the internet to connect to other Azure PaaS services, you free up SNAT ports and reduce the risk of SNAT port exhaustion.
-  potentialBenefits: Enhances reliability and scalability
-  pgVerified: false
-  publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
-  tags: null
-  learnMoreLink:
-    - name: Connect to Azure services with Private Link
-      url: "https://learn.microsoft.com/en-us/azure/nat-gateway/nat-gateway-design#connect-to-azure-services-with-private-link"
+    - name: Total SNAT Connection Count
+      url: "https://learn.microsoft.com/en-us/azure/nat-gateway/nat-metrics#total-snat-connection-count"
 
 - description: Configure monitoring and alerting for NAT gateway
   aprlGuid: babf75d6-6407-4d90-b01e-5a1768e621f5
@@ -44,7 +27,7 @@
   recommendationResourceType: Microsoft.Network/natGateways
   recommendationMetadataState: Active
   longDescription: |
-    Use Network Insights for monitoring and alerting on your NAT gateway.Use Total SNAT connection count metric to determine if you're nearing the connection limit of NAT gateway. Set alerts to proactively notify you when important conditions are found in your monitoring data
+    Use Network Insights for monitoring and alerting on your NAT gateway.Use Total SNAT connection count metric to determine if you're nearing the connection limit of NAT gateway. Set alerts based on Azure Monitor Baseline Alerts (AMBA) thresholds for NAT Gateway
   potentialBenefits: Enhanced network performance and health
   pgVerified: false
   publishedToLearn: false
@@ -54,3 +37,24 @@
   learnMoreLink:
     - name: What is Azure NAT Gateway metrics and alerts?
       url: "https://learn.microsoft.com/en-us/azure/nat-gateway/nat-metrics"
+    - name: AMBA - NAT Gateway
+      url: "https://azure.github.io/azure-monitor-baseline-alerts/services/Network/natGateways/"
+
+- description: Consider zonal NAT gateway deployment for zone isolation scenarios
+  aprlGuid: 419df1ea-336b-460a-b6b2-fefe2588fcef
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Network/natGateways
+  recommendationMetadataState: Active
+  longDescription: |
+     A zonal promise for zone isolation scenarios exists when a virtual machine instance using a NAT gateway resource is in the same zone as the NAT gateway resource and its public IP addresses. The pattern you want to use for zone isolation is creating a "zonal stack" per availability zone.
+  potentialBenefits: Enhances reliability and scalability
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Zonal NAT gateway resource for each zone in a region to create zone-resiliency
+      url: "https://learn.microsoft.com/en-us/azure/nat-gateway/nat-availability-zones#zonal-nat-gateway-resource-for-each-zone-in-a-region-to-create-zone-resiliency"
