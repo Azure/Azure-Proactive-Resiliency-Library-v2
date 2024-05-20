@@ -1,0 +1,4 @@
+// Azure Resource Graph Query
+// Find Database for PostgreSQL instances that do not have a storage auto-grow
+// auto-grow property not available today in the output
+// No query available at the moment
