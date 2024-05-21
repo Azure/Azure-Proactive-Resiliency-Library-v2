@@ -532,7 +532,7 @@
     - name: Use Azure Spot Virtual Machines
       url: "https://learn.microsoft.com/en-us/azure/virtual-machines/spot-vms"
 
-- description: Migrate Legacy Workspaces
+- description: Evaluate regional isolation for workspaces
   aprlGuid: 8aa63c34-dd9d-49bd-9582-21ec310dfbdd
   recommendationTypeId: null
   recommendationControl: High Availability
