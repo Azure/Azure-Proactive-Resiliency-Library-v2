@@ -349,7 +349,7 @@
     - name: ASCS-Pacemaker - Central Server Instance
       url: "https://docs.microsoft.com/en-us/azure/advisor/advisor-reference-reliability-recommendations"
 
-- description: Ensure the central server load balancer is configured correctly for SAP ASCS High availability
+- description: Ensure the load balancer is configured correctly for SAP ASCS High availability
   aprlGuid: 5c2e52d0-25be-4b1c-833c-b98b5ef1a26b
   recommendationTypeId: null
   recommendationControl: High Availability
@@ -372,7 +372,7 @@
     - name: ASCS-LB - Central Server Instance
       url: "https://docs.microsoft.com/en-us/azure/advisor/advisor-reference-reliability-recommendations"
 
-- description: Ensure the Pacemaker cluster has been setup for high availability
+- description: Ensure the Pacemaker cluster has been setup for SAP HANA DB high availability
   aprlGuid: 6648fe61-880d-4a96-8d2d-190a23d5580b
   recommendationTypeId: null
   recommendationControl: High Availability

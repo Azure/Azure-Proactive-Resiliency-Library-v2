@@ -491,7 +491,7 @@
     - name: Learn More
       url: "https://learn.microsoft.com/azure/key-vault/general/disaster-recovery-guidance"
 
-- description: Deploy domain controllers on Azure VMs across availability zones in the AVD region
+- description: Deploy two or more domain controllers on Azure VMs across availability zones in the AVD region
   aprlGuid: d61f6ee8-de1b-4fd9-9ce3-316cfe11ee05
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
@@ -499,7 +499,7 @@
   recommendationResourceType: Specialized.Workload/AVD
   recommendationMetadataState: Active
   longDescription: |
-    When using an AD DS identity solution with AVD, it is recommended to deploy domain controllers on Azure virtual machines across availability zones. This improves the environment's reliability by removing a dependency on an on-premises service and improves performance by creating a shorter path for user authentication.
+    When using an AD DS identity solution with AVD, it is recommended to deploy two or more domain controllers on Azure virtual machines across availability zones. This improves the environment's reliability by removing a dependency on an on-premises service and improves performance by creating a shorter path for user authentication.
     This recommendation doesn't apply when using Microsoft Entra ID or Entra Domain Services joined session hosts.
   potentialBenefits: Enhanced identity resilience
   pgVerified: true
