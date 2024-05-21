@@ -44,7 +44,7 @@
   recommendationResourceType: Microsoft.NetApp/netAppAccounts
   recommendationMetadataState: Active
   longDescription: |
-    Availability zones are distinct locations within an Azure region to withstand local failures. Build your workload into multiple availability zones and use application-based replication and failover technologies or consider using Azure NetApp Files cross-zone replication to achieve high availability.
+    Availability zones are distinct locations within an Azure region to withstand local failures. Deploy your workload in multiple availability zones and use application-based replication and failover technologies or consider using Azure NetApp Files cross-zone replication to achieve high availability.
   potentialBenefits: High Availability across availability zones
   pgVerified: true
   publishedToLearn: false
