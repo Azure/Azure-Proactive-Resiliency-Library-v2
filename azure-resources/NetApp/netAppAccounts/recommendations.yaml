@@ -44,8 +44,8 @@
   recommendationResourceType: Microsoft.NetApp/netAppAccounts
   recommendationMetadataState: Active
   longDescription: |
-    Azure availability zones are distinct locations within each Azure region designed to withstand local failures through redundancy and logical isolation, improving service resiliency with at least three zones in enabled regions.
-  potentialBenefits: Enhances disaster recovery
+    Availability zones are distinct locations within an Azure region to withstand local failures. Build your workload into multiple availability zones and use application-based replication and failover technologies or consider using Azure NetApp Files cross-zone replication to achieve high availability.
+  potentialBenefits: High Availability across availability zones
   pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
@@ -54,6 +54,25 @@
   learnMoreLink:
     - name: Use availability zones for high availability in Azure NetApp Files | Microsoft Learn
       url: "https://learn.microsoft.com/azure/azure-netapp-files/use-availability-zones"
+
+- description: Deploy ANF volumes in the same availability zone with Azure compute and other services
+  aprlGuid: 8bb690e8-64d5-4838-8703-9ee3dbac688f
+  recommendationTypeId: null
+  recommendationControl: Other Best Practices
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.NetApp/netAppAccounts
+  recommendationMetadataState: Active
+  longDescription: |
+    Azure NetApp Files' availability zone (AZ) volume placement feature lets you deploy volumes in the same AZ with Azure compute and other services to have within AZ latency and share the same AZ failure domain.
+  potentialBenefits: Within AZ latency and tolerate failure of other AZ
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Manage availability zone volume placement for Azure NetApp Files | Microsoft Learn
+      url: "https://learn.microsoft.com/azure/azure-netapp-files/manage-availability-zone-volume-placement"
 
 - description: Use snapshots for data protection in Azure NetApp Files
   aprlGuid: 72827434-c773-4345-9493-34848ddf5803
@@ -115,13 +134,13 @@
 - description: Enable Cross-zone replication of Azure NetApp Files volumes
   aprlGuid: e3d742e1-dacd-9b48-b6b1-510ec9f87c96
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: Disaster Recovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.NetApp/netAppAccounts
   recommendationMetadataState: Active
   longDescription: |
     The cross-zone replication (CZR) feature enables asynchronous data replication between Azure NetApp Files volumes across different availability zones, ensuring data protection and critical application failover in case of zone-wide disasters.
-  potentialBenefits: Enhances disaster recovery
+  potentialBenefits: Enhances disaster recovery across availability zones
   pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
