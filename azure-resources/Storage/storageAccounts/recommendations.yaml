@@ -168,7 +168,7 @@
     - name: Upgrade to a general-purpose v2 storage account
       url: "https://learn.microsoft.com/azure/storage/common/storage-account-upgrade"
 
-- description: Enable Azure Private Link service for FSLogix storage account
+- description: Enable Azure Private Link service for storage accounts
   aprlGuid: dc55be60-6f8c-461e-a9d5-a3c7686ed94e
   recommendationTypeId: null
   recommendationControl: Security
