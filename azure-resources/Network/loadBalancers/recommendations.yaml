@@ -84,7 +84,7 @@
   recommendationResourceType: Microsoft.Network/loadBalancers
   recommendationMetadataState: Active
   longDescription: |
-    Health probes are used by Azure Load Balancers to determine the status of backend endpoints. Using custom health probes enhances understanding of backend availability and facilitates monitoring of backend services for any impact. Consult the backend application or services vendor documentation to ensure custom health probes are configured to properly identify application or service failures even when the underlying compute infrastructure is healthy.
+    Health probes are used by Azure Load Balancers to determine the status of backend endpoints. Using custom health probes enhances understanding of backend availability and facilitates monitoring of backend services for any impact. Consult the backend application or services vendor documentation to ensure custom health probes are configured to properly identify application or service failures.
   potentialBenefits: Ensures backend uptime monitoring.
   pgVerified: true
   publishedToLearn: false
