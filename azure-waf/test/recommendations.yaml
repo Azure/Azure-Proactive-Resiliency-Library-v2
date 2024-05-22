@@ -1,4 +1,4 @@
-﻿- description: Test your applications for availability and resiliency
+- description: Test your applications for availability and resiliency
   aprlGuid: 28a8ce6f-1b47-c243-bafb-208f4422fe7a
   recommendationTypeId: null
   recommendationControl: High Availability

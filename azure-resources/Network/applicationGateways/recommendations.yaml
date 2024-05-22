@@ -1,4 +1,4 @@
-﻿- description: Ensure autoscale has been enabled
+- description: Ensure autoscale has been enabled
   aprlGuid: 823b0cff-05c0-2e4e-a1e7-9965e1cfa16f
   recommendationTypeId: null
   recommendationControl: Scalability

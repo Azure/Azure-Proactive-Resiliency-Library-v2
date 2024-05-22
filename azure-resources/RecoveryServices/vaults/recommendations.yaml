@@ -1,4 +1,4 @@
-﻿- description: Ensure static IP addresses in Site Recovery VM failover settings are available in failover subnet
+- description: Ensure static IP addresses in Site Recovery VM failover settings are available in failover subnet
   aprlGuid: e93bb813-b356-48f3-9bdf-a06a0a6ba039
   recommendationTypeId: null
   recommendationControl: Disaster Recovery

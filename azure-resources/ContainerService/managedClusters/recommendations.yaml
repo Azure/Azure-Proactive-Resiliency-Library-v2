@@ -1,4 +1,4 @@
-﻿- description: Deploy AKS cluster across availability zones
+- description: Deploy AKS cluster across availability zones
   aprlGuid: 4f63619f-5001-439c-bacb-8de891287727
   recommendationTypeId: null
   recommendationControl: High Availability
@@ -326,7 +326,7 @@
 - description: Enable GitOps when using DevOps frameworks
   aprlGuid: 5f3cbd68-692a-4121-988c-9770914859a9
   recommendationTypeId: null
-  recommendationControl: Automation
+  recommendationControl: Other Best Practices
   recommendationImpact: Low
   recommendationResourceType: Microsoft.ContainerService/managedClusters
   recommendationMetadataState: Active
