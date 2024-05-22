@@ -2,6 +2,7 @@
 // List all Azure Firewalls resources in-scope, along with any metrics associated to Azure Monitor alert rules, that are not fully configured.
 resources
 | where type == "microsoft.network/azurefirewalls"
+| where isempty(properties.virtualHub.id) or isnull(properties.virtualHub.id)
 | project firewallId = tolower(id), name, tags
 | join kind = leftouter (
     resources
