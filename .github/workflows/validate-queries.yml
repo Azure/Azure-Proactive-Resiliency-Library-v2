@@ -1,4 +1,4 @@
-name: KQL File Check
+name: Validate ARG Queries
 
 on:
   pull_request:
@@ -11,7 +11,6 @@ on:
 jobs:
   kql_file_check:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -19,3 +18,5 @@ jobs:
       - name: Run KQL file check
         run: |
           pwsh .github/scripts/validate-kql-comments.ps1
+
+

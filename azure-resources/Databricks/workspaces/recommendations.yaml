@@ -1,4 +1,4 @@
-﻿- description: Databricks runtime version is not latest or is not LTS version
+- description: Databricks runtime version is not latest or is not LTS version
   aprlGuid: 0e835cc2-2551-a247-b1f1-3c5f25c9cb70
   recommendationTypeId: null
   recommendationControl: Governance
@@ -421,7 +421,7 @@
 - description: Automate deployments and workloads
   aprlGuid: 42aedaa8-6151-424d-b782-b8666c779969
   recommendationTypeId: null
-  recommendationControl: Automation
+  recommendationControl: Other Best Practices
   recommendationImpact: High
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
@@ -558,7 +558,7 @@
 - description: Define alternate VM SKUs
   aprlGuid: 028593be-956e-4736-bccf-074cb10b92f4
   recommendationTypeId: null
-  recommendationControl: System Efficiency
+  recommendationControl: Personalized
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
