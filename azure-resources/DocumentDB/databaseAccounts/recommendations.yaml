@@ -59,25 +59,6 @@
     - name: Conflict resolution types and resolution policies in Azure Cosmos DB | Microsoft Learn
       url: "https://learn.microsoft.com/azure/cosmos-db/conflict-resolution-policies"
 
-- description: Choose appropriate consistency mode reflecting data durability requirements
-  aprlGuid: 23ebe97d-c546-204b-8b0d-00e61a5524f7
-  recommendationTypeId: null
-  recommendationControl: Disaster Recovery
-  recommendationImpact: High
-  recommendationResourceType: Microsoft.DocumentDB/databaseAccounts
-  recommendationMetadataState: Active
-  longDescription: |
-    In a globally distributed database, consistency level impacts data durability during regional outages. Understand data loss tolerance for recovery planning. Use Session consistency unless stronger is needed, accepting higher write latencies and potential write region impact from read-only outages.
-  potentialBenefits: Enhances data durability and recovery
-  pgVerified: false
-  publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
-  tags: null
-  learnMoreLink:
-    - name: Consistency level choices - Azure Cosmos DB | Microsoft Learn
-      url: "https://learn.microsoft.com/azure/cosmos-db/consistency-levels"
-
 - description: Configure continuous backup mode
   aprlGuid: e544520b-8505-7841-9e77-1f1974ee86ec
   recommendationTypeId: null
