@@ -7,7 +7,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Outgoing connections are the requests that your cloud solution makes to external services or resources, such as databases, APIs, or third-party providers. Managing these connections properly is crucial for ensuring the reliability and performance of your solution. You should use appropriate patterns for opening, closing, reusing, and pooling outgoing connections, depending on the type and frequency of the requests. For example, you can use the circuit breaker pattern to prevent your solution from making repeated requests to a failing service, or you can use connection pooling to reuse existing connections and reduce the overhead of creating new ones. Additionally, you can use patterns like dependency injection or factory patterns to manage connection objects in code, and make sure to close connections you no longer use to prevent port exhaustion.
-  potentialBenefits: Increase the application's ability to manage outgoing connections at scale
+  potentialBenefits: Increase connection management
   pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: no
@@ -66,7 +66,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Partial failures are inevitable in distributed systems, where some components may fail or become unavailable while others continue to function. Therefore, cloud solutions should implement patterns to handle partial failures gracefully and avoid disrupting the entire system. Some of these patterns include retrying failed operations with exponential backoff, using timeouts to limit the impact of slow or unresponsive services, and fallback logic to provide alternative responses when the primary service is not available. As an example, dynamic content loaded into a webpage should revert to default values if the content is unavailable or should be hidden altogether. This presents a more favorable user experience than displaying error messages.
-  potentialBenefits: Give users a workable experience despite ongoing partial issues
+  potentialBenefits: Enable users to function despite ongoing issues
   pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: no

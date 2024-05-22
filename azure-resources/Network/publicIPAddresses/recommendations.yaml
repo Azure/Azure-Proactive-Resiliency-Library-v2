@@ -1,4 +1,4 @@
-﻿- description: Use Standard SKU and Zone-Redundant IPs when applicable
+- description: Use Standard SKU and Zone-Redundant IPs when applicable
   aprlGuid: c63b81fb-7afc-894c-a840-91bb8a8dcfaf
   recommendationTypeId: null
   recommendationControl: High Availability

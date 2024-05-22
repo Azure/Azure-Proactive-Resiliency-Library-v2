@@ -1,4 +1,4 @@
-﻿- description: Enable zone redundancy for Azure Cache for Redis
+- description: Enable zone redundancy for Azure Cache for Redis
   aprlGuid: 5a44bd30-ae6a-4b81-9b68-dc3a8ffca4d8
   recommendationTypeId: null
   recommendationControl: High Availability
