@@ -3,7 +3,7 @@
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
-  recommendationResourceType: n/a
+  recommendationResourceType: Specialized.Workload/AVS
   recommendationMetadataState: Active
   longDescription: |
     Use the Interconnect feature for direct communication between private clouds in different availability zones, enabling connectivity between the private clouds management and workload networks.
@@ -22,7 +22,7 @@
   recommendationTypeId: null
   recommendationControl: Security
   recommendationImpact: High
-  recommendationResourceType: n/a
+  recommendationResourceType: Specialized.Workload/AVS
   recommendationMetadataState: Active
   longDescription: |
     Ensure two external identity sources are configured for NSX and vCenter Server. The VMware vCenter Server and NSX Manager use these for authentication with external identities.
@@ -43,7 +43,7 @@
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
-  recommendationResourceType: n/a
+  recommendationResourceType: Specialized.Workload/AVS
   recommendationMetadataState: Active
   longDescription: |
     Enable Network Extension High Availability for appliance failure tolerance in HCX service. It pairs selected appliances for Active Standby configuration, ensuring high availability and quick recovery, keeping configurations in-service despite failures.
@@ -64,7 +64,7 @@
   recommendationTypeId: null
   recommendationControl: Other Best Practices
   recommendationImpact: High
-  recommendationResourceType: n/a
+  recommendationResourceType: Specialized.Workload/AVS
   recommendationMetadataState: Active
   longDescription: |
     Do not extend the network used by the HCX Management devices to ensure the network's security and stability.
@@ -83,7 +83,7 @@
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
-  recommendationResourceType: n/a
+  recommendationResourceType: Specialized.Workload/AVS
   recommendationMetadataState: Active
   longDescription: |
     The Azure VMware Solution's service SLA is influenced by vSAN storage policies, which change based on cluster size. For clusters over 6 hosts, an FTT-2 policy (RAID-1 or RAID-6) is advised. FTT refers to the Fault Tolerance feature.
@@ -104,7 +104,7 @@
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
-  recommendationResourceType: n/a
+  recommendationResourceType: Specialized.Workload/AVS
   recommendationMetadataState: Active
   longDescription: |
     Microsoft suggests using two or more ExpressRoute circuits at distinct peering locations for critical workloads. Connect these circuits and your Azure VMware Solutions private clouds using Global Reach.
@@ -125,7 +125,7 @@
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
-  recommendationResourceType: n/a
+  recommendationResourceType: Specialized.Workload/AVS
   recommendationMetadataState: Active
   longDescription: |
     Azure VMware Solution vSAN stretched clusters cover 2 Availability Zones plus a third for witness. Use ExpressRoute for added resilience by deploying two circuits in different locations. With Global Reach, create a mesh topology by connecting on-premises circuits to Azure's managed circuits.
@@ -144,7 +144,7 @@
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: High
-  recommendationResourceType: n/a
+  recommendationResourceType: Specialized.Workload/AVS
   recommendationMetadataState: Active
   longDescription: |
     Two Azure VMware Solution private clouds can be deployed in different regions for business continuity, implementing a mesh network topology based on ExpressRoute Gateway Connections and Global Reach Connections.
