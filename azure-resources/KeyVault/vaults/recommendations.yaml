@@ -1,21 +1,21 @@
-- description: Key vaults should have soft delete enabled
-  aprlGuid: 1cca00d2-d9ab-8e42-a788-5d40f49405cb
+- description: Azure Key Vault RBAC for Data Plane
+  aprlGuid: da780cfe-f727-4327-ac09-bad4edf31522
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: Security
   recommendationImpact: High
   recommendationResourceType: Microsoft.KeyVault/vaults
   recommendationMetadataState: Active
   longDescription: |
-    Key Vault's soft-delete feature enables recovery of deleted vaults and objects like keys, secrets, and certificates. When enabled, marked resources are retained for 90 days, allowing for their recovery, essentially undoing deletion.
-  potentialBenefits: Enables recovery of deleted items
-  pgVerified: false
+    Enhances security by integrating with Azure RBAC, replacing the legacy Access Policy model.
+  potentialBenefits: Unified Access Control, Centralized Access Management, Improved Security, Integration with Priviliged Identity  Management, Deny Assignments.
+  pgVerified: True
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Azure Key Vault soft-delete overview
-      url: "https://learn.microsoft.com/azure/key-vault/general/soft-delete-overview"
+    - name: Grant permissions to applications to access an Azure key vault using Azure RBAC
+      url: "https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide?tabs=azure-cli"
 
 - description: Key vaults should have purge protection enabled
   aprlGuid: 70fcfe6d-00e9-5544-a63a-fff42b9f2edb
@@ -27,7 +27,7 @@
   longDescription: |
     Purge protection secures against malicious deletions by enforcing a retention period for soft deleted key vaults, ensuring no one, not even insiders or Microsoft, can purge your key vaults during this period, preventing permanent data loss.
   potentialBenefits: Protects from insider attacks, avoids data loss
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -46,7 +46,7 @@
   longDescription: |
     Azure Private Link Service lets you securely and privately connect to Azure Key Vault via a Private Endpoint in your VNet, using a private IP and eliminating public Internet exposure.
   potentialBenefits: Secure Key Vault with Private Link
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -65,7 +65,7 @@
   longDescription: |
     Key vaults are security boundaries for secret storage. Grouping secrets together increases risk during a security event, as attacks could access multiple secrets.
   potentialBenefits: Enhanced security, Reduced risk
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
@@ -84,7 +84,7 @@
   longDescription: |
     Enable logs, set up alerts, and adhere to retention requirements for improved monitoring and security of Key Vault access, detailing the frequency and identity of users.
   potentialBenefits: Enhanced monitoring and security compliance
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
