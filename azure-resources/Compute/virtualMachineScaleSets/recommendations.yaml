@@ -1,4 +1,4 @@
-﻿- description: Deploy VMSS with Flex orchestration mode instead of Uniform
+- description: Deploy VMSS with Flex orchestration mode instead of Uniform
   aprlGuid: e7495e1c-0c75-0946-b266-b429b5c7f3bf
   recommendationTypeId: null
   recommendationControl: Scalability
@@ -41,7 +41,7 @@
 - description: Enable Automatic Repair policy
   aprlGuid: 820f4743-1f94-e946-ae0b-45efafd87962
   recommendationTypeId: null
-  recommendationControl: Automation
+  recommendationControl: Other Best Practices
   recommendationImpact: High
   recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
   recommendationMetadataState: Active
@@ -140,7 +140,7 @@
 - description: Set Patch orchestration options to Azure-orchestrated
   aprlGuid: e4ffd7b0-ba24-c84e-9352-ba4819f908c0
   recommendationTypeId: null
-  recommendationControl: Automation
+  recommendationControl: Other Best Practices
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
   recommendationMetadataState: Active
