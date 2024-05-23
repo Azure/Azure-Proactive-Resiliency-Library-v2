@@ -54,3 +54,26 @@
   learnMoreLink:
     - name: Rate limiting for ExpressRoute Direct circuits (Preview)
       url: "https://learn.microsoft.com/en-us/azure/expressroute/rate-limit"
+
+- description: Configure monitoring and alerting for ExpressRoute Ports
+  aprlGuid: 55815823-d588-4cb7-a5b8-ae581837356e
+  recommendationTypeId: null
+  recommendationControl: Monitoring and Alerting
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/expressRoutePorts
+  recommendationMetadataState: Active
+  longDescription: |
+    Use Network Insights for monitoring ExpressRoute Port light levels, bits per second in/out, and line protocol. Set alerts based on Azure Monitor Baseline Alerts for light levels, bits per second in/out, and line protocol exceeding specific thresholds.
+  potentialBenefits: Enhanced network performance and health
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Azure ExpressRoute Insights using Network Insights | Microsoft Learn
+      url: "https://learn.microsoft.com/en-us/azure/expressroute/expressroute-network-insights"
+    - name: ExpressRoute monitoring, metrics, and alerts | Microsoft Learn
+      url: "https://learn.microsoft.com/en-us/azure/expressroute/expressroute-monitoring-metrics-alerts"
+    - name: Azure Monitor Baseline Alerts - expressRoutePorts
+      url: "https://azure.github.io/azure-monitor-baseline-alerts/services/Network/expressRoutePorts/"
