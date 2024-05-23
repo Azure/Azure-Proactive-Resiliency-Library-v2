@@ -1,4 +1,4 @@
-﻿- description: Inspect Azure Front Door WAF logs for wrongfully blocked legitimate requests
+- description: Inspect Azure Front Door WAF logs for wrongfully blocked legitimate requests
   aprlGuid: d0cfe47f-686b-5043-bf83-5a3868acb80a
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting

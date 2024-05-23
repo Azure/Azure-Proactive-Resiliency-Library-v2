@@ -1,4 +1,4 @@
-﻿- description: Consider deploying your application across multiple zones
+- description: Consider deploying your application across multiple zones
   aprlGuid: 063d7237-5f68-5d42-b3d1-43144b3630b5
   recommendationTypeId: null
   recommendationControl: High Availability

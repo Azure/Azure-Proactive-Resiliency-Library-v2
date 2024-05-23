@@ -71,7 +71,7 @@ The YAML structure for adding new recommendations consists of several key-value 
 | description | Monitor Batch Account quota | String | Less than 100 characters | Summarization of your recommendation |
 | aprlGuid | 3464854d-6f75-4922-95e4-a2a308b53ce6 | String | 32-character hexadecimal string | The unique identifier for the recommendation in the context of APRL and CXObserve. Generate a [GUID](https://guidgenerator.com/online-guid-generator.aspx) for each new recommendation |
 | recommendationTypeId | 3464854d-6f75-4922-95e4-a2a308b53ce6 | String | `null` until updated by the Azure Advisor team | The unique identifier for the recommendation in the context of Advisor. |
-| recommendationControl | Monitoring and Alerting | String | [High Availability, Business Continuity, Disaster Recovery, Scalability, Monitoring and Alerting, Service Upgrade and Retirement, Other Best Practices, Personalized, Governance](#recommendation-categories) | Resiliency category associated with the recommendation |
+| recommendationControl | Monitoring and Alerting | String | [High Availability, Business Continuity, Disaster Recovery, Scalability, Monitoring and Alerting, Service Upgrade and Retirement, Other Best Practices, Personalized, Governance, Security](#recommendation-categories) | Resiliency category associated with the recommendation |
 | recommendationImpact | Medium | String | Low, Medium, High | Importance of adopting the recommendation and/or the risk of choosing not to adopt |
 | recommendationResourceType | Storage Account | String | Align with the resource type | Friendly name to identity resource type |
 | recommendationMetadataState | Active | String | Active, Disabled | Indicates whether the recommendation is visible |
