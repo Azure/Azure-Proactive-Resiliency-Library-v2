@@ -1,4 +1,4 @@
-﻿- description: Enable HA with zone redundancy
+- description: Enable HA with zone redundancy
   aprlGuid: ca87914f-aac4-4783-ab67-82a6f936f194
   recommendationTypeId: null
   recommendationControl: High Availability

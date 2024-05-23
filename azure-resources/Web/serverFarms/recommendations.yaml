@@ -1,4 +1,4 @@
-﻿- description: Migrate App Service to availability Zone Support
+- description: Migrate App Service to availability Zone Support
   aprlGuid: 88cb90c2-3b99-814b-9820-821a63f600dd
   recommendationTypeId: null
   recommendationControl: High Availability

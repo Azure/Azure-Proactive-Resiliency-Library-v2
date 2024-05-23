@@ -1,4 +1,4 @@
-﻿- description: Use Generation 2 virtual machine source image
+- description: Use Generation 2 virtual machine source image
   aprlGuid: 19b6df57-f6b5-3e4f-843a-273daa087cb0
   recommendationTypeId: null
   recommendationControl: High Availability

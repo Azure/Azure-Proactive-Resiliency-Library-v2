@@ -1,4 +1,4 @@
-﻿- description: Run production workloads on two or more VMs using VMSS Flex
+- description: Run production workloads on two or more VMs using VMSS Flex
   aprlGuid: 273f6b30-68e0-4241-85ea-acf15ffb60bf
   recommendationTypeId: null
   recommendationControl: High Availability
@@ -394,7 +394,7 @@
     - name: Did the extension install properly?
       url: "https://learn.microsoft.com/azure/azure-monitor/vm/vminsights-troubleshoot#did-the-extension-install-properly"
 
-- description: Configure diagnostic settings for all Azure Virtual Machines
+- description: Configure monitoring for all Azure Virtual Machines
   aprlGuid: 4a9d8973-6dba-0042-b3aa-07924877ebd5
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
@@ -410,8 +410,8 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Diagnostic settings in Azure Monitor
-      url: "https://learn.microsoft.com/azure/azure-monitor/essentials/diagnostic-settings?tabs=portal"
+    - name: Azure Monitor Agent overview
+      url: "https://learn.microsoft.com/en-us/azure/azure-monitor/agents/agents-overview"
 
 - description: Use maintenance configurations for the VMs
   aprlGuid: 52ab9e5c-eec0-3148-8bd7-b6dd9e1be870

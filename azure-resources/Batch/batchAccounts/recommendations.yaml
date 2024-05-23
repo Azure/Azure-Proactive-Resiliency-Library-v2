@@ -1,4 +1,4 @@
-﻿- description: Monitor Batch Account quota
+- description: Monitor Batch Account quota
   aprlGuid: 3464854d-6f75-4922-95e4-a2a308b53ce6
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting

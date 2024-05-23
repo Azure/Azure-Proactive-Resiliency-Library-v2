@@ -1,4 +1,4 @@
-﻿- description: Connect on-prem networks to Azure critical workloads via multiple ExpressRoutes
+- description: Connect on-prem networks to Azure critical workloads via multiple ExpressRoutes
   aprlGuid: 4d703025-dafc-f840-a183-5dc440456134
   recommendationTypeId: null
   recommendationControl: High Availability
@@ -51,7 +51,7 @@
   pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: no
   tags: null
   learnMoreLink:
     - name: Designing for high availability with ExpressRoute - Active-active connections

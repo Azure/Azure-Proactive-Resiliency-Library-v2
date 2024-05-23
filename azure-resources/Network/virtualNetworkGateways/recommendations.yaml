@@ -1,4 +1,4 @@
-﻿- description: Connect ExpressRoute gateway with circuits from diverse peering locations for resilience
+- description: Connect ExpressRoute gateway with circuits from diverse peering locations for resilience
   aprlGuid: d37db635-157f-584d-9bce-4f6fc8c65ce5
   recommendationTypeId: null
   recommendationControl: High Availability
