@@ -87,7 +87,7 @@
   pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: no
   tags: null
   learnMoreLink:
     - name: Storage autogrow using Azure portal in Azure Database for PostgreSQL - Flexible Server
