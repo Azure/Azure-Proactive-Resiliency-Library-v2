@@ -182,7 +182,7 @@
   recommendationTypeId: null
   recommendationControl: Scalability
   recommendationImpact: High
-  recommendationResourceType: Microsoft.Compute/virtualMachines
+  recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
   recommendationMetadataState: Active
   longDescription: |
     Compared to Standard HDD and SSD, Premium SSD, SSDv2, and Ultra SSDs offer improved performance, configurability, and higher single-instance Virtual Machine uptime SLAs. The lowest SLA of all disks on a Virtual Machine applies, so it is best to use Premium or Ultra Disks for the highest uptime SLA.
