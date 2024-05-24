@@ -27,7 +27,8 @@
   recommendationResourceType: Microsoft.ContainerService/managedClusters
   recommendationMetadataState: Active
   longDescription: |
-    Isolate system node so that user workload does not run on system node. This can be done by 1) assigning taint to worker load, 2)labeling worker node with CriticalAddonsOnly or 3)configuring taint as CriticalAddonsOnly. Note: System node has label kubernetes.azure.com/mode: system)   potentialBenefits: Enhanced reliability via pod isolation
+    Isolate system node so that user workload does not run on system node. This can be done by 1) assigning taint to worker load, 2)labeling worker node with CriticalAddonsOnly or 3)configuring taint as CriticalAddonsOnly. Note: System node has label kubernetes.azure.com/mode:system
+     potentialBenefits: Enhanced reliability via pod isolation
   pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
