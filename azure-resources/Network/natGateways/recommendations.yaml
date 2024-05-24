@@ -48,7 +48,7 @@
   recommendationResourceType: Microsoft.Network/natGateways
   recommendationMetadataState: Active
   longDescription: |
-     A zonal promise for zone isolation scenarios exists when a virtual machine instance using a NAT gateway resource is in the same zone as the NAT gateway resource and its public IP addresses. The pattern you want to use for zone isolation is creating a "zonal stack" per availability zone.
+    A zonal promise for zone isolation scenarios exists when a virtual machine instance using a NAT gateway resource is in the same zone as the NAT gateway resource and its public IP addresses. The pattern you want to use for zone isolation is creating a "zonal stack" per availability zone.
   potentialBenefits: Enhances reliability and scalability
   pgVerified: false
   publishedToLearn: false
