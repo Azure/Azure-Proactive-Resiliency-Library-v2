@@ -1,0 +1,82 @@
+- description: Traffic Manager Monitor Status Should be Online
+  aprlGuid: f05a3e6d-49db-2740-88e2-2b13706c1f67
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/trafficManagerProfiles
+  recommendationMetadataState: Active
+  longDescription: |
+    Monitor status should be online to ensure failover for application workload. If Traffic Manager's health shows Degraded, one or more endpoints may also be Degraded.
+  potentialBenefits: Ensures failover functionality
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Azure Traffic Manager endpoint monitoring
+      url: "https://learn.microsoft.com/azure/traffic-manager/traffic-manager-monitoring"
+    - name: Enable or disable health checks
+      url: "https://learn.microsoft.com/azure/traffic-manager/traffic-manager-monitoring#enable-or-disable-health-checks-preview"
+    - name: Troubleshooting degraded state on Azure Traffic Manager
+      url: "https://learn.microsoft.com/azure/traffic-manager/traffic-manager-troubleshooting-degraded"
+
+- description: Traffic manager profiles should have more than one endpoint
+  aprlGuid: 5b422a7f-8caa-3d48-becb-511599e5bba9
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/trafficManagerProfiles
+  recommendationMetadataState: Active
+  longDescription: |
+    When configuring the Azure traffic manager, provision at least two endpoints to ensure workloads can fail-over to another instance, enhancing reliability and availability.
+  potentialBenefits: Enhances failover capabilities
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Traffic Manager Endpoint Types
+      url: "https://learn.microsoft.com/azure/traffic-manager/traffic-manager-endpoint-types"
+
+- description: Configure at least one endpoint within a another region
+  aprlGuid: 1ad9d7b7-9692-1441-a8f4-93792efbe97a
+  recommendationTypeId: null
+  recommendationControl: Disaster Recovery
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Network/trafficManagerProfiles
+  recommendationMetadataState: Active
+  longDescription: |
+    Profiles should have multiple endpoints to ensure availability in case an endpoint fails. It's also advised to distribute these endpoints across different regions for enhanced reliability.
+  potentialBenefits: Enhances availability across regions
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Reliability recommendations
+
+      url: "https://learn.microsoft.com/azure/advisor/advisor-reference-reliability-recommendations#add-at-least-one-more-endpoint-to-the-profile-preferably-in-another-azure-region"
+
+- description: Ensure endpoint configured to (All World) for geographic profiles
+  aprlGuid: c31f76a0-48cd-9f44-aa43-99ee904db9bc
+  recommendationTypeId: null
+  recommendationControl: Disaster Recovery
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Network/trafficManagerProfiles
+  recommendationMetadataState: Active
+  longDescription: |
+    For geographic routing, traffic is directed to endpoints based on specific regions. If a region fails, without a predefined failover, configuring an endpoint to "All (World)" for geographic profiles can prevent traffic black holes, ensuring service remains available.
+  potentialBenefits: Avoids traffic black holing, ensures availability
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Add an endpoint configured to "All (World)"
+      url: "https://learn.microsoft.com/azure/advisor/advisor-reference-reliability-recommendations#add-an-endpoint-configured-to-all-world"
+    - name: Traffic Manager profile - GeographicProfile (Add an endpoint configured to ""All (World)"").
+      url: "https://aka.ms/Rf7vc5"

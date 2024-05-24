@@ -1,0 +1,18 @@
+// Azure Resource Graph Query
+// Returns each AKS cluster with nodepools that do not have system pods labelled with CriticalAddonsOnly
+resources
+| where type == "microsoft.containerservice/managedclusters"
+| mv-expand agentPoolProfile = properties.agentPoolProfiles
+| where agentPoolProfile.mode =~ 'System' // system node pools
+| extend taint = tostring(parse_json(agentPoolProfile.nodeTaints))
+| extend hasCriticalAddonsTaint = agentPoolProfile.kubeletConfig has 'CriticalAddonsOnly'
+| extend hasNodeLabel = agentPoolProfile.customNodeLabels has 'CriticalAddonsOnly'
+| extend hasCriticalAddonsOnly = hasCriticalAddonsTaint or hasNodeLabel or isempty(taint)
+| extend nodePool = tostring(parse_json(agentPoolProfile.name))
+| where hasCriticalAddonsOnly
+| project
+    recommendationid="5ee083cd-6ac3-4a83-8913-9549dd36cf56",
+    id,
+    name,
+    tags,
+    param1=strcat("nodepoolName: ", nodePool)

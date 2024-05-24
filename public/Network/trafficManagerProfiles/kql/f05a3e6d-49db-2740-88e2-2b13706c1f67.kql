@@ -1,0 +1,8 @@
+// Azure Resource Graph Query
+// Find traffic manager profiles that have an endpoint monitor status of not 'Online'
+resources
+| where type == "microsoft.network/trafficmanagerprofiles"
+| mv-expand properties.endpoints
+| where properties_endpoints.properties.endpointMonitorStatus != "Online"
+| project recommendationId = "f05a3e6d-49db-2740-88e2-2b13706c1f67", name, id, tags, param1 = strcat('Profile name: ',properties_endpoints.name), param2 = strcat('endpointMonitorStatus: ', properties_endpoints.properties.endpointMonitorStatus)
+

@@ -1,0 +1,75 @@
+- description: Create a validation host pool for testing of planned updates
+  aprlGuid: 013ac34e-7c4b-425f-9e0c-216f0cc06181
+  recommendationTypeId: null
+  recommendationControl: Governance
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationMetadataState: Active
+  longDescription: |
+    Create a Validation Pool for early issue detection with planned AVD updates. Adjust limits based on needs. Scale by adding multiple host pools for more users. Regularly test updates on host pools. Validate changes before applying to main environment to avoid downtime.
+  potentialBenefits: Enhanced environment stability
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/virtual-desktop/configure-validation-environment?tabs=azure-portal"
+
+- description: Configure host pool scheduled agent updates
+  aprlGuid: 979ff8be-5f3a-4d8e-9aa3-407ecdd6d6f7
+  recommendationTypeId: null
+  recommendationControl: Governance
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationMetadataState: Active
+  longDescription: |
+    Create maintenance schedules for AVD agent updates to avoid disruptions. Use Scheduled Agent Updates to set maintenance windows for updating Azure Virtual Desktop agent, side-by-side stack, and Geneva Monitoring agent.
+  potentialBenefits: Enhanced environment stability
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Learn More
+      url: "https://learn.microsoft.com/azure/virtual-desktop/scheduled-agent-updates"
+
+- description: Ensure a unique OU is used when deploying host pools with domain joined session hosts
+  aprlGuid: 939cb85c-102a-4e0a-ab82-5c92116d3778
+  recommendationTypeId: null
+  recommendationControl: Governance
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
+  recommendationMetadataState: Active
+  longDescription: |
+    For optimized AVD configuration, place Hybrid VMs in unique OUs. Segregate Prod and DR units for environment-specific settings. This ensures targeted configurations for session hosts, including Fslogix, timeouts, and session controls.
+  potentialBenefits: Improved AVD hostpool config & segmentation
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/deploy/virtual-dc/adds-on-azure-vm#configure-the-vms-and-install-active-directory-domain-services"
+
+- description: Use Azure Site Recovery or backups to protect VMs supporting personal desktops
+  aprlGuid: 38721758-2cc2-4d6b-b7b7-8b47dadbf7df
+  recommendationTypeId: null
+  recommendationControl: Disaster Recovery
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Compute/virtualMachines
+  recommendationMetadataState: Active
+  longDescription: |
+    Implement Azure Site Recovery (ASR) or Azure Backup for personal host pools to enable seamless failover and failback. This replicates VMs supporting personal desktops to a secondary Azure region, ensuring recovery from a known state in case of a disaster or outage.
+  potentialBenefits: Ensures VM recovery & failover
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-overview"

@@ -1,0 +1,37 @@
+- description: Deploy Network Watcher in all regions where you have networking services
+  aprlGuid: 4e133bd0-8762-bc40-a95b-b29142427d73
+  recommendationTypeId: null
+  recommendationControl: Monitoring and Alerting
+  recommendationImpact: Low
+  recommendationResourceType: Microsoft.Network/networkWatchers
+  recommendationMetadataState: Active
+  longDescription: |
+    Azure Network Watcher offers tools for monitoring, diagnosing, viewing metrics, and managing logs for IaaS resources. It helps maintain the health of VMs, VNets, application gateways, load balancers, but not for PaaS or Web analytics.
+  potentialBenefits: Enhanced monitoring and diagnostics for Azure IaaS
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: What is Azure Network Watcher?
+      url: "https://learn.microsoft.com/azure/network-watcher/network-watcher-overview"
+
+- description: Fix Flow Log configurations in Failed state or Disabled Status
+  aprlGuid: 22a769ed-0ecb-8b49-bafe-8f52e6373d9c
+  recommendationTypeId: null
+  recommendationControl: Monitoring and Alerting
+  recommendationImpact: Low
+  recommendationResourceType: Microsoft.Network/networkWatchers
+  recommendationMetadataState: Active
+  longDescription: |
+    Network security group flow logging is a feature of Azure Network Watcher that logs IP traffic info through a network security group. If in Failed state, monitoring data from the associated resource is not collected.
+  potentialBenefits: Ensures IP traffic logging
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Manage NSG flow logs using the Azure portal
+      url: "https://learn.microsoft.com/azure/network-watcher/nsg-flow-logging"

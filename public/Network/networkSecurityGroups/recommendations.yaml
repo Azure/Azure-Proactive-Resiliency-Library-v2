@@ -1,0 +1,94 @@
+- description: Configure Diagnostic Settings for all network security groups
+  aprlGuid: d2976d3e-294b-4b49-a1f0-c42566a3758f
+  recommendationTypeId: null
+  recommendationControl: Monitoring and Alerting
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Network/networkSecurityGroups
+  recommendationMetadataState: Active
+  longDescription: |
+    Resource Logs are not collected and stored until you create a diagnostic setting and route them to one or more locations.
+  potentialBenefits: Enhanced monitoring and security insights
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Diagnostic settings in Azure Monitor
+      url: "https://learn.microsoft.com/azure/azure-monitor/essentials/diagnostic-settings"
+
+- description: Monitor changes in Network Security Groups with Azure Monitor
+  aprlGuid: 8bb4a57b-55e4-d24e-9c19-2679d8bc779f
+  recommendationTypeId: null
+  recommendationControl: Monitoring and Alerting
+  recommendationImpact: Low
+  recommendationResourceType: Microsoft.Network/networkSecurityGroups
+  recommendationMetadataState: Active
+  longDescription: |
+    Create Alerts with Azure Monitor for operations like creating or updating Network Security Group rules to catch unauthorized/undesired changes to resources and spot attempts to bypass firewalls or access resources from the outside.
+  potentialBenefits: Enhanced security and change monitoring
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Azure Monitor activity log
+      url: "https://learn.microsoft.com/azure/azure-monitor/essentials/activity-log?tabs=powershell"
+
+- description: Configure locks for Network Security Groups to avoid accidental changes and/or deletion
+  aprlGuid: 52ac35e8-9c3e-f84d-8ce8-2fab955333d3
+  recommendationTypeId: null
+  recommendationControl: Governance
+  recommendationImpact: Low
+  recommendationResourceType: Microsoft.Network/networkSecurityGroups
+  recommendationMetadataState: Active
+  longDescription: |
+    As an administrator, you can lock an Azure subscription, resource group, or resource to protect them from accidental deletions and modifications. The lock overrides user permissions. Locks can prevent either deletions or modifications and are known as Delete and Read-only in the portal.
+  potentialBenefits: Prevents accidental edits/deletions
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Lock your resources to protect your infrastructure
+      url: "https://learn.microsoft.com/azure/azure-resource-manager/management/lock-resources?toc=%2Fazure%2Fvirtual-network%2Ftoc.json&tabs=json"
+
+- description: Configure NSG Flow Logs
+  aprlGuid: da1a3c06-d1d5-a940-9a99-fcc05966fe7c
+  recommendationTypeId: null
+  recommendationControl: Monitoring and Alerting
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Network/networkSecurityGroups
+  recommendationMetadataState: Active
+  longDescription: |
+    Monitoring, managing, and understanding your network is crucial for protection and optimization. Knowing the current state, who and from where connections are made, open internet ports, expected and irregular behavior, and traffic spikes is essential.
+  potentialBenefits: Enhances security and optimizes network
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Flow logging for network security groups
+      url: "https://learn.microsoft.com/azure/network-watcher/network-watcher-nsg-flow-logging-overview"
+
+- description: The NSG only has Default Security Rules, make sure to configure the necessary rules
+  aprlGuid: 8291c1fa-650c-b44b-b008-4deb7465919d
+  recommendationTypeId: null
+  recommendationControl: Security
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Network/networkSecurityGroups
+  recommendationMetadataState: Active
+  longDescription: |
+    Azure network security groups filter network traffic between resources in a virtual network, using security rules to allow or deny inbound or outbound traffic based on source, destination, port, and protocol.
+  potentialBenefits: Enhanced traffic control and security
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Security rules
+      url: "https://learn.microsoft.com/azure/virtual-network/network-security-groups-overview#security-rules"

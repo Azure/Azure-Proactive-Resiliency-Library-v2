@@ -1,0 +1,9 @@
+// Azure Resource Graph Query
+// For all VNGs of type Vpn, show any that do not have AZ in the SKU tier
+resources
+| where type =~ "Microsoft.Network/virtualNetworkGateways"
+| where properties.gatewayType == "Vpn"
+| where properties.sku.tier !contains 'AZ'
+| project recommendationId = "5b1933a6-90e4-f642-a01f-e58594e5aab2", name, id, tags, param1= strcat("sku-tier: " , properties.sku.tier), param2=location
+| order by id asc
+

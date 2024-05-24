@@ -1,0 +1,34 @@
+// Azure Resource Graph Query
+// Find all LoadBalancers with with regional or zonal public IP Addresses
+resources
+| where type == "microsoft.network/loadbalancers"
+| where tolower(sku.name) != 'basic'
+| mv-expand feIPconfigs = properties.frontendIPConfigurations
+| extend
+    feConfigName = (feIPconfigs.name),
+    PrivateSubnetId = toupper(feIPconfigs.properties.subnet.id),
+    PrivateIPZones = feIPconfigs.zones,
+    PIPid = toupper(feIPconfigs.properties.publicIPAddress.id),
+    JoinID = toupper(id)
+| where isnotempty(PrivateSubnetId)
+| where isnull(PrivateIPZones) or array_length(PrivateIPZones) < 2
+| project name, feConfigName, id
+| union (resources
+    | where type == "microsoft.network/loadbalancers"
+    | where tolower(sku.name) != 'basic'
+    | mv-expand feIPconfigs = properties.frontendIPConfigurations
+    | extend
+        feConfigName = (feIPconfigs.name),
+        PIPid = toupper(feIPconfigs.properties.publicIPAddress.id),
+        JoinID = toupper(id)
+    | where isnotempty(PIPid)
+    | join kind=innerunique (
+        resources
+        | where type == "microsoft.network/publicipaddresses"
+        | where isnull(zones) or array_length(zones) < 2
+        | extend
+            LBid = toupper(substring(properties.ipConfiguration.id, 0, indexof(properties.ipConfiguration.id, '/frontendIPConfigurations'))),
+            InnerID = toupper(id)
+    ) on $left.PIPid == $right.InnerID)
+| project recommendationId = "621dbc78-3745-4d32-8eac-9e65b27b7512", name, id, tags, param1="Zones: No Zone or Zonal", param2=strcat("Frontend IP Configuration:", " ", feConfigName)
+

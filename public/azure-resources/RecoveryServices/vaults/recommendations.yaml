@@ -1,0 +1,103 @@
+- description: Ensure static IP addresses in Site Recovery VM failover settings are available in failover subnet
+  aprlGuid: e93bb813-b356-48f3-9bdf-a06a0a6ba039
+  recommendationTypeId: null
+  recommendationControl: Disaster Recovery
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.RecoveryServices/vaults
+  recommendationMetadataState: Active
+  longDescription: |
+    Ensure VM failover settings' static IP addresses are available in the failover subnet to maintain consistent IP assignment during failover, with the target VM receiving the same static IP if it's available or the next available IP otherwise. IP adjustments can be made in VM Network settings.
+  potentialBenefits: Smooth failover IP management
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Setup network mapping for site recovery
+      url: "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-network-mapping#set-up-ip-addressing-for-target-vms"
+
+- description: Validate VM functionality with a Site Recovery test failover to check performance at target
+  aprlGuid: 17e877f7-3a89-4205-8a24-0670de54ddcd
+  recommendationTypeId: null
+  recommendationControl: Disaster Recovery
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.RecoveryServices/vaults
+  recommendationMetadataState: Active
+  longDescription: |
+    Perform a test failover to validate your BCDR strategy and ensure that your applications are functioning correctly in the target region without impacting your production environment. Test your Disaster Recovery plan periodically without any data loss or downtime, using test failovers.
+  potentialBenefits: Ensures BCDR plan accuracy and VM performance
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Run a test failover
+      url: "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-dr-drill#run-a-test-failover"
+
+- description: Migrate from classic alerts to built-in Azure Monitor alerts for Azure Recovery Services Vaults
+  aprlGuid: 2912472d-0198-4bdc-aa90-37f145790edc
+  recommendationTypeId: null
+  recommendationControl: Monitoring and Alerting
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.RecoveryServices/vaults
+  recommendationMetadataState: Active
+  longDescription: |
+    Classic alerts for Recovery Services vaults in Azure Backup will be retired on 31 March 2026.
+  potentialBenefits: Enhanced, scalable, and consistent alerting.
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Move to Azure monitor Alerts
+      url: "https://learn.microsoft.com/azure/backup/move-to-azure-monitor-alerts"
+    - name: Classic alerts retirement announcement
+      url: "https://azure.microsoft.com/updates/transition-to-builtin-azure-monitor-alerts-for-recovery-services-vaults-in-azure-backup-by-31-march-2026/"
+
+- description: Opt-in to Cross Region Restore for all Geo-Redundant Storage (GRS) Azure Recovery Services vaults
+  aprlGuid: 1549b91f-2ea0-4d4f-ba2a-4596becbe3de
+  recommendationTypeId: null
+  recommendationControl: Disaster Recovery
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.RecoveryServices/vaults
+  recommendationMetadataState: Active
+  longDescription: |
+    Cross Region Restore enables the restoration of Azure VMs in a secondary, Azure paired region, facilitating drills for audit or compliance and allowing recovery of VMs or disks in the event of a primary region disaster. It is an opt-in feature available exclusively for GRS vaults.
+  potentialBenefits: Enhances disaster recovery capabilities
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Set Cross Region Restore
+      url: "https://learn.microsoft.com/azure/backup/backup-create-recovery-services-vault#set-cross-region-restore"
+    - name: Azure Backup Best Practices
+      url: "https://learn.microsoft.com/azure/backup/guidance-best-practices"
+    - name: Minimum Role Requirements for Cross Region Restore
+      url: "https://learn.microsoft.com/azure/backup/backup-rbac-rs-vault#minimum-role-requirements-for-azure-vm-backup"
+    - name: Recovery Services Vault
+      url: "https://learn.microsoft.com/azure/backup/backup-azure-arm-vms-prepare"
+
+- description: Enable Soft Delete for Recovery Services Vaults in Azure Backup
+  aprlGuid: 9e39919b-78af-4a0b-b70f-c548dae97c25
+  recommendationTypeId: null
+  recommendationControl: Disaster Recovery
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.RecoveryServices/vaults
+  recommendationMetadataState: Active
+  longDescription: |
+    With soft delete, if backup data is deleted, the backup data is retained for 14 additional days, allowing the recovery of that backup item with no data loss with no cost to you. Soft delete is enabled by default. Disabling this feature isn't recommended.
+  potentialBenefits: Enhances disaster recovery capabilities
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Soft Delete for Azure Backup
+      url: "https://learn.microsoft.com/azure/backup/backup-azure-security-feature-cloud?tabs=azure-portal"
+

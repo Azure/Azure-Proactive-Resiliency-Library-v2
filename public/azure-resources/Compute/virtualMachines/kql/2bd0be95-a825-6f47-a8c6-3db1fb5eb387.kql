@@ -1,0 +1,7 @@
+// Azure Resource Graph Query
+// Find all VMs that are not assigned to a Zone
+Resources
+| where type =~ 'Microsoft.Compute/virtualMachines'
+| where isnull(zones)
+| project recommendationId="2bd0be95-a825-6f47-a8c6-3db1fb5eb387", name, id, tags, param1="No Zone"
+

@@ -1,0 +1,256 @@
+- description: Use the correct service level and volume quota size for the expected performance level
+  aprlGuid: af426a99-62a6-6b4c-9662-42d220b413b8
+  recommendationTypeId: null
+  recommendationControl: Scalability
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.NetApp/netAppAccounts
+  recommendationMetadataState: Active
+  longDescription: |
+    Service levels, part of capacity pool attributes, determine the maximum throughput per volume quota in Azure NetApp Files. It combines read and write speed, offering three levels: Standard (16 MiB/s per 1TiB), Premium (64 MiB/s per 1TiB), and Ultra (128 MiB/s per 1TiB) throughput.
+  potentialBenefits: Optimized performance and cost efficiency
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Service levels for Azure NetApp Files | Microsoft Learn
+      url: "https://learn.microsoft.com/azure/azure-netapp-files/azure-netapp-files-service-levels"
+
+- description: Use standard network features for production in Azure NetApp Files
+  aprlGuid: ab984130-c57b-6c4a-8d04-6723b4e1bdb6
+  recommendationTypeId: null
+  recommendationControl: Governance
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.NetApp/netAppAccounts
+  recommendationMetadataState: Active
+  longDescription: |
+    Standard network feature in Azure NetApp Files enhances IP limits and VNet capabilities, including network security groups, user-defined routes on subnets, and diverse connectivity options.
+  potentialBenefits: Enhanced connectivity and security
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Guidelines for Azure NetApp Files network planning | Microsoft Learn
+      url: "https://learn.microsoft.com/azure/azure-netapp-files/azure-netapp-files-network-topologies"
+
+- description: Use availability zones for high availability in Azure NetApp Files
+  aprlGuid: 47d100a5-7f85-5742-967a-67eb5081240a
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.NetApp/netAppAccounts
+  recommendationMetadataState: Active
+  longDescription: |
+    Availability zones are distinct locations within an Azure region to withstand local failures. Deploy your workload in multiple availability zones and use application-based replication and failover technologies or consider using Azure NetApp Files cross-zone replication to achieve high availability.
+  potentialBenefits: High Availability across availability zones
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Use availability zones for high availability in Azure NetApp Files | Microsoft Learn
+      url: "https://learn.microsoft.com/azure/azure-netapp-files/use-availability-zones"
+
+- description: Deploy ANF volumes in the same availability zone with Azure compute and other services
+  aprlGuid: 8bb690e8-64d5-4838-8703-9ee3dbac688f
+  recommendationTypeId: null
+  recommendationControl: Other Best Practices
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.NetApp/netAppAccounts
+  recommendationMetadataState: Active
+  longDescription: |
+    Azure NetApp Files' availability zone (AZ) volume placement feature lets you deploy volumes in the same AZ with Azure compute and other services to have within AZ latency and share the same AZ failure domain.
+  potentialBenefits: Within AZ latency and tolerate failure of other AZ
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Manage availability zone volume placement for Azure NetApp Files | Microsoft Learn
+      url: "https://learn.microsoft.com/azure/azure-netapp-files/manage-availability-zone-volume-placement"
+
+- description: Use snapshots for data protection in Azure NetApp Files
+  aprlGuid: 72827434-c773-4345-9493-34848ddf5803
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.NetApp/netAppAccounts
+  recommendationMetadataState: Active
+  longDescription: |
+    Azure NetApp Files snapshot technology ensures stability, scalability, and swift data recoverability without affecting performance. It supports automatic snapshot creation via policies for Azure NetApp Files data.
+  potentialBenefits: Stable, scalable, swift recovery, no perf impact
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: How Azure NetApp Files snapshots work | Microsoft Learn
+      url: "https://learn.microsoft.com/azure/azure-netapp-files/snapshots-introduction"
+
+- description: Enable backup for data protection in Azure NetApp Files
+  aprlGuid: b2fb3e60-97ec-e34d-af29-b16a0d61c2ac
+  recommendationTypeId: null
+  recommendationControl: Disaster Recovery
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.NetApp/netAppAccounts
+  recommendationMetadataState: Active
+  longDescription: |
+    Azure NetApp Files offers a fully managed backup solution enhancing long-term recovery, archiving, and compliance.
+  potentialBenefits: Enhances data recovery and compliance
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Understand Azure NetApp Files backup | Microsoft Learn
+      url: "https://learn.microsoft.com/azure/azure-netapp-files/backup-introduction"
+
+- description: Enable Cross-region replication of Azure NetApp Files volumes
+  aprlGuid: e30317d2-c502-4dfe-a2d3-0a737cc79545
+  recommendationTypeId: null
+  recommendationControl: Disaster Recovery
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.NetApp/netAppAccounts
+  recommendationMetadataState: Active
+  longDescription: |
+    Azure NetApp Files replication offers data protection by allowing asynchronous cross-region volume replication for application failover in case of regional outages. Volumes can be replicated across regions, not concurrently with cross-zone replication.
+  potentialBenefits: Enhanced data protection and disaster recovery
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Cross-region replication of Azure NetApp Files volumes
+      url: "https://learn.microsoft.com/en-us/azure/azure-netapp-files/cross-region-replication-introduction"
+
+- description: Enable Cross-zone replication of Azure NetApp Files volumes
+  aprlGuid: e3d742e1-dacd-9b48-b6b1-510ec9f87c96
+  recommendationTypeId: null
+  recommendationControl: Disaster Recovery
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.NetApp/netAppAccounts
+  recommendationMetadataState: Active
+  longDescription: |
+    The cross-zone replication (CZR) feature enables asynchronous data replication between Azure NetApp Files volumes across different availability zones, ensuring data protection and critical application failover in case of zone-wide disasters.
+  potentialBenefits: Enhances disaster recovery across availability zones
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Cross-zone replication of Azure NetApp Files volumes | Microsoft Learn
+      url: "https://learn.microsoft.com/azure/azure-netapp-files/cross-zone-replication-introduction"
+
+- description: Monitor Azure NetApp Files metrics to better understand usage pattern and performance
+  aprlGuid: 2f579fc9-e599-0d44-8b97-254f50ae04d8
+  recommendationTypeId: null
+  recommendationControl: Monitoring and Alerting
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.NetApp/netAppAccounts
+  recommendationMetadataState: Active
+  longDescription: |
+    Azure NetApp Files offers metrics like allocated storage, actual usage, volume IOPS, and latency, enabling a better understanding of usage patterns and volume performance for NetApp accounts.
+  potentialBenefits: Optimize usage and performance
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Ways to monitor Azure NetApp Files | Microsoft Learn
+      url: "https://learn.microsoft.com/azure/azure-netapp-files/monitor-azure-netapp-files"
+
+- description: Enforce standards and assess compliance in Azure NetApp Files with Azure policy
+  aprlGuid: 687ae58f-517f-ca43-90fe-922497e61283
+  recommendationTypeId: null
+  recommendationControl: Governance
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.NetApp/netAppAccounts
+  recommendationMetadataState: Active
+  longDescription: |
+    Azure NetApp Files supports Azure policy integration using either built-in policy definitions or by creating custom ones to maintain organizational standards and compliance.
+  potentialBenefits: Enforce standards and assess compliance
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Azure Policy definitions for Azure NetApp Files | Microsoft Learn
+      url: "https://learn.microsoft.com/azure/azure-netapp-files/azure-policy-definitions"
+    - name: Creating custom policy definitions | Microsoft Learn
+      url: "https://learn.microsoft.com/azure/governance/policy/tutorials/create-custom-policy-definition"
+
+- description: Restrict default access to Azure NetApp Files volumes
+  aprlGuid: cfa2244b-5436-47de-8287-b217875d3b0a
+  recommendationTypeId: null
+  recommendationControl: Security
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.NetApp/netAppAccounts
+  recommendationMetadataState: Active
+  longDescription: |
+    Access to the delegated subnet should be limited to specific Azure Virtual Networks. SMB-enabled volumes' share permissions should move away from 'Everyone/Full control'. NFS-enabled volumes' access needs to be controlled via export policies and/or NFSv4.1 ACLs.
+  potentialBenefits: Enhanced security, Reduced data breach risk
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Configure network features for an Azure NetApp Files volume
+      url: "https://learn.microsoft.com/azure/azure-netapp-files/configure-network-features"
+    - name: Manage SMB share ACLs in Azure NetApp Files
+      url: "https://learn.microsoft.com/azure/azure-netapp-files/manage-smb-share-access-control-lists"
+    - name: Configure export policy for NFS or dual-protocol volumes
+      url: "https://learn.microsoft.com/azure/azure-netapp-files/azure-netapp-files-configure-export-policy"
+    - name: Configure access control lists on NFSv4.1 volumes for Azure NetApp Files
+      url: "https://learn.microsoft.com/azure/azure-netapp-files/configure-access-control-lists"
+    - name: Configure Unix permissions and change ownership mode for NFS and dual-protocol volumes
+      url: "https://learn.microsoft.com/azure/azure-netapp-files/configure-unix-permissions-change-ownership-mode"
+
+- description: Make use of SMB continuous availability for supported applications
+  aprlGuid: d1e7ccc3-e6c1-40e9-a36e-fd134711c808
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.NetApp/netAppAccounts
+  recommendationMetadataState: Active
+  longDescription: |
+    Certain SMB applications need SMB Transparent Failover for maintenance without interrupting server connectivity. Azure NetApp Files provides this through SMB Continuous Availability for applications like Citrix App Layering, FSLogix user/profile containers, Microsoft SQL Server, MSIX app attach.
+  potentialBenefits: Zero downtime for SMB apps
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Do I need to take special precautions for SMB-based applications? | Microsoft Learn
+      url: "https://learn.microsoft.com/azure/azure-netapp-files/faq-application-resilience#do-i-need-to-take-special-precautions-for-smb-based-applications"
+
+- description: Ensure application resilience for service maintenance events
+  aprlGuid: 60f36f9b-fac9-4160-bbf5-57af04da4f53
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.NetApp/netAppAccounts
+  recommendationMetadataState: Active
+  longDescription: |
+    Azure NetApp Files might undergo occasional planned maintenance such as platform updates or service and software upgrades. It's important to be aware of the application's resiliency settings to cope with these storage service maintenance events.
+  potentialBenefits: Minimizes downtime during maintenance
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: What do you recommend for handling potential application disruptions due to storage service maintenance events? | Microsoft Learn
+      url: "https://learn.microsoft.com/azure/azure-netapp-files/faq-application-resilience#what-do-you-recommend-for-handling-potential-application-disruptions-due-to-storage-service-maintenance-events"

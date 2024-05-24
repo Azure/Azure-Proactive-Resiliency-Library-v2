@@ -1,0 +1,121 @@
+- description: Use Active Geo Replication to Create a Readable Secondary in Another Region
+  aprlGuid: 74c2491d-048b-0041-a140-935960220e20
+  recommendationTypeId: null
+  recommendationControl: Disaster Recovery
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Sql/servers
+  recommendationMetadataState: Active
+  longDescription: |
+    Active Geo Replication ensures business continuity by utilizing readable secondary database replicas. In case of primary database failure, manually failover to secondary database. Secondaries, up to four, can be in same/different regions, used for read-only access.
+  potentialBenefits: Enhanced disaster recovery and read scalability
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Active Geo Replication
+      url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/active-geo-replication-overview"
+
+- description: Auto Failover Groups can encompass one or multiple databases, usually used by the same app.
+  aprlGuid: 943c168a-2ec2-a94c-8015-85732a1b4859
+  recommendationTypeId: null
+  recommendationControl: Disaster Recovery
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Sql/servers
+  recommendationMetadataState: Active
+  longDescription: |
+    Failover Groups facilitate disaster recovery by configuring databases on one logical server to replicate to another region's logical server. This streamlines geo-replicated database management, offering a single endpoint for connection routing to replicated databases if the primary server fails.
+  potentialBenefits: Improves load balancing and disaster recovery
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: AutoFailover Groups
+      url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/auto-failover-group-overview?tabs=azure-powershell"
+    - name: DR Design
+      url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/designing-cloud-solutions-for-disaster-recovery"
+
+- description: Use a Zone-Redundant Database
+  aprlGuid: c0085c32-84c0-c247-bfa9-e70977cbf108
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Sql/servers
+  recommendationMetadataState: Active
+  longDescription: |
+    By default, Azure SQL Database premium tier provisions multiple copies within the same region. For geo redundancy, databases can be set as Zone Redundant, distributing copies across Azure Availability Zones to maintain availability during regional outages.
+  potentialBenefits: Enhanced reliability, no extra cost
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Zone Redundant Databases
+      url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/high-availability-sla"
+
+- description: Implement Retry Logic
+  aprlGuid: cbb17a29-64fb-c943-95d0-8df814a37c40
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Sql/servers
+  recommendationMetadataState: Active
+  longDescription: |
+    During transient failures, the application should handle connection retries effectively with Azure SQL Database. No Database layer configuration is needed; instead, the application must be set up for graceful retrying.
+  potentialBenefits: Enhanced connectivity stability
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: How to Implement Retry Logic
+      url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/troubleshoot-common-connectivity-issues"
+
+- description: Monitor your Azure SQL Database in Near Real-Time to Detect Reliability Incidents
+  aprlGuid: 7e7daec9-6a81-3546-a4cc-9aef72fec1f7
+  recommendationTypeId: null
+  recommendationControl: Monitoring and Alerting
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Sql/servers
+  recommendationMetadataState: Active
+  longDescription: |
+    Monitoring and alerting are an important part of database operations. When working with Azure SQL Database, make use of Azure Monitor and SQL Insights to ensure that you capture relevant database metrics.
+  potentialBenefits: Quick incident detection and response
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Azure Monitor
+      url: "https://learn.microsoft.com/en-us/azure/azure-monitor/insights/azure-sql#analyze-data-and-create-alerts"
+    - name: Azure SQL Database Monitoring
+      url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/monitoring-sql-database-azure-monitor"
+    - name: Monitoring SQL Database Reference
+      url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/monitoring-sql-database-azure-monitor-reference"
+
+- description: Back Up Your Keys
+  aprlGuid: d6ef87aa-574e-584e-a955-3e6bb8b5425b
+  recommendationTypeId: null
+  recommendationControl: Disaster Recovery
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Sql/servers
+  recommendationMetadataState: Active
+  longDescription: |
+    It is highly recommended to use Azure Key Vault (AKV) to store encryption keys related to Always Encrypted configurations, however it is not required. If you are not using AKV, then ensure that your keys are properly backed up and stored in a secure manner.
+  potentialBenefits: Enhanced security and data recovery
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Azure Key Vault
+      url: "https://learn.microsoft.com/en-us/azure/key-vault/general/overview"
+    - name: Getting Started with Always Encrypted
+      url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/always-encrypted-landing?view=azuresql"

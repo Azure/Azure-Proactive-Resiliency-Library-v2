@@ -1,0 +1,119 @@
+- description: Deploy Azure Firewall across multiple availability zones
+  aprlGuid: c72b7fee-1fa0-5b4b-98e5-54bcae95bb74
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/azureFirewalls
+  recommendationMetadataState: Active
+  longDescription: |
+    Azure Firewall offers different SLAs depending on its deployment; in a single availability zone or across multiple, potentially improving reliability and performance.
+  potentialBenefits: Enhanced SLA and reliability
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Azure Well Architected Framework - Azure Firewall
+      url: "https://learn.microsoft.com/azure/architecture/framework/services/networking/azure-firewall"
+    - name: Deploy Azure Firewall across multiple availability zones
+      url: "https://learn.microsoft.com/azure/firewall/deploy-availability-zone-powershell"
+
+- description: Monitor Azure Firewall metrics
+  aprlGuid: 3c8fa7c6-6b78-a24a-a63f-348a7c71acb9
+  recommendationTypeId: null
+  recommendationControl: Monitoring and Alerting
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/azureFirewalls
+  recommendationMetadataState: Active
+  longDescription: |
+    Monitor Azure Firewall for overall health, processed throughput, and outbound SNAT port usage. Get alerted before limits impact services. Consider NAT gateway integration with zonal deployments; note limitations with zone redundant firewalls and secure virtual hub networks.
+  potentialBenefits: Improve health and performance monitoring
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Azure Firewall metrics supported in Azure Monitor
+      url: "https://learn.microsoft.com/azure/azure-monitor/essentials/metrics-supported#microsoftnetworkazurefirewalls"
+    - name: Azure Firewall performance
+      url: "https://learn.microsoft.com/azure/firewall/firewall-performance"
+
+- description: Configure DDoS Protection on the Azure Firewall VNet
+  aprlGuid: 1b2dbf4a-8a0b-5e4b-8f4e-3f758188910d
+  recommendationTypeId: null
+  recommendationControl: Security
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/azureFirewalls
+  recommendationMetadataState: Active
+  longDescription: |
+    Associate a DDoS protection plan with the virtual network hosting Azure Firewall to provide enhanced mitigation against DDoS attacks. Azure Firewall Manager integrates the creation of firewall infrastructure and DDoS protection plans.
+  potentialBenefits: Enhanced DDoS attack defense
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Azure DDoS Protection overview
+      url: "https://learn.microsoft.com/azure/ddos-protection/ddos-protection-overview"
+
+- description: Leverage Azure Policy inheritance model
+  aprlGuid: 3a63560a-1ed3-6140-acd1-d1d23f9a2e12
+  recommendationTypeId: null
+  recommendationControl: Governance
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Network/azureFirewalls
+  recommendationMetadataState: Active
+  longDescription: |
+    Azure Firewall policy supports rule hierarchies for compliance enforcement, using a central base policy with higher priority over child policies, and employs Azure custom roles to safeguard base policy and manage access within subscriptions or groups.
+  potentialBenefits: Enhanced compliance and rule hierarchy
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Azure Firewall Policy hierarchy
+      url: "https://learn.microsoft.com/azure/firewall-manager/rule-hierarchy"
+
+- description: Configure 2-4 PIPs for SNAT Port utilization
+  aprlGuid: d2e4a38e-2307-4299-a217-4c0cebc9a7f6
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Network/azureFirewalls
+  recommendationMetadataState: Active
+  longDescription: |
+    Configure a minimum of two to four public IP addresses per Azure Firewall to avoid SNAT exhaustion. Azure Firewall offers SNAT for all outbound traffic to public IPs, providing 2,496 SNAT ports for each additional PIP.
+  potentialBenefits: Avoids SNAT exhaustion.
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Azure Well-Architected Framework review - Azure Firewall
+      url: "https://learn.microsoft.com/en-us/azure/well-architected/service-guides/azure-firewall#recommendations"
+
+- description: Monitor AZFW Latency Probes metric
+  aprlGuid: 8faace2d-a36e-425c-aa58-2ad99e3e0b7a
+  recommendationTypeId: null
+  recommendationControl: Monitoring and Alerting
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/azureFirewalls
+  recommendationMetadataState: Active
+  longDescription: |
+    Creating a metric to monitor latency probes over 20ms for periods longer than 30ms helps identify when firewall instance CPUs are stressed, potentially indicating issues.
+  potentialBenefits: Improved CPU stress detection
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Azure Well-Architected Framework review - Azure Firewall
+      url: "https://learn.microsoft.com/azure/well-architected/service-guides/azure-firewall#recommendations"
+    - name: Azure Firewall metrics overview
+      url: "https://learn.microsoft.com/azure/firewall/metrics"

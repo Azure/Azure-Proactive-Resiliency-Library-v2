@@ -1,0 +1,18 @@
+- description: Convert Classic Deployments
+  aprlGuid: dac421ec-2832-4c37-839e-b6dc5a38f2fa
+  recommendationTypeId: null
+  recommendationControl: Service Upgrade and Retirement
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Insights/components
+  recommendationMetadataState: Active
+  longDescription: |
+    Classic Application Insights retires in February 2024. To minimize disruption to existing application monitoring scenarios, transition to workspace-based Application Insights before 29 February 2024.
+  potentialBenefits: Avoid service disruption post-Feb 2024
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Migrate an Application Insights classic resource to a workspace-based resource
+      url: "https://learn.microsoft.com/en-us/azure/azure-monitor/app/convert-classic-resource"

@@ -1,0 +1,8 @@
+// Azure Resource Graph Query
+// Provides a list of Azure Container Registry resources that do not have soft delete enabled
+resources
+| where type =~ "microsoft.containerregistry/registries"
+| where properties.policies.softDeletePolicy.status == "disabled"
+| project recommendationId = "e7f0fd54-fba0-054e-9ab8-e676f2851f88", name, id, tags
+| order by id asc
+

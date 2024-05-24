@@ -1,0 +1,32 @@
+// Azure Resource Graph Query
+// This resource graph query will return all Key Vaults that does not have Diagnostic logs enabled
+
+policyresources
+| where type == 'microsoft.policyinsights/policystates'
+| where properties.complianceState == 'NonCompliant'
+| extend policyDefinitionId = tostring(tolower(properties.policyDefinitionId)),resourceId = tostring(tolower(properties.resourceId)), PolicyAssignmentName = properties.policyAssignmentName, policySetDefinitionId = tostring(tolower(properties.policySetDefinitionId))
+| project resourceId,policySetDefinitionId,policyDefinitionId
+| join kind=inner(
+    policyresources
+    | where type == 'microsoft.authorization/policydefinitions'
+    | extend displayName = tostring(properties.displayName)
+    | where displayName contains "Resource logs in Key Vault should be enabled"
+    | project policyDefinitionId=tostring(tolower(id)),displayName
+) on policyDefinitionId
+| project resourceId,policySetDefinitionId,policyDefinitionId
+| join kind=inner(
+    policyresources
+    | where type == 'microsoft.authorization/policysetdefinitions'
+    | extend displayName = tostring(properties.displayName)
+    | where displayName contains "Microsoft cloud security benchmark"
+    | project policySetDefinitionId=tostring(tolower(id)),displayName
+) on policySetDefinitionId
+| join kind=inner(
+  resources
+  | where type == 'microsoft.keyvault/vaults'
+  | project resourceId = tostring(tolower(id)),name,tags
+)on resourceId
+| project-away resourceId1,policySetDefinitionId1,policySetDefinitionId,policyDefinitionId,displayName
+| project recommendationID = "1dc0821d-4f14-7644-bab4-ba208ff5f7fa",id=resourceId,name,tags
+
+

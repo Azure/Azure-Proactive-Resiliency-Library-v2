@@ -1,0 +1,18 @@
+- description: Resolve issues with Private Endpoints in non Succeeded connection state
+  aprlGuid: b89c9acc-0aba-fb44-9ff2-3dbfcf97dce7
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Network/privateEndpoints
+  recommendationMetadataState: Active
+  longDescription: |
+    A private endpoint has two custom properties, static IP address and the network interface name, which must be set at creation. If not in Succeeded state, there may be issues with the endpoint or associated resource.
+  potentialBenefits: Ensure connection availability
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Private endpoint connections
+      url: "https://learn.microsoft.com/azure/private-link/manage-private-endpoint?tabs=manage-private-link-powershell#private-endpoint-connections"

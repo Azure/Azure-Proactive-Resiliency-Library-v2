@@ -1,0 +1,9 @@
+// Azure Resource Graph Query
+// This query will return all Application Gateways that do not have autoscale enabled or have a min capacity of 1
+resources
+| where type =~ "microsoft.network/applicationGateways"
+| where isnull(properties.autoscaleConfiguration) or properties.autoscaleConfiguration.minCapacity <= 1
+| project recommendationId = "823b0cff-05c0-2e4e-a1e7-9965e1cfa16f", name, id, tags, param1 = "autoScaleConfiguration: isNull or MinCapacity <= 1"
+| order by id asc
+
+

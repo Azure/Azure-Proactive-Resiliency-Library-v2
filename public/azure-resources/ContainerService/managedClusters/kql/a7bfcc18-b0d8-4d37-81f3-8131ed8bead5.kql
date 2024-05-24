@@ -1,0 +1,8 @@
+// Azure Resource Graph Query
+// Returns any AKS cluster nodepools that do not have Ephemeral Disks
+resources
+| where type == "microsoft.containerservice/managedclusters"
+| mv-expand agentPoolProfile = properties.agentPoolProfiles
+| extend type = tostring(agentPoolProfile.osDiskType)
+| where type != 'Ephemeral'
+| project recommendationid="a7bfcc18-b0d8-4d37-81f3-8131ed8bead5", name, id, param1=strcat("osDiskType: ", type)

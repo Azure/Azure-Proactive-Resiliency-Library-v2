@@ -1,0 +1,8 @@
+// Azure Resource Graph Query
+// This query will return all NSGs that have NO security rules
+resources
+| where type =~ "microsoft.network/networksecuritygroups"
+| extend sr = string_size(properties.securityRules)
+| where sr <=2 or isnull(properties.securityRules)
+| project recommendationId = "8291c1fa-650c-b44b-b008-4deb7465919d", name, id
+

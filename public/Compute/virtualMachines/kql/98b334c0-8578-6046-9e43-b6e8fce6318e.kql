@@ -1,0 +1,7 @@
+// Azure Resource Graph Query
+// Find all VMs that are NOT running
+Resources
+| where type =~ 'Microsoft.Compute/virtualMachines'
+| where properties.extended.instanceView.powerState.displayStatus != 'VM running'
+| project recommendationId = "98b334c0-8578-6046-9e43-b6e8fce6318e", name, id, tags
+
