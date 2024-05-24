@@ -1,0 +1,8 @@
+// Azure Resource Graph Query
+// List all Azure Firewalls that are not configured with multiple availability zones or deployed without a zone
+resources
+| where type == 'microsoft.network/azurefirewalls'
+| where array_length(zones) <= 1 or isnull(zones)
+| where isempty(properties.virtualHub.id) or isnull(properties.virtualHub.id)
+| project recommendationId = "c72b7fee-1fa0-5b4b-98e5-54bcae95bb74", name, id, tags, param1="multipleZones:false"
+

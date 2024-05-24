@@ -1,0 +1,39 @@
+- description: Use Generation 2 virtual machine source image
+  aprlGuid: 19b6df57-f6b5-3e4f-843a-273daa087cb0
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: Low
+  recommendationResourceType: Microsoft.VirtualMachineImages/imageTemplates
+  recommendationMetadataState: Active
+  longDescription: |
+    When building Image Templates, use sources for gen 2 VMs. Gen 2 offers more memory, supports >2TB disks, uses UEFI for faster boot/installation, has Intel SGX, and virtualized persistent memory (vPMEM), unlike gen 1's BIOS-based architecture.
+  potentialBenefits: More memory, supports >2TB disks, faster boot
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Generation 1 vs generation 2 virtual machines
+      url: "https://learn.microsoft.com/en-us/azure/virtual-machines/generation-2#features-and-capabilities"
+
+- description: Replicate your Image Templates to a secondary region
+  aprlGuid: 21fb841b-ba70-1f4e-a460-1f72fb41aa51
+  recommendationTypeId: null
+  recommendationControl: Disaster Recovery
+  recommendationImpact: Low
+  recommendationResourceType: Microsoft.VirtualMachineImages/imageTemplates
+  recommendationMetadataState: Active
+  longDescription: |
+    The Azure Image Builder service, used for deploying Image Templates, lacks availability zones support. By replicating Image Templates to a secondary, preferably paired, region, quick recovery from a region failure is enabled, ensuring continuous virtual machine deployment from these templates.
+  potentialBenefits: Enhances disaster recovery capability
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Image Template resiliency
+      url: "https://learn.microsoft.com/en-us/azure/reliability/reliability-image-builder?toc=%2Fazure%2Fvirtual-machines%2Ftoc.json&bc=%2Fazure%2Fvirtual-machines%2Fbreadcrumb%2Ftoc.json#capacity-and-proactive-disaster-recovery-resiliency"
+    - name: Azure Image Builder Supported Regions
+      url: "https://learn.microsoft.com/en-us/azure/virtual-machines/image-builder-overview?tabs=azure-powershell#regions"

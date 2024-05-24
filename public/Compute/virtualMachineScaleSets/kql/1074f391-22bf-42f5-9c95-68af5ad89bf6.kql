@@ -1,0 +1,8 @@
+// Azure Resource Graph Query
+// Find all VMSSs Uniform not using SSD storage
+resources
+| where type == "microsoft.compute/virtualmachinescalesets"
+| where properties.orchestrationMode != "Flexible"
+| where properties.virtualMachineProfile.storageProfile.osDisk.managedDisk.storageAccountType == 'Standard_LRS'
+| project recommendationId = "1074f391-22bf-42f5-9c95-68af5ad89bf6", name, id, tags
+

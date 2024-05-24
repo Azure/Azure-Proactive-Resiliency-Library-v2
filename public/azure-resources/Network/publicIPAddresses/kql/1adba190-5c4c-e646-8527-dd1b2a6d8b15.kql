@@ -1,0 +1,7 @@
+// Azure Resource Graph query
+// Lists VMs with PIPs
+resources
+| where type =~ 'Microsoft.Network/publicIPAddresses'
+| where tostring(properties.ipConfiguration.id) contains "microsoft.network/networkinterfaces"
+| project recommendationid="1adba190-5c4c-e646-8527-dd1b2a6d8b15", name, id, tags, param1=strcat("Migrate from instance IP to NAT Gateway")
+

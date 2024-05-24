@@ -1,0 +1,10 @@
+// Azure Resource Graph Query
+// Identifies non-active-active VPN type virtual network gateways
+resources
+| where type =~ 'Microsoft.Network/virtualNetworkGateways'
+| where properties.gatewayType =~ "vpn"
+| extend gatewayType = properties.gatewayType, vpnType = properties.vpnType, connections = properties.connections, activeactive=properties.activeActive
+| where activeactive == false
+| project recommendationId = "281a2713-c0e0-3c48-b596-19f590c46671", name, id, tags
+
+

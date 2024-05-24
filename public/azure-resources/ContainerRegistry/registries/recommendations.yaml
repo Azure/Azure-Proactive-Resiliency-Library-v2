@@ -1,0 +1,197 @@
+- description: Use Premium tier for critical production workloads
+  aprlGuid: eb005943-40a8-194b-9db2-474d430046b7
+  recommendationTypeId: null
+  recommendationControl: Scalability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.ContainerRegistry/registries
+  recommendationMetadataState: Active
+  longDescription: |
+    Choose a service tier of Azure Container Registry to meet your performance needs. Premium offers the most bandwidth and highest rate of read and write operations for high-volume deployments. Use Basic to start, Standard for production, and Premium for hyper-scale performance and geo-replication.
+  potentialBenefits: High-volume support and geo-replication
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Container Registry Best Practices
+      url: "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices"
+
+- description: Enable zone redundancy
+  aprlGuid: 63491f70-22e4-3b4a-8b0c-845450e46fac
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.ContainerRegistry/registries
+  recommendationMetadataState: Active
+  longDescription: |
+    Azure Container Registry's optional zone redundancy enhances resiliency and high availability for registries or replication resources in a specific region by distributing resources across multiple zones.
+  potentialBenefits: Enhances resiliency and high availability
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Registry best practices - Enable zone redundancy
+      url: "https://review.learn.microsoft.com/en-us/azure/container-registry/zone-redundancy?toc=%2Fazure%2Freliability%2Ftoc.json&bc=%2Fazure%2Freliability%2Fbreadcrumb%2Ftoc.json&branch=main"
+
+- description: Enable geo-replication
+  aprlGuid: 36ea6c09-ef6e-d743-9cfb-bd0c928a430b
+  recommendationTypeId: null
+  recommendationControl: Disaster Recovery
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.ContainerRegistry/registries
+  recommendationMetadataState: Active
+  longDescription: |
+    Use Azure Container Registry's geo-replication for multi-region deployments to simplify registry management and minimize latency. It enables serving global customers from local data centers and supports distributed development teams. Regional webhooks can notify of events in replicas.
+  potentialBenefits: Simplifies management, reduces latency
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Registry best practices - Enable geo-replication
+      url: "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices#geo-replicate-multi-region-deployments"
+    - name: Geo-Replicate Container Registry
+      url: "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-geo-replication"
+
+- description: Use Repository namespaces
+  aprlGuid: a5a0101a-a240-8742-90ba-81dbde9a0c0c
+  recommendationTypeId: null
+  recommendationControl: Security
+  recommendationImpact: Low
+  recommendationResourceType: Microsoft.ContainerRegistry/registries
+  recommendationMetadataState: Active
+  longDescription: |
+    Using repository namespaces allows a single registry to be shared across multiple groups and deployments within an organization, supporting nested namespaces for group isolation. However, repositories are managed independently, not hierarchically.
+  potentialBenefits: Enables sharing and group isolation
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Registry best practices - use repository namespaces
+      url: "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices#repository-namespaces"
+
+- description: Move Container Registry to a dedicated resource group
+  aprlGuid: 8e389532-5db5-7e4c-9d4d-443b3e55ae82
+  recommendationTypeId: null
+  recommendationControl: Governance
+  recommendationImpact: Low
+  recommendationResourceType: Microsoft.ContainerRegistry/registries
+  recommendationMetadataState: Active
+  longDescription: |
+    Container registries, used across multiple hosts, should be in their own resource group to prevent accidental deletion of images when container instances are deleted, preserving the image collection while experimenting with hosts.
+  potentialBenefits: Safeguards image collection
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Registry best practices - Use dedicated resource group
+      url: "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices#dedicated-resource-group"
+
+- description: Manage registry size
+  aprlGuid: 3ef86f16-f65b-c645-9901-7830d6dc3a1b
+  recommendationTypeId: null
+  recommendationControl: Scalability
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.ContainerRegistry/registries
+  recommendationMetadataState: Active
+  longDescription: |
+    The storage constraints of Azure Container Registry's service tiers align with usage scenarios: Basic for starters, Standard for production, and Premium for high-scale performance and geo-replication.
+  potentialBenefits: Reduce costs, optimize storage
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Registry best practices - Manage registry size
+      url: "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices#manage-registry-size"
+    - name: Retention Policy
+      url: "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-retention-policy#about-the-retention-policy"
+
+- description: Disable anonymous pull access
+  aprlGuid: 03f4a7d8-c5b4-7842-8e6e-14997a34842b
+  recommendationTypeId: null
+  recommendationControl: Security
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.ContainerRegistry/registries
+  recommendationMetadataState: Active
+  longDescription: |
+    By default, Azure container registry requires authentication for pull/push actions. Enabling anonymous pull access exposes all content for public read actions. This applies to all repositories, potentially allowing unrestricted access if repository-scoped tokens are used.
+  potentialBenefits: Enhanced security and controlled access
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Enable anonymous pull access
+      url: "https://learn.microsoft.com/en-us/azure/container-registry/anonymous-pull-access#about-anonymous-pull-access"
+
+- description: Configure Diagnostic Settings for all Azure Container Registries
+  aprlGuid: 44107155-7a32-9348-89f3-d5aa7e7c5a1d
+  recommendationTypeId: null
+  recommendationControl: Monitoring and Alerting
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.ContainerRegistry/registries
+  recommendationMetadataState: Active
+  longDescription: |
+    Resource Logs are not collected and stored until you create a diagnostic setting and route them to one or more locations.
+  potentialBenefits: Enhanced tracking and debugging
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Monitoring Azure Container Registry data reference - Resource Logs
+      url: "https://learn.microsoft.com/en-us/azure/container-registry/monitor-service-reference#resource-logs"
+    - name: Monitor Azure Container Registry - Enable diagnostic logs
+      url: "https://learn.microsoft.com/en-us/azure/container-registry/monitor-service#collection-and-routing"
+
+- description: Monitor Azure Container Registry with Azure Monitor
+  aprlGuid: d594cde6-4116-d143-a64a-25f63289a2f8
+  recommendationTypeId: null
+  recommendationControl: Monitoring and Alerting
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.ContainerRegistry/registries
+  recommendationMetadataState: Active
+  longDescription: |
+    Monitoring Azure resources using Azure Monitor enhances their availability, performance, and operation. Azure Container Registry, a full-stack monitoring service, provides features for Azure and other cloud and on-premises resources.
+  potentialBenefits: Enhanced monitoring and operation
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Monitoring Azure Container Registry data reference
+      url: "https://learn.microsoft.com/en-us/azure/container-registry/monitor-service-reference#metrics"
+    - name: Monitor Azure Container Registry
+      url: "https://learn.microsoft.com/en-us/azure/container-registry/monitor-service"
+
+- description: Enable soft delete policy
+  aprlGuid: e7f0fd54-fba0-054e-9ab8-e676f2851f88
+  recommendationTypeId: null
+  recommendationControl: Disaster Recovery
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.ContainerRegistry/registries
+  recommendationMetadataState: Active
+  longDescription: |
+    Enabling soft delete in Azure Container Registry (ACR) allows for the management of deleted artifacts with a specified retention period. Users can list, filter, and restore these artifacts until automatically purged post-retention.
+  potentialBenefits: Recovery of deleted artifacts
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Enable soft delete policy
+      url: "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-soft-delete-policy"

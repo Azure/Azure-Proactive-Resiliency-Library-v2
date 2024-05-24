@@ -1,0 +1,8 @@
+// Azure Resource Graph Query
+// Finds non-zone redundant SQL databases and lists them
+Resources
+| where type =~ 'microsoft.sql/servers/databases'
+| where tolower(tostring(properties.zoneRedundant))=~'false'
+|project recommendationId = "c0085c32-84c0-c247-bfa9-e70977cbf108", name, id, tags
+
+

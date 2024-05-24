@@ -1,0 +1,66 @@
+- description: All Subnets should have a Network Security Group associated
+  aprlGuid: f0bf9ae6-25a5-974d-87d5-025abec73539
+  recommendationTypeId: null
+  recommendationControl: Security
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/virtualNetworks
+  recommendationMetadataState: Active
+  longDescription: |
+    Network security groups and application security groups allow filtering of inbound and outbound traffic by IP, port, and protocol, adding a security layer at the Subnet level.
+  potentialBenefits: Enhanced subnet security and traffic control
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Azure Virtual Network - Concepts and best practices | Microsoft Learn
+      url: "https://learn.microsoft.com/azure/virtual-network/concepts-and-best-practices"
+    - name: GatewaySUbnet
+      url: "https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpn-gateway-settings#gwsub"
+    - name: Can I associate a network security group (NSG) to the RouteServerSubnet?
+      url: "https://learn.microsoft.com/en-us/azure/route-server/route-server-faq#can-i-associate-a-network-security-group-nsg-to-the-routeserversubnet"
+    - name: Are Network Security Groups (NSGs) supported on the AzureFirewallSubnet?
+      url: "https://learn.microsoft.com/en-us/azure/firewall/firewall-faq#are-network-security-groups--nsgs--supported-on-the-azurefirewallsubnet"
+
+- description: Shield public endpoints in Azure VNets with Azure DDoS Standard Protection Plans
+  aprlGuid: 69ea1185-19b7-de40-9da1-9e8493547a5c
+  recommendationTypeId: null
+  recommendationControl: Security
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/virtualNetworks
+  recommendationMetadataState: Active
+  longDescription: |
+    Azure DDoS Protection offers enhanced mitigation features against DDoS attacks and is auto-tuned to protect specific resources in a virtual network, combined with application design best practices.
+  potentialBenefits: Enhanced DDoS attack mitigation
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Reliability and Azure Virtual Network - Microsoft Azure Well-Architected Framework | Microsoft Learn
+      url: "https://learn.microsoft.com/azure/architecture/framework/services/networking/azure-virtual-network/reliability"
+
+- description: When available, use Private Endpoints instead of Service Endpoints for PaaS Services
+  aprlGuid: 24ae3773-cc2c-3649-88de-c9788e25b463
+  recommendationTypeId: null
+  recommendationControl: Security
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Network/virtualNetworks
+  recommendationMetadataState: Active
+  longDescription: |
+    Use VNet service endpoints only if Private Link isn't available and no data movement concerns. This feature restricts Azure service access to specified VNet and subnet, enhancing network security and isolating service traffic.
+  potentialBenefits: Enhanced security and data isolation
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Azure Virtual Network FAQ | Microsoft Learn
+      url: "https://learn.microsoft.com/azure/virtual-network/virtual-networks-faq"
+    - name: Reliability and Network connectivity - Microsoft Azure Well-Architected Framework | Microsoft LearnNetworking Reliability
+      url: "https://learn.microsoft.com/azure/architecture/framework/services/networking/network-connectivity/reliability"
+    - name: Azure Private Link availability
+      url: "https://learn.microsoft.com/en-us/azure/private-link/availability"

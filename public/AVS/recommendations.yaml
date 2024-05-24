@@ -1,0 +1,161 @@
+- description: Use the AVS Interconnect feature to connect private clouds in different availability zones
+  aprlGuid: 726abfe3-adae-4a6d-8eb8-4b27a7214ca1
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Specialized.Workload/AVS
+  recommendationMetadataState: Active
+  longDescription: |
+    Use the Interconnect feature for direct communication between private clouds in different availability zones, enabling connectivity between the private clouds management and workload networks.
+  potentialBenefits: Enhanced private cloud connectivity
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Connect Private Clouds in the same region
+      url: "https://learn.microsoft.com/en-us/azure/azure-vmware/connect-multiple-private-clouds-same-region"
+
+- description: Integrate LDAPS Identity with dual sources for enhanced NSX and vCenter security
+  aprlGuid: c2794660-ffd7-4da3-96ba-5d546b70b1c6
+  recommendationTypeId: null
+  recommendationControl: Security
+  recommendationImpact: High
+  recommendationResourceType: Specialized.Workload/AVS
+  recommendationMetadataState: Active
+  longDescription: |
+    Ensure two external identity sources are configured for NSX and vCenter Server. The VMware vCenter Server and NSX Manager use these for authentication with external identities.
+  potentialBenefits: Continuous login access during maintenances
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Set an external identity source for vCenter
+      url: "https://learn.microsoft.com/en-us/azure/azure-vmware/configure-identity-source-vcenter"
+    - name: Set an external identity for NSX-T
+      url: "https://learn.microsoft.com/en-us/azure/azure-vmware/configure-external-identity-source-nsx-t"
+
+- description: Use HCX Network Extension High Availability
+  aprlGuid: bce16eee-0933-4baa-ab4d-8d1bb5653fc2
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Specialized.Workload/AVS
+  recommendationMetadataState: Active
+  longDescription: |
+    Enable Network Extension High Availability for appliance failure tolerance in HCX service. It pairs selected appliances for Active Standby configuration, ensuring high availability and quick recovery, keeping configurations in-service despite failures.
+  potentialBenefits: Improves HCX service continuity
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: HCX Network extension high availability
+      url: "https://learn.microsoft.com/en-us/azure/azure-vmware/configure-hcx-network-extension-high-availability"
+    - name: Understanding Network Extension High Availability
+      url: "https://docs.vmware.com/en/VMware-HCX/4.8/hcx-user-guide/GUID-E1353511-697A-44B0-82A0-852DB55F97D7.html"
+
+- description: Verify Management Networks are not extended with HCX Network Extension
+  aprlGuid: 6be9a543-cf82-4926-82ea-7e1f1ffaad80
+  recommendationTypeId: null
+  recommendationControl: Other Best Practices
+  recommendationImpact: High
+  recommendationResourceType: Specialized.Workload/AVS
+  recommendationMetadataState: Active
+  longDescription: |
+    Do not extend the network used by the HCX Management devices to ensure the network's security and stability.
+  potentialBenefits: Enhanced network safety and performance
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Requirements for Network Extension
+      url: "https://docs.vmware.com/en/VMware-HCX/4.8/hcx-user-guide/GUID-0C746416-850E-46F7-85DD-4D4326A23785.html"
+
+- description: Verify vSAN FTT configuration aligns with the cluster size
+  aprlGuid: 0943aa90-e3db-4c61-aef1-782b6a6a3881
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Specialized.Workload/AVS
+  recommendationMetadataState: Active
+  longDescription: |
+    The Azure VMware Solution's service SLA is influenced by vSAN storage policies, which change based on cluster size. For clusters over 6 hosts, an FTT-2 policy (RAID-1 or RAID-6) is advised. FTT refers to the Fault Tolerance feature.
+  potentialBenefits: Enhanced cluster reliability
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Use fault domains
+      url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-vmware/application-platform#use-fault-domains"
+    - name: Configure storage policy
+      url: "https://learn.microsoft.com/en-us/azure/azure-vmware/configure-storage-policy"
+
+- description: Align ExpressRoute configuration with best practices for circuit resilience
+  aprlGuid: 6f573d60-be93-4f18-8016-42e923e3c05e
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Specialized.Workload/AVS
+  recommendationMetadataState: Active
+  longDescription: |
+    Microsoft suggests using two or more ExpressRoute circuits at distinct peering locations for critical workloads. Connect these circuits and your Azure VMware Solutions private clouds using Global Reach.
+  potentialBenefits: Enhanced circuit resilience for Azure VMware
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: APRL guidance for ExpressRoute circuits
+      url: "https://azure.github.io/Azure-Proactive-Resiliency-Library/services/networking/expressroute-circuits"
+    - name: Create a new ExpressRoute circuit
+      url: "https://learn.microsoft.com/azure/expressroute/expressroute-howto-circuit-portal-resource-manager?pivots=expressroute-preview#create-a-new-expressroute-circuit-preview"
+
+- description: Deploy two or more circuits in different peering locations when using stretched clusters
+  aprlGuid: 91c84596-1c41-48fe-8d5e-3f817e6a273b
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Specialized.Workload/AVS
+  recommendationMetadataState: Active
+  longDescription: |
+    Azure VMware Solution vSAN stretched clusters cover 2 Availability Zones plus a third for witness. Use ExpressRoute for added resilience by deploying two circuits in different locations. With Global Reach, create a mesh topology by connecting on-premises circuits to Azure's managed circuits.
+  potentialBenefits: Enhanced resilience and connectivity
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Deploy vSAN streched cluster
+      url: "https://learn.microsoft.com/en-us/azure/azure-vmware/deploy-vsan-stretched-clusters#deploy-a-stretched-cluster-private-cloud"
+
+- description: Deploy dual Azure VMware Solution clouds in different regions for disaster recovery
+  aprlGuid: bdac462a-2eda-4a67-887d-46d58f141afe
+  recommendationTypeId: null
+  recommendationControl: Disaster Recovery
+  recommendationImpact: High
+  recommendationResourceType: Specialized.Workload/AVS
+  recommendationMetadataState: Active
+  longDescription: |
+    Two Azure VMware Solution private clouds can be deployed in different regions for business continuity, implementing a mesh network topology based on ExpressRoute Gateway Connections and Global Reach Connections.
+  potentialBenefits: Enhanced disaster recovery
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Private Clouds in two regions
+      url: "https://learn.microsoft.com/en-us/azure/azure-vmware/move-azure-vmware-solution-across-regions"
+    - name: Dual Region Network Topology
+      url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/azure-vmware/eslz-dual-region-network-topology"

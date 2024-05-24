@@ -1,0 +1,197 @@
+- description: Deploy VMSS with Flex orchestration mode instead of Uniform
+  aprlGuid: e7495e1c-0c75-0946-b266-b429b5c7f3bf
+  recommendationTypeId: null
+  recommendationControl: Scalability
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
+  recommendationMetadataState: Active
+  longDescription: |
+    Deploying even single instance VMs into a scale set with Flexible orchestration mode future-proofs applications for scaling and availability. This mode guarantees high availability (up to 1000 VMs) by distributing VMs across fault domains in a region or within an Availability Zone.
+  potentialBenefits: Higher scalability and availability
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: When to use VMSS instead of VMs
+      url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-design-overview#when-to-use-scale-sets-instead-of-virtual-machines"
+    - name: Azure Well-Architected Framework review - Virtual Machines and Scale Sets
+      url: "https://learn.microsoft.com/azure/well-architected/services/compute/virtual-machines/virtual-machines-review"
+
+- description: Enable VMSS application health monitoring
+  aprlGuid: 94794d2a-eff0-2345-9b67-6f9349d0a627
+  recommendationTypeId: null
+  recommendationControl: Monitoring and Alerting
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
+  recommendationMetadataState: Active
+  longDescription: |
+    Monitoring application health in Azure Virtual Machine Scale Sets is crucial for deployment management. It supports rolling upgrades such as automatic OS-image upgrades and VM guest patching, leveraging health monitoring for upgrading.
+  potentialBenefits: Enhances deployment management and upgrades
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Using Application Health extension with Virtual Machine Scale Sets
+      url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-health-extension?tabs=rest-api"
+
+- description: Enable Automatic Repair policy
+  aprlGuid: 820f4743-1f94-e946-ae0b-45efafd87962
+  recommendationTypeId: null
+  recommendationControl: Other Best Practices
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
+  recommendationMetadataState: Active
+  longDescription: |
+    Enabling automatic instance repairs in Azure Virtual Machine Scale Sets enhances application availability through a continuous health check and maintenance process.
+  potentialBenefits: Boosts app availability by auto-repair
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Automatic instance repairs for Azure Virtual Machine Scale Sets
+      url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-automatic-instance-repairs#requirements-for-using-automatic-instance-repairs"
+
+- description: Configure VMSS Autoscale to custom and configure the scaling metrics
+  aprlGuid: ee66ff65-9aa3-2345-93c1-25827cf79f44
+  recommendationTypeId: null
+  recommendationControl: Scalability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
+  recommendationMetadataState: Active
+  longDescription: |
+    Use custom autoscale for VMSS based on metrics and schedules to improve performance and cost effectiveness, adjusting instances as demand changes.
+  potentialBenefits: Enhances performance and cost-efficiency
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Get started with autoscale in Azure
+      url: "https://learn.microsoft.com/azure/azure-monitor/autoscale/autoscale-get-started?WT.mc_id=Portal-Microsoft_Azure_Monitoring"
+    - name: Overview of autoscale in Azure
+      url: "https://learn.microsoft.com/azure/azure-monitor/autoscale/autoscale-overview"
+
+- description: Enable Predictive autoscale and configure at least for Forecast Only
+  aprlGuid: 3f85a51c-e286-9f44-b4dc-51d00768696c
+  recommendationTypeId: null
+  recommendationControl: Scalability
+  recommendationImpact: Low
+  recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
+  recommendationMetadataState: Active
+  longDescription: |
+    Predictive autoscale utilizes machine learning to efficiently manage and scale Azure Virtual Machine Scale Sets by forecasting CPU load through historical usage analysis, ensuring timely scale-out to meet demand.
+  potentialBenefits: Optimizes scaling with ML predictions
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Use predictive autoscale to scale out before load demands in virtual machine scale sets
+      url: "https://learn.microsoft.com/azure/azure-monitor/autoscale/autoscale-predictive"
+
+- description: Disable Force strictly even balance across zones to avoid scale in and out fail attempts
+  aprlGuid: b5a63aa0-c58e-244f-b8a6-cbba0560a6db
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
+  recommendationMetadataState: Active
+  longDescription: |
+    Microsoft advises disabling strictly even VM instance distribution across Availability Zones in VMSS to improve scalability and flexibility, noting that uneven distribution may better serve application load demands despite the potential trade-off in resilience.
+  potentialBenefits: Improves scaling, reduces fail attempts
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Use scale-in policies with Azure Virtual Machine Scale Sets
+      url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-scale-in-policy"
+
+- description: Deploy VMSS across availability zones with VMSS Flex
+  aprlGuid: 1422c567-782c-7148-ac7c-5fc14cf45adc
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
+  recommendationMetadataState: Active
+  longDescription: |
+    When creating VMSS, implement availability zones as a protection measure for your applications and data against the rare event of datacenter failure.
+  potentialBenefits: Enhances disaster resilience
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Create a Virtual Machine Scale Set that uses Availability Zones
+      url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-use-availability-zones"
+    - name: Update scale set to add availability zones
+      url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-use-availability-zones?tabs=cli-1%2Cportal-2#update-scale-set-to-add-availability-zones"
+
+- description: Set Patch orchestration options to Azure-orchestrated
+  aprlGuid: e4ffd7b0-ba24-c84e-9352-ba4819f908c0
+  recommendationTypeId: null
+  recommendationControl: Other Best Practices
+  recommendationImpact: Low
+  recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
+  recommendationMetadataState: Active
+  longDescription: |
+    Enabling automatic VM guest patching eases update management by safely, automatically patching virtual machines to maintain security compliance, while limiting blast radius of VMs. Note, the KQL will not return sets using Uniform orchestration.
+  potentialBenefits: Eases patch management, enhances security
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Automatic VM Guest Patching for Azure VMs
+      url: "https://learn.microsoft.com/azure/virtual-machines/automatic-vm-guest-patching"
+    - name: Auto OS Image Upgrades
+      url: "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-automatic-upgrade"
+
+- description: Upgrade VMSS Image versions scheduled to be deprecated or already retired
+  aprlGuid: 83d61669-7bd6-9642-a305-175db8adcdf4
+  recommendationTypeId: null
+  recommendationControl: Governance
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
+  recommendationMetadataState: Active
+  longDescription: |
+    Ensure current versions of images are in use to avoid disruption after image deprecation. Please review the publisher, offer, sku information of the VM to ensure you are running on a supported image. Enable Auto Guest Patching or Image Upgrades, to get notifications about image deprecation.
+  potentialBenefits: Avoid disruptions by updating VMSS images.
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Deprecated Azure Marketplace images
+      url: "https://learn.microsoft.com/en-us/azure/virtual-machines/deprecated-images"
+
+- description: Mission Critical Workloads should consider using Premium or Ultra Disks
+  aprlGuid: df0ff862-814d-45a3-95e4-4fad5a244ba6
+  recommendationTypeId: null
+  recommendationControl: Scalability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Compute/virtualMachines
+  recommendationMetadataState: Active
+  longDescription: |
+    Compared to Standard HDD and SSD, Premium SSD, SSDv2, and Ultra SSDs offer improved performance, configurability, and higher single-instance Virtual Machine uptime SLAs. The lowest SLA of all disks on a Virtual Machine applies, so it is best to use Premium or Ultra Disks for the highest uptime SLA.
+  potentialBenefits: Enhanced performance, cost efficiency, and uptime SLA
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Disk type comparison and decision tree
+      url: "https://learn.microsoft.com/en-us/azure/virtual-machines/disks-types#disk-type-comparison"

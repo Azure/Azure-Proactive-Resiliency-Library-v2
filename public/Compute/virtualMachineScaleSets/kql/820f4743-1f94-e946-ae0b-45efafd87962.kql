@@ -1,0 +1,7 @@
+// Azure Resource Graph Query
+// Find all VMs that do NOT have automatic repair policy enabled
+resources
+| where type == "microsoft.compute/virtualmachinescalesets"
+| where properties.automaticRepairsPolicy.enabled == false
+| project recommendationId = "820f4743-1f94-e946-ae0b-45efafd87962", name, id, tags, param1 = "automaticRepairsPolicy: Disabled"
+

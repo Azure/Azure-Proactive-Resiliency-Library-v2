@@ -1,0 +1,8 @@
+// Azure Resource Graph Query
+// Find SignalR instances that are not configured with the Premium tier
+resources
+| where type == "microsoft.signalrservice/signalr"
+| where sku.tier != "Premium"
+| project recommendationId = "6a8b3db9-5773-413a-a127-4f7032f34bbd", name, id, tags, param1 = "AvailabilityZones: Single Zone"
+| order by id asc
+

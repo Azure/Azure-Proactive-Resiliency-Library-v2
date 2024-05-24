@@ -1,0 +1,96 @@
+- description: Use Standard Load Balancer SKU
+  aprlGuid: 38c3bca1-97a1-eb42-8cd3-838b243f35ba
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/loadBalancers
+  recommendationMetadataState: Active
+  longDescription: |
+    Selecting Standard SKU Load Balancer enhances reliability through availability zones and zone resiliency, ensuring deployments withstand zone and region failures. Unlike Basic, it supports global load balancing and offers an SLA.
+  potentialBenefits: Enhanced reliability and SLA support
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Reliability and Azure Load Balancer
+      url: "https://learn.microsoft.com/azure/architecture/framework/services/networking/azure-load-balancer/reliability"
+    - name: Resiliency checklist for specific Azure services- Azure Load Balancer
+      url: "https://learn.microsoft.com/azure/architecture/checklist/resiliency-per-service#azure-load-balancer"
+
+- description: Ensure the Backend Pool contains at least two instances
+  aprlGuid: 6d82d042-6d61-ad49-86f0-6a5455398081
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/loadBalancers
+  recommendationMetadataState: Active
+  longDescription: |
+    Deploying Azure Load Balancers with at least two instances in the backend prevents a single point of failure and supports scalability. Pairing with Virtual Machine Scale Sets is advised for optimal scale building.
+  potentialBenefits: Enhances reliability and scalability
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Resiliency checklist for specific Azure services- Azure Load Balancer
+      url: "https://learn.microsoft.com/azure/architecture/checklist/resiliency-per-service#azure-load-balancer"
+
+- description: Use NAT Gateway instead of Outbound Rules for Production Workloads
+  aprlGuid: 8d319a05-677b-944f-b9b4-ca0fb42e883c
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Network/loadBalancers
+  recommendationMetadataState: Active
+  longDescription: |
+    Outbound rules for Standard Public Load Balancer involve manual port allocation for backend pools, limiting scalability and risk of SNAT port exhaustion. NAT Gateway is recommended for its dynamic scaling and secure internet connectivity.
+  potentialBenefits: Enhanced scalability and reliability
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Resiliency checklist for specific Azure services- Azure Load Balancer
+      url: "https://learn.microsoft.com/azure/architecture/checklist/resiliency-per-service#azure-load-balancer"
+
+- description: Ensure Standard Load Balancer is zone-redundant
+  aprlGuid: 621dbc78-3745-4d32-8eac-9e65b27b7512
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/loadBalancers
+  recommendationMetadataState: Active
+  longDescription: |
+    In regions with Availability Zones, assigning a zone-redundant frontend IP to a Standard Load Balancer ensures continuous traffic distribution even if one availability zone fails, provided other healthy zones and backend instances are available to receive the traffic.
+  potentialBenefits: Enhances uptime and resilience
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Load Balancer and Availability Zones
+      url: "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-standard-availability-zones#zone-redundant"
+
+- description: Use Health Probes to detect backend instances availability
+  aprlGuid: e5f5fcea-f925-4578-8599-9a391e888a60
+  recommendationTypeId: null
+  recommendationControl: Monitoring and Alerting
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/loadBalancers
+  recommendationMetadataState: Active
+  longDescription: |
+    Health probes are used by Azure Load Balancers to determine the status of backend endpoints. Using custom health probes that are aligned with vendor recommendations enhances understanding of backend availability and facilitates monitoring of backend services for any impact.
+  potentialBenefits: Ensures backend uptime monitoring.
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Load Balancer Health Probe Overview
+      url: "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-custom-probe-overview"

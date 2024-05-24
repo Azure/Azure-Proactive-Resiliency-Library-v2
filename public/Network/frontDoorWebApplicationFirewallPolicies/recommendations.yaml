@@ -1,0 +1,66 @@
+- description: Inspect Azure Front Door WAF logs for wrongfully blocked legitimate requests
+  aprlGuid: d0cfe47f-686b-5043-bf83-5a3868acb80a
+  recommendationTypeId: null
+  recommendationControl: Monitoring and Alerting
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/frontdoorWebApplicationFirewallPolicies
+  recommendationMetadataState: Active
+  longDescription: |
+    WAF may mistakenly block legitimate requests (false positives). These can be identified by examining the last 24 hours of blocked requests in Log Analytics.
+  potentialBenefits: Reduces false positives, improves access
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Azure Web Application Firewall monitoring and logging - Access Log
+      url: "https://learn.microsoft.com/azure/web-application-firewall/afds/waf-front-door-monitor?pivots=front-door-standard-premium#access-logs"
+    - name: Understanding WAF logs
+      url: "https://learn.microsoft.com/azure/web-application-firewall/afds/waf-front-door-tuning?pivots=front-door-standard-premium#understanding-waf-logs"
+    - name: Web Application Firewall exclusion lists
+      url: "https://learn.microsoft.com/azure/web-application-firewall/ag/application-gateway-waf-configuration?tabs=portal"
+    - name: Fixing a false positive
+      url: "https://learn.microsoft.com/azure/web-application-firewall/ag/web-application-firewall-troubleshoot#fixing-false-positives"
+
+- description: Check Azure Application Gateway WAF logs for mistakenly blocked valid requests
+  aprlGuid: 537b4d94-edd1-4041-b13d-8217dfa485f0
+  recommendationTypeId: null
+  recommendationControl: Monitoring and Alerting
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/frontdoorWebApplicationFirewallPolicies
+  recommendationMetadataState: Active
+  longDescription: |
+    WAF may block legitimate requests as false positives. Identifying blocked requests within the last 24 hours through Log Analytics can help manage and mitigate these incorrect blockages efficiently.
+  potentialBenefits: Improve false positive identification
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Azure Web Application Firewall Monitoring and Logging
+      url: "https://learn.microsoft.com/azure/web-application-firewall/ag/application-gateway-waf-metrics#logs-and-diagnostics"
+    - name: Diagnostic logs
+      url: "https://learn.microsoft.com/azure/web-application-firewall/ag/web-application-firewall-logs#diagnostic-logs"
+
+- description: Monitor Web Application Firewall
+  aprlGuid: 5357ae22-0f52-1a49-9fd4-1f00ace6add0
+  recommendationTypeId: null
+  recommendationControl: Monitoring and Alerting
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/frontdoorWebApplicationFirewallPolicies
+  recommendationMetadataState: Active
+  longDescription: |
+    Monitoring the health of your Web Application Firewall and the applications it protects is crucial. This can be achieved through integration with Microsoft Defender for Cloud, Azure Monitor, and Azure Monitor logs, ensuring optimal performance and security.
+  potentialBenefits: Enhanced security and health insight
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: WAF monitoring
+      url: "https://learn.microsoft.com/azure/web-application-firewall/ag/ag-overview#waf-monitoring"
+    - name: Azure Monitor Workbook for WAF
+      url: "https://github.com/Azure/Azure-Network-Security/tree/master/Azure%20WAF/Workbook%20-%20WAF%20Monitor%20Workbook"

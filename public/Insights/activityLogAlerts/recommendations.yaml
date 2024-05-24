@@ -1,0 +1,43 @@
+- description: Configure Resource Health Alerts
+  aprlGuid: be448849-0d7d-49ba-9c94-9573ee533d5d
+  recommendationTypeId: null
+  recommendationControl: Monitoring and Alerting
+  recommendationImpact: Low
+  recommendationResourceType: Microsoft.Insights/activityLogAlerts
+  recommendationMetadataState: Active
+  longDescription: |
+    Configure Resource Health Alerts for all applicable resources to stay informed about the current and historical health status of your Azure resources. They notify you when these resources have a change in their health status.
+  potentialBenefits: Stay informed on resource status
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Resource Health
+      url: "https://learn.microsoft.com/en-us/azure/service-health/resource-health-overview"
+    - name: Configure Resource Health alerts in the Azure portal
+      url: "https://learn.microsoft.com/en-us/azure/service-health/resource-health-alert-monitor-guide#create-a-resource-health-alert-rule-in-the-azure-portal"
+    - name: Alerts Health
+      url: "https://learn.microsoft.com/en-us/azure/service-health/alerts-activity-log-service-notifications-portal"
+
+- description: Configure Service Health Alerts
+  aprlGuid: 9729c89d-8118-41b4-a39b-e12468fa872b
+  recommendationTypeId: null
+  recommendationControl: Monitoring and Alerting
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Insights/activityLogAlerts
+  recommendationMetadataState: Active
+  longDescription: |
+    Service health gives a personalized health view of Azure services and regions used, offering the best place for notifications on outages, planned maintenance, and health advisories by knowing the services used.
+  potentialBenefits: Proactive outage and maintenance alerts
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: What is Azure Service Health?
+      url: "https://learn.microsoft.com/azure/service-health/overview"
+    - name: Configure alerts for service health events
+      url: "https://learn.microsoft.com/azure/service-health/alerts-activity-log-service-notifications-portal"

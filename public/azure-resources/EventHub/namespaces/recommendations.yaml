@@ -1,0 +1,37 @@
+- description: Don't disable zone redundancy
+  aprlGuid: 84636c6c-b317-4722-b603-7b1ffc16384b
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.EventHub/namespaces
+  recommendationMetadataState: Disabled
+  longDescription: |
+    When you use the Azure portal, zone redundancy via support for availability zones is automatically enabled. Avoid disabling this capability to continue replicating metadata and data (events) across data centers in an availability zone.
+  potentialBenefits: Enhanced fault tolerance for Event Hub
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Azure Event Hubs - Geo-disaster recovery
+      url: "https://learn.microsoft.com/azure/event-hubs/event-hubs-geo-dr?tabs=portal#availability-zones"
+
+- description: Enable auto-inflate on Event Hub Standard tier
+  aprlGuid: fbfef3df-04a5-41b2-a8fd-b8541eb04956
+  recommendationTypeId: null
+  recommendationControl: Scalability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.EventHub/namespaces
+  recommendationMetadataState: Active
+  longDescription: |
+    Enable auto-inflate on Event Hub Standard tier namespaces to automatically scale up TUs, meeting usage needs and preventing data ingress or egress throttle scenarios by adjusting to allowed rates.
+  potentialBenefits: Prevents throttling by autoscaling TUs
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Azure Event Hubs - Automatically scale throughput units
+      url: "https://learn.microsoft.com/azure/event-hubs/event-hubs-auto-inflate"

@@ -1,0 +1,18 @@
+- description: Monitor Azure DDoS Protection Plan metrics
+  aprlGuid: ae054bf2-aefa-cf4a-8282-741194cef8da
+  recommendationTypeId: null
+  recommendationControl: Security
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Network/ddosProtectionPlans
+  recommendationMetadataState: Active
+  longDescription: |
+    Azure DDoS Plan metrics differentiate packets and bytes by tags: Dropped (packets scrubbed by DDoS), Forwarded (packets to VIP not filtered), and No tag (total packets, sum of dropped and forwarded).
+  potentialBenefits: Enhanced security and traffic insight
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Monitoring Azure DDoS Protection
+      url: "https://learn.microsoft.com/en-us/azure/ddos-protection/monitor-ddos-protection-reference"

@@ -1,0 +1,18 @@
+// Azure Resource Graph Query
+// This resource graph query will return all subscriptions without Service Health alerts configured.
+
+resourcecontainers
+| where type == 'microsoft.resources/subscriptions'
+| project subscriptionAlerts=tostring(id),name,tags
+| join kind=leftouter (
+  resources
+  | where type == 'microsoft.insights/activitylogalerts' and properties.condition contains "ServiceHealth"
+  | extend subscriptions = properties.scopes
+  | project subscriptions
+  | mv-expand subscriptions
+  | project subscriptionAlerts = tostring(subscriptions)
+) on subscriptionAlerts
+| where isempty(subscriptionAlerts1)
+| project-away subscriptionAlerts1
+| project recommendationID = "9729c89d-8118-41b4-a39b-e12468fa872b",id=subscriptionAlerts,name,tags
+
