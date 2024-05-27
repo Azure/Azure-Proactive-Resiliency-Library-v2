@@ -27,7 +27,7 @@
   recommendationResourceType: Microsoft.ContainerService/managedClusters
   recommendationMetadataState: Active
   longDescription: |
-    AKS assigns the kubernetes.azure.com/mode: system label to nodes in system node pools signaling system pods should be scheduled there.
+    AKS assigns the kubernetes.azure.com/mode: system label to nodes in system node pools signaling only system pods should be scheduled there. For worker nodes assign taints and label CriticalAddonsOnly to node.
   potentialBenefits: Enhanced reliability via pod isolation
   pgVerified: false
   publishedToLearn: false
