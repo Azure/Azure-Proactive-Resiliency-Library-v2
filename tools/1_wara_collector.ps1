@@ -208,9 +208,8 @@ $Script:Runtime = Measure-Command -Expression {
   function Connect-ToAzure {
     # Connect To Azure Tenant
     Write-Host "Authenticating to Azure"
-    if (!$Script:CShell)
+    if ($Script:ShellPlatform -eq 'Win32NT')
       {
-        az account clear | Out-Null
         Clear-AzContext -Force -ErrorAction SilentlyContinue -WarningAction SilentlyContinue -InformationAction SilentlyContinue
         if ([string]::IsNullOrEmpty($TenantID))
           {
@@ -233,12 +232,10 @@ $Script:Runtime = Measure-Command -Expression {
                 $defaultTenant = --$SelectedTenant
                 $TenantID = $Tenants[$defaultTenant]
                 Connect-AzAccount -Tenant $TenantID -WarningAction SilentlyContinue -Environment $AzureEnvironment
-                #az login --tenant $TenantID --only-show-errors
               }
           }
         else
           {
-            #az login --tenant $TenantID --only-show-errors
             Connect-AzAccount -Tenant $TenantID -WarningAction SilentlyContinue -Environment $AzureEnvironment
           }
         #Set the default variable with the list of subscriptions in case no Subscription File was informed
@@ -1283,7 +1280,7 @@ $Script:Runtime = Measure-Command -Expression {
 
 
   #Call the functions
-  $Script:Version = "2.0.10"
+  $Script:Version = "2.0.11"
   Write-Host "Version: " -NoNewline
   Write-Host $Script:Version -ForegroundColor DarkBlue
 
