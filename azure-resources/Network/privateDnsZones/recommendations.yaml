@@ -1,4 +1,4 @@
-﻿- description: Protect private DNS zones and records
+- description: Protect private DNS zones and records
   aprlGuid: 2820f6d6-a23c-7a40-aec5-506f3bd1aeb6
   recommendationTypeId: null
   recommendationControl: Security

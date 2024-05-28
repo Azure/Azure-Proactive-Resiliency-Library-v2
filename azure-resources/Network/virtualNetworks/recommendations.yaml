@@ -1,4 +1,4 @@
-﻿- description: All Subnets should have a Network Security Group associated
+- description: All Subnets should have a Network Security Group associated
   aprlGuid: f0bf9ae6-25a5-974d-87d5-025abec73539
   recommendationTypeId: null
   recommendationControl: Security

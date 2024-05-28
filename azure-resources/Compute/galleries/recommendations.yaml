@@ -1,4 +1,4 @@
-﻿- description: A minimum of three replicas should be kept for production image versions
+- description: A minimum of three replicas should be kept for production image versions
   aprlGuid: b49a39fd-f431-4b61-9062-f2157849d845
   recommendationTypeId: null
   recommendationControl: High Availability
