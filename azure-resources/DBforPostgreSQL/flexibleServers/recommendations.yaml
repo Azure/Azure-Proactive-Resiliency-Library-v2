@@ -83,7 +83,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Configure storage auto-grow to prevent the server from running out of storage and becoming read-only.
-  potentialBenefits: Scale storage automatically to accomodate increasing workloads
+  potentialBenefits: Scale storage automatically to meet increasing demand
   pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
