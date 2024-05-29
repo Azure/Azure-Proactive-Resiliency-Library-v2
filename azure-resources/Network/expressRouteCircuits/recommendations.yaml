@@ -92,10 +92,6 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Azure ExpressRoute Insights using Network Insights | Microsoft Learn
-      url: "https://learn.microsoft.com/en-us/azure/expressroute/expressroute-network-insights"
-    - name: Monitoring Azure ExpressRoute
-      url: "https://learn.microsoft.com/azure/expressroute/monitor-expressroute"
     - name: Azure Monitor Baseline Alerts - expressRouteCircuits
       url: "https://azure.github.io/azure-monitor-baseline-alerts/services/Network/expressRouteCircuits/"
 
