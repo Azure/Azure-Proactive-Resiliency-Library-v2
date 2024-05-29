@@ -27,7 +27,7 @@
   recommendationResourceType: Microsoft.ContainerService/managedClusters
   recommendationMetadataState: Active
   longDescription: |
-    AKS assigns the kubernetes.azure.com/mode: system label to nodes in system node pools signaling only system pods should be scheduled there. For worker nodes assign taints and label CriticalAddonsOnly to node.
+    AKS assigns the kubernetes.azure.com/mode: system label to nodes in system node pools signaling the preference for system pods should be scheduled there. The CriticalAddonsOnly=true:NoSchedule taint can be added to your system nodes to enforce the prevention of application pods from being scheduled on them. 
   potentialBenefits: Enhanced reliability via pod isolation
   pgVerified: false
   publishedToLearn: false
