@@ -1,0 +1,9 @@
+// Azure Resource Graph Query
+// The query filters the qualified App Service Plans that do not have Zone Redundancy enabled.
+// Its important to check regions that support availability zones for Azure App Services running on multi-tenant and App Service Environments https://learn.microsoft.com/en-us/azure/reliability/reliability-app-service?tabs=graph%2Ccli#:~:text=The%20following%20regions%20support%20Azure%20App%20Services%20running%20on%20multi%2Dtenant%20environments%3A
+
+resources
+| where type == "microsoft.app/managedenvironments"
+| extend zoneRedundant = tobool(properties.zoneRedundant)
+| project recommendationId = "f4201965-a88d-449d-b3b4-021394719eb2", name, id, tags, param1 = "AvailabilityZones: Single Zone"
+| order by id asc

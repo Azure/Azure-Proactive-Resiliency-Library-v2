@@ -1,0 +1,19 @@
+- description: Deploy zone redundundant Container app environments
+  aprlGuid: f4201965-a88d-449d-b3b4-021394719eb2
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: microsoft.app/managedenvironments
+  recommendationMetadataState: Active
+  longDescription: |
+    Enabling Container Apps' zone redundancy feature, replicas are automatically distributed across the zones in the region. Traffic is load balanced among the replicas. If a zone outage occurs, traffic is automatically routed to the replicas in the remaining zones.
+  potentialBenefits: Enhances app resiliency and reliability
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Reliability in Azure Container Apps
+      url: "https://learn.microsoft.com/en-us/azure/reliability/reliability-azure-container-apps?tabs=azure-cli"
+
