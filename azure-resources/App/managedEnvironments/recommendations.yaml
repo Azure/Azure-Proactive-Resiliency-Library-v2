@@ -15,5 +15,5 @@
   tags: null
   learnMoreLink:
     - name: Reliability in Azure Container Apps
-      url: "https://learn.microsoft.com/en-us/azure/reliability/reliability-azure-container-apps?tabs=azure-cli"
+      url: "https://learn.microsoft.com/en-us/azure/reliability/reliability-azure-container-apps"
 
