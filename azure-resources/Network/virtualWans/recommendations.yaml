@@ -1,0 +1,59 @@
+- description: Deploy Secure Hub Azure Firewall on Availability Zones using Firewall Manager
+  aprlGuid: 99de5e30-7c07-454f-8364-abe8561dc09f
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationResourceType: Microsoft.Network/azureFirewalls
+  recommendationMetadataState: Active
+  longDescription: Make sure if deploying a Secure Hub using Azure Firewall, to do it through Firewall Manager so the option of Availability Zones is enabled
+  potentialBenefits: Reliability of Azure Firewall
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no/arg
+  tags: null
+  learnMoreLink:
+    - name: Secure your virtual hub using Azure Firewall Manager
+      url: "https://learn.microsoft.com/en-us/azure/firewall-manager/secure-cloud-network"
+
+- description: Migrate non zone redundant Azure Firewalls to Zone Redundant Azure firewalls by utilizing Firewall Manager
+  aprlGuid: f92e5b09-ca8d-488f-bf91-cf761d261da6
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationResourceType: Microsoft.Network/azureFirewalls
+  recommendationMetadataState: Active
+  longDescription: Secure Hub might have ended deployed with no Availability Zones. Consider re-deploying your Secure Hub using Firewall Manager so Availability Zones can be configured.
+  potentialBenefits: Reliability of Azure Firewall
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no/arg
+  tags: null
+  learnMoreLink:
+    - name: Secure your virtual hub using Azure Firewall Manager
+      url: "https://learn.microsoft.com/en-us/azure/firewall-manager/secure-cloud-network"
+
+
+- description: All Subnets should have a Network Security Group associated
+  aprlGuid: f0bf9ae6-25a5-974d-87d5-025abec73539
+  recommendationTypeId: null
+  recommendationControl: Security
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/virtualNetworks
+  recommendationMetadataState: Active
+  longDescription: |
+    Network security groups and application security groups allow filtering of inbound and outbound traffic by IP, port, and protocol, adding a security layer at the Subnet level.
+  potentialBenefits: Enhanced subnet security and traffic control
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Azure Virtual Network - Concepts and best practices | Microsoft Learn
+      url: "https://learn.microsoft.com/azure/virtual-network/concepts-and-best-practices"
+    - name: GatewaySUbnet
+      url: "https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpn-gateway-settings#gwsub"
+    - name: Can I associate a network security group (NSG) to the RouteServerSubnet?
+      url: "https://learn.microsoft.com/en-us/azure/route-server/route-server-faq#can-i-associate-a-network-security-group-nsg-to-the-routeserversubnet"
+    - name: Are Network Security Groups (NSGs) supported on the AzureFirewallSubnet?
+      url: "https://learn.microsoft.com/en-us/azure/firewall/firewall-faq#are-network-security-groups--nsgs--supported-on-the-azurefirewallsubnet"
