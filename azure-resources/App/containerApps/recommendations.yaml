@@ -1,12 +1,12 @@
-- description: Deploy zone redundundant Container app environments
-  aprlGuid: f4201965-a88d-449d-b3b4-021394719eb2
+- description: Container app has too few replicas to leverage availability zones
+  aprlGuid: e2a624d7-ce3e-4cd6-abe2-4635a78ec9de
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
-  recommendationResourceType: Microsoft.App/managedenvironments
+  recommendationResourceType: Microsoft.App/containerApps
   recommendationMetadataState: Active
   longDescription: |
-    To take advantage of availability zones, you must enable zone redundancy when you create a Container Apps environment. The environment must include a virtual network with an available subnet. To ensure proper distribution of replicas, set your app's minimum replica count to three
+    Container Apps' zone redundancy feature, replicas are automatically distributed across the zones in the region. Traffic is load balanced among the replicas. If a zone outage occurs, traffic is automatically routed to the replicas in the remaining zones
   potentialBenefits: Enhances app resiliency and reliability
   pgVerified: false
   publishedToLearn: false
