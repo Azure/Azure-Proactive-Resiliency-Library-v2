@@ -3,7 +3,7 @@
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
-  recommendationResourceType: microsoft.app/managedenvironments
+  recommendationResourceType: Microsoft.App/managedenvironments
   recommendationMetadataState: Active
   longDescription: |
     Enabling Container Apps' zone redundancy feature, replicas are automatically distributed across the zones in the region. Traffic is load balanced among the replicas. If a zone outage occurs, traffic is automatically routed to the replicas in the remaining zones.
