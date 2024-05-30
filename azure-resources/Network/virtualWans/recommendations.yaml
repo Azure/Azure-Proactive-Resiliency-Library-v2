@@ -32,16 +32,15 @@
     - name: Secure your virtual hub using Azure Firewall Manager
       url: "https://learn.microsoft.com/en-us/azure/firewall-manager/secure-cloud-network"
 
-
-- description: All Subnets should have a Network Security Group associated
-  aprlGuid: f0bf9ae6-25a5-974d-87d5-025abec73539
+- description: Use routing intent to enable Inter Hub connectivity if no custom Routing Tables are being used.
+  aprlGuid: 53cc7cbc-3f6d-4dbe-8018-c1a075002dd0
   recommendationTypeId: null
-  recommendationControl: Security
+  recommendationControl: High Availability/Business Continuity/
   recommendationImpact: High
-  recommendationResourceType: Microsoft.Network/virtualNetworks
+  recommendationResourceType: Microsoft.Network/virtualHubs/
   recommendationMetadataState: Active
   longDescription: |
-    Network security groups and application security groups allow filtering of inbound and outbound traffic by IP, port, and protocol, adding a security layer at the Subnet level.
+    Routing Intent will enable Inter Hub connectivity. Vnets across regions will have a shorter path. Branch failure will still allow to access Vnets across regions.
   potentialBenefits: Enhanced subnet security and traffic control
   pgVerified: true
   publishedToLearn: false
@@ -49,11 +48,4 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Azure Virtual Network - Concepts and best practices | Microsoft Learn
-      url: "https://learn.microsoft.com/azure/virtual-network/concepts-and-best-practices"
-    - name: GatewaySUbnet
-      url: "https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpn-gateway-settings#gwsub"
-    - name: Can I associate a network security group (NSG) to the RouteServerSubnet?
-      url: "https://learn.microsoft.com/en-us/azure/route-server/route-server-faq#can-i-associate-a-network-security-group-nsg-to-the-routeserversubnet"
-    - name: Are Network Security Groups (NSGs) supported on the AzureFirewallSubnet?
-      url: "https://learn.microsoft.com/en-us/azure/firewall/firewall-faq#are-network-security-groups--nsgs--supported-on-the-azurefirewallsubnet"
+    - name: How to configure Virtual WAN Hub routing intent and routing policies
