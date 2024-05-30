@@ -11,4 +11,4 @@ resources
     | where isnotnull(IpSecurityRestrictions) == false
     | project name
     ) on name
-| project recommendationId = "aab6b4a4-9981-43a4-8728-35c7ecbb746d", name, id,kind, param1 = "No network restrictions set"
+| project recommendationId = "aab6b4a4-9981-43a4-8728-35c7ecbb746d", name, id, tags, param1 = "No network restrictions set"
