@@ -122,7 +122,7 @@
   recommendationResourceType: Microsoft.Web/sites
   recommendationMetadataState: Active
   longDescription: |
-    Use Health Check for production workloads. Health check increases your application's availability by rerouting requests away from unhealthy instances, and replacing instances if they remain unhealthy. The Health check path should check critical components of your application.  
+    Use Health Check for production workloads. Health check increases your application's availability by rerouting requests away from unhealthy instances, and replacing instances if they remain unhealthy. The Health check path should check critical components of your application.
   potentialBenefits: Enhanced reliability via automation
   pgVerified: false
   publishedToLearn: false
