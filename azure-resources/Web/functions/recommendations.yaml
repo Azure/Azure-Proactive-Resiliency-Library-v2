@@ -16,8 +16,6 @@
   learnMoreLink:
     - name: Announcing the New Auto Healing Experience in App Service Diagnostics - Azure App Service
       url: "https://azure.github.io/AppService/2018/09/10/Announcing-the-New-Auto-Healing-Experience-in-App-Service-Diagnostics.html"
-    - name: Auto Heal for Linux in Azure App Service
-      url: "https://azure.github.io/AppService/2021/04/21/Announcing-Autoheal-for-Azure-App-Service-Linux.html"
 
 - description: No warmup trigger added to Function
   aprlGuid: 52f368ee-1d77-4b34-92db-64be269642d0
@@ -84,7 +82,7 @@
   recommendationResourceType: Microsoft.Web/sites
   recommendationMetadataState: Active
   longDescription: |
-    The FUNCTIONS_WORKER_RUNTIME setting in the Function App configuration should be set to the appropriate value based on the language you are using. This setting is used to determine the language worker that will be used to execute your functions. Set FUNCTIONS_WORKER_RUNTIME to the language being used in your application in your app settings. Valid values are: dotnet, node, java, powershell and python. This is a mandatory settings which specifies the language worker runtime to load in the function app. An invalid value may reduce performance and increase cold start times.
+    The FUNCTIONS_WORKER_RUNTIME setting in the Function App configuration should be set to the appropriate value based on the language you are using. This setting is used to determine the language worker that will be used to execute your functions.
   potentialBenefits: Better governance
   pgVerified: false
   publishedToLearn: false
