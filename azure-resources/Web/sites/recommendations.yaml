@@ -114,7 +114,7 @@
     - name: Configure web apps in Azure App Service
       url: "https://learn.microsoft.com/azure/app-service-web/web-sites-configure"
 
-- description: Health check
+- description: Enable Health check for App Services
   aprlGuid: fd049c28-ae6d-48f0-a641-cc3ba1a3fe1d
   recommendationTypeId: null
   recommendationControl: Other Best Practices
@@ -122,7 +122,7 @@
   recommendationResourceType: Microsoft.Web/sites
   recommendationMetadataState: Active
   longDescription: |
-    Use Health Check for production workloads. Health check increases your application's availability by rerouting requests away from unhealthy instances, and replacing instances if they remain unhealthy. Your App Service plan should be scaled to two or more instances to fully utilize Health check. The Health check path should check critical components of your application. For example, if your application depends on a database and a messaging system, the Health check endpoint should connect to those components. If the application can't connect to a critical component, then the path should return a 500-level response code to indicate the app is unhealthy. Also, if the path does not return a response within 1 minute the health check ping is considered unhealthy.
+    Use Health Check for production workloads. Health check increases your application's availability by rerouting requests away from unhealthy instances, and replacing instances if they remain unhealthy. The Health check path should check critical components of your application.  
   potentialBenefits: Enhanced reliability via automation
   pgVerified: false
   publishedToLearn: false
@@ -132,11 +132,8 @@
   learnMoreLink:
     - name: Monitor the health of App Service instances
       url: "https://learn.microsoft.com/en-us/azure/app-service/monitor-instances-health-check?tabs=dotnet#enable-health-check"
-    - name: The Ultimate Guide to Running Healthy Apps in the Cloud
-      url: "https://azure.github.io/AppService/2020/05/15/Robust-Apps-for-the-cloud.html"
 
-
-- description: No network access restrictions defined
+- description: Check if network access restrictions are defined
   aprlGuid: aab6b4a4-9981-43a4-8728-35c7ecbb746d
   recommendationTypeId: null
   recommendationControl: Governance
