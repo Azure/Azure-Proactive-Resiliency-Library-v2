@@ -21,7 +21,7 @@
 
 - description: Deploy VMs across Availability Zones
   aprlGuid: 2bd0be95-a825-6f47-a8c6-3db1fb5eb387
-  recommendationTypeId: null
+  recommendationTypeId: 066A047A-9ACE-45F4-AC50-6325840A6B00
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Compute/virtualMachines
