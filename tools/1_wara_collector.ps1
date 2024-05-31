@@ -42,6 +42,33 @@ $Script:Runtime = Measure-Command -Expression {
       }
   }
 
+  Function Get-AllAzGraphResources {
+    param (
+      [string]$subscriptionId,
+      [string]$query = 'Resources | project id, resourceGroup, subscriptionId, name, type, location, properties'
+    )
+
+    $result = Search-AzGraph -Query $query -first 1000 -Subscription $subscriptionId # -first 1000 returns the first 1000 results and subsequently reduces the amount of queries required to get data.
+
+    # Collection to store all resources
+    $allResources = @($result)
+
+    # Loop to paginate through the results using the skip token
+    while ($result.SkipToken) {
+      # Retrieve the next set of results using the skip token
+      if ([bool]$subscriptionId) {
+        $result = Search-AzGraph -Query $query -SkipToken $result.SkipToken -Subscription $subscriptionId
+      } else {
+        $result = Search-AzGraph -Query $query -SkipToken $result.SkipToken
+      }
+      # Add the results to the collection
+      $allResources += $result
+    }
+
+    # Output all resources
+    return $allResources
+  }
+
   function Get-HelpMessage {
     Write-Host ""
     Write-Host "Parameters"
@@ -460,10 +487,11 @@ $Script:Runtime = Measure-Command -Expression {
           try
             {
               $ResourceType = $Script:AllResourceTypes | Where-Object { $_.type -eq $type -and $_.subscriptionId -eq $Subid }
-              if (![string]::IsNullOrEmpty($resourceType) -and $resourceType.count_ -lt 1000)
+              if (![string]::IsNullOrEmpty($resourceType))
                 {
                   # Execute the query and collect the results
-                  $queryResults = Search-AzGraph -Query $query -First 1000 -Subscription $Subid -ErrorAction SilentlyContinue
+                  # $queryResults = Search-AzGraph -Query $query -First 1000 -Subscription $Subid -ErrorAction SilentlyContinue
+                  $queryResults = Get-AllAzGraphResources -query $query -subscriptionId $Subid
 
                   $queryResults = $queryResults | Select-Object -Property name,id,param1,param2,param3,param4,param5 -Unique
 
@@ -485,37 +513,7 @@ $Script:Runtime = Measure-Command -Expression {
                       $Script:results += $result
                     }
                 }
-              elseif (![string]::IsNullOrEmpty($resourceType) -and $resourceType.count_ -ge 1000)
-                {
-                  $Loop = $resourceType.count_ / 1000
-                  $Loop = [math]::ceiling($Loop)
-                  $Looper = 0
-                  $Limit = 1
 
-                  while ($Looper -lt $Loop)
-                    {
-                      $queryResults = Search-AzGraph -Query ($query + '| order by id') -Subscription $Subid -Skip $Limit -first 1000 -ErrorAction SilentlyContinue
-                      foreach ($row in $queryResults)
-                        {
-                          $result = [PSCustomObject]@{
-                            validationAction = [string]$validationAction
-                            recommendationId = [string]$checkId
-                            name             = [string]$row.name
-                            id               = [string]$row.id
-                            param1           = [string]$row.param1
-                            param2           = [string]$row.param2
-                            param3           = [string]$row.param3
-                            param4           = [string]$row.param4
-                            param5           = [string]$row.param5
-                            checkName        = [string]$checkName
-                            selector         = [string]$selector
-                          }
-                          $Script:results += $result
-                        }
-                      $Looper ++
-                      $Limit = $Limit + 1000
-                  }
-                }
               if ($type -like '*azure-specialized-workloads/*')
                 {
                   $result = [PSCustomObject]@{
@@ -897,7 +895,7 @@ $Script:Runtime = Measure-Command -Expression {
     $Looper = $Script:AllResourceTypes | Select-Object -Property type,subscriptionId -Unique
     foreach ($result in $Looper)
       {
-        if(($Script:AllResourceTypes | Where-Object {$_.type -eq $result.type -and $_.SubscriptionId -eq $result.subscriptionId}).count -eq 1) 
+        if(($Script:AllResourceTypes | Where-Object {$_.type -eq $result.type -and $_.SubscriptionId -eq $result.subscriptionId}).count -eq 1)
           {
             $ResourceTypeCount = ($Script:AllResourceTypes | Where-Object {$_.type -eq $result.type -and $_.SubscriptionId -eq $result.subscriptionId}).count_
           }
