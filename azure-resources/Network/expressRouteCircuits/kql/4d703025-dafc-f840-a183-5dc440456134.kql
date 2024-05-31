@@ -1,6 +1,1 @@
-// Azure Resource Graph Query
-// Find all Express Route Circuits that have Rate Limiting disabled
-resources
-| where type contains "microsoft.network/expressroutecircuits"
-| where properties.enableDirectPortRateLimit == false
-| project recommendationId = "4d703025-dafc-f840-a183-5dc440456134", name, id, tags, param1 = strcat("RateLimit: ", properties.enableDirectPortRateLimit)
+// under-development

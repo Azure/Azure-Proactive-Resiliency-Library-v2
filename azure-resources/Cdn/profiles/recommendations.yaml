@@ -45,7 +45,7 @@
 - description: Use the latest API version and SDK version
   aprlGuid: 52bc9a7b-23c8-bc4c-9d2a-7bc43b50104a
   recommendationTypeId: e607041e-3194-42ad-9994-b6ea5ec12f5e
-  recommendationControl: Performance
+  recommendationControl: Scalability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Cdn/profiles
   recommendationMetadataState: Active
