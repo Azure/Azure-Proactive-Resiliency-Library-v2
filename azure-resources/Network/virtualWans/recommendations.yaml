@@ -49,3 +49,41 @@
   tags: null
   learnMoreLink:
     - name: How to configure Virtual WAN Hub routing intent and routing policies
+      url: "https://learn.microsoft.com/en-us/azure/virtual-wan/how-to-routing-policies"
+
+- description: Use routing intent to configure Virtual WAN to send private and internet traffic via security solution deployed in the hub if no custom Routing Tables are being used.
+  aprlGuid: 0390bf34-8be5-44ee-b454-d6b8d5dd3790
+  recommendationTypeId: null
+  recommendationControl: High Availability/Business Continuity/
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/virtualHubs/
+  recommendationMetadataState: Active
+  longDescription: |
+    Routing Intent will enable Inter Hub connectivity. Vnets across regions will have a shorter path. Branch failure will still allow to access Vnets across regions.
+  potentialBenefits: Enhanced subnet security and traffic control
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: How to configure Virtual WAN Hub routing intent and routing policies
+      url: "https://learn.microsoft.com/en-us/azure/virtual-wan/how-to-routing-policies"
+
+- description: If selecting VPN Gateway as a Backup to your Express Route Circuit When Routing Intent is disabled make sure you prepend the Vnets coming from the VPN with a longer AS path than Express Route regardless of the Hub Routing Preference.
+  aprlGuid: 0390bf34-8be5-44ee-b454-d6b8d5dd3790
+  recommendationTypeId: null
+  recommendationControl: High Availability/Business Continuity/
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/virtualHubs/
+  recommendationMetadataState: Active
+  longDescription: |
+    Inter-Region Assymetric routing can occur when Inter Hub connectivity is disabled. Customers could connect from On premises to Local Virtual Hub Vnets, but if shorter path is advertised through the Local Hub, they could lose connectivity to remote Virtual Hub Vnets.
+  potentialBenefits: Enhanced subnet security and traffic control
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: TBD
