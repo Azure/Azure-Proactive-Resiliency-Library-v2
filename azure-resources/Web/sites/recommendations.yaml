@@ -133,7 +133,7 @@
     - name: Monitor the health of App Service instances
       url: "https://learn.microsoft.com/en-us/azure/app-service/monitor-instances-health-check?tabs=dotnet#enable-health-check"
 
-- description: Check if network access restrictions are defined
+- description: Configure network access restrictions
   aprlGuid: aab6b4a4-9981-43a4-8728-35c7ecbb746d
   recommendationTypeId: null
   recommendationControl: Governance
