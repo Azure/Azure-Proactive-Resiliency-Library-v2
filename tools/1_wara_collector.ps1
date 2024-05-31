@@ -48,7 +48,11 @@ $Script:Runtime = Measure-Command -Expression {
       [string]$query = 'Resources | project id, resourceGroup, subscriptionId, name, type, location, properties'
     )
 
-    $result = Search-AzGraph -Query $query -first 1000 -Subscription $subscriptionId # -first 1000 returns the first 1000 results and subsequently reduces the amount of queries required to get data.
+    if ([bool]$subscriptionId) {
+      $result = Search-AzGraph -Query $query -SkipToken $result.SkipToken -Subscription $subscriptionId
+    } else {
+      $result = Search-AzGraph -Query $query -SkipToken $result.SkipToken
+    } # -first 1000 returns the first 1000 results and subsequently reduces the amount of queries required to get data.
 
     # Collection to store all resources
     $allResources = @($result)
