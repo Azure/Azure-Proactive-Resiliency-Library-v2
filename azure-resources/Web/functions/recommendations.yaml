@@ -1,7 +1,7 @@
 ﻿- description: Enable auto heal
   aprlGuid: c6c4b962-5af4-447a-9d74-7b9c53a5dff5
   recommendationTypeId: null
-  recommendationControl: Availability and Resiliency
+  recommendationControl: High Availability
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Web/sites
   recommendationMetadataState: Active
