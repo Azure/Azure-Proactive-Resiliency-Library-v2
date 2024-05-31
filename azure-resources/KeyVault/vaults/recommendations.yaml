@@ -1,21 +1,4 @@
-- description: Azure Key Vault RBAC for Data Plane
-  aprlGuid: da780cfe-f727-4327-ac09-bad4edf31522
-  recommendationTypeId: null
-  recommendationControl: Security
-  recommendationImpact: High
-  recommendationResourceType: Microsoft.KeyVault/vaults
-  recommendationMetadataState: Active
-  longDescription: |
-    Enhances security by integrating with Azure RBAC, replacing the legacy Access Policy model.
-  potentialBenefits: Unified Access Control, Centralized Access Management, Improved Security, Integration with Priviliged Identity  Management, Deny Assignments.
-  pgVerified: True
-  publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
-  tags: null
-  learnMoreLink:
-    - name: Grant permissions to applications to access an Azure key vault using Azure RBAC
-      url: "https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide?tabs=azure-cli"
+
 
 - description: Key vaults should have purge protection enabled
   aprlGuid: 70fcfe6d-00e9-5544-a63a-fff42b9f2edb
