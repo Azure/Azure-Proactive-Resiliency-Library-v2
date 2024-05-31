@@ -10,6 +10,10 @@ https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2
 
 #>
 
+#Requires -Version 7.0
+#Requires -PSEdition Core
+#Requires -Modules @{ ModuleName="Az"; ModuleVersion="12.0.0" }, @{ ModuleName="Az.ResourceGraph"; ModuleVersion="1.0.0" }
+
 Param(
   [switch]$Debugging,
   [switch]$Help,
@@ -81,18 +85,9 @@ $Script:Runtime = Measure-Command -Expression {
   }
 
   function Test-Requirement {
-    # Install required modules
+    # Validating requirements
     try
       {
-        Write-Host "Validating " -NoNewline
-        Write-Host "Az.ResourceGraph" -ForegroundColor Cyan -NoNewline
-        Write-Host " Module.."
-        $AzModules = Get-Module -Name Az.ResourceGraph -ListAvailable -ErrorAction silentlycontinue
-        if ($null -eq $AzModules)
-          {
-            Write-Host "Installing Az Modules" -ForegroundColor Yellow
-            Install-Module -Name Az.ResourceGraph -SkipPublisherCheck -InformationAction SilentlyContinue
-          }
         Write-Host "Validating " -NoNewline
         Write-Host "Git" -ForegroundColor Cyan -NoNewline
         Write-Host " Installation.."
@@ -210,6 +205,7 @@ $Script:Runtime = Measure-Command -Expression {
     Write-Host "Authenticating to Azure"
     if ($Script:ShellPlatform -eq 'Win32NT')
       {
+        Write-Debug "Using Windows Platform"
         Clear-AzContext -Force -ErrorAction SilentlyContinue -WarningAction SilentlyContinue -InformationAction SilentlyContinue
         if ([string]::IsNullOrEmpty($TenantID))
           {
@@ -243,7 +239,8 @@ $Script:Runtime = Measure-Command -Expression {
       }
     else
       {
-        Connect-AzAccount -Identity -Environment $AzureEnvironment
+        Write-Debug "Using non-Windows Platform"
+        Connect-AzAccount -Environment $AzureEnvironment
         $Script:SubIds = Get-AzSubscription -WarningAction SilentlyContinue
       }
 
@@ -897,7 +894,7 @@ $Script:Runtime = Measure-Command -Expression {
     $Looper = $Script:AllResourceTypes | Select-Object -Property type,subscriptionId -Unique
     foreach ($result in $Looper)
       {
-        if(($Script:AllResourceTypes | Where-Object {$_.type -eq $result.type -and $_.SubscriptionId -eq $result.subscriptionId}).count -eq 1) 
+        if(($Script:AllResourceTypes | Where-Object {$_.type -eq $result.type -and $_.SubscriptionId -eq $result.subscriptionId}).count -eq 1)
           {
             $ResourceTypeCount = ($Script:AllResourceTypes | Where-Object {$_.type -eq $result.type -and $_.SubscriptionId -eq $result.subscriptionId}).count_
           }
