@@ -48,7 +48,7 @@
   recommendationResourceType: Microsoft.Storage/storageAccounts
   recommendationMetadataState: Active
   longDescription: |
-    One or more Storage Accounts has a high transaction rate per GB of block blob data stored. Use premium performance block blob storage instead of standard performance storage for workloads that require fast storage response times and/or high transaction rates.
+    Use premium performance block blob storage instead of standard performance storage for workloads that require fast storage response times and/or high transaction rates.
   potentialBenefits: Optimized cost and performance
   pgVerified: true
   publishedToLearn: false
