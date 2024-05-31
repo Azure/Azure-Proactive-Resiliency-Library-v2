@@ -19,9 +19,9 @@
     - name: Change the redundancy configuration for a storage account
       url: "https://learn.microsoft.com/azure/storage/common/redundancy-migration"
 
-- description: Do not use classic storage accounts
+- description: Classic Storage Accounts should be migrated to new Azure Resource Manager resources
   aprlGuid: 63ad027e-611c-294b-acc5-8e3234db9a40
-  recommendationTypeId: null
+  recommendationTypeId: 47bb383c-8e25-95f0-c2aa-437add1d87d3
   recommendationControl: Service Upgrade and Retirement
   recommendationImpact: High
   recommendationResourceType: Microsoft.Storage/storageAccounts
@@ -40,7 +40,7 @@
     - name: Migrate your classic storage accounts to Azure Resource Manager
       url: "https://learn.microsoft.com/azure/storage/common/classic-account-migration-overview"
 
-- description: Ensure Performance tier is set as per workload
+- description: Use premium performance block blob storage
   aprlGuid: 5587ef77-7a05-a74d-9c6e-449547a12f27
   recommendationTypeId: null
   recommendationControl: Scalability
@@ -48,7 +48,7 @@
   recommendationResourceType: Microsoft.Storage/storageAccounts
   recommendationMetadataState: Active
   longDescription: |
-    Consider using the appropriate storage performance tier for workload scenarios. Each workload scenario requires appropriate performance tiers, and selecting the appropriate tiers based on storage usage is crucial.
+    One or more Storage Accounts has a high transaction rate per GB of block blob data stored. Use premium performance block blob storage instead of standard performance storage for workloads that require fast storage response times and/or high transaction rates.
   potentialBenefits: Optimized cost and performance
   pgVerified: true
   publishedToLearn: false
@@ -67,9 +67,9 @@
     - name: Premium block blob storage accounts
       url: "https://learn.microsoft.com/azure/storage/blobs/storage-blob-block-blob-premium"
 
-- description: Enable soft delete for recovery of data
+- description: Enable Soft Delete to protect your blob data
   aprlGuid: 03263c57-c869-3841-9e0a-3dbb9ef3e28d
-  recommendationTypeId: null
+  recommendationTypeId: 42dbf883-9e4b-4f84-9da4-232b87c4b5e9
   recommendationControl: Disaster Recovery
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Storage/storageAccounts

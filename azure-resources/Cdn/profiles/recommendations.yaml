@@ -44,8 +44,8 @@
 
 - description: Use the latest API version and SDK version
   aprlGuid: 52bc9a7b-23c8-bc4c-9d2a-7bc43b50104a
-  recommendationTypeId: null
-  recommendationControl: Governance
+  recommendationTypeId: e607041e-3194-42ad-9994-b6ea5ec12f5e
+  recommendationControl: Performance
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Cdn/profiles
   recommendationMetadataState: Active
@@ -147,8 +147,8 @@
 
 - description: Use latest version for customer-managed certificates
   aprlGuid: 4638c2c0-03de-6d42-9e09-82ee4478cbf3
-  recommendationTypeId: null
-  recommendationControl: Security
+  recommendationTypeId: 2c057605-4707-4d3e-bbb0-a7fe9b6a626b
+  recommendationControl: High Availability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Cdn/profiles
   recommendationMetadataState: Active
