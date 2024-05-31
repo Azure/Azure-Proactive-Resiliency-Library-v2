@@ -1395,7 +1395,7 @@ no,Microsoft.AzureArcData/SqlServerInstances/AvailabilityGroups,null
 no,Microsoft.AzureArcData/SqlServerLicenses,null
 no,Microsoft.AzureFleet/locations,null
 yes,Microsoft.AzureLargeInstance/azureLargeInstances,Azure Large Instances
-yes,Microsoft.AzureLargeInstance/azureLargeStorageInstances,Azure Large Storage Instances 
+yes,Microsoft.AzureLargeInstance/azureLargeStorageInstances,Azure Large Storage Instances
 no,Microsoft.AzureLargeInstance/locations,null
 no,Microsoft.AzureLargeInstance/locations/operationsStatus,null
 no,Microsoft.AzureLargeInstance/operations,null
