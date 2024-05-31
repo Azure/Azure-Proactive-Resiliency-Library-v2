@@ -7,7 +7,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Enabling diagnostics logging for your Azure App Service is crucial for monitoring and diagnostics, including both application logging and web server logging.
-  potentialBenefits: Enhanced monitoring and diagnostics
+  potentialBenefits: Monitoring and Alerting
   pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
