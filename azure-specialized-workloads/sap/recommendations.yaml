@@ -3,7 +3,7 @@
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
-  recommendationResourceType: n/a
+  recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
   longDescription: |
     Azure Availability Zones are physically separate locations within each Azure region that are tolerant to local failures. Use availability zones to protect your applications and data against unlikely data center failures. Ensure each single point of failure of each SAP production system is protected with high availability using multiple availability zones. If you cannot deploy across different zones in a region, then  refer to Microsoft guidance for High availability deployment options for SAP workload.
@@ -30,7 +30,7 @@
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
-  recommendationResourceType: n/a
+  recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
   longDescription: |
     Use Virtual Machines Scale Set (VMSS) with flexible orchestration to distribute the virtual machines across specified zones and within each zone to also distribute VMs across different fault domains within the zone on a best effort basis. Configure VMSS Flex following Microsoft recommendation for SAP workload using the right mode and correct settings. If you aren't currently using VMSS Flex for SAP application servers and also not using Availability Sets with Fault domain and Update domain distribution, then you should consider moving to VMSS Flex architecture to improve the resiliency posture of your SAP deployment. The following blog post in links below outlines the details on the process of migrating existing SAP workloads that are deployed in an availability set or availability zone to a flexible scale set with FD=1 deployment option.
@@ -55,7 +55,7 @@
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
-  recommendationResourceType: n/a
+  recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
   longDescription: |
     For single-instance VMs, both OS and data disks must be either Premium SSD or Ultra Disk to achieve the single-instance SLA of 99.9% availability.
@@ -77,12 +77,12 @@
     - name: SAP Storage Planning Guide
       url: "https://learn.microsoft.com/en-us/azure/sap/workloads/planning-guide-storage"
 
-- description: Ensure that the data is replicated synchronously (SYNC mode) between the primary and secondary database hosting VM nodes
+- description: Ensure synchronous data replication (SYNC mode) between primary and secondary VM nodes
   aprlGuid: 094400a5-f112-408d-a334-afd68873ff0f
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
-  recommendationResourceType: n/a
+  recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
   longDescription: |
     High availability for databases should be implemented using database native replication technologies and the data should be replicated synchronously that is in SYNC mode from primary database to a stand-by node.
@@ -98,12 +98,12 @@
     - name: OpenSource Quality Checks
       url: "https://github.com/Azure/SAP-on-Azure-Scripts-and-Utilities/tree/main/QualityCheck"
 
-- description: Ensure that SAP shared file systems are designed for high availability and when possible using availability zones
+- description: Design SAP shared file systems for high availability, utilizing availability zones when possible
   aprlGuid: e09ca960-20b7-4831-b85b-83ec84c1390e
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
-  recommendationResourceType: n/a
+  recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
   longDescription: |
     SAP shared file systems such as /sapmnt, /usr/trans, interfaces should be made highly available.
@@ -123,7 +123,7 @@
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
-  recommendationResourceType: n/a
+  recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
   longDescription: |
     Test all high availability solutions thoroughly (including kernel panic in Linux VMs and also fail-back). Include zonal failure scenarios in your testing, the testing should confirm that each layer of your SAP solution including database, central services, application servers and shared file systems is configured correctly for zone redundancy, the solution meets RPO = 0 and the application fails over automatically meeting your RTO.
@@ -143,7 +143,7 @@
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
-  recommendationResourceType: n/a
+  recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
   longDescription: |
     When executing a migrate command in a Linux Pacemaker cluster, the system generates a temporary "prefer" location constraint, aiming to move a resource to a specified node. This constraint prioritizes the target node for the resource temporarily without permanently altering the cluster's configuration.
@@ -165,7 +165,7 @@
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: Medium
-  recommendationResourceType: n/a
+  recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
   longDescription: |
     To ensure the availability of compute resources for critical VM roles in a DR region, consider securing capacity either through a warm standby approach or by utilizing Azure's On-demand Capacity Reservation.
@@ -181,12 +181,12 @@
     - name: Capacity Reservation
       url: "https://learn.microsoft.com/en-us/azure/virtual-machines/capacity-reservation-overview"
 
-- description: Ensure that the production databases are replicated (ASYNC) to DR location using the database vendor's replication technology
+- description: Replicate production databases to DR location (ASYNC) using the vendor's replication technology
   aprlGuid: fb8bdcee-d88f-408d-8572-a76a4aaa733b
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: High
-  recommendationResourceType: n/a
+  recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
   longDescription: |
     Replicate production databases (ASYNC) to the DR location using the database vendor's replication technology.
@@ -205,7 +205,7 @@
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: High
-  recommendationResourceType: n/a
+  recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
   longDescription: |
     SAP components such as (A)SCS, application servers, WebDispatchers, etc are backed up to DR location using an appropriate backup tool or ASR.
@@ -226,7 +226,7 @@
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: High
-  recommendationResourceType: n/a
+  recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
   longDescription: |
     Implementing robust monitoring and alerting for DR in SAP on Azure ensures coverage across its complex, multi-layer architecture. This strategy is crucial for databases, services, applications, and shared systems.
@@ -245,7 +245,7 @@
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: Medium
-  recommendationResourceType: n/a
+  recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
   longDescription: |
     Automate the build of disaster recovery (DR) infrastructure (or pre-deploy DR resources) and streamline SAP service recovery as much as possible.
@@ -264,7 +264,7 @@
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: Medium
-  recommendationResourceType: n/a
+  recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
   longDescription: |
     Create detailed documentation of your DR procedures for each layer of the SAP architecture-database, central services, application servers, and shared file systems. This documentation should include configuration details, failover mechanisms, and step-by-step recovery procedures.
@@ -285,7 +285,7 @@
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: Medium
-  recommendationResourceType: n/a
+  recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
   longDescription: |
     For an SAP solution hosted on Azure it is imperative to implement a robust monitoring and alerting solution that comprehensively covers DR of each layer of the SAP architecture. Given the complexity of SAP systems, which span multiple layers using diverse technologies and Azure resources, each with potentially distinct DR replication mechanisms, an appropriate monitoring strategy is crucial. The different layers include database, central services, application, and shared file systems.
@@ -304,7 +304,7 @@
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: High
-  recommendationResourceType: n/a
+  recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
   longDescription: |
     Scheduled events is an Azure Metadata Services that provides proactive notifications about upcoming maintenance events (for example, reboot) so that your application can prepare for them and limit disruption. You should configure scheduled events for all your critical Azure VMs.
@@ -326,12 +326,12 @@
     - name: Configure Pacemaker for Azure Scheduled Events
       url: "https://learn.microsoft.com/en-us/azure/sap/workloads/high-availability-guide-suse-pacemaker?tabs=msi#configure-pacemaker-for-azure-scheduled-events"
 
-- description: ASCS-Pacemaker (Central Server Instance) Ensure Pacemaker cluster has been setup for SAP ASCS high availability
+- description: Configure a Pacemaker cluster for SAP ASCS high availability
   aprlGuid: 9d8f6678-694c-4da4-8384-415201f65194
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
-  recommendationResourceType: n/a
+  recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
   longDescription: |
     For the ASCS-Pacemaker (Central Server Instance), ensure that the Pacemaker cluster configuration parameters are correctly set up for SAP ASCS high availability.
@@ -349,12 +349,12 @@
     - name: ASCS-Pacemaker - Central Server Instance
       url: "https://docs.microsoft.com/en-us/azure/advisor/advisor-reference-reliability-recommendations"
 
-- description: ASCS-LB (Central Server Instance) Ensure the load balancer is configured correctly for SAP ASCS High availability
+- description: Ensure the load balancer is configured correctly for SAP ASCS High availability
   aprlGuid: 5c2e52d0-25be-4b1c-833c-b98b5ef1a26b
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
-  recommendationResourceType: n/a
+  recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
   longDescription: |
     For the ASCS-LB (Central Server Instance), ensure that the load balancer is configured correctly for SAP ASCS high availability.
@@ -372,15 +372,15 @@
     - name: ASCS-LB - Central Server Instance
       url: "https://docs.microsoft.com/en-us/azure/advisor/advisor-reference-reliability-recommendations"
 
-- description: DBHANA-Pacemaker (Database Instance) Ensure the Pacemaker cluster has been setup for SAP HANA DB high availability
+- description: Ensure the Pacemaker cluster has been setup for SAP HANA DB high availability
   aprlGuid: 6648fe61-880d-4a96-8d2d-190a23d5580b
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
-  recommendationResourceType: n/a
+  recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
   longDescription: |
-    For the DBHANA-Pacemaker (Database Instance), ensure that the Pacemaker cluster configuration parameters are correctly set up for SAP HANA DB high availability.
+    For the DBHANA-Pacemaker (Database Instance), ensure that the Pacemaker cluster configuration parameters are correctly set up for SAP HANA database high availability.
   potentialBenefits: Enhances SAP HANA DB uptime
   pgVerified: true
   publishedToLearn: false
@@ -395,15 +395,15 @@
     - name: DBHANA-Pacemaker - Database Instance
       url: "https://docs.microsoft.com/en-us/azure/advisor/advisor-reference-reliability-recommendations"
 
-- description: DBHANA-LB (Database Instance) Ensure the load balancer is configured correctly for SAP HANA DB High availability
+- description: Ensure the load balancer is configured correctly for SAP HANA DB High availability
   aprlGuid: 2e4c2171-a83f-4238-a8e3-b51c90d86a99
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
-  recommendationResourceType: n/a
+  recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
   longDescription: |
-    For the DBHANA-LB (Database Instance), make sure the load balancer is configured correctly for SAP HANA DB high availability.
+    For the DBHANA-LB (Database Instance), make sure the load balancer is configured correctly for SAP HANA database high availability.
   potentialBenefits: Enhanced DB availability
   pgVerified: true
   publishedToLearn: false

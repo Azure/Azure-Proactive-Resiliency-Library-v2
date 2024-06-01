@@ -1,12 +1,22 @@
 <#
-The goal of this tool is to execute ARGs from APRL and export the results to a JSON file.
+.SYNOPSIS
+Well-Architected Reliability Assessment Script
 
-APRL Repo will be downloaded in the script's folder
+.DESCRIPTION
+The script "1_wara_collector" will execute the kusto queries from APRL (Azure Proactive Resiliency Library) against an Azure Environment and will export the results to a JSON file.
+
+.LINK
+https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2
+
 #>
 
 Param(
   [switch]$Debugging,
   [switch]$Help,
+  [switch]$SAP,
+  [switch]$AVD,
+  [switch]$AVS,
+  [switch]$HPC,
   $RunbookFile,
   $SubscriptionsFile,
   $SubscriptionIds,
@@ -18,14 +28,11 @@ Param(
 
 if ($Debugging.IsPresent) { $DebugPreference = 'Continue' } else { $DebugPreference = "silentlycontinue" }
 
-Clear-Host
+$Script:ShellPlatform = $PSVersionTable.Platform
 
-$Global:CShell = try { Get-CloudshellTip } catch { "" }
-$Global:SubscriptionIds = $SubscriptionIds
+$Script:Runtime = Measure-Command -Expression {
 
-$Global:Runtime = Measure-Command -Expression {
-
-  function CheckParameters {
+  function Test-SubscriptionParameter {
     if ([string]::IsNullOrEmpty($SubscriptionIds) -and [string]::IsNullOrEmpty($SubscriptionsFile))
       {
         Write-Host ""
@@ -35,7 +42,38 @@ $Global:Runtime = Measure-Command -Expression {
       }
   }
 
-  function Help {
+  Function Get-AllAzGraphResources {
+    param (
+      [string]$subscriptionId,
+      [string]$query = 'Resources | project id, resourceGroup, subscriptionId, name, type, location, properties'
+    )
+
+    if ([bool]$subscriptionId) {
+      $result = Search-AzGraph -Query $query -SkipToken $result.SkipToken -Subscription $subscriptionId -First 1000
+    } else {
+      $result = Search-AzGraph -Query $query -SkipToken $result.SkipToken -first 1000
+    } # -first 1000 returns the first 1000 results and subsequently reduces the amount of queries required to get data.
+
+    # Collection to store all resources
+    $allResources = @($result)
+
+    # Loop to paginate through the results using the skip token
+    while ($result.SkipToken) {
+      # Retrieve the next set of results using the skip token
+      if ([bool]$subscriptionId) {
+        $result = Search-AzGraph -Query $query -SkipToken $result.SkipToken -Subscription $subscriptionId -First 1000
+      } else {
+        $result = Search-AzGraph -Query $query -SkipToken $result.SkipToken -First 1000
+      }
+      # Add the results to the collection
+      $allResources += $result
+    }
+
+    # Output all resources
+    return $allResources
+  }
+
+  function Get-HelpMessage {
     Write-Host ""
     Write-Host "Parameters"
     Write-Host ""
@@ -59,21 +97,21 @@ $Global:Runtime = Measure-Command -Expression {
     Write-Host ""
   }
 
-  function Variables {
-    $Global:SubIds = ''
-    $Global:RunbookChecks = @{}
-    $Global:RunbookQueryOverrides = @()
-    $Global:RunbookSelectors = @{}
-    $Global:AllResourceTypes = @()
-    $Global:GluedTypes = @()
-    $Global:AllResourceTypesOrdered = @()
-    $Global:AllAdvisories = @()
-    $Global:AllRetirements = @()
-    $Global:AllServiceHealth = @()
-    $Global:results = @()
+  function Invoke-ResetVariable {
+    $Script:SubIds = ''
+    $Script:RunbookChecks = @{}
+    $Script:RunbookQueryOverrides = @()
+    $Script:RunbookSelectors = @{}
+    $Script:AllResourceTypes = @()
+    $Script:GluedTypes = @()
+    $Script:AllResourceTypesOrdered = @()
+    $Script:AllAdvisories = @()
+    $Script:AllRetirements = @()
+    $Script:AllServiceHealth = @()
+    $Script:results = @()
   }
 
-  function Requirements {
+  function Test-Requirement {
     # Install required modules
     try
       {
@@ -95,6 +133,13 @@ $Global:Runtime = Measure-Command -Expression {
             Write-Host "Missing Git" -ForegroundColor Red
             Exit
           }
+        $Script:ScriptData = [pscustomobject]@{
+            Version       = $Script:Version
+            SAP           = if($SAP.IsPresent){$true}else{$false}
+            AVD           = if($AVD.IsPresent){$true}else{$false}
+            AVS           = if($AVS.IsPresent){$true}else{$false}
+            HPC           = if($HPC.IsPresent){$true}else{$false}
+          }
       }
     catch
       {
@@ -104,93 +149,98 @@ $Global:Runtime = Measure-Command -Expression {
       }
   }
 
-  function LocalFiles {
-    Write-Debug "Setting local path"
-    try
+  function Set-LocalFile {
+    [CmdletBinding(SupportsShouldProcess, ConfirmImpact='Low')]
+    param()
+
+    if ($PSCmdlet.ShouldProcess(""))
       {
-        # Clone the GitHub repository to a temporary folder
-        #$repoUrl = "https://github.com/azure/Azure-Proactive-Resiliency-Library"
-        $repoUrl = "https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2"
+        Write-Debug "Setting local path"
+        try
+          {
+            # Clone the GitHub repository to a temporary folder
+            #$repoUrl = "https://github.com/azure/Azure-Proactive-Resiliency-Library"
+            $repoUrl = "https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2"
 
-        # Define script path as the default path to save files
-        $workingFolderPath = $PSScriptRoot
-        Set-Location -path $workingFolderPath;
-        if (!$Global:CShell)
-          {
-            $Global:clonePath = "$workingFolderPath\Azure-Proactive-Resiliency-Library"
-          }
-        else
-          {
-            $Global:clonePath = "$workingFolderPath/Azure-Proactive-Resiliency-Library"
-          }
-        Write-Debug "Checking default folder"
-        if ((Get-ChildItem -Path $Global:clonePath -Force -ErrorAction SilentlyContinue | Measure-Object).Count -gt 0)
-          {
-            Write-Debug "APRL Folder does exist. Reseting it..."
-            Get-Item -Path $Global:clonePath | Remove-Item -Recurse -Force
-            git clone $repoUrl $clonePath --quiet
-          }
-        else
-          {
-            git clone $repoUrl $clonePath --quiet
-          }
-        Write-Debug "Checking the version of the script"
-        if (!$Global:CShell)
-          {
-            $RepoVersion = Get-Content -Path "$clonePath/tools/Version.json" -ErrorAction SilentlyContinue | ConvertFrom-Json
-          }
-        else
-          {
-            $RepoVersion = Get-Content -Path "$clonePath\tools\Version.json" -ErrorAction SilentlyContinue | ConvertFrom-Json
-          }
-        if ($Version -ne $RepoVersion.Collector)
-          {
-            Write-Host "This version of the script is outdated. " -BackgroundColor DarkRed
-            Write-Host "Please use a more recent version of the script." -BackgroundColor DarkRed
-          }
-        else
-          {
-            Write-Host "This version of the script is current version. " -BackgroundColor DarkGreen
-          }
-
-        # Validates if queries are applicable based on Resource Types present in the current subscription
-        if (!$Global:CShell)
-          {
-            $RootTypes = Get-ChildItem -Path "$clonePath\azure-resources\" -Directory
-          }
-        else
-          {
-            $RootTypes = Get-ChildItem -Path "$clonePath/azure-resources/" -Directory
-          }
-        foreach ($RootType in $RootTypes)
-          {
-            $RootName = $RootType.Name
-            $SubTypes = Get-ChildItem -Path $RootType -Directory
-            foreach ($SubDir in $SubTypes)
+            # Define script path as the default path to save files
+            $workingFolderPath = $PSScriptRoot
+            Set-Location -path $workingFolderPath;
+            if ($Script:ShellPlatform -eq 'Win32NT')
               {
-                $SubDirName = $SubDir.Name
-                if (Get-ChildItem -Path $SubDir.FullName -File 'recommendations.yaml')
+                $Script:clonePath = "$workingFolderPath\Azure-Proactive-Resiliency-Library"
+              }
+            else
+              {
+                $Script:clonePath = "$workingFolderPath/Azure-Proactive-Resiliency-Library"
+              }
+            Write-Debug "Checking default folder"
+            if ((Get-ChildItem -Path $Script:clonePath -Force -ErrorAction SilentlyContinue | Measure-Object).Count -gt 0)
+              {
+                Write-Debug "APRL Folder does exist. Reseting it..."
+                Get-Item -Path $Script:clonePath | Remove-Item -Recurse -Force
+                git clone $repoUrl $clonePath --quiet
+              }
+            else
+              {
+                git clone $repoUrl $clonePath --quiet
+              }
+            Write-Debug "Checking the version of the script"
+            if ($Script:ShellPlatform -eq 'Win32NT')
+              {
+                $RepoVersion = Get-Content -Path "$clonePath/tools/Version.json" -ErrorAction SilentlyContinue | ConvertFrom-Json
+              }
+            else
+              {
+                $RepoVersion = Get-Content -Path "$clonePath\tools\Version.json" -ErrorAction SilentlyContinue | ConvertFrom-Json
+              }
+            if ($Version -ne $RepoVersion.Collector)
+              {
+                Write-Host "This version of the script is outdated. " -BackgroundColor DarkRed
+                Write-Host "Please use a more recent version of the script." -BackgroundColor DarkRed
+              }
+            else
+              {
+                Write-Host "This version of the script is current version. " -BackgroundColor DarkGreen
+              }
+
+            # Validates if queries are applicable based on Resource Types present in the current subscription
+            if ($Script:ShellPlatform -eq 'Win32NT')
+              {
+                $RootTypes = Get-ChildItem -Path "$clonePath\azure-resources\" -Directory
+              }
+            else
+              {
+                $RootTypes = Get-ChildItem -Path "$clonePath/azure-resources/" -Directory
+              }
+            foreach ($RootType in $RootTypes)
+              {
+                $RootName = $RootType.Name
+                $SubTypes = Get-ChildItem -Path $RootType -Directory
+                foreach ($SubDir in $SubTypes)
                   {
-                    $GlueType = ('Microsoft.' + $RootName + '/' + $SubDirName)
-                    $Global:GluedTypes += $GlueType.ToLower()
+                    $SubDirName = $SubDir.Name
+                    if (Get-ChildItem -Path $SubDir.FullName -File 'recommendations.yaml')
+                      {
+                        $GlueType = ('Microsoft.' + $RootName + '/' + $SubDirName)
+                        $Script:GluedTypes += $GlueType.ToLower()
+                      }
                   }
               }
           }
-      }
-    catch
-      {
-        # Report Error
-        $errorMessage = $_.Exception.Message
-        Write-Host "Error executing function LocalFiles: $errorMessage" -ForegroundColor Red
+        catch
+          {
+            # Report Error
+            $errorMessage = $_.Exception.Message
+            Write-Host "Error executing function LocalFiles: $errorMessage" -ForegroundColor Red
+          }
       }
   }
 
-  function ConnectToAzure {
+  function Connect-ToAzure {
     # Connect To Azure Tenant
     Write-Host "Authenticating to Azure"
-    if (!$Global:CShell)
+    if ($Script:ShellPlatform -eq 'Win32NT')
       {
-        az account clear | Out-Null
         Clear-AzContext -Force -ErrorAction SilentlyContinue -WarningAction SilentlyContinue -InformationAction SilentlyContinue
         if ([string]::IsNullOrEmpty($TenantID))
           {
@@ -213,21 +263,19 @@ $Global:Runtime = Measure-Command -Expression {
                 $defaultTenant = --$SelectedTenant
                 $TenantID = $Tenants[$defaultTenant]
                 Connect-AzAccount -Tenant $TenantID -WarningAction SilentlyContinue -Environment $AzureEnvironment
-                #az login --tenant $TenantID --only-show-errors
               }
           }
         else
           {
-            #az login --tenant $TenantID --only-show-errors
             Connect-AzAccount -Tenant $TenantID -WarningAction SilentlyContinue -Environment $AzureEnvironment
           }
         #Set the default variable with the list of subscriptions in case no Subscription File was informed
-        $Global:SubIds = Get-AzSubscription -TenantId $TenantID -WarningAction SilentlyContinue
+        $Script:SubIds = Get-AzSubscription -TenantId $TenantID -WarningAction SilentlyContinue
       }
     else
       {
         Connect-AzAccount -Identity -Environment $AzureEnvironment
-        $Global:SubIds = Get-AzSubscription -WarningAction SilentlyContinue
+        $Script:SubIds = Get-AzSubscription -WarningAction SilentlyContinue
       }
 
     # Getting Outages
@@ -268,12 +316,12 @@ $Global:Runtime = Measure-Command -Expression {
         catch { $null }
       }
 
-    $Global:Outageslist = $Outages.value | Where-Object { $_.properties.impactStartTime -gt $DateOutages } | Sort-Object @{Expression = "properties.eventlevel"; Descending = $false }, @{Expression = "properties.status"; Descending = $false } | Select-Object -Property name, properties -First 15
-    $Global:RetiredOutages = $Outages.value | Sort-Object @{Expression = "properties.eventlevel"; Descending = $false }, @{Expression = "properties.status"; Descending = $false } | Select-Object -Property name, properties
-    $Global:SupportTickets = $SupTickets.value | Where-Object { $_.properties.severity -ne 'Minimal' -and $_.properties.createdDate -gt $DateCore } | Select-Object -Property name, properties
+    $Script:Outageslist = $Outages.value | Where-Object { $_.properties.impactStartTime -gt $DateOutages } | Sort-Object @{Expression = "properties.eventlevel"; Descending = $false }, @{Expression = "properties.status"; Descending = $false } | Select-Object -Property name, properties -First 15
+    $Script:RetiredOutages = $Outages.value | Sort-Object @{Expression = "properties.eventlevel"; Descending = $false }, @{Expression = "properties.status"; Descending = $false } | Select-Object -Property name, properties
+    $Script:SupportTickets = $SupTickets.value | Where-Object { $_.properties.severity -ne 'Minimal' -and $_.properties.createdDate -gt $DateCore } | Select-Object -Property name, properties
   }
 
-  function Runbook {
+  function Test-Runbook {
     # Checks if a runbook file was provided and, if so, loads selectors and checks hashtables
     if (![string]::IsNullOrEmpty($RunbookFile)) {
 
@@ -287,25 +335,25 @@ $Global:Runtime = Measure-Command -Expression {
 
         # Try to load selectors
         $RunbookJson.selectors.PSObject.Properties | ForEach-Object {
-          $Global:RunbookSelectors[$_.Name.ToLower()] = $_.Value
+          $Script:RunbookSelectors[$_.Name.ToLower()] = $_.Value
         }
 
         # Try to load checks
         $RunbookJson.checks.PSObject.Properties | ForEach-Object {
-          $Global:RunbookChecks[$_.Name.ToLower()] = $_.Value
+          $Script:RunbookChecks[$_.Name.ToLower()] = $_.Value
         }
 
         # Try to load query overrides
         $RunbookJson.query_overrides | ForEach-Object {
-          $Global:RunbookQueryOverrides += [string]$_
+          $Script:RunbookQueryOverrides += [string]$_
         }
       }
 
-      Write-Host "The provided runbook includes $($Global:RunbookChecks.Count.ToString()) check(s). Only checks configured in the runbook will be run."
+      Write-Host "The provided runbook includes $($Script:RunbookChecks.Count.ToString()) check(s). Only checks configured in the runbook will be run."
     }
   }
 
-  function Subscriptions {
+  function Test-SubscriptionFile {
     # Checks if the Subscription file  and TenantID were informed
     if (![string]::IsNullOrEmpty($SubscriptionsFile))
       {
@@ -315,7 +363,7 @@ $Global:Runtime = Measure-Command -Expression {
         if (Test-Path $SubscriptionsFile -PathType Leaf)
           {
             # Read the content of the file and split it into an array of subscription IDs
-            $Global:SubIds = Get-Content $SubscriptionsFile -ErrorAction Stop | ForEach-Object { $_ -split ',' }
+            $Script:SubIds = Get-Content $SubscriptionsFile -ErrorAction Stop | ForEach-Object { $_ -split ',' }
 
             # Display the subscription IDs
             Write-Host "---------------------------------------------------------------------"
@@ -332,7 +380,7 @@ $Global:Runtime = Measure-Command -Expression {
       }
   }
 
-  function PSExtraction {
+  function Invoke-PSModule {
     $SideScripts = Get-ChildItem -Path "$PSScriptRoot\Azure-Proactive-Resiliency-Library\docs\content\services" -Filter "*.ps1" -Recurse
     if (![string]::IsNullOrEmpty($SubscriptionIds) -and [string]::IsNullOrEmpty($SubscriptionsFile)) {
       $SubIds = $SubIds | Where-Object { $_.Id -in $SubscriptionIds }
@@ -377,7 +425,7 @@ $Global:Runtime = Measure-Command -Expression {
           Set-Variable -Name ('ScriptValue_' + $ScriptName) -Value (((get-variable -name ('ScriptRun_' + $ScriptName)).Value).EndInvoke((get-variable -name ('ScriptJob_' + $ScriptName)).Value))
         }
 
-        $Hashtable = New-Object System.Collections.Hashtable
+        $Hashtable = @{}
 
         foreach ($Script in $ViableScripts) {
           $ScriptName = $Script.Name.Substring(0, $Script.Name.length - ".ps1".length)
@@ -419,7 +467,7 @@ $Global:Runtime = Measure-Command -Expression {
               checkName        = ''
             }
             if (![string]::IsNullOrEmpty($result.recommendationId)) {
-              $Global:results += $result
+              $Script:results += $result
             }
           }
         }
@@ -431,49 +479,26 @@ $Global:Runtime = Measure-Command -Expression {
     }
   }
 
-  function ResourceExtraction {
+  function Start-ResourceExtraction {
+    [CmdletBinding(SupportsShouldProcess, ConfirmImpact='Low')]
+    param()
 
-    function QueryCollector {
-      param($Subid, $type, $query, $checkId, $checkName, $validationAction)
-      try
-        {
-          $ResourceType = $Global:AllResourceTypes | Where-Object { $_.type -eq $type -and $_.subscriptionId -eq $Subid }
-          if ($resourceType.count_ -lt 1000)
+    if ($PSCmdlet.ShouldProcess(""))
+      {
+        function Invoke-QueryExecution {
+          param($Subid, $type, $query, $checkId, $checkName, $validationAction)
+
+          try
             {
-              # Execute the query and collect the results
-              $queryResults = Search-AzGraph -Query $query -First 1000 -Subscription $Subid -ErrorAction SilentlyContinue
-
-              $queryResults = $queryResults | Select-Object -Property name,id,param1,param2,param3,param4,param5 -Unique
-
-              foreach ($row in $queryResults)
+              $ResourceType = $Script:AllResourceTypes | Where-Object { $_.type -eq $type -and $_.subscriptionId -eq $Subid }
+              if (![string]::IsNullOrEmpty($resourceType))
                 {
+                  # Execute the query and collect the results
+                  # $queryResults = Search-AzGraph -Query $query -First 1000 -Subscription $Subid -ErrorAction SilentlyContinue
+                  $queryResults = Get-AllAzGraphResources -query $query -subscriptionId $Subid
 
-                  $result = [PSCustomObject]@{
-                    validationAction = [string]$validationAction
-                    recommendationId = [string]$checkId
-                    name             = [string]$row.name
-                    id               = [string]$row.id
-                    param1           = [string]$row.param1
-                    param2           = [string]$row.param2
-                    param3           = [string]$row.param3
-                    param4           = [string]$row.param4
-                    param5           = [string]$row.param5
-                    checkName        = [string]$checkName
-                    selector         = [string]$selector
-                  }
-                  $Global:results += $result
-                }
-            }
-          else
-            {
-              $Loop = $resourceType.count_ / 1000
-              $Loop = [math]::ceiling($Loop)
-              $Looper = 0
-              $Limit = 1
+                  $queryResults = $queryResults | Select-Object -Property name,id,param1,param2,param3,param4,param5 -Unique
 
-              while ($Looper -lt $Loop)
-                {
-                  $queryResults = Search-AzGraph -Query ($query + '| order by id') -Subscription $Subid -Skip $Limit -first 1000 -ErrorAction SilentlyContinue
                   foreach ($row in $queryResults)
                     {
                       $result = [PSCustomObject]@{
@@ -489,337 +514,399 @@ $Global:Runtime = Measure-Command -Expression {
                         checkName        = [string]$checkName
                         selector         = [string]$selector
                       }
-                      $Global:results += $result
+                      $Script:results += $result
                     }
-                  $Looper ++
-                  $Limit = $Limit + 1000
-              }
+                }
+
+              if ($type -like '*azure-specialized-workloads/*')
+                {
+                  $result = [PSCustomObject]@{
+                    validationAction = [string]$validationAction
+                    recommendationId = [string]$checkId
+                    name             = [string]""
+                    id               = [string]""
+                    param1           = [string]""
+                    param2           = [string]""
+                    param3           = [string]""
+                    param4           = [string]""
+                    param5           = [string]""
+                    checkName        = [string]$checkName
+                    selector         = [string]$selector
+                  }
+                  $Script:results += $result
+                }
+            }
+          catch
+            {
+              # Report Error
+              $errorMessage = $_.Exception.Message
+              Write-Host "Error processing query results: $errorMessage" -ForegroundColor Red
             }
         }
-      catch
-        {
-          # Report Error
-          $errorMessage = $_.Exception.Message
-          Write-Host "Error processing query results: $errorMessage" -ForegroundColor Red
-        }
-    }
 
-
-    if (![string]::IsNullOrEmpty($SubscriptionIds) -and [string]::IsNullOrEmpty($SubscriptionsFile))
-      {
-        $SubIds = $SubIds | Where-Object { $_.Id -in $SubscriptionIds }
-      }
-
-    # Set the variables used in the loop
-    foreach ($Subid in $SubIds)
-      {
-        if ([string]::IsNullOrEmpty($subid.name))
+        if (![string]::IsNullOrEmpty($SubscriptionIds) -and [string]::IsNullOrEmpty($SubscriptionsFile))
           {
-            # If the variable was set in the Subscription File only IDs will be available
-            $Subid = $Subid
-            $SubName = $Subid
+            $SubIds = $SubIds | Where-Object { $_.Id -in $SubscriptionIds }
           }
-        else
+
+        # Set the variables used in the loop
+        foreach ($Subid in $SubIds)
           {
-            # If using the variable set during the login to Azure, Subscription Name is available
-            $SubName = $Subid.Name
-            $Subid = $Subid.id
-          }
-        Write-Host "---------------------------------------------------------------------"
-        Write-Host "Validating Subscription: " -NoNewline
-        Write-Host $SubName -ForegroundColor Cyan
-
-        Set-AzContext -Subscription $Subid -ErrorAction SilentlyContinue -WarningAction SilentlyContinue | Out-Null
-
-        #Write-Host "Collecting: " -NoNewline
-        #Write-Host "Advisories" -ForegroundColor Magenta
-        #Advisory $Subid
-
-        Write-Host "----------------------------"
-        Write-Host "Collecting: " -NoNewline
-        Write-Host "Retirements" -ForegroundColor Magenta
-        Retirement $Subid
-
-        Write-Host "----------------------------"
-        Write-Host "Collecting: " -NoNewline
-        Write-Host "Service Health Alerts" -ForegroundColor Magenta
-        ServiceHealth $Subid
-
-
-        if (![string]::IsNullOrEmpty($ResourceGroups))
-          {
-            $resultAllResourceTypes = @()
-            foreach ($RG in $ResourceGroups)
+            if ([string]::IsNullOrEmpty($subid.name))
               {
-                $resultAllResourceTypes += Search-AzGraph -Query "resources | where resourceGroup =~ '$RG' | summarize count() by type, subscriptionId" -Subscription $Subid
+                # If the variable was set in the Subscription File only IDs will be available
+                $Subid = $Subid
+                $SubName = $Subid
               }
-            $Global:AllResourceTypes += $resultAllResourceTypes
-          }
-        else
-          {
-            # Extract and display resource types with the query with subscriptions, we need this to filter the subscriptions later
-            $resultAllResourceTypes = Search-AzGraph -Query "resources | summarize count() by type, subscriptionId" -Subscription $Subid
-            $Global:AllResourceTypes += $resultAllResourceTypes
-          }
-
-        # Create the arrays used to store the kusto queries
-        $kqlQueryMap = @{}
-        $aprlKqlFiles = @()
-        $ServiceNotAvailable = @()
-
-        foreach ($Type in $resultAllResourceTypes.type)
-          {
-            if ($Type.ToLower() -in $Global:GluedTypes)
+            else
               {
-                $Type = $Type.replace('microsoft.', '')
-                $Provider = $Type.split('/')[0]
-                $ResourceType = $Type.split('/')[1]
+                # If using the variable set during the login to Azure, Subscription Name is available
+                $SubName = $Subid.Name
+                $Subid = $Subid.id
+              }
+            Write-Host "---------------------------------------------------------------------"
+            Write-Host "Validating Subscription: " -NoNewline
+            Write-Host $SubName -ForegroundColor Cyan
 
-                $Path = ""
-                if (!$Global:CShell)
+            Set-AzContext -Subscription $Subid -ErrorAction SilentlyContinue -WarningAction SilentlyContinue | Out-Null
+
+            #Write-Host "Collecting: " -NoNewline
+            #Write-Host "Advisories" -ForegroundColor Magenta
+            #Invoke-AdvisoryExtraction $Subid
+
+            Write-Host "----------------------------"
+            Write-Host "Collecting: " -NoNewline
+            Write-Host "Retirements" -ForegroundColor Magenta
+            Invoke-RetirementExtraction $Subid
+
+            Write-Host "----------------------------"
+            Write-Host "Collecting: " -NoNewline
+            Write-Host "Service Health Alerts" -ForegroundColor Magenta
+            Invoke-ServiceHealthExtraction $Subid
+
+
+            if (![string]::IsNullOrEmpty($ResourceGroups))
+              {
+                $resultAllResourceTypes = @()
+                foreach ($RG in $ResourceGroups)
                   {
-                    $Path = ($clonePath + '\azure-resources\' + $Provider + '\' + $ResourceType)
-                    $aprlKqlFiles += Get-ChildItem -Path $Path -Filter "*.kql" -Recurse
+                    $resultAllResourceTypes += Search-AzGraph -Query "resources | where resourceGroup =~ '$RG' | summarize count() by type, subscriptionId" -Subscription $Subid
+                  }
+                $Script:AllResourceTypes += $resultAllResourceTypes
+              }
+            else
+              {
+                # Extract and display resource types with the query with subscriptions, we need this to filter the subscriptions later
+                $resultAllResourceTypes = Search-AzGraph -Query "resources | summarize count() by type, subscriptionId" -Subscription $Subid
+                $Script:AllResourceTypes += $resultAllResourceTypes
+              }
+
+            # Create the arrays used to store the kusto queries
+            $kqlQueryMap = @{}
+            $aprlKqlFiles = @()
+            $ServiceNotAvailable = @()
+
+            foreach ($Type in $resultAllResourceTypes.type)
+              {
+                if ($Type.ToLower() -in $Script:GluedTypes)
+                  {
+                    $Type = $Type.replace('microsoft.', '')
+                    $Provider = $Type.split('/')[0]
+                    $ResourceType = $Type.split('/')[1]
+
+                    $Path = ""
+                    if ($Script:ShellPlatform -eq 'Win32NT')
+                      {
+                        $Path = ($clonePath + '\azure-resources\' + $Provider + '\' + $ResourceType)
+                        $aprlKqlFiles += Get-ChildItem -Path $Path -Filter "*.kql" -Recurse
+                      }
+                    else
+                      {
+                        $Path = ($clonePath + '/azure-resources/')
+                        $ProvPath = ($Provider + '/' + $ResourceType)
+                        $aprlKqlFiles += Get-ChildItem -Path $Path -Filter "*.kql" -Recurse | Where-Object {$_.FullName -like "*$ProvPath*"}
+                      }
                   }
                 else
                   {
-                    $Path = ($clonePath + '/azure-resources/')
-                    $ProvPath = ($Provider + '/' + $ResourceType)
-                    $aprlKqlFiles += Get-ChildItem -Path $Path -Filter "*.kql" -Recurse | Where-Object {$_.FullName -like "*$ProvPath*"}
+                    $ServiceNotAvailable += $Type
                   }
               }
-            else
-              {
-                $ServiceNotAvailable += $Type
-              }
-          }
 
-        # Populates the QueryMap hashtable
-        foreach ($aprlKqlFile in $aprlKqlFiles)
-          {
-            if (!$Global:CShell)
-              {
-                $kqlShort = [string]$aprlKqlFile.FullName.split('\')[-1]
-              }
-            else
-              {
-                $kqlShort = [string]$aprlKqlFile.FullName.split('/')[-1]
-              }
-            $kqlName = $kqlShort.split('.')[0]
-
-            # Create APRL query map based on recommendation
-            $kqlQueryMap[$kqlName] = $aprlKqlFile
-          }
-
-        if ($Global:RunbookQueryOverrides) {
-          foreach ($queryOverridePath in $($Global:RunbookQueryOverrides)) {
-            Write-Host "Loading [$($queryOverridePath)] query overrides..." -ForegroundColor Cyan
-
-            $overrideKqlFiles = Get-ChildItem -Path $queryOverridePath -Filter "*.kql" -Recurse
-
-            foreach ($overrideKqlFile in $overrideKqlFiles) {
-              if (!$Global:CShell) {
-                $kqlShort = [string]$overrideKqlFile.FullName.split('\')[-1]
-              }
-              else {
-                $kqlShort = [string]$overrideKqlFile.FullName.split('/')[-1]
-              }
-              $kqlName = $kqlShort.split('.')[0]
-
-              Write-Host "Override KQL file: $kqlName"
-
-              if ($kqlQueryMap.ContainsKey($kqlName)) {
-                Write-Host "Original [$kqlName] APRL query overridden by [$($overrideKqlFile.FullName)]." -ForegroundColor Yellow
-              }
-
-              # Override APRL query map based on recommendation
-              $kqlQueryMap[$kqlName] = $overrideKqlFile
+          # Checks if specialized workloads will be validated
+          if ($SAP.IsPresent)
+            {
+              if ($Script:ShellPlatform -eq 'Win32NT')
+                {
+                  $aprlKqlFiles += Get-ChildItem -Path ($clonePath+ '\azure-specialized-workloads\sap') -Filter "*.kql" -Recurse
+                }
+              else
+                {
+                  $aprlKqlFiles += Get-ChildItem -Path ($clonePath+ '/azure-specialized-workloads/sap') -Filter "*.kql" -Recurse
+                }
             }
-          }
-        }
 
-        $kqlFiles = $kqlQueryMap.Values
+          if ($AVD.IsPresent)
+            {
+              if ($Script:ShellPlatform -eq 'Win32NT')
+                {
+                  $aprlKqlFiles += Get-ChildItem -Path ($clonePath+ '\azure-specialized-workloads\avd') -Filter "*.kql" -Recurse
+                }
+              else
+                {
+                  $aprlKqlFiles += Get-ChildItem -Path ($clonePath+ '/azure-specialized-workloads/avd') -Filter "*.kql" -Recurse
+                }
+            }
 
-        $queries = @()
-        # Loop through each KQL file and execute the queries
-        foreach ($kqlFile in $kqlFiles)
-          {
-            if (!$Global:CShell)
+          if ($AVS.IsPresent)
+            {
+              if ($Script:ShellPlatform -eq 'Win32NT')
+                {
+                  $aprlKqlFiles += Get-ChildItem -Path ($clonePath+ '\azure-specialized-workloads\avs') -Filter "*.kql" -Recurse
+                }
+              else
+                {
+                  $aprlKqlFiles += Get-ChildItem -Path ($clonePath+ '/azure-specialized-workloads/avs') -Filter "*.kql" -Recurse
+                }
+            }
+
+          if ($HPC.IsPresent)
+            {
+              if ($Script:ShellPlatform -eq 'Win32NT')
+                {
+                  $aprlKqlFiles += Get-ChildItem -Path ($clonePath+ '\azure-specialized-workloads\hpc') -Filter "*.kql" -Recurse
+                }
+              else
+                {
+                  $aprlKqlFiles += Get-ChildItem -Path ($clonePath+ '/azure-specialized-workloads/hpc') -Filter "*.kql" -Recurse
+                }
+            }
+
+
+            # Populates the QueryMap hashtable
+            foreach ($aprlKqlFile in $aprlKqlFiles)
               {
-                $kqlshort = [string]$kqlFile.FullName.split('\')[-1]
+                if ($Script:ShellPlatform -eq 'Win32NT')
+                  {
+                    $kqlShort = [string]$aprlKqlFile.FullName.split('\')[-1]
+                  }
+                else
+                  {
+                    $kqlShort = [string]$aprlKqlFile.FullName.split('/')[-1]
+                  }
+                $kqlName = $kqlShort.split('.')[0]
+
+                # Create APRL query map based on recommendation
+                $kqlQueryMap[$kqlName] = $aprlKqlFile
               }
-            else
-              {
-                $kqlshort = [string]$kqlFile.FullName.split('/')[-1]
-              }
 
-            $kqlname = $kqlshort.split('.')[0]
+            if ($Script:RunbookQueryOverrides) {
+              foreach ($queryOverridePath in $($Script:RunbookQueryOverrides)) {
+                Write-Host "Loading [$($queryOverridePath)] query overrides..." -ForegroundColor Cyan
 
-            # Read the query content from the file
-            $baseQuery = Get-Content -Path $kqlFile.FullName | Out-String
-            if (!$Global:CShell)
-              {
-                $typeRaw = $kqlFile.DirectoryName.split('\')
-              }
-            else
-              {
-                $typeRaw = $kqlFile.DirectoryName.split('/')
-              }
-            $kqltype = ('microsoft.' + $typeRaw[-3] + '/' + $typeRaw[-2])
+                $overrideKqlFiles = Get-ChildItem -Path $queryOverridePath -Filter "*.kql" -Recurse
 
-            $checkId = $kqlname.Split("/")[-1].ToLower()
-
-            if ($Global:RunbookChecks -and $Global:RunbookChecks.Count -gt 0) {
-              # A runbook has been provided...
-
-              if ($Global:RunbookChecks.ContainsKey($checkId)) {
-                # A check has been configured in the runbook for this query...
-
-                $check = $Global:RunbookChecks[$checkId]
-
-                $check.PSObject.Properties | ForEach-Object {
-                  $checkName = $_.Name
-                  $selectorName = $_.Value
-
-                  if ($Global:RunbookSelectors.ContainsKey($selectorName)) {
-                    # If a matching selector exists, add a new query to the queries array
-                    # that includes the appropriate selector...
-
-                    $selector = $Global:RunbookSelectors[$selectorName]
-
-                    # First, resolve any // selectors in the query...
-
-                    $selectorQuery = $baseQuery.Replace("// selector", "| where $selector")
-
-                    # Then, wrap the entire query in an inner join to apply a global selector.
-                    # With this approach, queries that implement the APRL interface
-                    # (projecting the recId, id, tags, etc.) columns can be refined using
-                    # selectors without any changes to the original query. The original query
-                    # is wrapped in an inner join that limits the results to only those that
-                    # match the selector.
-
-                    $selectorQuery = "resources " `
-                      + " | where $selector " `
-                      + " | project id " `
-                      + " | join kind=inner ( " `
-                      + " $selectorQuery ) on id " `
-                      + " | project-away id1"
-
-                    $queries += [PSCustomObject]@{
-                      checkId   = [string]$checkId
-                      checkName = [string]$checkName
-                      selector  = [string]$selectorName
-                      query     = [string]$selectorQuery
-                      type      = $null
-                    }
+                foreach ($overrideKqlFile in $overrideKqlFiles) {
+                  if ($Script:ShellPlatform -eq 'Win32NT') {
+                    $kqlShort = [string]$overrideKqlFile.FullName.split('\')[-1]
                   }
                   else {
-                    Write-Host "Selector $selectorName not found in runbook. Skipping check..." -ForegroundColor Yellow
+                    $kqlShort = [string]$overrideKqlFile.FullName.split('/')[-1]
+                  }
+                  $kqlName = $kqlShort.split('.')[0]
+
+                  Write-Host "Override KQL file: $kqlName"
+
+                  if ($kqlQueryMap.ContainsKey($kqlName)) {
+                    Write-Host "Original [$kqlName] APRL query overridden by [$($overrideKqlFile.FullName)]." -ForegroundColor Yellow
+                  }
+
+                  # Override APRL query map based on recommendation
+                  $kqlQueryMap[$kqlName] = $overrideKqlFile
+                }
+              }
+            }
+
+            $kqlFiles = $kqlQueryMap.Values
+
+            $queries = @()
+            # Loop through each KQL file and execute the queries
+            foreach ($kqlFile in $kqlFiles)
+              {
+                if ($Script:ShellPlatform -eq 'Win32NT')
+                  {
+                    $kqlshort = [string]$kqlFile.FullName.split('\')[-1]
+                  }
+                else
+                  {
+                    $kqlshort = [string]$kqlFile.FullName.split('/')[-1]
+                  }
+
+                $kqlname = $kqlshort.split('.')[0]
+
+                # Read the query content from the file
+                $baseQuery = Get-Content -Path $kqlFile.FullName | Out-String
+                if ($Script:ShellPlatform -eq 'Win32NT')
+                  {
+                    $typeRaw = $kqlFile.DirectoryName.split('\')
+                  }
+                else
+                  {
+                    $typeRaw = $kqlFile.DirectoryName.split('/')
+                  }
+                $kqltype = ('microsoft.' + $typeRaw[-3] + '/' + $typeRaw[-2])
+
+                $checkId = $kqlname.Split("/")[-1].ToLower()
+
+                if ($Script:RunbookChecks -and $Script:RunbookChecks.Count -gt 0) {
+                  # A runbook has been provided...
+
+                  if ($Script:RunbookChecks.ContainsKey($checkId)) {
+                    # A check has been configured in the runbook for this query...
+
+                    $check = $Script:RunbookChecks[$checkId]
+
+                    $check.PSObject.Properties | ForEach-Object {
+                      $checkName = $_.Name
+                      $selectorName = $_.Value
+
+                      if ($Script:RunbookSelectors.ContainsKey($selectorName)) {
+                        # If a matching selector exists, add a new query to the queries array
+                        # that includes the appropriate selector...
+
+                        $selector = $Script:RunbookSelectors[$selectorName]
+
+                        # First, resolve any // selectors in the query...
+
+                        $selectorQuery = $baseQuery.Replace("// selector", "| where $selector")
+
+                        # Then, wrap the entire query in an inner join to apply a global selector.
+                        # With this approach, queries that implement the APRL interface
+                        # (projecting the recId, id, tags, etc.) columns can be refined using
+                        # selectors without any changes to the original query. The original query
+                        # is wrapped in an inner join that limits the results to only those that
+                        # match the selector.
+
+                        $selectorQuery = "resources " `
+                          + " | where $selector " `
+                          + " | project id " `
+                          + " | join kind=inner ( " `
+                          + " $selectorQuery ) on id " `
+                          + " | project-away id1"
+
+                        $queries += [PSCustomObject]@{
+                          checkId   = [string]$checkId
+                          checkName = [string]$checkName
+                          selector  = [string]$selectorName
+                          query     = [string]$selectorQuery
+                          type      = $null
+                        }
+                      }
+                      else {
+                        Write-Host "Selector $selectorName not found in runbook. Skipping check..." -ForegroundColor Yellow
+                      }
+                    }
+                  }
+
+                  if ($queries.Count -gt 0) {
+                    Write-Host "There are $($queries.Count.ToString()) runbook checks configured for $checkId. Running checks..." -ForegroundColor Green
+                  }
+                }
+                else {
+                  # A runbook hasn't been configured. The queries array will contain
+                  # just one element -- the original query. No selectors.
+
+                  $queries += [PSCustomObject]@{
+                    checkId   = [string]$checkId
+                    checkName = [string]$null
+                    selector  = "APRL"
+                    query     = [string]$baseQuery
+                    type      = [string]$kqltype
                   }
                 }
               }
 
-              if ($queries.Count -gt 0) {
-                Write-Host "There are $($queries.Count.ToString()) runbook checks configured for $checkId. Running checks..." -ForegroundColor Green
-              }
-            }
-            else {
-              # A runbook hasn't been configured. The queries array will contain
-              # just one element -- the original query. No selectors.
-
-              $queries += [PSCustomObject]@{
-                checkId   = [string]$checkId
-                checkName = [string]$null
-                selector  = "APRL"
-                query     = [string]$baseQuery
-                type      = [string]$kqltype
-              }
-            }
-          }
-
-        foreach ($queryDef in $queries)
-          {
-            $checkId = $queryDef.checkId
-            $checkName = $queryDef.checkName
-            $query = $queryDef.query
-            $selector = $queryDef.selector
-            $type = $queryDef.type
-
-            Write-Host "++++++++++++++++++ " -NoNewline
-            if ($selector -eq 'APRL') {
-              Write-Host "[APRL]: Microsoft.$type - $checkId" -ForegroundColor Green -NoNewline
-            }
-            else {
-              Write-Host "[$selector]: $checkId" -ForegroundColor Green -NoNewline
-            }
-            Write-Host " +++++++++++++++"
-
-            # Validating if Query is Under Development
-            if ($query -match "development")
+            foreach ($queryDef in $queries)
               {
-                Write-Host "Query $checkId under development - Validate Recommendation manually" -ForegroundColor Yellow
-                $query = "resources | where type =~ '$type' | project name,id"
-                QueryCollector $Subid $type $query $checkId $checkName 'Query under development - Validate Recommendation manually'
-              }
-            elseif ($query -match "cannot-be-validated-with-arg")
-              {
-                Write-Host "IMPORTANT - Recommendation $checkId cannot be validated with ARGs - Validate Resources manually" -ForegroundColor Yellow
-                $query = "resources | where type =~ '$type' | project name,id"
-                QueryCollector $Subid $type $query $checkId $checkName 'IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually'
-              }
-            else
-              {
-                QueryCollector $Subid $type $query $checkId $checkName 'Azure Resource Graph'
-              }
-          }
+                $checkId = $queryDef.checkId
+                $checkName = $queryDef.checkName
+                $query = $queryDef.query
+                $selector = $queryDef.selector
+                $type = $queryDef.type
 
-        #After processing the ARG Queries, now is time to process the -ResourceGroups
-        if (![string]::IsNullOrEmpty($ResourceGroups))
-          {
-            $TempResult = $Global:results
-            $Global:results = @()
+                Write-Host "++++++++++++++++++ " -NoNewline
+                if ($selector -eq 'APRL') {
+                  Write-Host "[APRL]: Microsoft.$type - $checkId" -ForegroundColor Green -NoNewline
+                }
+                else {
+                  Write-Host "[$selector]: $checkId" -ForegroundColor Green -NoNewline
+                }
+                Write-Host " +++++++++++++++"
 
-            foreach ($result in $TempResult)
-              {
-                $res = $result.id.split('/')
-                if ($res[4] -in $ResourceGroups)
+                # Validating if Query is Under Development
+                if ($query -match "development")
                   {
-                    $Global:results += $result
+                    Write-Host "Query $checkId under development - Validate Recommendation manually" -ForegroundColor Yellow
+                    $query = "resources | where type =~ '$type' | project name,id"
+                    Invoke-QueryExecution -Subid $Subid -type $type -query $query -checkId $checkId -checkName $checkName -validationAction 'IMPORTANT - Query under development - Validate Recommendation manually'
                   }
-                if ($result.name -eq "Query under development - Validate Recommendation manually")
+                elseif ($query -match "cannot-be-validated-with-arg")
                   {
-                    $Global:results += $result
+                    Write-Host "IMPORTANT - Recommendation $checkId cannot be validated with ARGs - Validate Resources manually" -ForegroundColor Yellow
+                    $query = "resources | where type =~ '$type' | project name,id"
+                    Invoke-QueryExecution -Subid $Subid -type $type -query $query -checkId $checkId -checkName $checkName -validationAction 'IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually'
+                  }
+                else
+                  {
+                    Invoke-QueryExecution -Subid $Subid -type $type -query $query -checkId $checkId -checkName $checkName -validationAction 'Azure Resource Graph'
                   }
               }
-          }
 
-        #Store all resourcetypes not in APRL
-        foreach ($type in $ServiceNotAvailable)
-          {
-            Write-Host "Type $type Not Available In APRL - Validate Service manually" -ForegroundColor Yellow
-            $result = [PSCustomObject]@{
-              validationAction = 'Service Not Available In APRL - Validate Service manually if Applicable, if not Delete this line'
-              recommendationId = $type
-              name             = ""
-              id               = ""
-              param1           = ""
-              param2           = ""
-              param3           = ""
-              param4           = ""
-              param5           = ""
-              checkName        = ""
-              selector         = "APRL"
-            }
-            $Global:results += $result
+            #After processing the ARG Queries, now is time to process the -ResourceGroups
+            if (![string]::IsNullOrEmpty($ResourceGroups))
+              {
+                $TempResult = $Script:results
+                $Script:results = @()
+
+                foreach ($result in $TempResult)
+                  {
+                    $res = $result.id.split('/')
+                    if ($res[4] -in $ResourceGroups)
+                      {
+                        $Script:results += $result
+                      }
+                    if ($result.name -eq "Query under development - Validate Recommendation manually")
+                      {
+                        $Script:results += $result
+                      }
+                  }
+              }
+
+            #Store all resourcetypes not in APRL
+            foreach ($type in $ServiceNotAvailable)
+              {
+                Write-Host "Type $type Not Available In APRL - Validate Service manually" -ForegroundColor Yellow
+                $query = "resources | where type =~ '$type' | project name,id"
+                Invoke-QueryExecution -Subid $Subid -type $type -query $query -checkId $type -checkName '' -validationAction 'IMPORTANT - Service Not Available In APRL - Validate Service manually if Applicable, if not Delete this line'
+              }
           }
       }
   }
 
-  function ResourceTypes {
-    $TempTypes = $Global:results | Where-Object { $_.validationAction -eq 'Service Not Available In APRL - Validate Service manually if Applicable, if not Delete this line' }
-    $Global:AllResourceTypes = $Global:AllResourceTypes | Sort-Object -Property Count_ -Descending
-    foreach ($result in $Global:AllResourceTypes)
+  function Resolve-ResourceType {
+    $TempTypes = $Script:results | Where-Object { $_.validationAction -eq 'IMPORTANT - Service Not Available In APRL - Validate Service manually if Applicable, if not Delete this line' }
+    $Script:AllResourceTypes = $Script:AllResourceTypes | Sort-Object -Property Count_ -Descending
+    $Looper = $Script:AllResourceTypes | Select-Object -Property type,subscriptionId -Unique
+    foreach ($result in $Looper)
       {
+        if(($Script:AllResourceTypes | Where-Object {$_.type -eq $result.type -and $_.SubscriptionId -eq $result.subscriptionId}).count -eq 1)
+          {
+            $ResourceTypeCount = ($Script:AllResourceTypes | Where-Object {$_.type -eq $result.type -and $_.SubscriptionId -eq $result.subscriptionId}).count_
+          }
+        else
+          {
+            $ResourceTypeCount = (($Script:AllResourceTypes | Where-Object {$_.type -eq $result.type -and $_.SubscriptionId -eq $result.subscriptionId}).count_ | Measure-Object -Sum).Sum
+          }
         if ($result.type -in $TempTypes.recommendationId)
           {
             $SubName = ''
@@ -827,33 +914,33 @@ $Global:Runtime = Measure-Command -Expression {
             $tmp = [PSCustomObject]@{
               'Subscription'        = [string]$SubName
               'Resource Type'       = [string]$result.type
-              'Number of Resources' = [string]$result.count_
+              'Number of Resources' = [string]$ResourceTypeCount
               'Available in APRL?'  = "No"
               'Custom1'             = ""
               'Custom2'             = ""
               'Custom3'             = ""
             }
-            $Global:AllResourceTypesOrdered += $tmp
+            $Script:AllResourceTypesOrdered += $tmp
           }
-        else
+        elseif ($result.type -notin $TempTypes.recommendationId)
           {
             $SubName = ''
             $SubName = ($SubIds | Where-Object { $_.Id -eq $result.subscriptionId }).Name
             $tmp = [PSCustomObject]@{
               'Subscription'        = [string]$SubName
               'Resource Type'       = [string]$result.type
-              'Number of Resources' = [string]$result.count_
+              'Number of Resources' = [string]$ResourceTypeCount
               'Available in APRL?'  = "Yes"
               'Custom1'             = ""
               'Custom2'             = ""
               'Custom3'             = ""
             }
-            $Global:AllResourceTypesOrdered += $tmp
+            $Script:AllResourceTypesOrdered += $tmp
           }
       }
   }
 
-  function Advisory {
+  function Invoke-AdvisoryExtraction {
     Param($Subid)
     if (![string]::IsNullOrEmpty($ResourceGroups))
       {
@@ -879,7 +966,7 @@ $Global:Runtime = Measure-Command -Expression {
                           impact           = [string]$row.properties.impact
                           description      = [string]$row.properties.shortDescription.solution
                         }
-                        $Global:AllAdvisories += $result
+                        $Script:AllAdvisories += $result
                     }
                   }
               }
@@ -907,7 +994,7 @@ $Global:Runtime = Measure-Command -Expression {
                               impact           = [string]$row.properties.impact
                               description      = [string]$row.properties.shortDescription.solution
                             }
-                            $Global:AllAdvisories += $result
+                            $Script:AllAdvisories += $result
                         }
                       }
                     $Looper ++
@@ -939,7 +1026,7 @@ $Global:Runtime = Measure-Command -Expression {
                     impact           = [string]$row.properties.impact
                     description      = [string]$row.properties.shortDescription.solution
                   }
-                  $Global:AllAdvisories += $result
+                  $Script:AllAdvisories += $result
                 }
             }
         }
@@ -967,7 +1054,7 @@ $Global:Runtime = Measure-Command -Expression {
                       impact           = [string]$row.properties.impact
                       description      = [string]$row.properties.shortDescription.solution
                     }
-                    $Global:AllAdvisories += $result
+                    $Script:AllAdvisories += $result
                   }
               }
             $Looper ++
@@ -977,9 +1064,9 @@ $Global:Runtime = Measure-Command -Expression {
       }
   }
 
-  function SupportTickets {
-    $Tickets = $Global:SupportTickets
-    $Global:SupportTickets = @()
+  function Resolve-SupportTicket {
+    $Tickets = $Script:SupportTickets
+    $Script:SupportTickets = @()
     foreach ($Ticket in $Tickets)
         {
               $tmp = @{
@@ -992,11 +1079,11 @@ $Global:Runtime = Measure-Command -Expression {
                 'Title'             = [string]$Ticket.properties.title;
                 'Related Resource'  = [string]$Ticket.properties.technicalTicketDetails.resourceId
               }
-              $Global:SupportTickets += $tmp
+              $Script:SupportTickets += $tmp
         }
   }
 
-  function Retirement {
+  function Invoke-RetirementExtraction {
     param($Subid)
 
     $RetirementCount = Search-AzGraph -Query "servicehealthresources | where properties.EventSubType contains 'Retirement' | summarize count()" -Subscription $Subid
@@ -1007,7 +1094,7 @@ $Global:Runtime = Measure-Command -Expression {
 
         foreach ($row in $queryResults)
           {
-            $OutagesRetired = $Global:RetiredOutages | Where-Object { $_.name -eq $row.properties.TrackingId }
+            $OutagesRetired = $Script:RetiredOutages | Where-Object { $_.name -eq $row.properties.TrackingId }
 
             $result = [PSCustomObject]@{
               Subscription    = [string]$Subid
@@ -1022,7 +1109,7 @@ $Global:Runtime = Measure-Command -Expression {
               ImpactedService = [string]$row.properties.Impact.ImpactedService
               Description     = [string]$OutagesRetired.properties.description
             }
-            $Global:AllRetirements += $result
+            $Script:AllRetirements += $result
           }
       }
     else
@@ -1039,7 +1126,7 @@ $Global:Runtime = Measure-Command -Expression {
 
             foreach ($row in $queryResults)
               {
-                $OutagesRetired = $Global:RetiredOutages | Where-Object { $_.name -eq $row.properties.TrackingId }
+                $OutagesRetired = $Script:RetiredOutages | Where-Object { $_.name -eq $row.properties.TrackingId }
 
                 $result = [PSCustomObject]@{
                   Subscription    = [string]$Subid
@@ -1054,13 +1141,13 @@ $Global:Runtime = Measure-Command -Expression {
                   ImpactedService = [string]$row.properties.Impact.ImpactedService
                   Description     = [string]$OutagesRetired.properties.description
                 }
-                $Global:AllRetirements += $result
+                $Script:AllRetirements += $result
               }
           }
       }
   }
 
-  function ServiceHealth {
+  function Invoke-ServiceHealthExtraction {
     param($Subid)
 
     $ServiceHealthCount = Search-AzGraph -Query "resources | where type == 'microsoft.insights/activitylogalerts' | summarize count()" -Subscription $Subid
@@ -1098,7 +1185,7 @@ $Global:Runtime = Measure-Command -Expression {
               Regions      = $Regions
               ActionGroup  = $ActionGroupName
             }
-            $Global:AllServiceHealth += $result
+            $Script:AllServiceHealth += $result
           }
       }
     else
@@ -1142,107 +1229,113 @@ $Global:Runtime = Measure-Command -Expression {
               Regions      = if (![string]::IsNullOrEmpty($Regions)) { $Regions }Else { 'All' }
               ActionGroup  = $Row.Properties.actions.actionGroups.actionGroupId.split('/')[8]
             }
-            $Global:AllServiceHealth += $result
+            $Script:AllServiceHealth += $result
           }
       }
   }
 
-  function JsonFile {
-    $ResourceExporter = @{
-      Resource = $Global:results
-    }
-    $Global:results = ''
-    $ResourceTypeExporter = @{
-      ResourceType = $Global:AllResourceTypesOrdered
-    }
-    $AdvisoryExporter = @{
-      Advisory = $Global:AllAdvisories
-    }
-    $OutageExporter = @{
-      Outages = $Global:Outageslist
-    }
-    $RetirementExporter = @{
-      Retirements = $Global:AllRetirements
-    }
-    $SupportExporter = @{
-      SupportTickets = $Global:SupportTickets
-    }
-    $Global:SupportTickets = ''
-    $ServiceHealthExporter = @{
-      ServiceHealth = $Global:AllServiceHealth
-    }
+  function New-JsonFile {
+    [CmdletBinding(SupportsShouldProcess, ConfirmImpact='Low')]
+    param()
 
-    $ExporterArray = @()
-    $ExporterArray += $ResourceExporter
-    $ExporterArray += $ResourceTypeExporter
-    $ExporterArray += $AdvisoryExporter
-    $ExporterArray += $OutageExporter
-    $ExporterArray += $RetirementExporter
-    $ExporterArray += $SupportExporter
-    $ExporterArray += $ServiceHealthExporter
+    if ($PSCmdlet.ShouldProcess("")) {
+      $ResourceExporter = @{
+        Resource = $Script:results
+      }
+      $ResourceTypeExporter = @{
+        ResourceType = $Script:AllResourceTypesOrdered
+      }
+      $AdvisoryExporter = @{
+        Advisory = $Script:AllAdvisories
+      }
+      $OutageExporter = @{
+        Outages = $Script:Outageslist
+      }
+      $RetirementExporter = @{
+        Retirements = $Script:AllRetirements
+      }
+      $SupportExporter = @{
+        SupportTickets = $Script:SupportTickets
+      }
+      $ServiceHealthExporter = @{
+        ServiceHealth = $Script:AllServiceHealth
+      }
+      $ScriptDetailsExporter = @{
+        ScriptDetails = $Script:ScriptData
+      }
 
-    $Global:JsonFile = ($PSScriptRoot + "\WARA_File_" + (get-date -Format "yyyy-MM-dd_HH_mm") + ".json")
+      $ExporterArray = @()
+      $ExporterArray += $ResourceExporter
+      $ExporterArray += $ResourceTypeExporter
+      $ExporterArray += $AdvisoryExporter
+      $ExporterArray += $OutageExporter
+      $ExporterArray += $RetirementExporter
+      $ExporterArray += $SupportExporter
+      $ExporterArray += $ServiceHealthExporter
+      $ExporterArray += $ScriptDetailsExporter
 
-    $ExporterArray | ConvertTo-Json -Depth 15 | Out-File $Global:JsonFile
+      $Script:JsonFile = ($PSScriptRoot + "\WARA_File_" + (get-date -Format "yyyy-MM-dd_HH_mm") + ".json")
 
+      $ExporterArray | ConvertTo-Json -Depth 15 | Out-File $Script:JsonFile
+    }
   }
 
 
   #Call the functions
-  $Global:Version = "2.0.9"
+  $Script:Version = "2.0.11"
   Write-Host "Version: " -NoNewline
-  Write-Host $Global:Version -ForegroundColor DarkBlue
+  Write-Host $Script:Version -ForegroundColor DarkBlue
 
   if ($Help.IsPresent)
     {
-      Help
+      Get-HelpMessage
       Exit
     }
 
   Write-Debug "Checking Parameters"
-  CheckParameters
+  Test-SubscriptionParameter
 
   Write-Debug "Reseting Variables"
-  Variables
+  Invoke-ResetVariable
 
-  Write-Debug "Calling Function: Requirements"
-  Requirements
+  Write-Debug "Calling Function: Test-Requirements"
+  Test-Requirement
 
-  Write-Debug "Calling Function: LocalFiles"
-  LocalFiles
+  Write-Debug "Calling Function: Set-LocalFiles"
+  Set-LocalFile
 
-  Write-Debug "Calling Function: Runbook"
-  Runbook
+  Write-Debug "Calling Function: Test-Runbook"
+  Test-Runbook
 
-  Write-Debug "Calling Function: ConnectToAzure"
-  ConnectToAzure
+  Write-Debug "Calling Function: Connect-ToAzure"
+  Connect-ToAzure
 
-  Write-Debug "Calling Function: Subscriptions"
-  Subscriptions
+  Write-Debug "Calling Function: Test-SubscriptionFile"
+  Test-SubscriptionFile
 
-  #Write-Debug "Calling Function: PSExtraction"
-  #PSExtraction
+  #Write-Debug "Calling Function: Invoke-PSModules"
+  #Invoke-PSModules
 
-  Write-Debug "Calling Function: ResourceExtraction"
-  ResourceExtraction
+  Write-Debug "Calling Function: Start-ResourceExtraction"
+  Start-ResourceExtraction
 
-  Write-Debug "Calling Function: ResourceTypes"
-  ResourceTypes
+  Write-Debug "Calling Function: Resolve-ResourceTypes"
+  Resolve-ResourceType
 
-  Write-Debug "Calling Function: SupportTickets"
-  SupportTickets
+  Write-Debug "Calling Function: Resolve-SupportTickets"
+  Resolve-SupportTicket
 
-  Write-Debug "Calling Function: JsonFile"
-  JsonFile
+  Write-Debug "Calling Function: New-JsonFile"
+  New-JsonFile
 
 }
 
-$TotalTime = $Global:Runtime.Totalminutes.ToString('#######.##')
+$TotalTime = $Script:Runtime.Totalminutes.ToString('#######.##')
 
 Write-Host "---------------------------------------------------------------------"
 Write-Host ('Execution Complete. Total Runtime was: ') -NoNewline
 Write-Host $TotalTime -NoNewline -ForegroundColor Cyan
 Write-Host (' Minutes')
 Write-Host "Result File: " -NoNewline
-Write-Host $Global:JsonFile -ForegroundColor Blue
+Write-Host $Script:JsonFile -ForegroundColor Blue
 Write-Host "---------------------------------------------------------------------"

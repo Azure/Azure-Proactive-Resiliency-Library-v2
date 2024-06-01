@@ -1,4 +1,4 @@
-﻿- description: Enable diagnostics logging
+- description: Enable diagnostics logging
   aprlGuid: 493f6079-3bb6-4a56-96ba-ab3248474cb1
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting

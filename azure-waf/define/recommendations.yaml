@@ -1,4 +1,4 @@
-﻿- description: Define and share Availability Targets with all teams for workload consistency
+- description: Define and share Availability Targets with all teams for workload consistency
   aprlGuid: 0c8a12dd-52fb-cf40-bb4a-b60f99409bab
   recommendationTypeId: null
   recommendationControl: High Availability
