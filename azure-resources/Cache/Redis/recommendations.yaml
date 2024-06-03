@@ -29,7 +29,7 @@
   pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: no
   tags: null
   learnMoreLink:
     - name: Schedule Redis Updates
