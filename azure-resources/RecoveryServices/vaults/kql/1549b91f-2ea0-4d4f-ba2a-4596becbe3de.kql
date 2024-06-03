@@ -2,6 +2,7 @@
 // Displays all recovery services vaults that do not have cross region restore enabled
 resources
 | where type =~ "Microsoft.RecoveryServices/vaults" and
+    properties.redundancySettings.standardTierStorageRedundancy =~ "GeoRedundant" and
     properties.redundancySettings.crossRegionRestore !~ "Enabled"
 | extend
     param1 = strcat("CrossRegionRestore: ", properties.redundancySettings.crossRegionRestore),
