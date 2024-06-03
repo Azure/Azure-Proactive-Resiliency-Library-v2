@@ -1,3 +1,6 @@
+#Install Az.ResourceGraph module
+Install-Module -Name Az.resourcegraph -force -scope CurrentUser
+
 #Functions
 Function Invoke-ValidateKqlComment([array]$filearray) {
   $kqlresults = @()
