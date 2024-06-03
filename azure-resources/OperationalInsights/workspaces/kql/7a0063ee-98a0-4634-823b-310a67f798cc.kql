@@ -1,6 +1,0 @@
-// Azure Resource Graph Query
-// List all in-scope Log Analytics Workspaces with their retention time
-resources
-| where type == 'microsoft.operationalinsights/workspaces'
-| extend retentionPeriod = properties.retentionInDays
-| project recommendationId = "7a0063ee-98a0-4634-823b-310a67f798cc", name, id, tags, param1 = strcat("workspace retention in days: ", retentionPeriod)
