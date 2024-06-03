@@ -102,7 +102,7 @@
   recommendationMetadataState: Active
   longDescription: |
     High availability is a foundational tenet of designing for reliability. A highly available architecture can help you avoid downtime as much as possible and recover efficiently if downtime does occur.
-  potentialBenefits: Potential Benefits of Implementing the Recommendation (less than 60 characters)
+  potentialBenefits: Minimize downtime from regional outages
   pgVerified: true
   publishedToLearn: true
   publishedToAdvisor: no
@@ -121,7 +121,7 @@
   recommendationMetadataState: Active
   longDescription: |
     High availability is a foundational tenet of designing for reliability. A highly available architecture can help you avoid downtime as much as possible and recover efficiently if downtime does occur.
-  potentialBenefits: Potential Benefits of Implementing the Recommendation (less than 60 characters)
+  potentialBenefits: Minimize downtime from zonal outages
   pgVerified: true
   publishedToLearn: true
   publishedToAdvisor: no
@@ -159,7 +159,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Implement a timely and reliable scaling strategy at the application, data, and infrastructure levels.
-  potentialBenefits: Potential Benefits of Implementing the Recommendation (less than 60 characters)
+  potentialBenefits: Dynamically handle increased load
   pgVerified: true
   publishedToLearn: true
   publishedToAdvisor: no
