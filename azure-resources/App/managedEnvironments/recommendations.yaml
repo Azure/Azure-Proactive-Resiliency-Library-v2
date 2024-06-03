@@ -1,4 +1,4 @@
-- description: Deploy zone redundundant Container app environments
+- description: Deploy zone redundant Container app environments
   aprlGuid: f4201965-a88d-449d-b3b4-021394719eb2
   recommendationTypeId: null
   recommendationControl: High Availability
