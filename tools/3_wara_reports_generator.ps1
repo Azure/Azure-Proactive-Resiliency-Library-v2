@@ -354,7 +354,7 @@ $Global:Runtime = Measure-Command -Expression {
                   {
                     $LogImpactName = $Impact.'Recommendation Title'
                     if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 16 - Adding Service High Impact Name: ' + $LogImpactName) | Out-File -FilePath $LogFile -Append }
-                    if ($count -lt 5)
+                    if ($count -le 5)
                       {
                         ($Slide16.Shapes | Where-Object { $_.Id -eq 9 }).TextFrame.TextRange.Paragraphs($count).text = $Impact.'Recommendation Title'
                         $count ++
@@ -1334,7 +1334,7 @@ $Global:Runtime = Measure-Command -Expression {
                                 $RetireName = ($Retirement.'Tracking ID' + ' - ' + $Retirement.Status + ' : ' + $Retirement.title)
 
                                 ($Slide30.Shapes | Where-Object { $_.Id -eq 7 }).TextFrame.TextRange.InsertAfter(".") | Out-Null
-                                Sif ($Heavy) {Start-Sleep -Milliseconds 500} else {Start-Sleep -Milliseconds 100}
+                                if ($Heavy) {Start-Sleep -Milliseconds 500} else {Start-Sleep -Milliseconds 100}
                                 ($Slide30.Shapes | Where-Object { $_.Id -eq 7 }).TextFrame.TextRange.Paragraphs(1).Copy()
                                 if ($Heavy) {Start-Sleep -Milliseconds 500} else {Start-Sleep -Milliseconds 100}
                                 ($Slide30.Shapes | Where-Object { $_.Id -eq 7 }).TextFrame.TextRange.Paragraphs($Loop).Paste() | Out-Null
@@ -2019,7 +2019,7 @@ $Global:Runtime = Measure-Command -Expression {
 
   #Call the functions
   $Global:LogFile = ($PSScriptRoot + '\wara_reports_generator.log')
-  $Global:Version = "2.0.4"
+  $Global:Version = "2.0.5"
   Write-Host "Version: " -NoNewline
   Write-Host $Global:Version -ForegroundColor DarkBlue -NoNewline
   Write-Host " "

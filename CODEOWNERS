@@ -11,6 +11,10 @@ azure-resources/NetworkFunction @Azure/aprl-admins @Azure/aprl-networking
 azure-resources/Peerings @Azure/aprl-admins @Azure/aprl-networking
 azure-resources/Relay @Azure/aprl-admins @Azure/aprl-networking
 
+## The aprl-sap team is partially responsible for all SAP-related PRs
+
+azure-specialized-workloads/sap @Azure/aprl-admins @Azure/aprl-sap
+
 ## The aprl-hpc team is partially responsible for all HPC-related PRs
 
 azure-resources/Batch @Azure/aprl-admins @Azure/aprl-hpc
