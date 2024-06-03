@@ -21,7 +21,7 @@
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: Medium
-  recommendationResourceType: Microsoft.Cache/Redis/patchSchedules
+  recommendationResourceType: Microsoft.Cache/redis
   recommendationMetadataState: Active
   longDescription: |
     Azure Cache for Redis allows for specifying maintenance windows. A maintenance window allows you to control the days and times of a week during which the VMs hosting your cache can be updated.
