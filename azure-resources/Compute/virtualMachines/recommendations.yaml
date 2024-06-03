@@ -1,4 +1,4 @@
-﻿- description: Run production workloads on two or more VMs using VMSS Flex
+- description: Run production workloads on two or more VMs using VMSS Flex
   aprlGuid: 273f6b30-68e0-4241-85ea-acf15ffb60bf
   recommendationTypeId: null
   recommendationControl: High Availability
@@ -21,7 +21,7 @@
 
 - description: Deploy VMs across Availability Zones
   aprlGuid: 2bd0be95-a825-6f47-a8c6-3db1fb5eb387
-  recommendationTypeId: null
+  recommendationTypeId: 066a047a-9ace-45f4-ac50-6325840a6b00
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Compute/virtualMachines
@@ -140,25 +140,6 @@
   learnMoreLink:
     - name: What is the Azure Backup service?
       url: "https://learn.microsoft.com/azure/backup/backup-overview"
-
-- description: Production VMs should be using SSD disks
-  aprlGuid: d3f3ee41-b9aa-d34d-b442-5d46d20232b2
-  recommendationTypeId: null
-  recommendationControl: Scalability
-  recommendationImpact: High
-  recommendationResourceType: Microsoft.Compute/virtualMachines
-  recommendationMetadataState: Active
-  longDescription: |
-    Premium SSD disks support I/O-intensive apps with high performance, low latency, ideal for production. Standard SSDs offer cost-effective solutions for less critical workloads with consistent performance.
-  potentialBenefits: High-performance and reliability for critical apps
-  pgVerified: true
-  publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
-  tags: null
-  learnMoreLink:
-    - name: Azure managed disk types
-      url: "https://learn.microsoft.com/azure/virtual-machines/disks-types#premium-ssd"
 
 - description: Review VMs in stopped state
   aprlGuid: 98b334c0-8578-6046-9e43-b6e8fce6318e
@@ -394,7 +375,7 @@
     - name: Did the extension install properly?
       url: "https://learn.microsoft.com/azure/azure-monitor/vm/vminsights-troubleshoot#did-the-extension-install-properly"
 
-- description: Configure diagnostic settings for all Azure Virtual Machines
+- description: Configure monitoring for all Azure Virtual Machines
   aprlGuid: 4a9d8973-6dba-0042-b3aa-07924877ebd5
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
@@ -410,8 +391,8 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Diagnostic settings in Azure Monitor
-      url: "https://learn.microsoft.com/azure/azure-monitor/essentials/diagnostic-settings?tabs=portal"
+    - name: Azure Monitor Agent overview
+      url: "https://learn.microsoft.com/en-us/azure/azure-monitor/agents/agents-overview"
 
 - description: Use maintenance configurations for the VMs
   aprlGuid: 52ab9e5c-eec0-3148-8bd7-b6dd9e1be870

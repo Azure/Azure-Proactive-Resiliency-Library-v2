@@ -1,4 +1,4 @@
-﻿- description: Device Identities are exported to a secondary region
+- description: Device Identities are exported to a secondary region
   aprlGuid: 783c6c18-760b-4867-9ced-3010a0bc5aa3
   recommendationTypeId: null
   recommendationControl: Disaster Recovery

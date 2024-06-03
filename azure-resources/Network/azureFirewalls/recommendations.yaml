@@ -1,4 +1,4 @@
-﻿- description: Deploy Azure Firewall across multiple availability zones
+- description: Deploy Azure Firewall across multiple availability zones
   aprlGuid: c72b7fee-1fa0-5b4b-98e5-54bcae95bb74
   recommendationTypeId: null
   recommendationControl: High Availability

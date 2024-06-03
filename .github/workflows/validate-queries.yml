@@ -1,4 +1,4 @@
-name: KQL File Check
+name: Validate ARG Queries
 
 on:
   pull_request:
@@ -15,6 +15,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
 
       - name: Run KQL Comment Check
         run: |

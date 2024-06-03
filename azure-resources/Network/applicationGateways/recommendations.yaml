@@ -1,4 +1,4 @@
-﻿- description: Set a minimum instance count of 2
+- description: Ensure autoscale has been enabled
   aprlGuid: 823b0cff-05c0-2e4e-a1e7-9965e1cfa16f
   recommendationTypeId: null
   recommendationControl: Scalability
@@ -6,7 +6,7 @@
   recommendationResourceType: Microsoft.Network/applicationGateways
   recommendationMetadataState: Active
   longDescription: |
-    Azure Application Gateways v2 are deployed highly available with multiple instances by default.
+    Azure Application Gateways v2 are always deployed in a highly available fashion with multiple instances by default. Enabling autoscale ensures the service is not reliant on manual intervention for scaling.
   potentialBenefits: Enhances uptime and enables autoscaling
   pgVerified: true
   publishedToLearn: false

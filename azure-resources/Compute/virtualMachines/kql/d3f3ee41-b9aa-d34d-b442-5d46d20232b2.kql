@@ -1,8 +1,0 @@
-// Azure Resource Graph Query
-// Find all disks with StandardHDD sku attached to VMs
-Resources
-| where type =~ 'Microsoft.Compute/disks'
-| where sku.name == 'Standard_LRS' and sku.tier == 'Standard'
-| where managedBy != ""
-| project recommendationId = "d3f3ee41-b9aa-d34d-b442-5d46d20232b2", name, id, tags, param1=strcat("managedBy: ", managedBy)
-

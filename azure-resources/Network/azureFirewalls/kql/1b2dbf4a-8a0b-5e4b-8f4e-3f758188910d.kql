@@ -2,6 +2,7 @@
 // List all in-scope Azure Firewall resources, where the VNet is not associated to a DDoS Protection Plan
 resources
 | where type =~ "Microsoft.Network/azureFirewalls"
+| where isempty(properties.virtualHub.id) or isnull(properties.virtualHub.id)
 | mv-expand ipConfig = properties.ipConfigurations
 | project
     name,
