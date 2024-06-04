@@ -1,5 +1,5 @@
 // Azure Resource Graph Query
-// Purge protection should be enabled for App Configuration stores to prevent accidental deletion of configuration data.
+// Upgrade to App Configuration Standard tier
 resources
 | where type =~ "Microsoft.AppConfiguration/configurationStores"
 | where sku.name == "free"
