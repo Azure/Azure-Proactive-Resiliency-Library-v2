@@ -1,0 +1,6 @@
+// Azure Resource Graph Query
+// Purge protection should be enabled for App Configuration stores to prevent accidental deletion of configuration data.
+resources
+| where type =~ "Microsoft.AppConfiguration/configurationStores"
+| where sku.name == "free"
+| project recommendationId = "2102a57a-a056-4d5e-afe5-9df9f92177ca", name, id, tags, param1 = "Upgrade to Standard SKU"
