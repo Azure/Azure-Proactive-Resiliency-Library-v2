@@ -16,7 +16,7 @@
   learnMoreLink:
     - name: Purge protection
       url: "https://learn.microsoft.com/en-us/azure/azure-app-configuration/concept-soft-delete#purge-protection"
-- description: Upgrade tp App Configuration Standard tier
+- description: Upgrade to App Configuration Standard tier
   aprlGuid: 2102a57a-a056-4d5e-afe5-9df9f92177ca
   recommendationTypeId: null
   recommendationControl: High Availability
@@ -24,7 +24,7 @@
   recommendationResourceType: Microsoft.AppConfiguration/configurationStores
   recommendationMetadataState: Active
   longDescription: |
-    SLA is not available for the Free tier. Upgrade to the Standard tier to get an SLA of 99.99%.
+    SLA is not available for Free tier. Upgrade to the Standard tier to get an SLA of 99.9%
   potentialBenefits: High availability, more storage, higher request quota.
   pgVerified: false
   publishedToLearn: false
@@ -32,5 +32,5 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Purge protection
+    - name: Choose App Configuration tier
       url: "https://learn.microsoft.com/en-us/azure/azure-app-configuration/faq#which-app-configuration-tier-should-i-use"
