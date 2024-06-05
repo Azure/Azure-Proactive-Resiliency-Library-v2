@@ -70,6 +70,15 @@ $Script:Runtime = Measure-Command -Expression {
       }
   }
 
+  function Get-RepoVersion {
+    param(
+      [Parameter(Mandatory = $true)]
+      [string] $ClonePath
+    )
+
+    return Get-Content -Path "$ClonePath\tools\Version.json" -ErrorAction SilentlyContinue | ConvertFrom-Json
+  }
+
   function Set-LocalFile {
     [CmdletBinding(SupportsShouldProcess, ConfirmImpact='Low')]
     param()
@@ -95,7 +104,7 @@ $Script:Runtime = Measure-Command -Expression {
             git clone $repoUrl $Script:clonePath --quiet
           }
         Write-Debug "Checking the version of the script"
-        $RepoVersion = Get-Content -Path "$clonePath\tools\Version.json" -ErrorAction SilentlyContinue | ConvertFrom-Json
+        $RepoVersion = Get-RepoVersion -ClonePath $Script:clonePath
         if ($Version -ne $RepoVersion.Analyzer)
           {
             Write-Host "This version of the script is outdated. " -BackgroundColor DarkRed
@@ -120,13 +129,15 @@ $Script:Runtime = Measure-Command -Expression {
     $Script:ServiceHealth = $results.ServiceHealth
     $Script:CollectorDetails = $results.ScriptDetails
 
+    $RepoVersion = $RepoVersion = Get-RepoVersion -ClonePath $Script:clonePath
+
     if ($Script:CollectorDetails.Version -eq $RepoVersion.Collector)
       {
         Write-Host "The JSON file was created by the current version of the Collector Script. " -BackgroundColor DarkGreen
       }
     else
       {
-        Write-Host "The JSON file was created by an outdated version of the Collector Script" -BackgroundColor DarkRed
+        Write-Host "The JSON file was created by an outdated version ($($Script:CollectorDetails.Version)) of the Collector Script. The latest version is $($RepoVersion.Collector)" -BackgroundColor DarkRed
       }
 
     $CoreResources = $results.Resource
