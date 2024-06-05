@@ -278,18 +278,18 @@ $Script:Runtime = Measure-Command -Expression {
       {
         Write-Host "Authenticating to Azure on Azure Cloud Shell"
         # Uses managed identity to authenticate
-        Connect-AzAccount -Identity -Environment $AzureEnvironment
+        Connect-AzAccount -Identity -Environment $AzureEnvironment -WarningAction SilentlyContinue
         $Script:SubIds = Get-AzSubscription -WarningAction SilentlyContinue
       }
     elseif ($PSVersionTable.OS -like 'Darwin*')
       {
         Write-Host "Authenticating to Azure on MacOS device..."
-        Connect-AzAccount -Environment $AzureEnvironment
+        Connect-AzAccount -Environment $AzureEnvironment -WarningAction SilentlyContinue
         $Script:SubIds = Get-AzSubscription -WarningAction SilentlyContinue
       }
     else {
       Write-Host "Authenticating to Azure using $($PSversionTable.OS)"
-      Connect-AzAccount -Environment $AzureEnvironment
+      Connect-AzAccount -Environment $AzureEnvironment -WarningAction SilentlyContinue
       $Script:SubIds = Get-AzSubscription -WarningAction SilentlyContinue
     }
 
