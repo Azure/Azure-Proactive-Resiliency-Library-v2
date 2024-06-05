@@ -12,7 +12,6 @@ https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2
 
 #Requires -Version 7.0
 #Requires -PSEdition Core
-#Requires -Modules @{ ModuleName="Az"; ModuleVersion="12.0.0" }, @{ ModuleName="Az.ResourceGraph"; ModuleVersion="1.0.0" }
 
 Param(
   [switch]$Debugging,
@@ -116,9 +115,18 @@ $Script:Runtime = Measure-Command -Expression {
   }
 
   function Test-Requirement {
-    # Validating requirements
+    # Install required modules
     try
       {
+        Write-Host "Validating " -NoNewline
+        Write-Host "Az.ResourceGraph" -ForegroundColor Cyan -NoNewline
+        Write-Host " Module.."
+        $AzModules = Get-Module -Name Az.ResourceGraph -ListAvailable -ErrorAction silentlycontinue
+        if ($null -eq $AzModules)
+          {
+            Write-Host "Installing Az Modules" -ForegroundColor Yellow
+            Install-Module -Name Az.ResourceGraph -SkipPublisherCheck -InformationAction SilentlyContinue
+          }
         Write-Host "Validating " -NoNewline
         Write-Host "Git" -ForegroundColor Cyan -NoNewline
         Write-Host " Installation.."
@@ -154,7 +162,6 @@ $Script:Runtime = Measure-Command -Expression {
         try
           {
             # Clone the GitHub repository to a temporary folder
-            #$repoUrl = "https://github.com/azure/Azure-Proactive-Resiliency-Library"
             $repoUrl = "https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2"
 
             # Define script path as the default path to save files
@@ -233,10 +240,9 @@ $Script:Runtime = Measure-Command -Expression {
 
   function Connect-ToAzure {
     # Connect To Azure Tenant
-    Write-Host "Authenticating to Azure"
-    if ($Script:ShellPlatform -eq 'Win32NT')
+    Write-Output "Authenticating to Azure on Windows"
+    if ($PSVersionTable.OS -eq 'Win32NT')
       {
-        Write-Debug "Using Windows Platform"
         Clear-AzContext -Force -ErrorAction SilentlyContinue -WarningAction SilentlyContinue -InformationAction SilentlyContinue
         if ([string]::IsNullOrEmpty($TenantID))
           {
@@ -268,12 +274,25 @@ $Script:Runtime = Measure-Command -Expression {
         #Set the default variable with the list of subscriptions in case no Subscription File was informed
         $Script:SubIds = Get-AzSubscription -TenantId $TenantID -WarningAction SilentlyContinue
       }
-    else
+    elseif ($PSVersionTable.OS -eq 'CBL-Mariner/Linux')
       {
-        Write-Debug "Using non-Windows Platform"
+        Write-Output "Authenticating to Azure on Azure Cloud Shell"
+        # Uses managed identity to authenticate
+        Connect-AzAccount -Identity -Environment $AzureEnvironment
+        $Script:SubIds = Get-AzSubscription -WarningAction SilentlyContinue
+      }
+    elseif ($PSVersionTable.OS -like 'Darwin*')
+      {
+        Write-Output "Authenticating to Azure on MacOS device..."
         Connect-AzAccount -Environment $AzureEnvironment
         $Script:SubIds = Get-AzSubscription -WarningAction SilentlyContinue
       }
+    else {
+      Write-Output "Authenticating to Azure using $($PSversionTable.OS)"
+      Connect-AzAccount -Environment $AzureEnvironment
+      $Script:SubIds = Get-AzSubscription -WarningAction SilentlyContinue
+    }
+
 
     # Getting Outages
     Write-Debug "Exporting Outages"
