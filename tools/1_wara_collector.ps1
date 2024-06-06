@@ -1248,9 +1248,21 @@ $Script:Runtime = Measure-Command -Expression {
     param()
 
     if ($PSCmdlet.ShouldProcess("")) {
+     <#  if($ResourceGroupFile){
+
+        $ResourceExporter = @{
+          Resource = $(Get-ResourceGroupsByList -ObjectList $script:results -FilterList $resourcegrouplist -KeyColumn "id")
+        }
+      else{
+        $ResourceExporter = @{
+          Resource = $Script:results
+        }
+      } #>
+
       $ResourceExporter = @{
-        Resource = $Script:results
+        Resource = $ResourceGroupFile ? $(Get-ResourceGroupsByList -ObjectList $script:results -FilterList $resourcegrouplist -KeyColumn "id") : $Script:results
       }
+
       $ResourceTypeExporter = @{
         ResourceType = $Script:AllResourceTypesOrdered
       }
@@ -1272,6 +1284,8 @@ $Script:Runtime = Measure-Command -Expression {
       $ScriptDetailsExporter = @{
         ScriptDetails = $Script:ScriptData
       }
+
+
 
       $ExporterArray = @()
       $ExporterArray += $ResourceExporter
