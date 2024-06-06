@@ -1,4 +1,4 @@
-﻿- description: Configure Diagnostic Settings for all network security groups
+- description: Configure Diagnostic Settings for all network security groups
   aprlGuid: d2976d3e-294b-4b49-a1f0-c42566a3758f
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting

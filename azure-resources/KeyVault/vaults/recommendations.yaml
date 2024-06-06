@@ -1,4 +1,4 @@
-﻿- description: Key vaults should have soft delete enabled
+- description: Key vaults should have soft delete enabled
   aprlGuid: 1cca00d2-d9ab-8e42-a788-5d40f49405cb
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
@@ -87,7 +87,7 @@
   pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: no
   tags: null
   learnMoreLink:
     - name: Azure Key Vault logging overview

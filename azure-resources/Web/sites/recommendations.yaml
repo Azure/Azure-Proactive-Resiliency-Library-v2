@@ -1,4 +1,4 @@
-﻿- description: Enable diagnostics logging
+- description: Enable diagnostics logging
   aprlGuid: 493f6079-3bb6-4a56-96ba-ab3248474cb1
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
@@ -7,7 +7,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Enabling diagnostics logging for your Azure App Service is crucial for monitoring and diagnostics, including both application logging and web server logging.
-  potentialBenefits: Enhanced monitoring and diagnostics
+  potentialBenefits: Monitoring and Alerting
   pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
@@ -113,3 +113,60 @@
   learnMoreLink:
     - name: Configure web apps in Azure App Service
       url: "https://learn.microsoft.com/azure/app-service-web/web-sites-configure"
+
+- description: Enable Health check for App Services
+  aprlGuid: fd049c28-ae6d-48f0-a641-cc3ba1a3fe1d
+  recommendationTypeId: null
+  recommendationControl: Other Best Practices
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Web/sites
+  recommendationMetadataState: Active
+  longDescription: |
+    Use Health Check for production workloads. Health check increases your application's availability by rerouting requests away from unhealthy instances, and replacing instances if they remain unhealthy. The Health check path should check critical components of your application.
+  potentialBenefits: Enhanced reliability via automation
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Monitor the health of App Service instances
+      url: "https://learn.microsoft.com/en-us/azure/app-service/monitor-instances-health-check?tabs=dotnet#enable-health-check"
+
+- description: Configure network access restrictions
+  aprlGuid: aab6b4a4-9981-43a4-8728-35c7ecbb746d
+  recommendationTypeId: null
+  recommendationControl: Governance
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Web/sites
+  recommendationMetadataState: Active
+  longDescription: |
+    Use network access restrictions to define a priority-ordered allow/deny list that controls network access to your app. Web application firewalls, such as the one available in Application Gateway, are recommended for protection of public-facing web applications.
+  potentialBenefits: Enhanced security
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Set up Azure App Service access restrictions
+      url: "https://learn.microsoft.com/en-us/azure/app-service/app-service-ip-restrictions?tabs=azurecli"
+
+- description: Set minimum instance count to 2 for app service
+  aprlGuid: 9e6682ac-31bc-4635-9959-ab74b52454e6
+  recommendationTypeId: null
+  recommendationControl: Scalability
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Web/sites
+  recommendationMetadataState: Active
+  longDescription: |
+    App Service should be configured with a minimum of two instances for production workloads. If apps have a longer warmup time a minimum of three instances should be used.
+  potentialBenefits: Improves app performace
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Ultimate guide to running healthy apps in the cloud
+      url: "https://azure.github.io/AppService/2020/05/15/Robust-Apps-for-the-cloud.html"

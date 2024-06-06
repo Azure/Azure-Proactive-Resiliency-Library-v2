@@ -354,7 +354,7 @@ $Global:Runtime = Measure-Command -Expression {
                   {
                     $LogImpactName = $Impact.'Recommendation Title'
                     if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 16 - Adding Service High Impact Name: ' + $LogImpactName) | Out-File -FilePath $LogFile -Append }
-                    if ($count -lt 5)
+                    if ($count -le 5)
                       {
                         ($Slide16.Shapes | Where-Object { $_.Id -eq 9 }).TextFrame.TextRange.Paragraphs($count).text = $Impact.'Recommendation Title'
                         $count ++
