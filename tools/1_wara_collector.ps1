@@ -20,13 +20,20 @@ Param(
   $RunbookFile,
   $SubscriptionsFile,
   $SubscriptionIds,
-  $ResourceGroups,
+  $ResourceGroupFile,
   $TenantID,
   [ValidateSet("AzureCloud","AzureUSGovernment")]
   $AzureEnvironment = 'AzureCloud'
   )
 
+import-module "./modules/collector.psm1" -Force
+
 if ($Debugging.IsPresent) { $DebugPreference = 'Continue' } else { $DebugPreference = "silentlycontinue" }
+
+if ($ResourceGroupFile) {
+  $ResourceGroupList = (Get-Content $ResourceGroups).trim().tolower()
+  $ResourceGroups = $resourcegrouplist | ForEach-Object {$_.split("/")[4]}
+}
 
 $Script:ShellPlatform = $PSVersionTable.Platform
 
