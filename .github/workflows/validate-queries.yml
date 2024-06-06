@@ -1,22 +1,56 @@
 name: Validate ARG Queries
 
 on:
-  pull_request:
+  pull_request_target:
     branches:
       - main
     paths:
     - '**/*.kql'
   workflow_dispatch: {}
 
+permissions:
+  id-token: write # This is required for requesting the JWT
+  contents: read  # This is required for actions/checkout
+
 jobs:
   kql_file_check:
     runs-on: ubuntu-latest
+    if: |
+      (
+        github.event.pull_request.head.repo.full_name == 'Azure/Azure-Proactive-Resiliency-Library-v2'
+      )
+      ||
+      (
+        github.event.pull_request.head.repo.full_name != 'Azure/Azure-Proactive-Resiliency-Library-v2'
+        &&
+        contains(github.event.pull_request.labels.*.name, 'PR: Safe to Test ARG Queries :test_tube:')
+      )
+      ||
+      (
+        github.event_name == 'workflow_dispatch'
+      )
+      ||
+      (
+        github.event_name == 'merge_group'
+      )
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Run KQL file check
+      - name: Azure login (OIDC)
+        uses: azure/login@v2
+        if:
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          enable-AzPSSession: true
+
+      - name: Run KQL Comment Check
         run: |
           pwsh .github/scripts/validate-kql-comments.ps1
 
-
+      - name: Run KQL Syntax Check
+        run: |
+          pwsh .github/scripts/validate-kql-syntax.ps1
