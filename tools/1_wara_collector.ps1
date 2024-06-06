@@ -314,7 +314,7 @@ $Script:Runtime = Measure-Command -Expression {
 
   function Connect-ToAzure {
     # Connect To Azure Tenant
-<#     Write-Host "Authenticating to Azure"
+    Write-Host "Authenticating to Azure"
     if ($Script:ShellPlatform -eq 'Win32NT')
       {
         Clear-AzContext -Force -ErrorAction SilentlyContinue -WarningAction SilentlyContinue -InformationAction SilentlyContinue
@@ -352,9 +352,9 @@ $Script:Runtime = Measure-Command -Expression {
       {
         Connect-AzAccount -Identity -Environment $AzureEnvironment
         $Script:SubIds = Get-AzSubscription -WarningAction SilentlyContinue
-      } #>
+      }
 
-      $Script:SubIds = Get-AzSubscription -TenantId $TenantID -WarningAction SilentlyContinue
+
 
     # Getting Outages
     Write-Debug "Exporting Outages"
