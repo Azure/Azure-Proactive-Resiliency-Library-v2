@@ -4,13 +4,13 @@ PolicyResources
 | where type =~ 'Microsoft.PolicyInsights/PolicyStates'
 | extend complianceState = tostring(properties.complianceState)
 | where complianceState == 'NonCompliant'
-| where properties.resourceType == 'microsoft.containerservice/managedclusters' or properties.resourceType == 'Microsoft.ContainerService/managedClusters'
+| where properties.resourceType =~ 'Microsoft.ContainerService/managedClusters'
 | extend
     id = tostring(properties.resourceId)
 | summarize count() by id
 | join kind=inner (
     resources
-    | where type == 'Microsoft.ContainerService/managedClusters' or type =~ 'Microsoft.ContainerService/managedClusters'
+    | where type =~ 'Microsoft.ContainerService/managedClusters'
     | project id, name
 ) on id
 | project recommendationId="26ebaf1f-c70d-4ebd-8641-4b60a0ce0094", id, name, param1=strcat("numNonCompliantAlerts: ", count_)
