@@ -31,7 +31,7 @@ import-module "./modules/collector.psm1" -Force
 if ($Debugging.IsPresent) { $DebugPreference = 'Continue' } else { $DebugPreference = "silentlycontinue" }
 
 if ($ResourceGroupFile) {
-  $ResourceGroupList = (Get-Content $ResourceGroups).trim().tolower()
+  $ResourceGroupList = (Get-Content $ResourceGroupFile).trim().tolower()
   $ResourceGroups = $resourcegrouplist | ForEach-Object {$_.split("/")[4]}
 }
 
