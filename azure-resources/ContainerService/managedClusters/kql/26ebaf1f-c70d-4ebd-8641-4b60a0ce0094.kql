@@ -8,4 +8,9 @@ PolicyResources
 | extend
     id = tostring(properties.resourceId)
 | summarize count() by id
-| project recommendationId="26ebaf1f-c70d-4ebd-8641-4b60a0ce0094", id, param1=strcat("numNonCompliantAlerts: ", count_)
+| join kind=inner (
+    resources
+    | where type == 'Microsoft.ContainerService/managedClusters' or type =~ 'Microsoft.ContainerService/managedClusters'
+    | project id, name
+) on id
+| project recommendationId="26ebaf1f-c70d-4ebd-8641-4b60a0ce0094", id, name, param1=strcat("numNonCompliantAlerts: ", count_)
