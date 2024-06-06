@@ -79,9 +79,9 @@ Function Invoke-ValidateKqlComment([array]$filearray) {
 
   $kqlsyntaxresults = Invoke-ValidateKqlSyntax($runme)
 
-  if($kqlsyntaxresults | Where{$_.result -eq "FAIL"}) {
+  if($kqlsyntaxresults | Where-Object{$_.result -eq "FAIL"}) {
     Write-Output "KQL Syntax Validation Failed"
-    $kqlsyntaxresults | Where{$_.result -eq "FAIL"} | Format-List
+    $kqlsyntaxresults | Where-Object{$_.result -eq "FAIL"} | Format-List
     exit 1
   }
   else {
