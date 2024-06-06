@@ -389,7 +389,7 @@ $Script:Runtime = Measure-Command -Expression {
       }
   }
 
-  function Invoke-PSModule {
+  <# function Invoke-PSModule {
     $SideScripts = Get-ChildItem -Path "$PSScriptRoot\Azure-Proactive-Resiliency-Library\docs\content\services" -Filter "*.ps1" -Recurse
     if (![string]::IsNullOrEmpty($SubscriptionIds) -and [string]::IsNullOrEmpty($SubscriptionsFile)) {
       $SubIds = $SubIds | Where-Object { $_.Id -in $SubscriptionIds }
@@ -486,7 +486,7 @@ $Script:Runtime = Measure-Command -Expression {
     foreach ($Job in $JobNames) {
       Remove-Job $Job -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
     }
-  }
+  } #>
 
   function Start-ResourceExtraction {
     [CmdletBinding(SupportsShouldProcess, ConfirmImpact='Low')]
