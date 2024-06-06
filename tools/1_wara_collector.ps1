@@ -20,17 +20,93 @@ Param(
   $RunbookFile,
   $SubscriptionsFile,
   $SubscriptionIds,
-  $ResourceGroups,
+  $ResourceGroupFile,
   $TenantID,
   [ValidateSet("AzureCloud","AzureUSGovernment")]
   $AzureEnvironment = 'AzureCloud'
   )
 
+#import-module "./modules/collector.psm1" -Force
+
 if ($Debugging.IsPresent) { $DebugPreference = 'Continue' } else { $DebugPreference = "silentlycontinue" }
+
+if ($ResourceGroupFile) {
+  $ResourceGroupList = (Get-Content $ResourceGroupFile).trim().tolower()
+  $ResourceGroups = $resourcegrouplist | ForEach-Object {$_.split("/")[4]}
+}
 
 $Script:ShellPlatform = $PSVersionTable.Platform
 
 $Script:Runtime = Measure-Command -Expression {
+
+  Function Get-AllAzGraphResources {
+    param (
+      [string]$subscriptionId,
+      [string]$query = 'Resources | project id, resourceGroup, subscriptionId, name, type, location, properties'
+    )
+
+    if ([bool]$subscriptionId) {
+      $result = Search-AzGraph -Query $query -SkipToken $result.SkipToken -Subscription $subscriptionId -First 1000
+    } else {
+      $result = Search-AzGraph -Query $query -SkipToken $result.SkipToken -first 1000
+    } # -first 1000 returns the first 1000 results and subsequently reduces the amount of queries required to get data.
+
+    # Collection to store all resources
+    $allResources = @($result)
+
+    # Loop to paginate through the results using the skip token
+    while ($result.SkipToken) {
+      # Retrieve the next set of results using the skip token
+      if ([bool]$subscriptionId) {
+        $result = Search-AzGraph -Query $query -SkipToken $result.SkipToken -Subscription $subscriptionId -First 1000
+      } else {
+        $result = Search-AzGraph -Query $query -SkipToken $result.SkipToken -First 1000
+      }
+      # Add the results to the collection
+      $allResources += $result
+    }
+
+    # Output all resources
+    return $allResources
+  }
+
+  function get-allresourcegroups {
+
+    # Query to get all resource groups in the tenant
+    $q = "resourcecontainers
+    | where type == 'microsoft.resources/subscriptions'
+    | project subscriptionId, subscriptionName = name
+    | join (resourcecontainers
+        | where type == 'microsoft.resources/subscriptions/resourcegroups')
+        on subscriptionId
+    | project subscriptionName, subscriptionId, resourceGroup, id=tolower(id)"
+
+    return Get-AllAzGraphResources -query $q
+  }
+
+  function Get-ResourceGroupsByList {
+    param (
+        [Parameter(Mandatory=$true, ValueFromPipeline=$true)]
+        [array]$ObjectList,
+
+        [Parameter(Mandatory=$true)]
+        [array]$FilterList,
+
+        [Parameter(Mandatory=$true)]
+        [string]$KeyColumn
+    )
+
+    $matchingObjects = @()
+
+    foreach ($obj in $ObjectList) {
+        if (($obj.$KeyColumn.split("/")[0..4] -join "/") -in $FilterList) {
+            $matchingObjects += $obj
+        }
+    }
+
+    return $matchingObjects
+  }
+
 
   function Test-SubscriptionParameter {
     if ([string]::IsNullOrEmpty($SubscriptionIds) -and [string]::IsNullOrEmpty($SubscriptionsFile))
@@ -278,6 +354,8 @@ $Script:Runtime = Measure-Command -Expression {
         $Script:SubIds = Get-AzSubscription -WarningAction SilentlyContinue
       }
 
+
+
     # Getting Outages
     Write-Debug "Exporting Outages"
     $Date = (Get-Date).AddMonths(-24)
@@ -380,7 +458,7 @@ $Script:Runtime = Measure-Command -Expression {
       }
   }
 
-  function Invoke-PSModule {
+  <# function Invoke-PSModule {
     $SideScripts = Get-ChildItem -Path "$PSScriptRoot\Azure-Proactive-Resiliency-Library\docs\content\services" -Filter "*.ps1" -Recurse
     if (![string]::IsNullOrEmpty($SubscriptionIds) -and [string]::IsNullOrEmpty($SubscriptionsFile)) {
       $SubIds = $SubIds | Where-Object { $_.Id -in $SubscriptionIds }
@@ -477,7 +555,7 @@ $Script:Runtime = Measure-Command -Expression {
     foreach ($Job in $JobNames) {
       Remove-Job $Job -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
     }
-  }
+  } #>
 
   function Start-ResourceExtraction {
     [CmdletBinding(SupportsShouldProcess, ConfirmImpact='Low')]
@@ -1239,9 +1317,22 @@ $Script:Runtime = Measure-Command -Expression {
     param()
 
     if ($PSCmdlet.ShouldProcess("")) {
+     <#  if($ResourceGroupFile){
+
+        $ResourceExporter = @{
+          Resource = $(Get-ResourceGroupsByList -ObjectList $script:results -FilterList $resourcegrouplist -KeyColumn "id")
+        }
+      else{
+        $ResourceExporter = @{
+          Resource = $Script:results
+        }
+      } #>
+
+      #Ternary Expression If ResourceGroupFile is present, then get the ResourceGroups by List, else get the results
       $ResourceExporter = @{
-        Resource = $Script:results
+        Resource = $ResourceGroupFile ? $(Get-ResourceGroupsByList -ObjectList $script:results -FilterList $resourcegrouplist -KeyColumn "id") : $Script:results
       }
+
       $ResourceTypeExporter = @{
         ResourceType = $Script:AllResourceTypesOrdered
       }
@@ -1263,6 +1354,8 @@ $Script:Runtime = Measure-Command -Expression {
       $ScriptDetailsExporter = @{
         ScriptDetails = $Script:ScriptData
       }
+
+
 
       $ExporterArray = @()
       $ExporterArray += $ResourceExporter
