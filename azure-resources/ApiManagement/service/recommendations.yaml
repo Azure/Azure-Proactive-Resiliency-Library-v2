@@ -60,3 +60,22 @@
       url: "https://learn.microsoft.com/en-us/azure/api-management/breaking-changes/stv1-platform-retirement-august-2024"
     - name: Azure API Management compute platform
       url: "https://learn.microsoft.com/en-us/azure/api-management/compute-infrastructure"
+
+- description: Enable auto-scale for production workloads on API Management services
+  aprlGuid: c79680ea-de85-44fa-a596-f31fa17a952f
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: Low
+  recommendationResourceType: Microsoft.ApiManagement/service
+  recommendationMetadataState: Active
+  longDescription: |
+    Use API Management with auto-scale for high availability in workloads that experience variable traffic patterns. There are several limitations with auto-scale, so review the documentation to ensure it meets your requirements.
+  potentialBenefits: Enhanced availability and resilience
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Setting up auto-scale for Azure API Management
+      url: "https://learn.microsoft.com/azure/api-management/api-management-howto-autoscale"
