@@ -26,7 +26,8 @@ Param(
   $ResourceGroupFile,
   $TenantID,
   [ValidateSet("AzureCloud","AzureUSGovernment")]
-  $AzureEnvironment = 'AzureCloud'
+  $AzureEnvironment = 'AzureCloud',
+  $TagFiltering
   )
 
 #import-module "./modules/collector.psm1" -Force
@@ -42,17 +43,13 @@ $Script:ShellPlatform = $PSVersionTable.Platform
 
 $Script:Runtime = Measure-Command -Expression {
 
-  Function Get-AllAzGraphResources {
+  Function Get-AllAzGraphResource {
     param (
       [string]$subscriptionId,
-      [string]$query = 'Resources | project id, resourceGroup, subscriptionId, name, type, location, properties'
+      [string]$query = 'Resources | project id, resourceGroup, subscriptionId, name, type, location'
     )
 
-    if ([bool]$subscriptionId) {
-      $result = Search-AzGraph -Query $query -SkipToken $result.SkipToken -Subscription $subscriptionId -First 1000
-    } else {
-      $result = Search-AzGraph -Query $query -SkipToken $result.SkipToken -first 1000
-    } # -first 1000 returns the first 1000 results and subsequently reduces the amount of queries required to get data.
+    $result = Search-AzGraph -Query $query -first 1000 -Subscription $subscriptionId -ErrorAction SilentlyContinue # -first 1000 returns the first 1000 results and subsequently reduces the amount of queries required to get data.
 
     # Collection to store all resources
     $allResources = @($result)
@@ -60,11 +57,7 @@ $Script:Runtime = Measure-Command -Expression {
     # Loop to paginate through the results using the skip token
     while ($result.SkipToken) {
       # Retrieve the next set of results using the skip token
-      if ([bool]$subscriptionId) {
-        $result = Search-AzGraph -Query $query -SkipToken $result.SkipToken -Subscription $subscriptionId -First 1000
-      } else {
-        $result = Search-AzGraph -Query $query -SkipToken $result.SkipToken -First 1000
-      }
+      $result = Search-AzGraph -Query $query -SkipToken $result.SkipToken -Subscription $subscriptionId -First 1000 -ErrorAction SilentlyContinue
       # Add the results to the collection
       $allResources += $result
     }
@@ -73,7 +66,7 @@ $Script:Runtime = Measure-Command -Expression {
     return $allResources
   }
 
-  function get-allresourcegroups {
+  function Get-AllResourceGroup {
 
     # Query to get all resource groups in the tenant
     $q = "resourcecontainers
@@ -110,7 +103,6 @@ $Script:Runtime = Measure-Command -Expression {
     return $matchingObjects
   }
 
-
   function Test-SubscriptionParameter {
     if ([string]::IsNullOrEmpty($SubscriptionIds) -and [string]::IsNullOrEmpty($SubscriptionsFile))
       {
@@ -119,37 +111,6 @@ $Script:Runtime = Measure-Command -Expression {
         Write-Host ""
         Exit
       }
-  }
-
-  Function Get-AllAzGraphResources {
-    param (
-      [string]$subscriptionId,
-      [string]$query = 'Resources | project id, resourceGroup, subscriptionId, name, type, location, properties'
-    )
-
-    if ([bool]$subscriptionId) {
-      $result = Search-AzGraph -Query $query -SkipToken $result.SkipToken -Subscription $subscriptionId -First 1000
-    } else {
-      $result = Search-AzGraph -Query $query -SkipToken $result.SkipToken -first 1000
-    } # -first 1000 returns the first 1000 results and subsequently reduces the amount of queries required to get data.
-
-    # Collection to store all resources
-    $allResources = @($result)
-
-    # Loop to paginate through the results using the skip token
-    while ($result.SkipToken) {
-      # Retrieve the next set of results using the skip token
-      if ([bool]$subscriptionId) {
-        $result = Search-AzGraph -Query $query -SkipToken $result.SkipToken -Subscription $subscriptionId -First 1000
-      } else {
-        $result = Search-AzGraph -Query $query -SkipToken $result.SkipToken -First 1000
-      }
-      # Add the results to the collection
-      $allResources += $result
-    }
-
-    # Output all resources
-    return $allResources
   }
 
   function Get-HelpMessage {
@@ -188,6 +149,9 @@ $Script:Runtime = Measure-Command -Expression {
     $Script:AllRetirements = @()
     $Script:AllServiceHealth = @()
     $Script:results = @()
+    $Script:AllResources = @()
+    $Script:Resources = @()
+    $Script:TaggedResources = @()
   }
 
   function Test-Requirement {
@@ -238,7 +202,6 @@ $Script:Runtime = Measure-Command -Expression {
         try
           {
             # Clone the GitHub repository to a temporary folder
-            #$repoUrl = "https://github.com/azure/Azure-Proactive-Resiliency-Library"
             $repoUrl = "https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2"
 
             # Define script path as the default path to save files
@@ -625,6 +588,61 @@ $Script:Runtime = Measure-Command -Expression {
             }
         }
 
+        function Invoke-TagFiltering {
+          param($TagFilters,$Subid)
+
+            $TagFile = get-item -Path $TagFilters
+            $TagFile = $TagFile.FullName
+            $TagFilter = Get-Content -Path $TagFile
+
+            # Each line in the Tag Filtering file will be processed
+            $TaggedResourceGroups = @()
+            Foreach ($TagLine in $TagFilter)
+              {
+                # Finding the TagKey and all the TagValues in the line
+                $TagKey = $TagLine.split(':')[0]
+                $TagValues = $TagLine.split(',')
+                Foreach ($TagValue in $TagValues)
+                  {
+                    #Due to the split used to create the array the first TagValue in the array will still have the TagKey
+                    if ($TagValue -eq $TagValues[0])
+                      {
+                        $TagValue = $TagValue.replace(($TagKey+':'),'')
+                      }
+                    Write-Debug ("Running Resource Group Tag Inventory for: "+ $TagKey + " : " + $TagValue)
+                    #Getting all the Resource Groups with the Tags, this will be used later
+
+                    $RGTagQuery = "ResourceContainers | where type =~ 'microsoft.resources/subscriptions/resourcegroups' | mvexpand tags | extend tagKey = tostring(bag_keys(tags)[0]) | extend tagValue = tostring(tags[tagKey]) | where tagKey =~ '$TagKey' and tagValue =~ '$TagValue' | project id | order by id"
+
+                    $TaggedResourceGroups += Get-AllAzGraphResource -query $RGTagQuery -subscriptionId $Subid
+
+                    Write-Debug ("Running Resource Tag Inventory for: "+ $TagKey + " : " + $TagValue)
+                    #Getting all the resources within the TAGs
+                    $ResourcesTagQuery = "Resources | mvexpand tags | extend tagKey = tostring(bag_keys(tags)[0]) | extend tagValue = tostring(tags[tagKey]) | where tagKey =~ '$TagKey' and tagValue =~ '$TagValue' | project id, name, subscriptionId, resourceGroup, location | order by id"
+
+                    $Script:TaggedResources += Get-AllAzGraphResource -query $ResourcesTagQuery -subscriptionId $Subid
+                  }
+                }
+            #If Tags are present in the Resource Group level we make sure to get all the resources within that resource group
+            if ($TaggedResourceGroups)
+              {
+                foreach ($ResourceGroup in $TaggedResourceGroups)
+                  {
+                    Write-Debug ("Double Checking Tagged Resources inside the Resource Group: " + $ResourceGroup)
+                    $ResourcesTagQuery = "Resources | where id startswith '$ResourceGroup' | project id, name, subscriptionId, resourceGroup, location | order by id"
+
+                    $Script:TaggedResources += Get-AllAzGraphResource -query $ResourcesTagQuery -subscriptionId $Subid
+
+                  }
+              }
+        }
+
+        function Invoke-AllResourceExtraction {
+          param($subid)
+
+            $Script:AllResources += Get-AllAzGraphResource -subscriptionId $Subid
+        }
+
         if (![string]::IsNullOrEmpty($SubscriptionIds) -and [string]::IsNullOrEmpty($SubscriptionsFile))
           {
             $SubIds = $SubIds | Where-Object { $_.Id -in $SubscriptionIds }
@@ -651,9 +669,9 @@ $Script:Runtime = Measure-Command -Expression {
 
             Set-AzContext -Subscription $Subid -ErrorAction SilentlyContinue -WarningAction SilentlyContinue | Out-Null
 
-            #Write-Host "Collecting: " -NoNewline
-            #Write-Host "Advisories" -ForegroundColor Magenta
-            #Invoke-AdvisoryExtraction $Subid
+            Write-Host "Collecting: " -NoNewline
+            Write-Host "Advisories" -ForegroundColor Magenta
+            Invoke-AdvisoryExtraction $Subid
 
             Write-Host "----------------------------"
             Write-Host "Collecting: " -NoNewline
@@ -665,20 +683,39 @@ $Script:Runtime = Measure-Command -Expression {
             Write-Host "Service Health Alerts" -ForegroundColor Magenta
             Invoke-ServiceHealthExtraction $Subid
 
+            Write-Host "----------------------------"
+            Write-Host "Collecting: " -NoNewline
+            Write-Host "Resources Details" -ForegroundColor Magenta
+            Invoke-AllResourceExtraction $Subid
+
+            if($TagFiltering)
+              {
+                Write-Host "----------------------------"
+                Write-Host "Collecting: " -NoNewline
+                Write-Host "Tagged Resources" -ForegroundColor Magenta
+                Invoke-TagFiltering $TagFiltering $Subid
+              }
+
+            Write-Host "----------------------------"
+            Write-Host "Running: " -NoNewline
+            Write-Host "Queries" -ForegroundColor Magenta
+            Write-Host "----------------------------"
 
             if (![string]::IsNullOrEmpty($ResourceGroups))
               {
                 $resultAllResourceTypes = @()
                 foreach ($RG in $ResourceGroups)
                   {
-                    $resultAllResourceTypes += Search-AzGraph -Query "resources | where resourceGroup =~ '$RG' | summarize count() by type, subscriptionId" -Subscription $Subid
+                    $Query = "resources | where resourceGroup =~ '$RG' | summarize count() by type, subscriptionId"
+                    $resultAllResourceTypes += Get-AllAzGraphResource -query $Query -subscriptionId $Subid
                   }
                 $Script:AllResourceTypes += $resultAllResourceTypes
               }
             else
               {
                 # Extract and display resource types with the query with subscriptions, we need this to filter the subscriptions later
-                $resultAllResourceTypes = Search-AzGraph -Query "resources | summarize count() by type, subscriptionId" -Subscription $Subid
+                $Query = "resources | summarize count() by type, subscriptionId"
+                $resultAllResourceTypes = Get-AllAzGraphResource -query $Query -subscriptionId $Subid
                 $Script:AllResourceTypes += $resultAllResourceTypes
               }
 
@@ -974,6 +1011,82 @@ $Script:Runtime = Measure-Command -Expression {
       }
   }
 
+  function Invoke-ResourcesExtraDetail {
+    #This Function will construct the $Script:Resources variable
+    foreach ($Temp in $Script:results)
+      {
+        if ($TagFiltering)
+          {
+            if ($Temp.id -in $Script:TaggedResources.id)
+              {
+                $TempDetails = ($Script:TaggedResources | Where-Object {$_.id -eq $Temp.id} | Select-Object -First 1)
+                $result = [PSCustomObject]@{
+                  validationAction = $Temp.validationAction
+                  recommendationId = $Temp.recommendationId
+                  name             = $Temp.name
+                  id               = $Temp.id
+                  location         = $TempDetails.location
+                  subscriptionId   = $TempDetails.subscriptionId
+                  resourceGroup    = $TempDetails.resourceGroup
+                  param1           = $Temp.param1
+                  param2           = $Temp.param2
+                  param3           = $Temp.param3
+                  param4           = $Temp.param4
+                  param5           = $Temp.param5
+                  checkName        = $Temp.checkName
+                  selector         = $Temp.selector
+                  tagged           = $true
+                }
+                $Script:Resources += $result
+              }
+            else
+              {
+                $TempDetails = ($Script:AllResources | Where-Object {$_.id -eq $Temp.id} | Select-Object -First 1)
+                $result = [PSCustomObject]@{
+                  validationAction = $Temp.validationAction
+                  recommendationId = $Temp.recommendationId
+                  name             = $Temp.name
+                  id               = $Temp.id
+                  location         = $TempDetails.location
+                  subscriptionId   = $TempDetails.subscriptionId
+                  resourceGroup    = $TempDetails.resourceGroup
+                  param1           = $Temp.param1
+                  param2           = $Temp.param2
+                  param3           = $Temp.param3
+                  param4           = $Temp.param4
+                  param5           = $Temp.param5
+                  checkName        = $Temp.checkName
+                  selector         = $Temp.selector
+                  tagged           = $false
+                }
+                $Script:Resources += $result
+              }
+          }
+        else
+          {
+            $TempDetails = ($Script:AllResources | Where-Object {$_.id -eq $Temp.id} | Select-Object -First 1)
+              $result = [PSCustomObject]@{
+                validationAction = $Temp.validationAction
+                recommendationId = $Temp.recommendationId
+                name             = $Temp.name
+                id               = $Temp.id
+                location         = $TempDetails.location
+                subscriptionId   = $TempDetails.subscriptionId
+                resourceGroup    = $TempDetails.resourceGroup
+                param1           = $Temp.param1
+                param2           = $Temp.param2
+                param3           = $Temp.param3
+                param4           = $Temp.param4
+                param5           = $Temp.param5
+                checkName        = $Temp.checkName
+                selector         = $Temp.selector
+                tagged           = $false
+              }
+              $Script:Resources += $result
+          }
+      }
+  }
+
   function Resolve-ResourceType {
     $TempTypes = $Script:results | Where-Object { $_.validationAction -eq 'IMPORTANT - Service Not Available In APRL - Validate Service manually if Applicable, if not Delete this line' }
     $Script:AllResourceTypes = $Script:AllResourceTypes | Sort-Object -Property Count_ -Descending
@@ -1025,123 +1138,61 @@ $Script:Runtime = Measure-Command -Expression {
     Param($Subid)
     if (![string]::IsNullOrEmpty($ResourceGroups))
       {
-        $Advisories = @()
         foreach ($RG in $ResourceGroups)
           {
-            $Advisories = Search-AzGraph -Query "advisorresources | where type == 'microsoft.advisor/recommendations' and tostring(properties.category) == 'HighAvailability' | where resourceGroup contains '$RG' | summarize count()" -Subscription $Subid
-            if ($Advisories.count_ -lt 1000)
-              {
-                $advquery = "advisorresources | where type == 'microsoft.advisor/recommendations' and tostring(properties.category) == 'HighAvailability' | where resourceGroup contains '$RG' | order by id"
-                $queryResults += Search-AzGraph -Query $advquery -First 1000 -Subscription $Subid -ErrorAction SilentlyContinue
+            $advquery = "advisorresources | where type == 'microsoft.advisor/recommendations' and tostring(properties.category) == 'HighAvailability' | where resourceGroup contains '$RG' | order by id"
+            $queryResults += Get-AllAzGraphResource -Query $advquery -subscriptionId $Subid
 
-                foreach ($row in $queryResults)
-                  {
-                    if (![string]::IsNullOrEmpty($row.properties.resourceMetadata.resourceId))
-                      {
-                        $result = [PSCustomObject]@{
-                          recommendationId = [string]$row.properties.recommendationTypeId
-                          type             = [string]$row.Properties.impactedField
-                          name             = [string]$row.properties.impactedValue
-                          id               = [string]$row.properties.resourceMetadata.resourceId
-                          category         = [string]$row.properties.category
-                          impact           = [string]$row.properties.impact
-                          description      = [string]$row.properties.shortDescription.solution
-                        }
-                        $Script:AllAdvisories += $result
-                    }
-                  }
-              }
-            else
-              {
-                $Loop = $Advisories.count_ / 1000
-                $Loop = [math]::ceiling($Loop)
-                $Looper = 0
-                $Limit = 1
-
-                while ($Looper -lt $Loop)
-                  {
-                    $advquery = "advisorresources | where type == 'microsoft.advisor/recommendations' and tostring(properties.category) == 'HighAvailability' | where resourceGroup contains '$RG' | order by id"
-                    $queryResults = Search-AzGraph -Query $advquery -Subscription $Subid -Skip $Limit -first 1000 -ErrorAction SilentlyContinue
-                    foreach ($row in $queryResults)
-                      {
-                        if (![string]::IsNullOrEmpty($row.properties.resourceMetadata.resourceId))
-                          {
-                            $result = [PSCustomObject]@{
-                              recommendationId = [string]$row.properties.recommendationTypeId
-                              type             = [string]$row.Properties.impactedField
-                              name             = [string]$row.properties.impactedValue
-                              id               = [string]$row.properties.resourceMetadata.resourceId
-                              category         = [string]$row.properties.category
-                              impact           = [string]$row.properties.impact
-                              description      = [string]$row.properties.shortDescription.solution
-                            }
-                            $Script:AllAdvisories += $result
-                        }
-                      }
-                    $Looper ++
-                    $Limit = $Limit + 1000
-                  }
-              }
-          }
-      }
-    else
-      {
-      $Advisories = Search-AzGraph -Query "advisorresources | where type == 'microsoft.advisor/recommendations' and tostring(properties.category) == 'HighAvailability' | summarize count()" -Subscription $Subid
-
-      if ($Advisories.count_ -lt 1000)
-        {
-          # Execute the query and collect the results
-          $advquery = "advisorresources | where type == 'microsoft.advisor/recommendations' and tostring(properties.category) == 'HighAvailability' | order by id"
-          $queryResults = Search-AzGraph -Query $advquery -First 1000 -Subscription $Subid -ErrorAction SilentlyContinue
-
-          foreach ($row in $queryResults)
-            {
-              if (![string]::IsNullOrEmpty($row.properties.resourceMetadata.resourceId))
-                {
-                  $result = [PSCustomObject]@{
-                    recommendationId = [string]$row.properties.recommendationTypeId
-                    type             = [string]$row.Properties.impactedField
-                    name             = [string]$row.properties.impactedValue
-                    id               = [string]$row.properties.resourceMetadata.resourceId
-                    category         = [string]$row.properties.category
-                    impact           = [string]$row.properties.impact
-                    description      = [string]$row.properties.shortDescription.solution
-                  }
-                  $Script:AllAdvisories += $result
-                }
-            }
-        }
-      else
-        {
-        $Loop = $Advisories.count_ / 1000
-        $Loop = [math]::ceiling($Loop)
-        $Looper = 0
-        $Limit = 1
-
-        while ($Looper -lt $Loop)
-          {
-            $advquery = "advisorresources | where type == 'microsoft.advisor/recommendations' and tostring(properties.category) == 'HighAvailability' | order by id"
-            $queryResults = Search-AzGraph -Query $advquery -Subscription $Subid -Skip $Limit -first 1000 -ErrorAction SilentlyContinue
             foreach ($row in $queryResults)
               {
                 if (![string]::IsNullOrEmpty($row.properties.resourceMetadata.resourceId))
                   {
+                    $TempResource = ""
+                    $TempResource = ($Script:AllResources | Where-Object {$_.id -eq $row.properties.resourceMetadata.resourceId} | Select-Object -First 1)
                     $result = [PSCustomObject]@{
                       recommendationId = [string]$row.properties.recommendationTypeId
                       type             = [string]$row.Properties.impactedField
                       name             = [string]$row.properties.impactedValue
                       id               = [string]$row.properties.resourceMetadata.resourceId
+                      subscriptionId   = [string]$TempResource.subscriptionId
+                      resourceGroup    = [string]$TempResource.resourceGroup
+                      location         = [string]$TempResource.location
                       category         = [string]$row.properties.category
                       impact           = [string]$row.properties.impact
                       description      = [string]$row.properties.shortDescription.solution
                     }
                     $Script:AllAdvisories += $result
-                  }
+                }
               }
-            $Looper ++
-            $Limit = $Limit + 1000
           }
-        }
+      }
+    else
+      {
+        # Execute the query and collect the results
+        $advquery = "advisorresources | where type == 'microsoft.advisor/recommendations' and tostring(properties.category) == 'HighAvailability' | order by id"
+        $queryResults = Get-AllAzGraphResource -Query $advquery -subscriptionId $Subid
+
+        foreach ($row in $queryResults)
+          {
+            if (![string]::IsNullOrEmpty($row.properties.resourceMetadata.resourceId))
+              {
+                $TempResource = ""
+                $TempResource = ($Script:AllResources | Where-Object {$_.id -eq $row.properties.resourceMetadata.resourceId} | Select-Object -First 1)
+                $result = [PSCustomObject]@{
+                  recommendationId = [string]$row.properties.recommendationTypeId
+                  type             = [string]$row.Properties.impactedField
+                  name             = [string]$row.properties.impactedValue
+                  id               = [string]$row.properties.resourceMetadata.resourceId
+                  subscriptionId   = [string]$TempResource.subscriptionId
+                  resourceGroup    = [string]$TempResource.resourceGroup
+                  location         = [string]$TempResource.location
+                  category         = [string]$row.properties.category
+                  impact           = [string]$row.properties.impact
+                  description      = [string]$row.properties.shortDescription.solution
+                }
+                $Script:AllAdvisories += $result
+              }
+          }
       }
   }
 
@@ -1167,75 +1218,35 @@ $Script:Runtime = Measure-Command -Expression {
   function Invoke-RetirementExtraction {
     param($Subid)
 
-    $RetirementCount = Search-AzGraph -Query "servicehealthresources | where properties.EventSubType contains 'Retirement' | summarize count()" -Subscription $Subid
-    if ($RetirementCount.count_ -lt 1000)
-      {
-        $retquery = "servicehealthresources | where properties.EventSubType contains 'Retirement' | order by id"
-        $queryResults = Search-AzGraph -Query $retquery -First 1000 -Subscription $Subid -ErrorAction SilentlyContinue
+      $retquery = "servicehealthresources | where properties.EventSubType contains 'Retirement' | order by id"
+      $queryResults = Get-AllAzGraphResource -Query $retquery -subscriptionId $Subid
 
-        foreach ($row in $queryResults)
-          {
-            $OutagesRetired = $Script:RetiredOutages | Where-Object { $_.name -eq $row.properties.TrackingId }
+      foreach ($row in $queryResults)
+        {
+          $OutagesRetired = $Script:RetiredOutages | Where-Object { $_.name -eq $row.properties.TrackingId }
 
-            $result = [PSCustomObject]@{
-              Subscription    = [string]$Subid
-              TrackingId      = [string]$row.properties.TrackingId
-              Status          = [string]$row.Properties.Status
-              LastUpdateTime  = [string]$OutagesRetired.properties.lastUpdateTime
-              Endtime         = [string]$OutagesRetired.properties.impactMitigationTime
-              Level           = [string]$row.properties.Level
-              Title           = [string]$row.properties.Title
-              Summary         = [string]$row.properties.Summary
-              Header          = [string]$row.properties.Header
-              ImpactedService = [string]$row.properties.Impact.ImpactedService
-              Description     = [string]$OutagesRetired.properties.description
-            }
-            $Script:AllRetirements += $result
+          $result = [PSCustomObject]@{
+            Subscription    = [string]$Subid
+            TrackingId      = [string]$row.properties.TrackingId
+            Status          = [string]$row.Properties.Status
+            LastUpdateTime  = [string]$OutagesRetired.properties.lastUpdateTime
+            Endtime         = [string]$OutagesRetired.properties.impactMitigationTime
+            Level           = [string]$row.properties.Level
+            Title           = [string]$row.properties.Title
+            Summary         = [string]$row.properties.Summary
+            Header          = [string]$row.properties.Header
+            ImpactedService = [string]$row.properties.Impact.ImpactedService
+            Description     = [string]$OutagesRetired.properties.description
           }
-      }
-    else
-      {
-        $Loop = $RetirementCount.count_ / 1000
-        $Loop = [math]::ceiling($Loop)
-        $Looper = 0
-        $Limit = 1
-
-        while ($Looper -lt $Loop)
-          {
-            $retquery = "servicehealthresources | where properties.EventSubType contains 'Retirement' | order by id"
-            $queryResults = Search-AzGraph -Query $retquery -Subscription $Subid -Skip $Limit -first 1000 -ErrorAction SilentlyContinue
-
-            foreach ($row in $queryResults)
-              {
-                $OutagesRetired = $Script:RetiredOutages | Where-Object { $_.name -eq $row.properties.TrackingId }
-
-                $result = [PSCustomObject]@{
-                  Subscription    = [string]$Subid
-                  TrackingId      = [string]$row.properties.TrackingId
-                  Status          = [string]$row.Properties.Status
-                  LastUpdateTime  = [string]$OutagesRetired.properties.lastUpdateTime
-                  Endtime         = [string]$OutagesRetired.properties.impactMitigationTime
-                  Level           = [string]$row.properties.Level
-                  Title           = [string]$row.properties.Title
-                  Summary         = [string]$row.properties.Summary
-                  Header          = [string]$row.properties.Header
-                  ImpactedService = [string]$row.properties.Impact.ImpactedService
-                  Description     = [string]$OutagesRetired.properties.description
-                }
-                $Script:AllRetirements += $result
-              }
-          }
-      }
+          $Script:AllRetirements += $result
+        }
   }
 
   function Invoke-ServiceHealthExtraction {
     param($Subid)
 
-    $ServiceHealthCount = Search-AzGraph -Query "resources | where type == 'microsoft.insights/activitylogalerts' | summarize count()" -Subscription $Subid
-    if ($ServiceHealthCount.count_ -lt 1000)
-      {
         $Servicequery = "resources | where type == 'microsoft.insights/activitylogalerts' | order by id"
-        $queryResults = Search-AzGraph -Query $Servicequery -First 1000 -Subscription $Subid -ErrorAction SilentlyContinue
+        $queryResults = Get-AllAzGraphResource -Query $Servicequery -subscriptionId $Subid
 
         $Rowler = @()
         foreach ($row in $queryResults)
@@ -1268,51 +1279,6 @@ $Script:Runtime = Measure-Command -Expression {
             }
             $Script:AllServiceHealth += $result
           }
-      }
-    else
-      {
-        $Loop = $ServiceHealthCount.count_ / 1000
-        $Loop = [math]::ceiling($Loop)
-        $Looper = 0
-        $Limit = 1
-        $Rowler = @()
-
-        while ($Looper -lt $Loop)
-          {
-            $Servicequery = "resources | where type == 'microsoft.insights/activitylogalerts' | order by id"
-            $queryResults = Search-AzGraph -Query $Servicequery -Subscription $Subid -Skip $Limit -first 1000 -ErrorAction SilentlyContinue
-
-            foreach ($row in $queryResults)
-              {
-                foreach ($type in $row.properties.condition.allOf)
-                    {
-                    if ($type.equals -eq 'ServiceHealth')
-                      {
-                        $Rowler += $row
-                      }
-                  }
-              }
-
-          }
-        foreach ($Row in $Rowler)
-          {
-            $SubName = ($SubIds | Where-Object { $_.Id -eq ($Row.properties.scopes.split('/')[2]) }).Name
-            $EventType = $Row.Properties.condition.allOf.anyOf | Select-Object -Property equals | ForEach-Object { switch ($_.equals) { 'Incident' { 'Service Issues' } 'Informational' { 'Health Advisories' } 'ActionRequired' { 'Security Advisories' } 'Maintenance' { 'Planned Maintenance' } } }
-            $Services = $Row.Properties.condition.allOf | Where-Object { $_.field -eq 'properties.impactedServices[*].ServiceName' } | Select-Object -Property containsAny | ForEach-Object { $_.containsAny }
-            $Regions = $Row.Properties.condition.allOf | Where-Object { $_.field -eq 'properties.impactedServices[*].ImpactedRegions[*].RegionName' } | Select-Object -Property containsAny | ForEach-Object { $_.containsAny }
-
-            $result = [PSCustomObject]@{
-              Name         = [string]$row.name
-              Subscription = [string]$SubName
-              Enabled      = [string]$Row.properties.enabled
-              EventType    = if (![string]::IsNullOrEmpty($EventType)) { $EventType }Else { 'All' }
-              Services     = if (![string]::IsNullOrEmpty($Services)) { $Services }Else { 'All' }
-              Regions      = if (![string]::IsNullOrEmpty($Regions)) { $Regions }Else { 'All' }
-              ActionGroup  = $Row.Properties.actions.actionGroups.actionGroupId.split('/')[8]
-            }
-            $Script:AllServiceHealth += $result
-          }
-      }
   }
 
   function New-JsonFile {
@@ -1320,7 +1286,7 @@ $Script:Runtime = Measure-Command -Expression {
     param()
 
     if ($PSCmdlet.ShouldProcess("")) {
-     <#  if($ResourceGroupFile){
+      <#  if($ResourceGroupFile){
 
         $ResourceExporter = @{
           Resource = $(Get-ResourceGroupsByList -ObjectList $script:results -FilterList $resourcegrouplist -KeyColumn "id")
@@ -1333,7 +1299,7 @@ $Script:Runtime = Measure-Command -Expression {
 
       #Ternary Expression If ResourceGroupFile is present, then get the ResourceGroups by List, else get the results
       $ResourceExporter = @{
-        Resource = $ResourceGroupFile ? $(Get-ResourceGroupsByList -ObjectList $script:results -FilterList $resourcegrouplist -KeyColumn "id") : $Script:results
+        Resource = $ResourceGroupFile ? $(Get-ResourceGroupsByList -ObjectList $Script:Resources -FilterList $resourcegrouplist -KeyColumn "id") : $Script:Resources
       }
 
       $ResourceTypeExporter = @{
@@ -1414,6 +1380,9 @@ $Script:Runtime = Measure-Command -Expression {
 
   Write-Debug "Calling Function: Start-ResourceExtraction"
   Start-ResourceExtraction
+
+  Write-Debug "Calling Function: Invoke-ResourcesExtraDetail"
+  Invoke-ResourcesExtraDetail
 
   Write-Debug "Calling Function: Resolve-ResourceTypes"
   Resolve-ResourceType
