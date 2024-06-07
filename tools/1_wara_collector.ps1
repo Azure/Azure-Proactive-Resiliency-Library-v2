@@ -240,7 +240,7 @@ $Script:Runtime = Measure-Command -Expression {
 
   function Connect-ToAzure {
     # Connect To Azure Tenant
-    if ($PSVersionTable.OS -eq 'Win32NT')
+    if ($Script:ShellPlatform -eq 'Win32NT')
       {
         Write-Host "Authenticating to Azure on Windows"
         Clear-AzContext -Force -ErrorAction SilentlyContinue -WarningAction SilentlyContinue -InformationAction SilentlyContinue
@@ -279,12 +279,6 @@ $Script:Runtime = Measure-Command -Expression {
         Write-Host "Authenticating to Azure on Azure Cloud Shell"
         # Uses managed identity to authenticate
         Connect-AzAccount -Identity -Environment $AzureEnvironment -WarningAction SilentlyContinue
-        $Script:SubIds = Get-AzSubscription -WarningAction SilentlyContinue
-      }
-    elseif ($PSVersionTable.OS -like 'Darwin*')
-      {
-        Write-Host "Authenticating to Azure on MacOS device..."
-        Connect-AzAccount -Environment $AzureEnvironment -WarningAction SilentlyContinue
         $Script:SubIds = Get-AzSubscription -WarningAction SilentlyContinue
       }
     else {
