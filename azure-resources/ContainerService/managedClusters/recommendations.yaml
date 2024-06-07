@@ -8,7 +8,7 @@
   longDescription: |
     Azure Availability Zones ensure high availability by offering independent locations within regions, equipped with their own power, cooling, and networking to ensure applications and data are protected from datacenter-level failures.
   potentialBenefits: Enhanced fault tolerance for AKS
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -27,7 +27,7 @@
   recommendationResourceType: Microsoft.ContainerService/managedClusters
   recommendationMetadataState: Active
   longDescription: |
-    AKS assigns the kubernetes.azure.com/mode: system label to nodes in system node pools signaling system pods should be scheduled there.
+    AKS assigns the kubernetes.azure.com/mode: system label to nodes in system node pools signaling the preference for system pods should be scheduled there. The CriticalAddonsOnly=true:NoSchedule taint can be added to your system nodes to prohibit application pods from being scheduled on them.
   potentialBenefits: Enhanced reliability via pod isolation
   pgVerified: false
   publishedToLearn: false
@@ -92,7 +92,7 @@
   longDescription: |
     The cluster auto-scaler in AKS adjusts node counts based on pod resource needs and available capacity, enabling scaling as per demand to prevent outages.
   potentialBenefits: Optimizes scaling and prevents outages
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -117,7 +117,7 @@
   longDescription: |
     AKS, popular for stateful apps needing backups, can now use Azure Backup to secure clusters and attached volumes through an installed Backup Extension, enabling backup and restore operations via a Backup Vault.
   potentialBenefits: Ensures data safety for AKS
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -155,7 +155,7 @@
   aprlGuid: d3111036-355d-431b-ab49-8ddad042800b
   recommendationTypeId: null
   recommendationControl: High Availability
-  recommendationImpact: Low
+  recommendationImpact: Medium
   recommendationResourceType: Microsoft.ContainerService/managedClusters
   recommendationMetadataState: Active
   longDescription: |
@@ -249,7 +249,7 @@
   longDescription: |
     Production AKS clusters require the Standard tier for a financially backed SLA and enhanced node scalability, as the free service lacks these features.
   potentialBenefits: SLA guarantee and better scalability
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -270,7 +270,7 @@
   longDescription: |
     Azure Monitor enables real-time health and performance insights for AKS by collecting events, capturing container logs, and gathering CPU/Memory data from the Metrics API. It allows data visualization using Azure Monitor Container Insights, Prometheus, Grafana, or others.
   potentialBenefits: Real-time AKS health/performance insights
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -344,7 +344,7 @@
     - name: GitOps for AKS - Reference Architecture
       url: "https://learn.microsoft.com/en-us/azure/architecture/example-scenario/gitops-aks/gitops-blueprint-aks"
 
-- description: Configure affinity or anti-affinity rules based on application requirements
+- description: Use pod topology spread constraints to ensure that pods are spread across different nodes or zones
   aprlGuid: 928fcc6f-5e9a-42d9-9bd4-260af42de2e5
   recommendationTypeId: null
   recommendationControl: High Availability
@@ -352,9 +352,9 @@
   recommendationResourceType: Microsoft.ContainerService/managedClusters
   recommendationMetadataState: Active
   longDescription: |
-    Configure Topology Spread Constraints to spread Pods across your cluster among failure-domains like regions, zones, nodes, and other domains for high availability and efficient resource utilization.
+    Enhance availability and reliability by using pod topology spread constraints to control pod distribution based on node or zone topology, ensuring pods are spread across your cluster.
   potentialBenefits: Ensures high availability and efficient use
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
@@ -375,7 +375,7 @@
   longDescription: |
     AKS kubelet controller uses liveness probes to validate containers and applications health, ensuring the system knows when to restart a container based on its health status.
   potentialBenefits: Enhances container health monitoring
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
@@ -386,7 +386,7 @@
     - name: Assign Pod Node
       url: "https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/"
 
-- description: Configure pod replica sets in production applications to guarantee availability
+- description: Use deployments with multiple replicas in production applications to guarantee availability
   aprlGuid: bcfe71f1-ebed-49e5-a84a-193b81ad5d27
   recommendationTypeId: null
   recommendationControl: High Availability
@@ -394,9 +394,9 @@
   recommendationResourceType: Microsoft.ContainerService/managedClusters
   recommendationMetadataState: Active
   longDescription: |
-    Configuring ReplicaSets in Pod or Deployment manifests stabilizes the number of replica Pods, ensuring that a specified number of identical Pods are always available, thereby guaranteeing their availability.
+    Configuring multiple replicas in Pod or Deployment manifests stabilizes the number of replica Pods, ensuring that a specified number of identical Pods are always available, thereby guaranteeing their availability.
   potentialBenefits: Ensures stable pod availability
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
@@ -415,7 +415,7 @@
   longDescription: |
     The system node pool should be configured with a minimum node count of two to ensure critical system pods are resilient to node outages.
   potentialBenefits: Ensures pod resilience
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -434,7 +434,7 @@
   longDescription: |
     Configuring the user node pool with at least two nodes is essential for applications needing high availability, ensuring they remain operational and accessible without interruption.
   potentialBenefits: Ensures high app availability
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -453,7 +453,7 @@
   longDescription: |
     A Pod Disruption Budget is a Kubernetes resource configuring the minimum number or percentage of pods that should remain available during disruptions like maintenance or scaling, ensuring a minimum number of pods are always available in the cluster.
   potentialBenefits: Ensures cluster resiliency during disruptions
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
@@ -480,43 +480,24 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: AKS Networking
-      url: "https://learn.microsoft.com/azure/aks/concepts-network"
+    - name: Azure CNI Dynamic IP Allocation
+      url: "https://learn.microsoft.com/azure/aks/configure-azure-cni-dynamic-ip-allocation"
 
-- description: Enforce resource quotas at the namespace level
-  aprlGuid: d479df28-d367-4ef0-8b86-0495ab94fabd
+- description: Node pool auto-scale settings should not exceed subscription core quota
+  aprlGuid: a01afc4c-7439-4919-b2da-3565992ea2a7
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.ContainerService/managedClusters
   recommendationMetadataState: Active
   longDescription: |
-    Enforcing namespace-level resource quotas in AKS is crucial for reliability, preventing resource exhaustion and maintaining cluster stability. It stops applications or users from monopolizing resources, avoiding degraded performance or outages for others.
-  potentialBenefits: Prevents resource monopoly, ensures stability
+    Node pool settings should not exceed the subscription core quota to ensure AKS can scale out nodes efficiently, meeting increased demand while reducing resource constraints and potential service disruptions.
+  potentialBenefits: Reduced disruptions
   pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Resource quotas
-      url: "https://learn.microsoft.com/azure/aks/operator-best-practices-scheduler#enforce-resource-quotas"
-
-- description: Enable AKS private cluster or set authorized IP address ranges
-  aprlGuid: ba3f7d17-9654-4038-b172-09f1b2569925
-  recommendationTypeId: null
-  recommendationControl: High Availability
-  recommendationImpact: High
-  recommendationResourceType: Microsoft.ContainerService/managedClusters
-  recommendationMetadataState: Active
-  longDescription: |
-    For optimal connectivity and security, enable private cluster in AKS to ensure direct communication between worker nodes and the control plane. If not enabled, secure API server access with authorized IP ranges.
-  potentialBenefits: Provides network reliability, reduced disruptions
-  pgVerified: false
-  publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
-  tags: null
-  learnMoreLink:
-    - name: AKS private cluster
-      url: "https://learn.microsoft.com/azure/aks/private-clusters"
+    - name: Azure Quotas
+      url: "https://learn.microsoft.com/azure/quotas/quotas-overview"
