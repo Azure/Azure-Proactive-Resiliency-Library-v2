@@ -27,7 +27,8 @@ Param(
   $TenantID,
   [ValidateSet("AzureCloud","AzureUSGovernment")]
   $AzureEnvironment = 'AzureCloud',
-  $TagFiltering
+  $TagsFile,
+  $Tags
   )
 
 #import-module "./modules/collector.psm1" -Force
@@ -37,6 +38,7 @@ if ($Debugging.IsPresent) { $DebugPreference = 'Continue' } else { $DebugPrefere
 if ($ResourceGroupFile) {
   $ResourceGroupList = (Get-Content $ResourceGroupFile).trim().tolower()
   $ResourceGroups = $resourcegrouplist | ForEach-Object {$_.split("/")[4]}
+  $SubscriptionIds = ($resourcegrouplist | ForEach-Object {$_.split("/")[2]} | Select-Object -Unique)
 }
 
 $Script:ShellPlatform = $PSVersionTable.Platform
@@ -77,7 +79,7 @@ $Script:Runtime = Measure-Command -Expression {
         on subscriptionId
     | project subscriptionName, subscriptionId, resourceGroup, id=tolower(id)"
 
-    return Get-AllAzGraphResources -query $q
+    return Get-AllAzGraphResource -query $q
   }
 
   function Get-ResourceGroupsByList {
@@ -182,6 +184,7 @@ $Script:Runtime = Measure-Command -Expression {
             AVD           = if($AVD.IsPresent){$true}else{$false}
             AVS           = if($AVS.IsPresent){$true}else{$false}
             HPC           = if($HPC.IsPresent){$true}else{$false}
+            TAGFiltering  = if($TagFile -or $Tags){$true}else{$false}
           }
       }
     catch
@@ -530,16 +533,16 @@ $Script:Runtime = Measure-Command -Expression {
     if ($PSCmdlet.ShouldProcess(""))
       {
         function Invoke-QueryExecution {
-          param($Subid, $type, $query, $checkId, $checkName, $validationAction)
+          param($type, $query, $checkId, $checkName, $validationAction)
 
           try
             {
-              $ResourceType = $Script:AllResourceTypes | Where-Object { $_.type -eq $type -and $_.subscriptionId -eq $Subid }
+              $ResourceType = $Script:AllResourceTypes | Where-Object { $_.Name -eq $type }
               if (![string]::IsNullOrEmpty($resourceType))
                 {
                   # Execute the query and collect the results
                   # $queryResults = Search-AzGraph -Query $query -First 1000 -Subscription $Subid -ErrorAction SilentlyContinue
-                  $queryResults = Get-AllAzGraphResources -query $query -subscriptionId $Subid
+                  $queryResults = Get-AllAzGraphResource -query $query -subscriptionId $Subid
 
                   $queryResults = $queryResults | Select-Object -Property name,id,param1,param2,param3,param4,param5 -Unique
 
@@ -589,42 +592,78 @@ $Script:Runtime = Measure-Command -Expression {
         }
 
         function Invoke-TagFiltering {
-          param($TagFilters,$Subid)
+          param($Subid)
 
-            $TagFile = get-item -Path $TagFilters
-            $TagFile = $TagFile.FullName
-            $TagFilter = Get-Content -Path $TagFile
+            if ($TagsFile)
+              {
+                $TagFile = get-item -Path $TagFilters
+                $TagFile = $TagFile.FullName
+                $TagFilter = Get-Content -Path $TagFile
+              }
+            if ($Tags)
+              {
+                $TagFilter = $Tags
+              }
+            $Counter = 0
 
             # Each line in the Tag Filtering file will be processed
-            $TaggedResourceGroups = @()
+            $AllTaggedResourceGroups = @()
             Foreach ($TagLine in $TagFilter)
               {
                 # Finding the TagKey and all the TagValues in the line
-                $TagKey = $TagLine.split(':')[0]
-                $TagValues = $TagLine.split(',')
-                Foreach ($TagValue in $TagValues)
+                $TagKeys = $TagLine.split(':')[0]
+                $TagValues = $TagLine.split(':')[1]
+
+                $TagKeys = $TagKeys.split(',')
+                $TagValues = $TagValues.split(',')
+
+                $TagKey = if ($TagKeys.count -gt 1) { $TagKeys | ForEach-Object { "'$_'," } }else { $TagKeys}
+                $TagKey = [string]$TagKey
+                $TagKey = if ($TagKey -like "*',*") { $TagKey -replace ".$" }else { "'$TagKey'" }
+
+                $TagValue = if ($TagValues.count -gt 1) { $TagValues | ForEach-Object { "'$_'," } }else { $TagValues}
+                $TagValue = [string]$TagValue
+                $TagValue = if ($TagValue -like "*',*") { $TagValue -replace ".$" }else { "'$TagValue'" }
+
+                Write-Debug ("Running Resource Group Tag Inventory for: "+ $TagKey + " : " + $TagValue)
+
+                #Getting all the Resource Groups with the Tags, this will be used later
+                $RGTagQuery = "ResourceContainers | where type =~ 'microsoft.resources/subscriptions/resourcegroups' | mvexpand tags | extend tagKey = tostring(bag_keys(tags)[0]) | extend tagValue = tostring(tags[tagKey]) | where tagKey in ($TagKey) and tagValue in ($TagValue) | project id | order by id"
+
+                $TaggedResourceGroups = Get-AllAzGraphResource -query $RGTagQuery -subscriptionId $Subid
+
+                Write-Debug ("Running Resource Tag Inventory for: "+ $TagKey + " : " + $TagValue)
+                #Getting all the resources within the TAGs
+                $ResourcesTagQuery = "Resources | mvexpand tags | extend tagKey = tostring(bag_keys(tags)[0]) | extend tagValue = tostring(tags[tagKey]) | where tagKey in ($TagKey) and tagValue in ($TagValue) | project id, name, subscriptionId, resourceGroup, location | order by id"
+
+                $ResourcesWithTHETag = Get-AllAzGraphResource -query $ResourcesTagQuery -subscriptionId $Subid
+
+                if ($Counter -gt 0)
                   {
-                    #Due to the split used to create the array the first TagValue in the array will still have the TagKey
-                    if ($TagValue -eq $TagValues[0])
+                    foreach ($resource in $Script:TaggedResources)
                       {
-                        $TagValue = $TagValue.replace(($TagKey+':'),'')
+                        if ($resource.id -notin $ResourcesWithTHETag.id)
+                          {
+                            $Script:TaggedResources = $Script:TaggedResources | Where-Object { $_.id -ne $resource.id }
+                          }
                       }
-                    Write-Debug ("Running Resource Group Tag Inventory for: "+ $TagKey + " : " + $TagValue)
-                    #Getting all the Resource Groups with the Tags, this will be used later
-
-                    $RGTagQuery = "ResourceContainers | where type =~ 'microsoft.resources/subscriptions/resourcegroups' | mvexpand tags | extend tagKey = tostring(bag_keys(tags)[0]) | extend tagValue = tostring(tags[tagKey]) | where tagKey =~ '$TagKey' and tagValue =~ '$TagValue' | project id | order by id"
-
-                    $TaggedResourceGroups += Get-AllAzGraphResource -query $RGTagQuery -subscriptionId $Subid
-
-                    Write-Debug ("Running Resource Tag Inventory for: "+ $TagKey + " : " + $TagValue)
-                    #Getting all the resources within the TAGs
-                    $ResourcesTagQuery = "Resources | mvexpand tags | extend tagKey = tostring(bag_keys(tags)[0]) | extend tagValue = tostring(tags[tagKey]) | where tagKey =~ '$TagKey' and tagValue =~ '$TagValue' | project id, name, subscriptionId, resourceGroup, location | order by id"
-
-                    $Script:TaggedResources += Get-AllAzGraphResource -query $ResourcesTagQuery -subscriptionId $Subid
+                    foreach ($RG in $AllTaggedResourceGroups)
+                      {
+                        if ($RG -notin $TaggedResourceGroups)
+                          {
+                            $AllTaggedResourceGroups = $AllTaggedResourceGroups | Where-Object { $_ -ne $RG }
+                          }
+                      }
                   }
-                }
+                else
+                  {
+                    $Counter ++
+                    $Script:TaggedResources = $ResourcesWithTHETag
+                    $AllTaggedResourceGroups += $TaggedResourceGroups
+                  }
+              }
             #If Tags are present in the Resource Group level we make sure to get all the resources within that resource group
-            if ($TaggedResourceGroups)
+            if ($AllTaggedResourceGroups)
               {
                 foreach ($ResourceGroup in $TaggedResourceGroups)
                   {
@@ -632,7 +671,6 @@ $Script:Runtime = Measure-Command -Expression {
                     $ResourcesTagQuery = "Resources | where id startswith '$ResourceGroup' | project id, name, subscriptionId, resourceGroup, location | order by id"
 
                     $Script:TaggedResources += Get-AllAzGraphResource -query $ResourcesTagQuery -subscriptionId $Subid
-
                   }
               }
         }
@@ -688,12 +726,12 @@ $Script:Runtime = Measure-Command -Expression {
             Write-Host "Resources Details" -ForegroundColor Magenta
             Invoke-AllResourceExtraction $Subid
 
-            if($TagFiltering)
+            if($TagsFile -or $Tags)
               {
                 Write-Host "----------------------------"
                 Write-Host "Collecting: " -NoNewline
                 Write-Host "Tagged Resources" -ForegroundColor Magenta
-                Invoke-TagFiltering $TagFiltering $Subid
+                Invoke-TagFiltering $Subid
               }
 
             Write-Host "----------------------------"
@@ -703,19 +741,13 @@ $Script:Runtime = Measure-Command -Expression {
 
             if (![string]::IsNullOrEmpty($ResourceGroups))
               {
-                $resultAllResourceTypes = @()
-                foreach ($RG in $ResourceGroups)
-                  {
-                    $Query = "resources | where resourceGroup =~ '$RG' | summarize count() by type, subscriptionId"
-                    $resultAllResourceTypes += Get-AllAzGraphResource -query $Query -subscriptionId $Subid
-                  }
+                $resultAllResourceTypes = $Script:AllResources | Where-Object {$_.resourceGroup -in $ResourceGroups} | Group-Object -Property type,subscriptionId -NoElement
                 $Script:AllResourceTypes += $resultAllResourceTypes
               }
             else
               {
                 # Extract and display resource types with the query with subscriptions, we need this to filter the subscriptions later
-                $Query = "resources | summarize count() by type, subscriptionId"
-                $resultAllResourceTypes = Get-AllAzGraphResource -query $Query -subscriptionId $Subid
+                $resultAllResourceTypes = $Script:AllResources | Group-Object -Property type,subscriptionId -NoElement
                 $Script:AllResourceTypes += $resultAllResourceTypes
               }
 
@@ -724,8 +756,9 @@ $Script:Runtime = Measure-Command -Expression {
             $aprlKqlFiles = @()
             $ServiceNotAvailable = @()
 
-            foreach ($Type in $resultAllResourceTypes.type)
+            foreach ($Type in $resultAllResourceTypes.Name)
               {
+                $Type = $Type.split(',')[0]
                 if ($Type.ToLower() -in $Script:GluedTypes)
                   {
                     $Type = $Type.replace('microsoft.', '')
@@ -966,17 +999,17 @@ $Script:Runtime = Measure-Command -Expression {
                   {
                     Write-Host "Query $checkId under development - Validate Recommendation manually" -ForegroundColor Yellow
                     $query = "resources | where type =~ '$type' | project name,id"
-                    Invoke-QueryExecution -Subid $Subid -type $type -query $query -checkId $checkId -checkName $checkName -validationAction 'IMPORTANT - Query under development - Validate Recommendation manually'
+                    Invoke-QueryExecution -type ($type+', '+$Subid) -query $query -checkId $checkId -checkName $checkName -validationAction 'IMPORTANT - Query under development - Validate Recommendation manually'
                   }
                 elseif ($query -match "cannot-be-validated-with-arg")
                   {
                     Write-Host "IMPORTANT - Recommendation $checkId cannot be validated with ARGs - Validate Resources manually" -ForegroundColor Yellow
                     $query = "resources | where type =~ '$type' | project name,id"
-                    Invoke-QueryExecution -Subid $Subid -type $type -query $query -checkId $checkId -checkName $checkName -validationAction 'IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually'
+                    Invoke-QueryExecution -type ($type+', '+$Subid) -query $query -checkId $checkId -checkName $checkName -validationAction 'IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually'
                   }
                 else
                   {
-                    Invoke-QueryExecution -Subid $Subid -type $type -query $query -checkId $checkId -checkName $checkName -validationAction 'Azure Resource Graph'
+                    Invoke-QueryExecution -type ($type+', '+$Subid) -query $query -checkId $checkId -checkName $checkName -validationAction 'Azure Resource Graph'
                   }
               }
 
@@ -1005,7 +1038,7 @@ $Script:Runtime = Measure-Command -Expression {
               {
                 Write-Host "Type $type Not Available In APRL - Validate Service manually" -ForegroundColor Yellow
                 $query = "resources | where type =~ '$type' | project name,id"
-                Invoke-QueryExecution -Subid $Subid -type $type -query $query -checkId $type -checkName '' -validationAction 'IMPORTANT - Service Not Available In APRL - Validate Service manually if Applicable, if not Delete this line'
+                Invoke-QueryExecution -type ($type+', '+$Subid) -query $query -checkId $type -checkName '' -validationAction 'IMPORTANT - Service Not Available In APRL - Validate Service manually if Applicable, if not Delete this line'
               }
           }
       }
@@ -1015,7 +1048,7 @@ $Script:Runtime = Measure-Command -Expression {
     #This Function will construct the $Script:Resources variable
     foreach ($Temp in $Script:results)
       {
-        if ($TagFiltering)
+        if ($TagsFile -or $Tags)
           {
             if ($Temp.id -in $Script:TaggedResources.id)
               {
@@ -1089,25 +1122,20 @@ $Script:Runtime = Measure-Command -Expression {
 
   function Resolve-ResourceType {
     $TempTypes = $Script:results | Where-Object { $_.validationAction -eq 'IMPORTANT - Service Not Available In APRL - Validate Service manually if Applicable, if not Delete this line' }
-    $Script:AllResourceTypes = $Script:AllResourceTypes | Sort-Object -Property Count_ -Descending
-    $Looper = $Script:AllResourceTypes | Select-Object -Property type,subscriptionId -Unique
-    foreach ($result in $Looper)
+    $Script:AllResourceTypes = $Script:AllResourceTypes | Sort-Object -Property Count -Descending
+    $Looper = $Script:AllResourceTypes | Select-Object -Property Name -Unique
+    foreach ($result in $Looper.Name)
       {
-        if(($Script:AllResourceTypes | Where-Object {$_.type -eq $result.type -and $_.SubscriptionId -eq $result.subscriptionId}).count -eq 1)
-          {
-            $ResourceTypeCount = ($Script:AllResourceTypes | Where-Object {$_.type -eq $result.type -and $_.SubscriptionId -eq $result.subscriptionId}).count_
-          }
-        else
-          {
-            $ResourceTypeCount = (($Script:AllResourceTypes | Where-Object {$_.type -eq $result.type -and $_.SubscriptionId -eq $result.subscriptionId}).count_ | Measure-Object -Sum).Sum
-          }
-        if ($result.type -in $TempTypes.recommendationId)
+        $ResourceTypeCount = ($Script:AllResourceTypes | Where-Object {$_.Name -eq $result}).count
+        $ResultType = $result.split(', ')[0]
+        $ResultSubID = $result.split(', ')[1]
+        if ($ResultType -in $TempTypes.recommendationId)
           {
             $SubName = ''
-            $SubName = ($SubIds | Where-Object { $_.Id -eq $result.subscriptionId }).Name
+            $SubName = ($SubIds | Where-Object { $_.Id -eq $ResultSubID }).Name
             $tmp = [PSCustomObject]@{
               'Subscription'        = [string]$SubName
-              'Resource Type'       = [string]$result.type
+              'Resource Type'       = [string]$ResultType
               'Number of Resources' = [string]$ResourceTypeCount
               'Available in APRL?'  = "No"
               'Custom1'             = ""
@@ -1116,13 +1144,13 @@ $Script:Runtime = Measure-Command -Expression {
             }
             $Script:AllResourceTypesOrdered += $tmp
           }
-        elseif ($result.type -notin $TempTypes.recommendationId)
+        elseif ($ResultType -notin $TempTypes.recommendationId)
           {
             $SubName = ''
-            $SubName = ($SubIds | Where-Object { $_.Id -eq $result.subscriptionId }).Name
+            $SubName = ($SubIds | Where-Object { $_.Id -eq $ResultSubID }).Name
             $tmp = [PSCustomObject]@{
               'Subscription'        = [string]$SubName
-              'Resource Type'       = [string]$result.type
+              'Resource Type'       = [string]$ResultType
               'Number of Resources' = [string]$ResourceTypeCount
               'Available in APRL?'  = "Yes"
               'Custom1'             = ""

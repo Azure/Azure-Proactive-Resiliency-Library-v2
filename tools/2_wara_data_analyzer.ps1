@@ -189,91 +189,143 @@ $Script:Runtime = Measure-Command -Expression {
     foreach ($Recom in $CoreResources)
       {
         $RecomTitle = $Script:ServicesYAMLContent | Where-Object { $_.aprlGuid -eq $Recom.recommendationId }
-        $Ticket = $Script:SupportTickets | Where-Object { $_.'Related Resource' -eq $Recom.id }
-        if ($RecomTitle.recommendationMetadataState -eq 'Active' -or $Recom.validationAction -eq 'IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually' -or $Recom.validationAction -eq 'IMPORTANT - Query under development - Validate Recommendation manually' )
+        if ([string]::IsNullOrEmpty($RecomTitle.recommendationTypeId))
           {
-            $Tickets = if ($Ticket.'Ticket ID'.count -gt 1) { $Ticket.'Ticket ID' | ForEach-Object { $_ + ' /' } }else { $Ticket.'Ticket ID' }
-            $Tickets = [string]$Tickets
-            $Tickets = if ($Tickets -like '* /*') { $Tickets -replace ".$" }else { $Tickets }
-            $tmp = @{
-              'How was the resource/recommendation validated or what actions need to be taken?' = [string]$Recom.validationAction;
-              recommendationId                                                                  = [string]$Recom.recommendationId;
-              recommendationTitle                                                               = [string]$RecomTitle.description;
-              resourceType                                                                      = [string]$RecomTitle.recommendationResourceType;
-              name                                                                              = [string]$Recom.name;
-              id                                                                                = [string]$Recom.id;
-              tags                                                                              = [string]$Recom.tags;
-              param1                                                                            = [string]$Recom.param1;
-              param2                                                                            = [string]$Recom.param2;
-              param3                                                                            = [string]$Recom.param3;
-              param4                                                                            = [string]$Recom.param4;
-              param5                                                                            = [string]$Recom.param5;
-              supportTicketId                                                                   = $Tickets;
-              source                                                                            = [string]$Recom.selector;
-              checkName                                                                         = [string]$Recom.checkName
-            }
+            $Ticket = $Script:SupportTickets | Where-Object { $_.'Related Resource' -eq $Recom.id }
+            if ($RecomTitle.recommendationMetadataState -eq 'Active' -or $Recom.validationAction -eq 'IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually' -or $Recom.validationAction -eq 'IMPORTANT - Query under development - Validate Recommendation manually' )
+              {
+                $Tickets = if ($Ticket.'Ticket ID'.count -gt 1) { $Ticket.'Ticket ID' | ForEach-Object { $_ + ' /' } }else { $Ticket.'Ticket ID' }
+                $Tickets = [string]$Tickets
+                $Tickets = if ($Tickets -like '* /*') { $Tickets -replace ".$" }else { $Tickets }
+                $tmp = @{
+                  'How was the resource/recommendation validated or what actions need to be taken?' = $Recom.validationAction;
+                  recommendationId                                                                  = $Recom.recommendationId;
+                  recommendationTitle                                                               = $RecomTitle.description;
+                  resourceType                                                                      = $RecomTitle.recommendationResourceType;
+                  subscriptionId                                                                    = $Recom.subscriptionId;
+                  resourceGroup                                                                     = $Recom.resourceGroup;
+                  name                                                                              = $Recom.name;
+                  id                                                                                = $Recom.id;
+                  location                                                                          = $Recom.location;
+                  param1                                                                            = $Recom.param1;
+                  param2                                                                            = $Recom.param2;
+                  param3                                                                            = $Recom.param3;
+                  param4                                                                            = $Recom.param4;
+                  param5                                                                            = $Recom.param5;
+                  supportTicketId                                                                   = $Tickets;
+                  source                                                                            = $Recom.selector;
+                  checkName                                                                         = $Recom.checkName;
+                  tagged                                                                            = $Recom.tagged
+                }
+              }
+            elseif ($Recom.validationAction -eq 'IMPORTANT - Service Not Available In APRL - Validate Service manually if Applicable, if not Delete this line' )
+              {
+                $tmp = @{
+                  'How was the resource/recommendation validated or what actions need to be taken?' = $Recom.validationAction;
+                  recommendationId                                                                  = "";
+                  recommendationTitle                                                               = $RecomTitle.description;
+                  resourceType                                                                      = $Recom.recommendationId;
+                  subscriptionId                                                                    = $Recom.subscriptionId;
+                  resourceGroup                                                                     = $Recom.resourceGroup;
+                  name                                                                              = $Recom.name;
+                  id                                                                                = $Recom.id;
+                  location                                                                          = $Recom.location;
+                  param1                                                                            = $Recom.param1;
+                  param2                                                                            = $Recom.param2;
+                  param3                                                                            = $Recom.param3;
+                  param4                                                                            = $Recom.param4;
+                  param5                                                                            = $Recom.param5;
+                  supportTicketId                                                                   = "";
+                  source                                                                            = $Recom.selector;
+                  checkName                                                                         = $Recom.checkName;
+                  tagged                                                                            = $Recom.tagged
+                }
+              }
+            $Script:MergedRecommendation += $tmp
           }
-        elseif ($Recom.validationAction -eq 'IMPORTANT - Service Not Available In APRL - Validate Service manually if Applicable, if not Delete this line' )
+        elseif (![string]::IsNullOrEmpty($RecomTitle.recommendationTypeId) -and $RecomTitle.automationAvailable -eq 'arg')
           {
-            $tmp = @{
-              'How was the resource/recommendation validated or what actions need to be taken?' = [string]$Recom.validationAction;
-              recommendationId                                                                  = "";
-              recommendationTitle                                                               = [string]$RecomTitle.description;
-              resourceType                                                                      = [string]$Recom.recommendationId;
-              name                                                                              = [string]$Recom.name;
-              id                                                                                = [string]$Recom.id;
-              tags                                                                              = [string]$Recom.tags;
-              param1                                                                            = [string]$Recom.param1;
-              param2                                                                            = [string]$Recom.param2;
-              param3                                                                            = [string]$Recom.param3;
-              param4                                                                            = [string]$Recom.param4;
-              param5                                                                            = [string]$Recom.param5;
-              supportTicketId                                                                   = "";
-              source                                                                            = [string]$Recom.selector;
-              checkName                                                                         = [string]$Recom.checkName
-            }
+            if ($RecomTitle.recommendationMetadataState -eq 'Active')
+              {
+                $Tickets = if ($Ticket.'Ticket ID'.count -gt 1) { $Ticket.'Ticket ID' | ForEach-Object { $_ + ' /' } }else { $Ticket.'Ticket ID' }
+                $Tickets = [string]$Tickets
+                $Tickets = if ($Tickets -like '* /*') { $Tickets -replace ".$" }else { $Tickets }
+                $tmp = @{
+                  'How was the resource/recommendation validated or what actions need to be taken?' = $Recom.validationAction;
+                  recommendationId                                                                  = $Recom.recommendationId;
+                  recommendationTitle                                                               = $RecomTitle.description;
+                  resourceType                                                                      = $RecomTitle.recommendationResourceType;
+                  subscriptionId                                                                    = $Recom.subscriptionId;
+                  resourceGroup                                                                     = $Recom.resourceGroup;
+                  name                                                                              = $Recom.name;
+                  id                                                                                = $Recom.id;
+                  location                                                                          = $Recom.location;
+                  param1                                                                            = $Recom.param1;
+                  param2                                                                            = $Recom.param2;
+                  param3                                                                            = $Recom.param3;
+                  param4                                                                            = $Recom.param4;
+                  param5                                                                            = $Recom.param5;
+                  supportTicketId                                                                   = $Tickets;
+                  source                                                                            = $Recom.selector;
+                  checkName                                                                         = $Recom.checkName;
+                  tagged                                                                            = $Recom.tagged
+                }
+              }
           }
-        $Script:MergedRecommendation += $tmp
       }
 
+    $Script:RecommendedAdv = @()
     foreach ($adv in $CoreAdvisories)
       {
         if (![string]::IsNullOrEmpty($adv.recommendationId))
           {
-            $Ticket = $Script:SupportTickets | Where-Object { $_.'Related Resource' -eq $adv.id }
-            $Tickets = if ($Ticket.'Ticket ID'.count -gt 1) { $Ticket.'Ticket ID' | ForEach-Object { $_ + ' /' } }else { $Ticket.'Ticket ID' }
-            $Tickets = [string]$Tickets
-            $Tickets = if ($Tickets -like '* /*') { $Tickets -replace ".$" }else { $Tickets }
-            $tmp = @{
-              'How was the resource/recommendation validated or what actions need to be taken?' = '';
-              recommendationId                                                                  = [string]$adv.recommendationId;
-              recommendationTitle                                                               = [string]$adv.description;
-              resourceType                                                                      = [string]$adv.type;
-              name                                                                              = [string]$adv.name;
-              id                                                                                = [string]$adv.id;
-              tags                                                                              = "";
-              param1                                                                            = "";
-              param2                                                                            = "";
-              param3                                                                            = "";
-              param4                                                                            = "";
-              param5                                                                            = "";
-              supportTicketId                                                                   = $Tickets;
-              source                                                                            = "ADVISOR";
-              checkName                                                                         = ""
-            }
-            $Script:MergedRecommendation += $tmp
+            $APRLADV = $Script:ServicesYAMLContent | Where-Object {$_.recommendationTypeId -eq $adv.recommendationId}
+            if($APRLADV.recommendationTypeId -eq $adv.recommendationId -and $APRLADV.automationAvailable -ne 'arg')
+              {
+                $tag = if ($Script:CollectorDetails.TAGFiltering -eq $true) {$true} else {$false}
+                $Ticket = $Script:SupportTickets | Where-Object { $_.'Related Resource' -eq $adv.id }
+                $Tickets = if ($Ticket.'Ticket ID'.count -gt 1) { $Ticket.'Ticket ID' | ForEach-Object { $_ + ' /' } }else { $Ticket.'Ticket ID' }
+                $Tickets = [string]$Tickets
+                $Tickets = if ($Tickets -like '* /*') { $Tickets -replace ".$" }else { $Tickets }
+                $tmp = @{
+                  'How was the resource/recommendation validated or what actions need to be taken?' = '';
+                  recommendationId                                                                  = $APRLADV.recommendationTypeId;
+                  recommendationTitle                                                               = $adv.description;
+                  resourceType                                                                      = $adv.type;
+                  subscriptionId                                                                    = $adv.subscriptionId;
+                  resourceGroup                                                                     = $adv.resourceGroup;
+                  name                                                                              = $adv.name;
+                  id                                                                                = $adv.id;
+                  location                                                                          = $adv.location;
+                  param1                                                                            = "";
+                  param2                                                                            = "";
+                  param3                                                                            = "";
+                  param4                                                                            = "";
+                  param5                                                                            = "";
+                  supportTicketId                                                                   = $Tickets;
+                  source                                                                            = "ADVISOR";
+                  checkName                                                                         = "";
+                  tagged                                                                            = $tag
+                }
+                $Script:MergedRecommendation += $tmp
+                $Script:RecommendedAdv += $adv.recommendationId
+              }
           }
       }
 
     foreach ($WAF in $Script:WAFYAMLContent)
       {
+        $tag = if ($Script:CollectorDetails.TAGFiltering -eq $true) {$true} else {$false}
         $tmp = @{
           'How was the resource/recommendation validated or what actions need to be taken?' = 'Update this item based on Discovery Workshop Questionnaire';
           recommendationId                                                                  = [string]$WAF.aprlGuid;
           recommendationTitle                                                               = [string]$WAF.description;
           resourceType                                                                      = [string]$WAF.recommendationResourceType;
+          subscriptionId                                                                    = "";
+          resourceGroup                                                                     = "";
           name                                                                              = "Entire Organization";
           id                                                                                = "";
+          location                                                                          = "";
           param1                                                                            = "";
           param2                                                                            = "";
           param3                                                                            = "";
@@ -282,6 +334,7 @@ $Script:Runtime = Measure-Command -Expression {
           supportTicketId                                                                   = "";
           source                                                                            = "APRL";
           checkName                                                                         = ""
+          tagged                                                                            = $tag
         }
         $Script:MergedRecommendation += $tmp
       }
@@ -295,17 +348,17 @@ $Script:Runtime = Measure-Command -Expression {
     $Script:Recommendations = @()
 
     # Defines the Excel file to be created in the root folder
-    $Script:ExcelFile = ($PSScriptRoot + "\WARA Action Plan " + (get-date -Format "yyyy-MM-dd_HH_mm") + ".xlsx")
+    $Script:ExcelFile = ($PSScriptRoot + "\WARA Action Plan " + (get-date -Format "yyyy-MM-dd-HH-mm") + ".xlsx")
 
     function Add-ImpactedResource {
       ####################    Creates the first sheet (ImpactedResources)
       $Styles1 = @(
-        New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -Bold -BackgroundColor "DarkSlateGray" -AutoSize -Range "A1:N1"
+        New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor "White" -Bold -BackgroundColor "DarkSlateGray" -AutoSize -Range "A1:Q1"
         New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -AutoSize -NumberFormat '0' -Range "A:B"
         New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -Width 100 -WrapText -NumberFormat '0' -Range "C:C"
-        New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -AutoSize -NumberFormat '0' -Range "D:E"
-        New-ExcelStyle -HorizontalAlignment Left -FontName 'Calibri' -FontSize 11 -Width 80 -Range "F:F"
-        New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -AutoSize -NumberFormat '0' -Range "L:N"
+        New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -AutoSize -NumberFormat '0' -Range "D:H"
+        New-ExcelStyle -HorizontalAlignment Left -FontName 'Calibri' -FontSize 11 -Width 80 -Range "I:I"
+        New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -AutoSize -NumberFormat '0' -Range "J:Q"
       )
 
       $cond = @()
@@ -318,6 +371,9 @@ $Script:Runtime = Measure-Command -Expression {
       $ImpactedResourcesSheet.Add('resourceType')
       $ImpactedResourcesSheet.Add('recommendationTitle')
       $ImpactedResourcesSheet.Add('recommendationId')
+      $ImpactedResourcesSheet.Add('subscriptionId')
+      $ImpactedResourcesSheet.Add('resourceGroup')
+      $ImpactedResourcesSheet.Add('location')
       $ImpactedResourcesSheet.Add('name')
       $ImpactedResourcesSheet.Add('id')
       $ImpactedResourcesSheet.Add('param1')
@@ -329,9 +385,19 @@ $Script:Runtime = Measure-Command -Expression {
       $ImpactedResourcesSheet.Add('source')
       $ImpactedResourcesSheet.Add('checkName')
 
-      $Script:MergedRecommendation | ForEach-Object { [PSCustomObject]$_ } | Select-Object $ImpactedResourcesSheet |
-      Export-Excel -Path $ExcelFile -WorksheetName 'ImpactedResources' -TableName 'Table2' -ConditionalText $cond -AutoSize -TableStyle $TableStyle -Style $Styles1
+      if ($Script:CollectorDetails.TAGFiltering -eq $true)
+        {
+          ($Script:MergedRecommendation | Where-Object {$_.tagged -eq $true}) | ForEach-Object { [PSCustomObject]$_ } | Select-Object $ImpactedResourcesSheet |
+          Export-Excel -Path $ExcelFile -WorksheetName 'ImpactedResources' -TableName 'Table2' -ConditionalText $cond -AutoSize -TableStyle $TableStyle -Style $Styles1
 
+          ($Script:MergedRecommendation | Where-Object {$_.tagged -eq $false}) | ForEach-Object { [PSCustomObject]$_ } | Select-Object $ImpactedResourcesSheet |
+          Export-Excel -Path $ExcelFile -WorksheetName 'Other-OutOfScope' -TableName 'UnTagTable' -ConditionalText $cond -AutoSize -TableStyle $TableStyle -Style $Styles1
+        }
+      else
+        {
+          $Script:MergedRecommendation | ForEach-Object { [PSCustomObject]$_ } | Select-Object $ImpactedResourcesSheet |
+          Export-Excel -Path $ExcelFile -WorksheetName 'ImpactedResources' -TableName 'Table2' -ConditionalText $cond -AutoSize -TableStyle $TableStyle -Style $Styles1
+        }
     }
 
     function Add-ResourceType {
@@ -637,26 +703,29 @@ $Script:Runtime = Measure-Command -Expression {
       # Builds the Advisor recommendations
       foreach ($advisor in $Script:AdvisorContent)
         {
-          $ID = $advisor.recommendationId
-          $resourceType = $advisor.type.ToLower()
-          $tmp = @{
-            'Implemented?Yes/No'                                                                             = ('=IF((COUNTIF(ImpactedResources!D:D,"' + $ID + '")=0),"Yes","No")');
-            'Number of Impacted Resources?'                                                                  = ('=COUNTIF(ImpactedResources!A:A,"' + $ID + '")');
-            'Azure Service / Well-Architected'                                                               = 'Azure Service';
-            'Recommendation Source'                                                                          = 'ADVISOR';
-            'Resiliency Category'                                                                            = $advisor.category;
-            'Azure Service Category / Well-Architected Area'                                                 = ($resourceType.split('/')[0]);
-            'Azure Service / Well-Architected Topic'                                                         = ($resourceType.split('/')[1]);
-            'Recommendation Title'                                                                           = $advisor.description;
-            'Impact'                                                                                         = $advisor.impact;
-            'Best Practices Guidance'                                                                        = '';
-            'Read More'                                                                                      = '';
-            'Potential Benefits'                                                                             = '';
-            'Add associated Outage TrackingID and/or Support Request # and/or Service Retirement TrackingID' = '';
-            'Observation / Annotation'                                                                       = '';
-            'Recommendation Id'                                                                              = [string]$advisor.recommendationId
-          }
-          $Script:Recommendations += $tmp
+          if ($advisor.recommendationId -in $Script:RecommendedAdv)
+            {
+              $ID = $advisor.recommendationId
+              $resourceType = $advisor.type.ToLower()
+              $tmp = @{
+                'Implemented?Yes/No'                                                                             = ('=IF((COUNTIF(ImpactedResources!D:D,"' + $ID + '")=0),"Yes","No")');
+                'Number of Impacted Resources?'                                                                  = ('=COUNTIF(ImpactedResources!D:D,"' + $ID + '")');
+                'Azure Service / Well-Architected'                                                               = 'Azure Service';
+                'Recommendation Source'                                                                          = 'ADVISOR';
+                'Resiliency Category'                                                                            = $advisor.category;
+                'Azure Service Category / Well-Architected Area'                                                 = ($resourceType.split('/')[0]);
+                'Azure Service / Well-Architected Topic'                                                         = ($resourceType.split('/')[1]);
+                'Recommendation Title'                                                                           = $advisor.description;
+                'Impact'                                                                                         = $advisor.impact;
+                'Best Practices Guidance'                                                                        = '';
+                'Read More'                                                                                      = '';
+                'Potential Benefits'                                                                             = '';
+                'Add associated Outage TrackingID and/or Support Request # and/or Service Retirement TrackingID' = '';
+                'Observation / Annotation'                                                                       = '';
+                'Recommendation Id'                                                                              = [string]$advisor.recommendationId
+              }
+              $Script:Recommendations += $tmp
+            }
         }
 
       # Builds the WAF recommendations
@@ -666,7 +735,7 @@ $Script:Runtime = Measure-Command -Expression {
           $ID = $WAFYAML.aprlGuid
           $tmp = @{
             'Implemented?Yes/No'                                                                             = ('=IF((COUNTIF(ImpactedResources!D:D,"' + $ID + '")=0),"Yes","No")');
-            'Number of Impacted Resources?'                                                                  = ('=COUNTIF(ImpactedResources!A:A,"' + $ID + '")');
+            'Number of Impacted Resources?'                                                                  = ('=COUNTIF(ImpactedResources!D:D,"' + $ID + '")');
             'Azure Service / Well-Architected'                                                               = 'Well Architected';
             'Recommendation Source'                                                                          = 'APRL';
             'Resiliency Category'                                                                            = $WAFYAML.recommendationControl;
