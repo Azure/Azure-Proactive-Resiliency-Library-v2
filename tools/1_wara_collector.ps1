@@ -451,15 +451,6 @@ $Script:Runtime = Measure-Command -Expression {
       function Invoke-QueryExecution {
         param($Subid, $type, $query, $checkId, $checkName, $validationAction)
 
-        Write-Host
-        Write-Host "SubId = $Subid"
-        Write-Host "Type = $type"
-        Write-Host "Query = $query"
-        Write-Host "CheckId = $checkId"
-        Write-Host "CheckName = $checkName"
-        Write-Host "ValidationAction = $validationAction"
-        Write-Host
-
         try {
           $ResourceType = $Script:AllResourceTypes | Where-Object { $_.type -eq $type -and $_.subscriptionId -eq $Subid }
           if (![string]::IsNullOrEmpty($resourceType)) {
