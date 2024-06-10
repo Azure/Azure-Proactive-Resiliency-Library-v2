@@ -128,29 +128,6 @@
     - name: Best Practices for AKS Backups
       url: "https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-storage"
 
-- description: Plan an AKS version upgrade
-  aprlGuid: e6188d3b-7fbc-4ecf-a37b-b658f9efcdc4
-  recommendationTypeId: null
-  recommendationControl: Service Upgrade and Retirement
-  recommendationImpact: High
-  recommendationResourceType: Microsoft.ContainerService/managedClusters
-  recommendationMetadataState: Active
-  longDescription: |
-    Minor version releases bring new features and improvements. Patch releases, often weekly, focus on critical bug fixes within a minor version, including security vulnerabilities or major bugs. Unsupported Kubernetes versions may lead to unsupported clusters when seeking AKS support.
-  potentialBenefits: Enhances features, fixes bugs, ensures support
-  pgVerified: false
-  publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
-  tags: null
-  learnMoreLink:
-    - name: Updating to the latest AKS version
-      url: "https://learn.microsoft.com/azure/aks/operator-best-practices-cluster-security?tabs=azure-cli#regularly-update-to-the-latest-version-of-kubernetes"
-    - name: Upgrade cluster
-      url: "https://learn.microsoft.com/azure/aks/upgrade-cluster?tabs=azure-cli"
-    - name: Auto-upgrading cluster
-      url: "https://learn.microsoft.com/azure/aks/auto-upgrade-cluster"
-
 - description: Use zone-redundant storage for persistent volumes when running multi-zone AKS
   aprlGuid: d3111036-355d-431b-ab49-8ddad042800b
   recommendationTypeId: null
@@ -501,3 +478,60 @@
   learnMoreLink:
     - name: Azure Quotas
       url: "https://learn.microsoft.com/azure/quotas/quotas-overview"
+
+- description: Use Azure Linux for Linux nodepools
+  aprlGuid: f46b0d1d-56ef-4795-b98a-f6ee00cb341a
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.ContainerService/managedClusters
+  recommendationMetadataState: Active
+  longDescription: |
+    Azure Linux on AKS enhances resiliency with a native AKS image that ensures services run on validated, source-built components. It's lightweight, reducing the attack surface and maintenance. A Microsoft-hardened kernel, optimized for Azure, further improves stability and security for container workloads.
+  potentialBenefits: Reduced disruptions
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Azure Linux
+      url: "https://learn.microsoft.com/azure/aks/use-azure-linux"
+
+- description: Deploy at least two replicas of your application
+  aprlGuid: 9200aca6-0e83-4749-a5eb-e3939367bdc2
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.ContainerService/managedClusters
+  recommendationMetadataState: Active
+  longDescription: |
+    Deploying at least two replicas of your application ensures that your application is highly available and can tolerate node failures.
+  potentialBenefits: Reduced disruptions
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Multi-replica apps
+      url: "https://learn.microsoft.com/azure/aks/best-practices-app-cluster-reliability#multi-replica-applications"
+
+- description: Use a Standard Load Balancer
+  aprlGuid: 08067d85-962b-4d91-a7ca-c6228e45d5bd
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.ContainerService/managedClusters
+  recommendationMetadataState: Active
+  longDescription: |
+    Use the Standard Load Balancer to provide greater reliability and resources, support for multiple availability zones, HTTP probes, and functionality across multiple data centers.
+  potentialBenefits: Ensures high app availability
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Use Standard Load Balancer
+      url: "https://learn.microsoft.com/azure/aks/best-practices-app-cluster-reliability#standard-load-balancer"
