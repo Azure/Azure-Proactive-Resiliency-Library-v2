@@ -185,6 +185,8 @@ $Script:Runtime = Measure-Command -Expression {
     $Script:MergedRecommendation = @()
     foreach ($Recom in $CoreResources)
       {
+        Write-Host "$($Recom.recommendationId)" -ForegroundColor Magenta
+
         $RecomTitle = $Script:ServicesYAMLContent | Where-Object { $_.aprlGuid -eq $Recom.recommendationId }
         $Ticket = $Script:SupportTickets | Where-Object { $_.'Related Resource' -eq $Recom.id }
         if ($RecomTitle.recommendationMetadataState -eq 'Active' -or $Recom.validationAction -eq 'IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually' -or $Recom.validationAction -eq 'IMPORTANT - Query under development - Validate Recommendation manually' )
@@ -230,6 +232,26 @@ $Script:Runtime = Measure-Command -Expression {
               checkName                                                                         = [string]$Recom.checkName
             }
           }
+          else {
+            $tmp = @{
+              'How was the resource/recommendation validated or what actions need to be taken?' = [string]$Recom.validationAction;
+              recommendationId                                                                  = [string]$Recom.recommendationId;
+              recommendationTitle                                                               = "";
+              resourceType                                                                      = "";
+              name                                                                              = [string]$Recom.name;
+              id                                                                                = [string]$Recom.id;
+              tags                                                                              = [string]$Recom.tags;
+              param1                                                                            = [string]$Recom.param1;
+              param2                                                                            = [string]$Recom.param2;
+              param3                                                                            = [string]$Recom.param3;
+              param4                                                                            = [string]$Recom.param4;
+              param5                                                                            = [string]$Recom.param5;
+              supportTicketId                                                                   = "";
+              source                                                                            = [string]$Recom.selector;
+              checkName                                                                         = [string]$Recom.checkName
+            }
+          }
+
         $Script:MergedRecommendation += $tmp
       }
 
