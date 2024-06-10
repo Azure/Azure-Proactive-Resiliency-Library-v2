@@ -257,7 +257,7 @@ $Script:Runtime = Measure-Command -Expression {
               {
                 $RootTypes = Get-ChildItem -Path "$clonePath/azure-resources/" -Directory
               }
-            foreach ($RootType in $RootTypes)
+              $Script:GluedTypes += foreach ($RootType in $RootTypes)
               {
                 $RootName = $RootType.Name
                 $SubTypes = Get-ChildItem -Path $RootType -Directory
@@ -267,7 +267,7 @@ $Script:Runtime = Measure-Command -Expression {
                     if (Get-ChildItem -Path $SubDir.FullName -File 'recommendations.yaml')
                       {
                         $GlueType = ('Microsoft.' + $RootName + '/' + $SubDirName)
-                        $Script:GluedTypes += $GlueType.ToLower()
+                        $GlueType.ToLower()
                       }
                   }
               }
@@ -1047,7 +1047,7 @@ $Script:Runtime = Measure-Command -Expression {
 
   function Invoke-ResourcesExtraDetail {
     #This Function will construct the $Script:Resources variable
-    foreach ($Temp in $Script:results)
+    $Script:Resources += foreach ($Temp in $Script:results)
       {
         if ($TagsFile -or $Tags)
           {
@@ -1071,7 +1071,7 @@ $Script:Runtime = Measure-Command -Expression {
                   selector         = $Temp.selector
                   tagged           = $true
                 }
-                $Script:Resources += $result
+                $result
               }
             else
               {
@@ -1093,7 +1093,7 @@ $Script:Runtime = Measure-Command -Expression {
                   selector         = $Temp.selector
                   tagged           = $false
                 }
-                $Script:Resources += $result
+                $result
               }
           }
         else
@@ -1116,7 +1116,7 @@ $Script:Runtime = Measure-Command -Expression {
                 selector         = $Temp.selector
                 tagged           = $false
               }
-              $Script:Resources += $result
+              $result
           }
       }
   }
@@ -1167,7 +1167,7 @@ $Script:Runtime = Measure-Command -Expression {
     Param($Subid)
     if (![string]::IsNullOrEmpty($ResourceGroups))
       {
-        foreach ($RG in $ResourceGroups)
+        $Script:AllAdvisories += foreach ($RG in $ResourceGroups)
           {
             $advquery = "advisorresources | where type == 'microsoft.advisor/recommendations' and tostring(properties.category) == 'HighAvailability' | where resourceGroup contains '$RG' | order by id"
             $queryResults += Get-AllAzGraphResource -Query $advquery -subscriptionId $Subid
@@ -1190,7 +1190,7 @@ $Script:Runtime = Measure-Command -Expression {
                       impact           = [string]$row.properties.impact
                       description      = [string]$row.properties.shortDescription.solution
                     }
-                    $Script:AllAdvisories += $result
+                    $result
                 }
               }
           }
@@ -1201,7 +1201,7 @@ $Script:Runtime = Measure-Command -Expression {
         $advquery = "advisorresources | where type == 'microsoft.advisor/recommendations' and tostring(properties.category) == 'HighAvailability' | order by id"
         $queryResults = Get-AllAzGraphResource -Query $advquery -subscriptionId $Subid
 
-        foreach ($row in $queryResults)
+        $Script:AllAdvisories += foreach ($row in $queryResults)
           {
             if (![string]::IsNullOrEmpty($row.properties.resourceMetadata.resourceId))
               {
@@ -1219,7 +1219,7 @@ $Script:Runtime = Measure-Command -Expression {
                   impact           = [string]$row.properties.impact
                   description      = [string]$row.properties.shortDescription.solution
                 }
-                $Script:AllAdvisories += $result
+                $result
               }
           }
       }
@@ -1228,7 +1228,7 @@ $Script:Runtime = Measure-Command -Expression {
   function Resolve-SupportTicket {
     $Tickets = $Script:SupportTickets
     $Script:SupportTickets = @()
-    foreach ($Ticket in $Tickets)
+    $Script:SupportTickets += foreach ($Ticket in $Tickets)
         {
               $tmp = @{
                 'Ticket ID'         = [string]$Ticket.properties.supportTicketId;
@@ -1240,7 +1240,7 @@ $Script:Runtime = Measure-Command -Expression {
                 'Title'             = [string]$Ticket.properties.title;
                 'Related Resource'  = [string]$Ticket.properties.technicalTicketDetails.resourceId
               }
-              $Script:SupportTickets += $tmp
+              $tmp
         }
   }
 
@@ -1250,7 +1250,7 @@ $Script:Runtime = Measure-Command -Expression {
       $retquery = "servicehealthresources | where properties.EventSubType contains 'Retirement' | order by id"
       $queryResults = Get-AllAzGraphResource -Query $retquery -subscriptionId $Subid
 
-      foreach ($row in $queryResults)
+      $Script:AllRetirements += foreach ($row in $queryResults)
         {
           $OutagesRetired = $Script:RetiredOutages | Where-Object { $_.name -eq $row.properties.TrackingId }
 
@@ -1267,7 +1267,7 @@ $Script:Runtime = Measure-Command -Expression {
             ImpactedService = [string]$row.properties.Impact.ImpactedService
             Description     = [string]$OutagesRetired.properties.description
           }
-          $Script:AllRetirements += $result
+          $result
         }
   }
 
@@ -1278,18 +1278,18 @@ $Script:Runtime = Measure-Command -Expression {
         $queryResults = Get-AllAzGraphResource -Query $Servicequery -subscriptionId $Subid
 
         $Rowler = @()
-        foreach ($row in $queryResults)
+        $Rowler += foreach ($row in $queryResults)
           {
             foreach ($type in $row.properties.condition.allOf)
               {
                 if ($type.equals -eq 'ServiceHealth')
                   {
-                    $Rowler += $row
+                    $row
                   }
               }
           }
 
-        foreach ($Row in $Rowler)
+          $Script:AllServiceHealth += foreach ($Row in $Rowler)
           {
             $SubName = ($SubIds | Where-Object { $_.Id -eq ($Row.properties.scopes.split('/')[2]) }).Name
             $EventType = if ($Row.Properties.condition.allOf.anyOf | Select-Object -Property equals) { $Row.Properties.condition.allOf.anyOf | Select-Object -Property equals | ForEach-Object { switch ($_.equals) { 'Incident' { 'Service Issues' } 'Informational' { 'Health Advisories' } 'ActionRequired' { 'Security Advisory' } 'Maintenance' { 'Planned Maintenance' } } } } Else { 'All' }
@@ -1306,7 +1306,7 @@ $Script:Runtime = Measure-Command -Expression {
               Regions      = $Regions
               ActionGroup  = $ActionGroupName
             }
-            $Script:AllServiceHealth += $result
+            $result
           }
   }
 
@@ -1354,7 +1354,6 @@ $Script:Runtime = Measure-Command -Expression {
       }
 
 
-
       $ExporterArray = @()
       $ExporterArray += $ResourceExporter
       $ExporterArray += $ResourceTypeExporter
@@ -1365,7 +1364,7 @@ $Script:Runtime = Measure-Command -Expression {
       $ExporterArray += $ServiceHealthExporter
       $ExporterArray += $ScriptDetailsExporter
 
-      $Script:JsonFile = ($PSScriptRoot + "\WARA_File_" + (get-date -Format "yyyy-MM-dd_HH_mm") + ".json")
+      $Script:JsonFile = ($PSScriptRoot + "\WARA-File-" + (get-date -Format "yyyy-MM-dd-HH-mm") + ".json")
 
       $ExporterArray | ConvertTo-Json -Depth 15 | Out-File $Script:JsonFile
     }
