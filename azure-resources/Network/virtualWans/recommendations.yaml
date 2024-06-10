@@ -1,20 +1,3 @@
-- description: Deploy Secure Hub Azure Firewall on Availability Zones using Firewall Manager
-  aprlGuid: 99de5e30-7c07-454f-8364-abe8561dc09f
-  recommendationTypeId: null
-  recommendationControl: High Availability
-  recommendationImpact: High
-  recommendationResourceType: Microsoft.Network/azureFirewalls
-  recommendationMetadataState: Active
-  longDescription: Make sure if deploying a Secure Hub using Azure Firewall, to do it through Firewall Manager so the option of Availability Zones is enabled
-  potentialBenefits: Reliability of Azure Firewall
-  pgVerified: false
-  publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no/arg
-  tags: null
-  learnMoreLink:
-    - name: Secure your virtual hub using Azure Firewall Manager
-      url: "https://learn.microsoft.com/en-us/azure/firewall-manager/secure-cloud-network"
 
 - description: Migrate non zone redundant Azure Firewalls to Zone Redundant Azure firewalls by utilizing Firewall Manager
   aprlGuid: f92e5b09-ca8d-488f-bf91-cf761d261da6
@@ -34,7 +17,7 @@
     - name: Secure your virtual hub using Azure Firewall Manager
       url: "https://learn.microsoft.com/en-us/azure/firewall-manager/secure-cloud-network"
 
-- description: Use routing intent to enable Inter Hub connectivity if no custom Routing Tables are being used.
+- description: Enable routing intent to enable Secured Hubs Interconnectivity
   aprlGuid: 53cc7cbc-3f6d-4dbe-8018-c1a075002dd0
   recommendationTypeId: null
   recommendationControl: High Availability/Business Continuity/
@@ -42,8 +25,8 @@
   recommendationResourceType: Microsoft.Network/virtualHubs/
   recommendationMetadataState: Active
   longDescription: |
-    Routing Intent will enable Inter Hub connectivity. Vnets across regions will have a shorter path. Branch failure will still allow to access Vnets across regions.
-  potentialBenefits: Enhanced subnet security and traffic control
+    Routing Intent will enable Inter Hub connectivity. This is recommended if you have Secured Hubs and no Custom Route Tables to establish Interconnectivity between the Vnets across virtual hubs.
+  potentialBenefits: Remove assymetrical flow for Spoke to Spoke connectivity.
   pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
@@ -53,16 +36,15 @@
     - name: How to configure Virtual WAN Hub routing intent and routing policies
       url: "https://learn.microsoft.com/en-us/azure/virtual-wan/how-to-routing-policies"
 
-- description: Use routing intent to configure Virtual WAN to send private and internet traffic via security solution deployed in the hub if no custom Routing Tables are being used.
+- description: Enable routing intent to send private and internet traffic via Azure Firewall or Security Solution deployed in the Virtual Hub.
   aprlGuid: 0390bf34-8be5-44ee-b454-d6b8d5dd3790
   recommendationTypeId: null
   recommendationControl: High Availability/Business Continuity/
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/virtualHubs/
   recommendationMetadataState: Active
-  longDescription: |
-    Routing Intent will enable Inter Hub connectivity. Vnets across regions will have a shorter path. Branch failure will still allow to access Vnets across regions.
-  potentialBenefits: Enhanced subnet security and traffic control
+  longDescription: Routing Intent will allow private and internet traffic inspection via Azure Firewall or Security Solution deployed on the Virtual Hub.
+  potentialBenefits: Enhanced traffic inspection
   pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
@@ -72,20 +54,20 @@
     - name: How to configure Virtual WAN Hub routing intent and routing policies
       url: "https://learn.microsoft.com/en-us/azure/virtual-wan/how-to-routing-policies"
 
-- description: If selecting VPN Gateway as a Backup to your Express Route Circuit When Routing Intent is disabled make sure you prepend the Vnets coming from the VPN with a longer AS path than Express Route regardless of the Hub Routing Preference.
-  aprlGuid: 03646264cc-30cc-4d73-a0b9-3dd3b7b197b6
+- description: Connect ExpressRoute gateway with circuits from diverse peering locations for resilience
+  aprlGuid: 9987c813-d687-4163-a511-95f31bc5e536
   recommendationTypeId: null
-  recommendationControl: High Availability/Business Continuity/
+  recommendationControl: High Availability
   recommendationImpact: High
-  recommendationResourceType: Microsoft.Network/virtualHubs/
+  recommendationResourceType: Microsoft.Network/expressRouteGateways/
   recommendationMetadataState: Active
-  longDescription: |
-    Inter-Region Assymetric routing can occur when Inter Hub connectivity is disabled. Customers could connect from On premises to Local Virtual Hub Vnets, but if shorter path is advertised through the Local Hub, they could lose connectivity to remote Virtual Hub Vnets.
-  potentialBenefits: Enhanced subnet security and traffic control
-  pgVerified: true
+  longDescription: To increase reliability, it's advised that each ExpressRoute gateway connects to at least two circuits, with each circuit originating from a different peering location than the other, ensuring diverse connectivity paths for enhanced resilience.|
+  potentialBenefits: Enhance resiliency for Azure Service
+  pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: no/arg
   tags: null
   learnMoreLink:
-    - name: TBD
+    - name: Designing for disaster recovery with ExpressRoute private peering
+      url: "https://learn.microsoft.com/azure/expressroute/designing-for-disaster-recovery-with-expressroute-privatepeering"
