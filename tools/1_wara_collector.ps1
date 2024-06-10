@@ -184,7 +184,7 @@ $Script:Runtime = Measure-Command -Expression {
             AVD           = if($AVD.IsPresent){$true}else{$false}
             AVS           = if($AVS.IsPresent){$true}else{$false}
             HPC           = if($HPC.IsPresent){$true}else{$false}
-            TAGFiltering  = if($TagFile -or $Tags){$true}else{$false}
+            TAGFiltering  = if($TagsFile -or $Tags){$true}else{$false}
           }
       }
     catch
@@ -596,7 +596,7 @@ $Script:Runtime = Measure-Command -Expression {
 
             if ($TagsFile)
               {
-                $TagFile = get-item -Path $TagFilters
+                $TagFile = get-item -Path $TagsFile
                 $TagFile = $TagFile.FullName
                 $TagFilter = Get-Content -Path $TagFile
               }
@@ -707,6 +707,20 @@ $Script:Runtime = Measure-Command -Expression {
 
             Set-AzContext -Subscription $Subid -ErrorAction SilentlyContinue -WarningAction SilentlyContinue | Out-Null
 
+            Write-Host "----------------------------"
+            Write-Host "Collecting: " -NoNewline
+            Write-Host "Resources Details" -ForegroundColor Magenta
+            Invoke-AllResourceExtraction $Subid
+
+            if($TagsFile -or $Tags)
+              {
+                Write-Host "----------------------------"
+                Write-Host "Collecting: " -NoNewline
+                Write-Host "Tagged Resources" -ForegroundColor Magenta
+                Invoke-TagFiltering $Subid
+              }
+
+            Write-Host "----------------------------"
             Write-Host "Collecting: " -NoNewline
             Write-Host "Advisories" -ForegroundColor Magenta
             Invoke-AdvisoryExtraction $Subid
@@ -720,19 +734,6 @@ $Script:Runtime = Measure-Command -Expression {
             Write-Host "Collecting: " -NoNewline
             Write-Host "Service Health Alerts" -ForegroundColor Magenta
             Invoke-ServiceHealthExtraction $Subid
-
-            Write-Host "----------------------------"
-            Write-Host "Collecting: " -NoNewline
-            Write-Host "Resources Details" -ForegroundColor Magenta
-            Invoke-AllResourceExtraction $Subid
-
-            if($TagsFile -or $Tags)
-              {
-                Write-Host "----------------------------"
-                Write-Host "Collecting: " -NoNewline
-                Write-Host "Tagged Resources" -ForegroundColor Magenta
-                Invoke-TagFiltering $Subid
-              }
 
             Write-Host "----------------------------"
             Write-Host "Running: " -NoNewline
