@@ -507,7 +507,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Deploying at least two replicas of your application ensures that your application is highly available and can tolerate node failures.
-  potentialBenefits: Reduced disruptions
+  potentialBenefits: Ensures high app availability
   pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
