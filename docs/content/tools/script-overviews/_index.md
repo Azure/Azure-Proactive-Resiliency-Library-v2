@@ -41,7 +41,7 @@ The Collector PowerShell script is the first script to be run in the Azure Proac
       - **SubscriptionIds**:  *Optional (or SubscriptionsFile)* ; Specifies Subscription(s) to be included in the analysis: Subscription1,Subscription2.
       - **SubscriptionsFile**:  *Optional (or SubscriptionIds)* ; specifies the file with the subscription list to be analysed (one subscription per line).
       - **RunbookFile**:  *Optional* ; specifies the file with the runbook (selectors & checks) to be used.
-      - **ResourceGroups**:  *Optional* ; specifies Resource Group(s) to be included in the analysis: ResourceGroup1,ResourceGroup2.
+      - **ResourceGroups**:  *Optional* ; specifies Resource Group(s) to be included in the analysis: "ResourceGroup1","ResourceGroup2"
       - **Debug**: *Optional* ; Writes Debugging information of the script during the execution.
 
     {{< figure src="../../img/tools/collector-3.png" width="100%" >}}
