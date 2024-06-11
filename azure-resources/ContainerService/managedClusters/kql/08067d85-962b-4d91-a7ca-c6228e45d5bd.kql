@@ -3,4 +3,4 @@
 resources
 | where type == "microsoft.containerservice/managedclusters"
 | where properties.networkProfile.loadBalancerSku != 'Standard'
-| project recommendationid="08067d85-962b-4d91-a7ca-c6228e45d5bd", id, name
+| project recommendationid="08067d85-962b-4d91-a7ca-c6228e45d5bd", name, id
