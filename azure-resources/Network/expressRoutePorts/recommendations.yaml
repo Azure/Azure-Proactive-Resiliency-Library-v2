@@ -36,25 +36,6 @@
     - name: About ExpressRoute Direct Circuit Sizes
       url: "https://learn.microsoft.com/en-us/azure/expressroute/expressroute-erdirect-about?source=recommendations#circuit-sizes"
 
-- description: Implement rate-limiting across ExpressRoute Direct Circuits to optimize network flow
-  aprlGuid: d40c769d-2f08-4980-8d8f-a386946276e6
-  recommendationTypeId: null
-  recommendationControl: Scalability
-  recommendationImpact: Medium
-  recommendationResourceType: Microsoft.Network/ExpressRoutePorts
-  recommendationMetadataState: Active
-  longDescription: |
-    Rate limiting controls traffic volume between on-premises networks and Azure via ExpressRoute Direct, applying to private or Microsoft peering. It distributes port bandwidth, ensures stability, and prevents congestion, with steps outlined for enabling on circuits.
-  potentialBenefits: Optimizes network, prevents congestion
-  pgVerified: true
-  publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
-  tags: null
-  learnMoreLink:
-    - name: Rate limiting for ExpressRoute Direct circuits (Preview)
-      url: "https://learn.microsoft.com/en-us/azure/expressroute/rate-limit"
-
 - description: Configure monitoring and alerting for ExpressRoute Ports
   aprlGuid: 55815823-d588-4cb7-a5b8-ae581837356e
   recommendationTypeId: null
