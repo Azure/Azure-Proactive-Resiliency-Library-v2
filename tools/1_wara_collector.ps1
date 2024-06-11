@@ -20,7 +20,7 @@ Param(
   $RunbookFile,
   $SubscriptionsFile,
   $SubscriptionIds,
-  $ResourceGroups,
+  [String[]]$ResourceGroups,
   $TenantID,
   [ValidateSet("AzureCloud","AzureUSGovernment")]
   $AzureEnvironment = 'AzureCloud'
@@ -81,7 +81,7 @@ $Script:Runtime = Measure-Command -Expression {
     Write-Host " -SubscriptionIds <IDs>:  Optional (or SubscriptionsFile); Specifies Subscription(s) to be included in the analysis: Subscription1,Subscription2. "
     Write-Host " -SubscriptionsFile    :  Optional (or SubscriptionIds); specifies the file with the subscription list to be analysed (one subscription per line). "
     Write-Host " -RunbookFile          :  Optional; specifies the file with the runbook (selectors & checks) to be used. "
-    Write-Host " -ResourceGroups       :  Optional; specifies Resource Group(s) to be included in the analysis: ResourceGroup1,ResourceGroup2. "
+    Write-Host ' -ResourceGroups       :  Optional; specifies Resource Group(s) to be included in the analysis: "ResourceGroup1","ResourceGroup2." '
     Write-Host " -Debug                :  Writes Debugging information of the script during the execution. "
     Write-Host ""
     Write-Host "Examples: "
