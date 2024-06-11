@@ -487,7 +487,8 @@
   recommendationResourceType: Microsoft.ContainerService/managedClusters
   recommendationMetadataState: Active
   longDescription: |
-    Azure Linux on AKS boosts resiliency with a native image using validated, source-built components. It's lightweight, reducing the attack surface and maintenance. A Microsoft-hardened kernel, optimized for Azure, enhances stability and security for container workloads.  potentialBenefits: Reduced disruptions
+    Azure Linux on AKS boosts resiliency with a native image using validated, source-built components. It's lightweight, reducing the attack surface and maintenance. A Microsoft-hardened kernel, optimized for Azure, enhances stability and security for container workloads.
+  potentialBenefits: Reduced disruptions
   pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
