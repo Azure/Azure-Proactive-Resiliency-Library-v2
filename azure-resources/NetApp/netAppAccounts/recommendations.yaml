@@ -219,9 +219,9 @@
 
 - description: Make use of SMB continuous availability for supported applications
   aprlGuid: d1e7ccc3-e6c1-40e9-a36e-fd134711c808
-  recommendationTypeId: null
+  recommendationTypeId: e4bebd74-387a-4a74-b757-475d2d1b4e3e
   recommendationControl: High Availability
-  recommendationImpact: Medium
+  recommendationImpact: High
   recommendationResourceType: Microsoft.NetApp/netAppAccounts
   recommendationMetadataState: Active
   longDescription: |
