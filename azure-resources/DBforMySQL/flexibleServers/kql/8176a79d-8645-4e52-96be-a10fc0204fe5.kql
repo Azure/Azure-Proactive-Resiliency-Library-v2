@@ -1,0 +1,6 @@
+// Azure Resource Graph Query
+// Find Database for MySQL instances that do not have a storage auto-grow
+resources
+| where type =~ "microsoft.dbformysql/flexibleservers"
+| where properties.storage.autoGrow != "Enabled"
+| project recommendationId = "8176a79d-8645-4e52-96be-a10fc0204fe5", name, id, tags, param1 = strcat("autoGrow:", properties['storage']['autoGrow'])
