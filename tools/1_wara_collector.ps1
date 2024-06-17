@@ -20,7 +20,7 @@ Param(
   [switch]$AVD,
   [switch]$AVS,
   [switch]$HPC,
-  [swtich]$GUI,
+  [switch]$GUI,
   $RunbookFile,
   $SubscriptionIds,
   $ResourceGroups,
@@ -38,7 +38,7 @@ if ($ConfigFile) {
   $ConfigData = Import-ConfigFileData -file $ConfigFile
   $TenantID = $ConfigData.TenantID
   $SubscriptionIds = $ConfigData.SubscriptionIds
-  $ResourceGroups = $ConfigData.ResourceGroups
+  $ResourceGroupList = $ConfigData.ResourceGroups
   $RunbookFile = $ConfigData.RunbookFile
   $Tags = $ConfigData.Tags
 }
@@ -46,8 +46,11 @@ if ($ConfigFile) {
 if($GUI){
   $TenantID = New-AzTenantSelection
   $SubscriptionIds = New-AzSubscriptionSelection -TenantId $TenantID.id
+
+  if($resourcegroups){
   $ResourceGroupList = (New-AzResourceGroupSelection).id.toLower()
   $ResourceGroups = $ResourceGroupList | ForEach-Object {$_.split("/")[4]}
+  }
 }
 
 
@@ -1430,7 +1433,7 @@ function Get-AllResourceGroup {
 
       #Ternary Expression If ResourceGroupFile is present, then get the ResourceGroups by List, else get the results
       $ResourceExporter = @{
-        Resource = $ResourceGroupFile ? $(Get-ResourceGroupsByList -ObjectList $Script:Resources -FilterList $resourcegrouplist -KeyColumn "id") : $Script:Resources
+        Resource = $ResourceGroupList ? $(Get-ResourceGroupsByList -ObjectList $Script:Resources -FilterList $resourcegrouplist -KeyColumn "id") : $Script:Resources
       }
 
       $ResourceTypeExporter = @{
