@@ -21,6 +21,7 @@ Param(
   [switch]$AVS,
   [switch]$HPC,
   [switch]$GUI,
+  [switch]$ResourceGroupGUI,
   $RunbookFile,
   $SubscriptionIds,
   $ResourceGroups,
