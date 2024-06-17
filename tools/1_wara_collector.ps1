@@ -45,8 +45,9 @@ if ($ConfigFile) {
 
 if($GUI){
   $TenantID = New-AzTenantSelection
-  $SubscriptionIds = New-AzSubscriptionSelection -TenantId $TenantID
-  $ResourceGroups = New-AzResourceGroupSelection
+  $SubscriptionIds = New-AzSubscriptionSelection -TenantId $TenantID.id
+  $ResourceGroupList = (New-AzResourceGroupSelection).id.toLower()
+  $ResourceGroups = $ResourceGroupList | ForEach-Object {$_.split("/")[4]}
 }
 
 
@@ -260,6 +261,15 @@ function Get-AllResourceGroup {
           {
             Write-Host "Installing Az Modules" -ForegroundColor Yellow
             Install-Module -Name Az.ResourceGraph -SkipPublisherCheck -InformationAction SilentlyContinue
+          }
+             Write-Host "Validating " -NoNewline
+        Write-Host "Az.ResourceGraph" -ForegroundColor Cyan -NoNewline
+        Write-Host " Module.."
+        $ConsoleGUITools = Get-Module -Name Microsoft.PowerShell.ConsoleGuiTools -ListAvailable -ErrorAction silentlycontinue
+        if ($null -eq $ConsoleGUITools)
+          {
+            Write-Host "Installing ConsoleGuiTools Modules" -ForegroundColor Yellow
+            Install-Module -Name Microsoft.PowerShell.ConsoleGuiTools -SkipPublisherCheck -InformationAction SilentlyContinue
           }
         Write-Host "Validating " -NoNewline
         Write-Host "Git" -ForegroundColor Cyan -NoNewline
