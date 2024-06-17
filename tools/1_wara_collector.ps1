@@ -1485,7 +1485,7 @@ function Get-AllResourceGroup {
       $TenantID = New-AzTenantSelection
       $SubscriptionIds = (New-AzSubscriptionSelection -TenantId $TenantID.id).id
 
-      if($resourcegroups){
+      if($ResourceGroupGUI){
       $ResourceGroupList = (New-AzResourceGroupSelection).id.toLower()
       $ResourceGroups = $ResourceGroupList | ForEach-Object {$_.split("/")[4]}
       }
