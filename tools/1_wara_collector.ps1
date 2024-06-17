@@ -21,24 +21,25 @@ Param(
   [switch]$AVS,
   [switch]$HPC,
   $RunbookFile,
-  $SubscriptionsFile,
   $SubscriptionIds,
-  $ResourceGroupFile,
+  $ResourceGroups,
   $TenantID,
   [ValidateSet("AzureCloud","AzureUSGovernment")]
   $AzureEnvironment = 'AzureCloud',
-  $TagsFile,
-  $Tags
+  $ConfigFile
   )
 
 #import-module "./modules/collector.psm1" -Force
 
 if ($Debugging.IsPresent) { $DebugPreference = 'Continue' } else { $DebugPreference = "silentlycontinue" }
 
-if ($ResourceGroupFile) {
-  $ResourceGroupList = (Get-Content $ResourceGroupFile).trim().tolower()
-  $ResourceGroups = $resourcegrouplist | ForEach-Object {$_.split("/")[4]}
-  $SubscriptionIds = ($resourcegrouplist | ForEach-Object {$_.split("/")[2]} | Select-Object -Unique)
+if ($ConfigFile) {
+  $ConfigData = Import-ConfigFileData -file $ConfigFile
+  $TenantID = $ConfigData.TenantID
+  $SubscriptionIds = $ConfigData.SubscriptionIds
+  $ResourceGroups = $ConfigData.ResourceGroups
+  $RunbookFile = $ConfigData.RunbookFile
+  $Tags = $ConfigData.Tags
 }
 
 $Script:ShellPlatform = $PSVersionTable.Platform
