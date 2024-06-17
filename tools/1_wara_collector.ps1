@@ -288,7 +288,7 @@ $Script:Runtime = Measure-Command -Expression {
     # Checks if a runbook file was provided and, if so, loads selectors and checks hashtables
     if (![string]::IsNullOrEmpty($RunbookFile)) {
 
-      Write-Host 'A runbook has been configured. Only checks configured in the runbook will be run.'
+      Write-Host '[Runbook]: A runbook has been configured. Only checks configured in the runbook will be run.' -ForegroundColor Cyan
 
       # Check that the runbook file actually exists
       if (Test-Path $RunbookFile -PathType Leaf) {
@@ -316,8 +316,8 @@ $Script:Runtime = Measure-Command -Expression {
           $Script:RunbookQueryOverrides += [string]$_
         }
       }
-
-      Write-Host "The provided runbook includes $($Script:RunbookChecks.Count.ToString()) check(s). Only checks configured in the runbook will be run."
+    } else {
+      Write-Host '[Runbook]: No runbook (-RunbookFile) configured.' -ForegroundColor DarkGray
     }
   }
 
@@ -623,7 +623,7 @@ $Script:Runtime = Measure-Command -Expression {
 
         if ($Script:RunbookQueryOverrides) {
           foreach ($queryOverridePath in $($Script:RunbookQueryOverrides)) {
-            Write-Host "Loading [$($queryOverridePath)] query overrides..." -ForegroundColor Cyan
+            Write-Host "[Runbook]: Loading [$($queryOverridePath)] query overrides..." -ForegroundColor Cyan
 
             $overrideKqlFiles = Get-ChildItem -Path $queryOverridePath -Filter '*.kql' -Recurse
 
@@ -635,16 +635,12 @@ $Script:Runtime = Measure-Command -Expression {
               }
               $kqlName = $kqlShort.split('.')[0]
 
-              Write-Host "Override KQL file: $kqlName"
-
               if ($kqlQueryMap.ContainsKey($kqlName)) {
-                Write-Host "Original [$kqlName] APRL query overridden by [$($overrideKqlFile.FullName)]." -ForegroundColor Yellow
+                Write-Host "[Runbook]: Original [$kqlName] APRL query overridden by [$($overrideKqlFile.FullName)]." -ForegroundColor Cyan
               }
 
               # Override APRL query map based on recommendation
               $kqlQueryMap[$kqlName] = $overrideKqlFile
-
-              Write-Host $kqlName -ForegroundColor Cyan
             }
           }
         }
@@ -736,12 +732,12 @@ $Script:Runtime = Measure-Command -Expression {
                   $runbookCheckCt++
 
                 } else {
-                  Write-Host "Selector $selectorName not found in runbook. Skipping check..." -ForegroundColor Yellow
+                  Write-Host "[Runbook]: Selector $selectorName not found in runbook. Skipping check..." -ForegroundColor Yellow
                 }
               }
 
               if ($queries.Count -gt 0) {
-                Write-Host "There are $runbookCheckCt runbook check(s) configured for $checkId. Running checks..." -ForegroundColor Green
+                Write-Host "[Runbook]: There are $runbookCheckCt runbook check(s) configured for $checkId. Running checks..." -ForegroundColor Cyan
               }
             }
           } else {
@@ -769,7 +765,7 @@ $Script:Runtime = Measure-Command -Expression {
           if ($selector -eq 'APRL') {
             Write-Host "[APRL]: Microsoft.$type - $checkId" -ForegroundColor Green -NoNewline
           } else {
-            Write-Host "[Runbook check '$checkName' (selector: '$selector')]: $checkId" -ForegroundColor Green -NoNewline
+            Write-Host "[Runbook]: [$checkName (selector: '$selector')]: $checkId" -ForegroundColor Green -NoNewline
           }
           Write-Host ' +++++++++++++++'
 
