@@ -21,7 +21,7 @@ Param(
   $RunbookFile,
   $SubscriptionsFile,
   $SubscriptionIds,
-  $ResourceGroups,
+  [String[]]$ResourceGroups,
   $TenantID,
   [ValidateSet('AzureCloud', 'AzureUSGovernment')]
   $AzureEnvironment = 'AzureCloud'
@@ -74,24 +74,24 @@ $Script:Runtime = Measure-Command -Expression {
   }
 
   function Get-HelpMessage {
-    Write-Host ''
-    Write-Host 'Parameters'
-    Write-Host ''
-    Write-Host ' -TenantID <ID>        :  Optional; tenant to be used. '
-    Write-Host ' -SubscriptionIds <IDs>:  Optional (or SubscriptionsFile); Specifies Subscription(s) to be included in the analysis: Subscription1,Subscription2. '
-    Write-Host ' -SubscriptionsFile    :  Optional (or SubscriptionIds); specifies the file with the subscription list to be analysed (one subscription per line). '
-    Write-Host ' -RunbookFile          :  Optional; specifies the file with the runbook (selectors & checks) to be used. '
-    Write-Host ' -ResourceGroups       :  Optional; specifies Resource Group(s) to be included in the analysis: ResourceGroup1,ResourceGroup2. '
-    Write-Host ' -Debug                :  Writes Debugging information of the script during the execution. '
-    Write-Host ''
-    Write-Host 'Examples: '
-    Write-Host '  Run against all the subscriptions in the Tenant'
-    Write-Host '  .\1_wara_collector.ps1 -TenantID XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX'
-    Write-Host ''
-    Write-Host '  Run against specific Subscriptions in the Tenant'
-    Write-Host '  .\1_wara_collector.ps1 -TenantID XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX -SubscriptionIds YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY,AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA'
-    Write-Host ''
-    Write-Host '  Run against the subscriptions in a file the Tenant'
+    Write-Host ""
+    Write-Host "Parameters"
+    Write-Host ""
+    Write-Host " -TenantID <ID>        :  Optional; tenant to be used. "
+    Write-Host " -SubscriptionIds <IDs>:  Optional (or SubscriptionsFile); Specifies Subscription(s) to be included in the analysis: Subscription1,Subscription2. "
+    Write-Host " -SubscriptionsFile    :  Optional (or SubscriptionIds); specifies the file with the subscription list to be analysed (one subscription per line). "
+    Write-Host " -RunbookFile          :  Optional; specifies the file with the runbook (selectors & checks) to be used. "
+    Write-Host ' -ResourceGroups       :  Optional; specifies Resource Group(s) to be included in the analysis: "ResourceGroup1","ResourceGroup2." '
+    Write-Host " -Debug                :  Writes Debugging information of the script during the execution. "
+    Write-Host ""
+    Write-Host "Examples: "
+    Write-Host "  Run against all the subscriptions in the Tenant"
+    Write-Host "  .\1_wara_collector.ps1 -TenantID XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+    Write-Host ""
+    Write-Host "  Run against specific Subscriptions in the Tenant"
+    Write-Host "  .\1_wara_collector.ps1 -TenantID XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX -SubscriptionIds YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY,AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA"
+    Write-Host ""
+    Write-Host "  Run against the subscriptions in a file the Tenant"
     Write-Host '  .\1_wara_collector.ps1 -TenantID XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX -SubscriptionsFile "C:\Temp\Subscriptions.txt"'
     Write-Host ''
     Write-Host ''
