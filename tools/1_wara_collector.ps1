@@ -20,6 +20,7 @@ Param(
   [switch]$AVD,
   [switch]$AVS,
   [switch]$HPC,
+  [swtich]$GUI,
   $RunbookFile,
   $SubscriptionIds,
   $ResourceGroups,
@@ -41,6 +42,13 @@ if ($ConfigFile) {
   $RunbookFile = $ConfigData.RunbookFile
   $Tags = $ConfigData.Tags
 }
+
+if($GUI){
+  $TenantID = New-AzTenantSelection
+  $SubscriptionIds = New-AzSubscriptionSelection -TenantId $TenantID
+  $ResourceGroups = New-AzResourceGroupSelection
+}
+
 
 $Script:ShellPlatform = $PSVersionTable.Platform
 
@@ -104,10 +112,11 @@ function Get-AllResourceGroup {
 
   function New-AzResourceGroupSelection {
     param (
-      [Parameter(Mandatory=$true)]
+      [Parameter(Mandatory=$false)]
       [string[]]$SubscriptionIds
     )
-    return Get-AllResourceGroup -SubscriptionId $SubscriptionIds | Select-Object ResourceGroup, SubscriptionName, resourceId | Out-ConsoleGridView -OutputMode Multiple -Title "Select Resource Group(s)"
+    $result = $SubscriptionIds ? (Get-AllResourceGroup -SubscriptionId $SubscriptionIds) : (Get-AllResourceGroup)
+    return $result | Select-Object ResourceGroup, SubscriptionName, resourceId | Out-ConsoleGridView -OutputMode Multiple -Title "Select Resource Group(s)"
   }
 
   function Import-ConfigFileData($file){
