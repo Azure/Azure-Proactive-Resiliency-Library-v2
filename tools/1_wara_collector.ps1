@@ -34,24 +34,6 @@ Param(
 
 if ($Debugging.IsPresent) { $DebugPreference = 'Continue' } else { $DebugPreference = "silentlycontinue" }
 
-if ($ConfigFile) {
-  $ConfigData = Import-ConfigFileData -file $ConfigFile
-  $TenantID = $ConfigData.TenantID
-  $SubscriptionIds = $ConfigData.SubscriptionIds
-  $ResourceGroupList = $ConfigData.ResourceGroups
-  $RunbookFile = $ConfigData.RunbookFile
-  $Tags = $ConfigData.Tags
-}
-
-if($GUI){
-  $TenantID = New-AzTenantSelection
-  $SubscriptionIds = New-AzSubscriptionSelection -TenantId $TenantID.id
-
-  if($resourcegroups){
-  $ResourceGroupList = (New-AzResourceGroupSelection).id.toLower()
-  $ResourceGroups = $ResourceGroupList | ForEach-Object {$_.split("/")[4]}
-  }
-}
 
 
 $Script:ShellPlatform = $PSVersionTable.Platform
@@ -202,7 +184,7 @@ function Get-AllResourceGroup {
   }
 
   function Test-SubscriptionParameter {
-    if ([string]::IsNullOrEmpty($SubscriptionIds) -and [string]::IsNullOrEmpty($SubscriptionsFile))
+    if ([string]::IsNullOrEmpty($SubscriptionIds) -and [string]::IsNullOrEmpty($ConfigFile) -and -not $GUI)
       {
         Write-Host ""
         Write-Host "Suscription ID or Subscription File is required"
@@ -252,6 +234,8 @@ function Get-AllResourceGroup {
     $Script:TaggedResources = @()
   }
 
+
+
   function Test-Requirement {
     # Install required modules
     try
@@ -266,7 +250,7 @@ function Get-AllResourceGroup {
             Install-Module -Name Az.ResourceGraph -SkipPublisherCheck -InformationAction SilentlyContinue
           }
              Write-Host "Validating " -NoNewline
-        Write-Host "Az.ResourceGraph" -ForegroundColor Cyan -NoNewline
+        Write-Host "Microsoft.PowerShell.ConsoleGuiTools" -ForegroundColor Cyan -NoNewline
         Write-Host " Module.."
         $ConsoleGUITools = Get-Module -Name Microsoft.PowerShell.ConsoleGuiTools -ListAvailable -ErrorAction silentlycontinue
         if ($null -eq $ConsoleGUITools)
@@ -1487,6 +1471,25 @@ function Get-AllResourceGroup {
       Exit
     }
 
+    if ($ConfigFile) {
+      $ConfigData = Import-ConfigFileData -file $ConfigFile
+      $TenantID = $ConfigData.TenantID
+      $SubscriptionIds = $ConfigData.SubscriptionIds
+      $ResourceGroupList = $ConfigData.ResourceGroups
+      $RunbookFile = $ConfigData.RunbookFile
+      $Tags = $ConfigData.Tags
+    }
+
+    if($GUI){
+      $TenantID = New-AzTenantSelection
+      $SubscriptionIds = (New-AzSubscriptionSelection -TenantId $TenantID.id).id
+
+      if($resourcegroups){
+      $ResourceGroupList = (New-AzResourceGroupSelection).id.toLower()
+      $ResourceGroups = $ResourceGroupList | ForEach-Object {$_.split("/")[4]}
+      }
+    }
+
   Write-Debug "Checking Parameters"
   Test-SubscriptionParameter
 
@@ -1502,8 +1505,13 @@ function Get-AllResourceGroup {
   Write-Debug "Calling Function: Test-Runbook"
   Test-Runbook
 
+
+
   Write-Debug "Calling Function: Connect-ToAzure"
   Connect-ToAzure
+
+
+
 
   Write-Debug "Calling Function: Test-SubscriptionFile"
   Test-SubscriptionFile
