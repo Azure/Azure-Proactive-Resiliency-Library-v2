@@ -20,27 +20,23 @@ Param(
   [switch]$AVD,
   [switch]$AVS,
   [switch]$HPC,
+  [switch]$GUI,
+  [switch]$ResourceGroupGUI,
   [switch]$UseImplicitRunbookSelectors,
   $RunbookFile,
-  $SubscriptionsFile,
   $SubscriptionIds,
-  $ResourceGroupFile,
+  $ResourceGroups,
   $TenantID,
   [ValidateSet('AzureCloud', 'AzureUSGovernment')]
   $AzureEnvironment = 'AzureCloud',
-  $TagsFile,
-  $Tags
-)
+  $ConfigFile
+  )
 
 #import-module "./modules/collector.psm1" -Force
 
 if ($Debugging.IsPresent) { $DebugPreference = 'Continue' } else { $DebugPreference = 'silentlycontinue' }
 
-if ($ResourceGroupFile) {
-  $ResourceGroupList = (Get-Content $ResourceGroupFile).trim().tolower()
-  $ResourceGroups = $resourcegrouplist | ForEach-Object { $_.split('/')[4] }
-  $SubscriptionIds = ($resourcegrouplist | ForEach-Object { $_.split('/')[2] } | Select-Object -Unique)
-}
+
 
 $Script:ShellPlatform = $PSVersionTable.Platform
 
@@ -48,11 +44,11 @@ $Script:Runtime = Measure-Command -Expression {
 
   Function Get-AllAzGraphResource {
     param (
-      [string]$subscriptionId,
+      [string[]]$subscriptionId,
       [string]$query = 'Resources | project id, resourceGroup, subscriptionId, name, type, location'
     )
 
-    $result = Search-AzGraph -Query $query -First 1000 -Subscription $subscriptionId -ErrorAction SilentlyContinue # -first 1000 returns the first 1000 results and subsequently reduces the amount of queries required to get data.
+    $result = $subscriptionId ? (Search-AzGraph -Query $query -first 1000 -Subscription $subscriptionId) : (Search-AzGraph -Query $query -first 1000 -usetenantscope) # -first 1000 returns the first 1000 results and subsequently reduces the amount of queries required to get data.
 
     # Collection to store all resources
     $allResources = @($result)
@@ -60,7 +56,7 @@ $Script:Runtime = Measure-Command -Expression {
     # Loop to paginate through the results using the skip token
     while ($result.SkipToken) {
       # Retrieve the next set of results using the skip token
-      $result = Search-AzGraph -Query $query -SkipToken $result.SkipToken -Subscription $subscriptionId -First 1000 -ErrorAction SilentlyContinue
+      $result = $subscriptionId ? (Search-AzGraph -Query $query -SkipToken $result.SkipToken -Subscription $subscriptionId -First 1000) : (Search-AzGraph -query $query -SkipToken $result.SkipToken -First 1000 -UseTenantScope)
       # Add the results to the collection
       $allResources += $result
     }
@@ -69,19 +65,102 @@ $Script:Runtime = Measure-Command -Expression {
     return $allResources
   }
 
-  function Get-AllResourceGroup {
 
-    # Query to get all resource groups in the tenant
-    $q = "resourcecontainers
-    | where type == 'microsoft.resources/subscriptions'
-    | project subscriptionId, subscriptionName = name
-    | join (resourcecontainers
-        | where type == 'microsoft.resources/subscriptions/resourcegroups')
-        on subscriptionId
-    | project subscriptionName, subscriptionId, resourceGroup, id=tolower(id)"
+function Get-AllResourceGroup {
+  param (
+    [string[]]$SubscriptionIds
+  )
 
-    return Get-AllAzGraphResource -query $q
+  # Query to get all resource groups in the tenant
+  $q = "resourcecontainers
+  | where type == 'microsoft.resources/subscriptions'
+  | project subscriptionId, subscriptionName = name
+  | join (resourcecontainers
+      | where type == 'microsoft.resources/subscriptions/resourcegroups')
+      on subscriptionId
+  | project subscriptionName, subscriptionId, resourceGroup, id=tolower(id)"
+
+  $r = $SubscriptionIds ? (Get-AllAzGraphResource -query $q -subscriptionId $SubscriptionIds -usetenantscope) : (Get-AllAzGraphResource -query $q -usetenantscope)
+
+  # Returns the resource groups
+  return $r
+}
+
+  function New-AzTenantSelection {
+    return Get-AzTenant | Out-ConsoleGridView -OutputMode Single -Title "Select Tenant"
   }
+
+  function New-AzSubscriptionSelection {
+    param (
+      [Parameter(Mandatory=$true)]
+      [string]$TenantId
+    )
+    return Get-AzSubscription -TenantId $TenantId | Out-ConsoleGridView -OutputMode Multiple -title "Select Subscription(s)"
+  }
+
+  function New-AzResourceGroupSelection {
+    param (
+      [Parameter(Mandatory=$false)]
+      [string[]]$SubscriptionIds
+    )
+    $result = $SubscriptionIds ? (Get-AllResourceGroup -SubscriptionId $SubscriptionIds) : (Get-AllResourceGroup)
+    return $result | Select-Object ResourceGroup, SubscriptionName, resourceId | Out-ConsoleGridView -OutputMode Multiple -Title "Select Resource Group(s)"
+  }
+
+  function Import-ConfigFileData($file){
+    # Read the file content and store it in a variable
+    $filecontent = (Get-content $file).trim().tolower()
+
+    # Create an array to store the line number of each section
+    $linetable = @()
+    $objarray = @{}
+
+    # Iterate through the file content and store the line number of each section
+    Foreach($line in $filecontent){
+        if (-not [string]::IsNullOrWhiteSpace($line) -and -not $line.startswith("#")){
+            # If the line is a section, store the line number
+            if ($line -match "^\[([^\]]+)\]$") {
+                # Store the section name and line number. Remove the brackets from the section name
+                $linetable += $filecontent.indexof($line)
+
+            }
+        }
+    }
+
+    # Iterate through the line numbers and extract the section content
+    $count = 0
+    foreach($entry in $linetable){
+
+        # Get the section name
+        $name = $filecontent[$entry]
+        # Remove the brackets from the section name
+        $name = $name.replace("[","").replace("]","")
+
+        # Get the start and stop line numbers for the section content
+        # If the section is the last one, set the stop line number to the end of the file
+        $start = $entry + 1
+        if($count -eq ($linetable.length-1)){
+            $stop = $filecontent.length - 1
+        }
+        else{
+            $stop = $linetable[$count+1] - 2
+        }
+
+        # Extract the section content
+        $configsection = $filecontent[$start..$stop]
+
+        # Add the section content to the object array
+        $objarray += @{$Name=$configsection}
+
+        # Increment the count
+        $count++
+    }
+
+    # Return the object array and cast to pscustomobject
+    return [pscustomobject]$objarray
+
+  }
+
 
   function Get-ResourceGroupsByList {
     param (
@@ -107,12 +186,13 @@ $Script:Runtime = Measure-Command -Expression {
   }
 
   function Test-SubscriptionParameter {
-    if ([string]::IsNullOrEmpty($SubscriptionIds) -and [string]::IsNullOrEmpty($SubscriptionsFile)) {
-      Write-Host ''
-      Write-Host 'Suscription ID or Subscription File is required'
-      Write-Host ''
-      Exit
-    }
+    if ([string]::IsNullOrEmpty($SubscriptionIds) -and [string]::IsNullOrEmpty($ConfigFile) -and -not $GUI)
+      {
+        Write-Host ""
+        Write-Host "Suscription ID or Subscription File is required"
+        Write-Host ""
+        Exit
+      }
   }
 
   function Get-HelpMessage {
@@ -152,6 +232,7 @@ $Script:Runtime = Measure-Command -Expression {
     $Script:Resources = @()
     $Script:TaggedResources = @()
 
+
     # Runbook stuff
     $Script:RunbookChecks = @{}
     $Script:RunbookParameters = @{}
@@ -161,36 +242,50 @@ $Script:Runtime = Measure-Command -Expression {
 
   function Test-Requirement {
     # Install required modules
-    try {
-      Write-Host 'Validating ' -NoNewline
-      Write-Host 'Az.ResourceGraph' -ForegroundColor Cyan -NoNewline
-      Write-Host ' Module..'
-      $AzModules = Get-Module -Name Az.ResourceGraph -ListAvailable -ErrorAction silentlycontinue
-      if ($null -eq $AzModules) {
-        Write-Host 'Installing Az Modules' -ForegroundColor Yellow
-        Install-Module -Name Az.ResourceGraph -SkipPublisherCheck -InformationAction SilentlyContinue
+    try
+      {
+        Write-Host "Validating " -NoNewline
+        Write-Host "Az.ResourceGraph" -ForegroundColor Cyan -NoNewline
+        Write-Host " Module.."
+        $AzModules = Get-Module -Name Az.ResourceGraph -ListAvailable -ErrorAction silentlycontinue
+        if ($null -eq $AzModules)
+          {
+            Write-Host "Installing Az Modules" -ForegroundColor Yellow
+            Install-Module -Name Az.ResourceGraph -SkipPublisherCheck -InformationAction SilentlyContinue
+          }
+             Write-Host "Validating " -NoNewline
+        Write-Host "Microsoft.PowerShell.ConsoleGuiTools" -ForegroundColor Cyan -NoNewline
+        Write-Host " Module.."
+        $ConsoleGUITools = Get-Module -Name Microsoft.PowerShell.ConsoleGuiTools -ListAvailable -ErrorAction silentlycontinue
+        if ($null -eq $ConsoleGUITools)
+          {
+            Write-Host "Installing ConsoleGuiTools Modules" -ForegroundColor Yellow
+            Install-Module -Name Microsoft.PowerShell.ConsoleGuiTools -SkipPublisherCheck -InformationAction SilentlyContinue
+          }
+        Write-Host "Validating " -NoNewline
+        Write-Host "Git" -ForegroundColor Cyan -NoNewline
+        Write-Host " Installation.."
+        $GitVersion = git --version
+        if ($null -eq $GitVersion)
+          {
+            Write-Host "Missing Git" -ForegroundColor Red
+            Exit
+          }
+        $Script:ScriptData = [pscustomobject]@{
+            Version       = $Script:Version
+            SAP           = if($SAP.IsPresent){$true}else{$false}
+            AVD           = if($AVD.IsPresent){$true}else{$false}
+            AVS           = if($AVS.IsPresent){$true}else{$false}
+            HPC           = if($HPC.IsPresent){$true}else{$false}
+            TAGFiltering  = if($TagsFile -or $Tags){$true}else{$false}
+          }
       }
-      Write-Host 'Validating ' -NoNewline
-      Write-Host 'Git' -ForegroundColor Cyan -NoNewline
-      Write-Host ' Installation..'
-      $GitVersion = git --version
-      if ($null -eq $GitVersion) {
-        Write-Host 'Missing Git' -ForegroundColor Red
-        Exit
+    catch
+      {
+        # Report Error
+        $errorMessage = $_.Exception.Message
+        Write-Host "Error executing function Requirements: $errorMessage" -ForegroundColor Red
       }
-      $Script:ScriptData = [pscustomobject]@{
-        Version      = $Script:Version
-        SAP          = if ($SAP.IsPresent) { $true }else { $false }
-        AVD          = if ($AVD.IsPresent) { $true }else { $false }
-        AVS          = if ($AVS.IsPresent) { $true }else { $false }
-        HPC          = if ($HPC.IsPresent) { $true }else { $false }
-        TAGFiltering = if ($TagsFile -or $Tags) { $true }else { $false }
-      }
-    } catch {
-      # Report Error
-      $errorMessage = $_.Exception.Message
-      Write-Host "Error executing function Requirements: $errorMessage" -ForegroundColor Red
-    }
   }
 
   function Set-LocalFile {
@@ -1210,7 +1305,7 @@ $Script:Runtime = Measure-Command -Expression {
 
       #Ternary Expression If ResourceGroupFile is present, then get the ResourceGroups by List, else get the results
       $ResourceExporter = @{
-        Resource = $ResourceGroupFile ? $(Get-ResourceGroupsByList -ObjectList $Script:Resources -FilterList $resourcegrouplist -KeyColumn 'id') : $Script:Resources
+        Resource = $ResourceGroupList ? $(Get-ResourceGroupsByList -ObjectList $Script:Resources -FilterList $resourcegrouplist -KeyColumn "id") : $Script:Resources
       }
 
       $ResourceTypeExporter = @{
@@ -1263,7 +1358,26 @@ $Script:Runtime = Measure-Command -Expression {
     Exit
   }
 
-  Write-Debug 'Checking Parameters'
+    if ($ConfigFile) {
+      $ConfigData = Import-ConfigFileData -file $ConfigFile
+      $TenantID = $ConfigData.TenantID
+      $SubscriptionIds = $ConfigData.SubscriptionIds
+      $ResourceGroupList = $ConfigData.ResourceGroups
+      $RunbookFile = $ConfigData.RunbookFile
+      $Tags = $ConfigData.Tags
+    }
+
+    if($GUI){
+      $TenantID = New-AzTenantSelection
+      $SubscriptionIds = (New-AzSubscriptionSelection -TenantId $TenantID.id).id
+
+      if($ResourceGroupGUI){
+      $ResourceGroupList = (New-AzResourceGroupSelection).id.toLower()
+      $ResourceGroups = $ResourceGroupList | ForEach-Object {$_.split("/")[4]}
+      }
+    }
+
+  Write-Debug "Checking Parameters"
   Test-SubscriptionParameter
 
   Write-Debug 'Reseting Variables'
@@ -1278,10 +1392,10 @@ $Script:Runtime = Measure-Command -Expression {
   Write-Debug 'Calling Function: Test-Runbook'
   Test-Runbook
 
-  Write-Debug 'Calling Function: Connect-ToAzure'
+  Write-Debug "Calling Function: Connect-ToAzure"
   Connect-ToAzure
 
-  Write-Debug 'Calling Function: Test-SubscriptionFile'
+  Write-Debug "Calling Function: Test-SubscriptionFile"
   Test-SubscriptionFile
 
   #Write-Debug "Calling Function: Invoke-PSModules"
