@@ -165,8 +165,7 @@ $Script:Runtime = Measure-Command -Expression {
     }
 
     $Script:MergedRecommendation = @()
-    foreach ($Recom in $CoreResources) {
-      Write-Host "$($Recom.recommendationId)" -ForegroundColor Magenta
+    foreach ($Recom in $CoreResources | Where-Object { $_ -ne $null }) {
 
       $RecomTitle = $Script:ServicesYAMLContent | Where-Object { $_.aprlGuid -eq $Recom.recommendationId }
 
