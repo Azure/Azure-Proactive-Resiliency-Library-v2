@@ -20,8 +20,6 @@ Param(
   [switch]$AVD,
   [switch]$AVS,
   [switch]$HPC,
-  [switch]$GUI,
-  [switch]$ResourceGroupGUI,
   [switch]$UseImplicitRunbookSelectors,
   $RunbookFile,
   $SubscriptionIds,
@@ -85,28 +83,6 @@ function Get-AllResourceGroup {
   # Returns the resource groups
   return $r
 }
-
-  function New-AzTenantSelection {
-    return Get-AzTenant | Out-ConsoleGridView -OutputMode Single -Title "Select Tenant"
-  }
-
-  function New-AzSubscriptionSelection {
-    param (
-      [Parameter(Mandatory=$true)]
-      [string]$TenantId
-    )
-    return Get-AzSubscription -TenantId $TenantId | Out-ConsoleGridView -OutputMode Multiple -title "Select Subscription(s)"
-  }
-
-  function New-AzResourceGroupSelection {
-    param (
-      [Parameter(Mandatory=$false)]
-      [string[]]$SubscriptionIds
-    )
-    $result = $SubscriptionIds ? (Get-AllResourceGroup -SubscriptionId $SubscriptionIds) : (Get-AllResourceGroup)
-    return $result | Select-Object ResourceGroup, SubscriptionName, resourceId | Out-ConsoleGridView -OutputMode Multiple -Title "Select Resource Group(s)"
-  }
-
   function Import-ConfigFileData($file){
     # Read the file content and store it in a variable
     $filecontent = (Get-content $file).trim().tolower()
@@ -1365,16 +1341,6 @@ function Get-AllResourceGroup {
       $ResourceGroupList = $ConfigData.ResourceGroups
       $RunbookFile = $ConfigData.RunbookFile
       $Tags = $ConfigData.Tags
-    }
-
-    if($GUI){
-      $TenantID = New-AzTenantSelection
-      $SubscriptionIds = (New-AzSubscriptionSelection -TenantId $TenantID.id).id
-
-      if($ResourceGroupGUI){
-      $ResourceGroupList = (New-AzResourceGroupSelection).id.toLower()
-      $ResourceGroups = $ResourceGroupList | ForEach-Object {$_.split("/")[4]}
-      }
     }
 
   Write-Debug "Checking Parameters"
