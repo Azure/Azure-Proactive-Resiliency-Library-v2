@@ -2,7 +2,7 @@
 // Find all Disks configured to be Shared. This is not an indication of an issue, but if a disk with this configuration is assigned to two or more VMs without a proper disk control mechanism (like a WSFC) it can lead to data loss
 resources
 | where type =~ 'Microsoft.Compute/disks'
-| where isnotnull(properties.maxShares)
+| where isnotnull(properties.maxShares) and properties.maxShares >= 2
 | project id, name, tags, lowerCaseDiskId = tolower(id), diskState = tostring(properties.diskState)
 | join kind = leftouter (
     resources
