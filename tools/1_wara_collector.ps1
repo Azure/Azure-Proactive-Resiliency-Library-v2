@@ -140,7 +140,7 @@ function Get-AllResourceGroup {
 
   function Get-ResourceGroupsByList {
     param (
-      [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
+      [Parameter(Mandatory = $true)]
       [array]$ObjectList,
 
       [Parameter(Mandatory = $true)]
