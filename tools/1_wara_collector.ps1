@@ -20,26 +20,22 @@ Param(
   [switch]$AVD,
   [switch]$AVS,
   [switch]$HPC,
+  [switch]$GUI,
+  [switch]$ResourceGroupGUI,
   $RunbookFile,
-  $SubscriptionsFile,
   $SubscriptionIds,
-  $ResourceGroupFile,
+  $ResourceGroups,
   $TenantID,
   [ValidateSet("AzureCloud","AzureUSGovernment")]
   $AzureEnvironment = 'AzureCloud',
-  $TagsFile,
-  $Tags
+  $ConfigFile
   )
 
 #import-module "./modules/collector.psm1" -Force
 
 if ($Debugging.IsPresent) { $DebugPreference = 'Continue' } else { $DebugPreference = "silentlycontinue" }
 
-if ($ResourceGroupFile) {
-  $ResourceGroupList = (Get-Content $ResourceGroupFile).trim().tolower()
-  $ResourceGroups = $resourcegrouplist | ForEach-Object {$_.split("/")[4]}
-  $SubscriptionIds = ($resourcegrouplist | ForEach-Object {$_.split("/")[2]} | Select-Object -Unique)
-}
+
 
 $Script:ShellPlatform = $PSVersionTable.Platform
 
@@ -47,11 +43,11 @@ $Script:Runtime = Measure-Command -Expression {
 
   Function Get-AllAzGraphResource {
     param (
-      [string]$subscriptionId,
+      [string[]]$subscriptionId,
       [string]$query = 'Resources | project id, resourceGroup, subscriptionId, name, type, location'
     )
 
-    $result = Search-AzGraph -Query $query -first 1000 -Subscription $subscriptionId -ErrorAction SilentlyContinue # -first 1000 returns the first 1000 results and subsequently reduces the amount of queries required to get data.
+    $result = $subscriptionId ? (Search-AzGraph -Query $query -first 1000 -Subscription $subscriptionId) : (Search-AzGraph -Query $query -first 1000 -usetenantscope) # -first 1000 returns the first 1000 results and subsequently reduces the amount of queries required to get data.
 
     # Collection to store all resources
     $allResources = @($result)
@@ -59,7 +55,7 @@ $Script:Runtime = Measure-Command -Expression {
     # Loop to paginate through the results using the skip token
     while ($result.SkipToken) {
       # Retrieve the next set of results using the skip token
-      $result = Search-AzGraph -Query $query -SkipToken $result.SkipToken -Subscription $subscriptionId -First 1000 -ErrorAction SilentlyContinue
+      $result = $subscriptionId ? (Search-AzGraph -Query $query -SkipToken $result.SkipToken -Subscription $subscriptionId -First 1000) : (Search-AzGraph -query $query -SkipToken $result.SkipToken -First 1000 -UseTenantScope)
       # Add the results to the collection
       $allResources += $result
     }
@@ -68,19 +64,102 @@ $Script:Runtime = Measure-Command -Expression {
     return $allResources
   }
 
-  function Get-AllResourceGroup {
 
-    # Query to get all resource groups in the tenant
-    $q = "resourcecontainers
-    | where type == 'microsoft.resources/subscriptions'
-    | project subscriptionId, subscriptionName = name
-    | join (resourcecontainers
-        | where type == 'microsoft.resources/subscriptions/resourcegroups')
-        on subscriptionId
-    | project subscriptionName, subscriptionId, resourceGroup, id=tolower(id)"
+function Get-AllResourceGroup {
+  param (
+    [string[]]$SubscriptionIds
+  )
 
-    return Get-AllAzGraphResource -query $q
+  # Query to get all resource groups in the tenant
+  $q = "resourcecontainers
+  | where type == 'microsoft.resources/subscriptions'
+  | project subscriptionId, subscriptionName = name
+  | join (resourcecontainers
+      | where type == 'microsoft.resources/subscriptions/resourcegroups')
+      on subscriptionId
+  | project subscriptionName, subscriptionId, resourceGroup, id=tolower(id)"
+
+  $r = $SubscriptionIds ? (Get-AllAzGraphResource -query $q -subscriptionId $SubscriptionIds -usetenantscope) : (Get-AllAzGraphResource -query $q -usetenantscope)
+
+  # Returns the resource groups
+  return $r
+}
+
+  function New-AzTenantSelection {
+    return Get-AzTenant | Out-ConsoleGridView -OutputMode Single -Title "Select Tenant"
   }
+
+  function New-AzSubscriptionSelection {
+    param (
+      [Parameter(Mandatory=$true)]
+      [string]$TenantId
+    )
+    return Get-AzSubscription -TenantId $TenantId | Out-ConsoleGridView -OutputMode Multiple -title "Select Subscription(s)"
+  }
+
+  function New-AzResourceGroupSelection {
+    param (
+      [Parameter(Mandatory=$false)]
+      [string[]]$SubscriptionIds
+    )
+    $result = $SubscriptionIds ? (Get-AllResourceGroup -SubscriptionId $SubscriptionIds) : (Get-AllResourceGroup)
+    return $result | Select-Object ResourceGroup, SubscriptionName, Id | Out-ConsoleGridView -OutputMode Multiple -Title "Select Resource Group(s)"
+  }
+
+  function Import-ConfigFileData($file){
+    # Read the file content and store it in a variable
+    $filecontent = (Get-content $file).trim().tolower()
+
+    # Create an array to store the line number of each section
+    $linetable = @()
+    $objarray = @{}
+
+    # Iterate through the file content and store the line number of each section
+    Foreach($line in $filecontent){
+        if (-not [string]::IsNullOrWhiteSpace($line) -and -not $line.startswith("#")){
+            # If the line is a section, store the line number
+            if ($line -match "^\[([^\]]+)\]$") {
+                # Store the section name and line number. Remove the brackets from the section name
+                $linetable += $filecontent.indexof($line)
+
+            }
+        }
+    }
+
+    # Iterate through the line numbers and extract the section content
+    $count = 0
+    foreach($entry in $linetable){
+
+        # Get the section name
+        $name = $filecontent[$entry]
+        # Remove the brackets from the section name
+        $name = $name.replace("[","").replace("]","")
+
+        # Get the start and stop line numbers for the section content
+        # If the section is the last one, set the stop line number to the end of the file
+        $start = $entry + 1
+        if($count -eq ($linetable.length-1)){
+            $stop = $filecontent.length - 1
+        }
+        else{
+            $stop = $linetable[$count+1] - 2
+        }
+
+        # Extract the section content
+        $configsection = $filecontent[$start..$stop]
+
+        # Add the section content to the object array
+        $objarray += @{$Name=$configsection}
+
+        # Increment the count
+        $count++
+    }
+
+    # Return the object array and cast to pscustomobject
+    return [pscustomobject]$objarray
+
+  }
+
 
   function Get-ResourceGroupsByList {
     param (
@@ -106,7 +185,7 @@ $Script:Runtime = Measure-Command -Expression {
   }
 
   function Test-SubscriptionParameter {
-    if ([string]::IsNullOrEmpty($SubscriptionIds) -and [string]::IsNullOrEmpty($SubscriptionsFile))
+    if ([string]::IsNullOrEmpty($SubscriptionIds) -and [string]::IsNullOrEmpty($ConfigFile) -and -not $GUI)
       {
         Write-Host ""
         Write-Host "Suscription ID or Subscription File is required"
@@ -160,6 +239,8 @@ $Script:Runtime = Measure-Command -Expression {
     $Script:TaggedResources = @()
   }
 
+
+
   function Test-Requirement {
     # Install required modules
     try
@@ -172,6 +253,15 @@ $Script:Runtime = Measure-Command -Expression {
           {
             Write-Host "Installing Az Modules" -ForegroundColor Yellow
             Install-Module -Name Az.ResourceGraph -SkipPublisherCheck -InformationAction SilentlyContinue
+          }
+             Write-Host "Validating " -NoNewline
+        Write-Host "Microsoft.PowerShell.ConsoleGuiTools" -ForegroundColor Cyan -NoNewline
+        Write-Host " Module.."
+        $ConsoleGUITools = Get-Module -Name Microsoft.PowerShell.ConsoleGuiTools -ListAvailable -ErrorAction silentlycontinue
+        if ($null -eq $ConsoleGUITools)
+          {
+            Write-Host "Installing ConsoleGuiTools Modules" -ForegroundColor Yellow
+            Install-Module -Name Microsoft.PowerShell.ConsoleGuiTools -SkipPublisherCheck -InformationAction SilentlyContinue
           }
         Write-Host "Validating " -NoNewline
         Write-Host "Git" -ForegroundColor Cyan -NoNewline
@@ -188,6 +278,7 @@ $Script:Runtime = Measure-Command -Expression {
             AVD           = if($AVD.IsPresent){$true}else{$false}
             AVS           = if($AVS.IsPresent){$true}else{$false}
             HPC           = if($HPC.IsPresent){$true}else{$false}
+            TAGFiltering  = if($TagsFile -or $Tags){$true}else{$false}
             TAGFiltering  = if($TagsFile -or $Tags){$true}else{$false}
           }
       }
@@ -261,7 +352,7 @@ $Script:Runtime = Measure-Command -Expression {
               {
                 $RootTypes = Get-ChildItem -Path "$clonePath/azure-resources/" -Directory
               }
-              $Script:GluedTypes += foreach ($RootType in $RootTypes)
+              $Script:GluedTypes +=   $Script:GluedTypes += foreach ($RootType in $RootTypes)
               {
                 $RootName = $RootType.Name
                 $SubTypes = Get-ChildItem -Path $RootType -Directory
@@ -271,6 +362,7 @@ $Script:Runtime = Measure-Command -Expression {
                     if (Get-ChildItem -Path $SubDir.FullName -File 'recommendations.yaml')
                       {
                         $GlueType = ('Microsoft.' + $RootName + '/' + $SubDirName)
+                        $GlueType.ToLower()
                         $GlueType.ToLower()
                       }
                   }
@@ -538,14 +630,17 @@ $Script:Runtime = Measure-Command -Expression {
       {
         function Invoke-QueryExecution {
           param($type, $query, $checkId, $checkName, $validationAction)
+          param($type, $query, $checkId, $checkName, $validationAction)
 
           try
             {
+              $ResourceType = $Script:AllResourceTypes | Where-Object { $_.Name -eq $type }
               $ResourceType = $Script:AllResourceTypes | Where-Object { $_.Name -eq $type }
               if (![string]::IsNullOrEmpty($resourceType))
                 {
                   # Execute the query and collect the results
                   # $queryResults = Search-AzGraph -Query $query -First 1000 -Subscription $Subid -ErrorAction SilentlyContinue
+                  $queryResults = Get-AllAzGraphResource -query $query -subscriptionId $Subid
                   $queryResults = Get-AllAzGraphResource -query $query -subscriptionId $Subid
 
                   $queryResults = $queryResults | Select-Object -Property name,id,param1,param2,param3,param4,param5 -Unique
@@ -597,7 +692,19 @@ $Script:Runtime = Measure-Command -Expression {
 
         function Invoke-TagFiltering {
           param($Subid)
+          param($Subid)
 
+            if ($TagsFile)
+              {
+                $TagFile = get-item -Path $TagsFile
+                $TagFile = $TagFile.FullName
+                $TagFilter = Get-Content -Path $TagFile
+              }
+            if ($Tags)
+              {
+                $TagFilter = $Tags
+              }
+            $Counter = 0
             if ($TagsFile)
               {
                 $TagFile = get-item -Path $TagsFile
@@ -611,7 +718,7 @@ $Script:Runtime = Measure-Command -Expression {
             $Counter = 0
 
             # Each line in the Tag Filtering file will be processed
-            $AllTaggedResourceGroups = @()
+            $AllAllTaggedResourceGroups = @()
             Foreach ($TagLine in $TagFilter)
               {
                 # Finding the TagKey and all the TagValues in the line
@@ -635,7 +742,11 @@ $Script:Runtime = Measure-Command -Expression {
                 $RGTagQuery = "ResourceContainers | where type =~ 'microsoft.resources/subscriptions/resourcegroups' | mvexpand tags | extend tagKey = tostring(bag_keys(tags)[0]) | extend tagValue = tostring(tags[tagKey]) | where tagKey in ($TagKey) and tagValue in ($TagValue) | project id | order by id"
 
                 $TaggedResourceGroups = Get-AllAzGraphResource -query $RGTagQuery -subscriptionId $Subid
+                $TaggedResourceGroups = Get-AllAzGraphResource -query $RGTagQuery -subscriptionId $Subid
 
+                Write-Debug ("Running Resource Tag Inventory for: "+ $TagKey + " : " + $TagValue)
+                #Getting all the resources within the TAGs
+                $ResourcesTagQuery = "Resources | mvexpand tags | extend tagKey = tostring(bag_keys(tags)[0]) | extend tagValue = tostring(tags[tagKey]) | where tagKey in ($TagKey) and tagValue in ($TagValue) | project id, name, subscriptionId, resourceGroup, location | order by id"
                 Write-Debug ("Running Resource Tag Inventory for: "+ $TagKey + " : " + $TagValue)
                 #Getting all the resources within the TAGs
                 $ResourcesTagQuery = "Resources | mvexpand tags | extend tagKey = tostring(bag_keys(tags)[0]) | extend tagValue = tostring(tags[tagKey]) | where tagKey in ($TagKey) and tagValue in ($TagValue) | project id, name, subscriptionId, resourceGroup, location | order by id"
@@ -664,10 +775,34 @@ $Script:Runtime = Measure-Command -Expression {
                     $Counter ++
                     $Script:TaggedResources = $ResourcesWithTHETag
                     $AllTaggedResourceGroups += $TaggedResourceGroups
+                $ResourcesWithTHETag = Get-AllAzGraphResource -query $ResourcesTagQuery -subscriptionId $Subid
+
+                if ($Counter -gt 0)
+                  {
+                    foreach ($resource in $Script:TaggedResources)
+                      {
+                        if ($resource.id -notin $ResourcesWithTHETag.id)
+                          {
+                            $Script:TaggedResources = $Script:TaggedResources | Where-Object { $_.id -ne $resource.id }
+                          }
+                      }
+                    foreach ($RG in $AllTaggedResourceGroups)
+                      {
+                        if ($RG -notin $TaggedResourceGroups)
+                          {
+                            $AllTaggedResourceGroups = $AllTaggedResourceGroups | Where-Object { $_ -ne $RG }
+                          }
+                      }
+                  }
+                else
+                  {
+                    $Counter ++
+                    $Script:TaggedResources = $ResourcesWithTHETag
+                    $AllTaggedResourceGroups += $TaggedResourceGroups
                   }
               }
             #If Tags are present in the Resource Group level we make sure to get all the resources within that resource group
-            if ($AllTaggedResourceGroups)
+            if ($AllAllTaggedResourceGroups)
               {
                 foreach ($ResourceGroup in $TaggedResourceGroups)
                   {
@@ -725,6 +860,20 @@ $Script:Runtime = Measure-Command -Expression {
               }
 
             Write-Host "----------------------------"
+            Write-Host "----------------------------"
+            Write-Host "Collecting: " -NoNewline
+            Write-Host "Resources Details" -ForegroundColor Magenta
+            Invoke-AllResourceExtraction $Subid
+
+            if($TagsFile -or $Tags)
+              {
+                Write-Host "----------------------------"
+                Write-Host "Collecting: " -NoNewline
+                Write-Host "Tagged Resources" -ForegroundColor Magenta
+                Invoke-TagFiltering $Subid
+              }
+
+            Write-Host "----------------------------"
             Write-Host "Collecting: " -NoNewline
             Write-Host "Advisories" -ForegroundColor Magenta
             Invoke-AdvisoryExtraction $Subid
@@ -747,11 +896,13 @@ $Script:Runtime = Measure-Command -Expression {
             if (![string]::IsNullOrEmpty($ResourceGroups))
               {
                 $resultAllResourceTypes = $Script:AllResources | Where-Object {$_.resourceGroup -in $ResourceGroups} | Group-Object -Property type,subscriptionId -NoElement
+                $resultAllResourceTypes = $Script:AllResources | Where-Object {$_.resourceGroup -in $ResourceGroups} | Group-Object -Property type,subscriptionId -NoElement
                 $Script:AllResourceTypes += $resultAllResourceTypes
               }
             else
               {
                 # Extract and display resource types with the query with subscriptions, we need this to filter the subscriptions later
+                $resultAllResourceTypes = $Script:AllResources | Group-Object -Property type,subscriptionId -NoElement
                 $resultAllResourceTypes = $Script:AllResources | Group-Object -Property type,subscriptionId -NoElement
                 $Script:AllResourceTypes += $resultAllResourceTypes
               }
@@ -762,7 +913,9 @@ $Script:Runtime = Measure-Command -Expression {
             $ServiceNotAvailable = @()
 
             foreach ($Type in $resultAllResourceTypes.Name)
+            foreach ($Type in $resultAllResourceTypes.Name)
               {
+                $Type = $Type.split(',')[0]
                 $Type = $Type.split(',')[0]
                 if ($Type.ToLower() -in $Script:GluedTypes)
                   {
@@ -1005,15 +1158,18 @@ $Script:Runtime = Measure-Command -Expression {
                     Write-Host "Query $checkId under development - Validate Recommendation manually" -ForegroundColor Yellow
                     $query = "resources | where type =~ '$type' | project name,id"
                     Invoke-QueryExecution -type ($type+', '+$Subid) -query $query -checkId $checkId -checkName $checkName -validationAction 'IMPORTANT - Query under development - Validate Recommendation manually'
+                    Invoke-QueryExecution -type ($type+', '+$Subid) -query $query -checkId $checkId -checkName $checkName -validationAction 'IMPORTANT - Query under development - Validate Recommendation manually'
                   }
                 elseif ($query -match "cannot-be-validated-with-arg")
                   {
                     Write-Host "IMPORTANT - Recommendation $checkId cannot be validated with ARGs - Validate Resources manually" -ForegroundColor Yellow
                     $query = "resources | where type =~ '$type' | project name,id"
                     Invoke-QueryExecution -type ($type+', '+$Subid) -query $query -checkId $checkId -checkName $checkName -validationAction 'IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually'
+                    Invoke-QueryExecution -type ($type+', '+$Subid) -query $query -checkId $checkId -checkName $checkName -validationAction 'IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually'
                   }
                 else
                   {
+                    Invoke-QueryExecution -type ($type+', '+$Subid) -query $query -checkId $checkId -checkName $checkName -validationAction 'Azure Resource Graph'
                     Invoke-QueryExecution -type ($type+', '+$Subid) -query $query -checkId $checkId -checkName $checkName -validationAction 'Azure Resource Graph'
                   }
               }
@@ -1044,6 +1200,7 @@ $Script:Runtime = Measure-Command -Expression {
                 Write-Host "Type $type Not Available In APRL - Validate Service manually" -ForegroundColor Yellow
                 $query = "resources | where type =~ '$type' | project name,id"
                 Invoke-QueryExecution -type ($type+', '+$Subid) -query $query -checkId $type -checkName '' -validationAction 'IMPORTANT - Service Not Available In APRL - Validate Service manually if Applicable, if not Delete this line'
+                Invoke-QueryExecution -type ($type+', '+$Subid) -query $query -checkId $type -checkName '' -validationAction 'IMPORTANT - Service Not Available In APRL - Validate Service manually if Applicable, if not Delete this line'
               }
           }
       }
@@ -1051,8 +1208,9 @@ $Script:Runtime = Measure-Command -Expression {
 
   function Invoke-ResourcesExtraDetail {
     #This Function will construct the $Script:Resources variable
-    $Script:Resources += foreach ($Temp in $Script:results)
+    $Script:Resources += $Script:Resources += foreach ($Temp in $Script:results)
       {
+        if ($TagsFile -or $Tags)
         if ($TagsFile -or $Tags)
           {
             if ($Temp.id -in $Script:TaggedResources.id)
@@ -1076,6 +1234,7 @@ $Script:Runtime = Measure-Command -Expression {
                   tagged           = $true
                 }
                 $result
+                $result
               }
             else
               {
@@ -1097,6 +1256,7 @@ $Script:Runtime = Measure-Command -Expression {
                   selector         = $Temp.selector
                   tagged           = $false
                 }
+                $result
                 $result
               }
           }
@@ -1121,6 +1281,7 @@ $Script:Runtime = Measure-Command -Expression {
                 tagged           = $false
               }
               $result
+              $result
           }
       }
   }
@@ -1135,11 +1296,21 @@ $Script:Runtime = Measure-Command -Expression {
         $ResultType = $result.split(', ')[0]
         $ResultSubID = $result.split(', ')[1]
         if ($ResultType -in $TempTypes.recommendationId)
+    $Script:AllResourceTypes = $Script:AllResourceTypes | Sort-Object -Property Count -Descending
+    $Looper = $Script:AllResourceTypes | Select-Object -Property Name -Unique
+    foreach ($result in $Looper.Name)
+      {
+        $ResourceTypeCount = ($Script:AllResourceTypes | Where-Object {$_.Name -eq $result}).count
+        $ResultType = $result.split(', ')[0]
+        $ResultSubID = $result.split(', ')[1]
+        if ($ResultType -in $TempTypes.recommendationId)
           {
             $SubName = ''
             $SubName = ($SubIds | Where-Object { $_.Id -eq $ResultSubID }).Name
+            $SubName = ($SubIds | Where-Object { $_.Id -eq $ResultSubID }).Name
             $tmp = [PSCustomObject]@{
               'Subscription'        = [string]$SubName
+              'Resource Type'       = [string]$ResultType
               'Resource Type'       = [string]$ResultType
               'Number of Resources' = [string]$ResourceTypeCount
               'Available in APRL?'  = "No"
@@ -1150,11 +1321,14 @@ $Script:Runtime = Measure-Command -Expression {
             $Script:AllResourceTypesOrdered += $tmp
           }
         elseif ($ResultType -notin $TempTypes.recommendationId)
+        elseif ($ResultType -notin $TempTypes.recommendationId)
           {
             $SubName = ''
             $SubName = ($SubIds | Where-Object { $_.Id -eq $ResultSubID }).Name
+            $SubName = ($SubIds | Where-Object { $_.Id -eq $ResultSubID }).Name
             $tmp = [PSCustomObject]@{
               'Subscription'        = [string]$SubName
+              'Resource Type'       = [string]$ResultType
               'Resource Type'       = [string]$ResultType
               'Number of Resources' = [string]$ResourceTypeCount
               'Available in APRL?'  = "Yes"
@@ -1171,7 +1345,7 @@ $Script:Runtime = Measure-Command -Expression {
     Param($Subid)
     if (![string]::IsNullOrEmpty($ResourceGroups))
       {
-        $Script:AllAdvisories += foreach ($RG in $ResourceGroups)
+        $Script:AllAdvisories += $Script:AllAdvisories += foreach ($RG in $ResourceGroups)
           {
             $advquery = "advisorresources | where type == 'microsoft.advisor/recommendations' and tostring(properties.category) == 'HighAvailability' | where resourceGroup contains '$RG' | order by id"
             $queryResults += Get-AllAzGraphResource -Query $advquery -subscriptionId $Subid
@@ -1195,6 +1369,7 @@ $Script:Runtime = Measure-Command -Expression {
                       description      = [string]$row.properties.shortDescription.solution
                     }
                     $result
+                    $result
                 }
               }
           }
@@ -1205,7 +1380,7 @@ $Script:Runtime = Measure-Command -Expression {
         $advquery = "advisorresources | where type == 'microsoft.advisor/recommendations' and tostring(properties.category) == 'HighAvailability' | order by id"
         $queryResults = Get-AllAzGraphResource -Query $advquery -subscriptionId $Subid
 
-        $Script:AllAdvisories += foreach ($row in $queryResults)
+        $Script:AllAdvisories += $Script:AllAdvisories += foreach ($row in $queryResults)
           {
             if (![string]::IsNullOrEmpty($row.properties.resourceMetadata.resourceId))
               {
@@ -1224,6 +1399,7 @@ $Script:Runtime = Measure-Command -Expression {
                   description      = [string]$row.properties.shortDescription.solution
                 }
                 $result
+                $result
               }
           }
       }
@@ -1232,7 +1408,7 @@ $Script:Runtime = Measure-Command -Expression {
   function Resolve-SupportTicket {
     $Tickets = $Script:SupportTickets
     $Script:SupportTickets = @()
-    $Script:SupportTickets += foreach ($Ticket in $Tickets)
+    $Script:SupportTickets += $Script:SupportTickets += foreach ($Ticket in $Tickets)
         {
               $tmp = @{
                 'Ticket ID'         = [string]$Ticket.properties.supportTicketId;
@@ -1245,6 +1421,7 @@ $Script:Runtime = Measure-Command -Expression {
                 'Related Resource'  = [string]$Ticket.properties.technicalTicketDetails.resourceId
               }
               $tmp
+              $tmp
         }
   }
 
@@ -1254,7 +1431,7 @@ $Script:Runtime = Measure-Command -Expression {
       $retquery = "servicehealthresources | where properties.EventSubType contains 'Retirement' | order by id"
       $queryResults = Get-AllAzGraphResource -Query $retquery -subscriptionId $Subid
 
-      $Script:AllRetirements += foreach ($row in $queryResults)
+      $Script:AllRetirements += $Script:AllRetirements += foreach ($row in $queryResults)
         {
           $OutagesRetired = $Script:RetiredOutages | Where-Object { $_.name -eq $row.properties.TrackingId }
 
@@ -1272,6 +1449,7 @@ $Script:Runtime = Measure-Command -Expression {
             Description     = [string]$OutagesRetired.properties.description
           }
           $result
+          $result
         }
   }
 
@@ -1282,18 +1460,19 @@ $Script:Runtime = Measure-Command -Expression {
         $queryResults = Get-AllAzGraphResource -Query $Servicequery -subscriptionId $Subid
 
         $Rowler = @()
-        $Rowler += foreach ($row in $queryResults)
+        $Rowler += $Rowler += foreach ($row in $queryResults)
           {
             foreach ($type in $row.properties.condition.allOf)
               {
                 if ($type.equals -eq 'ServiceHealth')
                   {
                     $row
+                    $row
                   }
               }
           }
 
-          $Script:AllServiceHealth += foreach ($Row in $Rowler)
+          $Script:AllServiceHealth +=   $Script:AllServiceHealth += foreach ($Row in $Rowler)
           {
             $SubName = ($SubIds | Where-Object { $_.Id -eq ($Row.properties.scopes.split('/')[2]) }).Name
             $EventType = if ($Row.Properties.condition.allOf.anyOf | Select-Object -Property equals) { $Row.Properties.condition.allOf.anyOf | Select-Object -Property equals | ForEach-Object { switch ($_.equals) { 'Incident' { 'Service Issues' } 'Informational' { 'Health Advisories' } 'ActionRequired' { 'Security Advisory' } 'Maintenance' { 'Planned Maintenance' } } } } Else { 'All' }
@@ -1310,6 +1489,7 @@ $Script:Runtime = Measure-Command -Expression {
               Regions      = $Regions
               ActionGroup  = $ActionGroupName
             }
+            $result
             $result
           }
   }
@@ -1332,7 +1512,7 @@ $Script:Runtime = Measure-Command -Expression {
 
       #Ternary Expression If ResourceGroupFile is present, then get the ResourceGroups by List, else get the results
       $ResourceExporter = @{
-        Resource = $ResourceGroupFile ? $(Get-ResourceGroupsByList -ObjectList $Script:Resources -FilterList $resourcegrouplist -KeyColumn "id") : $Script:Resources
+        Resource = $ResourceGroupList ? $(Get-ResourceGroupsByList -ObjectList $Script:Resources -FilterList $resourcegrouplist -KeyColumn "id") : $Script:Resources
       }
 
       $ResourceTypeExporter = @{
@@ -1369,6 +1549,7 @@ $Script:Runtime = Measure-Command -Expression {
       $ExporterArray += $ScriptDetailsExporter
 
       $Script:JsonFile = ($PSScriptRoot + "\WARA-File-" + (get-date -Format "yyyy-MM-dd-HH-mm") + ".json")
+      $Script:JsonFile = ($PSScriptRoot + "\WARA-File-" + (get-date -Format "yyyy-MM-dd-HH-mm") + ".json")
 
       $ExporterArray | ConvertTo-Json -Depth 15 | Out-File $Script:JsonFile
     }
@@ -1386,6 +1567,25 @@ $Script:Runtime = Measure-Command -Expression {
       Exit
     }
 
+    if ($ConfigFile) {
+      $ConfigData = Import-ConfigFileData -file $ConfigFile
+      $TenantID = $ConfigData.TenantID
+      $SubscriptionIds = $ConfigData.SubscriptionIds
+      $ResourceGroupList = $ConfigData.ResourceGroups
+      $RunbookFile = $ConfigData.RunbookFile
+      $Tags = $ConfigData.Tags
+    }
+
+    if($GUI){
+      $TenantID = New-AzTenantSelection
+      $SubscriptionIds = (New-AzSubscriptionSelection -TenantId $TenantID.id).id
+    }
+
+    if($ResourceGroupGUI){
+      $ResourceGroupList = (New-AzResourceGroupSelection).Id.tolower()
+      $ResourceGroups = $ResourceGroupList | ForEach-Object {$_.split("/")[4]}
+      }
+
   Write-Debug "Checking Parameters"
   Test-SubscriptionParameter
 
@@ -1401,8 +1601,13 @@ $Script:Runtime = Measure-Command -Expression {
   Write-Debug "Calling Function: Test-Runbook"
   Test-Runbook
 
+
+
   Write-Debug "Calling Function: Connect-ToAzure"
   Connect-ToAzure
+
+
+
 
   Write-Debug "Calling Function: Test-SubscriptionFile"
   Test-SubscriptionFile
