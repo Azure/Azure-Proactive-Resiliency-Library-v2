@@ -83,6 +83,7 @@ function Get-AllResourceGroup {
   # Returns the resource groups
   return $r
 }
+
   function Import-ConfigFileData($file){
     # Read the file content and store it in a variable
     $filecontent = (Get-content $file).trim().tolower()
