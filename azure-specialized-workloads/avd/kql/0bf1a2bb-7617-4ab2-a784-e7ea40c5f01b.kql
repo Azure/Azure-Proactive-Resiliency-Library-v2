@@ -13,4 +13,4 @@ resourcecontainers
 ) on subscriptionAlerts
 | where isempty(subscriptionAlerts1)
 | project-away subscriptionAlerts1
-| project recommendationID = "0bf1a2bb-7617-4ab2-a784-e7ea40c5f01b",id=subscriptionAlerts,name,tags, param1 = "AVDServiceHealthAlertsConfigured: False"
+| project recommendationId = "0bf1a2bb-7617-4ab2-a784-e7ea40c5f01b",id=subscriptionAlerts,name,tags, param1 = "AVDServiceHealthAlertsConfigured: False"
