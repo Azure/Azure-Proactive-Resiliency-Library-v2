@@ -6,9 +6,13 @@
 #APRL Specific Files
 /tools/Azure-Proactive-Resiliency-Library-v2/
 <<<<<<< HEAD
+<<<<<<< HEAD
 /tools/wara*.json
 /tools/wara*.xlsx
 =======
+=======
+/tools/Azure-Proactive-Resiliency-Library/
+>>>>>>> 6df378e3e83fc4dd0cf75121b45b8b88f958be15
 /tools/[Ww][Aa][Rr][Aa]*.json
 /tools/[Ww][Aa][Rr][Aa]*.xlsx
 /tools/[Ww][Aa][Rr][Aa]*.docx
