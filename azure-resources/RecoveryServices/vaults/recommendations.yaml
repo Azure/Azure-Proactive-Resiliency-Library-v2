@@ -1,4 +1,4 @@
-﻿- description: Ensure static IP addresses in Site Recovery VM failover settings are available in failover subnet
+- description: Ensure static IP addresses in Site Recovery VM failover settings are available in failover subnet
   aprlGuid: e93bb813-b356-48f3-9bdf-a06a0a6ba039
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
@@ -38,7 +38,7 @@
 
 - description: Migrate from classic alerts to built-in Azure Monitor alerts for Azure Recovery Services Vaults
   aprlGuid: 2912472d-0198-4bdc-aa90-37f145790edc
-  recommendationTypeId: null
+  recommendationTypeId: 06578866-1877-41e6-9d22-3ea5122e8048
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.RecoveryServices/vaults
@@ -57,9 +57,9 @@
     - name: Classic alerts retirement announcement
       url: "https://azure.microsoft.com/updates/transition-to-builtin-azure-monitor-alerts-for-recovery-services-vaults-in-azure-backup-by-31-march-2026/"
 
-- description: Opt-in to Cross Region Restore for all Geo-Redundant Storage (GRS) Azure Recovery Services vaults
+- description: Enable Cross Region Restore for your GRS Recovery Services Vault
   aprlGuid: 1549b91f-2ea0-4d4f-ba2a-4596becbe3de
-  recommendationTypeId: null
+  recommendationTypeId: 9b1308f1-4c25-4347-a061-7cc5cd6a44ab
   recommendationControl: Disaster Recovery
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.RecoveryServices/vaults

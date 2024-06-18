@@ -1,4 +1,4 @@
-﻿- description: Configure Diagnostic Settings for all Azure Event Grid resources
+- description: Configure Diagnostic Settings for all Azure Event Grid resources
   aprlGuid: 54c3191b-b535-1946-bba9-b754f44060f6
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
@@ -20,7 +20,7 @@
 - description: Configure Dead-letter to save events that cannot be delivered
   aprlGuid: 92162eb5-4323-3145-8a6c-525ce2f0700e
   recommendationTypeId: null
-  recommendationControl: Automation
+  recommendationControl: Personalized
   recommendationImpact: Low
   recommendationResourceType: Microsoft.EventGrid/topics
   recommendationMetadataState: Active
@@ -36,11 +36,11 @@
     - name: Azure Event Grid delivery and retry
       url: "https://learn.microsoft.com/en-us/azure/event-grid/delivery-and-retry#dead-letter-events"
 
-- description: Configure Private Endpoints
+- description: Azure Event Grid topics should use Private Link Private Endpoints
   aprlGuid: b2069f64-4741-3d4a-a71d-50c8b03f5ab7
-  recommendationTypeId: null
+  recommendationTypeId: bdac9c7b-b9b8-f572-0450-f161c430861c
   recommendationControl: Security
-  recommendationImpact: Low
+  recommendationImpact: Medium
   recommendationResourceType: Microsoft.EventGrid/topics
   recommendationMetadataState: Active
   longDescription: |

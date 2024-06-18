@@ -1,12 +1,12 @@
-﻿- description: Configure at least two regions for high availability
+- description: Configure at least two regions for high availability
   aprlGuid: 43663217-a1d3-844b-80ea-571a2ce37c6c
-  recommendationTypeId: null
+  recommendationTypeId: b57f7a29-dcc8-43de-86fa-18d3f9d3764d
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.DocumentDB/databaseAccounts
   recommendationMetadataState: Active
   longDescription: |
-    It is crucial to enable a secondary region on your Cosmos DB to achieve higher SLA. Doing so does not incur any downtime and it is as easy as selecting a pin on map. Cosmos DB instances utilizing Strong consistency need to configure at least three regions to retain write availability in case of one region failure.
+    Enable a secondary region in Cosmos DB for higher SLA without downtime. Simple as pinning a location on a map. For Strong consistency, configure at least three regions for write availability in case of failure.
   potentialBenefits: Enhances SLA and resilience
   pgVerified: true
   publishedToLearn: false
@@ -21,7 +21,7 @@
 
 - description: Enable service-managed failover for multi-region accounts with single write region
   aprlGuid: 9cabded7-a1fc-6e4a-944b-d7dd98ea31a2
-  recommendationTypeId: null
+  recommendationTypeId: 5de9f2e6-087e-40da-863a-34b7943beed4
   recommendationControl: Disaster Recovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.DocumentDB/databaseAccounts
@@ -59,28 +59,9 @@
     - name: Conflict resolution types and resolution policies in Azure Cosmos DB | Microsoft Learn
       url: "https://learn.microsoft.com/azure/cosmos-db/conflict-resolution-policies"
 
-- description: Choose appropriate consistency mode reflecting data durability requirements
-  aprlGuid: 23ebe97d-c546-204b-8b0d-00e61a5524f7
-  recommendationTypeId: null
-  recommendationControl: Disaster Recovery
-  recommendationImpact: High
-  recommendationResourceType: Microsoft.DocumentDB/databaseAccounts
-  recommendationMetadataState: Active
-  longDescription: |
-    In a globally distributed database, consistency level impacts data durability during regional outages. Understand data loss tolerance for recovery planning. Use Session consistency unless stronger is needed, accepting higher write latencies and potential write region impact from read-only outages.
-  potentialBenefits: Enhances data durability and recovery
-  pgVerified: false
-  publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
-  tags: null
-  learnMoreLink:
-    - name: Consistency level choices - Azure Cosmos DB | Microsoft Learn
-      url: "https://learn.microsoft.com/azure/cosmos-db/consistency-levels"
-
 - description: Configure continuous backup mode
   aprlGuid: e544520b-8505-7841-9e77-1f1974ee86ec
-  recommendationTypeId: null
+  recommendationTypeId: 52fef986-5897-4359-8b92-0f22749f0d73
   recommendationControl: Disaster Recovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.DocumentDB/databaseAccounts
