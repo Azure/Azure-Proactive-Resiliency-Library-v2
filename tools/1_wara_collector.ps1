@@ -103,7 +103,7 @@ function Get-AllResourceGroup {
       [string[]]$SubscriptionIds
     )
     $result = $SubscriptionIds ? (Get-AllResourceGroup -SubscriptionId $SubscriptionIds) : (Get-AllResourceGroup)
-    return $result | Select-Object ResourceGroup, SubscriptionName, resourceId | Out-ConsoleGridView -OutputMode Multiple -Title "Select Resource Group(s)"
+    return $result | Select-Object ResourceGroup, SubscriptionName, Id | Out-ConsoleGridView -OutputMode Multiple -Title "Select Resource Group(s)"
   }
 
   function Import-ConfigFileData($file){
@@ -1484,12 +1484,12 @@ function Get-AllResourceGroup {
     if($GUI){
       $TenantID = New-AzTenantSelection
       $SubscriptionIds = (New-AzSubscriptionSelection -TenantId $TenantID.id).id
+    }
 
-      if($ResourceGroupGUI){
-      $ResourceGroupList = (New-AzResourceGroupSelection).id.toLower()
+    if($ResourceGroupGUI){
+      $ResourceGroupList = (New-AzResourceGroupSelection).Id.tolower()
       $ResourceGroups = $ResourceGroupList | ForEach-Object {$_.split("/")[4]}
       }
-    }
 
   Write-Debug "Checking Parameters"
   Test-SubscriptionParameter
