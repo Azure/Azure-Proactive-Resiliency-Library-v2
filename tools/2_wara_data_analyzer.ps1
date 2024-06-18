@@ -186,6 +186,7 @@ $Script:Runtime = Measure-Command -Expression {
       }
 
     $Script:MergedRecommendation = @()
+
     foreach ($Recom in $CoreResources)
       {
         $RecomTitle = $Script:ServicesYAMLContent | Where-Object { $_.aprlGuid -eq $Recom.recommendationId }
@@ -675,7 +676,7 @@ $Script:Runtime = Measure-Command -Expression {
       # Build the APRL Recommendations
       foreach ($Service in $Script:ServicesYAMLContent)
         {
-          if ($Service.recommendationResourceType -eq 'n/a' -or $Service.recommendationResourceType -in $Script:AllResourceTypesOrdered.'Resource Type' -or $Script:FilterRecommendations -eq $false)
+          if ($Service.recommendationResourceType -like 'Specialized.Workload/*' -or $Service.recommendationResourceType -in $Script:AllResourceTypesOrdered.'Resource Type' -or $Script:FilterRecommendations -eq $false)
             {
               $ID = $Service.aprlGuid
               $resourceType = $Service.recommendationResourceType
@@ -685,8 +686,8 @@ $Script:Runtime = Measure-Command -Expression {
                 'Azure Service / Well-Architected'                                                               = 'Azure Service';
                 'Recommendation Source'                                                                          = 'APRL';
                 'Resiliency Category'                                                                            = $Service.recommendationControl;
-                'Azure Service Category / Well-Architected Area'                                                 = if($resourceType -eq 'n/a'){$resourceType}else{($resourceType.split('/')[0])};
-                'Azure Service / Well-Architected Topic'                                                         = if($resourceType -eq 'n/a'){$resourceType}else{($resourceType.split('/')[1])};
+                'Azure Service Category / Well-Architected Area'                                                 = if($resourceType -like 'Specialized.Workload/*'){$resourceType}else{($resourceType.split('/')[0])};
+                'Azure Service / Well-Architected Topic'                                                         = if($resourceType -like 'Specialized.Workload/*'){$resourceType}else{($resourceType.split('/')[1])};
                 'Recommendation Title'                                                                           = $Service.description;
                 'Impact'                                                                                         = $Service.recommendationImpact;
                 'Best Practices Guidance'                                                                        = [string]$Service.longDescription;
@@ -924,7 +925,7 @@ $Script:Runtime = Measure-Command -Expression {
   }
 
   #Call the functions
-  $Script:Version = "2.0.9"
+  $Script:Version = "2.0.10"
   Write-Host "Version: " -NoNewline
   Write-Host $Script:Version -ForegroundColor DarkBlue
 

@@ -124,6 +124,10 @@ $Script:Runtime = Measure-Command -Expression {
     Write-Host " -SubscriptionsFile    :  Optional (or SubscriptionIds); specifies the file with the subscription list to be analysed (one subscription per line). "
     Write-Host " -RunbookFile          :  Optional; specifies the file with the runbook (selectors & checks) to be used. "
     Write-Host " -ResourceGroups       :  Optional; specifies Resource Group(s) to be included in the analysis: ResourceGroup1,ResourceGroup2. "
+    Write-Host " -SAP                  :  Optional; gets specialized recommendations and queries for the defined workload form the APRL - Specialized Workloads section. "
+    Write-Host " -AVD                  :  Optional; gets specialized recommendations and queries for the defined workload form the APRL - Specialized Workloads section. "
+    Write-Host " -AVS                  :  Optional; gets specialized recommendations and queries for the defined workload form the APRL - Specialized Workloads section. "
+    Write-Host " -HPC                  :  Optional; gets specialized recommendations and queries for the defined workload form the APRL - Specialized Workloads section. "
     Write-Host " -Debug                :  Writes Debugging information of the script during the execution. "
     Write-Host ""
     Write-Host "Examples: "
@@ -611,11 +615,11 @@ $Script:Runtime = Measure-Command -Expression {
             Foreach ($TagLine in $TagFilter)
               {
                 # Finding the TagKey and all the TagValues in the line
-                $TagKeys = $TagLine.split(':')[0]
-                $TagValues = $TagLine.split(':')[1]
+                $TagKeys = $TagLine.split('==')[0]
+                $TagValues = $TagLine.split('==')[1]
 
-                $TagKeys = $TagKeys.split(',')
-                $TagValues = $TagValues.split(',')
+                $TagKeys = $TagKeys.split('||')
+                $TagValues = $TagValues.split('||')
 
                 $TagKey = if ($TagKeys.count -gt 1) { $TagKeys | ForEach-Object { "'$_'," } }else { $TagKeys}
                 $TagKey = [string]$TagKey
@@ -1372,7 +1376,7 @@ $Script:Runtime = Measure-Command -Expression {
 
 
   #Call the functions
-  $Script:Version = "2.0.11"
+  $Script:Version = "2.0.12"
   Write-Host "Version: " -NoNewline
   Write-Host $Script:Version -ForegroundColor DarkBlue
 
