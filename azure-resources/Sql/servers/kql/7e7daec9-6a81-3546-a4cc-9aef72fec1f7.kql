@@ -9,9 +9,9 @@ resources
 | summarize monitoredMetrics=make_list(monitoredMetric) by databaseid=tolower(tostring(databaseid))
 | join kind=fullouter   (
    resources
-| where type =~ 'microsoft.sql/servers/databases'
-| project databaseid = tolower(id), name, tags
+  | where type =~ 'microsoft.sql/servers/databases'
+  | project databaseid = tolower(id), name, tags
 ) on databaseid
-|where isnull(monitoredMetrics)
-|project recommendationId = "7e7daec9-6a81-3546-a4cc-9aef72fec1f7", name, id=databaseid1, tags, param1=strcat("MonitoringMetrics=false" )
+| where isnull(monitoredMetrics)
+| project recommendationId = "7e7daec9-6a81-3546-a4cc-9aef72fec1f7", name, id=databaseid1, tags, param1=strcat("MonitoringMetrics=false" )
 
