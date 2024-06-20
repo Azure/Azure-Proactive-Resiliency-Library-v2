@@ -516,22 +516,3 @@
   learnMoreLink:
     - name: Multi-replica apps
       url: "https://learn.microsoft.com/azure/aks/best-practices-app-cluster-reliability#multi-replica-applications"
-
-- description: Use a Standard Load Balancer
-  aprlGuid: 08067d85-962b-4d91-a7ca-c6228e45d5bd
-  recommendationTypeId: null
-  recommendationControl: High Availability
-  recommendationImpact: High
-  recommendationResourceType: Microsoft.ContainerService/managedClusters
-  recommendationMetadataState: Active
-  longDescription: |
-    Use the Standard Load Balancer to provide greater reliability and resources, support for multiple availability zones, HTTP probes, and functionality across multiple data centers.
-  potentialBenefits: Ensures high app availability
-  pgVerified: false
-  publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
-  tags: null
-  learnMoreLink:
-    - name: Use Standard Load Balancer
-      url: "https://learn.microsoft.com/azure/aks/best-practices-app-cluster-reliability#standard-load-balancer"
