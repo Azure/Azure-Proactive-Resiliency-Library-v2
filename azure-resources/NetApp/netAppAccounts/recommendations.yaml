@@ -20,7 +20,7 @@
 - description: Use standard network features for production in Azure NetApp Files
   aprlGuid: ab984130-c57b-6c4a-8d04-6723b4e1bdb6
   recommendationTypeId: null
-  recommendationControl: Governance
+  recommendationControl: Scalability
   recommendationImpact: High
   recommendationResourceType: Microsoft.NetApp/netAppAccounts
   recommendationMetadataState: Active
@@ -44,7 +44,7 @@
   recommendationResourceType: Microsoft.NetApp/netAppAccounts
   recommendationMetadataState: Active
   longDescription: |
-    Availability zones are distinct locations within an Azure region to withstand local failures. Deploy your workload in multiple availability zones and use application-based replication and failover technologies or consider using Azure NetApp Files cross-zone replication to achieve high availability.
+    Availability zones are distinct locations within an Azure region to withstand local failures. Deploy your workload in multiple availability zones and use application-based replication or Azure NetApp Files cross-zone replication to achieve high availability. Note that failover is a manual process.
   potentialBenefits: High Availability across availability zones
   pgVerified: true
   publishedToLearn: false
@@ -120,7 +120,7 @@
   recommendationResourceType: Microsoft.NetApp/netAppAccounts
   recommendationMetadataState: Active
   longDescription: |
-    Azure NetApp Files replication offers data protection by allowing asynchronous cross-region volume replication for application failover in case of regional outages. Volumes can be replicated across regions, not concurrently with cross-zone replication.
+    Azure NetApp Files replication offers data protection by allowing asynchronous cross-region volume replication for application failover in case of regional outages. Volumes can be replicated across regions, not concurrently with cross-zone replication. Note that failover is a manual process.
   potentialBenefits: Enhanced data protection and disaster recovery
   pgVerified: true
   publishedToLearn: false
@@ -139,7 +139,7 @@
   recommendationResourceType: Microsoft.NetApp/netAppAccounts
   recommendationMetadataState: Active
   longDescription: |
-    The cross-zone replication (CZR) feature enables asynchronous data replication between Azure NetApp Files volumes across different availability zones, ensuring data protection and critical application failover in case of zone-wide disasters.
+    The cross-zone replication (CZR) feature enables asynchronous data replication between Azure NetApp Files volumes across different availability zones, ensuring data protection and critical application failover in case of zone-wide disasters. Note that failover is a manual process.
   potentialBenefits: Enhances disaster recovery across availability zones
   pgVerified: true
   publishedToLearn: false
