@@ -10,5 +10,5 @@ changedProperties = properties.changes, changeCount = properties.changeAttribute
 | where resources_Type contains "microsoft.web/serverfarms"
 | where changedProperties['sku.name'].propertyChangeType == 'Update' or changedProperties['sku.tier'].propertyChangeType == 'Update'
 | summarize count() by targetResourceId, resources_Name  ,tostring(changedProperties['sku.name'].previousValue), tostring(changedProperties['sku.tier'].newValue)
-| project recommendationid="07243659-4643-d44c-a1c6-07ac21635072", name=resources_Name, id=targetResourceId, tags="", param1=['changedProperties_sku.name_previousValue'], param2=['changedProperties_sku.tier_newValue'], param3=count_
+| project recommendationId="07243659-4643-d44c-a1c6-07ac21635072", name=resources_Name, id=targetResourceId, tags="", param1=['changedProperties_sku.name_previousValue'], param2=['changedProperties_sku.tier_newValue'], param3=count_
 
