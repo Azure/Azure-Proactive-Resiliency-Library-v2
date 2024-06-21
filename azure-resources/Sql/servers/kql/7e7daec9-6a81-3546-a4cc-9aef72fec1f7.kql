@@ -8,7 +8,7 @@ resources
 | where databaseid contains 'databases'
 | summarize monitoredMetrics=make_list(monitoredMetric) by databaseid=tolower(tostring(databaseid))
 | join kind=fullouter   (
-   resources
+  resources
   | where type =~ 'microsoft.sql/servers/databases'
   | project databaseid = tolower(id), name, tags
 ) on databaseid
