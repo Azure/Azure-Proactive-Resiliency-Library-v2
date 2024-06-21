@@ -35,6 +35,8 @@ Param(
 
 $Script:ShellPlatform = $PSVersionTable.Platform
 
+if ($Tags) {$TagsPresent = $true}else{$TagsPresent = $false}
+
 $Script:Runtime = Measure-Command -Expression {
 
   Function Get-AllAzGraphResource {
@@ -260,12 +262,13 @@ $Script:Runtime = Measure-Command -Expression {
             HPC                 = if($HPC.IsPresent){$true}else{$false}
             Debugging           = if($Debugging.IsPresent){$true}else{$false}
             ConfigFile          = if($ConfigFile){$true}else{$false}
-            ConfigFileTenant    = if($ConfigFile){[string]$TenantID}else{$false}
-            ConfigFileScopes    = if($ConfigFile){[string]$Scopes}else{$false}
-            ConfigFilelocations = if($ConfigFile){[string]$locations}else{$false}
-            ConfigFileTags      = if($ConfigFile){[string]$Tags}else{$false}
-            SubscriptionIds     = if($SubscriptionIds){[string]$SubscriptionIds}else{$false}
-            ResourceGroups      = if($ResourceGroups){[string]$ResourceGroups}else{$false}
+            ConfigFileTenant    = if($ConfigFile){$TenantID}else{$false}
+            ConfigFileScopes    = if($ConfigFile){$Scopes}else{$false}
+            ConfigFilelocations = if($ConfigFile){$locations}else{$false}
+            ConfigFileTags      = if($ConfigFile){$Tags}else{$false}
+            SubscriptionIds     = if($SubscriptionIds){$SubscriptionIds}else{$false}
+            ResourceGroups      = if($ResourceGroups){$ResourceGroups}else{$false}
+            Tags                = if($TagsPresent){$Tags}else{$false}
           }
       }
     catch
@@ -697,11 +700,11 @@ $Script:Runtime = Measure-Command -Expression {
       if ($TagLine -like '*==*')
         {
           #Getting all the resources within the TAGs
-          $ResourcesTagQuery = "$ResourceScopeQuery | mvexpand tags | extend tagKey = tostring(bag_keys(tags)[0]) | extend tagValue = tostring(tags[tagKey]) | where tagKey in~ ($TagKey) and tagValue in~ ($TagValue) | project id, name, subscriptionId, resourceGroup, location | order by id"
+          $ResourcesTagQuery = "$ResourceScopeQuery | mvexpand tags | extend tagKey = tostring(bag_keys(tags)[0]) | extend tagValue = tostring(tags[tagKey]) | where tagKey in~ ($TagKey) and tagValue in~ ($TagValue) | project id, name, subscriptionId, type, resourceGroup, location | order by id"
         }
       elseif ($TagLine -like '*=/*')
         {
-          $ResourcesTagQuery = "$ResourceScopeQuery | mvexpand tags | extend tagKey = tostring(bag_keys(tags)[0]) | extend tagValue = tostring(tags[tagKey]) | where tagKey in~ ($TagKey) and tagValue !in~ ($TagValue) | project id, name, subscriptionId, resourceGroup, location | order by id"
+          $ResourcesTagQuery = "$ResourceScopeQuery | mvexpand tags | extend tagKey = tostring(bag_keys(tags)[0]) | extend tagValue = tostring(tags[tagKey]) | where tagKey in~ ($TagKey) and tagValue !in~ ($TagValue) | project id, name, subscriptionId, type, resourceGroup, location | order by id"
         }
       $ResourcesWithTHETag = Get-AllAzGraphResource -query $ResourcesTagQuery -subscriptionId $InScopeSub
 
@@ -727,7 +730,7 @@ $Script:Runtime = Measure-Command -Expression {
     if ($AllTaggedResourceGroups) {
       foreach ($ResourceGroup in $TaggedResourceGroups) {
         Write-Debug ('Double Checking Tagged Resources inside: ' + $ResourceGroup)
-        $ResourcesTagQuery = "Resources | where id startswith '$ResourceGroup' | project id, name, subscriptionId, resourceGroup, location | order by id"
+        $ResourcesTagQuery = "Resources | where id startswith '$ResourceGroup' | project id, name, subscriptionId, type, resourceGroup, location | order by id"
 
         $Script:TaggedResources += Get-AllAzGraphResource -query $ResourcesTagQuery -subscriptionId $InScopeSub
       }
@@ -1122,6 +1125,7 @@ $Script:Runtime = Measure-Command -Expression {
                 recommendationId = $Temp.recommendationId
                 name             = $Temp.name
                 id               = $Temp.id
+                type             = $TempDetails.type
                 location         = $TempDetails.location
                 subscriptionId   = $TempDetails.subscriptionId
                 resourceGroup    = $TempDetails.resourceGroup
