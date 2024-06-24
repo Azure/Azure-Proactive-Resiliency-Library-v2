@@ -211,7 +211,7 @@ $Script:Runtime = Measure-Command -Expression {
     $Script:PreInScopeResources = @()
     $Script:PreOutOfScopeResources = @()
     $Script:TaggedResources = @()
-    $Script:UnTagResources = @()
+    $Script:AdvisorTypes = @()
 
 
     # Runbook stuff
@@ -325,6 +325,7 @@ $Script:Runtime = Measure-Command -Expression {
           $RootTypes = Get-Content -Path "$clonePath/tools/WARAinScopeResTypes.csv" | ConvertFrom-Csv
         }
         $Script:SupportedResTypes = (($RootTypes | Where-Object {$_.WARAinScope -eq 'yes'}).ResourceType).tolower()
+        $Script:AdvisorTypes = (($RootTypes | Where-Object {$_.inAprlAndOrAdvisor -eq 'yes'}).ResourceType).tolower()
       } catch {
         # Report Error
         $errorMessage = $_.Exception.Message
@@ -857,7 +858,10 @@ $Script:Runtime = Measure-Command -Expression {
                 }
               else
                 {
-                  $ServiceNotAvailable += ('microsoft.'+$Type)
+                  if (('microsoft.'+$Type) -notin $Global:AdvisorTypes)
+                    {
+                      $ServiceNotAvailable += ('microsoft.'+$Type)
+                    }
                 }
             } else {
               $Path = ($clonePath + '/azure-resources/')
@@ -869,7 +873,10 @@ $Script:Runtime = Measure-Command -Expression {
                 }
               else
                 {
-                  $ServiceNotAvailable += ('microsoft.'+$Type)
+                  if (('microsoft.'+$Type) -notin $Global:AdvisorTypes)
+                    {
+                      $ServiceNotAvailable += ('microsoft.'+$Type)
+                    }
                 }
             }
           }
@@ -1073,7 +1080,7 @@ $Script:Runtime = Measure-Command -Expression {
           if ($query -match 'development') {
             Write-Host "Query $checkId under development - Validate Recommendation manually" -ForegroundColor Yellow
             $query = "resources | where type =~ '$type' | project name,id"
-            $Script:results += Invoke-QueryExecution -type $type -Subscription $Subid -query $query -checkId $checkId -checkName $checkName -selector $selector -validationAction 'IMPORTANT - Query under development - Validate Recommendation manually'
+            $Script:results += Invoke-QueryExecution -type $type -Subscription $Subid -query $query -checkId $checkId -checkName $checkName -selector $selector -validationAction 'IMPORTANT - Query under development - Validate Resources manually'
           } elseif ($query -match 'cannot-be-validated-with-arg') {
             Write-Host "IMPORTANT - Recommendation $checkId cannot be validated with ARGs - Validate Resources manually" -ForegroundColor Yellow
             $query = "resources | where type =~ '$type' | project name,id"
@@ -1089,7 +1096,7 @@ $Script:Runtime = Measure-Command -Expression {
           foreach ($type in $ServiceNotAvailable) {
             Write-Host "Type $type Not Available In APRL - Validate Service manually" -ForegroundColor Yellow
             $query = "resources | where type =~ '$type' | project name,id"
-            $Script:results += Invoke-QueryExecution -type $type -Subscription $Subid -query $query -checkId $type -selector '' -checkName '' -validationAction 'IMPORTANT - Service Not Available In APRL - Validate Service manually if Applicable, if not Delete this line'
+            $Script:results += Invoke-QueryExecution -type $type -Subscription $Subid -query $query -checkId $type -selector 'APRL' -checkName '' -validationAction 'IMPORTANT - Resource Type is not available in either APRL or Advisor - Validate Resources manually if Applicable, if not Delete this line'
           }
         }
       }
@@ -1099,7 +1106,7 @@ $Script:Runtime = Measure-Command -Expression {
     if ($Tags) {
       $Script:InScope += foreach ($Resource in $Script:PreInScopeResources)
         {
-          if ($Resource.id -in $Script:TaggedResources.id -or $Resource.id -in $Script:UnTagResources.id)
+          if ($Resource.id -in $Script:TaggedResources.id)
             {
               $Resource
             }
@@ -1145,7 +1152,16 @@ $Script:Runtime = Measure-Command -Expression {
       {
         if ($ResIID.type -notin $Script:SupportedResTypes)
           {
-            $ResIID
+            $result = [PSCustomObject]@{
+              description      = 'No Action Required - This ResourceType is out of scope of Well-Architected Reliability Assessment engagements.'
+              type             = $ResIID.type
+              subscriptionId   = $ResIID.subscriptionId
+              resourceGroup    = $ResIID.resourceGroup
+              name             = $ResIID.name
+              location         = $ResIID.location
+              id               = $ResIID.id
+            }
+          $result
           }
       }
   }
@@ -1157,31 +1173,24 @@ $Script:Runtime = Measure-Command -Expression {
     foreach ($result in $Looper.Name) {
       $ResourceTypeCount = ($Script:AllResourceTypes | Where-Object { $_.Name -eq $result }).count
       $ResultType = $result.split(', ')[0]
-      $ResultSubID = $result.split(', ')[1]
       if ($ResultType -in $TempTypes.recommendationId) {
-        $SubName = ''
-        $SubName = ($SubIds | Where-Object { $_.Id -eq $ResultSubID }).Name
         $tmp = [PSCustomObject]@{
-          'Subscription'        = [string]$SubName
-          'Resource Type'       = [string]$ResultType
-          'Number of Resources' = [string]$ResourceTypeCount
-          'Available in APRL?'  = 'No'
-          'Custom1'             = ''
-          'Custom2'             = ''
-          'Custom3'             = ''
+          'Resource Type'               = [string]$ResultType
+          'Number of Resources'         = [string]$ResourceTypeCount
+          'Available in APRL/ADVISOR?'  = 'No'
+          'Assessment Owner'            = ''
+          'Status'                      = ''
+          'Notes'                       = ''
         }
         $Script:AllResourceTypesOrdered += $tmp
       } elseif ($ResultType -notin $TempTypes.recommendationId) {
-        $SubName = ''
-        $SubName = ($SubIds | Where-Object { $_.Id -eq $ResultSubID }).Name
         $tmp = [PSCustomObject]@{
-          'Subscription'        = [string]$SubName
-          'Resource Type'       = [string]$ResultType
-          'Number of Resources' = [string]$ResourceTypeCount
-          'Available in APRL?'  = 'Yes'
-          'Custom1'             = ''
-          'Custom2'             = ''
-          'Custom3'             = ''
+          'Resource Type'               = [string]$ResultType
+          'Number of Resources'         = [string]$ResourceTypeCount
+          'Available in APRL/ADVISOR?'  = 'Yes'
+          'Assessment Owner'            = ''
+          'Status'                      = ''
+          'Notes'                       = ''
         }
         $Script:AllResourceTypesOrdered += $tmp
       }
@@ -1191,17 +1200,17 @@ $Script:Runtime = Measure-Command -Expression {
   function Invoke-AdvisoryExtraction {
     Param($Subid,$ResourceGroup)
     if (![string]::IsNullOrEmpty($ResourceGroup)) {
-        $advquery = "advisorresources | where type == 'microsoft.advisor/recommendations' and tostring(properties.category) == 'HighAvailability' | where resourceGroup =~ '$ResourceGroup' | order by id"
+        $advquery = "advisorresources | where type == 'microsoft.advisor/recommendations' and tostring(properties.category) in ('HighAvailability','Performance','OperationalExcellence') | where resourceGroup =~ '$ResourceGroup' | order by id"
         $queryResults = Get-AllAzGraphResource -Query $advquery -subscriptionId $Subid
       } else {
-        $advquery = "advisorresources | where type == 'microsoft.advisor/recommendations' and tostring(properties.category) == 'HighAvailability' | order by id"
+        $advquery = "advisorresources | where type == 'microsoft.advisor/recommendations' and tostring(properties.category) in ('HighAvailability','Performance','OperationalExcellence') | order by id"
         $queryResults = Get-AllAzGraphResource -Query $advquery -subscriptionId $Subid
       }
 
       $Script:AllAdvisories += foreach ($row in $queryResults) {
         if (![string]::IsNullOrEmpty($row.properties.resourceMetadata.resourceId)) {
           $TempResource = ''
-          $TempResource = ($Script:AllResources | Where-Object { $_.id -eq $row.properties.resourceMetadata.resourceId } | Select-Object -First 1)
+          $TempResource = ($Script:PreInScopeResources | Where-Object { $_.id -eq $row.properties.resourceMetadata.resourceId } | Select-Object -First 1)
           $result = [PSCustomObject]@{
             recommendationId = [string]$row.properties.recommendationTypeId
             type             = [string]$row.Properties.impactedField
