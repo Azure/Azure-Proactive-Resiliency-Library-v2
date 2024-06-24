@@ -60,3 +60,23 @@
       url: "https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/public-ip-basic-upgrade-guidance"
     - name: Upgrade to Standard SKU public IP addresses in Azure by 30 September 2025 as Basic SKU will be retired
       url: "https://azure.microsoft.com/en-us/updates/upgrade-to-standard-sku-public-ip-addresses-in-azure-by-30-september-2025-basic-sku-will-be-retired/"
+
+
+- description: Public IP addresses should have DDoS protection enabled
+  aprlGuid: c4254c66-b8a5-47aa-82f6-e7d7fb418f47
+  recommendationTypeId: null
+  recommendationControl: Security
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Network/publicIPAddresses
+  recommendationMetadataState: Active
+  longDescription: |
+    DDoS attacks can be targeted at any endpoint that is publicly reachable through the internet.
+  potentialBenefits: Avoids service disruption
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Azure DDoS Protection
+      url: "https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-protection-overview"
