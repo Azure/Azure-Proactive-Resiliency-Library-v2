@@ -40,27 +40,6 @@
     - name: Create a zone-redundant virtual network gateway in Azure Availability Zones
       url: "https://learn.microsoft.com/azure/vpn-gateway/create-zone-redundant-vnet-gateway"
 
-- description: Deploy zone-redundant ExpressRoute gateways with zone-redundant Public IP(s)
-  aprlGuid: 292e6e8e-7795-4e82-857a-bb9ca08b330c
-  recommendationTypeId: null
-  recommendationControl: High Availability
-  recommendationImpact: High
-  recommendationResourceType: Microsoft.Network/virtualNetworkGateways
-  recommendationMetadataState: Active
-  longDescription: |
-    For zone-redundant ExpressRoute gateways, always use zone-redundant Standard SKU public IPs to avoid deploying all instances in one zone. This ensures the gateway's reliability.
-  potentialBenefits: Enhanced reliability and disaster recovery
-  pgVerified: false
-  publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
-  tags: null
-  learnMoreLink:
-    - name: About zone-redundant virtual network gateway in Azure availability zones
-      url: "https://learn.microsoft.com/en-us/azure/vpn-gateway/about-zone-redundant-vnet-gateways?toc=%2Fazure%2Fexpressroute%2Ftoc.json"
-    - name: Create a zone-redundant virtual network gateway in availability zones
-      url: "https://learn.microsoft.com/en-us/azure/vpn-gateway/create-zone-redundant-vnet-gateway?toc=%2Fazure%2Fexpressroute%2Ftoc.json"
-
 - description: Configure an Azure Resource lock for ExpressRoute gateway to prevent accidental deletion
   aprlGuid: c0f23a92-d322-4d4d-97e9-a238b5e3bbb8
   recommendationTypeId: null
