@@ -609,7 +609,7 @@ $Script:Runtime = Measure-Command -Expression {
             if ($SubId -notin $LoopedSub) {
               Write-Host '----------------------------'
               Write-Host 'Collecting: ' -NoNewline
-              Write-Host 'Retirements' -ForegroundColor Magenta
+              Write-Host 'Service Retirements Notifications' -ForegroundColor Magenta
               Invoke-RetirementExtraction $Subid
 
               Write-Host '----------------------------'

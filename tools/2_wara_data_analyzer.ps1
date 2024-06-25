@@ -647,7 +647,7 @@ $Script:Runtime = Measure-Command -Expression {
 
       # Build the APRL Recommendations
       foreach ($Service in $Script:ServicesYAMLContent) {
-        if ($Service.recommendationResourceType -like 'Specialized.Workload/*' -or $Service.recommendationResourceType -in $Script:AllResourceTypesOrdered.'Resource Type' -or $Script:FilterRecommendations -eq $false) {
+        if (($Service.recommendationResourceType -like 'Specialized.Workload/*' -or $Service.recommendationResourceType -in $Script:AllResourceTypesOrdered.'Resource Type' -or $Script:FilterRecommendations -eq $false) -and [string]::IsNullOrEmpty($Service.recommendationTypeId)) {
           $ID = $Service.aprlGuid
           $resourceType = $Service.recommendationResourceType
           $tmp = @{
