@@ -603,7 +603,7 @@ $Script:Runtime = Measure-Command -Expression {
 
             Write-Host '----------------------------'
             Write-Host 'Collecting: ' -NoNewline
-            Write-Host 'Advisories' -ForegroundColor Magenta
+            Write-Host 'Advisor Recommendations' -ForegroundColor Magenta
             Invoke-AdvisoryExtraction -SubId $SubId -ResourceGroup $RGroup
 
             if ($SubId -notin $LoopedSub) {
