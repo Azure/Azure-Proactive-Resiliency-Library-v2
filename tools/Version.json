@@ -1,7 +1,7 @@
 [
   {
-    "Collector": "2.0.11",
-    "Analyzer": "2.0.9",
+    "Collector": "2.0.12",
+    "Analyzer": "2.0.10",
     "Generator": "2.0.5"
   }
 ]

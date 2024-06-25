@@ -25,6 +25,10 @@ Param(
   $SubscriptionIds,
   $ResourceGroups,
   $TenantID,
+<<<<<<< Dev
+  $Tags,
+=======
+>>>>>>> dev-tools
   [ValidateSet('AzureCloud', 'AzureUSGovernment')]
   $AzureEnvironment = 'AzureCloud',
   $ConfigFile
@@ -32,11 +36,16 @@ Param(
 
 #import-module "./modules/collector.psm1" -Force
 
+<<<<<<< Dev
+=======
 if ($Debugging.IsPresent) { $DebugPreference = 'Continue' } else { $DebugPreference = 'silentlycontinue' }
 
 
 
+>>>>>>> dev-tools
 $Script:ShellPlatform = $PSVersionTable.Platform
+
+if ($Tags) {$TagsPresent = $true}else{$TagsPresent = $false}
 
 $Script:Runtime = Measure-Command -Expression {
 
@@ -63,27 +72,29 @@ $Script:Runtime = Measure-Command -Expression {
     return $allResources
   }
 
+  function Get-AllResourceGroup {
+    param (
+      [string[]]$SubscriptionIds
+    )
 
-function Get-AllResourceGroup {
-  param (
-    [string[]]$SubscriptionIds
-  )
+    # Query to get all resource groups in the tenant
+    $q = "resourcecontainers
+    | where type == 'microsoft.resources/subscriptions'
+    | project subscriptionId, subscriptionName = name
+    | join (resourcecontainers
+        | where type == 'microsoft.resources/subscriptions/resourcegroups')
+        on subscriptionId
+    | project subscriptionName, subscriptionId, resourceGroup, id=tolower(id)"
 
-  # Query to get all resource groups in the tenant
-  $q = "resourcecontainers
-  | where type == 'microsoft.resources/subscriptions'
-  | project subscriptionId, subscriptionName = name
-  | join (resourcecontainers
-      | where type == 'microsoft.resources/subscriptions/resourcegroups')
-      on subscriptionId
-  | project subscriptionName, subscriptionId, resourceGroup, id=tolower(id)"
+<<<<<<< Dev
+    $r = $SubscriptionIds ? (Get-AllAzGraphResource -query $q -subscriptionId $SubscriptionIds -usetenantscope) : (Get-AllAzGraphResource -query $q -usetenantscope)
 
-  $r = $SubscriptionIds ? (Get-AllAzGraphResource -query $q -subscriptionId $SubscriptionIds -usetenantscope) : (Get-AllAzGraphResource -query $q -usetenantscope)
+    # Returns the resource groups
+    return $r
+  }
 
-  # Returns the resource groups
-  return $r
-}
-
+=======
+>>>>>>> dev-tools
   function Import-ConfigFileData($file){
     # Read the file content and store it in a variable
     $filecontent = (Get-content $file).trim().tolower()
@@ -138,7 +149,6 @@ function Get-AllResourceGroup {
 
   }
 
-
   function Get-ResourceGroupsByList {
     param (
       [Parameter(Mandatory = $true)]
@@ -163,7 +173,7 @@ function Get-AllResourceGroup {
   }
 
   function Test-SubscriptionParameter {
-    if ([string]::IsNullOrEmpty($SubscriptionIds) -and [string]::IsNullOrEmpty($ConfigFile) -and -not $GUI)
+    if ([string]::IsNullOrEmpty($SubscriptionIds) -and [string]::IsNullOrEmpty($ConfigFile))
       {
         Write-Host ""
         Write-Host "Suscription ID or Subscription File is required"
@@ -173,6 +183,30 @@ function Get-AllResourceGroup {
   }
 
   function Get-HelpMessage {
+<<<<<<< Dev
+    Write-Host ""
+    Write-Host "Parameters"
+    Write-Host ""
+    Write-Host " -TenantID <ID>        :  Optional; tenant to be used. "
+    Write-Host " -SubscriptionIds <IDs>:  Optional (or SubscriptionsFile); Specifies Subscription(s) to be included in the analysis: Subscription1,Subscription2. "
+    Write-Host " -SubscriptionsFile    :  Optional (or SubscriptionIds); specifies the file with the subscription list to be analysed (one subscription per line). "
+    Write-Host " -RunbookFile          :  Optional; specifies the file with the runbook (selectors & checks) to be used. "
+    Write-Host " -ResourceGroups       :  Optional; specifies Resource Group(s) to be included in the analysis: ResourceGroup1,ResourceGroup2. "
+    Write-Host " -SAP                  :  Optional; gets specialized recommendations and queries for the defined workload form the APRL - Specialized Workloads section. "
+    Write-Host " -AVD                  :  Optional; gets specialized recommendations and queries for the defined workload form the APRL - Specialized Workloads section. "
+    Write-Host " -AVS                  :  Optional; gets specialized recommendations and queries for the defined workload form the APRL - Specialized Workloads section. "
+    Write-Host " -HPC                  :  Optional; gets specialized recommendations and queries for the defined workload form the APRL - Specialized Workloads section. "
+    Write-Host " -Debug                :  Writes Debugging information of the script during the execution. "
+    Write-Host ""
+    Write-Host "Examples: "
+    Write-Host "  Run against all the subscriptions in the Tenant"
+    Write-Host "  .\1_wara_collector.ps1 -TenantID XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+    Write-Host ""
+    Write-Host "  Run against specific Subscriptions in the Tenant"
+    Write-Host "  .\1_wara_collector.ps1 -TenantID XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX -SubscriptionIds YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY,AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA"
+    Write-Host ""
+    Write-Host "  Run against the subscriptions in a file the Tenant"
+=======
     Write-Host ''
     Write-Host 'Parameters'
     Write-Host ''
@@ -191,6 +225,7 @@ function Get-AllResourceGroup {
     Write-Host '  .\1_wara_collector.ps1 -TenantID XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX -SubscriptionIds YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY,AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA'
     Write-Host ''
     Write-Host '  Run against the subscriptions in a file the Tenant'
+>>>>>>> dev-tools
     Write-Host '  .\1_wara_collector.ps1 -TenantID XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX -SubscriptionsFile "C:\Temp\Subscriptions.txt"'
     Write-Host ''
     Write-Host ''
@@ -199,15 +234,21 @@ function Get-AllResourceGroup {
   function Invoke-ResetVariable {
     $Script:SubIds = ''
     $Script:AllResourceTypes = @()
-    $Script:GluedTypes = @()
+    $Script:SupportedResTypes = @()
     $Script:AllResourceTypesOrdered = @()
     $Script:AllAdvisories = @()
     $Script:AllRetirements = @()
     $Script:AllServiceHealth = @()
     $Script:results = @()
-    $Script:AllResources = @()
-    $Script:Resources = @()
+    $Script:InScope = @()
+    $Script:OutOfScope = @()
+    $Script:PreInScopeResources = @()
+    $Script:PreOutOfScopeResources = @()
     $Script:TaggedResources = @()
+<<<<<<< Dev
+    $Script:AdvisorTypes = @()
+=======
+>>>>>>> dev-tools
 
 
     # Runbook stuff
@@ -230,7 +271,8 @@ function Get-AllResourceGroup {
             Write-Host "Installing Az Modules" -ForegroundColor Yellow
             Install-Module -Name Az.ResourceGraph -SkipPublisherCheck -InformationAction SilentlyContinue
           }
-             Write-Host "Validating " -NoNewline
+        <#
+        Write-Host "Validating " -NoNewline
         Write-Host "Microsoft.PowerShell.ConsoleGuiTools" -ForegroundColor Cyan -NoNewline
         Write-Host " Module.."
         $ConsoleGUITools = Get-Module -Name Microsoft.PowerShell.ConsoleGuiTools -ListAvailable -ErrorAction silentlycontinue
@@ -239,6 +281,7 @@ function Get-AllResourceGroup {
             Write-Host "Installing ConsoleGuiTools Modules" -ForegroundColor Yellow
             Install-Module -Name Microsoft.PowerShell.ConsoleGuiTools -SkipPublisherCheck -InformationAction SilentlyContinue
           }
+        #>
         Write-Host "Validating " -NoNewline
         Write-Host "Git" -ForegroundColor Cyan -NoNewline
         Write-Host " Installation.."
@@ -249,12 +292,20 @@ function Get-AllResourceGroup {
             Exit
           }
         $Script:ScriptData = [pscustomobject]@{
-            Version       = $Script:Version
-            SAP           = if($SAP.IsPresent){$true}else{$false}
-            AVD           = if($AVD.IsPresent){$true}else{$false}
-            AVS           = if($AVS.IsPresent){$true}else{$false}
-            HPC           = if($HPC.IsPresent){$true}else{$false}
-            TAGFiltering  = if($TagsFile -or $Tags){$true}else{$false}
+            Version             = $Script:Version
+            SAP                 = if($SAP.IsPresent){$true}else{$false}
+            AVD                 = if($AVD.IsPresent){$true}else{$false}
+            AVS                 = if($AVS.IsPresent){$true}else{$false}
+            HPC                 = if($HPC.IsPresent){$true}else{$false}
+            Debugging           = if($Debugging.IsPresent){$true}else{$false}
+            ConfigFile          = if($ConfigFile){$true}else{$false}
+            ConfigFileTenant    = if($ConfigFile){$TenantID}else{$false}
+            ConfigFileScopes    = if($ConfigFile){$Scopes}else{$false}
+            ConfigFilelocations = if($ConfigFile){$locations}else{$false}
+            ConfigFileTags      = if($ConfigFile){$Tags}else{$false}
+            SubscriptionIds     = if($SubscriptionIds){$SubscriptionIds}else{$false}
+            ResourceGroups      = if($ResourceGroups){$ResourceGroups}else{$false}
+            Tags                = if($TagsPresent){$Tags}else{$false}
           }
       }
     catch
@@ -306,6 +357,14 @@ function Get-AllResourceGroup {
 
         # Validates if queries are applicable based on Resource Types present in the current subscription
         if ($Script:ShellPlatform -eq 'Win32NT') {
+<<<<<<< Dev
+          $RootTypes = Get-Content -Path "$clonePath\tools\WARAinScopeResTypes.csv" | ConvertFrom-Csv
+        } else {
+          $RootTypes = Get-Content -Path "$clonePath/tools/WARAinScopeResTypes.csv" | ConvertFrom-Csv
+        }
+        $Script:SupportedResTypes = (($RootTypes | Where-Object {$_.WARAinScope -eq 'yes'}).ResourceType).tolower()
+        $Script:AdvisorTypes = (($RootTypes | Where-Object {$_.inAprlAndOrAdvisor -eq 'yes'}).ResourceType).tolower()
+=======
           $RootTypes = Get-ChildItem -Path "$clonePath\azure-resources\" -Directory
         } else {
           $RootTypes = Get-ChildItem -Path "$clonePath/azure-resources/" -Directory
@@ -321,6 +380,7 @@ function Get-AllResourceGroup {
             }
           }
         }
+>>>>>>> dev-tools
       } catch {
         # Report Error
         $errorMessage = $_.Exception.Message
@@ -330,6 +390,7 @@ function Get-AllResourceGroup {
   }
 
   function Connect-ToAzure {
+    $Subscription0 = $Scopes | ForEach-Object {$_.split("/")[2]} | Select-Object -First 1
     # Connect To Azure Tenant
     Write-Host 'Authenticating to Azure'
     if ($Script:ShellPlatform -eq 'Win32NT') {
@@ -351,6 +412,19 @@ function Get-AllResourceGroup {
           [int]$SelectedTenant = Read-Host 'Select Tenant'
           $defaultTenant = --$SelectedTenant
           $TenantID = $Tenants[$defaultTenant]
+<<<<<<< Dev
+          Connect-AzAccount -Tenant $TenantID -Subscription $Subscription0 -WarningAction SilentlyContinue -Environment $AzureEnvironment
+        }
+      } else {
+        Connect-AzAccount -Tenant $TenantID -Subscription $Subscription0 -WarningAction SilentlyContinue -Environment $AzureEnvironment
+      }
+      #Set the default variable with the list of subscriptions in case no Subscription File was informed
+      $Script:SubIds = Get-AzSubscription -TenantId $TenantID -WarningAction SilentlyContinue
+    } else {
+      Connect-AzAccount -Identity -Environment $AzureEnvironment
+      $Script:SubIds = Get-AzSubscription -WarningAction SilentlyContinue
+    }
+=======
           Connect-AzAccount -Tenant $TenantID -WarningAction SilentlyContinue -Environment $AzureEnvironment
         }
       } else {
@@ -401,6 +475,7 @@ function Get-AllResourceGroup {
     $Script:Outageslist = $Outages.value | Where-Object { $_.properties.impactStartTime -gt $DateOutages } | Sort-Object @{Expression = 'properties.eventlevel'; Descending = $false }, @{Expression = 'properties.status'; Descending = $false } | Select-Object -Property name, properties -First 15
     $Script:RetiredOutages = $Outages.value | Sort-Object @{Expression = 'properties.eventlevel'; Descending = $false }, @{Expression = 'properties.status'; Descending = $false } | Select-Object -Property name, properties
     $Script:SupportTickets = $SupTickets.value | Where-Object { $_.properties.severity -ne 'Minimal' -and $_.properties.createdDate -gt $DateCore } | Select-Object -Property name, properties
+>>>>>>> dev-tools
   }
 
   function Test-Runbook {
@@ -440,6 +515,8 @@ function Get-AllResourceGroup {
     }
   }
 
+<<<<<<< Dev
+=======
   function Test-SubscriptionFile {
     # Checks if the Subscription file  and TenantID were informed
     if (![string]::IsNullOrEmpty($SubscriptionsFile)) {
@@ -463,6 +540,7 @@ function Get-AllResourceGroup {
     }
   }
 
+>>>>>>> dev-tools
   <# function Invoke-PSModule {
     $SideScripts = Get-ChildItem -Path "$PSScriptRoot\Azure-Proactive-Resiliency-Library\docs\content\services" -Filter "*.ps1" -Recurse
     if (![string]::IsNullOrEmpty($SubscriptionIds) -and [string]::IsNullOrEmpty($SubscriptionsFile)) {
@@ -562,6 +640,200 @@ function Get-AllResourceGroup {
     }
   } #>
 
+<<<<<<< Dev
+  function Start-ScopesLoop {
+    $Date = (Get-Date).AddMonths(-24)
+    $DateOutages = (Get-Date).AddMonths(-3)
+    $DateCore = (Get-Date).AddMonths(-3)
+    $Date = $Date.ToString('MM/dd/yyyy')
+    if ($AzureEnvironment -eq 'AzureUSGovernment') {
+      $BaseURL = 'management.usgovcloudapi.net'
+    } else {
+      $BaseURL = 'management.azure.com'
+    }
+    $LoopedSub = @()
+
+    foreach ($Scope in $Scopes)
+      {
+        if (![string]::IsNullOrEmpty($Scope))
+          {
+            $ScopeWithoutParameter = $Scope.split(" -")[0]
+            $ScopeParameters = $Scope.split(" -")
+            $ScopeParameters = $ScopeParameters[1..($ScopeParameters.Length-1)]
+            $Subscription = $ScopeWithoutParameter.split("/")[2]
+            $RGroup = if (![string]::IsNullOrEmpty($ScopeWithoutParameter.split("/")[4])){$ScopeWithoutParameter.split("/")[4]}else{$null}
+            $SubId = $SubIds | Where-Object { $_.Id -eq $Subscription }
+            Write-Host '---------------------------------------------------------------------'
+            Write-Host 'Validating Scope: ' -NoNewline
+            Write-Host $ScopeWithoutParameter -ForegroundColor Cyan
+
+            Set-AzContext -Subscription $Subid -ErrorAction SilentlyContinue -WarningAction SilentlyContinue | Out-Null
+            Select-AzSubscription -Subscription $Subid -WarningAction SilentlyContinue -InformationAction SilentlyContinue | Out-Null
+
+            if ($SubId -notin $LoopedSub) {
+              $Token = Get-AzAccessToken
+
+              $header = @{
+                'Authorization' = 'Bearer ' + $Token.Token
+              }
+
+              try {
+                Write-Host '----------------------------'
+                Write-Host 'Collecting: ' -NoNewline
+                Write-Host 'Outages' -ForegroundColor Magenta
+                $url = ('https://' + $BaseURL + '/subscriptions/' + $Subid + '/providers/Microsoft.ResourceHealth/events?api-version=2022-10-01&queryStartTime=' + $Date)
+                $Outages = Invoke-RestMethod -Uri $url -Headers $header -Method GET
+                $Script:Outageslist += $Outages.value | Where-Object { $_.properties.impactStartTime -gt $DateOutages } | Sort-Object @{Expression = 'properties.eventlevel'; Descending = $false }, @{Expression = 'properties.status'; Descending = $false } | Select-Object -Property name, properties -First 15
+                $Script:RetiredOutages += $Outages.value | Sort-Object @{Expression = 'properties.eventlevel'; Descending = $false }, @{Expression = 'properties.status'; Descending = $false } | Select-Object -Property name, properties
+              } catch { $null }
+
+              try {
+                Write-Host '----------------------------'
+                Write-Host 'Collecting: ' -NoNewline
+                Write-Host 'Support Tickets' -ForegroundColor Magenta
+                $supurl = ('https://' + $BaseURL + '/subscriptions/' + $Subid + '/providers/Microsoft.Support/supportTickets?api-version=2020-04-01')
+                $SupTickets = Invoke-RestMethod -Uri $supurl -Headers $header -Method GET
+                $Script:SupportTickets += $SupTickets.value | Where-Object { $_.properties.severity -ne 'Minimal' -and $_.properties.createdDate -gt $DateCore } | Select-Object -Property name, properties
+              } catch { $null }
+            }
+
+            Write-Host '----------------------------'
+            Write-Host 'Collecting: ' -NoNewline
+            Write-Host 'Resources Details' -ForegroundColor Magenta
+            if ($ScopeWithoutParameter.split("/").count -lt 5)
+              {
+                $InScopeSub = $ScopeWithoutParameter.split("/")[2]
+                $ScopeQuery = "resources | where subscriptionId =~ '$InScopeSub' | project id, resourceGroup, subscriptionId, name, type, location"
+              }
+            elseif ($ScopeWithoutParameter.split("/").count -gt 4 -and $Scope.split("/").count -lt 8)
+              {
+                $InScopeSub = $Scope.split("/")[2]
+                $InScopeRG = $Scope.split("/")[4]
+                $ScopeQuery = "resources | where subscriptionId =~ '$InScopeSub' and resourceGroup =~ '$InScopeRG' | project id, resourceGroup, subscriptionId, name, type, location"
+              }
+            elseif ($ScopeWithoutParameter.split("/").count -ge 9)
+              {
+                $ScopeQuery = "resources | where id =~ '$ScopeWithoutParameter' | project id, resourceGroup, subscriptionId, name, type, location"
+              }
+            #Filter out the Supported Types
+            $ScopeResources = Get-AllAzGraphResource -query $ScopeQuery -subscriptionId $Subid
+            foreach ($Resource in $ScopeResources)
+              {
+                if ($Resource.type -in $Script:SupportedResTypes)
+                  {
+                    $Script:PreInScopeResources += $Resource
+                  }
+                else
+                  {
+                    $Script:PreOutOfScopeResources += $Resource
+                  }
+              }
+
+            if ($Tags) {
+              Write-Host '----------------------------'
+              Write-Host 'Collecting: ' -NoNewline
+              Write-Host 'Tagged Resources' -ForegroundColor Magenta
+              Invoke-TagFiltering -Scope $ScopeWithoutParameter
+            }
+
+            Write-Host '----------------------------'
+            Write-Host 'Collecting: ' -NoNewline
+            Write-Host 'Advisor Recommendations' -ForegroundColor Magenta
+            Invoke-AdvisoryExtraction -SubId $SubId -ResourceGroup $RGroup
+
+            if ($SubId -notin $LoopedSub) {
+              Write-Host '----------------------------'
+              Write-Host 'Collecting: ' -NoNewline
+              Write-Host 'Service Retirements Notifications' -ForegroundColor Magenta
+              Invoke-RetirementExtraction $Subid
+
+              Write-Host '----------------------------'
+              Write-Host 'Collecting: ' -NoNewline
+              Write-Host 'Service Health Alerts' -ForegroundColor Magenta
+              Invoke-ServiceHealthExtraction $Subid
+              $LoopedSub += $SubId
+            }
+            Write-Host '----------------------------'
+            Write-Host 'Running: ' -NoNewline
+            Write-Host 'Queries' -ForegroundColor Magenta
+            Write-Host '----------------------------'
+            Start-ResourceExtraction -Scope $ScopeWithoutParameter
+          }
+      }
+  }
+
+  function Invoke-TagFiltering {
+    param($Scope)
+
+    $Scope = $Scope.split(" -")[0]
+    if ($Scope.split("/").count -lt 5)
+      {
+        $InScopeSub = $Scope.split("/")[2]
+        $ResourceScopeQuery = "resources | where subscriptionId =~ '$InScopeSub' "
+        $ContainerScopeQuery = "resourceContainers | where id =~ '$Scope' "
+      }
+    elseif ($Scope.split("/").count -gt 4 -and $Scope.split("/").count -lt 8)
+      {
+        $InScopeSub = $Scope.split("/")[2]
+        $InScopeRG = $Scope.split("/")[4]
+        $ResourceScopeQuery = "resources | where subscriptionId =~ '$InScopeSub' and resourceGroup =~ '$InScopeRG' "
+        $ContainerScopeQuery = "resourceContainers | where id =~ '$Scope' "
+      }
+    elseif ($Scope.split("/").count -ge 9)
+      {
+        $ResourceScopeQuery = "resources | where id =~ '$Scope' "
+        $ContainerScopeQuery = "resourceContainers | where id =~ '$Scope' "
+      }
+
+    $TagFilter = $Tags
+    $Counter = 0
+
+    # Each line in the Tag Filtering file will be processed
+    $AllTaggedResourceGroups = @()
+    $AllTaggedResources = @()
+    Foreach ($TagLine in $TagFilter) {
+      # Finding the TagKey and all the TagValues in the line
+      if ($TagLine -like '*==*')
+        {
+          $TagKeys = $TagLine.split('==')[0]
+          $TagValues = $TagLine.split('==')[1]
+        }
+      elseif ($TagLine -like '*=/*')
+        {
+          $TagKeys = $TagLine.split('=/')[0]
+          $TagValues = $TagLine.split('=/')[1]
+        }
+
+      $TagKeys = $TagKeys.split('||')
+      $TagValues = $TagValues.split('||')
+
+      $TagKey = if ($TagKeys.count -gt 1) { $TagKeys | ForEach-Object { "'$_'," } }else { $TagKeys }
+      $TagKey = [string]$TagKey
+      $TagKey = if ($TagKey -like "*',*") { $TagKey -replace '.$' }else { "'$TagKey'" }
+
+      $TagValue = if ($TagValues.count -gt 1) { $TagValues | ForEach-Object { "'$_'," } }else { $TagValues }
+      $TagValue = [string]$TagValue
+      $TagValue = if ($TagValue -like "*',*") { $TagValue -replace '.$' }else { "'$TagValue'" }
+
+      Write-Debug ('Running Resource Group Tag Inventory for: ' + $TagKey + ' : ' + $TagValue)
+
+      if ($TagLine -like '*==*')
+        {
+          #Getting all the Resource Groups with the Tags, this will be used later
+          $RGTagQuery = "$ContainerScopeQuery | mvexpand tags | extend tagKey = tostring(bag_keys(tags)[0]) | extend tagValue = tostring(tags[tagKey]) | where tagKey in~ ($TagKey) and tagValue in~ ($TagValue) | project id | order by id"
+        }
+      elseif ($TagLine -like '*=/*')
+        {
+          $RGTagQuery = "$ContainerScopeQuery | mvexpand tags | extend tagKey = tostring(bag_keys(tags)[0]) | extend tagValue = tostring(tags[tagKey]) | where tagKey in~ ($TagKey) and tagValue !in~ ($TagValue) | project id | order by id"
+        }
+      $TaggedResourceGroups = Get-AllAzGraphResource -query $RGTagQuery -subscriptionId $InScopeSub
+
+      Write-Debug ('Running Resource Tag Inventory for: ' + $TagKey + ' : ' + $TagValue)
+      if ($TagLine -like '*==*')
+        {
+          #Getting all the resources within the TAGs
+          $ResourcesTagQuery = "$ResourceScopeQuery | mvexpand tags | extend tagKey = tostring(bag_keys(tags)[0]) | extend tagValue = tostring(tags[tagKey]) | where tagKey in~ ($TagKey) and tagValue in~ ($TagValue) | project id, name, subscriptionId, type, resourceGroup, location | order by id"
+=======
   function Start-ResourceExtraction {
     [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'Low')]
     param()
@@ -729,8 +1001,306 @@ function Get-AllResourceGroup {
           Write-Host 'Collecting: ' -NoNewline
           Write-Host 'Tagged Resources' -ForegroundColor Magenta
           Invoke-TagFiltering $Subid
+>>>>>>> dev-tools
+        }
+      elseif ($TagLine -like '*=/*')
+        {
+          $ResourcesTagQuery = "$ResourceScopeQuery | mvexpand tags | extend tagKey = tostring(bag_keys(tags)[0]) | extend tagValue = tostring(tags[tagKey]) | where tagKey in~ ($TagKey) and tagValue !in~ ($TagValue) | project id, name, subscriptionId, type, resourceGroup, location | order by id"
+        }
+      $ResourcesWithTHETag = Get-AllAzGraphResource -query $ResourcesTagQuery -subscriptionId $InScopeSub
+
+<<<<<<< Dev
+      if ($Counter -gt 0) {
+        foreach ($resource in $AllTaggedResources) {
+          if ($resource.id -notin $ResourcesWithTHETag.id) {
+            $Script:TaggedResources += $AllTaggedResources | Where-Object { $_.id -ne $resource.id }
+            $AllTaggedResources = $AllTaggedResources | Where-Object { $_.id -ne $resource.id }
+          }
+        }
+        foreach ($RG in $AllTaggedResourceGroups) {
+          if ($RG -notin $TaggedResourceGroups) {
+            $AllTaggedResourceGroups = $AllTaggedResourceGroups | Where-Object { $_ -ne $RG }
+          }
+        }
+      } else {
+        $Counter ++
+        $Script:TaggedResources += $ResourcesWithTHETag
+        $AllTaggedResourceGroups += $TaggedResourceGroups
+      }
+    }
+    #If Tags are present in the Resource Group level we make sure to get all the resources within that resource group
+    if ($AllTaggedResourceGroups) {
+      foreach ($ResourceGroup in $TaggedResourceGroups) {
+        Write-Debug ('Double Checking Tagged Resources inside: ' + $ResourceGroup)
+        $ResourcesTagQuery = "Resources | where id startswith '$ResourceGroup' | project id, name, subscriptionId, type, resourceGroup, location | order by id"
+
+        $Script:TaggedResources += Get-AllAzGraphResource -query $ResourcesTagQuery -subscriptionId $InScopeSub
+      }
+    }
+  }
+
+  function Invoke-QueryExecution {
+    param($type, $Subscription, $query, $checkId, $checkName, $selector, $validationAction)
+
+    try {
+      $ResourceType = $Script:AllResourceTypes | Where-Object { $_.Name -eq $type}
+      if (![string]::IsNullOrEmpty($resourceType)) {
+        # Execute the query and collect the results
+        # $queryResults = Search-AzGraph -Query $query -First 1000 -Subscription $Subid -ErrorAction SilentlyContinue
+        $queryResults = Get-AllAzGraphResource -query $query -subscriptionId $Subscription
+
+        $queryResults = $queryResults | Select-Object -Property name, id, param1, param2, param3, param4, param5 -Unique
+
+        foreach ($row in $queryResults) {
+          $result = [PSCustomObject]@{
+            validationAction = [string]$validationAction
+            recommendationId = [string]$checkId
+            name             = [string]$row.name
+            Type             = [string]$type
+            id               = [string]$row.id
+            param1           = [string]$row.param1
+            param2           = [string]$row.param2
+            param3           = [string]$row.param3
+            param4           = [string]$row.param4
+            param5           = [string]$row.param5
+            checkName        = [string]$checkName
+            selector         = [string]$selector
+          }
+          $result
+        }
+      }
+
+      if ($type -like '*azure-specialized-workloads/*') {
+        $result = [PSCustomObject]@{
+          validationAction = [string]$validationAction
+          recommendationId = [string]$checkId
+          name             = [string]''
+          Type             = [string]$type
+          id               = [string]''
+          param1           = [string]''
+          param2           = [string]''
+          param3           = [string]''
+          param4           = [string]''
+          param5           = [string]''
+          checkName        = [string]$checkName
+          selector         = [string]$selector
+        }
+        $result
+      }
+    } catch {
+      # Report Error
+      $errorMessage = $_.Exception.Message
+      Write-Host "Error processing query results: $errorMessage" -ForegroundColor Red
+    }
+  }
+
+  function Start-ResourceExtraction {
+    [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'Low')]
+    param($Scope)
+
+    if ($PSCmdlet.ShouldProcess('')) {
+      $Scope = $Scope.split(" -")[0]
+
+      if ($Scope.split("/").count -lt 5)
+        {
+          $Subid = $Scope.split("/")[2]
+          $ResourceGroup = $null
+        }
+      elseif ($Scope.split("/").count -gt 4 -and $Scope.split("/").count -lt 8)
+        {
+          $Subid = $Scope.split("/")[2]
+          $ResourceGroup = $Scope.split("/")[4]
+        }
+      elseif ($Scope.split("/").count -ge 9)
+        {
+          $Subid = $Scope.split("/")[2]
+          $ResourceGroup = $Scope.split("/")[4]
         }
 
+      # Set the variables used in the loop
+      if ($Scope.split("/").count -lt 5)
+        {
+          # Extract and display resource types with the query with subscriptions, we need this to filter the subscriptions later
+          $resultAllResourceTypes = $Script:PreInScopeResources | Where-Object { $_.id -like "/subscriptions/$Subid*"} | Group-Object -Property type -NoElement
+          $Script:AllResourceTypes += $resultAllResourceTypes
+        }
+      elseif ($Scope.split("/").count -gt 4 -and $Scope.split("/").count -lt 8)
+        {
+          $resultAllResourceTypes = $Script:PreInScopeResources | Where-Object { $_.id -like "/subscriptions/$Subid/resourcegroups/$ResourceGroup*" } | Group-Object -Property type -NoElement
+          $Script:AllResourceTypes += $resultAllResourceTypes
+        }
+      elseif ($Scope.split("/").count -ge 9)
+        {
+          $resultAllResourceTypes = $Script:PreInScopeResources | Where-Object { $_.id -eq $Scope } | Group-Object -Property type -NoElement
+          $Script:AllResourceTypes += $resultAllResourceTypes
+        }
+
+        # Create the arrays used to store the kusto queries
+        $kqlQueryMap = @{}
+        $aprlKqlFiles = @()
+        $ServiceNotAvailable = @()
+
+        foreach ($Type in $resultAllResourceTypes.Name) {
+          if ($Type.ToLower() -in $Script:SupportedResTypes) {
+            $Type = $Type.replace('microsoft.', '')
+            $Provider = $Type.split('/')[0]
+            $ResourceType = $Type.split('/')[1]
+
+            $Path = ''
+            if ($Script:ShellPlatform -eq 'Win32NT') {
+              $Path = ($clonePath + '\azure-resources\' + $Provider + '\' + $ResourceType)
+              $RecommendationsPath = ($clonePath + '\azure-resources\' + $Provider + '\' + $ResourceType + '\recommendations.yaml')
+              $RecommendationValidation = ''
+              $RecommendationValidation = Get-ChildItem -Path $RecommendationsPath -File -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+              if (![string]::IsNullOrEmpty($RecommendationValidation))
+                {
+                  $aprlKqlFiles += Get-ChildItem -Path $Path -Filter '*.kql' -Recurse
+                }
+              else
+                {
+                  if (('microsoft.'+$Type) -notin $Script:AdvisorTypes)
+                    {
+                      $ServiceNotAvailable += ('microsoft.'+$Type)
+                    }
+                }
+            } else {
+              $Path = ($clonePath + '/azure-resources/')
+              $ProvPath = ($Provider + '/' + $ResourceType)
+              $RecommendationValidation = Get-ChildItem -Path $Path -Filter 'recommendations.yaml' -Recurse | Where-Object { $_.FullName -like "*$ProvPath*" }
+              if (![string]::IsNullOrEmpty($RecommendationValidation))
+                {
+                  $aprlKqlFiles += Get-ChildItem -Path $Path -Filter '*.kql' -Recurse | Where-Object { $_.FullName -like "*$ProvPath*" }
+                }
+              else
+                {
+                  if (('microsoft.'+$Type) -notin $Script:AdvisorTypes)
+                    {
+                      $ServiceNotAvailable += ('microsoft.'+$Type)
+                    }
+                }
+            }
+          }
+        }
+
+        # Checks if specialized workloads will be validated
+        if ($SAP.IsPresent) {
+          if ($Script:ShellPlatform -eq 'Win32NT') {
+            $aprlKqlFiles += Get-ChildItem -Path ($clonePath + '\azure-specialized-workloads\sap') -Filter '*.kql' -Recurse
+          } else {
+            $aprlKqlFiles += Get-ChildItem -Path ($clonePath + '/azure-specialized-workloads/sap') -Filter '*.kql' -Recurse
+          }
+        }
+
+        if ($AVD.IsPresent) {
+          if ($Script:ShellPlatform -eq 'Win32NT') {
+            $aprlKqlFiles += Get-ChildItem -Path ($clonePath + '\azure-specialized-workloads\avd') -Filter '*.kql' -Recurse
+          } else {
+            $aprlKqlFiles += Get-ChildItem -Path ($clonePath + '/azure-specialized-workloads/avd') -Filter '*.kql' -Recurse
+          }
+        }
+
+        if ($AVS.IsPresent) {
+          if ($Script:ShellPlatform -eq 'Win32NT') {
+            $aprlKqlFiles += Get-ChildItem -Path ($clonePath + '\azure-specialized-workloads\avs') -Filter '*.kql' -Recurse
+          } else {
+            $aprlKqlFiles += Get-ChildItem -Path ($clonePath + '/azure-specialized-workloads/avs') -Filter '*.kql' -Recurse
+          }
+        }
+
+        if ($HPC.IsPresent) {
+          if ($Script:ShellPlatform -eq 'Win32NT') {
+            $aprlKqlFiles += Get-ChildItem -Path ($clonePath + '\azure-specialized-workloads\hpc') -Filter '*.kql' -Recurse
+          } else {
+            $aprlKqlFiles += Get-ChildItem -Path ($clonePath + '/azure-specialized-workloads/hpc') -Filter '*.kql' -Recurse
+          }
+        }
+
+        # Populates the QueryMap hashtable
+        foreach ($aprlKqlFile in $aprlKqlFiles) {
+          if ($Script:ShellPlatform -eq 'Win32NT') {
+            $kqlShort = [string]$aprlKqlFile.FullName.split('\')[-1]
+          } else {
+            $kqlShort = [string]$aprlKqlFile.FullName.split('/')[-1]
+          }
+          $kqlName = $kqlShort.split('.')[0]
+
+          # Create APRL query map based on recommendation
+          $kqlQueryMap[$kqlName] = $aprlKqlFile
+        }
+
+        if ($Script:RunbookQueryOverrides) {
+          foreach ($queryOverridePath in $($Script:RunbookQueryOverrides)) {
+            Write-Host "[Runbook]: Loading [$($queryOverridePath)] query overrides..." -ForegroundColor Cyan
+
+            $overrideKqlFiles = Get-ChildItem -Path $queryOverridePath -Filter '*.kql' -Recurse
+
+            foreach ($overrideKqlFile in $overrideKqlFiles) {
+              if ($Script:ShellPlatform -eq 'Win32NT') {
+                $kqlShort = [string]$overrideKqlFile.FullName.split('\')[-1]
+              } else {
+                $kqlShort = [string]$overrideKqlFile.FullName.split('/')[-1]
+              }
+              $kqlName = $kqlShort.split('.')[0]
+
+              if ($kqlQueryMap.ContainsKey($kqlName)) {
+                Write-Host "[Runbook]: Original [$kqlName] APRL query overridden by [$($overrideKqlFile.FullName)]." -ForegroundColor Cyan
+              }
+
+              # Override APRL query map based on recommendation
+              $kqlQueryMap[$kqlName] = $overrideKqlFile
+            }
+          }
+        }
+
+        $kqlFiles = $kqlQueryMap.Values
+
+        $queries = @()
+        # Loop through each KQL file and execute the queries
+        foreach ($kqlFile in $kqlFiles) {
+          if ($Script:ShellPlatform -eq 'Win32NT') {
+            $kqlshort = [string]$kqlFile.FullName.split('\')[-1]
+          } else {
+            $kqlshort = [string]$kqlFile.FullName.split('/')[-1]
+          }
+
+          $kqlname = $kqlshort.split('.')[0]
+
+          # Read the query content from the file
+          $baseQuery = Get-Content -Path $kqlFile.FullName | Out-String
+          if ($Script:ShellPlatform -eq 'Win32NT') {
+            $typeRaw = $kqlFile.DirectoryName.split('\')
+          } else {
+            $typeRaw = $kqlFile.DirectoryName.split('/')
+          }
+          $kqltype = ('microsoft.' + $typeRaw[-3] + '/' + $typeRaw[-2])
+
+          $checkId = $kqlname.Split('/')[-1].ToLower()
+
+          if ($Script:RunbookChecks -and $Script:RunbookChecks.Count -gt 0) {
+            # A runbook has been provided...
+
+            if ($Script:RunbookChecks.ContainsKey($checkId)) {
+              # A check has been configured in the runbook for this query...
+
+              $runbookCheckCt = 0
+
+              $check = $Script:RunbookChecks[$checkId]
+
+              $check.PSObject.Properties | ForEach-Object {
+                $checkName = $_.Name
+                $selectorName = $_.Value
+
+                if ($Script:RunbookSelectors.ContainsKey($selectorName)) {
+                  # If a matching selector exists, add a new query to the queries array
+                  # that includes the appropriate selector...
+
+                  $checkSelector = $Script:RunbookSelectors[$selectorName]
+
+                  # First, resolve any // selectors in the query...
+
+                  $selectorQuery = $baseQuery.Replace('// selector', "| where $checkSelector")
+
+=======
         Write-Host '----------------------------'
         Write-Host 'Collecting: ' -NoNewline
         Write-Host 'Advisories' -ForegroundColor Magenta
@@ -905,6 +1475,7 @@ function Get-AllResourceGroup {
 
                   $selectorQuery = $baseQuery.Replace('// selector', "| where $checkSelector")
 
+>>>>>>> dev-tools
                   # Resolve named selectors...
                   foreach ($selectorKey in $Script:RunbookSelectors.Keys) {
                     $namedSelector = $Script:RunbookSelectors[$selectorKey]
@@ -985,6 +1556,27 @@ function Get-AllResourceGroup {
           if ($query -match 'development') {
             Write-Host "Query $checkId under development - Validate Recommendation manually" -ForegroundColor Yellow
             $query = "resources | where type =~ '$type' | project name,id"
+<<<<<<< Dev
+            $Script:results += Invoke-QueryExecution -type $type -Subscription $Subid -query $query -checkId $checkId -checkName $checkName -selector $selector -validationAction 'IMPORTANT - Query under development - Validate Resources manually'
+          } elseif ($query -match 'cannot-be-validated-with-arg') {
+            Write-Host "IMPORTANT - Recommendation $checkId cannot be validated with ARGs - Validate Resources manually" -ForegroundColor Yellow
+            $query = "resources | where type =~ '$type' | project name,id"
+            $Script:results += Invoke-QueryExecution -type $type -Subscription $Subid -query $query -checkId $checkId -checkName $checkName -selector $selector -validationAction 'IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually'
+          } else {
+            $Script:results += Invoke-QueryExecution -type $type -Subscription $Subid -query $query -checkId $checkId -checkName $checkName -selector $selector -validationAction 'APRL - Queries'
+          }
+        }
+
+        # Unless we're using a runbook...
+        if (!($Script:RunbookChecks -and $Script:RunbookChecks.Count -gt 0)) {
+          # Store all resourcetypes not in APRL
+          foreach ($type in $ServiceNotAvailable) {
+            Write-Host "Type $type Not Available In APRL - Validate Service manually" -ForegroundColor Yellow
+            $query = "resources | where type =~ '$type' | project name,id"
+            $Script:results += Invoke-QueryExecution -type $type -Subscription $Subid -query $query -checkId $type -selector 'APRL' -checkName '' -validationAction 'IMPORTANT - Resource Type is not available in either APRL or Advisor - Validate Resources manually if Applicable, if not Delete this line'
+          }
+        }
+=======
             Invoke-QueryExecution -type ($type + ', ' + $Subid) -query $query -checkId $checkId -checkName $checkName -selector $selector -validationAction 'IMPORTANT - Query under development - Validate Recommendation manually'
           } elseif ($query -match 'cannot-be-validated-with-arg') {
             Write-Host "IMPORTANT - Recommendation $checkId cannot be validated with ARGs - Validate Resources manually" -ForegroundColor Yellow
@@ -1020,10 +1612,56 @@ function Get-AllResourceGroup {
             Invoke-QueryExecution -type ($type + ', ' + $Subid) -query $query -checkId $type -selector '' -checkName '' -validationAction 'IMPORTANT - Service Not Available In APRL - Validate Service manually if Applicable, if not Delete this line'
           }
         }
+>>>>>>> dev-tools
       }
     }
   }
 
+<<<<<<< Dev
+  function Invoke-ResourceFiltering {
+    if ($Tags) {
+      $Script:InScope += foreach ($Resource in $Script:PreInScopeResources)
+        {
+          if ($Resource.id -in $Script:TaggedResources.id)
+            {
+              $Resource
+            }
+        }
+      }
+    else
+        {
+          $Script:InScope = $Script:PreInScopeResources
+      }
+
+    if (![string]::IsNullOrEmpty($Script:ExcludeList))
+      {
+        $Script:InScope = $Script:InScope | Where-Object {$_.id -notin $Script:ExcludeList.id}
+      }
+
+    $Script:ImpactedResources += foreach ($Temp in $Script:results)
+      {
+        if ($Temp.id -in $Script:InScope.id)
+          {
+              $TempDetails = ($Script:PreInScopeResources | Where-Object { $_.id -eq $Temp.id } | Select-Object -First 1)
+              $result = [PSCustomObject]@{
+                validationAction = $Temp.validationAction
+                recommendationId = $Temp.recommendationId
+                name             = $Temp.name
+                id               = $Temp.id
+                type             = $TempDetails.type
+                location         = $TempDetails.location
+                subscriptionId   = $TempDetails.subscriptionId
+                resourceGroup    = $TempDetails.resourceGroup
+                param1           = $Temp.param1
+                param2           = $Temp.param2
+                param3           = $Temp.param3
+                param4           = $Temp.param4
+                param5           = $Temp.param5
+                checkName        = $Temp.checkName
+                selector         = $Temp.selector
+              }
+            $result
+=======
   function Invoke-ResourcesExtraDetail {
     #This Function will construct the $Script:Resources variable
     $Script:Resources += foreach ($Temp in $Script:results) {
@@ -1066,6 +1704,7 @@ function Get-AllResourceGroup {
             checkName        = $Temp.checkName
             selector         = $Temp.selector
             tagged           = $false
+>>>>>>> dev-tools
           }
           $result
         }
@@ -1090,6 +1729,24 @@ function Get-AllResourceGroup {
         }
         $result
       }
+<<<<<<< Dev
+
+    $Script:OutOfScope += foreach ($ResIID in $Script:PreOutOfScopeResources)
+      {
+        if ($ResIID.type -notin $Script:SupportedResTypes)
+          {
+            $result = [PSCustomObject]@{
+              description      = 'No Action Required - This ResourceType is out of scope of Well-Architected Reliability Assessment engagements.'
+              type             = $ResIID.type
+              subscriptionId   = $ResIID.subscriptionId
+              resourceGroup    = $ResIID.resourceGroup
+              name             = $ResIID.name
+              location         = $ResIID.location
+              id               = $ResIID.id
+            }
+          $result
+          }
+=======
     }
   }
 
@@ -1127,10 +1784,53 @@ function Get-AllResourceGroup {
           'Custom3'             = ''
         }
         $Script:AllResourceTypesOrdered += $tmp
+>>>>>>> dev-tools
       }
     }
   }
 
+<<<<<<< Dev
+  function Resolve-ResourceType {
+    $TempTypes = $Script:ImpactedResources | Where-Object { $_.validationAction -eq 'IMPORTANT - Resource Type is not available in either APRL or Advisor - Validate Resources manually if Applicable, if not Delete this line' }
+    $Script:AllResourceTypes = $Script:AllResourceTypes | Sort-Object -Property Count -Descending
+    $Looper = $Script:AllResourceTypes | Select-Object -Property Name -Unique
+    foreach ($result in $Looper.Name) {
+      $ResourceTypeCount = (($Script:AllResourceTypes | Where-Object { $_.Name -eq $result }) | Select-Object -ExpandProperty Count | Measure-Object -Sum).Sum
+      $ResultType = $result
+      if ($ResultType -in $TempTypes.recommendationId) {
+        $tmp = [PSCustomObject]@{
+          'Resource Type'               = [string]$ResultType
+          'Number of Resources'         = [string]$ResourceTypeCount
+          'Available in APRL/ADVISOR?'  = 'No'
+          'Assessment Owner'            = ''
+          'Status'                      = ''
+          'Notes'                       = ''
+        }
+        $Script:AllResourceTypesOrdered += $tmp
+      } elseif ($ResultType -notin $TempTypes.recommendationId) {
+        $tmp = [PSCustomObject]@{
+          'Resource Type'               = [string]$ResultType
+          'Number of Resources'         = [string]$ResourceTypeCount
+          'Available in APRL/ADVISOR?'  = 'Yes'
+          'Assessment Owner'            = ''
+          'Status'                      = ''
+          'Notes'                       = ''
+        }
+        $Script:AllResourceTypesOrdered += $tmp
+      }
+    }
+  }
+
+  function Invoke-AdvisoryExtraction {
+    Param($Subid,$ResourceGroup)
+    if (![string]::IsNullOrEmpty($ResourceGroup)) {
+        $advquery = "advisorresources | where type == 'microsoft.advisor/recommendations' and tostring(properties.category) in ('HighAvailability','Performance','OperationalExcellence') | where resourceGroup =~ '$ResourceGroup' | order by id"
+        $queryResults = Get-AllAzGraphResource -Query $advquery -subscriptionId $Subid
+      } else {
+        $advquery = "advisorresources | where type == 'microsoft.advisor/recommendations' and tostring(properties.category) in ('HighAvailability','Performance','OperationalExcellence') | order by id"
+        $queryResults = Get-AllAzGraphResource -Query $advquery -subscriptionId $Subid
+      }
+=======
   function Invoke-AdvisoryExtraction {
     Param($Subid)
     if (![string]::IsNullOrEmpty($ResourceGroups)) {
@@ -1162,11 +1862,16 @@ function Get-AllResourceGroup {
       # Execute the query and collect the results
       $advquery = "advisorresources | where type == 'microsoft.advisor/recommendations' and tostring(properties.category) == 'HighAvailability' | order by id"
       $queryResults = Get-AllAzGraphResource -Query $advquery -subscriptionId $Subid
+>>>>>>> dev-tools
 
       $Script:AllAdvisories += foreach ($row in $queryResults) {
         if (![string]::IsNullOrEmpty($row.properties.resourceMetadata.resourceId)) {
           $TempResource = ''
+<<<<<<< Dev
+          $TempResource = ($Script:PreInScopeResources | Where-Object { $_.id -eq $row.properties.resourceMetadata.resourceId } | Select-Object -First 1)
+=======
           $TempResource = ($Script:AllResources | Where-Object { $_.id -eq $row.properties.resourceMetadata.resourceId } | Select-Object -First 1)
+>>>>>>> dev-tools
           $result = [PSCustomObject]@{
             recommendationId = [string]$row.properties.recommendationTypeId
             type             = [string]$row.Properties.impactedField
@@ -1272,7 +1977,7 @@ function Get-AllResourceGroup {
       <#  if($ResourceGroupFile){
 
         $ResourceExporter = @{
-          Resource = $(Get-ResourceGroupsByList -ObjectList $script:results -FilterList $resourcegrouplist -KeyColumn "id")
+          Resource = $(Get-ResourceGroupsByList -ObjectList $Script:results -FilterList $resourcegrouplist -KeyColumn "id")
         }
       else{
         $ResourceExporter = @{
@@ -1282,7 +1987,10 @@ function Get-AllResourceGroup {
 
       #Ternary Expression If ResourceGroupFile is present, then get the ResourceGroups by List, else get the results
       $ResourceExporter = @{
-        Resource = $ResourceGroupList ? $(Get-ResourceGroupsByList -ObjectList $Script:Resources -FilterList $resourcegrouplist -KeyColumn "id") : $Script:Resources
+        ImpactedResources = $ResourceGroupList ? $(Get-ResourceGroupsByList -ObjectList $Script:ImpactedResources -FilterList $resourcegrouplist -KeyColumn "id") : $Script:ImpactedResources
+      }
+      $OutOfScopeExporter = @{
+        OutOfScope = $Script:OutOfScope
       }
 
       $ResourceTypeExporter = @{
@@ -1306,6 +2014,21 @@ function Get-AllResourceGroup {
       $ScriptDetailsExporter = @{
         ScriptDetails = $Script:ScriptData
       }
+      if ($Debugging.IsPresent)
+        {
+          $InScopeExporter = @{
+            InScopeResources = $Script:InScope
+          }
+          $PreInScopeExporter = @{
+            InScopeBeforeTagFiltering = $Script:PreInScopeResources
+          }
+          $TaggedResourceExporter = @{
+            TaggedResourcesFilter = $Script:TaggedResources
+          }
+          $ImpactedResourcesBeforeFilteringExporter = @{
+            ImpactedResourcesBeforeFiltering = $Script:results
+          }
+        }
 
 
       $ExporterArray = @()
@@ -1317,6 +2040,14 @@ function Get-AllResourceGroup {
       $ExporterArray += $SupportExporter
       $ExporterArray += $ServiceHealthExporter
       $ExporterArray += $ScriptDetailsExporter
+      $ExporterArray += $OutOfScopeExporter
+      if ($Debugging.IsPresent)
+        {
+          $ExporterArray += $InScopeExporter
+          $ExporterArray += $PreInScopeExporter
+          $ExporterArray += $TaggedResourceExporter
+          $ExporterArray += $ImpactedResourcesBeforeFilteringExporter
+        }
 
       $Script:JsonFile = ($PSScriptRoot + '\WARA-File-' + (Get-Date -Format 'yyyy-MM-dd-HH-mm') + '.json')
 
@@ -1326,7 +2057,11 @@ function Get-AllResourceGroup {
 
 
   #Call the functions
+<<<<<<< Dev
+  $Script:Version = '2.0.12'
+=======
   $Script:Version = '2.0.11'
+>>>>>>> dev-tools
   Write-Host 'Version: ' -NoNewline
   Write-Host $Script:Version -ForegroundColor DarkBlue
 
@@ -1335,14 +2070,34 @@ function Get-AllResourceGroup {
     Exit
   }
 
-    if ($ConfigFile) {
-      $ConfigData = Import-ConfigFileData -file $ConfigFile
-      $TenantID = $ConfigData.TenantID
-      $SubscriptionIds = $ConfigData.SubscriptionIds
-      $ResourceGroupList = $ConfigData.ResourceGroups
-      $RunbookFile = $ConfigData.RunbookFile
-      $Tags = $ConfigData.Tags
-    }
+  if ($ConfigFile) {
+    $Scopes = @()
+    $ConfigData = Import-ConfigFileData -file $ConfigFile
+    $TenantID = $ConfigData.TenantID | Select-Object -First 1
+    $Scopes += $ConfigData.subscriptions
+    $Scopes += $ConfigData.resourcegroups
+    $Scopes += $ConfigData.resources
+    $locations = $ConfigData.locations
+    $RunbookFile = $ConfigData.RunbookFile
+    $Tags = $ConfigData.Tags
+  }
+  else {
+    $Scopes = @()
+    if ($ResourceGroups)
+      {
+        $Scopes += foreach ($RG in $ResourceGroups)
+          {
+            $RG
+          }
+      }
+    else
+      {
+        $Scopes += foreach ($Sub in $SubscriptionIds)
+          {
+            $Sub
+          }
+      }
+  }
 
   Write-Debug "Checking Parameters"
   Test-SubscriptionParameter
@@ -1362,6 +2117,16 @@ function Get-AllResourceGroup {
   Write-Debug "Calling Function: Connect-ToAzure"
   Connect-ToAzure
 
+<<<<<<< Dev
+  #Write-Debug "Calling Function: Invoke-PSModules"
+  #Invoke-PSModules
+
+  Write-Debug 'Calling Function: Start-ScopesLoop'
+  Start-ScopesLoop
+
+  Write-Debug 'Calling Function: Invoke-ResourcesFiltering'
+  Invoke-ResourceFiltering
+=======
   Write-Debug "Calling Function: Test-SubscriptionFile"
   Test-SubscriptionFile
 
@@ -1373,6 +2138,7 @@ function Get-AllResourceGroup {
 
   Write-Debug 'Calling Function: Invoke-ResourcesExtraDetail'
   Invoke-ResourcesExtraDetail
+>>>>>>> dev-tools
 
   Write-Debug 'Calling Function: Resolve-ResourceTypes'
   Resolve-ResourceType
@@ -1393,4 +2159,8 @@ Write-Host $TotalTime -NoNewline -ForegroundColor Cyan
 Write-Host (' Minutes')
 Write-Host 'Result File: ' -NoNewline
 Write-Host $Script:JsonFile -ForegroundColor Blue
+<<<<<<< Dev
 Write-Host '---------------------------------------------------------------------'
+=======
+Write-Host '---------------------------------------------------------------------'
+>>>>>>> dev-tools

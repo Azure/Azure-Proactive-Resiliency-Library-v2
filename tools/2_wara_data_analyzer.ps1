@@ -101,7 +101,11 @@ $Script:Runtime = Measure-Command -Expression {
       }
       Write-Debug 'Checking the version of the script'
       $RepoVersion = Get-RepoVersion -ClonePath $Script:clonePath
+<<<<<<< Dev
+      if ($Script:Version -ne $RepoVersion.Analyzer) {
+=======
       if ($Version -ne $RepoVersion.Analyzer) {
+>>>>>>> dev-tools
         Write-Host 'This version of the script is outdated. ' -BackgroundColor DarkRed
         Write-Host 'Please use a more recent version of the script.' -BackgroundColor DarkRed
       } else {
@@ -121,6 +125,7 @@ $Script:Runtime = Measure-Command -Expression {
     $Script:Retirements = $results.Retirements
     $Script:ServiceHealth = $results.ServiceHealth
     $Script:CollectorDetails = $results.ScriptDetails
+    $Script:OutOfScope = $results.OutOfScope
 
     $RepoVersion = $RepoVersion = Get-RepoVersion -ClonePath $Script:clonePath
 
@@ -130,7 +135,7 @@ $Script:Runtime = Measure-Command -Expression {
       Write-Host "The JSON file was created by an outdated version ($($Script:CollectorDetails.Version)) of the Collector Script. The latest version is $($RepoVersion.Collector)" -BackgroundColor DarkRed
     }
 
-    $CoreResources = $results.Resource
+    $CoreResources = $results.ImpactedResources
     $CoreAdvisories = $results.Advisory
 
     $Script:ServicesYAML = Get-ChildItem -Path ($Script:clonePath + '\azure-resources') -Filter 'recommendations.yaml' -Recurse
@@ -168,6 +173,30 @@ $Script:Runtime = Measure-Command -Expression {
     foreach ($Recom in $CoreResources | Where-Object { $_ -ne $null }) {
 
       $RecomTitle = $Script:ServicesYAMLContent | Where-Object { $_.aprlGuid -eq $Recom.recommendationId }
+<<<<<<< Dev
+      if (![string]::IsNullOrEmpty($Recom.checkName)) {
+        # We're coming from a runbook...
+        $tmp = @{
+          'How was the resource/recommendation validated or what actions need to be taken?' = $Recom.validationAction;
+          recommendationId                                                                  = $Recom.recommendationId;
+          recommendationTitle                                                               = $RecomTitle.description;
+          resourceType                                                                      = $RecomTitle.recommendationResourceType;
+          impact                                                                            = $RecomTitle.recommendationImpact;
+          subscriptionId                                                                    = $Recom.subscriptionId;
+          resourceGroup                                                                     = $Recom.resourceGroup;
+          name                                                                              = $Recom.name;
+          id                                                                                = $Recom.id;
+          location                                                                          = $Recom.location;
+          param1                                                                            = $Recom.param1;
+          param2                                                                            = $Recom.param2;
+          param3                                                                            = $Recom.param3;
+          param4                                                                            = $Recom.param4;
+          param5                                                                            = $Recom.param5;
+          supportTicketId                                                                   = $Tickets;
+          source                                                                            = $Recom.selector;
+          checkName                                                                         = $Recom.checkName;
+          'WAF Pillar'                                                                      = 'Reliability';
+=======
 
       Write-Host $RecomTitle.recommendationTypeId -ForegroundColor Magenta
 
@@ -191,13 +220,18 @@ $Script:Runtime = Measure-Command -Expression {
           supportTicketId                                                                   = '';
           source                                                                            = [string]$Recom.selector;
           checkName                                                                         = [string]$Recom.checkName
+>>>>>>> dev-tools
           tagged                                                                            = $Recom.tagged
         }
         $Script:MergedRecommendation += $tmp
       } else {
         if ([string]::IsNullOrEmpty($RecomTitle.recommendationTypeId)) {
           $Ticket = $Script:SupportTickets | Where-Object { $_.'Related Resource' -eq $Recom.id }
+<<<<<<< Dev
+          if (($RecomTitle.recommendationMetadataState -eq 'Active' -and [string]::IsNullOrEmpty($RecomTitle.recommendationTypeId)) -or $Recom.validationAction -eq 'IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually' -or $Recom.validationAction -eq 'IMPORTANT - Query under development - Validate Resources manually' ) {
+=======
           if ($RecomTitle.recommendationMetadataState -eq 'Active' -or $Recom.validationAction -eq 'IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually' -or $Recom.validationAction -eq 'IMPORTANT - Query under development - Validate Recommendation manually' ) {
+>>>>>>> dev-tools
             $Tickets = if ($Ticket.'Ticket ID'.count -gt 1) { $Ticket.'Ticket ID' | ForEach-Object { $_ + ' /' } }else { $Ticket.'Ticket ID' }
             $Tickets = [string]$Tickets
             $Tickets = if ($Tickets -like '* /*') { $Tickets -replace '.$' }else { $Tickets }
@@ -206,6 +240,10 @@ $Script:Runtime = Measure-Command -Expression {
               recommendationId                                                                  = $Recom.recommendationId;
               recommendationTitle                                                               = $RecomTitle.description;
               resourceType                                                                      = $RecomTitle.recommendationResourceType;
+<<<<<<< Dev
+              impact                                                                            = $RecomTitle.recommendationImpact;
+=======
+>>>>>>> dev-tools
               subscriptionId                                                                    = $Recom.subscriptionId;
               resourceGroup                                                                     = $Recom.resourceGroup;
               name                                                                              = $Recom.name;
@@ -216,17 +254,30 @@ $Script:Runtime = Measure-Command -Expression {
               param3                                                                            = $Recom.param3;
               param4                                                                            = $Recom.param4;
               param5                                                                            = $Recom.param5;
+<<<<<<< Dev
+              supportTicketId                                                                   = "";
+              source                                                                            = $Recom.selector;
+              checkName                                                                         = $Recom.checkName;
+              'WAF Pillar'                                                                      = 'Reliability';
+              tagged                                                                            = $Recom.tagged
+            }
+          } elseif ($Recom.validationAction -eq 'IMPORTANT - Resource Type is not available in either APRL or Advisor - Validate Resources manually if Applicable, if not Delete this line' ) {
+=======
               supportTicketId                                                                   = $Tickets;
               source                                                                            = $Recom.selector;
               checkName                                                                         = $Recom.checkName;
               tagged                                                                            = $Recom.tagged
             }
           } elseif ($Recom.validationAction -eq 'IMPORTANT - Service Not Available In APRL - Validate Service manually if Applicable, if not Delete this line' ) {
+>>>>>>> dev-tools
             $tmp = @{
               'How was the resource/recommendation validated or what actions need to be taken?' = $Recom.validationAction;
               recommendationId                                                                  = '';
               recommendationTitle                                                               = $RecomTitle.description;
               resourceType                                                                      = $Recom.recommendationId;
+<<<<<<< Dev
+              impact                                                                            = '';
+=======
               subscriptionId                                                                    = $Recom.subscriptionId;
               resourceGroup                                                                     = $Recom.resourceGroup;
               name                                                                              = $Recom.name;
@@ -254,6 +305,7 @@ $Script:Runtime = Measure-Command -Expression {
               recommendationId                                                                  = $Recom.recommendationId;
               recommendationTitle                                                               = $RecomTitle.description;
               resourceType                                                                      = $RecomTitle.recommendationResourceType;
+>>>>>>> dev-tools
               subscriptionId                                                                    = $Recom.subscriptionId;
               resourceGroup                                                                     = $Recom.resourceGroup;
               name                                                                              = $Recom.name;
@@ -267,9 +319,17 @@ $Script:Runtime = Measure-Command -Expression {
               supportTicketId                                                                   = $Tickets;
               source                                                                            = $Recom.selector;
               checkName                                                                         = $Recom.checkName;
+<<<<<<< Dev
+              'WAF Pillar'                                                                      = 'Reliability';
               tagged                                                                            = $Recom.tagged
             }
           }
+          $Script:MergedRecommendation += $tmp
+=======
+              tagged                                                                            = $Recom.tagged
+            }
+          }
+>>>>>>> dev-tools
         }
       }
     }
@@ -278,16 +338,29 @@ $Script:Runtime = Measure-Command -Expression {
     foreach ($adv in $CoreAdvisories) {
       if (![string]::IsNullOrEmpty($adv.recommendationId)) {
         $APRLADV = $Script:ServicesYAMLContent | Where-Object { $_.recommendationTypeId -eq $adv.recommendationId }
+<<<<<<< Dev
+        if ($APRLADV.recommendationTypeId -eq $adv.recommendationId <#-and $APRLADV.automationAvailable -ne 'arg' #>) {
+=======
         if ($APRLADV.recommendationTypeId -eq $adv.recommendationId -and $APRLADV.automationAvailable -ne 'arg') {
           $tag = if ($Script:CollectorDetails.TAGFiltering -eq $true) { $true } else { $false }
+>>>>>>> dev-tools
           $Ticket = $Script:SupportTickets | Where-Object { $_.'Related Resource' -eq $adv.id }
           $Tickets = if ($Ticket.'Ticket ID'.count -gt 1) { $Ticket.'Ticket ID' | ForEach-Object { $_ + ' /' } }else { $Ticket.'Ticket ID' }
           $Tickets = [string]$Tickets
           $Tickets = if ($Tickets -like '* /*') { $Tickets -replace '.$' }else { $Tickets }
+<<<<<<< Dev
+          $WAFPillar = if($adv.category -eq 'HighAvailability'){'Reliability'}else{$adv.category}
+          $tmp = @{
+            'How was the resource/recommendation validated or what actions need to be taken?' = 'Advisor - Queries';
+            recommendationId                                                                  = $APRLADV.recommendationTypeId;
+            recommendationTitle                                                               = $adv.description;
+            impact                                                                            = $adv.impact;
+=======
           $tmp = @{
             'How was the resource/recommendation validated or what actions need to be taken?' = '';
             recommendationId                                                                  = $APRLADV.recommendationTypeId;
             recommendationTitle                                                               = $adv.description;
+>>>>>>> dev-tools
             resourceType                                                                      = $adv.type;
             subscriptionId                                                                    = $adv.subscriptionId;
             resourceGroup                                                                     = $adv.resourceGroup;
@@ -302,7 +375,12 @@ $Script:Runtime = Measure-Command -Expression {
             supportTicketId                                                                   = $Tickets;
             source                                                                            = 'ADVISOR';
             checkName                                                                         = '';
+<<<<<<< Dev
+            'WAF Pillar'                                                                      = $WAFPillar;
+            tagged                                                                            = $true
+=======
             tagged                                                                            = $tag
+>>>>>>> dev-tools
           }
           $Script:MergedRecommendation += $tmp
           $Script:RecommendedAdv += $adv.recommendationId
@@ -311,12 +389,33 @@ $Script:Runtime = Measure-Command -Expression {
     }
 
     foreach ($WAF in $Script:WAFYAMLContent) {
+<<<<<<< Dev
+=======
       $tag = if ($Script:CollectorDetails.TAGFiltering -eq $true) { $true } else { $false }
+>>>>>>> dev-tools
       $tmp = @{
         'How was the resource/recommendation validated or what actions need to be taken?' = 'Update this item based on Discovery Workshop Questionnaire';
         recommendationId                                                                  = [string]$WAF.aprlGuid;
         recommendationTitle                                                               = [string]$WAF.description;
         resourceType                                                                      = [string]$WAF.recommendationResourceType;
+<<<<<<< Dev
+        impact                                                                            = "";
+        subscriptionId                                                                    = "";
+        resourceGroup                                                                     = "";
+        name                                                                              = "Entire Workload";
+        id                                                                                = "";
+        location                                                                          = "";
+        param1                                                                            = "";
+        param2                                                                            = "";
+        param3                                                                            = "";
+        param4                                                                            = "";
+        param5                                                                            = "";
+        supportTicketId                                                                   = "";
+        source                                                                            = "APRL";
+        checkName                                                                         = ""
+        'WAF Pillar'                                                                      = 'Reliability';
+        tagged                                                                            = $true
+=======
         subscriptionId                                                                    = '';
         resourceGroup                                                                     = '';
         name                                                                              = 'Entire Organization';
@@ -331,6 +430,7 @@ $Script:Runtime = Measure-Command -Expression {
         source                                                                            = 'APRL';
         checkName                                                                         = ''
         tagged                                                                            = $tag
+>>>>>>> dev-tools
       }
       $Script:MergedRecommendation += $tmp
     }
@@ -349,24 +449,42 @@ $Script:Runtime = Measure-Command -Expression {
     function Add-ImpactedResource {
       ####################    Creates the first sheet (ImpactedResources)
       $Styles1 = @(
+<<<<<<< Dev
+        New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor 'White' -Bold -BackgroundColor 'DarkSlateGray' -AutoSize -Range 'A1:S1'
+        New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -AutoSize -NumberFormat '0' -Range 'A:B'
+        New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -Width 100 -WrapText -NumberFormat '0' -Range 'C:C'
+        New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -AutoSize -NumberFormat '0' -Range 'D:I'
+        New-ExcelStyle -HorizontalAlignment Left -FontName 'Calibri' -FontSize 11 -Width 80 -Range 'J:J'
+        New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -AutoSize -NumberFormat '0' -Range 'K:S'
+      )
+
+      $Styles2 = @(
+        New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor 'White' -Bold -BackgroundColor 'DarkSlateGray' -AutoSize -Range 'A1:G1'
+        New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -AutoSize -NumberFormat '0' -Range 'A:F'
+        New-ExcelStyle -HorizontalAlignment Left -FontName 'Calibri' -FontSize 11 -Width 80 -Range 'G:G'
+=======
         New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor 'White' -Bold -BackgroundColor 'DarkSlateGray' -AutoSize -Range 'A1:Q1'
         New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -AutoSize -NumberFormat '0' -Range 'A:B'
         New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -Width 100 -WrapText -NumberFormat '0' -Range 'C:C'
         New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -AutoSize -NumberFormat '0' -Range 'D:H'
         New-ExcelStyle -HorizontalAlignment Left -FontName 'Calibri' -FontSize 11 -Width 80 -Range 'I:I'
         New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -AutoSize -NumberFormat '0' -Range 'J:Q'
+>>>>>>> dev-tools
       )
 
       $cond = @()
       $cond += New-ConditionalText 'Update this item based on Discovery Workshop Questionnaire' -Range A:A
       $cond += New-ConditionalText 'IMPORTANT' -Range A:A
 
+      $cond2 = @()
+      $cond2 += New-ConditionalText 'No Action Required' -Range A:A
 
       $ImpactedResourcesSheet = New-Object System.Collections.Generic.List[System.Object]
       $ImpactedResourcesSheet.Add('How was the resource/recommendation validated or what actions need to be taken?')
       $ImpactedResourcesSheet.Add('resourceType')
       $ImpactedResourcesSheet.Add('recommendationTitle')
       $ImpactedResourcesSheet.Add('recommendationId')
+      $ImpactedResourcesSheet.Add('impact')
       $ImpactedResourcesSheet.Add('subscriptionId')
       $ImpactedResourcesSheet.Add('resourceGroup')
       $ImpactedResourcesSheet.Add('location')
@@ -379,8 +497,26 @@ $Script:Runtime = Measure-Command -Expression {
       $ImpactedResourcesSheet.Add('param5')
       $ImpactedResourcesSheet.Add('supportTicketId')
       $ImpactedResourcesSheet.Add('source')
+      $ImpactedResourcesSheet.Add('WAF Pillar')
       $ImpactedResourcesSheet.Add('checkName')
 
+<<<<<<< Dev
+      $OutOfScopeSheet = New-Object System.Collections.Generic.List[System.Object]
+      $OutOfScopeSheet.Add('description')
+      $OutOfScopeSheet.Add('type')
+      $OutOfScopeSheet.Add('subscriptionId')
+      $OutOfScopeSheet.Add('resourceGroup')
+      $OutOfScopeSheet.Add('name')
+      $OutOfScopeSheet.Add('location')
+      $OutOfScopeSheet.Add('id')
+
+
+      $Script:MergedRecommendation | ForEach-Object { [PSCustomObject]$_ } | Select-Object $ImpactedResourcesSheet |
+      Export-Excel -Path $ExcelFile -WorksheetName 'ImpactedResources' -TableName 'Table2' -ConditionalText $cond -AutoSize -TableStyle $TableStyle -Style $Styles1
+
+      $Script:OutOfScope | ForEach-Object { [PSCustomObject]$_ } | Select-Object $OutOfScopeSheet |
+      Export-Excel -Path $ExcelFile -WorksheetName 'Other-OutOfScope' -TableName 'UnTagTable' -ConditionalText $cond2 -AutoSize -TableStyle $TableStyle -Style $Styles2
+=======
       if ($Script:CollectorDetails.TAGFiltering -eq $true) {
           ($Script:MergedRecommendation | Where-Object { $_.tagged -eq $true }) | ForEach-Object { [PSCustomObject]$_ } | Select-Object $ImpactedResourcesSheet |
           Export-Excel -Path $ExcelFile -WorksheetName 'ImpactedResources' -TableName 'Table2' -ConditionalText $cond -AutoSize -TableStyle $TableStyle -Style $Styles1
@@ -391,22 +527,27 @@ $Script:Runtime = Measure-Command -Expression {
         $Script:MergedRecommendation | ForEach-Object { [PSCustomObject]$_ } | Select-Object $ImpactedResourcesSheet |
           Export-Excel -Path $ExcelFile -WorksheetName 'ImpactedResources' -TableName 'Table2' -ConditionalText $cond -AutoSize -TableStyle $TableStyle -Style $Styles1
       }
+>>>>>>> dev-tools
     }
 
     function Add-ResourceType {
       ####################    Creates the second sheet (ResourceTypes)
       $ResourceTypeSheet = New-Object System.Collections.Generic.List[System.Object]
-      $ResourceTypeSheet.Add('Subscription')
       $ResourceTypeSheet.Add('Resource Type')
       $ResourceTypeSheet.Add('Number of Resources')
-      $ResourceTypeSheet.Add('Available in APRL?')
-      $ResourceTypeSheet.Add('Custom1')
-      $ResourceTypeSheet.Add('Custom2')
-      $ResourceTypeSheet.Add('Custom3')
+      $ResourceTypeSheet.Add('Available in APRL/ADVISOR?')
+      $ResourceTypeSheet.Add('Assessment Owner')
+      $ResourceTypeSheet.Add('Status')
+      $ResourceTypeSheet.Add('Notes')
 
       $TypeStyle = @(
+<<<<<<< Dev
+        New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor 'White' -Bold -BackgroundColor 'DarkSlateGray' -AutoSize -Range 'A1:F1'
+        New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -AutoSize -NumberFormat '0' -Range 'A:F'
+=======
         New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor 'White' -Bold -BackgroundColor 'DarkSlateGray' -AutoSize -Range 'A1:G1'
         New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -AutoSize -NumberFormat '0' -Range 'A:G'
+>>>>>>> dev-tools
       )
 
       $Script:AllResourceTypesOrdered | ForEach-Object { [PSCustomObject]$_ } | Select-Object $ResourceTypeSheet |
@@ -652,7 +793,11 @@ $Script:Runtime = Measure-Command -Expression {
 
       # Build the APRL Recommendations
       foreach ($Service in $Script:ServicesYAMLContent) {
+<<<<<<< Dev
+        if (($Service.recommendationResourceType -like 'Specialized.Workload/*' -or $Service.recommendationResourceType -in $Script:AllResourceTypesOrdered.'Resource Type' -or $Script:FilterRecommendations -eq $false) -and [string]::IsNullOrEmpty($Service.recommendationTypeId)) {
+=======
         if ($Service.recommendationResourceType -eq 'n/a' -or $Service.recommendationResourceType -in $Script:AllResourceTypesOrdered.'Resource Type' -or $Script:FilterRecommendations -eq $false) {
+>>>>>>> dev-tools
           $ID = $Service.aprlGuid
           $resourceType = $Service.recommendationResourceType
           $tmp = @{
@@ -661,8 +806,13 @@ $Script:Runtime = Measure-Command -Expression {
             'Azure Service / Well-Architected'                                                               = 'Azure Service';
             'Recommendation Source'                                                                          = 'APRL';
             'Resiliency Category'                                                                            = $Service.recommendationControl;
+<<<<<<< Dev
+            'Azure Service Category / Well-Architected Area'                                                 = if ($resourceType -like 'Specialized.Workload/*') { $resourceType }else { ($resourceType.split('/')[0]) };
+            'Azure Service / Well-Architected Topic'                                                         = if ($resourceType -like 'Specialized.Workload/*') { $resourceType }else { ($resourceType.split('/')[1]) };
+=======
             'Azure Service Category / Well-Architected Area'                                                 = if ($resourceType -eq 'n/a') { $resourceType }else { ($resourceType.split('/')[0]) };
             'Azure Service / Well-Architected Topic'                                                         = if ($resourceType -eq 'n/a') { $resourceType }else { ($resourceType.split('/')[1]) };
+>>>>>>> dev-tools
             'Recommendation Title'                                                                           = $Service.description;
             'Impact'                                                                                         = $Service.recommendationImpact;
             'Best Practices Guidance'                                                                        = [string]$Service.longDescription;
@@ -839,15 +989,35 @@ $Script:Runtime = Measure-Command -Expression {
           $WS = $ex.Worksheets | Where-Object { $_.Name -eq 'PivotTable' }
           $WS2 = $ex.Worksheets | Where-Object { $_.Name -eq 'Charts' }
           Write-Debug 'Moving Charts to Chart sheet'
+<<<<<<< Dev
+          ($WS.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Cut()
+          $WS2.Paste()
+          ($WS.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Cut()
+=======
               ($WS.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Cut()
           $WS2.Paste()
               ($WS.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Cut()
+>>>>>>> dev-tools
           $WS2.Paste()
 
           Write-Debug 'Reloading Excel Chart Sheet'
           $WS2 = $ex.Worksheets | Where-Object { $_.Name -eq 'Charts' }
 
           Write-Debug 'Editing ChartP0'
+<<<<<<< Dev
+          ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartStyle = 222
+          ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartArea.Font.Name = 'Segoe UI'
+          ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartArea.Font.Size = 9
+          ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartArea.Left = 18
+          ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartArea.Top = 40
+
+          Write-Debug 'Editing ChartP1'
+          ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartStyle = 222
+          ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartArea.Font.Name = 'Segoe UI'
+          ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartArea.Font.Size = 9
+          ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartArea.Left = 555
+          ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartArea.Top = 40
+=======
               ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartStyle = 222
               ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartArea.Font.Name = 'Segoe UI'
               ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP0' }).DrawingObject.Chart.ChartArea.Font.Size = 9
@@ -860,6 +1030,7 @@ $Script:Runtime = Measure-Command -Expression {
               ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartArea.Font.Size = 9
               ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartArea.Left = 555
               ($WS2.Shapes | Where-Object { $_.name -eq 'ChartP1' }).DrawingObject.Chart.ChartArea.Top = 40
+>>>>>>> dev-tools
 
           Write-Debug 'Editing Pivot Filters'
           $WS.Range('B1').Formula = 'No'
@@ -893,7 +1064,11 @@ $Script:Runtime = Measure-Command -Expression {
   }
 
   #Call the functions
+<<<<<<< Dev
+  $Script:Version = '2.0.10'
+=======
   $Script:Version = '2.0.9'
+>>>>>>> dev-tools
   Write-Host 'Version: ' -NoNewline
   Write-Host $Script:Version -ForegroundColor DarkBlue
 
@@ -924,4 +1099,8 @@ Write-Host $TotalTime -NoNewline -ForegroundColor Cyan
 Write-Host (' Minutes')
 Write-Host 'Excel File: ' -NoNewline
 Write-Host $Script:ExcelFile -ForegroundColor Blue
+<<<<<<< Dev
 Write-Host '---------------------------------------------------------------------'
+=======
+Write-Host '---------------------------------------------------------------------'
+>>>>>>> dev-tools
