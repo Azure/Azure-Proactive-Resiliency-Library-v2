@@ -341,7 +341,7 @@ $Script:Runtime = Measure-Command -Expression {
       $Styles2 = @(
         New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor 'White' -Bold -BackgroundColor 'DarkSlateGray' -AutoSize -Range 'A1:G1'
         New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -AutoSize -NumberFormat '0' -Range 'A:F'
-        New-ExcelStyle -HorizontalAlignment Left -FontName 'Calibri' -FontSize 11 -WrapText -Width 80 -Range 'G:G'
+        New-ExcelStyle -HorizontalAlignment Left -FontName 'Calibri' -FontSize 11 -Width 80 -Range 'G:G'
       )
 
       $cond = @()

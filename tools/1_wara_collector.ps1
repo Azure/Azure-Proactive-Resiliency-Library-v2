@@ -516,6 +516,7 @@ $Script:Runtime = Measure-Command -Expression {
     } else {
       $BaseURL = 'management.azure.com'
     }
+    $LoopedSub = @()
 
     foreach ($Scope in $Scopes)
       {
@@ -527,46 +528,39 @@ $Script:Runtime = Measure-Command -Expression {
             $Subscription = $ScopeWithoutParameter.split("/")[2]
             $RGroup = if (![string]::IsNullOrEmpty($ScopeWithoutParameter.split("/")[4])){$ScopeWithoutParameter.split("/")[4]}else{$null}
             $SubId = $SubIds | Where-Object { $_.Id -eq $Subscription }
-            if ([string]::IsNullOrEmpty($subid.name)) {
-              # If the variable was set in the Subscription File only IDs will be available
-              $Subid = $Subid
-              $SubName = $Subid
-            } else {
-              # If using the variable set during the login to Azure, Subscription Name is available
-              $SubName = $Subid.Name
-              $Subid = $Subid.id
-            }
             Write-Host '---------------------------------------------------------------------'
-            Write-Host 'Validating Subscription: ' -NoNewline
-            Write-Host $SubName -ForegroundColor Cyan
+            Write-Host 'Validating Scope: ' -NoNewline
+            Write-Host $ScopeWithoutParameter -ForegroundColor Cyan
 
             Set-AzContext -Subscription $Subid -ErrorAction SilentlyContinue -WarningAction SilentlyContinue | Out-Null
             Select-AzSubscription -Subscription $Subid -WarningAction SilentlyContinue -InformationAction SilentlyContinue | Out-Null
 
-            $Token = Get-AzAccessToken
+            if ($SubId -notin $LoopedSub) {
+              $Token = Get-AzAccessToken
 
-            $header = @{
-              'Authorization' = 'Bearer ' + $Token.Token
+              $header = @{
+                'Authorization' = 'Bearer ' + $Token.Token
+              }
+
+              try {
+                Write-Host '----------------------------'
+                Write-Host 'Collecting: ' -NoNewline
+                Write-Host 'Outages' -ForegroundColor Magenta
+                $url = ('https://' + $BaseURL + '/subscriptions/' + $Subid + '/providers/Microsoft.ResourceHealth/events?api-version=2022-10-01&queryStartTime=' + $Date)
+                $Outages = Invoke-RestMethod -Uri $url -Headers $header -Method GET
+                $Script:Outageslist += $Outages.value | Where-Object { $_.properties.impactStartTime -gt $DateOutages } | Sort-Object @{Expression = 'properties.eventlevel'; Descending = $false }, @{Expression = 'properties.status'; Descending = $false } | Select-Object -Property name, properties -First 15
+                $Script:RetiredOutages += $Outages.value | Sort-Object @{Expression = 'properties.eventlevel'; Descending = $false }, @{Expression = 'properties.status'; Descending = $false } | Select-Object -Property name, properties
+              } catch { $null }
+
+              try {
+                Write-Host '----------------------------'
+                Write-Host 'Collecting: ' -NoNewline
+                Write-Host 'Support Tickets' -ForegroundColor Magenta
+                $supurl = ('https://' + $BaseURL + '/subscriptions/' + $Subid + '/providers/Microsoft.Support/supportTickets?api-version=2020-04-01')
+                $SupTickets = Invoke-RestMethod -Uri $supurl -Headers $header -Method GET
+                $Script:SupportTickets += $SupTickets.value | Where-Object { $_.properties.severity -ne 'Minimal' -and $_.properties.createdDate -gt $DateCore } | Select-Object -Property name, properties
+              } catch { $null }
             }
-
-            try {
-              Write-Host '----------------------------'
-              Write-Host 'Collecting: ' -NoNewline
-              Write-Host 'Outages' -ForegroundColor Magenta
-              $url = ('https://' + $BaseURL + '/subscriptions/' + $Subid + '/providers/Microsoft.ResourceHealth/events?api-version=2022-10-01&queryStartTime=' + $Date)
-              $Outages = Invoke-RestMethod -Uri $url -Headers $header -Method GET
-              $Script:Outageslist += $Outages.value | Where-Object { $_.properties.impactStartTime -gt $DateOutages } | Sort-Object @{Expression = 'properties.eventlevel'; Descending = $false }, @{Expression = 'properties.status'; Descending = $false } | Select-Object -Property name, properties -First 15
-              $Script:RetiredOutages += $Outages.value | Sort-Object @{Expression = 'properties.eventlevel'; Descending = $false }, @{Expression = 'properties.status'; Descending = $false } | Select-Object -Property name, properties
-            } catch { $null }
-
-            try {
-              Write-Host '----------------------------'
-              Write-Host 'Collecting: ' -NoNewline
-              Write-Host 'Support Tickets' -ForegroundColor Magenta
-              $supurl = ('https://' + $BaseURL + '/subscriptions/' + $Subid + '/providers/Microsoft.Support/supportTickets?api-version=2020-04-01')
-              $SupTickets = Invoke-RestMethod -Uri $supurl -Headers $header -Method GET
-              $Script:SupportTickets += $SupTickets.value | Where-Object { $_.properties.severity -ne 'Minimal' -and $_.properties.createdDate -gt $DateCore } | Select-Object -Property name, properties
-            } catch { $null }
 
             Write-Host '----------------------------'
             Write-Host 'Collecting: ' -NoNewline
@@ -612,16 +606,18 @@ $Script:Runtime = Measure-Command -Expression {
             Write-Host 'Advisories' -ForegroundColor Magenta
             Invoke-AdvisoryExtraction -SubId $SubId -ResourceGroup $RGroup
 
-            Write-Host '----------------------------'
-            Write-Host 'Collecting: ' -NoNewline
-            Write-Host 'Retirements' -ForegroundColor Magenta
-            Invoke-RetirementExtraction $Subid
+            if ($SubId -notin $LoopedSub) {
+              Write-Host '----------------------------'
+              Write-Host 'Collecting: ' -NoNewline
+              Write-Host 'Retirements' -ForegroundColor Magenta
+              Invoke-RetirementExtraction $Subid
 
-            Write-Host '----------------------------'
-            Write-Host 'Collecting: ' -NoNewline
-            Write-Host 'Service Health Alerts' -ForegroundColor Magenta
-            Invoke-ServiceHealthExtraction $Subid
-
+              Write-Host '----------------------------'
+              Write-Host 'Collecting: ' -NoNewline
+              Write-Host 'Service Health Alerts' -ForegroundColor Magenta
+              Invoke-ServiceHealthExtraction $Subid
+              $LoopedSub += $SubId
+            }
             Write-Host '----------------------------'
             Write-Host 'Running: ' -NoNewline
             Write-Host 'Queries' -ForegroundColor Magenta
@@ -742,7 +738,7 @@ $Script:Runtime = Measure-Command -Expression {
     param($type, $Subscription, $query, $checkId, $checkName, $selector, $validationAction)
 
     try {
-      $ResourceType = $Script:AllResourceTypes | Where-Object { $_.Name -eq ($type + ', ' + $Subscription)}
+      $ResourceType = $Script:AllResourceTypes | Where-Object { $_.Name -eq $type}
       if (![string]::IsNullOrEmpty($resourceType)) {
         # Execute the query and collect the results
         # $queryResults = Search-AzGraph -Query $query -First 1000 -Subscription $Subid -ErrorAction SilentlyContinue
@@ -820,17 +816,17 @@ $Script:Runtime = Measure-Command -Expression {
       if ($Scope.split("/").count -lt 5)
         {
           # Extract and display resource types with the query with subscriptions, we need this to filter the subscriptions later
-          $resultAllResourceTypes = $Script:PreInScopeResources | Where-Object { $_.id -like "/subscriptions/$Subid*"} | Group-Object -Property type, subscriptionId -NoElement
+          $resultAllResourceTypes = $Script:PreInScopeResources | Where-Object { $_.id -like "/subscriptions/$Subid*"} | Group-Object -Property type -NoElement
           $Script:AllResourceTypes += $resultAllResourceTypes
         }
       elseif ($Scope.split("/").count -gt 4 -and $Scope.split("/").count -lt 8)
         {
-          $resultAllResourceTypes = $Script:PreInScopeResources | Where-Object { $_.id -like "/subscriptions/$Subid/resourcegroups/$ResourceGroup*" } | Group-Object -Property type, subscriptionId -NoElement
+          $resultAllResourceTypes = $Script:PreInScopeResources | Where-Object { $_.id -like "/subscriptions/$Subid/resourcegroups/$ResourceGroup*" } | Group-Object -Property type -NoElement
           $Script:AllResourceTypes += $resultAllResourceTypes
         }
       elseif ($Scope.split("/").count -ge 9)
         {
-          $resultAllResourceTypes = $Script:PreInScopeResources | Where-Object { $_.id -eq $Scope } | Group-Object -Property type, subscriptionId -NoElement
+          $resultAllResourceTypes = $Script:PreInScopeResources | Where-Object { $_.id -eq $Scope } | Group-Object -Property type -NoElement
           $Script:AllResourceTypes += $resultAllResourceTypes
         }
 
@@ -840,7 +836,6 @@ $Script:Runtime = Measure-Command -Expression {
         $ServiceNotAvailable = @()
 
         foreach ($Type in $resultAllResourceTypes.Name) {
-          $Type = $Type.split(',')[0]
           if ($Type.ToLower() -in $Script:SupportedResTypes) {
             $Type = $Type.replace('microsoft.', '')
             $Provider = $Type.split('/')[0]
@@ -858,7 +853,7 @@ $Script:Runtime = Measure-Command -Expression {
                 }
               else
                 {
-                  if (('microsoft.'+$Type) -notin $Global:AdvisorTypes)
+                  if (('microsoft.'+$Type) -notin $Script:AdvisorTypes)
                     {
                       $ServiceNotAvailable += ('microsoft.'+$Type)
                     }
@@ -873,7 +868,7 @@ $Script:Runtime = Measure-Command -Expression {
                 }
               else
                 {
-                  if (('microsoft.'+$Type) -notin $Global:AdvisorTypes)
+                  if (('microsoft.'+$Type) -notin $Script:AdvisorTypes)
                     {
                       $ServiceNotAvailable += ('microsoft.'+$Type)
                     }
@@ -1167,12 +1162,12 @@ $Script:Runtime = Measure-Command -Expression {
   }
 
   function Resolve-ResourceType {
-    $TempTypes = $Script:ImpactedResources | Where-Object { $_.validationAction -eq 'IMPORTANT - Service Not Available In APRL - Validate Service manually if Applicable, if not Delete this line' }
+    $TempTypes = $Script:ImpactedResources | Where-Object { $_.validationAction -eq 'IMPORTANT - Resource Type is not available in either APRL or Advisor - Validate Resources manually if Applicable, if not Delete this line' }
     $Script:AllResourceTypes = $Script:AllResourceTypes | Sort-Object -Property Count -Descending
     $Looper = $Script:AllResourceTypes | Select-Object -Property Name -Unique
     foreach ($result in $Looper.Name) {
-      $ResourceTypeCount = ($Script:AllResourceTypes | Where-Object { $_.Name -eq $result }).count
-      $ResultType = $result.split(', ')[0]
+      $ResourceTypeCount = (($Script:AllResourceTypes | Where-Object { $_.Name -eq $result }) | Select-Object -ExpandProperty Count | Measure-Object -Sum).Sum
+      $ResultType = $result
       if ($ResultType -in $TempTypes.recommendationId) {
         $tmp = [PSCustomObject]@{
           'Resource Type'               = [string]$ResultType
