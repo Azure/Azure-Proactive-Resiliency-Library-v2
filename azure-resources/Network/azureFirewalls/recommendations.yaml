@@ -59,7 +59,7 @@
     - name: Azure DDoS Protection overview
       url: "https://learn.microsoft.com/azure/ddos-protection/ddos-protection-overview"
 
-- description: Leverage Azure Policy inheritance model
+- description: Leverage Azure Firewall Policy inheritance model
   aprlGuid: 3a63560a-1ed3-6140-acd1-d1d23f9a2e12
   recommendationTypeId: null
   recommendationControl: Governance
