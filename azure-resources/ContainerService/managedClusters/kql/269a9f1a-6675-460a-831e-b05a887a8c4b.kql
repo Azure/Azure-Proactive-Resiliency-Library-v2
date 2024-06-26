@@ -11,5 +11,5 @@ resources
     | project lname, protectionState) on lname
 | where protectionState != 'ProtectionConfigured'
 | extend param1 = iif(isnull(protectionState), 'Protection Not Configured', strcat('Protection State: ', protectionState))
-| project recommendationID = "269a9f1a-6675-460a-831e-b05a887a8c4b", name, id, tags, param1
+| project recommendationId = "269a9f1a-6675-460a-831e-b05a887a8c4b", name, id, tags, param1
 

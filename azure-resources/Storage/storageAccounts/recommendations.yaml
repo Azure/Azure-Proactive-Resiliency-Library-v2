@@ -19,7 +19,7 @@
     - name: Change the redundancy configuration for a storage account
       url: "https://learn.microsoft.com/azure/storage/common/redundancy-migration"
 
-- description: Classic Storage Accounts should be migrated to new Azure Resource Manager resources
+- description: Classic Storage Accounts must be migrated to new Azure Resource Manager resources
   aprlGuid: 63ad027e-611c-294b-acc5-8e3234db9a40
   recommendationTypeId: 47bb383c-8e25-95f0-c2aa-437add1d87d3
   recommendationControl: Service Upgrade and Retirement
@@ -67,7 +67,7 @@
     - name: Premium block blob storage accounts
       url: "https://learn.microsoft.com/azure/storage/blobs/storage-blob-block-blob-premium"
 
-- description: Enable Soft Delete to protect your blob data
+- description: Enable Soft Delete to protect your data
   aprlGuid: 03263c57-c869-3841-9e0a-3dbb9ef3e28d
   recommendationTypeId: 42dbf883-9e4b-4f84-9da4-232b87c4b5e9
   recommendationControl: Disaster Recovery

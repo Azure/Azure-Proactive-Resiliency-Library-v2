@@ -11,7 +11,7 @@ resources
 | extend nodePool = tostring(parse_json(agentPoolProfile.name))
 | where hasCriticalAddonsOnly
 | project
-    recommendationid="5ee083cd-6ac3-4a83-8913-9549dd36cf56",
+    recommendationId="5ee083cd-6ac3-4a83-8913-9549dd36cf56",
     id,
     name,
     tags,
