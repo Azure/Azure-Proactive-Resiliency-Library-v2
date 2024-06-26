@@ -513,3 +513,22 @@
   learnMoreLink:
     - name: Redundancy options for managed disks
       url: "https://aka.ms/zrsdisksdoc"
+
+- description: Reserve Compute Capacity for critical workloads
+  aprlGuid: 302fda08-ee65-4fbe-a916-6dc0b33169c4
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Compute/virtualMachines
+  recommendationMetadataState: Active
+  longDescription: |
+    Azure Capacity Reservations ensure high availability for virtual machines by reserving compute capacity in advance within a specific region or availability zone. This guarantees that VMs will have the necessary resources during peak demand or maintenance events, enhancing reliability and uptime.
+  potentialBenefits: Guaranteed capacity, high availability, predictable performance.
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: On-demand Capacity Reservation
+      url: "https://aka.ms/on-demand-capacity-reservations-docs"
