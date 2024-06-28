@@ -101,11 +101,7 @@ $Script:Runtime = Measure-Command -Expression {
       }
       Write-Debug 'Checking the version of the script'
       $RepoVersion = Get-RepoVersion -ClonePath $Script:clonePath
-<<<<<<< Dev
       if ($Script:Version -ne $RepoVersion.Analyzer) {
-=======
-      if ($Version -ne $RepoVersion.Analyzer) {
->>>>>>> dev-tools
         Write-Host 'This version of the script is outdated. ' -BackgroundColor DarkRed
         Write-Host 'Please use a more recent version of the script.' -BackgroundColor DarkRed
       } else {
@@ -892,7 +888,7 @@ $Script:Runtime = Measure-Command -Expression {
   }
 
   #Call the functions
-  $Script:Version = '2.0.10'
+  $Script:Version = '2.0.11'
   Write-Host 'Version: ' -NoNewline
   Write-Host $Script:Version -ForegroundColor DarkBlue
 

@@ -335,7 +335,7 @@ $Script:Runtime = Measure-Command -Expression {
   }
 
   function Connect-ToAzure {
-    $Subscription0 = $Scopes | ForEach-Object {$_.split("/")[2]} | Select-Object -First 1
+    $Subscription0 = $Scopes | Select-Object -First 1 | ForEach-Object {$_.split("/")[2]}
     # Connect To Azure Tenant
     Write-Host 'Authenticating to Azure'
     if ($Script:ShellPlatform -eq 'Win32NT') {
@@ -1096,7 +1096,6 @@ $Script:Runtime = Measure-Command -Expression {
         }
       }
     }
-  }
 
   function Invoke-ResourceFiltering {
     if ($Tags) {
@@ -1141,9 +1140,6 @@ $Script:Runtime = Measure-Command -Expression {
                 selector         = $Temp.selector
               }
             $result
-          }
-          $result
-        }
       } else {
         $TempDetails = ($Script:AllResources | Where-Object { $_.id -eq $Temp.id } | Select-Object -First 1)
         $result = [PSCustomObject]@{
@@ -1165,6 +1161,7 @@ $Script:Runtime = Measure-Command -Expression {
         }
         $result
       }
+    }
 
     $Script:OutOfScope += foreach ($ResIID in $Script:PreOutOfScopeResources)
       {
@@ -1183,7 +1180,6 @@ $Script:Runtime = Measure-Command -Expression {
           }
       }
     }
-  }
 
   function Resolve-ResourceType {
     $TempTypes = $Script:ImpactedResources | Where-Object { $_.validationAction -eq 'IMPORTANT - Resource Type is not available in either APRL or Advisor - Validate Resources manually if Applicable, if not Delete this line' }
@@ -1246,7 +1242,6 @@ $Script:Runtime = Measure-Command -Expression {
         }
       }
     }
-  }
 
   function Resolve-SupportTicket {
     $Tickets = $Script:SupportTickets
@@ -1415,7 +1410,7 @@ $Script:Runtime = Measure-Command -Expression {
 
 
   #Call the functions
-  $Script:Version = '2.0.12'
+  $Script:Version = '2.0.13'
   Write-Host 'Version: ' -NoNewline
   Write-Host $Script:Version -ForegroundColor DarkBlue
 
