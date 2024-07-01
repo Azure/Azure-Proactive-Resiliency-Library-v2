@@ -12,7 +12,7 @@ This section provides an overview of the Azure Proactive Resiliency Library v2 (
 
 - [GitHub Link to Download](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/1_wara_collector.ps1)
 - Download the script using command-line
-    ```
+    ```shell
     iwr https://aka.ms/aprl/tools/1 -out 1_wara_collector.ps1
     ```
 - [GitHub Link to Sample Output](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/sample-output/WARA_File_2024-05-07_11_59.json)
@@ -40,7 +40,7 @@ The Collector PowerShell script is the first script to be run in the Azure Proac
 
     Or download the script from GtiHub
 
-    ```
+    ```shell
     iwr https://aka.ms/aprl/tools/1 -out 1_wara_collector.ps1
     ```
 
@@ -105,7 +105,7 @@ The Collector PowerShell script is the first script to be run in the Azure Proac
 
 - [GitHub Link to Download](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/2_wara_data_analyzer.ps1)
 - Download the script using command-line
-    ```
+    ```shell
     iwr https://aka.ms/aprl/tools/2 -out 2_wara_data_analyzer.ps1
     ```
 - [GitHub Link to Sample Output](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/sample-output/WARA%20Action%20Plan%202024-05-07_12_07.xlsx)
@@ -156,15 +156,15 @@ The Data Analyzer PowerShell script is the second script in the Azure Proactive 
 
 - [GitHub Link to Download](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/3_wara_reports_generator.ps1)
 - Download the script using command-line
-    ```
+    ```shell
     iwr https://aka.ms/aprl/tools/3 -out 3_wara_reports_generator.ps1
     ```
 - Download the PowerPoint template using command-line
-    ```
+    ```shell
     iwr https://aka.ms/aprl/tools/pptx -out 'Mandatory - Executive Summary presentation - Template.pptx'
     ```
 - Download the Word template using command-line
-    ```
+    ```shell
     iwr https://aka.ms/aprl/tools/docx -out 'Optional - Assessment Report - Template.docx'
     ```
 - [GitHub Link to Sample Output - Executive Summary Presentation](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/sample-output/Executive%20Summary%20Presentation%20-%20Contoso%20Hotels%20-%202024-05-07-12-12.pptx)
