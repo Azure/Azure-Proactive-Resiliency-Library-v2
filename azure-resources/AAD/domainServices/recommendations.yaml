@@ -1,0 +1,38 @@
+- description: Use at least the Enterprise SKU
+  aprlGuid: bb6deb9d-24fa-4ee8-bc23-ac3ebc7fdf8e
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Entry Domain Services
+  recommendationMetadataState: Active
+  longDescription: |
+    You need to use a minimum of Enterprise SKU for your managed domain to support replica sets.
+  potentialBenefits: The ability to create additional replica sets in other Azure regions provides geographical resiliency for a managed domain.
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Create and use replica sets for resiliency or geolocation in Microsoft Entra Domain Services
+      url: "https://learn.microsoft.com/en-us/entra/identity/domain-services/tutorial-create-replica-set"
+
+- description: Use replica sets for resiliency or geolocation in Microsoft Entra Domain Services
+  aprlGuid: a3058909-fcf8-4450-88b5-499f57449178
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Entry Domain Services
+  recommendationMetadataState: Active
+  longDescription: |
+    To improve the resiliency of a Microsoft Entra Domain Services managed domain, or deploy to additional geographic locations close to your applications, you can use replica sets.
+    You can add a replica set to any peered virtual network in any Azure region that supports Domain Services.
+  potentialBenefits: The ability to create additional replica sets in other Azure regions provides geographical resiliency for a managed domain.
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Create and use replica sets for resiliency or geolocation in Microsoft Entra Domain Services
+      url: "https://learn.microsoft.com/en-us/entra/identity/domain-services/tutorial-create-replica-set"
