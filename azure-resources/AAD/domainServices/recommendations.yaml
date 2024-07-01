@@ -7,7 +7,7 @@
   recommendationMetadataState: Active
   longDescription: |
     You need to use a minimum of Enterprise SKU for your managed domain to support replica sets.
-  potentialBenefits: The Enterprise SKU enables you to create additional replica sets.
+  potentialBenefits: The Enterprise SKU enables creation of replica sets.
   pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
@@ -27,7 +27,7 @@
   longDescription: |
     To improve the resiliency of a Microsoft Entra Domain Services managed domain, or deploy to additional geographic locations close to your applications, you can use replica sets.
     You can add a replica set to any peered virtual network in any Azure region that supports Domain Services.
-  potentialBenefits: The additional replica sets in other Azure regions provide geographical resiliency for a managed domain.
+  potentialBenefits: The replica sets provide geographical resiliency.
   pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
