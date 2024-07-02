@@ -80,7 +80,7 @@ The YAML structure for adding new recommendations consists of several key-value 
 | pgVerified | false | Boolean | true, false | Indicates whether the recommendation is verified by the relevant product group |
 | publishedToLearn | false | Boolean | true, false | Indicates whether the recommendation is published to [Microsoft Learn](https://learn.microsoft.com/en-us/azure/well-architected/pillars) |
 | publishedToAdvisor | false | Boolean | true, false | Indicates whether the recommendation is published to Azure Advisor |
-| automationAvailable | false | Boolean | no, arg | Indicates whether automation is available for validating the recommendation |
+| automationAvailable | no | String | no, arg | Indicates whether automation is available for validating the recommendation |
 | tags | null | String | null | Generalized tags used for incorporating fields to automate |
 | learnMoreLink | - name: Learn More url: "<https://learn.microsoft.com/en-us/azure/reliability/reliability-batch#cross-region-disaster-recovery-and-business-continuity>" | Object | Only 1 link per recommendation | Links related to the recommendation, such as announcements or documentation |
 
