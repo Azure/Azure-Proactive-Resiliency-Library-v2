@@ -159,14 +159,41 @@ $Script:Runtime = Measure-Command -Expression {
     return $matchingObjects
   }
 
-  function Test-SubscriptionParameter {
-    if ([string]::IsNullOrEmpty($SubscriptionIds) -and [string]::IsNullOrEmpty($ConfigFile))
-      {
-        Write-Host ""
-        Write-Host "Suscription ID or Subscription File is required"
-        Write-Host ""
-        Exit
+  function Test-ScriptParameters {
+    $IsValid = $true
+
+    if ($RunbookFile) {
+
+      if (!(Test-Path $RunbookFile -PathType Leaf)) {
+        Write-Host "Runbook file (-RunbookFile) not found: [$RunbookFile]" -ForegroundColor Red
+        $IsValid = $false
       }
+
+      if ($ConfigFile) {
+        Write-Host "Runbook file (-RunbookFile) and configuration file (-ConfigFile) cannot be used together." -ForegroundColor Red
+        $IsValid = $false
+      }
+
+      if (!($SubscriptionIds)) {
+        Write-Host "Subscription ID(s) (-SubscriptionIds) is required when using a runbook file (-RunbookFile)." -ForegroundColor Red
+        $IsValid = $false
+      }
+
+    } else {
+
+      if (!($SubscriptionIds) -and !($ConfigFile)) {
+        Write-Host "Subscription ID(s) (-SubscriptionIds) or configuration file (-ConfigFile) is required when not using a runbook file (-RunbookFile)." -ForegroundColor Red
+        $IsValid = $false
+      }
+
+      if ($ConfigFile -and !(Test-Path $ConfigFile -PathType Leaf)) {
+        Write-Host "Configuration file (-ConfigFile) not found: [$ConfigFile]" -ForegroundColor Red
+        $IsValid = $false
+      }
+
+    }
+
+    return $IsValid
   }
 
   function Get-HelpMessage {
@@ -406,105 +433,6 @@ $Script:Runtime = Measure-Command -Expression {
       Write-Host '[Runbook]: No runbook (-RunbookFile) configured.' -ForegroundColor DarkGray
     }
   }
-
-  <# function Invoke-PSModule {
-    $SideScripts = Get-ChildItem -Path "$PSScriptRoot\Azure-Proactive-Resiliency-Library\docs\content\services" -Filter "*.ps1" -Recurse
-    if (![string]::IsNullOrEmpty($SubscriptionIds) -and [string]::IsNullOrEmpty($SubscriptionsFile)) {
-      $SubIds = $SubIds | Where-Object { $_.Id -in $SubscriptionIds }
-    }
-
-    Write-Debug 'Starting Extra Powershell Scripts loop'
-    foreach ($Subscription in $SubIds) {
-      $SubID = $Subscription.id
-      $SubName = $Subscription.name
-
-      Write-Host 'Running APRL PS Scripts for the Subscription: ' -NoNewline
-      Write-Host $SubName -ForegroundColor Green
-
-      Start-Job -Name ('PSExtraction_' + $SubID) -ScriptBlock {
-        Set-AzContext -Subscription $($args[0]) -WarningAction SilentlyContinue
-        #az account set --subscription $($args[0]) --only-show-errors
-        $SideScripts = $($args[1])
-        $ViableScripts = @()
-        $job = @()
-
-        foreach ($Script in $SideScripts) {
-          $ScriptName = $Script.Name.Substring(0, $Script.Name.length - '.ps1'.length)
-          $ScriptFull = New-Object System.IO.StreamReader($Script.FullName)
-          $ScriptReady = $ScriptFull.ReadToEnd()
-          $ScriptFull.Dispose()
-
-          if ($ScriptReady -like '# Azure PowerShell script*') {
-            $ViableScripts += $Script
-            New-Variable -Name ('ScriptRun_' + $ScriptName) #-ErrorAction SilentlyContinue
-            New-Variable -Name ('ScriptJob_' + $ScriptName) #-ErrorAction SilentlyContinue
-            Set-Variable -Name ('ScriptRun_' + $ScriptName) -Value ([PowerShell]::Create()).AddScript($ScriptReady).AddArgument($($args[2])).AddArgument($($args[0]))
-            Set-Variable -Name ('ScriptJob_' + $ScriptName) -Value ((Get-Variable -Name ('ScriptRun_' + $ScriptName)).Value).BeginInvoke()
-            $job += (Get-Variable -Name ('ScriptJob_' + $ScriptName)).Value
-          }
-        }
-
-        while ($Job.Runspace.IsCompleted -contains $false) { Start-Sleep -Milliseconds 100 }
-
-        foreach ($Script in $ViableScripts) {
-          $ScriptName = $Script.Name.Substring(0, $Script.Name.length - '.ps1'.length)
-          New-Variable -Name ('ScriptValue_' + $ScriptName) #-ErrorAction SilentlyContinue
-          Set-Variable -Name ('ScriptValue_' + $ScriptName) -Value (((Get-Variable -Name ('ScriptRun_' + $ScriptName)).Value).EndInvoke((Get-Variable -Name ('ScriptJob_' + $ScriptName)).Value))
-        }
-
-        $Hashtable = @{}
-
-        foreach ($Script in $ViableScripts) {
-          $ScriptName = $Script.Name.Substring(0, $Script.Name.length - '.ps1'.length)
-          $Hashtable["$ScriptName"] = (Get-Variable -Name ('ScriptValue_' + $ScriptName)).Value
-        }
-
-        $Hashtable
-      } -ArgumentList $SubID, $SideScripts, $ResourceGroups
-
-    }
-
-    Write-Debug 'Starting to Process Jobs'
-    $JobNames = @()
-    Foreach ($Job in (Get-Job | Where-Object { $_.name -like 'PSExtraction_*' })) {
-      $JobNames += $Job.Name
-    }
-
-    while (Get-Job -Name $JobNames | Where-Object { $_.State -eq 'Running' }) {
-      $jb = Get-Job -Name $JobNames
-      Write-Debug ('Jobs Running: ' + [string]($jb | Where-Object { $_.State -eq 'Running' }).count)
-      Start-Sleep -Seconds 2
-    }
-
-    foreach ($Job in $JobNames) {
-      $TempJob = Receive-Job -Name $Job -WarningAction SilentlyContinue
-      Write-Debug ('Job ' + $Job + ' Returned: ' + ($TempJob.values | Where-Object { $_ -ne $null }).Count)
-      foreach ($key in $TempJob.Keys) {
-        if ($TempJob.$key) {
-          foreach ($data in $TempJob.$key) {
-            $result = [PSCustomObject]@{
-              recommendationId = [string]$data.recommendationId
-              name             = [string]$data.name
-              id               = [string]$data.id
-              param1           = [string]$data.param1
-              param2           = [string]$data.param2
-              param3           = [string]$data.param3
-              param4           = [string]$data.param4
-              param5           = [string]$data.param5
-              checkName        = ''
-            }
-            if (![string]::IsNullOrEmpty($result.recommendationId)) {
-              $Script:results += $result
-            }
-          }
-        }
-      }
-    }
-
-    foreach ($Job in $JobNames) {
-      Remove-Job $Job -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
-    }
-  } #>
 
   function Start-ScopesLoop {
     $Date = (Get-Date).AddMonths(-24)
@@ -1419,6 +1347,13 @@ $Script:Runtime = Measure-Command -Expression {
     Exit
   }
 
+  Write-Debug "Checking parameters..."
+
+  if (!(Test-ScriptParameters)) {
+    Write-Host 'Invalid parameters. Exiting...' -ForegroundColor Red
+    Exit
+  }
+
   if ($ConfigFile) {
     $Scopes = @()
     $ConfigData = Import-ConfigFileData -file $ConfigFile
@@ -1447,9 +1382,6 @@ $Script:Runtime = Measure-Command -Expression {
           }
       }
   }
-
-  Write-Debug "Checking Parameters"
-  Test-SubscriptionParameter
 
   Write-Debug 'Reseting Variables'
   Invoke-ResetVariable
