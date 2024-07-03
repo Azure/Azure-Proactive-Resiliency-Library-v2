@@ -46,7 +46,7 @@
   longDescription: |
     Configure GRS to ensure that your database meets its availability and durability targets even in the face of failures or disasters.
   potentialBenefits: Recover from regional failure and/or disaster
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -59,13 +59,13 @@
   aprlGuid: 2ab85a67-26be-4ed2-a0bb-101b2513ec63
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
-  recommendationImpact: Medium
+  recommendationImpact: High
   recommendationResourceType: Microsoft.DBforPostgreSQL/flexibleServers
   recommendationMetadataState: Active
   longDescription: |
     Configure one or more read replicas to ensure that your database meets its availability and durability targets even in the face of failures or disasters.
   potentialBenefits: Recover from regional failure and/or disaster
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
