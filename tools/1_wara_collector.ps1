@@ -20,15 +20,17 @@ Param(
   [switch]$AVD,
   [switch]$AVS,
   [switch]$HPC,
-  [switch]$UseImplicitRunbookSelectors,
-  $RunbookFile,
+  [switch]$ShowQueries,
   $SubscriptionIds,
   $ResourceGroups,
   $TenantID,
   $Tags,
   [ValidateSet('AzureCloud', 'AzureUSGovernment')]
   $AzureEnvironment = 'AzureCloud',
-  $ConfigFile
+  $ConfigFile,
+  # Runbook parameters...
+  [switch]$UseImplicitRunbookSelectors,
+  $RunbookFile
   )
 
 #import-module "./modules/collector.psm1" -Force
@@ -44,6 +46,13 @@ $Script:Runtime = Measure-Command -Expression {
       [string[]]$subscriptionId,
       [string]$query = 'Resources | project id, resourceGroup, subscriptionId, name, type, location'
     )
+
+    if ($Debugging) {
+      Write-Host
+      Write-Host "[Debugging]: Running resource graph query..." -ForegroundColor Magenta
+      Write-Host "$query" -ForegroundColor Magenta
+      Write-Host
+    }
 
     $result = $subscriptionId ? (Search-AzGraph -Query $query -first 1000 -Subscription $subscriptionId) : (Search-AzGraph -Query $query -first 1000 -usetenantscope) # -first 1000 returns the first 1000 results and subsequently reduces the amount of queries required to get data.
 
@@ -353,6 +362,8 @@ $Script:Runtime = Measure-Command -Expression {
 
   function Connect-ToAzure {
     $Subscription0 = $Scopes | Select-Object -First 1 | ForEach-Object {$_.split("/")[2]}
+
+    Write-Host $Subscription0 -ForegroundColor Magenta
     # Connect To Azure Tenant
     Write-Host 'Authenticating to Azure'
     if ($Script:ShellPlatform -eq 'Win32NT') {
@@ -885,8 +896,8 @@ $Script:Runtime = Measure-Command -Expression {
           } else {
             $typeRaw = $kqlFile.DirectoryName.split('/')
           }
-          $kqltype = ('microsoft.' + $typeRaw[-3] + '/' + $typeRaw[-2])
 
+          $kqltype = ('microsoft.' + $typeRaw[-3] + '/' + $typeRaw[-2])
           $checkId = $kqlname.Split('/')[-1].ToLower()
 
           if ($Script:RunbookChecks -and $Script:RunbookChecks.Count -gt 0) {
@@ -901,23 +912,25 @@ $Script:Runtime = Measure-Command -Expression {
 
               $check.PSObject.Properties | ForEach-Object {
                 $checkName = $_.Name
-                $selectorName = $_.Value
+                $defaultSelectorName = $_.Value
 
-                if ($Script:RunbookSelectors.ContainsKey($selectorName)) {
+                if ($Script:RunbookSelectors.ContainsKey($defaultSelectorName)) {
                   # If a matching selector exists, add a new query to the queries array
                   # that includes the appropriate selector...
 
-                  $checkSelector = $Script:RunbookSelectors[$selectorName]
-
-                  # First, resolve any // selectors in the query...
-
-                  $selectorQuery = $baseQuery.Replace('// selector', "| where $checkSelector")
+                  $selectorQuery = $baseQuery
 
                   # Resolve named selectors...
                   foreach ($selectorKey in $Script:RunbookSelectors.Keys) {
                     $namedSelector = $Script:RunbookSelectors[$selectorKey]
-                    $selectorQuery = $selectorQuery.Replace("// selector:$selectorName", "| where $namedSelector")
+                    $selectorQuery = $selectorQuery.Replace("// selector:$selectorKey", "| where $namedSelector")
+                    $selectorQuery = $selectorQuery.Replace("//selector:$selectorKey", "| where $namedSelector")
                   }
+
+                  # Then, resolve any default selectors...
+                  $checkSelector = $Script:RunbookSelectors[$defaultSelectorName]
+                  $selectorQuery = $selectorQuery.Replace('//selector', "| where $checkSelector")
+                  $selectorQuery = $selectorQuery.Replace('// selector', "| where $checkSelector")
 
                   if ($UseImplicitRunbookSelectors) {
                     # Then, wrap the entire query in an inner join to apply a global selector.
@@ -944,7 +957,7 @@ $Script:Runtime = Measure-Command -Expression {
                   $queries += [PSCustomObject]@{
                     checkId   = [string]$checkId
                     checkName = [string]$checkName
-                    selector  = [string]$selectorName
+                    selector  = [string]$defaultSelectorName
                     query     = [string]$selectorQuery
                     type      = [string]$kqltype
                   }
