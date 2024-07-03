@@ -49,7 +49,8 @@ $Script:Runtime = Measure-Command -Expression {
 
     if ($Debugging) {
       Write-Host
-      Write-Host "[Debugging]: Running resource graph query..." -ForegroundColor Magenta
+      Write-Host "[-Debugging]: Running resource graph query..." -ForegroundColor Magenta
+      Write-Host
       Write-Host "$query" -ForegroundColor Magenta
       Write-Host
     }
@@ -362,8 +363,6 @@ $Script:Runtime = Measure-Command -Expression {
 
   function Connect-ToAzure {
     $Subscription0 = $Scopes | Select-Object -First 1 | ForEach-Object {$_.split("/")[2]}
-
-    Write-Host $Subscription0 -ForegroundColor Magenta
     # Connect To Azure Tenant
     Write-Host 'Authenticating to Azure'
     if ($Script:ShellPlatform -eq 'Win32NT') {
@@ -402,7 +401,7 @@ $Script:Runtime = Measure-Command -Expression {
     # Checks if a runbook file was provided and, if so, loads selectors and checks hashtables
     if (![string]::IsNullOrEmpty($RunbookFile)) {
 
-      Write-Host '[Runbook]: A runbook has been configured. Only checks configured in the runbook will be run.' -ForegroundColor Cyan
+      Write-Host '[-RunbookFile]: A runbook has been configured. Only checks configured in the runbook will be run.' -ForegroundColor Cyan
 
       # Check that the runbook file actually exists
       if (Test-Path $RunbookFile -PathType Leaf) {
@@ -431,7 +430,7 @@ $Script:Runtime = Measure-Command -Expression {
         }
       }
     } else {
-      Write-Host '[Runbook]: No runbook (-RunbookFile) configured.' -ForegroundColor DarkGray
+      Write-Host '[-RunbookFile]: No runbook (-RunbookFile) configured.' -ForegroundColor DarkGray
     }
   }
 
@@ -854,7 +853,7 @@ $Script:Runtime = Measure-Command -Expression {
 
         if ($Script:RunbookQueryOverrides) {
           foreach ($queryOverridePath in $($Script:RunbookQueryOverrides)) {
-            Write-Host "[Runbook]: Loading [$($queryOverridePath)] query overrides..." -ForegroundColor Cyan
+            Write-Host "[-RunbookFile]: Loading [$($queryOverridePath)] query overrides..." -ForegroundColor Cyan
 
             $overrideKqlFiles = Get-ChildItem -Path $queryOverridePath -Filter '*.kql' -Recurse
 
@@ -867,7 +866,7 @@ $Script:Runtime = Measure-Command -Expression {
               $kqlName = $kqlShort.split('.')[0]
 
               if ($kqlQueryMap.ContainsKey($kqlName)) {
-                Write-Host "[Runbook]: Original [$kqlName] APRL query overridden by [$($overrideKqlFile.FullName)]." -ForegroundColor Cyan
+                Write-Host "[-RunbookFile]: Original [$kqlName] APRL query overridden by [$($overrideKqlFile.FullName)]." -ForegroundColor Cyan
               }
 
               # Override APRL query map based on recommendation
@@ -965,12 +964,12 @@ $Script:Runtime = Measure-Command -Expression {
                   $runbookCheckCt++
 
                 } else {
-                  Write-Host "[Runbook]: Selector $selectorName not found in runbook. Skipping check..." -ForegroundColor Yellow
+                  Write-Host "[-RunbookFile]: Selector $selectorName not found in runbook. Skipping check..." -ForegroundColor Yellow
                 }
               }
 
               if ($queries.Count -gt 0) {
-                Write-Host "[Runbook]: There are $runbookCheckCt runbook check(s) configured for $checkId. Running checks..." -ForegroundColor Cyan
+                Write-Host "[-RunbookFile]: There are $runbookCheckCt runbook check(s) configured for $checkId. Running checks..." -ForegroundColor Cyan
               }
             }
           } else {
@@ -998,7 +997,7 @@ $Script:Runtime = Measure-Command -Expression {
           if ($selector -eq 'APRL') {
             Write-Host "[APRL]: Microsoft.$type - $checkId" -ForegroundColor Green -NoNewline
           } else {
-            Write-Host "[Runbook]: [$checkName (selector: '$selector')]: $checkId" -ForegroundColor Green -NoNewline
+            Write-Host "[-RunbookFile]: [$checkName (selector: '$selector')]: $checkId" -ForegroundColor Green -NoNewline
           }
           Write-Host ' +++++++++++++++'
 
