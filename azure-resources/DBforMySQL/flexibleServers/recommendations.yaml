@@ -84,7 +84,7 @@
   longDescription: |
     Configure storage auto-grow to prevent the server from running out of storage and becoming read-only.
   potentialBenefits: Scale storage automatically to meet increasing demand
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
