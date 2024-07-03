@@ -20,15 +20,17 @@ Param(
   [switch]$AVD,
   [switch]$AVS,
   [switch]$HPC,
-  [switch]$UseImplicitRunbookSelectors,
-  $RunbookFile,
+  [switch]$ShowQueries,
   $SubscriptionIds,
   $ResourceGroups,
   $TenantID,
   $Tags,
   [ValidateSet('AzureCloud', 'AzureUSGovernment')]
   $AzureEnvironment = 'AzureCloud',
-  $ConfigFile
+  $ConfigFile,
+  # Runbook parameters...
+  [switch]$UseImplicitRunbookSelectors,
+  $RunbookFile
   )
 
 #import-module "./modules/collector.psm1" -Force
@@ -44,6 +46,14 @@ $Script:Runtime = Measure-Command -Expression {
       [string[]]$subscriptionId,
       [string]$query = 'Resources | project id, resourceGroup, subscriptionId, name, type, location'
     )
+
+    if ($Debugging) {
+      Write-Host
+      Write-Host "[-Debugging]: Running resource graph query..." -ForegroundColor Magenta
+      Write-Host
+      Write-Host "$query" -ForegroundColor Magenta
+      Write-Host
+    }
 
     $result = $subscriptionId ? (Search-AzGraph -Query $query -first 1000 -Subscription $subscriptionId) : (Search-AzGraph -Query $query -first 1000 -usetenantscope) # -first 1000 returns the first 1000 results and subsequently reduces the amount of queries required to get data.
 
@@ -159,14 +169,41 @@ $Script:Runtime = Measure-Command -Expression {
     return $matchingObjects
   }
 
-  function Test-SubscriptionParameter {
-    if ([string]::IsNullOrEmpty($SubscriptionIds) -and [string]::IsNullOrEmpty($ConfigFile))
-      {
-        Write-Host ""
-        Write-Host "Suscription ID or Subscription File is required"
-        Write-Host ""
-        Exit
+  function Test-ScriptParameters {
+    $IsValid = $true
+
+    if ($RunbookFile) {
+
+      if (!(Test-Path $RunbookFile -PathType Leaf)) {
+        Write-Host "Runbook file (-RunbookFile) not found: [$RunbookFile]" -ForegroundColor Red
+        $IsValid = $false
       }
+
+      if ($ConfigFile) {
+        Write-Host "Runbook file (-RunbookFile) and configuration file (-ConfigFile) cannot be used together." -ForegroundColor Red
+        $IsValid = $false
+      }
+
+      if (!($SubscriptionIds)) {
+        Write-Host "Subscription ID(s) (-SubscriptionIds) is required when using a runbook file (-RunbookFile)." -ForegroundColor Red
+        $IsValid = $false
+      }
+
+    } else {
+
+      if (!($SubscriptionIds) -and !($ConfigFile)) {
+        Write-Host "Subscription ID(s) (-SubscriptionIds) or configuration file (-ConfigFile) is required when not using a runbook file (-RunbookFile)." -ForegroundColor Red
+        $IsValid = $false
+      }
+
+      if ($ConfigFile -and !(Test-Path $ConfigFile -PathType Leaf)) {
+        Write-Host "Configuration file (-ConfigFile) not found: [$ConfigFile]" -ForegroundColor Red
+        $IsValid = $false
+      }
+
+    }
+
+    return $IsValid
   }
 
   function Get-HelpMessage {
@@ -234,17 +271,7 @@ $Script:Runtime = Measure-Command -Expression {
             Write-Host "Installing Az Modules" -ForegroundColor Yellow
             Install-Module -Name Az.ResourceGraph -SkipPublisherCheck -InformationAction SilentlyContinue
           }
-        <#
-        Write-Host "Validating " -NoNewline
-        Write-Host "Microsoft.PowerShell.ConsoleGuiTools" -ForegroundColor Cyan -NoNewline
-        Write-Host " Module.."
-        $ConsoleGUITools = Get-Module -Name Microsoft.PowerShell.ConsoleGuiTools -ListAvailable -ErrorAction silentlycontinue
-        if ($null -eq $ConsoleGUITools)
-          {
-            Write-Host "Installing ConsoleGuiTools Modules" -ForegroundColor Yellow
-            Install-Module -Name Microsoft.PowerShell.ConsoleGuiTools -SkipPublisherCheck -InformationAction SilentlyContinue
-          }
-        #>
+
         Write-Host "Validating " -NoNewline
         Write-Host "Git" -ForegroundColor Cyan -NoNewline
         Write-Host " Installation.."
@@ -374,7 +401,7 @@ $Script:Runtime = Measure-Command -Expression {
     # Checks if a runbook file was provided and, if so, loads selectors and checks hashtables
     if (![string]::IsNullOrEmpty($RunbookFile)) {
 
-      Write-Host '[Runbook]: A runbook has been configured. Only checks configured in the runbook will be run.' -ForegroundColor Cyan
+      Write-Host '[-RunbookFile]: A runbook has been configured. Only checks configured in the runbook will be run.' -ForegroundColor Cyan
 
       # Check that the runbook file actually exists
       if (Test-Path $RunbookFile -PathType Leaf) {
@@ -403,108 +430,9 @@ $Script:Runtime = Measure-Command -Expression {
         }
       }
     } else {
-      Write-Host '[Runbook]: No runbook (-RunbookFile) configured.' -ForegroundColor DarkGray
+      Write-Host '[-RunbookFile]: No runbook (-RunbookFile) configured.' -ForegroundColor DarkGray
     }
   }
-
-  <# function Invoke-PSModule {
-    $SideScripts = Get-ChildItem -Path "$PSScriptRoot\Azure-Proactive-Resiliency-Library\docs\content\services" -Filter "*.ps1" -Recurse
-    if (![string]::IsNullOrEmpty($SubscriptionIds) -and [string]::IsNullOrEmpty($SubscriptionsFile)) {
-      $SubIds = $SubIds | Where-Object { $_.Id -in $SubscriptionIds }
-    }
-
-    Write-Debug 'Starting Extra Powershell Scripts loop'
-    foreach ($Subscription in $SubIds) {
-      $SubID = $Subscription.id
-      $SubName = $Subscription.name
-
-      Write-Host 'Running APRL PS Scripts for the Subscription: ' -NoNewline
-      Write-Host $SubName -ForegroundColor Green
-
-      Start-Job -Name ('PSExtraction_' + $SubID) -ScriptBlock {
-        Set-AzContext -Subscription $($args[0]) -WarningAction SilentlyContinue
-        #az account set --subscription $($args[0]) --only-show-errors
-        $SideScripts = $($args[1])
-        $ViableScripts = @()
-        $job = @()
-
-        foreach ($Script in $SideScripts) {
-          $ScriptName = $Script.Name.Substring(0, $Script.Name.length - '.ps1'.length)
-          $ScriptFull = New-Object System.IO.StreamReader($Script.FullName)
-          $ScriptReady = $ScriptFull.ReadToEnd()
-          $ScriptFull.Dispose()
-
-          if ($ScriptReady -like '# Azure PowerShell script*') {
-            $ViableScripts += $Script
-            New-Variable -Name ('ScriptRun_' + $ScriptName) #-ErrorAction SilentlyContinue
-            New-Variable -Name ('ScriptJob_' + $ScriptName) #-ErrorAction SilentlyContinue
-            Set-Variable -Name ('ScriptRun_' + $ScriptName) -Value ([PowerShell]::Create()).AddScript($ScriptReady).AddArgument($($args[2])).AddArgument($($args[0]))
-            Set-Variable -Name ('ScriptJob_' + $ScriptName) -Value ((Get-Variable -Name ('ScriptRun_' + $ScriptName)).Value).BeginInvoke()
-            $job += (Get-Variable -Name ('ScriptJob_' + $ScriptName)).Value
-          }
-        }
-
-        while ($Job.Runspace.IsCompleted -contains $false) { Start-Sleep -Milliseconds 100 }
-
-        foreach ($Script in $ViableScripts) {
-          $ScriptName = $Script.Name.Substring(0, $Script.Name.length - '.ps1'.length)
-          New-Variable -Name ('ScriptValue_' + $ScriptName) #-ErrorAction SilentlyContinue
-          Set-Variable -Name ('ScriptValue_' + $ScriptName) -Value (((Get-Variable -Name ('ScriptRun_' + $ScriptName)).Value).EndInvoke((Get-Variable -Name ('ScriptJob_' + $ScriptName)).Value))
-        }
-
-        $Hashtable = @{}
-
-        foreach ($Script in $ViableScripts) {
-          $ScriptName = $Script.Name.Substring(0, $Script.Name.length - '.ps1'.length)
-          $Hashtable["$ScriptName"] = (Get-Variable -Name ('ScriptValue_' + $ScriptName)).Value
-        }
-
-        $Hashtable
-      } -ArgumentList $SubID, $SideScripts, $ResourceGroups
-
-    }
-
-    Write-Debug 'Starting to Process Jobs'
-    $JobNames = @()
-    Foreach ($Job in (Get-Job | Where-Object { $_.name -like 'PSExtraction_*' })) {
-      $JobNames += $Job.Name
-    }
-
-    while (Get-Job -Name $JobNames | Where-Object { $_.State -eq 'Running' }) {
-      $jb = Get-Job -Name $JobNames
-      Write-Debug ('Jobs Running: ' + [string]($jb | Where-Object { $_.State -eq 'Running' }).count)
-      Start-Sleep -Seconds 2
-    }
-
-    foreach ($Job in $JobNames) {
-      $TempJob = Receive-Job -Name $Job -WarningAction SilentlyContinue
-      Write-Debug ('Job ' + $Job + ' Returned: ' + ($TempJob.values | Where-Object { $_ -ne $null }).Count)
-      foreach ($key in $TempJob.Keys) {
-        if ($TempJob.$key) {
-          foreach ($data in $TempJob.$key) {
-            $result = [PSCustomObject]@{
-              recommendationId = [string]$data.recommendationId
-              name             = [string]$data.name
-              id               = [string]$data.id
-              param1           = [string]$data.param1
-              param2           = [string]$data.param2
-              param3           = [string]$data.param3
-              param4           = [string]$data.param4
-              param5           = [string]$data.param5
-              checkName        = ''
-            }
-            if (![string]::IsNullOrEmpty($result.recommendationId)) {
-              $Script:results += $result
-            }
-          }
-        }
-      }
-    }
-
-    foreach ($Job in $JobNames) {
-      Remove-Job $Job -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
-    }
-  } #>
 
   function Start-ScopesLoop {
     $Date = (Get-Date).AddMonths(-24)
@@ -925,7 +853,7 @@ $Script:Runtime = Measure-Command -Expression {
 
         if ($Script:RunbookQueryOverrides) {
           foreach ($queryOverridePath in $($Script:RunbookQueryOverrides)) {
-            Write-Host "[Runbook]: Loading [$($queryOverridePath)] query overrides..." -ForegroundColor Cyan
+            Write-Host "[-RunbookFile]: Loading [$($queryOverridePath)] query overrides..." -ForegroundColor Cyan
 
             $overrideKqlFiles = Get-ChildItem -Path $queryOverridePath -Filter '*.kql' -Recurse
 
@@ -938,7 +866,7 @@ $Script:Runtime = Measure-Command -Expression {
               $kqlName = $kqlShort.split('.')[0]
 
               if ($kqlQueryMap.ContainsKey($kqlName)) {
-                Write-Host "[Runbook]: Original [$kqlName] APRL query overridden by [$($overrideKqlFile.FullName)]." -ForegroundColor Cyan
+                Write-Host "[-RunbookFile]: Original [$kqlName] APRL query overridden by [$($overrideKqlFile.FullName)]." -ForegroundColor Cyan
               }
 
               # Override APRL query map based on recommendation
@@ -967,8 +895,8 @@ $Script:Runtime = Measure-Command -Expression {
           } else {
             $typeRaw = $kqlFile.DirectoryName.split('/')
           }
-          $kqltype = ('microsoft.' + $typeRaw[-3] + '/' + $typeRaw[-2])
 
+          $kqltype = ('microsoft.' + $typeRaw[-3] + '/' + $typeRaw[-2])
           $checkId = $kqlname.Split('/')[-1].ToLower()
 
           if ($Script:RunbookChecks -and $Script:RunbookChecks.Count -gt 0) {
@@ -983,23 +911,25 @@ $Script:Runtime = Measure-Command -Expression {
 
               $check.PSObject.Properties | ForEach-Object {
                 $checkName = $_.Name
-                $selectorName = $_.Value
+                $defaultSelectorName = $_.Value
 
-                if ($Script:RunbookSelectors.ContainsKey($selectorName)) {
+                if ($Script:RunbookSelectors.ContainsKey($defaultSelectorName)) {
                   # If a matching selector exists, add a new query to the queries array
                   # that includes the appropriate selector...
 
-                  $checkSelector = $Script:RunbookSelectors[$selectorName]
-
-                  # First, resolve any // selectors in the query...
-
-                  $selectorQuery = $baseQuery.Replace('// selector', "| where $checkSelector")
+                  $selectorQuery = $baseQuery
 
                   # Resolve named selectors...
                   foreach ($selectorKey in $Script:RunbookSelectors.Keys) {
                     $namedSelector = $Script:RunbookSelectors[$selectorKey]
-                    $selectorQuery = $selectorQuery.Replace("// selector:$selectorName", "| where $namedSelector")
+                    $selectorQuery = $selectorQuery.Replace("// selector:$selectorKey", "| where $namedSelector")
+                    $selectorQuery = $selectorQuery.Replace("//selector:$selectorKey", "| where $namedSelector")
                   }
+
+                  # Then, resolve any default selectors...
+                  $checkSelector = $Script:RunbookSelectors[$defaultSelectorName]
+                  $selectorQuery = $selectorQuery.Replace('//selector', "| where $checkSelector")
+                  $selectorQuery = $selectorQuery.Replace('// selector', "| where $checkSelector")
 
                   if ($UseImplicitRunbookSelectors) {
                     # Then, wrap the entire query in an inner join to apply a global selector.
@@ -1026,7 +956,7 @@ $Script:Runtime = Measure-Command -Expression {
                   $queries += [PSCustomObject]@{
                     checkId   = [string]$checkId
                     checkName = [string]$checkName
-                    selector  = [string]$selectorName
+                    selector  = [string]$defaultSelectorName
                     query     = [string]$selectorQuery
                     type      = [string]$kqltype
                   }
@@ -1034,12 +964,12 @@ $Script:Runtime = Measure-Command -Expression {
                   $runbookCheckCt++
 
                 } else {
-                  Write-Host "[Runbook]: Selector $selectorName not found in runbook. Skipping check..." -ForegroundColor Yellow
+                  Write-Host "[-RunbookFile]: Selector $selectorName not found in runbook. Skipping check..." -ForegroundColor Yellow
                 }
               }
 
               if ($queries.Count -gt 0) {
-                Write-Host "[Runbook]: There are $runbookCheckCt runbook check(s) configured for $checkId. Running checks..." -ForegroundColor Cyan
+                Write-Host "[-RunbookFile]: There are $runbookCheckCt runbook check(s) configured for $checkId. Running checks..." -ForegroundColor Cyan
               }
             }
           } else {
@@ -1067,7 +997,7 @@ $Script:Runtime = Measure-Command -Expression {
           if ($selector -eq 'APRL') {
             Write-Host "[APRL]: Microsoft.$type - $checkId" -ForegroundColor Green -NoNewline
           } else {
-            Write-Host "[Runbook]: [$checkName (selector: '$selector')]: $checkId" -ForegroundColor Green -NoNewline
+            Write-Host "[-RunbookFile]: [$checkName (selector: '$selector')]: $checkId" -ForegroundColor Green -NoNewline
           }
           Write-Host ' +++++++++++++++'
 
@@ -1419,6 +1349,13 @@ $Script:Runtime = Measure-Command -Expression {
     Exit
   }
 
+  Write-Debug "Checking parameters..."
+
+  if (!(Test-ScriptParameters)) {
+    Write-Host 'Invalid parameters. Exiting...' -ForegroundColor Red
+    Exit
+  }
+
   if ($ConfigFile) {
     $Scopes = @()
     $ConfigData = Import-ConfigFileData -file $ConfigFile
@@ -1447,9 +1384,6 @@ $Script:Runtime = Measure-Command -Expression {
           }
       }
   }
-
-  Write-Debug "Checking Parameters"
-  Test-SubscriptionParameter
 
   Write-Debug 'Reseting Variables'
   Invoke-ResetVariable
