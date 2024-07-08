@@ -1,0 +1,7 @@
+// Azure Resource Graph Query
+// Gets Entry Domain Services that are using the Standard SKU
+resources
+| where type == "microsoft.aad/domainservices"
+| extend sku = properties.sku
+| where sku =~ 'Standard'
+| project recommendationId='bb6deb9d-24fa-4ee8-bc23-ac3ebc7fdf8e', name=name, id=id, tags=tags, param1=strcat('SKU:', sku)
