@@ -754,7 +754,7 @@ $Script:Runtime = Measure-Command -Expression {
                   {
                     $typeRaw = $kqlFile.DirectoryName.split('/')
                   }
-                $kqltype = ('microsoft.' + $typeRaw[-3] + '/' + $typeRaw[-2])
+                $kqltype = ('Microsoft.' + $typeRaw[-3] + '/' + $typeRaw[-2])
 
                 $checkId = $kqlname.Split("/")[-1].ToLower()
 
@@ -836,7 +836,7 @@ $Script:Runtime = Measure-Command -Expression {
 
                 Write-Host "++++++++++++++++++ " -NoNewline
                 if ($selector -eq 'APRL') {
-                  Write-Host "[APRL]: Microsoft.$type - $checkId" -ForegroundColor Green -NoNewline
+                  Write-Host "[APRL]: $type - $checkId" -ForegroundColor Green -NoNewline
                 }
                 else {
                   Write-Host "[$selector]: $checkId" -ForegroundColor Green -NoNewline
