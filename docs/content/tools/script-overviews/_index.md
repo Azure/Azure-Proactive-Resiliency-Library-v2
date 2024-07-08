@@ -38,11 +38,17 @@ The Collector PowerShell script is the first script to be run in the Azure Proac
 
     - Parameters include:
       - **TenantID**:  *Optional* ; tenant to be used.
-      - **SubscriptionIds**:  *Optional (or SubscriptionsFile)* ; Specifies Subscription(s) to be included in the analysis: Subscription1,Subscription2.
-      - **SubscriptionsFile**:  *Optional (or SubscriptionIds)* ; specifies the file with the subscription list to be analysed (one subscription per line).
+      - **SubscriptionIds**:  *Required (or ConfigFile)* ; Specifies Subscription(s) to be included in the analysis: /subscriptions/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY,/subscriptions/AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA.
       - **RunbookFile**:  *Optional* ; specifies the file with the runbook (selectors & checks) to be used.
-      - **ResourceGroups**:  *Optional* ; specifies Resource Group(s) to be included in the analysis: ResourceGroup1,ResourceGroup2.
-      - **Debug**: *Optional* ; Writes Debugging information of the script during the execution.
+      - **ResourceGroups**:  *Optional* ; specifies Resource Group(s) to be included in the analysis: /subscriptions/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY/resourceGroups/ResourceGroup1,/subscriptions/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY/resourceGroups/ResourceGroup2.
+      - **Tags**:  *Optional* ; specifies tags to be used for filtering the resources: TagName1||TagName2||TagNameN==TagValue1||TagValue2, TagName1==TagValue1.
+      - **ConfigFile**:  *Optional* ; specifies a file for advanced filtering, including: subscription, resourceGroup, resourceId, Tags.
+      - **AzureEnvironment**:  *Optional* ; specifies the Azure Environment to used for the analysis: AzureCloud, AzureUSGovernment.
+      - **SAP**:  *Optional* ; used for specialized workload analysis.
+      - **AVD**:  *Optional* ; used for specialized workload analysis.
+      - **AVS**:  *Optional* ; used for specialized workload analysis.
+      - **HPC**:  *Optional* ; used for specialized workload analysis.
+      - **Debugging**: *Optional* ; Writes Debugging information of the script during the execution.
 
     {{< figure src="../../img/tools/collector-3.png" width="100%" >}}
 
@@ -78,12 +84,18 @@ The Collector PowerShell script is the first script to be run in the Azure Proac
 1. Execute script leveraging optional parameters
 
       - Parameters include:
-        - **TenantID**:  Optional; tenant to be used.
-        - **SubscriptionIds**:  Optional (or SubscriptionsFile); Specifies Subscription(s) to be included in the analysis: Subscription1,Subscription2.
-        - **SubscriptionsFile**:  Optional (or SubscriptionIds); specifies the file with the subscription list to be analysed (one subscription per line).
-        - **RunbookFile**:  Optional; specifies the file with the runbook (selectors & checks) to be used.
-        - **ResourceGroups**:  Optional; specifies Resource Group(s) to be included in the analysis: ResourceGroup1,ResourceGroup2.
-        - **Debug**:  Writes Debugging information of the script during the execution.
+        - **TenantID**:  *Optional* ; tenant to be used.
+        - **SubscriptionIds**:  *Required (or ConfigFile)* ; Specifies Subscription(s) to be included in the analysis: /subscriptions/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY,/subscriptions/AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA.
+        - **RunbookFile**:  *Optional* ; specifies the file with the runbook (selectors & checks) to be used.
+        - **ResourceGroups**:  *Optional* ; specifies Resource Group(s) to be included in the analysis: /subscriptions/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY/resourceGroups/ResourceGroup1,/subscriptions/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY/resourceGroups/ResourceGroup2.
+        - **Tags**:  *Optional* ; specifies tags to be used for filtering the resources: TagName1||TagName2||TagNameN==TagValue1||TagValue2, TagName1==TagValue1.
+        - **ConfigFile**:  *Optional* ; specifies a file for advanced filtering, including: subscription, resourceGroup, resourceId, Tags.
+        - **AzureEnvironment**:  *Optional* ; specifies the Azure Environment to used for the analysis: AzureCloud, AzureUSGovernment.
+        - **SAP**:  *Optional* ; used for specialized workload analysis.
+        - **AVD**:  *Optional* ; used for specialized workload analysis.
+        - **AVS**:  *Optional* ; used for specialized workload analysis.
+        - **HPC**:  *Optional* ; used for specialized workload analysis.
+        - **Debugging**: *Optional* ; Writes Debugging information of the script during the execution.
         {{< figure src="../../img/tools/collector-8.png" width="100%" >}}
 
 1. Authenticate with the account that has Reader permissions to the target subscription(s)
@@ -125,9 +137,14 @@ The Data Analyzer PowerShell script is the second script in the Azure Proactive 
       - **Recommendations**: you will find all Recommendations, their category, impact, description, learn more links, and much more.
         - Note that Columns A and B are counting the number of Azure Resources associated with the RecommendationID.
       - **ImpactedResources**: you will find a list of Azure Resources associated with a RecommendationID. These are the Azure Resources NOT following Microsoft best practices for Reliability.
+      - **Other-OutOfScope**: you will find a list of the Resources that are Out of Scope of the Wara engagement based on the ResourceTypes, after all filters have been applied.
+      - **ResourceTypes**: you will find a list of all ResourceTypes the customer is using, number of Resources deployed for each one, and if there are Recommendations for the ResourceType in APRL.
+      - **Outages**: you will find a list of all the outages that impacted the subscriptions (this worksheet might not exist if there are no Outages to be found).
+      - **Retirements**: you will find a list of all the next retirements in the subscriptions (this worksheet might not exist if there are no Retirements to be found).
+      - **Support Tickets**: you will find a list of all the Support Tickets for the subscriptions in the past 6 months (this worksheet might not exist if there are no Support Tickets to be found).
       - **PivotTable**: you will find a couple of pivot tables used to automatically create the charts
       - **Charts**: you will find 3 charts that will be used in the Executive Summary PPTx
-      - **ResourceTypes**: you will find a list of all ResourceTypes the customer is using, number of Resources deployed for each one, and if there are Recommendations for the ResourceType in APRL.
+      - 
     - At this point, all Azure Resources with recommendations and Azure Resource Graph queries available in APRL, were automatically validated. Follow the next steps to validate the remaining services without automation or that does not exist in APRL yet.
 
 1. Go to the "ImpactedResources" worksheet, filter Column "B" by "IMPORTANT", and validate manually the remaining resource configurations for reliabilty patterns.
