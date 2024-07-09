@@ -71,3 +71,40 @@
   learnMoreLink:
     - name: Designing for disaster recovery with ExpressRoute private peering
       url: "https://learn.microsoft.com/azure/expressroute/designing-for-disaster-recovery-with-expressroute-privatepeering"
+
+
+- description: Monitor gateway for Site-to-site Virtual WAN VPN gateways
+  aprlGuid: f0d4f766-ac19-48c4-b228-4601cc038baa
+  recommendationTypeId: null
+  recommendationControl: Monitoring and Alerting
+  recommendationImpact: High
+  recommendationResourceType: Friendly name to identity resource type
+  recommendationMetadataState: Active
+  longDescription: Set up monitoring and alerts for Virtual WAN VPN Gateway. Create alert rule for ensuring promptly response to critical events such as packet drop counts, BGP status, Gateway overutilization.
+  potentialBenefits: Detection and mitigation to avoid disruptions.
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no/arg
+  tags: null
+  learnMoreLink:
+    - name: Virtual WAN Monitoring Best Practices
+      url: "https://learn.microsoft.com/en-us/azure/virtual-wan/monitoring-best-practices#virtual-wan-gateways"
+
+- description: Monitor health for Virtual WAN Express Route gateways
+  aprlGuid: a3f43e51-df4b-4e90-a5a9-e613eac18af4
+  recommendationTypeId: null
+  recommendationControl: Monitoring and Alerting
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/expressRouteGateways/
+  recommendationMetadataState: Active
+  longDescription: Set up monitoring and alerts for Virtual WAN Express Route Gateway. Create alert rule for ensuring promptly response to critical events such as exceeding packets per second, exceeding BGP routes prefixes, Gateway overutilization and high frequency in route changes.
+  potentialBenefits: Detection and mitigation to avoid disruptions.
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no/arg
+  tags: null
+  learnMoreLink:
+    - name: Virtual WAN Monitoring Best Practices
+      url: "https://learn.microsoft.com/en-us/azure/virtual-wan/monitoring-best-practices#expressroute-gateway"
