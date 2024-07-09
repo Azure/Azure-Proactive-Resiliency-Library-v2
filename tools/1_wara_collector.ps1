@@ -1,17 +1,13 @@
 <#
-
 .SYNOPSIS
-
 Well-Architected Reliability Assessment (WARA) v2 collector script
 
 .DESCRIPTION
-
 This script is used to collect data from Azure subscriptions to be used in the Well-Architected Reliability Assessment (WARA) v2. The script collects data from the subscriptions, resource groups, and resources, and then runs resource graph queries (Kusto/KQL) to extract information about the resources. The script also collects information about outages, support tickets, advisor recommendations, service retirements, and service health alerts. The collected data is then used to generate a JSON file with recommendations for improving the reliability of the resources/ Typically, this JSON file is used as an input for the WARA v2 data analyzer script (2_wara_data_analyzer.ps1).
 
 By default, the script executes all relevant checks in the Azure Proactive Resiliency Library v2 but it can also be configured to run checks against specific groups of resources using a runbook (-RunbookFile).
 
 .LINK
-
 https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2
 
 .PARAMETER Debugging
@@ -32,17 +28,17 @@ https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2
 .PARAMETER SubscriptionIds
 Specifies the subscription IDs to be included in the review. Multiple subscription IDs should be separated by commas. Subscription IDs must be in either GUID form (e.g., 00000000-0000-0000-0000-000000000000) or full subscription ID form (e.g., /subscriptions/00000000-0000-0000-0000-000000000000).
 
-NOTE: Can't be used in combination with --ConfigFile parameter.
+NOTE: Can't be used in combination with -ConfigFile parameter.
 
 .PARAMETER ResourceGroups
 Specifies the resource groups to be included in the review. Multiple resource groups should be separated by commas. Resource groups must be in full resource group ID form (e.g., /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1).
 
-NOTE: Can't be used in combination with --ConfigFile or --RunbookFile parameters.
+NOTE: Can't be used in combination with -ConfigFile or -RunbookFile parameters.
 
 .PARAMETER Tags
 Specifies the tags to be used to filter resources.
 
-NOTE: Can't be used in combination with --ConfigFile or --RunbookFile parameters.
+NOTE: Can't be used in combination with -ConfigFile or -RunbookFile parameters.
 
 .PARAMETER TenantID
 Specifies the Entra tenant ID to be used to authenticate to Azure.
@@ -53,22 +49,22 @@ Specifies the Azure environment to be used. Valid values are 'AzureCloud' and 'A
 .PARAMETER ConfigFile
 Specifies the configuration file to be used.
 
-NOTE: Can't be used in combination with --RunbookFile, --SubscriptionIds, --ResourceGroups, or --Tags parameters.
+NOTE: Can't be used in combination with -RunbookFile, -SubscriptionIds, -ResourceGroups, or -Tags parameters.
 
 .PARAMETER RunbookFile
 Specifies the runbook file to be used. More information about runbooks:
 
 - The parameters section defines the parameters used by the runbook. These parameters will be automatically merged into selectors and queries at runtime.
-- The selectors section identifies groups of Azure resources that specific checks will be run against.
+- The selectors section identifies groups of Azure resources that specific checks will be run against. Selectors can be any valid KQL predicate (e.g., resourceGroup =~ 'rg1').
 - The checks section maps resource graph queries (identified by GUIDs) to specific selectors.
 - The query_overrides sections enables catalogs of specialized resoruce graph queries to by included in the review.
 
-NOTE: Can't be used in combination with --ConfigFile, --ResourceGroups, or --Tags parameters. Specify subscriptions in scope using --SubscriptionIds parameter.
+NOTE: Can't be used in combination with -ConfigFile, -ResourceGroups, or -Tags parameters. Specify subscriptions in scope using -SubscriptionIds parameter.
 
 .PARAMETER UseImplicitRunbookSelectors
 [Switch]: Enables the use of implicit runbook selectors. When this switch is enabled, each resource graph query will be wrapped in an inner join that filters the results to only include resources that match the selector. This is useful when queries do not include selector injection comments (e.g., // selector, // selector:x).
 
-NOTE: This parameter is only used when a runbook file (--RunbookFile) is provided.
+NOTE: This parameter is only used when a runbook file (-RunbookFile) is provided.
 
 .EXAMPLE
 Run against all subscriptions in tenant "00000000-0000-0000-0000-000000000000":
@@ -88,7 +84,6 @@ Use a runbook:
 
 .OUTPUTS
 A JSON file with the collected data.
-
 #>
 
 Param(
