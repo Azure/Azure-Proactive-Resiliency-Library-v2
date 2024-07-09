@@ -59,7 +59,7 @@
     - name: Azure DDoS Protection overview
       url: "https://learn.microsoft.com/azure/ddos-protection/ddos-protection-overview"
 
-- description: Leverage Azure Policy inheritance model
+- description: Leverage Azure Firewall policy inheritance model
   aprlGuid: 3a63560a-1ed3-6140-acd1-d1d23f9a2e12
   recommendationTypeId: null
   recommendationControl: Governance
@@ -97,7 +97,7 @@
     - name: Azure Well-Architected Framework review - Azure Firewall
       url: "https://learn.microsoft.com/en-us/azure/well-architected/service-guides/azure-firewall#recommendations"
 
-- description: Monitor AZFW Latency Probes metric
+- description: Monitor "AZFW Latency Probe" metric
   aprlGuid: 8faace2d-a36e-425c-aa58-2ad99e3e0b7a
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting

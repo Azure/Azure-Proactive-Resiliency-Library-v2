@@ -7,5 +7,5 @@ resources
 | where tolower(sku_tier) !contains "standard" and
         tolower(sku_tier) !contains "premium" and
         tolower(sku_tier) !contains "isolatedv2"
-| project recommendationid="b2113023-a553-2e41-9789-597e2fb54c31", name, id, tags, param1= strcat("SKU=",sku_tier)
+| project recommendationId="b2113023-a553-2e41-9789-597e2fb54c31", name, id, tags, param1= strcat("SKU=",sku_tier)
 
