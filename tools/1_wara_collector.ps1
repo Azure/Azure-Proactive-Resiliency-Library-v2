@@ -32,6 +32,18 @@ https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2
 .PARAMETER SubscriptionIds
 Specifies the subscription IDs to be included in the review. Multiple subscription IDs should be separated by commas. Subscription IDs must be in either GUID form (e.g., 00000000-0000-0000-0000-000000000000) or full subscription ID form (e.g., /subscriptions/00000000-0000-0000-0000-000000000000).
 
+NOTE: Can't be used in combination with --ConfigFile parameter.
+
+.PARAMETER ResourceGroups
+Specifies the resource groups to be included in the review. Multiple resource groups should be separated by commas. Resource groups must be in full resource group ID form (e.g., /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1).
+
+NOTE: Can't be used in combination with --ConfigFile or --RunbookFile parameters.
+
+.PARAMETER Tags
+Specifies the tags to be used to filter resources.
+
+NOTE: Can't be used in combination with --ConfigFile or --RunbookFile parameters.
+
 .PARAMETER TenantID
 Specifies the Entra tenant ID to be used to authenticate to Azure.
 
@@ -41,6 +53,8 @@ Specifies the Azure environment to be used. Valid values are 'AzureCloud' and 'A
 .PARAMETER ConfigFile
 Specifies the configuration file to be used.
 
+NOTE: Can't be used in combination with --RunbookFile, --SubscriptionIds, --ResourceGroups, or --Tags parameters.
+
 .PARAMETER RunbookFile
 Specifies the runbook file to be used. More information about runbooks:
 
@@ -49,8 +63,12 @@ Specifies the runbook file to be used. More information about runbooks:
 - The checks section maps resource graph queries (identified by GUIDs) to specific selectors.
 - The query_overrides sections enables catalogs of specialized resoruce graph queries to by included in the review.
 
+NOTE: Can't be used in combination with --ConfigFile, --ResourceGroups, or --Tags parameters. Specify subscriptions in scope using --SubscriptionIds parameter.
+
 .PARAMETER UseImplicitRunbookSelectors
 [Switch]: Enables the use of implicit runbook selectors. When this switch is enabled, each resource graph query will be wrapped in an inner join that filters the results to only include resources that match the selector. This is useful when queries do not include selector injection comments (e.g., // selector, // selector:x).
+
+NOTE: This parameter is only used when a runbook file (--RunbookFile) is provided.
 
 .EXAMPLE
 Run against all subscriptions in tenant "00000000-0000-0000-0000-000000000000":
@@ -250,7 +268,17 @@ $Script:Runtime = Measure-Command -Expression {
         $IsValid = $false
       }
 
+      if ($ResourceGroups -or $Tags) {
+        Write-Host "Resource group(s) (-ResourceGroups) and tags (-Tags) cannot be used with a runbook file (-RunbookFile)." -ForegroundColor Red
+        $IsValid = $false
+      }
+
     } else {
+
+      if ($UseImplicitRunbookSelectors) {
+        Write-Host "Implicit runbook selectors (-UseImplicitRunbookSelectors) can only be used with a runbook file (-RunbookFile)." -ForegroundColor Red
+        $IsValid = $false
+      }
 
       if (!($SubscriptionIds) -and !($ConfigFile)) {
         Write-Host "Subscription ID(s) (-SubscriptionIds) or configuration file (-ConfigFile) is required when not using a runbook file (-RunbookFile)." -ForegroundColor Red
@@ -262,6 +290,10 @@ $Script:Runtime = Measure-Command -Expression {
         $IsValid = $false
       }
 
+      if ($ConfigFile -and ($SubscriptionIds -or $ResourceGroups -or $Tags)) {
+        Write-Host "Configuration file (-ConfigFile) and (Subscription ID(s) (-SubscriptionIds), resource group(s) (-ResourceGroups), or tags (-Tags)) cannot be used together." -ForegroundColor Red
+        $IsValid = $false
+      }
     }
 
     return $IsValid
