@@ -1,26 +1,84 @@
-[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingWriteHost', '', Justification = 'False positive as Write-Host does not represent a security risk and this script will always run on host consoles')]
-[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', '', Justification = 'False positive as parameters are not always required')]
-
 <#
+
 .SYNOPSIS
-Well-Architected Reliability Assessment Script
+
+Well-Architected Reliability Assessment (WARA) v2 collector script
 
 .DESCRIPTION
-The script "1_wara_collector" will execute the kusto queries from APRL (Azure Proactive Resiliency Library) against an Azure Environment and will export the results to a JSON file.
+
+This script is used to collect data from Azure subscriptions to be used in the Well-Architected Reliability Assessment (WARA) v2. The script collects data from the subscriptions, resource groups, and resources, and then runs resource graph queries (Kusto/KQL) to extract information about the resources. The script also collects information about outages, support tickets, advisor recommendations, service retirements, and service health alerts. The collected data is then used to generate a JSON file with recommendations for improving the reliability of the resources/ Typically, this JSON file is used as an input for the WARA v2 data analyzer script (2_wara_data_analyzer.ps1).
+
+By default, the script executes all relevant checks in the Azure Proactive Resiliency Library v2 but it can also be configured to run checks against specific groups of resources using a runbook (-RunbookFile).
 
 .LINK
+
 https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2
+
+.PARAMETER Debugging
+[Switch]: Enables debugging output.
+
+.PARAMETER SAP
+[Switch]: Enables recommendations and queries for the SAP specialized workload.
+
+.PARAMETER AVD
+[Switch]: Enables recommendations and queries for the AVD specialized workload.
+
+.PARAMETER AVS
+[Switch]: Enables recommendations and queries for the AVS specialized workload.
+
+.PARAMETER HPC
+[Switch]: Enables recommendations and queries for the HPC specialized workload.
+
+.PARAMETER SubscriptionIds
+Specifies the subscription IDs to be included in the review. Multiple subscription IDs should be separated by commas. Subscription IDs must be in either GUID form (e.g., 00000000-0000-0000-0000-000000000000) or full subscription ID form (e.g., /subscriptions/00000000-0000-0000-0000-000000000000).
+
+.PARAMETER TenantID
+Specifies the Entra tenant ID to be used to authenticate to Azure.
+
+.PARAMETER AzureEnvironment
+Specifies the Azure environment to be used. Valid values are 'AzureCloud' and 'AzureUSGovernment'. Default value is 'AzureCloud'.
+
+.PARAMETER ConfigFile
+Specifies the configuration file to be used.
+
+.PARAMETER RunbookFile
+Specifies the runbook file to be used. More information about runbooks:
+
+- The parameters section defines the parameters used by the runbook. These parameters will be automatically merged into selectors and queries at runtime.
+- The selectors section identifies groups of Azure resources that specific checks will be run against.
+- The checks section maps resource graph queries (identified by GUIDs) to specific selectors.
+- The query_overrides sections enables catalogs of specialized resoruce graph queries to by included in the review.
+
+.PARAMETER UseImplicitRunbookSelectors
+[Switch]: Enables the use of implicit runbook selectors. When this switch is enabled, each resource graph query will be wrapped in an inner join that filters the results to only include resources that match the selector. This is useful when queries do not include selector injection comments (e.g., // selector, // selector:x).
+
+.EXAMPLE
+Run against all subscriptions in tenant "00000000-0000-0000-0000-000000000000":
+.\1_wara_collector.ps1 -TenantID "00000000-0000-0000-0000-000000000000"
+
+.EXAMPLE
+Run against specific subscriptions in tenant "00000000-0000-0000-0000-000000000000":
+.\1_wara_collector.ps1 -TenantID "00000000-0000-0000-0000-000000000000" -SubscriptionIds "00000000-0000-0000-0000-000000000000,11111111-1111-1111-1111-111111111111"
+
+.EXAMPLE
+Run against specific subscriptions, resource groups, and resources defined in a configuration file:
+.\1_wara_collector.ps1 -TenantID "00000000-0000-0000-0000-000000000000" -ConfigFile ".\config.json"
+
+.EXAMPLE
+Use a runbook:
+.\1_wara_collector.ps1 -TenantID "00000000-0000-0000-0000-000000000000" -SubscriptionIds "00000000-0000-0000-0000-000000000000" -RunbookFile ".\runbook.json
+
+.OUTPUTS
+A JSON file with the collected data.
 
 #>
 
 Param(
   [switch]$Debugging,
-  [switch]$Help,
   [switch]$SAP,
   [switch]$AVD,
   [switch]$AVS,
   [switch]$HPC,
-  [switch]$ShowQueries,
   $SubscriptionIds,
   $ResourceGroups,
   $TenantID,
@@ -32,6 +90,9 @@ Param(
   [switch]$UseImplicitRunbookSelectors,
   $RunbookFile
   )
+
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingWriteHost', '', Justification = 'False positive as Write-Host does not represent a security risk and this script will always run on host consoles')]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', '', Justification = 'False positive as parameters are not always required')]
 
 #import-module "./modules/collector.psm1" -Force
 
@@ -204,34 +265,6 @@ $Script:Runtime = Measure-Command -Expression {
     }
 
     return $IsValid
-  }
-
-  function Get-HelpMessage {
-    Write-Host ""
-    Write-Host "Parameters"
-    Write-Host ""
-    Write-Host " -TenantID <ID>        :  Optional; tenant to be used. "
-    Write-Host " -SubscriptionIds <IDs>:  Optional (or SubscriptionsFile); Specifies Subscription(s) to be included in the analysis: Subscription1,Subscription2. "
-    Write-Host " -SubscriptionsFile    :  Optional (or SubscriptionIds); specifies the file with the subscription list to be analysed (one subscription per line). "
-    Write-Host " -RunbookFile          :  Optional; specifies the file with the runbook (selectors & checks) to be used. "
-    Write-Host " -ResourceGroups       :  Optional; specifies Resource Group(s) to be included in the analysis: ResourceGroup1,ResourceGroup2. "
-    Write-Host " -SAP                  :  Optional; gets specialized recommendations and queries for the defined workload form the APRL - Specialized Workloads section. "
-    Write-Host " -AVD                  :  Optional; gets specialized recommendations and queries for the defined workload form the APRL - Specialized Workloads section. "
-    Write-Host " -AVS                  :  Optional; gets specialized recommendations and queries for the defined workload form the APRL - Specialized Workloads section. "
-    Write-Host " -HPC                  :  Optional; gets specialized recommendations and queries for the defined workload form the APRL - Specialized Workloads section. "
-    Write-Host " -Debug                :  Writes Debugging information of the script during the execution. "
-    Write-Host ""
-    Write-Host "Examples: "
-    Write-Host "  Run against all the subscriptions in the Tenant"
-    Write-Host "  .\1_wara_collector.ps1 -TenantID XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
-    Write-Host ""
-    Write-Host "  Run against specific Subscriptions in the Tenant"
-    Write-Host "  .\1_wara_collector.ps1 -TenantID XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX -SubscriptionIds YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY,AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA"
-    Write-Host ""
-    Write-Host "  Run against the subscriptions in a file the Tenant"
-    Write-Host '  .\1_wara_collector.ps1 -TenantID XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX -SubscriptionsFile "C:\Temp\Subscriptions.txt"'
-    Write-Host ''
-    Write-Host ''
   }
 
   function Invoke-ResetVariable {
@@ -1344,8 +1377,9 @@ $Script:Runtime = Measure-Command -Expression {
   Write-Host 'Version: ' -NoNewline
   Write-Host $Script:Version -ForegroundColor DarkBlue
 
-  if ($Help.IsPresent) {
-    Get-HelpMessage
+  if ($SAP.IsPresent) {
+    Write-Host "We caught it here..."
+    Get-Help -Name "./1_wara_collector.ps1" -Detailed
     Exit
   }
 
@@ -1380,7 +1414,15 @@ $Script:Runtime = Measure-Command -Expression {
       {
         $Scopes += foreach ($Sub in $SubscriptionIds)
           {
-            $Sub
+            $_guid = [Guid]::NewGuid()
+
+            if ([Guid]::TryParse($Sub, [ref]$_guid)) {
+              $SubId = "/subscriptions/$Sub"
+              Write-Host "[-SubscriptionIds]: Fixed '$Sub' >> '$SubId'" -ForegroundColor Yellow
+              "/subscriptions/$Sub" # Fixed!
+            } else {
+              $Sub
+            }
           }
       }
   }
@@ -1399,9 +1441,6 @@ $Script:Runtime = Measure-Command -Expression {
 
   Write-Debug "Calling Function: Connect-ToAzure"
   Connect-ToAzure
-
-  #Write-Debug "Calling Function: Invoke-PSModules"
-  #Invoke-PSModules
 
   Write-Debug 'Calling Function: Start-ScopesLoop'
   Start-ScopesLoop
