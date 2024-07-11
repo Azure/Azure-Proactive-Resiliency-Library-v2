@@ -7,4 +7,4 @@ resources
 | where type =~ "microsoft.compute/virtualmachines"
 | project vmId = tolower(id), vmName = name, encryptionAtHost = iff(properties.securityProfile.encryptionAtHost == true, true, false)) on vmId
 | where not(encryptionAtHost) and not(azureDiskEncryption)
-| project recommendationId = 'f0a97179-133a-6e4f-8a49-8a44da73ffce', name = vmName, id =vmId, param1 = strcat('diskName:',diskName), param2 = strcat('azureDiskEncryption:',azureDiskEncryption), param3 = strcat('encryptionAtHost:',encryptionAtHost)
+| project recommendationId = 'f0a97179-133a-6e4f-8a49-8a44da73ffce', name = vmName, id =vmId, param1 = strcat('diskName:',diskName), param2 = strcat('azureDiskEncryption:',iff(azureDiskEncryption, "Enabled", "Disabled")), param3 = strcat('encryptionAtHost:',iff(encryptionAtHost, "Enabled", "Disabled"))
