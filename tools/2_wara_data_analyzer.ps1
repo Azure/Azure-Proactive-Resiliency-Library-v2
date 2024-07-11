@@ -19,7 +19,8 @@ Param(
   [switch]$Debugging,
   [switch]$Help,
   [Parameter(mandatory = $true)]
-  [string] $JSONFile)
+  [string] $JSONFile,
+  [string] $OutputFile)
 
 if ($Debugging.IsPresent) { $DebugPreference = 'Continue' } else { $DebugPreference = 'silentlycontinue' }
 
@@ -327,7 +328,11 @@ $Script:Runtime = Measure-Command -Expression {
     $Script:Recommendations = @()
 
     # Defines the Excel file to be created in the root folder
-    $Script:ExcelFile = ($PSScriptRoot + '\WARA Action Plan ' + (Get-Date -Format 'yyyy-MM-dd-HH-mm') + '.xlsx')
+    if ($OutputFile) {
+      $Script:ExcelFile = $OutputFile
+    } else {
+      $Script:ExcelFile = ($PSScriptRoot + '\WARA Action Plan ' + (Get-Date -Format 'yyyy-MM-dd-HH-mm') + '.xlsx')
+    }
 
     function Add-ImpactedResource {
       ####################    Creates the first sheet (ImpactedResources)

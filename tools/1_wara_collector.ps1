@@ -25,6 +25,9 @@ https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2
 .PARAMETER HPC
 [Switch]: Enables recommendations and queries for the HPC specialized workload.
 
+.PARAMETER OutputFile
+Specifies the output file path. If not specified, the output file will be named "WARA-YYYY-MM-DD-HH-MM-SS.json".
+
 .PARAMETER SubscriptionIds
 Specifies the subscription IDs to be included in the review. Multiple subscription IDs should be separated by commas. Subscription IDs must be in either GUID form (e.g., 00000000-0000-0000-0000-000000000000) or full subscription ID form (e.g., /subscriptions/00000000-0000-0000-0000-000000000000).
 
@@ -99,6 +102,7 @@ Param(
   [ValidateSet('AzureCloud', 'AzureUSGovernment')]
   $AzureEnvironment = 'AzureCloud',
   $ConfigFile,
+  $OutputFile,
   # Runbook parameters...
   [switch]$UseImplicitRunbookSelectors,
   $RunbookFile
@@ -1392,7 +1396,11 @@ $Script:Runtime = Measure-Command -Expression {
           $ExporterArray += $ImpactedResourcesBeforeFilteringExporter
         }
 
-      $Script:JsonFile = ($PSScriptRoot + '\WARA-File-' + (Get-Date -Format 'yyyy-MM-dd-HH-mm') + '.json')
+      if (!($OutputFile)) {
+        $Script:JsonFile = ($PSScriptRoot + '\WARA-File-' + (Get-Date -Format 'yyyy-MM-dd-HH-mm') + '.json')
+      } else {
+        $Script:JsonFile = $OutputFile
+      }
 
       $ExporterArray | ConvertTo-Json -Depth 15 | Out-File $Script:JsonFile
     }
@@ -1403,12 +1411,6 @@ $Script:Runtime = Measure-Command -Expression {
   $Script:Version = '2.0.13'
   Write-Host 'Version: ' -NoNewline
   Write-Host $Script:Version -ForegroundColor DarkBlue
-
-  if ($SAP.IsPresent) {
-    Write-Host "We caught it here..."
-    Get-Help -Name "./1_wara_collector.ps1" -Detailed
-    Exit
-  }
 
   Write-Debug "Checking parameters..."
 
