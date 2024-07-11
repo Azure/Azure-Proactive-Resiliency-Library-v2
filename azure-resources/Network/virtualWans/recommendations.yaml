@@ -14,7 +14,7 @@
   automationAvailable: no/arg
   tags: null
   learnMoreLink:
-    - name: Secure your virtual hub using Azure Firewall Manager
+    - name: Secure your v-Hub using Azure Firewall Manager
       url: "https://learn.microsoft.com/en-us/azure/firewall-manager/secure-cloud-network"
 
 - description: Enable routing intent to enable Secured Hubs Interconnectivity
@@ -25,7 +25,7 @@
   recommendationResourceType: Microsoft.Network/virtualHubs/
   recommendationMetadataState: Active
   longDescription: |
-    Routing Intent will enable Inter Hub connectivity. This is recommended if you have Secured Hubs and no Custom Route Tables to establish Interconnectivity between the Vnets across virtual hubs.
+    Routing Intent will enable Inter Hub connectivity. This is recommended if you have Secured Hubs and no Custom Route Tables to establish Interconnectivity between the Vnets across v-Hubs.
   potentialBenefits: Remove assymetrical flow for Spoke to Spoke connectivity.
   pgVerified: true
   publishedToLearn: false
@@ -33,17 +33,17 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: How to configure Virtual WAN Hub routing intent and routing policies
+    - name: How to configure v-Hub routing intent and routing policies
       url: "https://learn.microsoft.com/en-us/azure/virtual-wan/how-to-routing-policies"
 
-- description: Enable routing intent to send private and internet traffic via Azure Firewall or Security Solution deployed in the Virtual Hub.
+- description: Enable routing intent to send private and internet traffic via Azure Firewall or Security Solution deployed in the v-Hub.
   aprlGuid: 0390bf34-8be5-44ee-b454-d6b8d5dd3790
   recommendationTypeId: null
   recommendationControl: High Availability/Business Continuity/
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/virtualHubs/
   recommendationMetadataState: Active
-  longDescription: Routing Intent will allow private and internet traffic inspection via Azure Firewall or Security Solution deployed on the Virtual Hub.
+  longDescription: Routing Intent will allow private and internet traffic inspection via Azure Firewall or Security Solution deployed on the v-Hub.
   potentialBenefits: Enhanced traffic inspection
   pgVerified: true
   publishedToLearn: false
@@ -51,17 +51,17 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: How to configure Virtual WAN Hub routing intent and routing policies
+    - name: How to configure v-Hub routing intent and routing policies
       url: "https://learn.microsoft.com/en-us/azure/virtual-wan/how-to-routing-policies"
 
-- description: Connect Virtual Hub ExpressRoute gateway to circuits from diverse peering locations for resilience
+- description: Connect v-Hubs ExpressRoute gatewa to circuits from diverse peering locations for resilience
   aprlGuid: 9987c813-d687-4163-a511-95f31bc5e536
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/expressRouteGateways/
   recommendationMetadataState: Active
-  longDescription: To increase reliability, it's advised that each Virtual Hub ExpressRoute gateway connects to at least two circuits, with each circuit originating from a different peering location than the other, ensuring diverse connectivity paths for enhanced resilience.|
+  longDescription: To increase reliability, it's advised that each v-s ExpressRoute gateway connects to at least two circuits, with each circuit originating from a different peering location than the other, ensuring diverse connectivity paths for enhanced resilience.|
   potentialBenefits: Enhance resiliency for Azure Service
   pgVerified: false
   publishedToLearn: false
@@ -73,14 +73,14 @@
       url: "https://learn.microsoft.com/azure/expressroute/designing-for-disaster-recovery-with-expressroute-privatepeering"
 
 
-- description: Monitor gateway for Site-to-site Virtual WAN VPN gateways
+- description: Monitor gateway for Site-to-site v-Hubs VPN gateway
   aprlGuid: f0d4f766-ac19-48c4-b228-4601cc038baa
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: High
   recommendationResourceType: Friendly name to identity resource type
   recommendationMetadataState: Active
-  longDescription: Set up monitoring and alerts for Virtual WAN VPN Gateway. Create alert rule for ensuring promptly response to critical events such as packet drop counts, BGP status, Gateway overutilization.
+  longDescription: Set up monitoring and alerts for v-Hubs VPN Gateway. Create alert rule for ensuring promptly response to critical events such as packet drop counts, BGP status, Gateway overutilization.
   potentialBenefits: Detection and mitigation to avoid disruptions.
   pgVerified: false
   publishedToLearn: false
@@ -91,14 +91,14 @@
     - name: Virtual WAN Monitoring Best Practices
       url: "https://learn.microsoft.com/en-us/azure/virtual-wan/monitoring-best-practices#virtual-wan-gateways"
 
-- description: Monitor health for Virtual WAN Express Route gateways
+- description: Monitor health for v-Hubs Express Route gateways
   aprlGuid: a3f43e51-df4b-4e90-a5a9-e613eac18af4
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/expressRouteGateways/
   recommendationMetadataState: Active
-  longDescription: Set up monitoring and alerts for Virtual WAN Express Route Gateway. Create alert rule for ensuring promptly response to critical events such as exceeding packets per second, exceeding BGP routes prefixes, Gateway overutilization and high frequency in route changes.
+  longDescription: Set up monitoring and alerts for v-Hubs Express Route Gateways. Create alert rule for ensuring promptly response to critical events such as exceeding packets per second, exceeding BGP routes prefixes, Gateway overutilization and high frequency in route changes.
   potentialBenefits: Detection and mitigation to avoid disruptions.
   pgVerified: false
   publishedToLearn: false
@@ -108,3 +108,40 @@
   learnMoreLink:
     - name: Virtual WAN Monitoring Best Practices
       url: "https://learn.microsoft.com/en-us/azure/virtual-wan/monitoring-best-practices#expressroute-gateway"
+
+
+- description: Monitor health for v-Hubs Point-to-Site VPN gateways
+  aprlGuid: fd43ea32-2ccf-49a8-ada4-9a78794e3ff1
+  recommendationTypeId: null
+  recommendationControl: Monitoring and Alerting
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/p2sVpnGateways/
+  recommendationMetadataState: Active
+  longDescription: Set up monitoring and alerts for Point-to-Site VPN gateways. Create alert rule for ensuring promptly response to critical events such as Gateway overutilization, connection count limits and User VPN route limits.
+  potentialBenefits: Detection and mitigation to avoid disruptions.
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no/arg
+  tags: null
+  learnMoreLink:
+    - name: Virtual WAN Monitoring Best Practices
+      url: "https://learn.microsoft.com/en-us/azure/virtual-wan/monitoring-best-practices#point-to-site-vpn-gateway"
+
+- description: Monitor health for v-Hubs
+  aprlGuid: 30ec8a5e-46de-4323-87e9-a7c56b72813b
+  recommendationTypeId: null
+  recommendationControl: Monitoring and Alerting
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Network/virtualHubs/
+  recommendationMetadataState: Active
+  longDescription: Set up monitoring and alerts for v-Hubs. Create alert rule for ensuring promptly response to changes in BGP status and Data processed by v-Hubs.
+  potentialBenefits: Detection and mitigation to avoid disruptions.
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no/arg
+  tags: null
+  learnMoreLink:
+    - name: Virtual WAN Monitoring Best Practices
+      url: "https://learn.microsoft.com/en-us/azure/virtual-wan/monitoring-best-practices#virtual-hub"
