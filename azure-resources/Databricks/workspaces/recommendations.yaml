@@ -408,6 +408,8 @@
   recommendationMetadataState: Active
   longDescription: |
     Implementing a disaster recovery pattern is vital for Azure Databricks, a cloud-native data analytics platform, ensuring data teams' access even during rare regional outages caused by disasters like hurricanes or earthquakes.
+
+    It is important to note that the Azure Databricks service is not entirely zone redudant and does support zonal failover.
   potentialBenefits: Ensures service continuity during disasters
   pgVerified: false
   publishedToLearn: false
