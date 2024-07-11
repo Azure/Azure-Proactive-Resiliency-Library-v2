@@ -15,7 +15,6 @@ Param(
   [ValidateSet('AzureCloud', 'AzureUSGovernment')]
   $AzureEnvironment = 'AzureCloud',
   $ConfigFile,
-  $OutputFile,
   # Runbook parameters...
   [switch]$UseImplicitRunbookSelectors,
   $RunbookFile
