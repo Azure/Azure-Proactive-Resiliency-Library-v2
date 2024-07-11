@@ -1,10 +1,10 @@
 // Azure Resource Graph Query
 // Provides a list of Azure VM disks without Azure Disk Encryption or encryption at host enabled
 resources
-| where type == "microsoft.compute/disks"
+| where type =~ "microsoft.compute/disks"
 | project diskId = id, diskName = name, vmId = tolower(managedBy), azureDiskEncryption = iff(properties.encryptionSettingsCollection.enabled == true,'Enabled','Disabled')
 | join kind=leftouter (resources
-| where type == "microsoft.compute/virtualmachines"
+| where type =~ "microsoft.compute/virtualmachines"
 | project vmId = tolower(id), vmName = tolower(name), encryptionAtHost = iff(properties.securityProfile.encryptionAtHost == true,'Enabled','Disabled')) on vmId
 | extend aprlCondition = iff(encryptionAtHost == 'Enabled' or azureDiskEncryption == 'Enabled','OK','NOK')
 | where aprlCondition == 'NOK'
