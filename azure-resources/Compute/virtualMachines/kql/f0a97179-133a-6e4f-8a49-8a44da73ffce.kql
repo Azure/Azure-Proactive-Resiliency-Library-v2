@@ -5,7 +5,7 @@ resources
 | project diskId = id, diskName = name, vmId = tolower(managedBy), azureDiskEncryption = iff(properties.encryptionSettingsCollection.enabled == true,'Enabled','Disabled')
 | join kind=leftouter (resources
 | where type =~ "microsoft.compute/virtualmachines"
-| project vmId = tolower(id), vmName = tolower(name), encryptionAtHost = iff(properties.securityProfile.encryptionAtHost == true,'Enabled','Disabled')) on vmId
+| project vmId = tolower(id), vmName = name, encryptionAtHost = iff(properties.securityProfile.encryptionAtHost == true,'Enabled','Disabled')) on vmId
 | extend aprlCondition = iff(encryptionAtHost == 'Enabled' or azureDiskEncryption == 'Enabled','OK','NOK')
 | where aprlCondition == 'NOK'
 | project recommendationId = 'f0a97179-133a-6e4f-8a49-8a44da73ffce', name = vmName, id =vmId, param1 = strcat('diskName:',diskName), param2 = strcat('azureDiskEncryption:',azureDiskEncryption), param3 = strcat('encryptionAtHost:',encryptionAtHost)
