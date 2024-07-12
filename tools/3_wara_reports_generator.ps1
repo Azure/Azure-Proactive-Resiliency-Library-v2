@@ -110,6 +110,12 @@ $Global:Runtime = Measure-Command -Expression {
   function Excel {
 
     if ($Debugging.IsPresent) { ('FunctExcel - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Processing Excel variables..') | Out-File -FilePath $LogFile -Append }
+
+    if (-not (Test-Path -PathType Leaf -Path $ExcelFile))
+      {
+        Write-Error ('The specified Excel file "{0}" was not found.' -f $ExcelFile)
+        Exit
+      }
     $ExcelFile = get-item -Path $ExcelFile
     if ($Global:Heavy) {Start-Sleep -Milliseconds 100}
     $ExcelFile = $ExcelFile.FullName
