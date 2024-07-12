@@ -13,11 +13,10 @@ Param(
 )
 
 # Checking the operating system running this script.
-if (-not $IsWindows)
-  {
-    Write-Host "This script only supports Windows operating systems currently. Please try to run with Windows operating systems."
-    Exit
-  }
+if (-not $IsWindows) {
+  Write-Host "This script only supports Windows operating systems currently. Please try to run with Windows operating systems."
+  Exit
+}
 
 if ($Heavy.IsPresent) { $Global:Heavy = $true } else { $Global:Heavy = $false }
 
