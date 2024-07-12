@@ -23,11 +23,11 @@ Param(
 
 # Checking the operating system running this script.
 if (-not $IsWindows) {
-  Write-Host "This script only supports Windows operating systems currently. Please try to run with Windows operating systems."
+  Write-Host 'This script only supports Windows operating systems currently. Please try to run with Windows operating systems.'
   Exit
 }
 
-if ($Debugging.IsPresent) { $DebugPreference = 'Continue' } else { $DebugPreference = "silentlycontinue" }
+if ($Debugging.IsPresent) { $DebugPreference = 'Continue' } else { $DebugPreference = 'silentlycontinue' }
 
 $Script:FilterRecommendations = $true
 
