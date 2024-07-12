@@ -4,7 +4,7 @@
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.EventHub/namespaces
-  recommendationMetadataState: Disabled
+  recommendationMetadataState: Active
   longDescription: |
     When using the Azure portal, zone redundancy is automatically enabled. However, some Infrastructure as Code (IaC) tools may default this to false. To ensure replication of metadata and events across data centers in an availability zone, always verify that zone redundancy is enabled.
   potentialBenefits: Enhanced fault tolerance for Event Hub
