@@ -216,17 +216,17 @@ You can change the sensitivity label on the file by **Excel** or **Information P
 
 - Option 1: Excel
 
-  1. Select a sensitivity label that you want from the sensitivity bar at the top of the Excel window.
-  2. Save the Excel file.
+    1. Select a sensitivity label that you want from the sensitivity bar at the top of the Excel window.
+    2. Save the Excel file.
 
-  Learn more about the [Sensitivity bar in Microsoft 365](https://support.microsoft.com/office/2f96e7cd-d5a4-403b-8bd7-4cc636bae0f9).
+    Learn more about the [Sensitivity bar in Microsoft 365](https://support.microsoft.com/office/2f96e7cd-d5a4-403b-8bd7-4cc636bae0f9).
 
 - Option 2: Information Protection File Labeler
 
-  1. Install the [Microsoft Purview Information Protection client](https://www.microsoft.com/en-us/download/details.aspx?id=53018)
-  2. Right click the Excel file in the File Explorer then select **Show more options**.
-  3. Select **Apply sensitivity label with Microsoft Purview**
-  4. Select a sensitivity label that you want.
-  5. Click the **Apply** button.
+    1. Install the [Microsoft Purview Information Protection client](https://www.microsoft.com/en-us/download/details.aspx?id=53018)
+    2. Right click the Excel file in the File Explorer then select **Show more options**.
+    3. Select **Apply sensitivity label with Microsoft Purview**
+    4. Select a sensitivity label that you want.
+    5. Click the **Apply** button.
 
-  Learn more about the [detailed usage of the Information Protection File Labeler](https://support.microsoft.com/topic/67829155-2d0e-4122-9677-7c53c8cba18a).
+    Learn more about the [detailed usage of the Information Protection File Labeler](https://support.microsoft.com/topic/67829155-2d0e-4122-9677-7c53c8cba18a).
