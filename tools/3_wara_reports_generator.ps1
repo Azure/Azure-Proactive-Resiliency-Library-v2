@@ -1,3 +1,5 @@
+#Requires -Version 7
+
 Param(
   [switch] $Help,
   [switch] $Debugging,
