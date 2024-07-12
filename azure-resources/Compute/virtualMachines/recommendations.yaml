@@ -59,7 +59,7 @@
 
 - description: Replicate VMs using Azure Site Recovery
   aprlGuid: cfe22a65-b1db-fd41-9e8e-d573922709ae
-  recommendationTypeId: null
+  recommendationTypeId: ed651749-cd37-4fd5-9897-01b416926745
   recommendationControl: Disaster Recovery
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Compute/virtualMachines
@@ -80,7 +80,7 @@
 
 - description: Use Managed Disks for VM disks
   aprlGuid: 122d11d7-b91f-8747-a562-f56b79bcfbdc
-  recommendationTypeId: null
+  recommendationTypeId: 57ecb3cd-f2b4-4cad-8b3a-232cca527a0b
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Compute/virtualMachines
@@ -124,7 +124,7 @@
 
 - description: Backup VMs with Azure Backup service
   aprlGuid: 1981f704-97b9-b645-9c57-33f8ded9261a
-  recommendationTypeId: null
+  recommendationTypeId: 651c7925-17a3-42e5-85cd-73bd095cf27f
   recommendationControl: Disaster Recovery
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Compute/virtualMachines
@@ -162,7 +162,7 @@
 
 - description: Enable Accelerated Networking (AccelNet)
   aprlGuid: dfedbeb1-1519-fc47-86a5-52f96cf07105
-  recommendationTypeId: null
+  recommendationTypeId: 3a3c1a2a-8597-4d3a-981a-0a24a0ee9de4
   recommendationControl: Scalability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Compute/virtualMachines
@@ -217,7 +217,7 @@
     - name: Use Source Network Address Translation (SNAT) for outbound connections
       url: "https://learn.microsoft.com/azure/load-balancer/load-balancer-outbound-connections"
 
-- description: VM network interfaces and associated subnets both have a Network Security Group (NSG) associated
+- description: VM network interfaces and associated subnets both have a Network Security Group associated
   aprlGuid: 82b3cf6b-9ae2-2e44-b193-10793213f676
   recommendationTypeId: null
   recommendationControl: Security
@@ -238,7 +238,7 @@
 
 - description: IP Forwarding should only be enabled for Network Virtual Appliances
   aprlGuid: 41a22a5e-5e08-9647-92d0-2ffe9ef1bdad
-  recommendationTypeId: null
+  recommendationTypeId: c3b51c94-588b-426b-a892-24696f9e54cc
   recommendationControl: Security
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Compute/virtualMachines
@@ -335,11 +335,11 @@
     - name: Azure Policy Regulatory Compliance controls for Azure Virtual Machines
       url: "https://learn.microsoft.com/azure/virtual-machines/security-policy"
 
-- description: Enable advanced encryption options for your managed disks
+- description: Virtual Machines should have Azure Disk Encryption or EncryptionAtHost enabled
   aprlGuid: f0a97179-133a-6e4f-8a49-8a44da73ffce
-  recommendationTypeId: null
+  recommendationTypeId: a40cc620-e72c-fdf4-c554-c6ca2cd705c0
   recommendationControl: Security
-  recommendationImpact: Medium
+  recommendationImpact: High
   recommendationResourceType: Microsoft.Compute/virtualMachines
   recommendationMetadataState: Active
   longDescription: |
@@ -348,7 +348,7 @@
   pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: arg
   tags: null
   learnMoreLink:
     - name: Overview of managed disk encryption options
@@ -434,7 +434,7 @@
 
 - description: Mission Critical Workloads should consider using Premium or Ultra Disks
   aprlGuid: df0ff862-814d-45a3-95e4-4fad5a244ba6
-  recommendationTypeId: null
+  recommendationTypeId: 58d6648d-32e8-4346-827c-4f288dd8ca24
   recommendationControl: Scalability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Compute/virtualMachines
@@ -495,9 +495,9 @@
     - name: Azure Metadata Service Scheduled Events for Windows VMs
       url: "https://learn.microsoft.com/azure/virtual-machines/windows/scheduled-events"
 
-- description: Use ZRS Disks or Protect LRS Disks from Availability Zone Failure
+- description: Use Azure Disks with Zone Redundant Storage for higher resiliency and availability
   aprlGuid: fa0cf4f5-0b21-47b7-89a9-ee936f193ce1
-  recommendationTypeId: null
+  recommendationTypeId: d4102c0f-ebe3-4b22-8fe0-e488866a87af
   recommendationControl: High Availability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Compute/virtualMachines
@@ -513,3 +513,22 @@
   learnMoreLink:
     - name: Redundancy options for managed disks
       url: "https://aka.ms/zrsdisksdoc"
+
+- description: Reserve Compute Capacity for critical workloads
+  aprlGuid: 302fda08-ee65-4fbe-a916-6dc0b33169c4
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Compute/virtualMachines
+  recommendationMetadataState: Active
+  longDescription: |
+    Azure Capacity Reservations ensure high availability for virtual machines by reserving compute capacity in advance within a specific region or availability zone. This guarantees that VMs will have the necessary resources during peak demand or maintenance events, enhancing reliability and uptime.
+  potentialBenefits: Guaranteed capacity in constrained regions/zones
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: On-demand Capacity Reservation
+      url: "https://aka.ms/on-demand-capacity-reservations-docs"

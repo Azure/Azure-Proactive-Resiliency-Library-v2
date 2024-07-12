@@ -93,7 +93,7 @@ Param(
   [switch]$AVS,
   [switch]$HPC,
   $SubscriptionIds,
-  $ResourceGroups,
+  [String[]]$ResourceGroups,
   $TenantID,
   $Tags,
   [ValidateSet('AzureCloud', 'AzureUSGovernment')]
@@ -145,6 +145,7 @@ $Script:Runtime = Measure-Command -Expression {
     # Output all resources
     return $allResources
   }
+
 
   function Get-AllResourceGroup {
     param (

@@ -127,7 +127,7 @@ $Global:Runtime = Measure-Command -Expression {
         $ErrorStack = $_.ScriptStackTrace
         if ($CoreDebugging) { ('OfficeApps - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Error - ' + $errorMessage) | Out-File -FilePath $LogFile -Append }
         if ($CoreDebugging) { ('OfficeApps - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Error - ' + $ErrorStack) | Out-File -FilePath $LogFile -Append }
-        Write-Error "Excel File not found.."
+        Write-Error "Excel File not found, or it is encrypted."
         Exit
       }
 
