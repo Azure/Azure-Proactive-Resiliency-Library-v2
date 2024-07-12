@@ -958,7 +958,7 @@ $Script:Runtime = Measure-Command -Expression {
             $typeRaw = $kqlFile.DirectoryName.split('/')
           }
 
-          $kqltype = ('microsoft.' + $typeRaw[-3] + '/' + $typeRaw[-2])
+          $kqltype = ('Microsoft.' + $typeRaw[-3] + '/' + $typeRaw[-2])
           $checkId = $kqlname.Split('/')[-1].ToLower()
 
           if ($Script:RunbookChecks -and $Script:RunbookChecks.Count -gt 0) {
@@ -1024,6 +1024,7 @@ $Script:Runtime = Measure-Command -Expression {
                   }
 
                   $runbookCheckCt++
+
                 } else {
                   Write-Host "[-RunbookFile]: Selector $selectorName not found in runbook. Skipping check..." -ForegroundColor Yellow
                 }
@@ -1056,7 +1057,7 @@ $Script:Runtime = Measure-Command -Expression {
 
           Write-Host '++++++++++++++++++ ' -NoNewline
           if ($selector -eq 'APRL') {
-            Write-Host "[APRL]: Microsoft.$type - $checkId" -ForegroundColor Green -NoNewline
+            Write-Host "[APRL]: $type - $checkId" -ForegroundColor Green -NoNewline
           } else {
             Write-Host "[-RunbookFile]: [$checkName (selector: '$selector')]: $checkId" -ForegroundColor Green -NoNewline
           }
