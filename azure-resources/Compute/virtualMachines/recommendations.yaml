@@ -348,7 +348,7 @@
   pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: arg
   tags: null
   learnMoreLink:
     - name: Overview of managed disk encryption options
