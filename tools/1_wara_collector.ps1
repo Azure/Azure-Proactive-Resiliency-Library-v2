@@ -277,11 +277,6 @@ $Script:Runtime = Measure-Command -Expression {
         $IsValid = $false
       }
 
-      if (!($SubscriptionIds) -and !($ConfigFile)) {
-        Write-Host "Subscription ID(s) (-SubscriptionIds) or configuration file (-ConfigFile) is required when not using a runbook file (-RunbookFile)." -ForegroundColor Red
-        $IsValid = $false
-      }
-
       if ($ConfigFile -and !(Test-Path $ConfigFile -PathType Leaf)) {
         Write-Host "Configuration file (-ConfigFile) not found: [$ConfigFile]" -ForegroundColor Red
         $IsValid = $false
@@ -571,6 +566,7 @@ $Script:Runtime = Measure-Command -Expression {
                 $ScopeQuery = "resources | where id =~ '$ScopeWithoutParameter' | project id, resourceGroup, subscriptionId, name, type, location"
               }
             #Filter out the Supported Types
+            Write-Host $ScopeQuery -ForegroundColor Cyan
             $ScopeResources = Get-AllAzGraphResource -query $ScopeQuery -subscriptionId $Subid
             foreach ($Resource in $ScopeResources)
               {
@@ -727,6 +723,8 @@ $Script:Runtime = Measure-Command -Expression {
   function Invoke-QueryExecution {
     param($type, $Subscription, $query, $checkId, $checkName, $selector, $validationAction)
 
+    Write-Host $query -ForegroundColor Yellow
+
     try {
       $ResourceType = $Script:AllResourceTypes | Where-Object { $_.Name -eq $type}
       if (![string]::IsNullOrEmpty($resourceType)) {
@@ -801,6 +799,9 @@ $Script:Runtime = Measure-Command -Expression {
           $Subid = $Scope.split("/")[2]
           $ResourceGroup = $Scope.split("/")[4]
         }
+
+      Write-Host $SubId -ForegroundColor Yellow
+      Write-Host $ResourceGroup -ForegroundColor Yellow
 
       # Set the variables used in the loop
       if ($Scope.split("/").count -lt 5)
@@ -1331,8 +1332,11 @@ $Script:Runtime = Measure-Command -Expression {
       } #>
 
       #Ternary Expression If ResourceGroupFile is present, then get the ResourceGroups by List, else get the results
+      Write-Host $ResourceGroups -ForegroundColor Yellow
+
+
       $ResourceExporter = @{
-        ImpactedResources = $ResourceGroupList ? $(Get-ResourceGroupsByList -ObjectList $Script:ImpactedResources -FilterList $resourcegrouplist -KeyColumn "id") : $Script:ImpactedResources
+        ImpactedResources = $ResourceGroups ? $(Get-ResourceGroupsByList -ObjectList $Script:ImpactedResources -FilterList $ResourceGroups -KeyColumn "id") : $Script:ImpactedResources
       }
       $OutOfScopeExporter = @{
         OutOfScope = $Script:OutOfScope
@@ -1436,6 +1440,7 @@ $Script:Runtime = Measure-Command -Expression {
       {
         $Scopes += foreach ($RG in $ResourceGroups)
           {
+            Write-Host "[-ResourceGroups]: $RG" -ForegroundColor Cyan
             $RG
           }
       }
