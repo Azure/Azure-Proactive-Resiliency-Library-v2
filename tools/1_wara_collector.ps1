@@ -1210,10 +1210,10 @@ $Script:Runtime = Measure-Command -Expression {
   function Invoke-AdvisoryExtraction {
     Param($Subid,$ResourceGroup)
     if (![string]::IsNullOrEmpty($ResourceGroup)) {
-        $advquery = "advisorresources | where type == 'microsoft.advisor/recommendations' and tostring(properties.category) in ('HighAvailability','Performance','OperationalExcellence') | where resourceGroup =~ '$ResourceGroup' | order by id"
+        $advquery = "advisorresources | where type == 'microsoft.advisor/recommendations' and tostring(properties.category) in ('HighAvailability') | where resourceGroup =~ '$ResourceGroup' | order by id"
         $queryResults = Get-AllAzGraphResource -Query $advquery -subscriptionId $Subid
       } else {
-        $advquery = "advisorresources | where type == 'microsoft.advisor/recommendations' and tostring(properties.category) in ('HighAvailability','Performance','OperationalExcellence') | order by id"
+        $advquery = "advisorresources | where type == 'microsoft.advisor/recommendations' and tostring(properties.category) in ('HighAvailability') | order by id"
         $queryResults = Get-AllAzGraphResource -Query $advquery -subscriptionId $Subid
       }
 
