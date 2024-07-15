@@ -122,12 +122,11 @@ $Script:Runtime = Measure-Command -Expression {
       [string]$query = 'Resources | project id, resourceGroup, subscriptionId, name, type, location'
     )
 
-    if ($Debugging) {
-      Write-Host
+    if ($Debugging.IsPresent) {
       Write-Host "[-Debugging]: Running resource graph query..." -ForegroundColor Magenta
-      Write-Host
+      Write-Host ""
       Write-Host "$query" -ForegroundColor Magenta
-      Write-Host
+      Write-Host ""
     }
 
     $result = $subscriptionId ? (Search-AzGraph -Query $query -first 1000 -Subscription $subscriptionId) : (Search-AzGraph -Query $query -first 1000 -usetenantscope) # -first 1000 returns the first 1000 results and subsequently reduces the amount of queries required to get data.
@@ -566,7 +565,10 @@ $Script:Runtime = Measure-Command -Expression {
                 $ScopeQuery = "resources | where id =~ '$ScopeWithoutParameter' | project id, resourceGroup, subscriptionId, name, type, location"
               }
             #Filter out the Supported Types
-            Write-Host $ScopeQuery -ForegroundColor Cyan
+            if($Debugging.IsPresent)
+              {
+                Write-Host $ScopeQuery -ForegroundColor Cyan
+              }
             $ScopeResources = Get-AllAzGraphResource -query $ScopeQuery -subscriptionId $Subid
             foreach ($Resource in $ScopeResources)
               {
@@ -723,7 +725,10 @@ $Script:Runtime = Measure-Command -Expression {
   function Invoke-QueryExecution {
     param($type, $Subscription, $query, $checkId, $checkName, $selector, $validationAction)
 
-    Write-Host $query -ForegroundColor Yellow
+    if ($Debugging.IsPresent)
+      {
+        Write-Host $query -ForegroundColor Yellow
+      }
 
     try {
       $ResourceType = $Script:AllResourceTypes | Where-Object { $_.Name -eq $type}
@@ -799,9 +804,6 @@ $Script:Runtime = Measure-Command -Expression {
           $Subid = $Scope.split("/")[2]
           $ResourceGroup = $Scope.split("/")[4]
         }
-
-      Write-Host $SubId -ForegroundColor Yellow
-      Write-Host $ResourceGroup -ForegroundColor Yellow
 
       # Set the variables used in the loop
       if ($Scope.split("/").count -lt 5)
@@ -1406,15 +1408,9 @@ $Script:Runtime = Measure-Command -Expression {
 
 
   #Call the functions
-  $Script:Version = '2.0.13'
+  $Script:Version = '2.0.14'
   Write-Host 'Version: ' -NoNewline
   Write-Host $Script:Version -ForegroundColor DarkBlue
-
-  if ($SAP.IsPresent) {
-    Write-Host "We caught it here..."
-    Get-Help -Name "./1_wara_collector.ps1" -Detailed
-    Exit
-  }
 
   Write-Debug "Checking parameters..."
 
@@ -1436,27 +1432,28 @@ $Script:Runtime = Measure-Command -Expression {
   }
   else {
     $Scopes = @()
+    if ($SubscriptionIds)
+      {
+        $Scopes += foreach ($Sub in $SubscriptionIds)
+        {
+          $_guid = [Guid]::NewGuid()
+
+          if ([Guid]::TryParse($Sub, [ref]$_guid)) {
+            $SubId = "/subscriptions/$Sub"
+            Write-Host "[-SubscriptionIds]: Fixed '$Sub' >> '$SubId'" -ForegroundColor Yellow
+            "/subscriptions/$Sub" # Fixed!
+          } else {
+            Write-Host "[-SubscriptionIds]: $Sub" -ForegroundColor Cyan
+            $Sub
+          }
+        }
+      }
     if ($ResourceGroups)
       {
         $Scopes += foreach ($RG in $ResourceGroups)
           {
             Write-Host "[-ResourceGroups]: $RG" -ForegroundColor Cyan
             $RG
-          }
-      }
-    else
-      {
-        $Scopes += foreach ($Sub in $SubscriptionIds)
-          {
-            $_guid = [Guid]::NewGuid()
-
-            if ([Guid]::TryParse($Sub, [ref]$_guid)) {
-              $SubId = "/subscriptions/$Sub"
-              Write-Host "[-SubscriptionIds]: Fixed '$Sub' >> '$SubId'" -ForegroundColor Yellow
-              "/subscriptions/$Sub" # Fixed!
-            } else {
-              $Sub
-            }
           }
       }
   }
