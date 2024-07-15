@@ -54,14 +54,14 @@
     - name: How to configure v-Hub routing intent and routing policies
       url: "https://learn.microsoft.com/en-us/azure/virtual-wan/how-to-routing-policies"
 
-- description: Connect v-Hubs ExpressRoute gatewa to circuits from diverse peering locations for resilience
+- description: Connect v-Hub's ExpressRoute gateway to circuits from diverse peering locations for resilience
   aprlGuid: 9987c813-d687-4163-a511-95f31bc5e536
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/expressRouteGateways/
   recommendationMetadataState: Active
-  longDescription: To increase reliability, it's advised that each v-s ExpressRoute gateway connects to at least two circuits, with each circuit originating from a different peering location than the other, ensuring diverse connectivity paths for enhanced resilience.|
+  longDescription: To increase reliability, it's advised that each v-Hub's ExpressRoute gateway connects to at least two circuits, with each circuit originating from a different peering location than the other, ensuring diverse connectivity paths for enhanced resilience.|
   potentialBenefits: Enhance resiliency for Azure Service
   pgVerified: false
   publishedToLearn: false
@@ -73,14 +73,14 @@
       url: "https://learn.microsoft.com/azure/expressroute/designing-for-disaster-recovery-with-expressroute-privatepeering"
 
 
-- description: Monitor gateway for Site-to-site v-Hubs VPN gateway
+- description: Monitor gateway for Site-to-site v-Hub's VPN gateway
   aprlGuid: f0d4f766-ac19-48c4-b228-4601cc038baa
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: High
   recommendationResourceType: Friendly name to identity resource type
   recommendationMetadataState: Active
-  longDescription: Set up monitoring and alerts for v-Hubs VPN Gateway. Create alert rule for ensuring promptly response to critical events such as packet drop counts, BGP status, Gateway overutilization.
+  longDescription: Set up monitoring and alerts for v-Hub's VPN Gateway. Create alert rule for ensuring promptly response to critical events such as packet drop counts, BGP status, Gateway overutilization.
   potentialBenefits: Detection and mitigation to avoid disruptions.
   pgVerified: false
   publishedToLearn: false
@@ -91,14 +91,14 @@
     - name: Virtual WAN Monitoring Best Practices
       url: "https://learn.microsoft.com/en-us/azure/virtual-wan/monitoring-best-practices#virtual-wan-gateways"
 
-- description: Monitor health for v-Hubs Express Route gateways
+- description: Monitor health for v-Hub's Express Route gateways
   aprlGuid: a3f43e51-df4b-4e90-a5a9-e613eac18af4
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/expressRouteGateways/
   recommendationMetadataState: Active
-  longDescription: Set up monitoring and alerts for v-Hubs Express Route Gateways. Create alert rule for ensuring promptly response to critical events such as exceeding packets per second, exceeding BGP routes prefixes, Gateway overutilization and high frequency in route changes.
+  longDescription: Set up monitoring and alerts for v-Hub's Express Route Gateways. Create alert rule for ensuring promptly response to critical events such as exceeding packets per second, exceeding BGP routes prefixes, Gateway overutilization and high frequency in route changes.
   potentialBenefits: Detection and mitigation to avoid disruptions.
   pgVerified: false
   publishedToLearn: false
@@ -110,7 +110,7 @@
       url: "https://learn.microsoft.com/en-us/azure/virtual-wan/monitoring-best-practices#expressroute-gateway"
 
 
-- description: Monitor health for v-Hubs Point-to-Site VPN gateways
+- description: Monitor health for v-Hub's Point-to-Site VPN gateways
   aprlGuid: fd43ea32-2ccf-49a8-ada4-9a78794e3ff1
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
