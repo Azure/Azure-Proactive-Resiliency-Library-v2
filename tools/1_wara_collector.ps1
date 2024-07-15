@@ -122,13 +122,6 @@ $Script:Runtime = Measure-Command -Expression {
       [string]$query = 'Resources | project id, resourceGroup, subscriptionId, name, type, location'
     )
 
-    if ($Debugging.IsPresent) {
-      Write-Host "[-Debugging]: Running resource graph query..." -ForegroundColor Magenta
-      Write-Host ""
-      Write-Host "$query" -ForegroundColor Magenta
-      Write-Host ""
-    }
-
     $result = $subscriptionId ? (Search-AzGraph -Query $query -first 1000 -Subscription $subscriptionId) : (Search-AzGraph -Query $query -first 1000 -usetenantscope) # -first 1000 returns the first 1000 results and subsequently reduces the amount of queries required to get data.
 
     # Collection to store all resources
@@ -1135,26 +1128,6 @@ $Script:Runtime = Measure-Command -Expression {
                 selector         = $Temp.selector
               }
             $result
-      } else {
-        $TempDetails = ($Script:AllResources | Where-Object { $_.id -eq $Temp.id } | Select-Object -First 1)
-        $result = [PSCustomObject]@{
-          validationAction = $Temp.validationAction
-          recommendationId = $Temp.recommendationId
-          name             = $Temp.name
-          id               = $Temp.id
-          location         = $TempDetails.location
-          subscriptionId   = $TempDetails.subscriptionId
-          resourceGroup    = $TempDetails.resourceGroup
-          param1           = $Temp.param1
-          param2           = $Temp.param2
-          param3           = $Temp.param3
-          param4           = $Temp.param4
-          param5           = $Temp.param5
-          checkName        = $Temp.checkName
-          selector         = $Temp.selector
-          tagged           = $false
-        }
-        $result
       }
     }
 
