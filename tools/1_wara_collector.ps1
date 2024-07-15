@@ -779,6 +779,7 @@ $Script:Runtime = Measure-Command -Expression {
     [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'Low')]
     param($Scope)
 
+    $TempResult = @()
     if ($PSCmdlet.ShouldProcess('')) {
       $Scope = $Scope.split(" -")[0]
 
@@ -1063,15 +1064,24 @@ $Script:Runtime = Measure-Command -Expression {
           if ($query -match 'development') {
             Write-Host "Query $checkId under development - Validate Recommendation manually" -ForegroundColor Yellow
             $query = "resources | where type =~ '$type' | project name,id"
-            $Script:results += Invoke-QueryExecution -type $type -Subscription $Subid -query $query -checkId $checkId -checkName $checkName -selector $selector -validationAction 'IMPORTANT - Query under development - Validate Resources manually'
+            $TempResult += Invoke-QueryExecution -type $type -Subscription $Subid -query $query -checkId $checkId -checkName $checkName -selector $selector -validationAction 'IMPORTANT - Query under development - Validate Resources manually'
           } elseif ($query -match 'cannot-be-validated-with-arg') {
             Write-Host "IMPORTANT - Recommendation $checkId cannot be validated with ARGs - Validate Resources manually" -ForegroundColor Yellow
             $query = "resources | where type =~ '$type' | project name,id"
-            $Script:results += Invoke-QueryExecution -type $type -Subscription $Subid -query $query -checkId $checkId -checkName $checkName -selector $selector -validationAction 'IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually'
+            $TempResult += Invoke-QueryExecution -type $type -Subscription $Subid -query $query -checkId $checkId -checkName $checkName -selector $selector -validationAction 'IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually'
           } else {
-            $Script:results += Invoke-QueryExecution -type $type -Subscription $Subid -query $query -checkId $checkId -checkName $checkName -selector $selector -validationAction 'APRL - Queries'
+            $TempResult += Invoke-QueryExecution -type $type -Subscription $Subid -query $query -checkId $checkId -checkName $checkName -selector $selector -validationAction 'APRL - Queries'
           }
         }
+
+        if (![string]::IsNullOrEmpty($ResourceGroup))
+          {
+            $script:results += Get-ResourceGroupsByList -ObjectList $TempResult -FilterList $ResourceGroups -KeyColumn "id"
+          }
+        else
+          {
+            $script:results += $TempResult
+          }
 
         # Unless we're using a runbook...
         if (!($Script:RunbookChecks -and $Script:RunbookChecks.Count -gt 0)) {
@@ -1127,8 +1137,8 @@ $Script:Runtime = Measure-Command -Expression {
                 checkName        = $Temp.checkName
                 selector         = $Temp.selector
               }
-            $result
-      }
+          }
+      $result
     }
 
     $Script:OutOfScope += foreach ($ResIID in $Script:PreOutOfScopeResources)
@@ -1295,28 +1305,14 @@ $Script:Runtime = Measure-Command -Expression {
     param()
 
     if ($PSCmdlet.ShouldProcess('')) {
-      <#  if($ResourceGroupFile){
-
-        $ResourceExporter = @{
-          Resource = $(Get-ResourceGroupsByList -ObjectList $Script:results -FilterList $resourcegrouplist -KeyColumn "id")
-        }
-      else{
-        $ResourceExporter = @{
-          Resource = $Script:results
-        }
-      } #>
-
-      #Ternary Expression If ResourceGroupFile is present, then get the ResourceGroups by List, else get the results
       Write-Host $ResourceGroups -ForegroundColor Yellow
 
-
       $ResourceExporter = @{
-        ImpactedResources = $ResourceGroups ? $(Get-ResourceGroupsByList -ObjectList $Script:ImpactedResources -FilterList $ResourceGroups -KeyColumn "id") : $Script:ImpactedResources
+        ImpactedResources = $Script:ImpactedResources
       }
       $OutOfScopeExporter = @{
         OutOfScope = $Script:OutOfScope
       }
-
       $ResourceTypeExporter = @{
         ResourceType = $Script:AllResourceTypesOrdered
       }
