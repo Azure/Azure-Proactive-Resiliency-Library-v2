@@ -95,11 +95,12 @@ The Collector PowerShell script is the first script to be run in the Azure Proac
 
       - Parameters include:
         - **TenantID**:  *Optional* ; tenant to be used.
-        - **SubscriptionIds**:  *Required (or ConfigFile)* ; Specifies Subscription(s) to be included in the analysis: /subscriptions/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY,/subscriptions/AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA.
+        - **SubscriptionIds**:  *Optional if ResourceGroup(s) are provided or a ConfigFile is used* ; Specifies Subscription(s) to be included in the analysis: "/subscriptions/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY","/subscriptions/AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA".
         - **RunbookFile**:  *Optional* ; specifies the file with the runbook (selectors & checks) to be used.
-        - **ResourceGroups**:  *Optional* ; specifies Resource Group(s) to be included in the analysis: /subscriptions/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY/resourceGroups/ResourceGroup1,/subscriptions/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY/resourceGroups/ResourceGroup2.
-        - **Tags**:  *Optional* ; specifies tags to be used for filtering the resources: TagName1||TagName2||TagNameN==TagValue1||TagValue2, TagName1==TagValue1.
+        - **ResourceGroups**:  *Optional if subscription(s) are provided or a ConfigFile is used* ; specifies Resource Group(s) to be included in the analysis: "/subscriptions/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY/resourceGroups/ResourceGroup1","/subscriptions/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY/resourceGroups/ResourceGroup2".
+        - **Tags**:  *Optional* ; specifies tags to be used for filtering the resources: "TagName1==TagValue1","TagName2==TagValue2"
         - **ConfigFile**:  *Optional* ; specifies a file for advanced filtering, including: subscription, resourceGroup, resourceId, Tags.
+          - See ConfigFile.Example [here](../../../../tools/configfile.example)
         - **AzureEnvironment**:  *Optional* ; specifies the Azure Environment to used for the analysis: AzureCloud, AzureUSGovernment.
         - **SAP**:  *Optional* ; used for specialized workload analysis.
         - **AVD**:  *Optional* ; used for specialized workload analysis.
@@ -108,7 +109,7 @@ The Collector PowerShell script is the first script to be run in the Azure Proac
         - **Debugging**: *Optional* ; Writes Debugging information of the script during the execution.
         {{< figure src="../../img/tools/collector-8.png" width="100%" >}}
 
-1. Authenticate with the account that has Reader permissions to the target subscription(s)
+2. Authenticate with the account that has Reader permissions to the target subscription(s)
   {{< figure src="../../img/tools/collector-9.png" width="40%" >}}
 
 1. After script completes, the results will be saved to the same folder location.
