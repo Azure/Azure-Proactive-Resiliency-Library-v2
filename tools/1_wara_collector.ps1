@@ -1398,6 +1398,7 @@ $Script:Runtime = Measure-Command -Expression {
     $locations = $ConfigData.locations
     $RunbookFile = $ConfigData.RunbookFile
     $Tags = $ConfigData.Tags
+    $ResourceGroups = $ConfigData.ResourceGroups
   }
   else {
     $Scopes = @()
