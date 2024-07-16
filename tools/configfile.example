@@ -1,0 +1,12 @@
+[tenantid]
+tenantid
+
+[subscriptions]
+/subscription/<subid>
+
+[resourcegroups]
+/subscriptions/<subid>/resourceGroups/Demo1-RG
+
+[tags]
+env==prod
+application==demoapp1
