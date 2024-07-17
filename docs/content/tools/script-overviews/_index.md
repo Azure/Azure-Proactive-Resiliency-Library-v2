@@ -225,7 +225,7 @@ Updates will need to be made prior to presenting to any audience.
 
 ### 3_wara_reports_generator.ps1
 
-#### The specified Excel file may be encrypted. If a sensitivity label is applied to the file, please change the sensitivity label to the label without encryption temporarily.
+#### The specified Excel file may be encrypted. If a sensitivity label is applied to the file, please change the sensitivity label to the label without encryption temporarily
 
 The specified Excel file may be has a sensitivity label (encrypted). The 3_wara_reports_generator.ps1 script does not support encrypted Excel file currently. To avoid this issue, you need to change the sensitivity label to the label without encryption temporarily. For example, **Confidential/Any User (No Protection)** sensitivity. After completing the script running, you can re-apply the original sensitivity label (recommended).
 
