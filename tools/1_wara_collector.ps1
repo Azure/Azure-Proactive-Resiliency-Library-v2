@@ -139,6 +139,7 @@ $Script:Runtime = Measure-Command -Expression {
     return $allResources
   }
 
+
   function Get-AllResourceGroup {
     param (
       [string[]]$SubscriptionIds
@@ -1312,10 +1313,6 @@ $Script:Runtime = Measure-Command -Expression {
       $OutOfScopeExporter = @{
         OutOfScope = $Script:OutOfScope
       }
-      $OutOfScopeExporter = @{
-        OutOfScope = $Script:OutOfScope
-      }
-
       $ResourceTypeExporter = @{
         ResourceType = $Script:AllResourceTypesOrdered
       }
