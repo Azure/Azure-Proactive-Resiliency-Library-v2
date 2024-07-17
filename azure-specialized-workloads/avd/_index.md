@@ -30,15 +30,6 @@ geekdocHidden: false
 
 <br>
 
-## Dependent Well-Architected Framework - Reliability Recommendations
-
-| Recommendation                                                                                                                                                                                                                       | Reliability Stage |
-| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------: |
-| [Ensure that all fault-points and fault-modes are understood and operationalized](../../../Azure-Proactive-Resiliency-Library-v2/azure-waf/design/#ensure-that-all-fault-points-and-fault-modes-are-understood-and-operationalized) |      Design       |
-| [Design a BCDR strategy that will help to meet the business requirements](../../../Azure-Proactive-Resiliency-Library-v2/azure-waf/design/#design-a-bcdr-strategy-that-will-help-to-meet-the-business-requirements)                 |      Design       |
-
-<br>
-
 ## General Workload Guidance
 
 {{< azure-specialized-workloads-recommendationlist name="azure-specialized-workloads-recommendationlist" >}}
