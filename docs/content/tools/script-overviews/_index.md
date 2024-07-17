@@ -100,7 +100,7 @@ The Collector PowerShell script is the first script to be run in the Azure Proac
         - **ResourceGroups**:  *Optional if subscription(s) are provided or a ConfigFile is used* ; specifies Resource Group(s) to be included in the analysis: "/subscriptions/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY/resourceGroups/ResourceGroup1","/subscriptions/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY/resourceGroups/ResourceGroup2".
         - **Tags**:  *Optional* ; specifies tags to be used for filtering the resources: "TagName1==TagValue1","TagName2==TagValue2"
         - **ConfigFile**:  *Optional* ; specifies a file for advanced filtering, including: subscription, resourceGroup, resourceId, Tags.
-          - See ConfigFile.Example [here](../../../../tools/configfile.example)
+          - See ConfigFile.Example [here](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/configfile.example)
         - **AzureEnvironment**:  *Optional* ; specifies the Azure Environment to used for the analysis: AzureCloud, AzureUSGovernment.
         - **SAP**:  *Optional* ; used for specialized workload analysis.
         - **AVD**:  *Optional* ; used for specialized workload analysis.
@@ -225,7 +225,7 @@ Updates will need to be made prior to presenting to any audience.
 
 ### 3_wara_reports_generator.ps1
 
-#### The specified Excel file may be encrypted. If a sensitivity label is applied to the file, please change the sensitivity label to the label without encryption temporarily.
+#### The specified Excel file may be encrypted. If a sensitivity label is applied to the file, please change the sensitivity label to the label without encryption temporarily
 
 The specified Excel file may be has a sensitivity label (encrypted). The 3_wara_reports_generator.ps1 script does not support encrypted Excel file currently. To avoid this issue, you need to change the sensitivity label to the label without encryption temporarily. For example, **Confidential/Any User (No Protection)** sensitivity. After completing the script running, you can re-apply the original sensitivity label (recommended).
 
