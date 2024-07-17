@@ -19,9 +19,9 @@
     - name: Azure Well-Architected Framework review - Virtual Machines and Scale Sets
       url: "https://learn.microsoft.com/azure/well-architected/services/compute/virtual-machines/virtual-machines-review"
 
-- description: Enable VMSS application health monitoring
+- description: Enable Azure Virtual Machine Scale Set Application Health Monitoring
   aprlGuid: 94794d2a-eff0-2345-9b67-6f9349d0a627
-  recommendationTypeId: null
+  recommendationTypeId: 3b587048-b04b-4f81-aaed-e43793652b0f
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
@@ -38,10 +38,10 @@
     - name: Using Application Health extension with Virtual Machine Scale Sets
       url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-health-extension?tabs=rest-api"
 
-- description: Enable Automatic Repair policy
+- description: Enable Automatic Repair Policy on Azure Virtual Machine Scale Sets
   aprlGuid: 820f4743-1f94-e946-ae0b-45efafd87962
-  recommendationTypeId: null
-  recommendationControl: Other Best Practices
+  recommendationTypeId: b4d988a9-85e6-4179-b69c-549bdd8a55bb
+  recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
   recommendationMetadataState: Active
@@ -160,7 +160,7 @@
 
 - description: Upgrade VMSS Image versions scheduled to be deprecated or already retired
   aprlGuid: 83d61669-7bd6-9642-a305-175db8adcdf4
-  recommendationTypeId: null
+  recommendationTypeId: 3b739bd1-c193-4bb6-a953-1362ee3b03b2
   recommendationControl: Governance
   recommendationImpact: High
   recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets

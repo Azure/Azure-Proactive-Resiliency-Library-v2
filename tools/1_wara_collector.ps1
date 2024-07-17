@@ -86,6 +86,9 @@ Use a runbook:
 A JSON file with the collected data.
 #>
 
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingWriteHost', '', Justification = 'False positive as Write-Host does not represent a security risk and this script will always run on host consoles')]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', '', Justification = 'False positive as parameters are not always required')]
+
 Param(
   [switch]$Debugging,
   [switch]$SAP,
@@ -93,7 +96,7 @@ Param(
   [switch]$AVS,
   [switch]$HPC,
   $SubscriptionIds,
-  $ResourceGroups,
+  [String[]]$ResourceGroups,
   $TenantID,
   $Tags,
   [ValidateSet('AzureCloud', 'AzureUSGovernment')]
@@ -104,8 +107,6 @@ Param(
   $RunbookFile
   )
 
-[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingWriteHost', '', Justification = 'False positive as Write-Host does not represent a security risk and this script will always run on host consoles')]
-[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', '', Justification = 'False positive as parameters are not always required')]
 
 #import-module "./modules/collector.psm1" -Force
 
@@ -120,14 +121,6 @@ $Script:Runtime = Measure-Command -Expression {
       [string[]]$subscriptionId,
       [string]$query = 'Resources | project id, resourceGroup, subscriptionId, name, type, location'
     )
-
-    if ($Debugging) {
-      Write-Host
-      Write-Host "[-Debugging]: Running resource graph query..." -ForegroundColor Magenta
-      Write-Host
-      Write-Host "$query" -ForegroundColor Magenta
-      Write-Host
-    }
 
     $result = $subscriptionId ? (Search-AzGraph -Query $query -first 1000 -Subscription $subscriptionId) : (Search-AzGraph -Query $query -first 1000 -usetenantscope) # -first 1000 returns the first 1000 results and subsequently reduces the amount of queries required to get data.
 
@@ -272,11 +265,6 @@ $Script:Runtime = Measure-Command -Expression {
 
       if ($UseImplicitRunbookSelectors) {
         Write-Host "Implicit runbook selectors (-UseImplicitRunbookSelectors) can only be used with a runbook file (-RunbookFile)." -ForegroundColor Red
-        $IsValid = $false
-      }
-
-      if (!($SubscriptionIds) -and !($ConfigFile)) {
-        Write-Host "Subscription ID(s) (-SubscriptionIds) or configuration file (-ConfigFile) is required when not using a runbook file (-RunbookFile)." -ForegroundColor Red
         $IsValid = $false
       }
 
@@ -569,6 +557,10 @@ $Script:Runtime = Measure-Command -Expression {
                 $ScopeQuery = "resources | where id =~ '$ScopeWithoutParameter' | project id, resourceGroup, subscriptionId, name, type, location"
               }
             #Filter out the Supported Types
+            if($Debugging.IsPresent)
+              {
+                Write-Host $ScopeQuery -ForegroundColor Cyan
+              }
             $ScopeResources = Get-AllAzGraphResource -query $ScopeQuery -subscriptionId $Subid
             foreach ($Resource in $ScopeResources)
               {
@@ -725,6 +717,11 @@ $Script:Runtime = Measure-Command -Expression {
   function Invoke-QueryExecution {
     param($type, $Subscription, $query, $checkId, $checkName, $selector, $validationAction)
 
+    if ($Debugging.IsPresent)
+      {
+        Write-Host $query -ForegroundColor Yellow
+      }
+
     try {
       $ResourceType = $Script:AllResourceTypes | Where-Object { $_.Name -eq $type}
       if (![string]::IsNullOrEmpty($resourceType)) {
@@ -781,6 +778,7 @@ $Script:Runtime = Measure-Command -Expression {
     [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'Low')]
     param($Scope)
 
+    $TempResult = @()
     if ($PSCmdlet.ShouldProcess('')) {
       $Scope = $Scope.split(" -")[0]
 
@@ -1065,15 +1063,24 @@ $Script:Runtime = Measure-Command -Expression {
           if ($query -match 'development') {
             Write-Host "Query $checkId under development - Validate Recommendation manually" -ForegroundColor Yellow
             $query = "resources | where type =~ '$type' | project name,id"
-            $Script:results += Invoke-QueryExecution -type $type -Subscription $Subid -query $query -checkId $checkId -checkName $checkName -selector $selector -validationAction 'IMPORTANT - Query under development - Validate Resources manually'
+            $TempResult += Invoke-QueryExecution -type $type -Subscription $Subid -query $query -checkId $checkId -checkName $checkName -selector $selector -validationAction 'IMPORTANT - Query under development - Validate Resources manually'
           } elseif ($query -match 'cannot-be-validated-with-arg') {
             Write-Host "IMPORTANT - Recommendation $checkId cannot be validated with ARGs - Validate Resources manually" -ForegroundColor Yellow
             $query = "resources | where type =~ '$type' | project name,id"
-            $Script:results += Invoke-QueryExecution -type $type -Subscription $Subid -query $query -checkId $checkId -checkName $checkName -selector $selector -validationAction 'IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually'
+            $TempResult += Invoke-QueryExecution -type $type -Subscription $Subid -query $query -checkId $checkId -checkName $checkName -selector $selector -validationAction 'IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually'
           } else {
-            $Script:results += Invoke-QueryExecution -type $type -Subscription $Subid -query $query -checkId $checkId -checkName $checkName -selector $selector -validationAction 'APRL - Queries'
+            $TempResult += Invoke-QueryExecution -type $type -Subscription $Subid -query $query -checkId $checkId -checkName $checkName -selector $selector -validationAction 'APRL - Queries'
           }
         }
+
+        if (![string]::IsNullOrEmpty($ResourceGroup))
+          {
+            $script:results += Get-ResourceGroupsByList -ObjectList $TempResult -FilterList $ResourceGroups -KeyColumn "id"
+          }
+        else
+          {
+            $script:results += $TempResult
+          }
 
         # Unless we're using a runbook...
         if (!($Script:RunbookChecks -and $Script:RunbookChecks.Count -gt 0)) {
@@ -1129,28 +1136,8 @@ $Script:Runtime = Measure-Command -Expression {
                 checkName        = $Temp.checkName
                 selector         = $Temp.selector
               }
-            $result
-      } else {
-        $TempDetails = ($Script:AllResources | Where-Object { $_.id -eq $Temp.id } | Select-Object -First 1)
-        $result = [PSCustomObject]@{
-          validationAction = $Temp.validationAction
-          recommendationId = $Temp.recommendationId
-          name             = $Temp.name
-          id               = $Temp.id
-          location         = $TempDetails.location
-          subscriptionId   = $TempDetails.subscriptionId
-          resourceGroup    = $TempDetails.resourceGroup
-          param1           = $Temp.param1
-          param2           = $Temp.param2
-          param3           = $Temp.param3
-          param4           = $Temp.param4
-          param5           = $Temp.param5
-          checkName        = $Temp.checkName
-          selector         = $Temp.selector
-          tagged           = $false
-        }
-        $result
-      }
+          }
+      $result
     }
 
     $Script:OutOfScope += foreach ($ResIID in $Script:PreOutOfScopeResources)
@@ -1205,10 +1192,10 @@ $Script:Runtime = Measure-Command -Expression {
   function Invoke-AdvisoryExtraction {
     Param($Subid,$ResourceGroup)
     if (![string]::IsNullOrEmpty($ResourceGroup)) {
-        $advquery = "advisorresources | where type == 'microsoft.advisor/recommendations' and tostring(properties.category) in ('HighAvailability','Performance','OperationalExcellence') | where resourceGroup =~ '$ResourceGroup' | order by id"
+        $advquery = "advisorresources | where type == 'microsoft.advisor/recommendations' and tostring(properties.category) in ('HighAvailability') | where resourceGroup =~ '$ResourceGroup' | order by id"
         $queryResults = Get-AllAzGraphResource -Query $advquery -subscriptionId $Subid
       } else {
-        $advquery = "advisorresources | where type == 'microsoft.advisor/recommendations' and tostring(properties.category) in ('HighAvailability','Performance','OperationalExcellence') | order by id"
+        $advquery = "advisorresources | where type == 'microsoft.advisor/recommendations' and tostring(properties.category) in ('HighAvailability') | order by id"
         $queryResults = Get-AllAzGraphResource -Query $advquery -subscriptionId $Subid
       }
 
@@ -1317,20 +1304,13 @@ $Script:Runtime = Measure-Command -Expression {
     param()
 
     if ($PSCmdlet.ShouldProcess('')) {
-      <#  if($ResourceGroupFile){
+      Write-Host $ResourceGroups -ForegroundColor Yellow
 
-        $ResourceExporter = @{
-          Resource = $(Get-ResourceGroupsByList -ObjectList $Script:results -FilterList $resourcegrouplist -KeyColumn "id")
-        }
-      else{
-        $ResourceExporter = @{
-          Resource = $Script:results
-        }
-      } #>
-
-      #Ternary Expression If ResourceGroupFile is present, then get the ResourceGroups by List, else get the results
       $ResourceExporter = @{
-        ImpactedResources = $ResourceGroupList ? $(Get-ResourceGroupsByList -ObjectList $Script:ImpactedResources -FilterList $resourcegrouplist -KeyColumn "id") : $Script:ImpactedResources
+        ImpactedResources = $Script:ImpactedResources
+      }
+      $OutOfScopeExporter = @{
+        OutOfScope = $Script:OutOfScope
       }
       $OutOfScopeExporter = @{
         OutOfScope = $Script:OutOfScope
@@ -1400,15 +1380,9 @@ $Script:Runtime = Measure-Command -Expression {
 
 
   #Call the functions
-  $Script:Version = '2.0.13'
+  $Script:Version = '2.0.14'
   Write-Host 'Version: ' -NoNewline
   Write-Host $Script:Version -ForegroundColor DarkBlue
-
-  if ($SAP.IsPresent) {
-    Write-Host "We caught it here..."
-    Get-Help -Name "./1_wara_collector.ps1" -Detailed
-    Exit
-  }
 
   Write-Debug "Checking parameters..."
 
@@ -1427,29 +1401,32 @@ $Script:Runtime = Measure-Command -Expression {
     $locations = $ConfigData.locations
     $RunbookFile = $ConfigData.RunbookFile
     $Tags = $ConfigData.Tags
+    $ResourceGroups = $ConfigData.ResourceGroups
   }
   else {
     $Scopes = @()
+    if ($SubscriptionIds)
+      {
+        $Scopes += foreach ($Sub in $SubscriptionIds)
+        {
+          $_guid = [Guid]::NewGuid()
+
+          if ([Guid]::TryParse($Sub, [ref]$_guid)) {
+            $SubId = "/subscriptions/$Sub"
+            Write-Host "[-SubscriptionIds]: Fixed '$Sub' >> '$SubId'" -ForegroundColor Yellow
+            "/subscriptions/$Sub" # Fixed!
+          } else {
+            Write-Host "[-SubscriptionIds]: $Sub" -ForegroundColor Cyan
+            $Sub
+          }
+        }
+      }
     if ($ResourceGroups)
       {
         $Scopes += foreach ($RG in $ResourceGroups)
           {
+            Write-Host "[-ResourceGroups]: $RG" -ForegroundColor Cyan
             $RG
-          }
-      }
-    else
-      {
-        $Scopes += foreach ($Sub in $SubscriptionIds)
-          {
-            $_guid = [Guid]::NewGuid()
-
-            if ([Guid]::TryParse($Sub, [ref]$_guid)) {
-              $SubId = "/subscriptions/$Sub"
-              Write-Host "[-SubscriptionIds]: Fixed '$Sub' >> '$SubId'" -ForegroundColor Yellow
-              "/subscriptions/$Sub" # Fixed!
-            } else {
-              $Sub
-            }
           }
       }
   }

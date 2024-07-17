@@ -5,6 +5,7 @@ on:
   pull_request:
     branches:
       - main
+      - dev-tools
   workflow_dispatch: {}
 
 permissions:

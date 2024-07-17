@@ -11,6 +11,10 @@ This section provides an overview of the Azure Proactive Resiliency Library v2 (
 ## 1 - Collector Script
 
 - [GitHub Link to Download](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/1_wara_collector.ps1)
+- Download the script using command-line
+    ```shell
+    iwr https://aka.ms/aprl/tools/1 -out 1_wara_collector.ps1
+    ```
 - [GitHub Link to Sample Output](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/sample-output/WARA_File_2024-05-07_11_59.json)
 
 The Collector PowerShell script is the first script to be run in the Azure Proactive Resiliency Library (APRL) tooling suite. It is designed to collect data from the Azure environment to help identify potential issues and areas for improvement using the Azure Resource Graph queries within this repository. The script leverages the Az.ResourceGraph module to query Azure Resource Graph for relevant data.
@@ -33,6 +37,12 @@ The Collector PowerShell script is the first script to be run in the Azure Proac
 
 1. Upload the WARA Collector Script to Cloud Shell
   {{< figure src="../../img/tools/collector-2.png" width="60%" >}}
+
+    Or download the script from GtiHub
+
+    ```shell
+    iwr https://aka.ms/aprl/tools/1 -out 1_wara_collector.ps1
+    ```
 
 1. Execute script leveraging optional parameters
 
@@ -85,11 +95,12 @@ The Collector PowerShell script is the first script to be run in the Azure Proac
 
       - Parameters include:
         - **TenantID**:  *Optional* ; tenant to be used.
-        - **SubscriptionIds**:  *Required (or ConfigFile)* ; Specifies Subscription(s) to be included in the analysis: /subscriptions/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY,/subscriptions/AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA.
+        - **SubscriptionIds**:  *Optional if ResourceGroup(s) are provided or a ConfigFile is used* ; Specifies Subscription(s) to be included in the analysis: "/subscriptions/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY","/subscriptions/AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA".
         - **RunbookFile**:  *Optional* ; specifies the file with the runbook (selectors & checks) to be used.
-        - **ResourceGroups**:  *Optional* ; specifies Resource Group(s) to be included in the analysis: /subscriptions/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY/resourceGroups/ResourceGroup1,/subscriptions/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY/resourceGroups/ResourceGroup2.
-        - **Tags**:  *Optional* ; specifies tags to be used for filtering the resources: TagName1||TagName2||TagNameN==TagValue1||TagValue2, TagName1==TagValue1.
+        - **ResourceGroups**:  *Optional if subscription(s) are provided or a ConfigFile is used* ; specifies Resource Group(s) to be included in the analysis: "/subscriptions/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY/resourceGroups/ResourceGroup1","/subscriptions/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY/resourceGroups/ResourceGroup2".
+        - **Tags**:  *Optional* ; specifies tags to be used for filtering the resources: "TagName1==TagValue1","TagName2==TagValue2"
         - **ConfigFile**:  *Optional* ; specifies a file for advanced filtering, including: subscription, resourceGroup, resourceId, Tags.
+          - See ConfigFile.Example [here](../../../../tools/configfile.example)
         - **AzureEnvironment**:  *Optional* ; specifies the Azure Environment to used for the analysis: AzureCloud, AzureUSGovernment.
         - **SAP**:  *Optional* ; used for specialized workload analysis.
         - **AVD**:  *Optional* ; used for specialized workload analysis.
@@ -98,7 +109,7 @@ The Collector PowerShell script is the first script to be run in the Azure Proac
         - **Debugging**: *Optional* ; Writes Debugging information of the script during the execution.
         {{< figure src="../../img/tools/collector-8.png" width="100%" >}}
 
-1. Authenticate with the account that has Reader permissions to the target subscription(s)
+2. Authenticate with the account that has Reader permissions to the target subscription(s)
   {{< figure src="../../img/tools/collector-9.png" width="40%" >}}
 
 1. After script completes, the results will be saved to the same folder location.
@@ -106,6 +117,10 @@ The Collector PowerShell script is the first script to be run in the Azure Proac
 ## 2 - Data Analyzer Script
 
 - [GitHub Link to Download](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/2_wara_data_analyzer.ps1)
+- Download the script using command-line
+    ```shell
+    iwr https://aka.ms/aprl/tools/2 -out 2_wara_data_analyzer.ps1
+    ```
 - [GitHub Link to Sample Output](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/sample-output/WARA%20Action%20Plan%202024-05-07_12_07.xlsx)
 
 The Data Analyzer PowerShell script is the second script in the Azure Proactive Resiliency Library (APRL) tooling suite. It compares the output collected by the Collector script with the Azure Proactive Resiliency Guidelines (APRL) and generates an ActionPlan Excel spreadsheet. The goal of this tool is to summarize the collected data and provide actionable insights into the health and resiliency of the Azure environment.
@@ -157,6 +172,18 @@ The Data Analyzer PowerShell script is the second script in the Azure Proactive 
 ## 3 - Reports Generator Script
 
 - [GitHub Link to Download](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/3_wara_reports_generator.ps1)
+- Download the script using command-line
+    ```shell
+    iwr https://aka.ms/aprl/tools/3 -out 3_wara_reports_generator.ps1
+    ```
+- Download the PowerPoint template using command-line
+    ```shell
+    iwr https://aka.ms/aprl/tools/pptx -out 'Mandatory - Executive Summary presentation - Template.pptx'
+    ```
+- Download the Word template using command-line
+    ```shell
+    iwr https://aka.ms/aprl/tools/docx -out 'Optional - Assessment Report - Template.docx'
+    ```
 - [GitHub Link to Sample Output - Executive Summary Presentation](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/sample-output/Executive%20Summary%20Presentation%20-%20Contoso%20Hotels%20-%202024-05-07-12-12.pptx)
 - [GitHub Link to Sample Output - Assessment Report](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/sample-output/Assessment%20Report%20-%20Contoso%20Hotels%20-%202024-05-07-12-12.docx)
 
