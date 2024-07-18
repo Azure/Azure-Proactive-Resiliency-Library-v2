@@ -4,4 +4,3 @@ resources
 | where type == "microsoft.dbforpostgresql/flexibleservers"
 | where properties.maintenanceWindow.customWindow != "Enabled"
 | project recommendationId = "b2bad57d-7e03-4c0f-9024-597c9eb295bb", name, id, tags, param1 = strcat("customWindow:", properties['maintenanceWindow']['customWindow'])
-

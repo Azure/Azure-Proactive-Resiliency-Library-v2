@@ -36,11 +36,11 @@
     - name: Azure Event Grid delivery and retry
       url: "https://learn.microsoft.com/en-us/azure/event-grid/delivery-and-retry#dead-letter-events"
 
-- description: Configure Private Endpoints
+- description: Azure Event Grid topics should use Private Link Private Endpoints
   aprlGuid: b2069f64-4741-3d4a-a71d-50c8b03f5ab7
-  recommendationTypeId: null
+  recommendationTypeId: bdac9c7b-b9b8-f572-0450-f161c430861c
   recommendationControl: Security
-  recommendationImpact: Low
+  recommendationImpact: Medium
   recommendationResourceType: Microsoft.EventGrid/topics
   recommendationMetadataState: Active
   longDescription: |

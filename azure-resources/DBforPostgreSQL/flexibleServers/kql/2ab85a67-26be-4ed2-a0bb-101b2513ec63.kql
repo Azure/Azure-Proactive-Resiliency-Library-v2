@@ -1,0 +1,6 @@
+// Azure Resource Graph Query
+// Find Database for PostgreSQL instances that are read replicas
+resources
+| where type == "microsoft.dbforpostgresql/flexibleservers"
+| where properties.replicationRole == "AsyncReplica"
+| project recommendationId = "2ab85a67-26be-4ed2-a0bb-101b2513ec63", name, id, tags, param1 = strcat("replicationRole:", properties['replicationRole'])

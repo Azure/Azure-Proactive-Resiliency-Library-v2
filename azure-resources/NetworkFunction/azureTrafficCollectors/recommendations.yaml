@@ -1,4 +1,4 @@
-- description: Ensure ExpressRoute Traffic Collector is enabled and configured for ExpressRoute Direct circuits
+- description: Ensure ExpressRoute Traffic Collector is enabled and configured for Direct or Provider circuits
   aprlGuid: 1ceea4b5-1d8b-4be0-9bbe-9594557be51a
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
@@ -6,7 +6,7 @@
   recommendationResourceType: Microsoft.NetworkFunction/azureTrafficCollectors
   recommendationMetadataState: Active
   longDescription: |
-    ExpressRoute Traffic Collector samples network flows over ExpressRoute Direct circuits, sending flow logs to a Log Analytics workspace for analysis or export to visualization tools/SIEM.
+    ExpressRoute Traffic Collector samples network flows over ExpressRoute Direct or Service-Provider based circuits, sending flow logs to a Log Analytics workspace for analysis or export to visualization tools/SIEM.
   potentialBenefits: Enhanced network flow analysis and DR readiness
   pgVerified: true
   publishedToLearn: false
