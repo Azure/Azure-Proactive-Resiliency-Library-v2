@@ -632,11 +632,11 @@ $Script:Runtime = Measure-Command -Expression {
       }
 
     $TagFilter = $Tags
-    $Counter = 0
 
     # Each line in the Tag Filtering file will be processed
     $AllTaggedResourceGroups = @()
     $AllTaggedResources = @()
+    $ResetTags = $false
     Foreach ($TagLine in $TagFilter) {
       # Finding the TagKey and all the TagValues in the line
       if ($TagLine -like '*==*')
@@ -661,7 +661,10 @@ $Script:Runtime = Measure-Command -Expression {
       $TagValue = [string]$TagValue
       $TagValue = if ($TagValue -like "*',*") { $TagValue -replace '.$' }else { "'$TagValue'" }
 
-      Write-Debug ('Running Resource Group Tag Inventory for: ' + $TagKey + ' : ' + $TagValue)
+      if ($Debugging.IsPresent)
+        {
+          Write-host ('Running Resource Group Tag Inventory for: ' + $TagKey + ' : ' + $TagValue)
+        }
 
       if ($TagLine -like '*==*')
         {
@@ -673,8 +676,35 @@ $Script:Runtime = Measure-Command -Expression {
           $RGTagQuery = "$ContainerScopeQuery | mvexpand tags | extend tagKey = tostring(bag_keys(tags)[0]) | extend tagValue = tostring(tags[tagKey]) | where tagKey in~ ($TagKey) and tagValue !in~ ($TagValue) | project id | order by id"
         }
       $TaggedResourceGroups = Get-AllAzGraphResource -query $RGTagQuery -subscriptionId $InScopeSub
+      if ($Debugging.IsPresent)
+        {
+          Write-host "Tagged Resource Containers Found: " -NoNewline
+          $Tagged = [string]$TaggedResourceGroups.count
+          write-host $Tagged -ForegroundColor Magenta
+        }
 
-      Write-Debug ('Running Resource Tag Inventory for: ' + $TagKey + ' : ' + $TagValue)
+        if ($TaggedResourceGroups) {
+          foreach ($ResourceGroup in $TaggedResourceGroups.id) {
+            if ($Debugging.IsPresent)
+              {
+                Write-host ('Checking Resources Inside: ' + $ResourceGroup)
+              }
+            $ResourcesTagQuery = "Resources | where id startswith '$ResourceGroup' | project id, name, subscriptionId, type, resourceGroup, location | order by id"
+
+            $AllTaggedResourceGroups += Get-AllAzGraphResource -query $ResourcesTagQuery -subscriptionId $InScopeSub
+          if ($Debugging.IsPresent)
+            {
+              Write-host "Resources Found Inside the Container: " -NoNewline
+              $Tagged = [string]$AllTaggedResourceGroups.count
+              write-host $Tagged -ForegroundColor Magenta
+            }
+          }
+        }
+
+      if ($Debugging.IsPresent)
+        {
+          Write-host ('Running Resource Tag Inventory for: ' + $TagKey + ' : ' + $TagValue)
+        }
       if ($TagLine -like '*==*')
         {
           #Getting all the resources within the TAGs
@@ -686,33 +716,45 @@ $Script:Runtime = Measure-Command -Expression {
         }
       $ResourcesWithTHETag = Get-AllAzGraphResource -query $ResourcesTagQuery -subscriptionId $InScopeSub
 
-      if ($Counter -gt 0) {
-        foreach ($resource in $AllTaggedResources) {
-          if ($resource.id -notin $ResourcesWithTHETag.id) {
-            $Script:TaggedResources += $AllTaggedResources | Where-Object { $_.id -ne $resource.id }
-            $AllTaggedResources = $AllTaggedResources | Where-Object { $_.id -ne $resource.id }
-          }
+      if ($Debugging.IsPresent)
+        {
+          Write-host "Tagged Resources Found: " -NoNewline
+          $Tagged = [string]$ResourcesWithTHETag.count
+          write-host $Tagged -ForegroundColor Magenta
         }
-        foreach ($RG in $AllTaggedResourceGroups) {
-          if ($RG -notin $TaggedResourceGroups) {
-            $AllTaggedResourceGroups = $AllTaggedResourceGroups | Where-Object { $_ -ne $RG }
-          }
-        }
-      } else {
-        $Counter ++
-        $Script:TaggedResources += $ResourcesWithTHETag
-        $AllTaggedResourceGroups += $TaggedResourceGroups
-      }
-    }
-    #If Tags are present in the Resource Group level we make sure to get all the resources within that resource group
-    if ($AllTaggedResourceGroups) {
-      foreach ($ResourceGroup in $TaggedResourceGroups) {
-        Write-Debug ('Double Checking Tagged Resources inside: ' + $ResourceGroup)
-        $ResourcesTagQuery = "Resources | where id startswith '$ResourceGroup' | project id, name, subscriptionId, type, resourceGroup, location | order by id"
 
-        $Script:TaggedResources += Get-AllAzGraphResource -query $ResourcesTagQuery -subscriptionId $InScopeSub
+        if (![string]::IsNullOrEmpty($ResourcesWithTHETag) -and [string]::IsNullOrEmpty($AllTaggedResources) -and $ResetTags -eq $false)
+          {
+            $AllTaggedResources += $ResourcesWithTHETag
+            $AllTaggedResources += $AllTaggedResourceGroups
+          }
+        elseif ([string]::IsNullOrEmpty($ResourcesWithTHETag))
+          {
+            if ($Debugging.IsPresent)
+              {
+                Write-host "No Tagged Resources were found. Reseting Values."
+              }
+            $AllTaggedResources = @()
+            $ResetTags = $true
+          }
+        elseif (![string]::IsNullOrEmpty($AllTaggedResources) -and $ResetTags -eq $false)
+          {
+            foreach ($resource in $AllTaggedResources)
+              {
+                if ($resource.id -notin $ResourcesWithTHETag.id)
+                  {
+                    $AllTaggedResources = $AllTaggedResources | Where-Object { $_.id -ne $resource.id }
+                  }
+              }
+          }
       }
-    }
+        $Script:TaggedResources += $AllTaggedResources | Select-Object -Property id, name, subscriptionId, type, resourceGroup, location -Unique -CaseInsensitive
+        if ($Debugging.IsPresent)
+          {
+            Write-host "Tagged Resources Final Value: " -NoNewline
+            $Tagged = [string]$Script:TaggedResources.count
+            write-host $Tagged -ForegroundColor Magenta
+          }
   }
 
   function Invoke-QueryExecution {
@@ -1076,7 +1118,10 @@ $Script:Runtime = Measure-Command -Expression {
 
         if (![string]::IsNullOrEmpty($ResourceGroup))
           {
-            $script:results += Get-ResourceGroupsByList -ObjectList $TempResult -FilterList $ResourceGroups -KeyColumn "id"
+            if ($TempResult.count -gt 1)
+              {
+                $script:results += Get-ResourceGroupsByList -ObjectList $TempResult -FilterList $ResourceGroup -KeyColumn "id"
+              }
           }
         else
           {
@@ -1143,7 +1188,23 @@ $Script:Runtime = Measure-Command -Expression {
 
     $Script:OutOfScope += foreach ($ResIID in $Script:PreOutOfScopeResources)
       {
-        if ($ResIID.type -notin $Script:SupportedResTypes)
+        if ($Tags)
+          {
+            if ($ResIID.id -in $Script:TaggedResources.id)
+            {
+              $result = [PSCustomObject]@{
+                description      = 'No Action Required - This ResourceType is out of scope of Well-Architected Reliability Assessment engagements.'
+                type             = $ResIID.type
+                subscriptionId   = $ResIID.subscriptionId
+                resourceGroup    = $ResIID.resourceGroup
+                name             = $ResIID.name
+                location         = $ResIID.location
+                id               = $ResIID.id
+              }
+            $result
+            }
+          }
+        else
           {
             $result = [PSCustomObject]@{
               description      = 'No Action Required - This ResourceType is out of scope of Well-Architected Reliability Assessment engagements.'
@@ -1398,7 +1459,6 @@ $Script:Runtime = Measure-Command -Expression {
     $locations = $ConfigData.locations
     $RunbookFile = $ConfigData.RunbookFile
     $Tags = $ConfigData.Tags
-    $ResourceGroups = $ConfigData.ResourceGroups
   }
   else {
     $Scopes = @()
