@@ -112,6 +112,12 @@ $Global:Runtime = Measure-Command -Expression {
   function Excel {
 
     if ($Debugging.IsPresent) { ('FunctExcel - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Processing Excel variables..') | Out-File -FilePath $LogFile -Append }
+
+    if (-not (Test-Path -PathType Leaf -Path $ExcelFile))
+      {
+        Write-Error ('The specified Excel file "{0}" was not found.' -f $ExcelFile)
+        Exit
+      }
     $ExcelFile = get-item -Path $ExcelFile
     if ($Global:Heavy) {Start-Sleep -Milliseconds 100}
     $ExcelFile = $ExcelFile.FullName
@@ -127,7 +133,14 @@ $Global:Runtime = Measure-Command -Expression {
         $ErrorStack = $_.ScriptStackTrace
         if ($CoreDebugging) { ('OfficeApps - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Error - ' + $errorMessage) | Out-File -FilePath $LogFile -Append }
         if ($CoreDebugging) { ('OfficeApps - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Error - ' + $ErrorStack) | Out-File -FilePath $LogFile -Append }
-        Write-Error "Excel File not found, or it is encrypted."
+        if (($_.Exception -is [System.Management.Automation.MethodInvocationException]) -and ($_.Exception.Message -like '*encrypted*'))
+          {
+            Write-Error ('The specified Excel file "{0}" may be encrypted. If a sensitivity label is applied to the file, please change the sensitivity label to the label without encryption temporarily. Learn more: https://aka.ms/aprl/tools/faq' -f $ExcelFile)
+          }
+        else
+          {
+            Write-Error $errorMessage
+          }
         Exit
       }
 

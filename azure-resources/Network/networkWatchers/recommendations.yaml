@@ -35,3 +35,22 @@
   learnMoreLink:
     - name: Manage NSG flow logs using the Azure portal
       url: "https://learn.microsoft.com/azure/network-watcher/nsg-flow-logging"
+
+- description: Configure Network Watcher Connection monitor
+  aprlGuid: 1e28bbc1-1eb7-486f-8d7f-93943f40219c
+  recommendationTypeId: null
+  recommendationControl: Monitoring and Alerting
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/networkWatchers
+  recommendationMetadataState: Active
+  longDescription: |
+    Improves monitoring for Azure and Hybrid connectivity
+  potentialBenefits: Improves monitoring for Azure and Hybrid connectivity
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Connection monitor overview
+      url: "https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-overview"
