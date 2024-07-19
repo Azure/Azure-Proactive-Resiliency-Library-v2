@@ -100,7 +100,7 @@ The Collector PowerShell script is the first script to be run in the Azure Proac
         - **ResourceGroups**:  *Optional if subscription(s) are provided or a ConfigFile is used* ; specifies Resource Group(s) to be included in the analysis: "/subscriptions/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY/resourceGroups/ResourceGroup1","/subscriptions/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY/resourceGroups/ResourceGroup2".
         - **Tags**:  *Optional* ; specifies tags to be used for filtering the resources: "TagName1==TagValue1","TagName2==TagValue2"
         - **ConfigFile**:  *Optional* ; specifies a file for advanced filtering, including: subscription, resourceGroup, resourceId, Tags.
-          - See ConfigFile.Example [here](../../../../tools/configfile.example)
+          - See ConfigFile.Example [here](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/configfile.example)
         - **AzureEnvironment**:  *Optional* ; specifies the Azure Environment to used for the analysis: AzureCloud, AzureUSGovernment.
         - **SAP**:  *Optional* ; used for specialized workload analysis.
         - **AVD**:  *Optional* ; used for specialized workload analysis.
@@ -220,3 +220,30 @@ The Reports Generator PowerShell script serves as the final step in the Azure Pr
 {{< hint type=important >}}
 Updates will need to be made prior to presenting to any audience.
 {{< /hint >}}
+
+## Frequently asked questions
+
+### 3_wara_reports_generator.ps1
+
+#### The specified Excel file may be encrypted. If a sensitivity label is applied to the file, please change the sensitivity label to the label without encryption temporarily
+
+The specified Excel file may be has a sensitivity label (encrypted). The 3_wara_reports_generator.ps1 script does not support encrypted Excel file currently. To avoid this issue, you need to change the sensitivity label to the label without encryption temporarily. For example, **Confidential/Any User (No Protection)** sensitivity. After completing the script running, you can re-apply the original sensitivity label (recommended).
+
+You can change the sensitivity label on the file by **Excel** or **Information Protection File Labeler**.
+
+- Option 1: Excel
+
+    1. Select a sensitivity label that you want from the sensitivity bar at the top of the Excel window.
+    2. Save the Excel file.
+
+    Learn more about the [Sensitivity bar in Microsoft 365](https://support.microsoft.com/office/2f96e7cd-d5a4-403b-8bd7-4cc636bae0f9).
+
+- Option 2: Information Protection File Labeler
+
+    1. Install the [Microsoft Purview Information Protection client](https://www.microsoft.com/en-us/download/details.aspx?id=53018)
+    2. Right click the Excel file in the File Explorer then select **Show more options**.
+    3. Select **Apply sensitivity label with Microsoft Purview**
+    4. Select a sensitivity label that you want.
+    5. Click the **Apply** button.
+
+    Learn more about the [detailed usage of the Information Protection File Labeler](https://support.microsoft.com/topic/67829155-2d0e-4122-9677-7c53c8cba18a).
