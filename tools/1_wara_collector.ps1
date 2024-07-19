@@ -413,39 +413,112 @@ $Script:Runtime = Measure-Command -Expression {
     }
   }
 
+  # Function to check if running in Azure Cloud Shell
+  function Test-IsAzureCloudShell {
+    try {
+      if ($null -ne $env:ACC_CLOUD) {
+        Write-Host 'Running in Azure Cloud Shell environment, no need to explicitly authenticate.' -ForegroundColor Green
+        return $true
+      } else {
+        return $false
+      }
+    } catch {
+      Write-Error "An error occurred while checking the Azure Cloud Shell environment: $_"
+      return $false
+    }
+  }
+
+  # Function to connect to Azure
   function Connect-ToAzure {
-    $Subscription0 = $Scopes | Select-Object -First 1 | ForEach-Object {$_.split("/")[2]}
-    # Connect To Azure Tenant
-    Write-Host 'Authenticating to Azure'
-    if ($Script:ShellPlatform -eq 'Win32NT') {
-      Clear-AzContext -Force -ErrorAction SilentlyContinue -WarningAction SilentlyContinue -InformationAction SilentlyContinue
-      if ([string]::IsNullOrEmpty($TenantID)) {
-        Write-Host 'Tenant ID not specified.'
-        Write-Host ''
-        Connect-AzAccount -WarningAction SilentlyContinue -Environment $AzureEnvironment
-        $Tenants = Get-AzTenant
-        if ($Tenants.count -gt 1) {
-          Write-Host 'Select the Azure Tenant to connect : '
-          $Selection = 1
-          foreach ($Tenant in $Tenants) {
-            $TenantName = $Tenant.Name
-            Write-Host "$Selection)  $TenantName"
-            $Selection ++
+    [CmdletBinding()]
+    param (
+      [Parameter(Mandatory = $true)]
+      [string]$TenantID,
+
+      [Parameter(Mandatory = $true)]
+      [array]$Scopes,
+
+      [Parameter(Mandatory = $true)]
+      [string]$AzureEnvironment
+    )
+
+    begin {
+      Write-Debug "Begin: Extracting subscription IDs from scopes."
+      $SubscriptionIdsToCheck = $Scopes | ForEach-Object {
+        if ($_ -match '/subscriptions/([0-9a-fA-F-]{36})') {
+          $matches[1]
+        }
+      }
+
+      Write-Debug "Begin: Retrieving current tenant ID."
+      $CurrentTenantId = (Get-AzContext -ErrorAction SilentlyContinue).Tenant.Id
+
+      $LoggedInState = $false
+      if ($CurrentTenantId) {
+        try {
+          Write-Debug "Begin: Retrieving all subscriptions for the current tenant."
+          $AllSubscriptions = Get-AzSubscription -TenantId $CurrentTenantId -ErrorAction Stop
+
+          # Check if any of the current subscriptions match the ones in the list
+          foreach ($subscription in $AllSubscriptions) {
+            if ($SubscriptionIdsToCheck -contains $subscription.SubscriptionId) {
+              Write-Debug "Begin: Already logged into a tenant with one of the specified subscriptions."
+              Write-Host "Already logged into a tenant with one of the specified subscriptions." -ForegroundColor Green
+              $LoggedInState = $true
+              break
+            }
           }
-          Write-Host ''
-          [int]$SelectedTenant = Read-Host 'Select Tenant'
-          $defaultTenant = --$SelectedTenant
-          $TenantID = $Tenants[$defaultTenant]
-          Connect-AzAccount -Tenant $TenantID -Subscription $Subscription0 -WarningAction SilentlyContinue -Environment $AzureEnvironment
+        } catch {
+          Write-Error "Begin: Error occurred while checking current subscriptions: $_"
+        }
+      }
+    }
+
+    process {
+      if (-not $LoggedInState) {
+        Write-Debug "Process: Not logged into a tenant with any of the specified subscriptions. Authenticating to Azure."
+
+        try {
+          $WamState = $null
+          $LoginExperienceV2State = $null
+
+          if ((Get-AzConfig -EnableLoginByWam).Value -eq $true -or (Get-AzConfig -LoginExperienceV2).Value -eq 'Off') {
+            Write-Debug "Process: Disabling interactive login experience."
+            $WamState = (Get-AzConfig -EnableLoginByWam).Value
+            $LoginExperienceV2State = (Get-AzConfig -LoginExperienceV2).Value
+            Set-AzConfig -EnableLoginByWam $false -WarningAction SilentlyContinue
+            Update-AzConfig -LoginExperienceV2 Off -WarningAction SilentlyContinue
+          }
+
+          Write-Debug "Process: Connecting to Azure."
+          # Connect to Azure using the first valid subscription ID
+          $FirstValidSubscriptionId = $SubscriptionIdsToCheck | Select-Object -First 1
+          Connect-AzAccount -Tenant $TenantID -Subscription $FirstValidSubscriptionId -WarningAction SilentlyContinue -Environment $AzureEnvironment
+
+          if ($null -ne $WamState) {
+            Write-Debug "Process: Restoring interactive login experience (WamState)."
+            Set-AzConfig -EnableLoginByWam $WamState -WarningAction SilentlyContinue
+          }
+
+          if ($null -ne $LoginExperienceV2State) {
+            Write-Debug "Process: Restoring interactive login experience (LoginExperienceV2State)."
+            Update-AzConfig -LoginExperienceV2 $LoginExperienceV2State -WarningAction SilentlyContinue
+          }
+        } catch {
+          Write-Error "Process: Error occurred while authenticating to Azure: $_"
         }
       } else {
-        Connect-AzAccount -Tenant $TenantID -Subscription $Subscription0 -WarningAction SilentlyContinue -Environment $AzureEnvironment
+        Write-Debug "Process: Skipped login"
       }
-      #Set the default variable with the list of subscriptions in case no Subscription File was informed
-      $Script:SubIds = Get-AzSubscription -TenantId $TenantID -WarningAction SilentlyContinue
-    } else {
-      Connect-AzAccount -Identity -Environment $AzureEnvironment
-      $Script:SubIds = Get-AzSubscription -WarningAction SilentlyContinue
+    }
+
+    end {
+      Write-Debug "End: Completed authentication to Azure."
+      try {
+        $Script:SubIds = Get-AzSubscription -TenantId $TenantID
+      } catch {
+        Write-Error "Error occurred while retrieving subscriptions after logging in: $_"
+      }
     }
   }
 
@@ -1443,8 +1516,12 @@ $Script:Runtime = Measure-Command -Expression {
   Write-Debug 'Calling Function: Test-Runbook'
   Test-Runbook
 
-  Write-Debug "Calling Function: Connect-ToAzure"
-  Connect-ToAzure
+  Write-Debug 'Calling Function: Test-IsAzureCloudShell'
+  if ($(Test-IsAzureCloudShell) -eq $false) {
+    Write-Debug 'Calling Function: Connect-ToAzure'
+    Connect-ToAzure -TenantID $TenantID -Scopes $Scopes -AzureEnvironment $AzureEnvironment
+  }
+
 
   Write-Debug 'Calling Function: Start-ScopesLoop'
   Start-ScopesLoop
