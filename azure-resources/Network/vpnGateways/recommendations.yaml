@@ -1,0 +1,17 @@
+- description: Monitor gateway for Site-to-site v-Hub's VPN gateway
+  aprlGuid: f0d4f766-ac19-48c4-b228-4601cc038baa
+  recommendationTypeId: null
+  recommendationControl: Monitoring and Alerting
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/vpnGateways
+  recommendationMetadataState: Active
+  longDescription: Set up monitoring and alerts for v-Hub's VPN Gateway. Create alert rule for ensuring promptly response to critical events such as packet drop counts, BGP status, Gateway overutilization.
+  potentialBenefits: Detection and mitigation to avoid disruptions.
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Virtual WAN Monitoring Best Practices
+      url: "https://learn.microsoft.com/en-us/azure/virtual-wan/monitoring-best-practices#virtual-wan-gateways"
