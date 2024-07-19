@@ -40,7 +40,7 @@
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Medium
-  recommendationResourceType: Microsoft.Network/virtualHubs/
+  recommendationResourceType: Microsoft.Network/virtualHubs
   recommendationMetadataState: Active
   longDescription: Set up monitoring and alerts for v-Hubs. Create alert rule for ensuring promptly response to changes in BGP status and Data processed by v-Hubs.
   potentialBenefits: Detection and mitigation to avoid disruptions.
