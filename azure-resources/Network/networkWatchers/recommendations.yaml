@@ -40,7 +40,7 @@
   aprlGuid: 1e28bbc1-1eb7-486f-8d7f-93943f40219c
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
-  recommendationImpact: high
+  recommendationImpact: High
   recommendationResourceType: Microsoft.Network/networkWatchers
   recommendationMetadataState: Active
   longDescription: |
