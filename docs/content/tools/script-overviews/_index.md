@@ -11,6 +11,10 @@ This section provides an overview of the Azure Proactive Resiliency Library v2 (
 ## 1 - Collector Script
 
 - [GitHub Link to Download](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/1_wara_collector.ps1)
+- Download the script using command-line
+    ```shell
+    iwr https://aka.ms/aprl/tools/1 -out 1_wara_collector.ps1
+    ```
 - [GitHub Link to Sample Output](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/sample-output/WARA_File_2024-05-07_11_59.json)
 
 The Collector PowerShell script is the first script to be run in the Azure Proactive Resiliency Library (APRL) tooling suite. It is designed to collect data from the Azure environment to help identify potential issues and areas for improvement using the Azure Resource Graph queries within this repository. The script leverages the Az.ResourceGraph module to query Azure Resource Graph for relevant data.
@@ -34,15 +38,27 @@ The Collector PowerShell script is the first script to be run in the Azure Proac
 1. Upload the WARA Collector Script to Cloud Shell
   {{< figure src="../../img/tools/collector-2.png" width="60%" >}}
 
+    Or download the script from GtiHub
+
+    ```shell
+    iwr https://aka.ms/aprl/tools/1 -out 1_wara_collector.ps1
+    ```
+
 1. Execute script leveraging optional parameters
 
     - Parameters include:
       - **TenantID**:  *Optional* ; tenant to be used.
-      - **SubscriptionIds**:  *Optional (or SubscriptionsFile)* ; Specifies Subscription(s) to be included in the analysis: Subscription1,Subscription2.
-      - **SubscriptionsFile**:  *Optional (or SubscriptionIds)* ; specifies the file with the subscription list to be analysed (one subscription per line).
+      - **SubscriptionIds**:  *Required (or ConfigFile)* ; Specifies Subscription(s) to be included in the analysis: /subscriptions/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY,/subscriptions/AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA.
       - **RunbookFile**:  *Optional* ; specifies the file with the runbook (selectors & checks) to be used.
-      - **ResourceGroups**:  *Optional* ; specifies Resource Group(s) to be included in the analysis: "ResourceGroup1","ResourceGroup2"
-      - **Debug**: *Optional* ; Writes Debugging information of the script during the execution.
+      - **ResourceGroups**:  *Optional* ; specifies Resource Group(s) to be included in the analysis: /subscriptions/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY/resourceGroups/ResourceGroup1,/subscriptions/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY/resourceGroups/ResourceGroup2.
+      - **Tags**:  *Optional* ; specifies tags to be used for filtering the resources: TagName1||TagName2||TagNameN==TagValue1||TagValue2, TagName1==TagValue1.
+      - **ConfigFile**:  *Optional* ; specifies a file for advanced filtering, including: subscription, resourceGroup, resourceId, Tags.
+      - **AzureEnvironment**:  *Optional* ; specifies the Azure Environment to used for the analysis: AzureCloud, AzureUSGovernment.
+      - **SAP**:  *Optional* ; used for specialized workload analysis.
+      - **AVD**:  *Optional* ; used for specialized workload analysis.
+      - **AVS**:  *Optional* ; used for specialized workload analysis.
+      - **HPC**:  *Optional* ; used for specialized workload analysis.
+      - **Debugging**: *Optional* ; Writes Debugging information of the script during the execution.
 
     {{< figure src="../../img/tools/collector-3.png" width="100%" >}}
 
@@ -78,15 +94,22 @@ The Collector PowerShell script is the first script to be run in the Azure Proac
 1. Execute script leveraging optional parameters
 
       - Parameters include:
-        - **TenantID**:  Optional; tenant to be used.
-        - **SubscriptionIds**:  Optional (or SubscriptionsFile); Specifies Subscription(s) to be included in the analysis: Subscription1,Subscription2.
-        - **SubscriptionsFile**:  Optional (or SubscriptionIds); specifies the file with the subscription list to be analysed (one subscription per line).
-        - **RunbookFile**:  Optional; specifies the file with the runbook (selectors & checks) to be used.
-        - **ResourceGroups**:  Optional; specifies Resource Group(s) to be included in the analysis: ResourceGroup1,ResourceGroup2.
-        - **Debug**:  Writes Debugging information of the script during the execution.
+        - **TenantID**:  *Optional* ; tenant to be used.
+        - **SubscriptionIds**:  *Optional if ResourceGroup(s) are provided or a ConfigFile is used* ; Specifies Subscription(s) to be included in the analysis: "/subscriptions/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY","/subscriptions/AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA".
+        - **RunbookFile**:  *Optional* ; specifies the file with the runbook (selectors & checks) to be used.
+        - **ResourceGroups**:  *Optional if subscription(s) are provided or a ConfigFile is used* ; specifies Resource Group(s) to be included in the analysis: "/subscriptions/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY/resourceGroups/ResourceGroup1","/subscriptions/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY/resourceGroups/ResourceGroup2".
+        - **Tags**:  *Optional* ; specifies tags to be used for filtering the resources: "TagName1==TagValue1","TagName2==TagValue2"
+        - **ConfigFile**:  *Optional* ; specifies a file for advanced filtering, including: subscription, resourceGroup, resourceId, Tags.
+          - See ConfigFile.Example [here](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/configfile.example)
+        - **AzureEnvironment**:  *Optional* ; specifies the Azure Environment to used for the analysis: AzureCloud, AzureUSGovernment.
+        - **SAP**:  *Optional* ; used for specialized workload analysis.
+        - **AVD**:  *Optional* ; used for specialized workload analysis.
+        - **AVS**:  *Optional* ; used for specialized workload analysis.
+        - **HPC**:  *Optional* ; used for specialized workload analysis.
+        - **Debugging**: *Optional* ; Writes Debugging information of the script during the execution.
         {{< figure src="../../img/tools/collector-8.png" width="100%" >}}
 
-1. Authenticate with the account that has Reader permissions to the target subscription(s)
+2. Authenticate with the account that has Reader permissions to the target subscription(s)
   {{< figure src="../../img/tools/collector-9.png" width="40%" >}}
 
 1. After script completes, the results will be saved to the same folder location.
@@ -94,6 +117,10 @@ The Collector PowerShell script is the first script to be run in the Azure Proac
 ## 2 - Data Analyzer Script
 
 - [GitHub Link to Download](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/2_wara_data_analyzer.ps1)
+- Download the script using command-line
+    ```shell
+    iwr https://aka.ms/aprl/tools/2 -out 2_wara_data_analyzer.ps1
+    ```
 - [GitHub Link to Sample Output](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/sample-output/WARA%20Action%20Plan%202024-05-07_12_07.xlsx)
 
 The Data Analyzer PowerShell script is the second script in the Azure Proactive Resiliency Library (APRL) tooling suite. It compares the output collected by the Collector script with the Azure Proactive Resiliency Guidelines (APRL) and generates an ActionPlan Excel spreadsheet. The goal of this tool is to summarize the collected data and provide actionable insights into the health and resiliency of the Azure environment.
@@ -125,9 +152,13 @@ The Data Analyzer PowerShell script is the second script in the Azure Proactive 
       - **Recommendations**: you will find all Recommendations, their category, impact, description, learn more links, and much more.
         - Note that Columns A and B are counting the number of Azure Resources associated with the RecommendationID.
       - **ImpactedResources**: you will find a list of Azure Resources associated with a RecommendationID. These are the Azure Resources NOT following Microsoft best practices for Reliability.
+      - **Other-OutOfScope**: you will find a list of the Resources that are Out of Scope of the Wara engagement based on the ResourceTypes, after all filters have been applied.
+      - **ResourceTypes**: you will find a list of all ResourceTypes the customer is using, number of Resources deployed for each one, and if there are Recommendations for the ResourceType in APRL.
+      - **Outages**: you will find a list of all the outages that impacted the subscriptions (this worksheet might not exist if there are no Outages to be found).
+      - **Retirements**: you will find a list of all the next retirements in the subscriptions (this worksheet might not exist if there are no Retirements to be found).
+      - **Support Tickets**: you will find a list of all the Support Tickets for the subscriptions in the past 6 months (this worksheet might not exist if there are no Support Tickets to be found).
       - **PivotTable**: you will find a couple of pivot tables used to automatically create the charts
       - **Charts**: you will find 3 charts that will be used in the Executive Summary PPTx
-      - **ResourceTypes**: you will find a list of all ResourceTypes the customer is using, number of Resources deployed for each one, and if there are Recommendations for the ResourceType in APRL.
     - At this point, all Azure Resources with recommendations and Azure Resource Graph queries available in APRL, were automatically validated. Follow the next steps to validate the remaining services without automation or that does not exist in APRL yet.
 
 1. Go to the "ImpactedResources" worksheet, filter Column "B" by "IMPORTANT", and validate manually the remaining resource configurations for reliabilty patterns.
@@ -141,6 +172,18 @@ The Data Analyzer PowerShell script is the second script in the Azure Proactive 
 ## 3 - Reports Generator Script
 
 - [GitHub Link to Download](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/3_wara_reports_generator.ps1)
+- Download the script using command-line
+    ```shell
+    iwr https://aka.ms/aprl/tools/3 -out 3_wara_reports_generator.ps1
+    ```
+- Download the PowerPoint template using command-line
+    ```shell
+    iwr https://aka.ms/aprl/tools/pptx -out 'Mandatory - Executive Summary presentation - Template.pptx'
+    ```
+- Download the Word template using command-line
+    ```shell
+    iwr https://aka.ms/aprl/tools/docx -out 'Optional - Assessment Report - Template.docx'
+    ```
 - [GitHub Link to Sample Output - Executive Summary Presentation](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/sample-output/Executive%20Summary%20Presentation%20-%20Contoso%20Hotels%20-%202024-05-07-12-12.pptx)
 - [GitHub Link to Sample Output - Assessment Report](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/sample-output/Assessment%20Report%20-%20Contoso%20Hotels%20-%202024-05-07-12-12.docx)
 
@@ -177,3 +220,30 @@ The Reports Generator PowerShell script serves as the final step in the Azure Pr
 {{< hint type=important >}}
 Updates will need to be made prior to presenting to any audience.
 {{< /hint >}}
+
+## Frequently asked questions
+
+### 3_wara_reports_generator.ps1
+
+#### The specified Excel file may be encrypted. If a sensitivity label is applied to the file, please change the sensitivity label to the label without encryption temporarily
+
+The specified Excel file may be has a sensitivity label (encrypted). The 3_wara_reports_generator.ps1 script does not support encrypted Excel file currently. To avoid this issue, you need to change the sensitivity label to the label without encryption temporarily. For example, **Confidential/Any User (No Protection)** sensitivity. After completing the script running, you can re-apply the original sensitivity label (recommended).
+
+You can change the sensitivity label on the file by **Excel** or **Information Protection File Labeler**.
+
+- Option 1: Excel
+
+    1. Select a sensitivity label that you want from the sensitivity bar at the top of the Excel window.
+    2. Save the Excel file.
+
+    Learn more about the [Sensitivity bar in Microsoft 365](https://support.microsoft.com/office/2f96e7cd-d5a4-403b-8bd7-4cc636bae0f9).
+
+- Option 2: Information Protection File Labeler
+
+    1. Install the [Microsoft Purview Information Protection client](https://www.microsoft.com/en-us/download/details.aspx?id=53018)
+    2. Right click the Excel file in the File Explorer then select **Show more options**.
+    3. Select **Apply sensitivity label with Microsoft Purview**
+    4. Select a sensitivity label that you want.
+    5. Click the **Apply** button.
+
+    Learn more about the [detailed usage of the Information Protection File Labeler](https://support.microsoft.com/topic/67829155-2d0e-4122-9677-7c53c8cba18a).

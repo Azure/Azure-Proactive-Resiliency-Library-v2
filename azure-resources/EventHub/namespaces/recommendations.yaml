@@ -1,14 +1,14 @@
-- description: Don't disable zone redundancy
+- description: Ensure zone redundancy is enabled in supported regions
   aprlGuid: 84636c6c-b317-4722-b603-7b1ffc16384b
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.EventHub/namespaces
-  recommendationMetadataState: Disabled
+  recommendationMetadataState: Active
   longDescription: |
-    When you use the Azure portal, zone redundancy via support for availability zones is automatically enabled. Avoid disabling this capability to continue replicating metadata and data (events) across data centers in an availability zone.
+    When using the Azure portal, zone redundancy is automatically enabled. However, some Infrastructure as Code (IaC) tools may default this to false. To ensure replication of metadata and events across data centers in an availability zone, always verify that zone redundancy is enabled.
   potentialBenefits: Enhanced fault tolerance for Event Hub
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
@@ -27,7 +27,7 @@
   longDescription: |
     Enable auto-inflate on Event Hub Standard tier namespaces to automatically scale up TUs, meeting usage needs and preventing data ingress or egress throttle scenarios by adjusting to allowed rates.
   potentialBenefits: Prevents throttling by autoscaling TUs
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
   automationAvailable: arg
