@@ -1,2 +1,8 @@
-// under-development
+// Azure Resource Graph Query
+// Find all Azure Boost VMs
+Resources
+| where type == 'microsoft.compute/virtualmachines'
+| extend VMSize = tostring(properties.hardwareProfile.vmSize)
+| where VMSize matches regex "(D.*als_v6|E.*as_v6|DC.*es_v5|EC.*es_v5|M.*v3|F.*als_v6|D.*ls_v5|D.*s_v5|E.*s_v5|E.*bs_v5|L.*s_v3|D.*pls_v5|D.*ps_v5|E.*ps_v5|NV.*ads.*v5|HB.*v4|HX.*|F.*ams_v6)"
+| project recommendationId = "9ab499d8-8844-424d-a2d4-8f53690eb8f8", name, id, tags
 
