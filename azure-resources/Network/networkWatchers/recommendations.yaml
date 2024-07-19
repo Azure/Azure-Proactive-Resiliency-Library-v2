@@ -44,8 +44,8 @@
   recommendationResourceType: Microsoft.Network/networkWatchers
   recommendationMetadataState: Active
   longDescription: |
-    The Connection Monitor feature offers comprehensive, end-to-end monitoring of connections, supporting both hybrid and Azure cloud deployments. Additionally, Network Watcher provides a suite of tools for monitoring, diagnosing, and accessing connectivity metrics specific to Azure deployments..
-  potentialBenefits: Offers a unified monitoring experience for Azure and hybrid environments, enhancing cross-region connectivity. It offers frequent network performance checks, quick alerts for hybrid setups, and supports HTTP, TCP, and ICMP checks, along with Metrics and Log Analytics for Azure and non-Azure tests.
+    Improves monitoring for Azure and Hybrid connectivity
+  potentialBenefits: Improves monitoring for Azure and Hybrid connectivity
   pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
