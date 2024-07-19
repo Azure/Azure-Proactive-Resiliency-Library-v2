@@ -3,7 +3,7 @@
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
-  recommendationResourceType: Microsoft.Network/virtualHubs/
+  recommendationResourceType: Microsoft.Network/virtualHubs
   recommendationMetadataState: Active
   longDescription: |
     Routing Intent will enable Inter Hub connectivity. This is recommended if you have Secured Hubs and no Custom Route Tables to establish Interconnectivity between the Vnets across v-Hubs.
@@ -17,12 +17,12 @@
     - name: How to configure v-Hub routing intent and routing policies
       url: "https://learn.microsoft.com/en-us/azure/virtual-wan/how-to-routing-policies"
 
-- description: Enable routing intent to send private and internet traffic via Azure Firewall or Security Solution deployed in the v-Hub.
+- description: Route private and internet traffic through v-Hub's Azure Firewall
   aprlGuid: 0390bf34-8be5-44ee-b454-d6b8d5dd3790
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
-  recommendationResourceType: Microsoft.Network/virtualHubs/
+  recommendationResourceType: Microsoft.Network/virtualHubs
   recommendationMetadataState: Active
   longDescription: Routing Intent will allow private and internet traffic inspection via Azure Firewall or Security Solution deployed on the v-Hub.
   potentialBenefits: Enhanced traffic inspection
