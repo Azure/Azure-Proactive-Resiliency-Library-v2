@@ -1,12 +1,7 @@
 [
   {
-<<<<<<< HEAD
-    "Collector": "2.0.12",
-    "Analyzer": "2.0.9",
-=======
     "Collector": "2.0.14",
     "Analyzer": "2.0.11",
->>>>>>> upstream/main
     "Generator": "2.0.5"
   }
 ]
