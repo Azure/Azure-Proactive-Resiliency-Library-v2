@@ -15,3 +15,21 @@
   learnMoreLink:
     - name: Designing for disaster recovery with ExpressRoute private peering
       url: "https://learn.microsoft.com/azure/expressroute/designing-for-disaster-recovery-with-expressroute-privatepeering"
+
+- description: Monitor health for v-Hub's ExpressRoute gateway
+  aprlGuid: 17e8d380-e4b4-41a1-9b37-2e4df9fd5125
+  recommendationTypeId: null
+  recommendationControl: Monitoring and Alerting
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/expressRouteGateways
+  recommendationMetadataState: Active
+  longDescription: Set up monitoring and alerts for Virtual WAN Express Route Gateway. Create alert rule for ensuring promptly response to critical events such as exceeding packets per second, exceeding BGP routes prefixes, Gateway overutilization and high frequency in route changes.
+  potentialBenefits: Detection and mitigation to avoid disruptions.
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no/arg
+  tags: null
+  learnMoreLink:
+    - name: Virtual WAN Monitoring Best Practices
+      url: "https://learn.microsoft.com/en-us/azure/virtual-wan/monitoring-best-practices#expressroute-gateway"
