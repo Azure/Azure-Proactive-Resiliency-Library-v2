@@ -64,7 +64,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Improves monitoring and security for Azure and Hybrid connectivity
-  potentialBenefits: Improves monitoring and security for Azure and Hybrid connectivity
+  potentialBenefits: Improves monitoring and security for Azure connectivity
   pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
@@ -83,7 +83,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Improves monitoring, security and troubleshooting for Azure and Hybrid connectivity
-  potentialBenefits: Improves monitoring, security and troubleshooting for Azure and Hybrid connectivity
+  potentialBenefits: Improves monitoring, security and troubleshooting.
   pgVerified: true
   publishedToLearn: false
   publishedToAdvisor: false
