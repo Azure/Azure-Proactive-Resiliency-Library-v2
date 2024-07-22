@@ -28,7 +28,7 @@
   pgVerified: false
   publishedToLearn: false
   publishedToAdvisor: false
-  automationAvailable: no/arg
+  automationAvailable: no
   tags: null
   learnMoreLink:
     - name: Virtual WAN Monitoring Best Practices
