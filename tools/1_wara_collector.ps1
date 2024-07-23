@@ -1154,7 +1154,14 @@ $Script:Runtime = Measure-Command -Expression {
           }
         }
 
-        $Script:results += Get-ResourceGroupsByList -ObjectList $TempResult -FilterList $Scope -KeyColumn "id"
+        if ($RunbookFile)
+          {
+            $Script:results += $TempResult
+          }
+        else
+          {
+            $Script:results += Get-ResourceGroupsByList -ObjectList $TempResult -FilterList $Scope -KeyColumn "id"
+          }
 
         # Unless we're using a runbook...
         if (!($Script:RunbookChecks -and $Script:RunbookChecks.Count -gt 0)) {
