@@ -90,22 +90,25 @@ A JSON file with the collected data.
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', '', Justification = 'False positive as parameters are not always required')]
 
 Param(
-  [switch]$Debugging,
-  [switch]$SAP,
-  [switch]$AVD,
-  [switch]$AVS,
-  [switch]$HPC,
-  $SubscriptionIds,
-  [String[]]$ResourceGroups,
-  $TenantID,
-  $Tags,
-  [ValidateSet('AzureCloud', 'AzureUSGovernment')]
-  $AzureEnvironment = 'AzureCloud',
-  $ConfigFile,
-  # Runbook parameters...
-  [switch]$UseImplicitRunbookSelectors,
-  $RunbookFile
-  )
+        [switch]$Debugging,
+        [switch]$SAP,
+        [switch]$AVD,
+        [switch]$AVS,
+        [switch]$HPC,
+        [ValidatePattern('\/subscriptions\/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}')]
+        [String[]]$SubscriptionIds,
+        [ValidatePattern('\/subscriptions\/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\/resourceGroups\/[a-zA-Z0-9._-]+')]
+        [String[]]$ResourceGroups,
+        [GUID]$TenantID,
+        [String[]]$Tags,
+        [ValidateSet('AzureCloud', 'AzureUSGovernment')]
+        $AzureEnvironment = 'AzureCloud',
+        [ValidateScript({Test-Path $_ -PathType Leaf})]
+        $ConfigFile,
+        # Runbook parameters...
+        [switch]$UseImplicitRunbookSelectors,
+        $RunbookFile
+        )
 
 
 #import-module "./modules/collector.psm1" -Force
@@ -115,6 +118,40 @@ $Script:ShellPlatform = $PSVersionTable.Platform
 if ($Tags) {$TagsPresent = $true}else{$TagsPresent = $false}
 
 $Script:Runtime = Measure-Command -Expression {
+
+
+  Function Test-ResourceGroupId {
+    param (
+      [string[]]$InputValue
+    )
+    $pattern = '\/subscriptions\/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\/resourceGroups\/[a-zA-Z0-9._-]+'
+
+    $allMatch = $true
+
+    $InputValue | ForEach-Object {
+      if ($_ -notmatch $Pattern) {
+        $allMatch = $false
+      }
+    }
+    return $allMatch
+  }
+
+  Function Test-SubscriptionId {
+    param (
+      [string[]]$InputValue
+    )
+    $pattern = '\/subscriptions\/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}'
+
+    $allMatch = $true
+
+    $InputValue | ForEach-Object {
+      if ($_ -notmatch $Pattern) {
+        $allMatch = $false
+      }
+    }
+    return $allMatch
+  }
+
 
   Function Get-AllAzGraphResource {
     param (
