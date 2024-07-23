@@ -1,0 +1,35 @@
+- description: Connect v-Hub's ExpressRoute gateway to circuits from diverse peering locations for resilience
+  aprlGuid: 9987c813-d687-4163-a511-95f31bc5e536
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/expressRouteGateways
+  recommendationMetadataState: Active
+  longDescription: To increase reliability, it's advised that each v-Hub's ExpressRoute gateway connects to at least two circuits, with each circuit originating from a different peering location than the other, ensuring diverse connectivity paths for enhanced resilience.|
+  potentialBenefits: Enhance resiliency for Azure Service
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Designing for disaster recovery with ExpressRoute private peering
+      url: "https://learn.microsoft.com/azure/expressroute/designing-for-disaster-recovery-with-expressroute-privatepeering"
+
+- description: Monitor health for v-Hub's ExpressRoute gateway
+  aprlGuid: 17e8d380-e4b4-41a1-9b37-2e4df9fd5125
+  recommendationTypeId: null
+  recommendationControl: Monitoring and Alerting
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/expressRouteGateways
+  recommendationMetadataState: Active
+  longDescription: Set up monitoring and alerts for Virtual WAN Express Route Gateway. Create alert rule for ensuring promptly response to critical events such as exceeding packets per second, exceeding BGP routes prefixes, Gateway overutilization and high frequency in route changes.
+  potentialBenefits: Detection and mitigation to avoid disruptions.
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Virtual WAN Monitoring Best Practices
+      url: "https://learn.microsoft.com/en-us/azure/virtual-wan/monitoring-best-practices#expressroute-gateway"
