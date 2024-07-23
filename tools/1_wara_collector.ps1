@@ -100,6 +100,7 @@ Param(
         [ValidatePattern('\/subscriptions\/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\/resourceGroups\/[a-zA-Z0-9._-]+')]
         [String[]]$ResourceGroups,
         [GUID]$TenantID,
+        [ValidatePattern('\w+==\w+|\w+=/\w+')]
         [String[]]$Tags,
         [ValidateSet('AzureCloud', 'AzureUSGovernment')]
         $AzureEnvironment = 'AzureCloud',
@@ -1189,7 +1190,27 @@ $Script:Runtime = Measure-Command -Expression {
 
     $Script:ImpactedResources += foreach ($Temp in $Script:results)
       {
-        if ($Temp.id -in $Script:InScope.id)
+        if ($Temp.id -eq "n/a") {
+          $result = [PSCustomObject]@{
+            validationAction = $Temp.validationAction
+            recommendationId = $Temp.recommendationId
+            name             = 'n/a'
+            id               = 'n/a'
+            type             = 'n/a'
+            location         = 'n/a'
+            subscriptionId   = 'n/a'
+            resourceGroup    = 'n/a'
+            param1           = $Temp.param1
+            param2           = $Temp.param2
+            param3           = $Temp.param3
+            param4           = $Temp.param4
+            param5           = $Temp.param5
+            checkName        = $Temp.checkName
+            selector         = $Temp.selector
+          }
+          $result
+        }
+        elseif ($Temp.id -in $Script:InScope.id)
           {
               $TempDetails = ($Script:PreInScopeResources | Where-Object { $_.id -eq $Temp.id } | Select-Object -First 1)
               $result = [PSCustomObject]@{
