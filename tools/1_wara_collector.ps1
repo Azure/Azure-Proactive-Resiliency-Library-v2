@@ -1116,17 +1116,7 @@ $Script:Runtime = Measure-Command -Expression {
           }
         }
 
-        if (![string]::IsNullOrEmpty($ResourceGroup))
-          {
-            if ($TempResult.count -gt 1)
-              {
-                $script:results += Get-ResourceGroupsByList -ObjectList $TempResult -FilterList $ResourceGroup -KeyColumn "id"
-              }
-          }
-        else
-          {
-            $script:results += $TempResult
-          }
+        $Script:results += Get-ResourceGroupsByList -ObjectList $TempResult -FilterList $Scope -KeyColumn "id"
 
         # Unless we're using a runbook...
         if (!($Script:RunbookChecks -and $Script:RunbookChecks.Count -gt 0)) {
@@ -1182,8 +1172,8 @@ $Script:Runtime = Measure-Command -Expression {
                 checkName        = $Temp.checkName
                 selector         = $Temp.selector
               }
+              $result
           }
-      $result
     }
 
     $Script:OutOfScope += foreach ($ResIID in $Script:PreOutOfScopeResources)
