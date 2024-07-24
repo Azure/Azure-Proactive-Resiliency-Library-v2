@@ -455,3 +455,39 @@
   learnMoreLink:
     - name: Learn More
       url: "Link URL"
+- description: Review SAP configuration for timeout values used with Azure NetApp Files
+  aprlGuid: 4884cada-b9c7-42d5-8153-3853e4a6f6c4
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Specialized.Workload/SAP
+  recommendationMetadataState: Active
+  longDescription: |
+    Configure recommended time-out values when using Azure NetApp Files to ensure optimal performance and reliability
+  potentialBenefits: Improve resiliency and performance of SAP on Azure
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: SAP on Azure NetApp Planning Guide
+      url: "https://learn.microsoft.com/en-us/azure/sap/workloads/planning-guide-storage#azure-netapp-files"
+- description: Provision recommended storage configuration on database VMs
+  aprlGuid: 697deb1d-d398-4989-9734-9e6c18f7e0ad
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Specialized.Workload/SAP
+  recommendationMetadataState: Active
+  longDescription: |
+    Use recommended SAP storage configuration to increase reliability and performance of SAP on Azure
+  potentialBenefits: Improve reliability, performance and optimize costs
+  pgVerified: true
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: SAP on Azure Storage Planning
+      url: "https://learn.microsoft.com/en-us/azure/sap/workloads/planning-guide-storage"
