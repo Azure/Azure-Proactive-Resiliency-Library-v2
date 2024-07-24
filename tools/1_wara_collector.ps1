@@ -100,7 +100,7 @@ Param(
         [ValidatePattern('\/subscriptions\/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\/resourceGroups\/[a-zA-Z0-9._-]+')]
         [String[]]$ResourceGroups,
         [GUID]$TenantID,
-        [ValidatePattern('^\w+==\w+$|^\w+=\w+$')]
+        [ValidatePattern('^[^<>&%\\?/]+==[^<>&%\\?/]+$|^[^<>&%\\?/]+=[^<>&%\\?/]+$')]
         [String[]]$Tags,
         [ValidateSet('AzureCloud', 'AzureUSGovernment')]
         $AzureEnvironment = 'AzureCloud',
@@ -124,7 +124,7 @@ $Script:Runtime = Measure-Command -Expression {
     param (
       [string[]]$InputValue
     )
-    $pattern = '^\w+==\w+$|^\w+=\w+$'
+    $pattern = '^[^<>&%\\?/]+==[^<>&%\\?/]+$|^[^<>&%\\?/]+=[^<>&%\\?/]+$'
 
     $allMatch = $true
 
