@@ -1186,7 +1186,7 @@ $Script:Runtime = Measure-Command -Expression {
           }
         }
       }
-    }
+  }
 
   function Invoke-ResourceFiltering {
     if ($Tags) {
@@ -1286,7 +1286,7 @@ $Script:Runtime = Measure-Command -Expression {
           $result
           }
       }
-    }
+  }
 
   function Resolve-ResourceType {
     $TempTypes = $Script:ImpactedResources | Where-Object { $_.validationAction -eq 'IMPORTANT - Resource Type is not available in either APRL or Advisor - Validate Resources manually if Applicable, if not Delete this line' }
@@ -1348,7 +1348,7 @@ $Script:Runtime = Measure-Command -Expression {
           $result
         }
       }
-    }
+  }
 
   function Resolve-SupportTicket {
     $Tickets = $Script:SupportTickets
@@ -1548,16 +1548,19 @@ $Script:Runtime = Measure-Command -Expression {
     $Scopes += $ConfigData.resources
     $locations = $ConfigData.locations
     $RunbookFile = $ConfigData.RunbookFile
-    $Tags = foreach ($tag in $ConfigData.Tags)
+    if ($ConfigData.Tags)
       {
-        if ((Test-TagPattern $tag))
+        $Tags = foreach ($tag in $ConfigData.Tags)
           {
-            $tag
-          }
-        else
-          {
-            Write-Host 'Invalid Tag parameters. Exiting...' -ForegroundColor Red
-            Exit
+            if ((Test-TagPattern $tag))
+              {
+                $tag
+              }
+            else
+              {
+                Write-Host 'Invalid Tag parameters. Exiting...' -ForegroundColor Red
+                Exit
+              }
           }
       }
   }
