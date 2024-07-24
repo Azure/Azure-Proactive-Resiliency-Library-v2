@@ -95,7 +95,7 @@ Param(
         [switch]$AVD,
         [switch]$AVS,
         [switch]$HPC,
-        [ValidatePattern('(\/subscriptions\/)?[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}')]
+        [ValidatePattern('\/subscriptions\/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}')]
         [String[]]$SubscriptionIds,
         [ValidatePattern('\/subscriptions\/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\/resourceGroups\/[a-zA-Z0-9._-]+')]
         [String[]]$ResourceGroups,
@@ -168,7 +168,6 @@ $Script:Runtime = Measure-Command -Expression {
     return $allMatch
   }
 
-
   Function Get-AllAzGraphResource {
     param (
       [string[]]$subscriptionId,
@@ -191,7 +190,6 @@ $Script:Runtime = Measure-Command -Expression {
     # Output all resources
     return $allResources
   }
-
 
   function Get-AllResourceGroup {
     param (
@@ -1523,12 +1521,45 @@ $Script:Runtime = Measure-Command -Expression {
     $Scopes = @()
     $ConfigData = Import-ConfigFileData -file $ConfigFile
     $TenantID = $ConfigData.TenantID | Select-Object -First 1
-    $Scopes += $ConfigData.subscriptions
-    $Scopes += $ConfigData.resourcegroups
+    $Scopes += foreach ($SubscriptionId in $ConfigData.subscriptions)
+      {
+        if ((Test-SubscriptionId $SubscriptionId))
+          {
+            $SubscriptionId
+          }
+        else
+          {
+            Write-Host 'Invalid Subscription parameters. Exiting...' -ForegroundColor Red
+            Exit
+          }
+      }
+    $Scopes += foreach ($resourcegroup in $ConfigData.resourcegroups)
+      {
+        if ((Test-ResourceGroupId $resourcegroup))
+          {
+            $resourcegroup
+          }
+        else
+          {
+            Write-Host 'Invalid ResourceGroup parameters. Exiting...' -ForegroundColor Red
+            Exit
+          }
+      }
     $Scopes += $ConfigData.resources
     $locations = $ConfigData.locations
     $RunbookFile = $ConfigData.RunbookFile
-    $Tags = $ConfigData.Tags
+    $Tags = foreach ($tag in $ConfigData.Tags)
+      {
+        if ((Test-TagPattern $tag))
+          {
+            $tag
+          }
+        else
+          {
+            Write-Host 'Invalid Tag parameters. Exiting...' -ForegroundColor Red
+            Exit
+          }
+      }
   }
   else {
     $Scopes = @()
