@@ -1,0 +1,17 @@
+- description: Monitor health for v-Hub's Point-to-Site VPN gateways
+  aprlGuid: fd43ea32-2ccf-49a8-ada4-9a78794e3ff1
+  recommendationTypeId: null
+  recommendationControl: Monitoring and Alerting
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/p2sVpnGateways
+  recommendationMetadataState: Active
+  longDescription: Set up monitoring and alerts for Point-to-Site VPN gateways. Create alert rule for ensuring promptly response to critical events such as Gateway overutilization, connection count limits and User VPN route limits.
+  potentialBenefits: Detection and mitigation to avoid disruptions.
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Virtual WAN Monitoring Best Practices
+      url: "https://learn.microsoft.com/en-us/azure/virtual-wan/monitoring-best-practices#point-to-site-vpn-gateway"
