@@ -9,6 +9,7 @@
 <!--
 - To associate a GitHub Issue, use a [key word](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword) preceded with the GitHub issue number.
 
+Examples:
 Fixes #123
 Resolves #123
 Closes #789
