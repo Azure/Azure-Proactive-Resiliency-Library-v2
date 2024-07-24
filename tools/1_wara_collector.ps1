@@ -95,12 +95,12 @@ Param(
         [switch]$AVD,
         [switch]$AVS,
         [switch]$HPC,
-        [ValidatePattern('\/subscriptions\/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}')]
+        [ValidatePattern('(\/subscriptions\/)?[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}')]
         [String[]]$SubscriptionIds,
         [ValidatePattern('\/subscriptions\/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\/resourceGroups\/[a-zA-Z0-9._-]+')]
         [String[]]$ResourceGroups,
         [GUID]$TenantID,
-        [ValidatePattern('\w+==\w+|\w+=/\w+')]
+        [ValidatePattern('^\w+==\w+$|^\w+=\w+$')]
         [String[]]$Tags,
         [ValidateSet('AzureCloud', 'AzureUSGovernment')]
         $AzureEnvironment = 'AzureCloud',
@@ -120,6 +120,21 @@ if ($Tags) {$TagsPresent = $true}else{$TagsPresent = $false}
 
 $Script:Runtime = Measure-Command -Expression {
 
+  Function Test-TagPattern {
+    param (
+      [string[]]$InputValue
+    )
+    $pattern = '^\w+==\w+$|^\w+=\w+$'
+
+    $allMatch = $true
+
+    $InputValue | ForEach-Object {
+      if ($_ -notmatch $Pattern) {
+        $allMatch = $false
+      }
+    }
+    return $allMatch
+  }
 
   Function Test-ResourceGroupId {
     param (
