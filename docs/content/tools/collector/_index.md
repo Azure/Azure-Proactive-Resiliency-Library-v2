@@ -163,7 +163,9 @@ resources
 
 ### Query overrides
 
-While the set of KQL queries included with APRL v2 is very comprehensive, sometimes you need to run a check that's not included in APRL v2. For this reason, runbooks enable you to include additional catalogs of KQL queries in your review. Query catalogs must follow this folder structure:
+While the set of KQL queries included with APRL v2 is very comprehensive, sometimes you need to run a check that's not included in APRL v2. For this reason, runbooks enable you to include additional catalogs of KQL queries in your review.
+
+Query catalogs must follow this folder structure:
 
 ```
 resources
@@ -175,8 +177,35 @@ resources
 |-- network
     |-- virtualnetworks
         |-- kql
-            |-- bd24415f-2532-4943-8fe0-283abf1e2339     
+            |-- bd24415f-2532-4943-8fe0-283abf1e2339.kql 
 ```
+
+All queries must run the following properties:
+
+| Name | Required | Description |
+| --- | --- | --- |
+| `recommendationId` | 🔴 | A GUID that uniquely identifies the query |
+| `id` | 🔴 | If applicable, the ID of the resource under review; otherwise `n/a` |
+| `name` | 🔴 | If applicable, the name of the resource under review; otherwise `n/a` |
+| `tags` | 🔴 | If applicable, the tags on the resource under review; otherwise `n/a` |
+| `param1` | | Additional information which will appear in the report |
+| `param2` | | Additional information which will appear in the report |
+| `param3` | | Additional information which will appear in the report |
+| `param4` | | Additional information which will appear in the report |
+| `param5` | | Additional information which will appear in the report |
+
+You can define these query overrides in the runbook like this:
+
+```json
+{
+  "query_overrides": [
+    ".\\some_queries",
+    "c:\\queries\\some_more_queries"
+  ]
+}
+```
+
+Given this configuration, the script will first load all the queries included in APRL v2. Next, the script will find all KQL files in `.\some_queries` and add them to the run. If a new query has the same ID (`recommendationId`) as an existing query, the existing query will be overwritten. If there is no existing query, the new query will be added to the run. Next, the script will look for all queries in the `c:\queries\some_more_queries` and apply the same logic as before: if a query has already been loaded with the same ID, it will replace the existing query; otherwise, it will simply load the new query. Note that query paths can be absolute or relative to the location of the running script.
 
 # Examples for Well-Architected Reliability Assessment (WARA) v2 Collector Script
 
