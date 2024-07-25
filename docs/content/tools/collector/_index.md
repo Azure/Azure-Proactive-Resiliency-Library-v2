@@ -126,9 +126,8 @@ There are two different ways in which selectors can be applied to KQL queries:
 
 * **Explicitly**: Including a `// selector` comment in your KQL query will automatically inject the appropriate selector condition at runtime.
   * For example, given the example selectors provided above, configuring a check to use the `my_app_resources` selector would automatically replace `// selector` with `| where tags['app'] =~ 'my_app'` at runtime.
-  * The best practice is to include `// selector` comments on their own line as, at runtime, they're automatically piped in as a `where` condition. This approach helps ensure that the merged KQL query is easily readable. Setting the `-Debugging` switch will output all merged queries.
-  * `// selector` is called the "default selector".
-  * You can also reference specific selectors in your KQL queries using this syntax: `// selector:name` where `name` is the name of the selector (e.g., `my_app_resource`). This is helpful when comparing different sets of resources.
+  * The best practice is to include `// selector` comments on their own line as, at runtime, they're automatically piped in as a `where` condition. This approach helps ensure that the merged KQL query is easily readable. Setting the `-Debugging` switch will output all merged queries at runtime.
+  * `// selector` is the "default selector". You can also reference specific selectors in your KQL queries using this syntax: `// selector:name` where `name` is the name of the selector (e.g., `my_app_resource`). This is helpful when comparing different sets of resources.
 * **Implicitly**: Most KQL queries including the default set included in APRL v2 don't include selector comments. Use the `-UseImplicitRunbookSelectors` script switch to automatically wrap every KQL query in an inner join that limits the scope of the query.
 
 > __Important__: By default, implicit selectors will not be applied due to constraints on the total number of joins that can be included in a resource graph query. To use implicit selectors, you have to include the `-UseImplicitRunbookSelectors` when running the script.
