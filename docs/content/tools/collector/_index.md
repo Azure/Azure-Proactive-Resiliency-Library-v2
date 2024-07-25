@@ -88,11 +88,13 @@ Each selector has a name (which can be referenced later in specific checks) and 
 }
 ```
 
+##### How selectors are applied to KQL queries
+
 Read on to learn how selectors and checks work together to run KQL queries against arbitrary groups of resources.
 
 #### Checks
 
-Checks represent combinations of selectors and specific KQL queries. Let's take a look at an example which includes the selectors we defined in the previous section:
+Checks combine selectors with specific KQL queries to run precise checks on arbitrary sets of resources. Here's an example using previously defined selectors:
 
 ```json
 {
