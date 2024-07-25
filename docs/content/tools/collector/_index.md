@@ -61,11 +61,9 @@ The filtering capabilities are designed for targeting specific Azure resources, 
 - If you set a subscription filter for `subscription3`, a resourcegroup filter for `subscription1/resourcegroups/rg-demo1` and a tag filter for `env==prod` then you will **only return resources or resources that are in resource groups tagged with env==prod** within the scope of the evaluation which is `subscription3` and `subscription1/resourcegroups/rg-demo1`.
 
 ## Runbooks
-
 Runbooks are JSON files that allow extensive customization of KQL queries executed by WARA v2 tooling and the resources these queries target. They also support the integration of custom KQL queries. Read on to learn more about using runbooks with WARA v2 tooling.
 
 ### Selectors
-
 Runbooks use selectors to identify groups of Azure resources for specific checks. [Selectors can be any valid KQL `where` condition.](https://learn.microsoft.com/azure/data-explorer/kusto/query/where-operator) Here are a few examples of valid runbook selectors:
 
 | Pattern | Example | Notes |
@@ -91,7 +89,6 @@ Each selector has a name (which can be referenced later in specific checks) and 
 Read on to learn how selectors and checks work together to run KQL queries against arbitrary groups of resources.
 
 ### Checks
-
 Checks combine selectors with specific KQL queries to run precise checks on arbitrary sets of resources. Here's an example using previously defined selectors:
 
 ```json
@@ -113,29 +110,27 @@ Checks combine selectors with specific KQL queries to run precise checks on arbi
 
 Let's break this down line by line:
 
-* The `selectors` from the previous section are included to be used in the `checks` section of the runbook.
-* A single check configuration is provided, using an existing [APRL KQL query to verify that VM resources are using managed disks (`122d11d7-b91f-8747-a562-f56b79bcfbdc`)](https://azure.github.io/Azure-Proactive-Resiliency-Library-v2/azure-resources/Compute/virtualMachines/#use-managed-disks-for-vm-disks).
-* Three checks are defined, each applying to different selectors:
-  * `my_app_uses_managed_disks`: Verifies that all resources with the tag `app` set to `my_app` use managed disks.
-  * `my_group_uses_managed_disks`: Verifies that all resources in the `my_group` resource group use managed disks.
-  * `my_app_and_my_group_uses_managed_disks`: Verifies that all resources in the `my_group` resource group with the tag `app` set to `my_app` use managed disks.
+- The `selectors` from the previous section are included to be used in the `checks` section of the runbook.
+- A single check configuration is provided, using an existing [APRL KQL query to verify that VM resources are using managed disks (`122d11d7-b91f-8747-a562-f56b79bcfbdc`)](https://azure.github.io/Azure-Proactive-Resiliency-Library-v2/azure-resources/Compute/virtualMachines/#use-managed-disks-for-vm-disks).
+- Three checks are defined, each applying to different selectors:
+  - `my_app_uses_managed_disks`: Verifies that all resources with the tag `app` set to `my_app` use managed disks.
+  - `my_group_uses_managed_disks`: Verifies that all resources in the `my_group` resource group use managed disks.
+  - `my_app_and_my_group_uses_managed_disks`: Verifies that all resources in the `my_group` resource group with the tag `app` set to `my_app` use managed disks.
  
 #### How selectors are applied to KQL queries
-
 There are two different ways in which selectors can be applied to KQL queries:
 
-* **Explicitly**: Including a `// selector` comment in your KQL query will automatically inject the appropriate selector condition at runtime.
-  * For example, given the example selectors provided above, configuring a check to use the `my_app_resources` selector would automatically replace `// selector` with `| where tags['app'] =~ 'my_app'` at runtime.
-  * The best practice is to include `// selector` comments on their own line as, at runtime, they're automatically piped in as a `where` condition. This approach helps ensure that the merged KQL query is easily readable. Setting the `-Debugging` switch will output all merged queries at runtime for you review.
-  * `// selector` is the "default selector". You can also reference specific selectors in your KQL queries using this syntax: `// selector:name` where `name` is the name of a selector defined in the runbook (e.g., `my_app_resource`). This makes it easy to reference different selector-defined groups of resources within the same KQL query.
-* **Implicitly**: Most KQL queries including the default set included in APRL v2 don't include selector comments. Use the `-UseImplicitRunbookSelectors` script switch to automatically wrap every KQL query in an inner join that limits the scope of the query.
+- **Explicitly**: Including a `// selector` comment in your KQL query will automatically inject the appropriate selector condition at runtime.
+  - For example, given the example selectors provided above, configuring a check to use the `my_app_resources` selector would automatically replace `// selector` with `| where tags['app'] =~ 'my_app'` at runtime.
+  - The best practice is to include `// selector` comments on their own line as, at runtime, they're automatically piped in as a `where` condition. This approach helps ensure that the merged KQL query is easily readable. Setting the `-Debugging` switch will output all merged queries at runtime for you review.
+  - `// selector` is the "default selector". You can also reference specific selectors in your KQL queries using this syntax: `// selector:name` where `name` is the name of a selector defined in the runbook (e.g., `my_app_resource`). This makes it easy to reference different selector-defined groups of resources within the same KQL query.
+- **Implicitly**: Most KQL queries including the default set included in APRL v2 don't include selector comments. Use the `-UseImplicitRunbookSelectors` script switch to automatically wrap every KQL query in an inner join that limits the scope of the query.
 
 > __Important__: By default, implicit selectors will not be applied due to constraints on the total number of joins that can be included in a resource graph query. To use implicit selectors, you have to include the `-UseImplicitRunbookSelectors` switch when running the script.
 
 By combining checks and selectors, you can easily define complex WARA review configurations using a simple JSON-based syntax.
 
 ### Parameters
-
 Parameters offer a simple syntax for dynamically customizing selectors and KQL queries. Parameters are arbitrary key/value pairs that are included in the `parameters` section of a runbook like this:
 
 ```json
@@ -162,12 +157,11 @@ resources
 ```
 
 ### Query overrides
-
 While the set of KQL queries included with APRL v2 is very comprehensive, sometimes you need to run a check that's not included in APRL v2. For this reason, runbooks enable you to include additional catalogs of KQL queries in your review.
 
 Query catalogs must follow this folder structure:
 
-```
+```plain
 resources
 |-- compute (resource provider name)
     |-- virtualmachines (resource name)
