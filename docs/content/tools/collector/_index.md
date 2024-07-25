@@ -148,10 +148,6 @@ Parameters offer a simple syntax for dynamically customizing selectors and KQL q
 }
 ```
 
-You can easily reference parameters using this syntax:
-
-`{{parameter_name}}`
-
 Parameters can easily be included in selectors like this:
 
 ```kusto
