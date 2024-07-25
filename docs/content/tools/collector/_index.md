@@ -90,6 +90,10 @@ Each selector has a name (which can be referenced later in specific checks) and 
 
 ##### How selectors are applied to KQL queries
 
+There are two different ways in which selectors can be applied to KQL queries:
+
+* **Explicitly**: Including a `// selector` comment in your KQL query will automatically inject the appropriate selector condition at runtime. For example, given the example selectors provided above, configuring a check to use the `my_app_resources` selector would automatically replace `// selector` with `| where tags['app'] =~ 'my_app'` at runtime. `// selector` is called the default selector. You can also reference specific selectors in your KQL queries using this syntax: `// selector:name` where `name` is the name of the selector (e.g., `my_app_resource`). This is helpful when comparing different sets of resources.
+
 Read on to learn how selectors and checks work together to run KQL queries against arbitrary groups of resources.
 
 #### Checks
