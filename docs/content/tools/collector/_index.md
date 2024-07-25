@@ -1,5 +1,5 @@
 ---
-title: Overview and Usage of APRL Scripts
+title: Well-Architected Reliability Assessment (WARA) v2 collector script
 weight: 10
 geekdocCollapseSection: false
 ---
