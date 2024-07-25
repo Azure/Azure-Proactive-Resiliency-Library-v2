@@ -667,7 +667,7 @@ $Script:Runtime = Measure-Command -Expression {
       {
         $InScopeSub = $Scope.split("/")[2]
         $ResourceScopeQuery = "resources | where subscriptionId =~ '$InScopeSub' "
-        $ContainerScopeQuery = "resourceContainers | where id =~ '$Scope' "
+        $ContainerScopeQuery = "resourceContainers | where id has '$Scope' "
       }
     elseif ($Scope.split("/").count -gt 4 -and $Scope.split("/").count -lt 8)
       {
@@ -685,10 +685,10 @@ $Script:Runtime = Measure-Command -Expression {
     $TagFilter = $Tags
 
     # Each line in the Tag Filtering file will be processed
-    $AllTaggedResourceGroups = @()
     $AllTaggedResources = @()
     $ResetTags = $false
     Foreach ($TagLine in $TagFilter) {
+      $AllTaggedResourceGroups = ''
       # Finding the TagKey and all the TagValues in the line
       if ($TagLine -like '*==*')
         {
@@ -742,7 +742,7 @@ $Script:Runtime = Measure-Command -Expression {
               }
             $ResourcesTagQuery = "Resources | where id startswith '$ResourceGroup' | project id, name, subscriptionId, type, resourceGroup, location | order by id"
 
-            $AllTaggedResourceGroups += Get-AllAzGraphResource -query $ResourcesTagQuery -subscriptionId $InScopeSub
+            $AllTaggedResourceGroups = Get-AllAzGraphResource -query $ResourcesTagQuery -subscriptionId $InScopeSub
           if ($Debugging.IsPresent)
             {
               Write-host "Resources Found Inside the Container: " -NoNewline
@@ -779,7 +779,11 @@ $Script:Runtime = Measure-Command -Expression {
             $AllTaggedResources += $ResourcesWithTHETag
             $AllTaggedResources += $AllTaggedResourceGroups
           }
-        elseif ([string]::IsNullOrEmpty($ResourcesWithTHETag))
+        elseif ([string]::IsNullOrEmpty($ResourcesWithTHETag) -and ![string]::IsNullOrEmpty($AllTaggedResourceGroups))
+          {
+            $AllTaggedResources += $AllTaggedResourceGroups
+          }
+        elseif ([string]::IsNullOrEmpty($ResourcesWithTHETag) -and [string]::IsNullOrEmpty($AllTaggedResourceGroups))
           {
             if ($Debugging.IsPresent)
               {
