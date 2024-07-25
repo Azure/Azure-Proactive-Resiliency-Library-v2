@@ -60,11 +60,11 @@ The filtering capabilities are designed for targeting specific Azure resources, 
 - If you set a subscription filter for `subscription2` and a resourcegroup filter for `subscription1/resourcegroups/rg-demo1` you will evaluate all of `subscription2` and only the resource group `rg-demo-1`.
 - If you set a subscription filter for `subscription3`, a resourcegroup filter for `subscription1/resourcegroups/rg-demo1` and a tag filter for `env==prod` then you will **only return resources or resources that are in resource groups tagged with env==prod** within the scope of the evaluation which is `subscription3` and `subscription1/resourcegroups/rg-demo1`.
 
-### Runbooks
+## Runbooks
 
 Runbooks are JSON files that allow extensive customization of KQL queries executed by WARA v2 tooling and the resources these queries target. They also support the integration of custom KQL queries. Read on to learn more about using runbooks with WARA v2 tooling.
 
-#### Selectors
+### Selectors
 
 Runbooks use selectors to identify groups of Azure resources for specific checks. [Selectors can be any valid KQL `where` condition.](https://learn.microsoft.com/azure/data-explorer/kusto/query/where-operator) Here are a few examples of valid runbook selectors:
 
@@ -90,7 +90,7 @@ Each selector has a name (which can be referenced later in specific checks) and 
 
 Read on to learn how selectors and checks work together to run KQL queries against arbitrary groups of resources.
 
-#### Checks
+### Checks
 
 Checks combine selectors with specific KQL queries to run precise checks on arbitrary sets of resources. Here's an example using previously defined selectors:
 
@@ -120,7 +120,7 @@ Let's break this down line by line:
   * `my_group_uses_managed_disks`: Verifies that all resources in the `my_group` resource group use managed disks.
   * `my_app_and_my_group_uses_managed_disks`: Verifies that all resources in the `my_group` resource group with the tag `app` set to `my_app` use managed disks.
  
-##### How selectors are applied to KQL queries
+#### How selectors are applied to KQL queries
 
 There are two different ways in which selectors can be applied to KQL queries:
 
@@ -134,7 +134,7 @@ There are two different ways in which selectors can be applied to KQL queries:
 
 By combining checks and selectors, you can easily define complex WARA review configurations using a simple JSON-based syntax.
 
-#### Parameters
+### Parameters
 
 Parameters offer a simple syntax for dynamically customizing selectors and KQL queries. Parameters are arbitrary key/value pairs that are included in the `parameters` section of a runbook like this:
 
