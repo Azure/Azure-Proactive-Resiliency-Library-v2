@@ -64,7 +64,7 @@ The filtering capabilities are designed for targeting specific Azure resources, 
 
 Runbooks are JSON files that allow extensive customization of KQL queries executed by WARA v2 tooling and the resources these queries target. They also support the integration of custom KQL queries. Read on to learn more about using runbooks with WARA v2 tooling.
 
-### Selectors
+#### Selectors
 
 Runbooks use selectors to identify groups of Azure resources for specific checks. [Selectors can be any valid KQL `where` condition.](https://learn.microsoft.com/azure/data-explorer/kusto/query/where-operator) Here are a few examples of valid runbook selectors:
 
@@ -90,7 +90,7 @@ Each selector has a name (which can be referenced later in specific checks) and 
 
 Read on to learn how selectors and checks work together to run KQL queries against arbitrary groups of resources.
 
-### Checks
+#### Checks
 
 Checks represent combinations of selectors and specific KQL queries. Let's take a look at an example which includes the selectors we defined in the previous section:
 
@@ -119,15 +119,6 @@ Let's break this down line by line:
   * `my_app_uses_managed_disks`: Verifies that all resources with the tag `app` set to `my_app` use managed disks.
   * `my_group_uses_managed_disks`: Verifies that all resources in the `my_group` resource group use managed disks.
   * `my_app_and_my_group_uses_managed_disks`: Verifies that all resources in the `my_group` resource group with the tag `app` set to `my_app` use managed disks.
-
-* We provide a single check configuration that uses an existing APRL KQL query to check that VM resources are using managed disks.
-* The check configuration further defines 3 selector-specific checks that will be run.
-
-In practice, this configuration will check that the following groups contain VMs that use managed disks:
-
-* `"my_app_uses_managed_disks"`: all relevant resources where tag `app` is `my_app` are using managed disks.
-* `"my_group_uses_managed_disks"`: all relevant resources in the `my_group` resource group are using managed disks.
-* `"my_app_and_my_group_uses_managed_disks"`: all relevant resources in the `my_group` resource group where tag `app` is `my_app` are using managed disks.
 
 By combining checks and selectors, you can easily define complex WARA review configurations using a simple JSON-based syntax.
 
