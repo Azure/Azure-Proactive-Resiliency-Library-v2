@@ -25,14 +25,16 @@ By default, the script executes all relevant checks in the Azure Proactive Resil
 - Reader access to resources to be evaluated
 
 ## Quick Start
-Download and run the collector script by copying and modifying this script block:
+- Download and run the collector script by copying and modifying this script block
+- You must replace the TenantID and SubscriptionIds/ResourceGroups to match your tenant and scope resource ids.
+- Once the script is downloaded you can execute it by running ./1_wara_collector.ps1
 ```powershell
 #Download the latest version of the script
 invoke-webrequest https://aka.ms/aprl/tools/1 -out 1_wara_collector.ps1
 #Remove file blocking if active and running windows
 $iswindows ? (unblock-file ./1_wara_collector.ps1) : (Write-host "Unblock not required - Not Windows OS")
 #Modify these parameters and run the script
-./1_wara_collector.ps1 -TenantID 00000000-0000-0000-0000-000000000000 -SubscriptionIds "/subscriptions/00000000-0000-0000-0000-000000000000"
+./1_wara_collector.ps1 -TenantID "00000000-0000-0000-0000-000000000000" -SubscriptionIds "/subscriptions/00000000-0000-0000-0000-000000000000"
 ```
 ### Local Machine
 ![Alt text](quickstartexample.gif)
