@@ -163,7 +163,20 @@ resources
 
 ### Query overrides
 
+While the set of KQL queries included with APRL v2 is very comprehensive, sometimes you need to run a check that's not included in APRL v2. For this reason, runbooks enable you to include additional catalogs of KQL queries in your review. Query catalogs must follow this folder structure:
 
+```
+resources
+|-- compute (resource provider name)
+    |-- virtualmachines (resource name)
+        |-- kql
+            |-- 1fe03dbd-91e0-402c-a4f8-5611ae7b90b5.kql
+            |-- 2bd0be95-a825-6f47-a8c6-3db1fb5eb387.kql
+|-- network
+    |-- virtualnetworks
+        |-- kql
+            |-- bd24415f-2532-4943-8fe0-283abf1e2339     
+```
 
 # Examples for Well-Architected Reliability Assessment (WARA) v2 Collector Script
 
