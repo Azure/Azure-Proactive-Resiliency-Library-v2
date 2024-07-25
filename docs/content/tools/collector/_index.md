@@ -130,7 +130,7 @@ There are two different ways in which selectors can be applied to KQL queries:
   * `// selector` is the "default selector". You can also reference specific selectors in your KQL queries using this syntax: `// selector:name` where `name` is the name of a selector defined in the runbook (e.g., `my_app_resource`). This makes it easy to reference different selector-defined groups of resources within the same KQL query.
 * **Implicitly**: Most KQL queries including the default set included in APRL v2 don't include selector comments. Use the `-UseImplicitRunbookSelectors` script switch to automatically wrap every KQL query in an inner join that limits the scope of the query.
 
-> __Important__: By default, implicit selectors will not be applied due to constraints on the total number of joins that can be included in a resource graph query. To use implicit selectors, you have to include the `-UseImplicitRunbookSelectors` when running the script.
+> __Important__: By default, implicit selectors will not be applied due to constraints on the total number of joins that can be included in a resource graph query. To use implicit selectors, you have to include the `-UseImplicitRunbookSelectors` switch when running the script.
 
 By combining checks and selectors, you can easily define complex WARA review configurations using a simple JSON-based syntax.
 
