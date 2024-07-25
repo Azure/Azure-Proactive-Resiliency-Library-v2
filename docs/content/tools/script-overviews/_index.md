@@ -10,6 +10,8 @@ This section provides an overview of the Azure Proactive Resiliency Library v2 (
 
 ## 1 - Collector Script
 
+**The collector content is currently being deprecated. This section will be archived during a future release**
+
 - [GitHub Link to Download](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/1_wara_collector.ps1)
 - Download the script using command-line
     ```shell
@@ -47,7 +49,7 @@ The Collector PowerShell script is the first script to be run in the Azure Proac
 1. Execute script leveraging optional parameters
 
     - Parameters include:
-      - **TenantID**:  *Optional* ; tenant to be used.
+      - **TenantID**:  *Required* ; tenant to be used.
       - **SubscriptionIds**:  *Required (or ConfigFile)* ; Specifies Subscription(s) to be included in the analysis: /subscriptions/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY,/subscriptions/AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA.
       - **RunbookFile**:  *Optional* ; specifies the file with the runbook (selectors & checks) to be used.
       - **ResourceGroups**:  *Optional* ; specifies Resource Group(s) to be included in the analysis: /subscriptions/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY/resourceGroups/ResourceGroup1,/subscriptions/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY/resourceGroups/ResourceGroup2.
@@ -84,7 +86,7 @@ The Collector PowerShell script is the first script to be run in the Azure Proac
           - Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope LocalMachine
     1. **Reader permissions to target subscription(s)**
 
-1. Open a new PowerShell 7 session after completeing prerequisites
+1. Open a new PowerShell 7 session after completing prerequisites
 
 1. Change your directory to the same location that you have downloaded the WARA collector script to.
 
