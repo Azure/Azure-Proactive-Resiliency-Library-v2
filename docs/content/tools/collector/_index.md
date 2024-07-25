@@ -158,7 +158,7 @@ Parameters can also be included directly in queries like this:
 
 ```kusto
 resources
-| where tags[`{{resource_tag_name}}`] =~ '{{resource_tag_value}}`
+| where tags['{{resource_tag_name}}'] =~ '{{resource_tag_value}}'
 ```
 
 ### Query overrides
