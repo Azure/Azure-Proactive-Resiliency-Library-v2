@@ -114,7 +114,7 @@ Checks combine selectors with specific KQL queries to run precise checks on arbi
 Let's break this down line by line:
 
 * The `selectors` from the previous section are included to be used in the `checks` section of the runbook.
-* A single check configuration is provided, using an existing APRL KQL query to verify that VM resources are using managed disks (`122d11d7-b91f-8747-a562-f56b79bcfbdc`).
+* A single check configuration is provided, using an existing [APRL KQL query to verify that VM resources are using managed disks (`122d11d7-b91f-8747-a562-f56b79bcfbdc`)](https://azure.github.io/Azure-Proactive-Resiliency-Library-v2/azure-resources/Compute/virtualMachines/#use-managed-disks-for-vm-disks).
 * Three checks are defined, each applying to different selectors:
   * `my_app_uses_managed_disks`: Verifies that all resources with the tag `app` set to `my_app` use managed disks.
   * `my_group_uses_managed_disks`: Verifies that all resources in the `my_group` resource group use managed disks.
