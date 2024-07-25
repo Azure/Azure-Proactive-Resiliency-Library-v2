@@ -60,6 +60,43 @@ The filtering capabilities are designed for targeting specific Azure resources, 
 - If you set a subscription filter for `subscription2` and a resourcegroup filter for `subscription1/resourcegroups/rg-demo1` you will evaluate all of `subscription2` and only the resource group `rg-demo-1`.
 - If you set a subscription filter for `subscription3`, a resourcegroup filter for `subscription1/resourcegroups/rg-demo1` and a tag filter for `env==prod` then you will **only return resources or resources that are in resource groups tagged with env==prod** within the scope of the evaluation which is `subscription3` and `subscription1/resourcegroups/rg-demo1`.
 
+### Runbooks
+
+Runbooks are JSON files that allow extensive customization of KQL queries executed by WARA v2 tooling and the resources these queries target. They also support the integration of custom KQL queries. Read on to learn more about using runbooks with WARA v2 tooling.
+
+#### Parameters
+
+Parameters offer a simple syntax for dynamically customizing selectors and KQL queries. Parameters are arbitrary key/value pairs that are included in the `parameters` section of a runbook like this:
+
+```json
+{
+  "parameters": {
+    "resource_group_name": "my_resource_group",
+    "resource_tag_name": "my_tag",
+    "resource_tag_value": "my_value"
+  }
+}
+```
+
+You can easily reference parameters in both queries and selectors using this syntax:
+
+`{{parameter_name}}`
+
+For example, you can define a selector that includes all resources in the `my_resource_group` resource group like this:
+
+`resourceGroup =~ '{{resource_group_name}}'`
+
+#### Selectors
+
+Runbooks use selectors to identify groups of Azure resources for specific checks. [Selectors can be any valid KQL `where` condition.](https://learn.microsoft.com/azure/data-explorer/kusto/query/where-operator) Here are a few examples of valid runbook selectors:
+
+| Pattern | Example | Notes |
+| --- | --- | --- |
+| By tag | `tags['app'] =~ 'my_app'` | Matches all resources tagged `app`: `my_app` |
+| By regex pattern | `name matches regex '^my_app\d{2}$'` | Matches `my_app01`, `my_app02`, `my_app03` ... |
+| By name | `name in~ ('my_app01', 'my_app02', 'my_app03')` | Matches only `my_app01`, `my_app02`, `my_app03` |
+| By resource group | `resourceGroup =~ 'my_group'` | Matches all resources in the `my_group` resource group |
+| By subscription | `subscriptionId =~ '1235ec12-...'` | Matches all resources in subscription `1235ec12-...` |
 
 # Examples for Well-Architected Reliability Assessment (WARA) v2 Collector Script
 
