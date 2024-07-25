@@ -64,6 +64,53 @@ The filtering capabilities are designed for targeting specific Azure resources, 
 
 Runbooks are JSON files that allow extensive customization of KQL queries executed by WARA v2 tooling and the resources these queries target. They also support the integration of custom KQL queries. Read on to learn more about using runbooks with WARA v2 tooling.
 
+### Selectors
+
+Runbooks use selectors to identify groups of Azure resources for specific checks. [Selectors can be any valid KQL `where` condition.](https://learn.microsoft.com/azure/data-explorer/kusto/query/where-operator) Here are a few examples of valid runbook selectors:
+
+| Pattern | Example | Notes |
+| --- | --- | --- |
+| By tag | `tags['app'] =~ 'my_app'` | Matches all resources tagged `app`: `my_app` |
+| By regex pattern | `name matches regex '^my_app\d{2}$'` | Matches `my_app01`, `my_app02`, `my_app03` ... |
+| By name | `name in~ ('my_app01', 'my_app02', 'my_app03')` | Matches only `my_app01`, `my_app02`, `my_app03` |
+| By resource group | `resourceGroup =~ 'my_group'` | Matches all resources in the `my_group` resource group |
+| By subscription | `subscriptionId =~ '1235ec12-...'` | Matches all resources in subscription `1235ec12-...` |
+
+Each selector has a name (which can be referenced later in specific checks) and is defined in a runbook like this:
+
+```json
+{
+  "selectors": {
+    "my_app_resources": "tags['app'] =~ 'my_app'",
+    "my_group_resources": "resourceGroup =~ 'my_group'",
+    "my_app_and_my_group": "tags['app'] =~ 'my_app' and resourceGroup =~ 'my_group'"
+  }
+}
+```
+
+Read on to learn how selectors and checks work together to run KQL queries against arbitrary groups of resources.
+
+### Checks
+
+Checks represent combinations of selectors and specific KQL queries. Let's take a look at an example which includes the selectors we defined in the previous section:
+
+```json
+{
+  "selectors": {
+    "my_app_resources": "tags['app'] =~ 'my_app'",
+    "my_group_resources": "resourceGroup =~ 'my_group'",
+    "my_app_and_my_group_resources": "tags['app'] =~ 'my_app' and resourceGroup =~ 'my_group'"
+  },
+  "checks": {
+    "122d11d7-b91f-8747-a562-f56b79bcfbdc": {
+      "my_app_uses_managed_disks": "my_app_resources",
+      "my_group_uses_managed_disks": "my_group_resources",
+      "my_app_and_my_group_uses_managed_disks": "my_app_and_my_group_resources"
+    }
+  }
+}
+```
+
 #### Parameters
 
 Parameters offer a simple syntax for dynamically customizing selectors and KQL queries. Parameters are arbitrary key/value pairs that are included in the `parameters` section of a runbook like this:
@@ -78,25 +125,22 @@ Parameters offer a simple syntax for dynamically customizing selectors and KQL q
 }
 ```
 
-You can easily reference parameters in both queries and selectors using this syntax:
+You can easily reference parameters using this syntax:
 
 `{{parameter_name}}`
 
-For example, you can define a selector that includes all resources in the `my_resource_group` resource group like this:
+Parameters can easily be included in selectors like this:
 
-`resourceGroup =~ '{{resource_group_name}}'`
+```kusto
+resourceGroup =~ '{{resource_group_name}}'
+```
 
-#### Selectors
+Parameters can also be included directly in queries like this:
 
-Runbooks use selectors to identify groups of Azure resources for specific checks. [Selectors can be any valid KQL `where` condition.](https://learn.microsoft.com/azure/data-explorer/kusto/query/where-operator) Here are a few examples of valid runbook selectors:
-
-| Pattern | Example | Notes |
-| --- | --- | --- |
-| By tag | `tags['app'] =~ 'my_app'` | Matches all resources tagged `app`: `my_app` |
-| By regex pattern | `name matches regex '^my_app\d{2}$'` | Matches `my_app01`, `my_app02`, `my_app03` ... |
-| By name | `name in~ ('my_app01', 'my_app02', 'my_app03')` | Matches only `my_app01`, `my_app02`, `my_app03` |
-| By resource group | `resourceGroup =~ 'my_group'` | Matches all resources in the `my_group` resource group |
-| By subscription | `subscriptionId =~ '1235ec12-...'` | Matches all resources in subscription `1235ec12-...` |
+```kusto
+resources
+| where tags[`{{resource_tag_name}}`] =~ '{{resource_tag_value}}`
+```
 
 # Examples for Well-Architected Reliability Assessment (WARA) v2 Collector Script
 
