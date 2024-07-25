@@ -165,6 +165,10 @@ resources
 | where tags[`{{resource_tag_name}}`] =~ '{{resource_tag_value}}`
 ```
 
+### Query overrides
+
+
+
 # Examples for Well-Architected Reliability Assessment (WARA) v2 Collector Script
 
 ## Example 1
