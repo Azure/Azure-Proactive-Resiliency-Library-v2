@@ -17,9 +17,9 @@ This script is used to collect data from Azure subscriptions to be used in the W
 By default, the script executes all relevant checks in the Azure Proactive Resiliency Library v2 but it can also be configured to run checks against specific groups of resources using a runbook (`-RunbookFile`).
 
 ## Requirements
-- PowerShell 7
-- Git
-- Az Module
+- [PowerShell 7](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.4)
+- [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+- [Azure PowerShell](https://learn.microsoft.com/en-us/powershell/azure/install-azps-windows?view=azps-12.1.0&tabs=powershell&pivots=windows-psgallery)
   - Az.ResourceGraph
   - Az.Accounts
 - Reader access to resources to be evaluated
