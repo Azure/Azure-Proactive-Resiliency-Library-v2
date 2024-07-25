@@ -242,7 +242,9 @@ Given this configuration...
 - Next, the script will find all KQL files in `.\some_queries` and add them to the run.
   - If a new query has the same ID (`recommendationId`) as an existing query, the existing query will be overwritten.
   - If there is no existing query, the new query will be added to the run.
-- Next, the script will look for all queries in the `c:\queries\some_more_queries` and apply the same logic as before: if a query has already been loaded with the same ID, it will replace the existing query; otherwise, it will simply load the new query. Note that query paths can be absolute or relative to the location of the running script.
+- Next, the script will look for all queries in the `c:\queries\some_more_queries` and apply the same logic as before: if a query has already been loaded with the same ID, it will replace the existing query; otherwise, it will simply load the new query.
+
+> Note that query paths can be absolute or relative to the location of the running script.
 
 # Examples for Well-Architected Reliability Assessment (WARA) v2 Collector Script
 
