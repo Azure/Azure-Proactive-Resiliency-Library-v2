@@ -18,6 +18,7 @@ By default, the script executes all relevant checks in the Azure Proactive Resil
 
 ## Requirements
 - PowerShell 7
+- Git
 - Az Module
   - Az.ResourceGraph
   - Az.Accounts
