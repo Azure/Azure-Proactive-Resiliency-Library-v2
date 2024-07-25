@@ -111,6 +111,20 @@ Checks represent combinations of selectors and specific KQL queries. Let's take 
 }
 ```
 
+Let's break this down line by line:
+
+* We include all the selectors that we defined in the previous section. We're going to apply these in the `checks` section of the runbook.
+* We provide a single check configuration that uses an existing APRL KQL query to check that VM resources are using managed disks.
+* The check configuration further defines 3 selector-specific checks that will be run.
+
+In practice, this configuration will check that the following groups contain VMs that use managed disks:
+
+* `"my_app_uses_managed_disks"`: all relevant resources where tag `app` is `my_app` are using managed disks.
+* `"my_group_uses_managed_disks"`: all relevant resources in the `my_group` resource group are using managed disks.
+* `"my_app_and_my_group_uses_managed_disks"`: all relevant resources in the `my_group` resource group where tag `app` is `my_app` are using managed disks.
+
+Through the combination of checks and selectors, you can easily define complex WARA review configurations using a simple JSON-based syntax.
+
 #### Parameters
 
 Parameters offer a simple syntax for dynamically customizing selectors and KQL queries. Parameters are arbitrary key/value pairs that are included in the `parameters` section of a runbook like this:
