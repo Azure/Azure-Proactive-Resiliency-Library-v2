@@ -113,7 +113,13 @@ Checks represent combinations of selectors and specific KQL queries. Let's take 
 
 Let's break this down line by line:
 
-* We include all the selectors that we defined in the previous section. We're going to apply these in the `checks` section of the runbook.
+* The `selectors` from the previous section are included to be used in the `checks` section of the runbook.
+* A single check configuration is provided, using an existing APRL KQL query to verify that VM resources are using managed disks (`122d11d7-b91f-8747-a562-f56b79bcfbdc`).
+* Three checks are defined, each applying to different selectors:
+  * `my_app_uses_managed_disks`: Verifies that all resources with the tag `app` set to `my_app` use managed disks.
+  * `my_group_uses_managed_disks`: Verifies that all resources in the `my_group` resource group use managed disks.
+  * `my_app_and_my_group_uses_managed_disks`: Verifies that all resources in the `my_group` resource group with the tag `app` set to `my_app` use managed disks.
+
 * We provide a single check configuration that uses an existing APRL KQL query to check that VM resources are using managed disks.
 * The check configuration further defines 3 selector-specific checks that will be run.
 
@@ -123,7 +129,7 @@ In practice, this configuration will check that the following groups contain VMs
 * `"my_group_uses_managed_disks"`: all relevant resources in the `my_group` resource group are using managed disks.
 * `"my_app_and_my_group_uses_managed_disks"`: all relevant resources in the `my_group` resource group where tag `app` is `my_app` are using managed disks.
 
-Through the combination of checks and selectors, you can easily define complex WARA review configurations using a simple JSON-based syntax.
+By combining checks and selectors, you can easily define complex WARA review configurations using a simple JSON-based syntax.
 
 #### Parameters
 
