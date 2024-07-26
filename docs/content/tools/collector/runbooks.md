@@ -2,7 +2,9 @@
 Runbooks are JSON files that allow extensive customization of KQL queries executed by WARA tooling and the resources these queries target. They also support the integration of custom KQL queries. Read on to learn more about using runbooks with WARA tooling.
 
 ## Selectors
-Runbooks use selectors to identify groups of Azure resources for specific checks. [Selectors can be any valid KQL `where` condition.](https://learn.microsoft.com/azure/data-explorer/kusto/query/where-operator) Here are a few examples of valid runbook selectors:
+Runbooks use selectors to identify groups of Azure resources for specific checks. [Selectors can be any valid KQL `where` condition.](https://learn.microsoft.com/azure/data-explorer/kusto/query/where-operator)
+
+Here are a few examples of valid runbook selectors:
 
 | Pattern | Example | Notes |
 | --- | --- | --- |
@@ -27,7 +29,9 @@ Each selector has a name (which can be referenced later in specific checks) and 
 Read on to learn how selectors and checks work together to run KQL queries against arbitrary groups of resources.
 
 ## Checks
-Checks combine selectors with specific KQL queries to run precise checks on arbitrary sets of resources. Here's an example using previously defined selectors:
+Checks combine selectors with specific KQL queries to run precise checks on arbitrary sets of resources.
+
+Here's an example using previously defined selectors:
 
 ```json
 {
