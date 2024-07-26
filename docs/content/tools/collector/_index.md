@@ -145,6 +145,33 @@ application==demoapp1
 ```
 **Note**: In a configuration file we separate multiple entries for a filter by new lines. Where as, from the command line we would pass multiple subscriptions or resource groups using the "string1","string2" pattern. The configuration file is useful for repeated runs, or numerous filters where it may be difficult to troubleshoot syntax in the command line.
 
+### Runbook Example
+
+> Learn more about runbooks [here](runbooks.md). 
+
+Run a runbook.
+
+```powershell
+.\1_wara_collector.ps1 `
+  -TenantID "00000000-0000-0000-0000-000000000000" `
+  -SubscriptionIds "/subscriptions/00000000-0000-0000-0000-000000000000" `
+  -RunbookFile ".\runbook.json"
+```
+
+Run a runbook using implicit runbook selectors.
+
+```powershell
+.\1_wara_collector.ps1 `
+  -TenantID "00000000-0000-0000-0000-000000000000" `
+  -SubscriptionIds "/subscriptions/00000000-0000-0000-0000-000000000000" `
+  -RunbookFile ".\runbook.json"
+  -UseImplicitRunbookSelectors
+```
+
+> Note that -SubscriptionIds are required when using a runbook.
+
+Run a runbook 
+
 ## Parameters
 
 ### Debugging
