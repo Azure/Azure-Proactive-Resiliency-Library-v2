@@ -96,6 +96,8 @@ In PowerShell this looks like:
 ```powershell
 -tags "App||Application=/App3","env|environment=/dev||qa","region=/uswest"
 ```
+# Runbooks
+Learn more about using runbooks with the WARA collector script in the [runbooks docs](runbooks.md).
 
 # Examples for Well-Architected Reliability Assessment (WARA) Collector Script
 
