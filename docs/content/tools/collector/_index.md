@@ -98,7 +98,7 @@ In PowerShell this looks like:
 ```
 
 ## Runbooks
-Runbooks are JSON files that allow extensive customization of KQL queries executed by WARA v2 tooling and the resources these queries target. They also support the integration of custom KQL queries. Read on to learn more about using runbooks with WARA v2 tooling.
+Runbooks are JSON files that allow extensive customization of KQL queries executed by WARA tooling and the resources these queries target. They also support the integration of custom KQL queries. Read on to learn more about using runbooks with WARA tooling.
 
 ### Selectors
 Runbooks use selectors to identify groups of Azure resources for specific checks. [Selectors can be any valid KQL `where` condition.](https://learn.microsoft.com/azure/data-explorer/kusto/query/where-operator) Here are a few examples of valid runbook selectors:
@@ -246,7 +246,7 @@ Given this configuration...
 
 > Note that query paths can be absolute or relative to the location of the running script.
 
-# Examples for Well-Architected Reliability Assessment (WARA) v2 Collector Script
+# Examples for Well-Architected Reliability Assessment (WARA) Collector Script
 
 ## Example 1
 Run against one subscriptions in tenant `00000000-0000-0000-0000-000000000000`:
