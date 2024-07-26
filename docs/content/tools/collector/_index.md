@@ -168,7 +168,7 @@ Run a runbook using implicit runbook selectors.
   -UseImplicitRunbookSelectors
 ```
 
-> Note that -SubscriptionIds are required when using a runbook.
+> Note that `-SubscriptionIds` are required when using a runbook.
 
 Run a runbook 
 
