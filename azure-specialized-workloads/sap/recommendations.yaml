@@ -422,48 +422,10 @@
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
-  recommendationResourceType: Friendly name to identity resource type
-  recommendationMetadataState: Active
-  longDescription: |
-    Your Long Description Here
-    (less than 300 characters)
-  potentialBenefits: Potential Benefits of Implementing the Recommendation (less than 60 characters)
-  pgVerified: true
-  publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
-  tags: null
-  learnMoreLink:
-    - name: Learn More
-      url: "Link URL"
-- description: Provision recommended storage configuration on database VMs
-  aprlGuid: 697deb1d-d398-4989-9734-9e6c18f7e0ad
-  recommendationTypeId: null
-  recommendationControl: High Availability
-  recommendationImpact: High
-  recommendationResourceType: Friendly name to identity resource type
-  recommendationMetadataState: Active
-  longDescription: |
-    Your Long Description Here
-    (less than 300 characters)
-  potentialBenefits: Potential Benefits of Implementing the Recommendation (less than 60 characters)
-  pgVerified: true
-  publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
-  tags: null
-  learnMoreLink:
-    - name: Learn More
-      url: "Link URL"
-- description: Review SAP configuration for timeout values used with Azure NetApp Files
-  aprlGuid: 4884cada-b9c7-42d5-8153-3853e4a6f6c4
-  recommendationTypeId: null
-  recommendationControl: High Availability
-  recommendationImpact: High
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
   longDescription: |
-    Configure recommended time-out values when using Azure NetApp Files to ensure optimal performance and reliability
+    High availability of SAP while used with Azure NetApp Files relies on setting proper timeout values to prevent disruption to your application. Review the documentation to ensure your configuration meets the timeout values as noted in the documentation
   potentialBenefits: Improve resiliency and performance of SAP on Azure
   pgVerified: true
   publishedToLearn: false
@@ -476,12 +438,14 @@
 - description: Provision recommended storage configuration on database VMs
   aprlGuid: 697deb1d-d398-4989-9734-9e6c18f7e0ad
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: Scalability
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
   longDescription: |
-    Use recommended SAP storage configuration to increase reliability and performance of SAP on Azure
+    It is strongly recommended to review database storage configuration to ensure the right type and number of disks are used to provision the data and log volumes. This is to ensure that the database VMs meets performance requirements for IOPS and throughput for the given database.
+    You should also use Microsoft recommended settings such as disk caching, WriteAccelerator, stripe size and Linux I/O Scheduler mode for all database VMs.
+    SAP on Azure QualityCheck tool can help you identify any deviations from Microsoft recommendations quickly and at scale.
   potentialBenefits: Improve reliability, performance and optimize costs
   pgVerified: true
   publishedToLearn: false
@@ -491,3 +455,5 @@
   learnMoreLink:
     - name: SAP on Azure Storage Planning
       url: "https://learn.microsoft.com/en-us/azure/sap/workloads/planning-guide-storage"
+    - name: OpenSource Quality Checks
+      url: "https://github.com/Azure/SAP-on-Azure-Scripts-and-Utilities/blob/main/QualityCheck/"
