@@ -1,29 +1,29 @@
-# The aprl-admins team is responsible for reviewing and merging all PRs
+# The aprl-maintainers team is responsible for reviewing and merging all PRs
 
-* @Azure/aprl-admins
+* @Azure/aprl-maintainers
 
 ## The aprl-networking team is partially responsible for all networking-related PRs
 
-azure-resources/Cdn @Azure/aprl-admins @Azure/aprl-networking
-azure-resources/Network @Azure/aprl-admins @Azure/aprl-networking
-azure-resources/NetworkCloud @Azure/aprl-admins @Azure/aprl-networking
-azure-resources/NetworkFunction @Azure/aprl-admins @Azure/aprl-networking
-azure-resources/Peerings @Azure/aprl-admins @Azure/aprl-networking
-azure-resources/Relay @Azure/aprl-admins @Azure/aprl-networking
+azure-resources/Cdn @Azure/aprl-maintainers @Azure/aprl-networking
+azure-resources/Network @Azure/aprl-maintainers @Azure/aprl-networking
+azure-resources/NetworkCloud @Azure/aprl-maintainers @Azure/aprl-networking
+azure-resources/NetworkFunction @Azure/aprl-maintainers @Azure/aprl-networking
+azure-resources/Peerings @Azure/aprl-maintainers @Azure/aprl-networking
+azure-resources/Relay @Azure/aprl-maintainers @Azure/aprl-networking
 
 ## The aprl-sap team is partially responsible for all SAP-related PRs
 
-azure-specialized-workloads/sap @Azure/aprl-admins @Azure/aprl-sap
+azure-specialized-workloads/sap @Azure/aprl-maintainers @Azure/aprl-sap
 
 ## The aprl-hpc team is partially responsible for all HPC-related PRs
 
-azure-resources/Batch @Azure/aprl-admins @Azure/aprl-hpc
-azure-specialized-workloads/hpc @Azure/aprl-admins @Azure/aprl-hpc
+azure-resources/Batch @Azure/aprl-maintainers @Azure/aprl-hpc
+azure-specialized-workloads/hpc @Azure/aprl-maintainers @Azure/aprl-hpc
 
 ## The aprl-avd team is partially responsible for all AVD-related PRs
 
-azure-resources/DesktopVirtualization @Azure/aprl-admins @Azure/aprl-avd
-azure-specialized-workloads/avd @Azure/aprl-admins @Azure/aprl-avd
+azure-resources/DesktopVirtualization @Azure/aprl-maintainers @Azure/aprl-avd
+azure-specialized-workloads/avd @Azure/aprl-maintainers @Azure/aprl-avd
 
 ## The aprl-wara-tools team is responsible for all WARA tools-related PRs
 

@@ -7,7 +7,7 @@ recommendation:
   recommendationTypeId: any(regex('^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'), null())
   recommendationControl: enum('High Availability', 'Business Continuity', 'Disaster Recovery', 'Scalability', 'Monitoring and Alerting', 'Service Upgrade and Retirement', 'Other Best Practices', 'Personalized', 'Governance', 'Security')
   recommendationImpact: enum('Low', 'Medium', 'High')
-  recommendationResourceType: regex('^Microsoft.[a-zA-Z.]+/[a-zA-Z]+$')
+  recommendationResourceType: regex('^Microsoft\.[a-zA-Z0-9.]+/[a-zA-Z0-9]+$')
   recommendationMetadataState: enum('Active', 'Disabled')
   longDescription: str(max=300)
   potentialBenefits: str(max=60)
