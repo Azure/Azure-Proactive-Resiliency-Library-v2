@@ -5,7 +5,7 @@
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/expressRouteGateways
   recommendationMetadataState: Active
-  longDescription: To increase reliability, it's advised that each v-Hub's ExpressRoute gateway connects to at least two circuits, with each circuit originating from a different peering location than the other, ensuring diverse connectivity paths for enhanced resilience.|
+  longDescription: To increase reliability, it's advised that each v-Hub's ExpressRoute gateway connects to at least two circuits, with each circuit originating from a different peering location than the other, ensuring diverse connectivity paths for enhanced resilience.
   potentialBenefits: Enhance resiliency for Azure Service
   pgVerified: false
   publishedToLearn: false
