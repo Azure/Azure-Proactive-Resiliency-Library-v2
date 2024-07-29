@@ -46,7 +46,7 @@
   recommendationResourceType: Microsoft.Compute/virtualMachines
   recommendationMetadataState: Active
   longDescription: |
-    While availability sets are not scheduled for immediate deprecation, they are planned to be deprecated in the future. Migrate workloads from VMs to VMSS Flex for deployment across zones or within the same zone across different fault domains (FDs) and update domains (UDs) for better reliability.
+    While availability sets are not scheduled for immediate deprecation, they are planned to be deprecated in the future. Migrate workloads from VMs to VMSS Flex for deployment across zones or within the same zone across different fault domains (FDs) for better reliability.
   potentialBenefits: Enhances reliability and future-proofs VMs
   pgVerified: true
   publishedToLearn: false
@@ -54,8 +54,8 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Resiliency checklist for Virtual Machines
-      url: "https://learn.microsoft.com/azure/architecture/checklist/resiliency-per-service#virtual-machines"
+    - name: Migrate deployments and resources to Virtual Machine Scale Sets in Flexible orchestration
+      url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/flexible-virtual-machine-scale-sets-migration-resources"
 
 - description: Replicate VMs using Azure Site Recovery
   aprlGuid: cfe22a65-b1db-fd41-9e8e-d573922709ae
