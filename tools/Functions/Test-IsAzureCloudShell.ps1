@@ -20,15 +20,14 @@
 
 [OutputType([System.Boolean])]
 param()
-'Running in Azure Cloud Shell environment, no need to explicitly authenticate.'
+ "Running in Azure Cloud Shell environment, no need to explicitly authenticate. `n"
 try {
   if ($null -ne $env:ACC_CLOUD) {
-    Write-Output 'Running in Azure Cloud Shell environment, no needs to explicitly authenticate.'
     return $true
   } else {
     return $false
   }
 } catch {
-  Write-Error "An error occurred while checking the Azure Cloud Shell environment: $_"
+  Write-Error "An error occurred while checking the Azure Cloud Shell environment: $_ `n"
   return $false
 }

@@ -342,7 +342,7 @@ $Script:Runtime = Measure-Command -Expression {
             Debugging           = if($Debugging.IsPresent){$true}else{$false}
             ConfigFile          = if($ConfigFile){$true}else{$false}
             ConfigFileTenant    = if($ConfigFile){$TenantID}else{$false}
-            ConfigFileScopes    = if($ConfigFile){$Scopes}else{$false}
+            ConfigFileScopes    = if($ConfigFile){$Script:Scopes}else{$false}
             ConfigFilelocations = if($ConfigFile){$locations}else{$false}
             ConfigFileTags      = if($ConfigFile){$Tags}else{$false}
             SubscriptionIds     = if($SubscriptionIds){$SubscriptionIds}else{$false}
@@ -462,7 +462,7 @@ $Script:Runtime = Measure-Command -Expression {
     }
     $LoopedSub = @()
 
-    foreach ($Scope in $Scopes)
+    foreach ($Scope in $Script:Scopes)
       {
         if (![string]::IsNullOrEmpty($Scope))
           {
@@ -1341,115 +1341,9 @@ $Script:Runtime = Measure-Command -Expression {
       $ExporterArray | ConvertTo-Json -Depth 15 | Out-File $Script:JsonFile
     }
   }
-  function Connect-ToAzure {
-    [CmdletBinding()]
-    param (
-      [Parameter(Mandatory = $true)]
-      [string]$TenantID,
-
-      [Parameter(Mandatory = $true)]
-      [array]$Scopes,
-
-      [Parameter(Mandatory = $true)]
-      [string]$AzureEnvironment
-    )
-
-    begin {
-      Write-Debug 'Begin: Extracting subscription IDs from scopes.'
-      $SubscriptionIdsToCheck = $Scopes | ForEach-Object {
-        if ($_ -match '/subscriptions/([0-9a-fA-F-]{36})') {
-          $matches[1]
-        }
-      }
-
-      Write-Debug 'Begin: Retrieving current tenant ID.'
-      $CurrentTenantId = (Get-AzContext -ErrorAction SilentlyContinue).Tenant.Id
-
-      $LoggedInState = $false
-      if ($CurrentTenantId) {
-        try {
-          Write-Debug 'Begin: Retrieving all subscriptions for the current tenant.'
-          $AllSubscriptions = Get-AzSubscription -TenantId $CurrentTenantId -ErrorAction Stop
-
-          # Check if any of the current subscriptions match the ones in the list
-          foreach ($subscription in $AllSubscriptions) {
-            if ($SubscriptionIdsToCheck -contains $subscription.SubscriptionId) {
-              Write-Debug 'Begin: Already logged into a tenant with one of the specified subscriptions.'
-              Write-Host 'Already logged into a tenant with one of the specified subscriptions.' -ForegroundColor Green
-              $LoggedInState = $true
-              break
-            }
-          }
-        } catch {
-          Write-Error "Begin: Error occurred while checking current subscriptions: $_"
-        }
-      }
-    }
-    process {
-      if (-not $LoggedInState) {
-        Write-Debug 'Process: Not logged into a tenant with any of the specified subscriptions. Authenticating to Azure.'
-
-        try {
-          $WamState = $null
-          $LoginExperienceV2State = $null
-
-          if ((Get-AzConfig -EnableLoginByWam).Value -eq $true -or (Get-AzConfig -LoginExperienceV2).Value -eq 'Off') {
-            Write-Debug 'Process: Disabling interactive login experience.'
-            $WamState = (Get-AzConfig -EnableLoginByWam).Value
-            $LoginExperienceV2State = (Get-AzConfig -LoginExperienceV2).Value
-            Set-AzConfig -EnableLoginByWam $false -WarningAction SilentlyContinue
-            Update-AzConfig -LoginExperienceV2 Off -WarningAction SilentlyContinue
-          }
-
-          Write-Debug 'Process: Connecting to Azure.'
-          # Connect to Azure using the first valid subscription ID
-          $FirstValidSubscriptionId = $SubscriptionIdsToCheck | Select-Object -First 1
-          Connect-AzAccount -Tenant $TenantID -Subscription $FirstValidSubscriptionId -WarningAction SilentlyContinue -Environment $AzureEnvironment
-
-          if ($null -ne $WamState) {
-            Write-Debug 'Process: Restoring interactive login experience (WamState).'
-            Set-AzConfig -EnableLoginByWam $WamState -WarningAction SilentlyContinue
-          }
-
-          if ($null -ne $LoginExperienceV2State) {
-            Write-Debug 'Process: Restoring interactive login experience (LoginExperienceV2State).'
-            Update-AzConfig -LoginExperienceV2 $LoginExperienceV2State -WarningAction SilentlyContinue
-          }
-        } catch {
-          Write-Error "Process: Error occurred while authenticating to Azure: $_"
-        }
-      } else {
-        Write-Debug 'Process: Skipped login'
-      }
-    }
-    end {
-      Write-Debug 'End: Completed authentication to Azure.'
-      try {
-        $Script:SubIds = Get-AzSubscription -TenantId $TenantID
-      } catch {
-        Write-Error "Error occurred while retrieving subscriptions after logging in: $_"
-      }
-    }
-  }
-  function Test-IsAzureCloudShell {
-    [CmdletBinding()]
-    param()
-
-    try {
-      if ($null -ne $env:ACC_CLOUD) {
-        Write-Host 'Running in Azure Cloud Shell environment, no need to explicitly authenticate.' -ForegroundColor Green
-        return $true
-      } else {
-        return $false
-      }
-    } catch {
-      Write-Error "An error occurred while checking the Azure Cloud Shell environment: $_"
-      return $false
-    }
-  }
 
   # Validate the script parameters and dependencies
-  $Script:Version = '2.0.14'
+  $Script:Version = '2.0.15'
   Write-Host 'Version: ' -NoNewline
   Write-Host $Script:Version -ForegroundColor DarkBlue
 
@@ -1461,22 +1355,22 @@ $Script:Runtime = Measure-Command -Expression {
   }
 
   if ($ConfigFile) {
-    $Scopes = @()
+    $Script:Scopes = @()
     $ConfigData = Import-ConfigFileData -file $ConfigFile
     $TenantID = $ConfigData.TenantID | Select-Object -First 1
-    $Scopes += $ConfigData.subscriptions
-    $Scopes += $ConfigData.resourcegroups
-    $Scopes += $ConfigData.resources
+    $Script:Scopes += $ConfigData.subscriptions
+    $Script:Scopes += $ConfigData.resourcegroups
+    $Script:Scopes += $ConfigData.resources
     $locations = $ConfigData.locations
     $RunbookFile = $ConfigData.RunbookFile
     $Tags = $ConfigData.Tags
     $ResourceGroups = $ConfigData.ResourceGroups
   }
   else {
-    $Scopes = @()
+    $Script:Scopes = @()
     if ($SubscriptionIds)
       {
-        $Scopes += foreach ($Sub in $SubscriptionIds)
+        $Script:Scopes += foreach ($Sub in $SubscriptionIds)
         {
           $_guid = [Guid]::NewGuid()
 
@@ -1492,17 +1386,17 @@ $Script:Runtime = Measure-Command -Expression {
       }
     if ($ResourceGroups)
       {
-        $Scopes += foreach ($RG in $ResourceGroups)
+        $Script:Scopes += foreach ($RG in $ResourceGroups)
           {
             Write-Host "[-ResourceGroups]: $RG" -ForegroundColor Cyan
             $RG
           }
       }
   }
-  # Import functions #TODO: Uncomment the functions below to enable the functionality
-  # Write-Debug 'Calling Function: Connect-ToAzure'
-  # . "$PSScriptRoot/Functions/Test-IsAzureCloudShell.ps1"
-  # . "$PSScriptRoot/Functions/Connect-ToAzure.ps1"
+ # Import functions
+  Write-Debug 'Calling Function: Connect-ToAzure'
+  . "$PSScriptRoot/Functions/Test-IsAzureCloudShell.ps1"
+  . "$PSScriptRoot/Functions/Connect-ToAzure.ps1"
 
   # Invoke functions
   Write-Debug 'Reseting Variables'
@@ -1511,7 +1405,7 @@ $Script:Runtime = Measure-Command -Expression {
   Write-Debug 'Calling Function: Test-Requirements'
   Test-Requirement
 
-  Write-Debug 'Calling Function: Set-LocalFiles'
+  Write-Debug 'Calling Function: Set-LocalFiles
   Set-LocalFile
 
   Write-Debug 'Calling Function: Test-Runbook'
@@ -1520,17 +1414,19 @@ $Script:Runtime = Measure-Command -Expression {
 
 Write-Host @"
   ===================================================
-  Scopes that will be processed:
-  $Scopes
+  Scopes that will be processed: `n
+  $Script:Scopes
   ===================================================
 "@ -ForegroundColor Cyan
 
-  Write-Debug 'Calling Function: Test-IsAzureCloudShell'
-  if (-not $(Test-IsAzureCloudShell)) {
-    Connect-ToAzure -TenantID $TenantID -Scopes $Scopes -AzureEnvironment $AzureEnvironment
-  }
-
-#TODO: Uncomment the functions below to enable the functionality
+Write-Output "========= VAR CHECK ========="
+Write-Output "Scopes: $Script:Scopes"
+Write-Output "TenantID: $TenantID"
+  # Write-Debug "Calling Function: Test-IsAzureCloudShell `n"
+  # if (-not $(Test-IsAzureCloudShell)) {
+  #   Connect-ToAzure -TenantID $TenantID -Scopes $Script:Scopes -AzureEnvironment $AzureEnvironment
+  # }
+# TODO: Uncomment the following lines to enable the functions
   # Write-Debug 'Calling Function: Start-ScopesLoop'
   # Start-ScopesLoop
 
