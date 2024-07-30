@@ -90,5 +90,5 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Network watcher traffic analytics
+    - name: Network Watcher traffic analytics
       url: "https://learn.microsoft.com/en-us/azure/network-watcher/traffic-analytics"
