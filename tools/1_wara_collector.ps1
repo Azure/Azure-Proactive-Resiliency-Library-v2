@@ -100,7 +100,7 @@ Param(
         [ValidatePattern('\/subscriptions\/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\/resourceGroups\/[a-zA-Z0-9._-]+')]
         [String[]]$ResourceGroups,
         [GUID]$TenantID,
-        [ValidatePattern('^[^<>&%\\?/]+==[^<>&%\\?/]+$|[^<>&%\\?/]+=/[^<>&%\\?/]+$')]
+        [ValidatePattern('^[^<>&%\\?/]+=~[^<>&%\\?/]+$|[^<>&%\\?/]+!~[^<>&%\\?/]+$')]
         [String[]]$Tags,
         [ValidateSet('AzureCloud', 'AzureUSGovernment')]
         $AzureEnvironment = 'AzureCloud',
@@ -124,7 +124,7 @@ $Script:Runtime = Measure-Command -Expression {
     param (
       [string[]]$InputValue
     )
-    $pattern = '^[^<>&%\\?/]+==[^<>&%\\?/]+$|[^<>&%\\?/]+=/[^<>&%\\?/]+$'
+    $pattern = '^[^<>&%\\?/]+=~[^<>&%\\?/]+$|[^<>&%\\?/]+!~[^<>&%\\?/]+$'
 
     $allMatch = $true
 
@@ -329,6 +329,16 @@ $Script:Runtime = Measure-Command -Expression {
         Write-Host "Configuration file (-ConfigFile) and (Subscription ID(s) (-SubscriptionIds), resource group(s) (-ResourceGroups), or tags (-Tags)) cannot be used together." -ForegroundColor Red
         $IsValid = $false
       }
+
+      if ([string]::IsNullOrEmpty($TenantID) -and [string]::IsNullOrEmpty($ConfigFile)) {
+        Write-Host "Tenant ID is required." -ForegroundColor Red
+        $IsValid = $false
+      }
+
+      if (![string]::IsNullOrEmpty($TenantID) -and [string]::IsNullOrEmpty($ConfigFile) -and [string]::IsNullOrEmpty($SubscriptionIds) -and [string]::IsNullOrEmpty($ResourceGroups)) {
+        Write-Host "Subscription ID(s) (-SubscriptionIds) or resource group(s) (-ResourceGroups) is required." -ForegroundColor Red
+        $IsValid = $false
+      }
     }
 
     return $IsValid
@@ -467,28 +477,7 @@ $Script:Runtime = Measure-Command -Expression {
     Write-Host 'Authenticating to Azure'
     if ($Script:ShellPlatform -eq 'Win32NT') {
       Clear-AzContext -Force -ErrorAction SilentlyContinue -WarningAction SilentlyContinue -InformationAction SilentlyContinue
-      if ([string]::IsNullOrEmpty($TenantID)) {
-        Write-Host 'Tenant ID not specified.'
-        Write-Host ''
-        Connect-AzAccount -WarningAction SilentlyContinue -Environment $AzureEnvironment
-        $Tenants = Get-AzTenant
-        if ($Tenants.count -gt 1) {
-          Write-Host 'Select the Azure Tenant to connect : '
-          $Selection = 1
-          foreach ($Tenant in $Tenants) {
-            $TenantName = $Tenant.Name
-            Write-Host "$Selection)  $TenantName"
-            $Selection ++
-          }
-          Write-Host ''
-          [int]$SelectedTenant = Read-Host 'Select Tenant'
-          $defaultTenant = --$SelectedTenant
-          $TenantID = $Tenants[$defaultTenant]
-          Connect-AzAccount -Tenant $TenantID -Subscription $Subscription0 -WarningAction SilentlyContinue -Environment $AzureEnvironment
-        }
-      } else {
-        Connect-AzAccount -Tenant $TenantID -Subscription $Subscription0 -WarningAction SilentlyContinue -Environment $AzureEnvironment
-      }
+      Connect-AzAccount -Tenant $TenantID -Subscription $Subscription0 -WarningAction SilentlyContinue -Environment $AzureEnvironment
       #Set the default variable with the list of subscriptions in case no Subscription File was informed
       $Script:SubIds = Get-AzSubscription -TenantId $TenantID -WarningAction SilentlyContinue
     } else {
@@ -690,15 +679,15 @@ $Script:Runtime = Measure-Command -Expression {
     Foreach ($TagLine in $TagFilter) {
       $AllTaggedResourceGroups = ''
       # Finding the TagKey and all the TagValues in the line
-      if ($TagLine -like '*==*')
+      if ($TagLine -like '*=~*')
         {
-          $TagKeys = $TagLine.split('==')[0]
-          $TagValues = $TagLine.split('==')[1]
+          $TagKeys = $TagLine.split('=~')[0]
+          $TagValues = $TagLine.split('=~')[1]
         }
-      elseif ($TagLine -like '*=/*')
+      elseif ($TagLine -like '*!~*')
         {
-          $TagKeys = $TagLine.split('=/')[0]
-          $TagValues = $TagLine.split('=/')[1]
+          $TagKeys = $TagLine.split('!~')[0]
+          $TagValues = $TagLine.split('!~')[1]
         }
 
       $TagKeys = $TagKeys.split('||')
@@ -717,12 +706,12 @@ $Script:Runtime = Measure-Command -Expression {
           Write-host ('Running Resource Group Tag Inventory for: ' + $TagKey + ' : ' + $TagValue)
         }
 
-      if ($TagLine -like '*==*')
+      if ($TagLine -like '*=~*')
         {
           #Getting all the Resource Groups with the Tags, this will be used later
           $RGTagQuery = "$ContainerScopeQuery | mvexpand tags | extend tagKey = tostring(bag_keys(tags)[0]) | extend tagValue = tostring(tags[tagKey]) | where tagKey in~ ($TagKey) and tagValue in~ ($TagValue) | project id | order by id"
         }
-      elseif ($TagLine -like '*=/*')
+      elseif ($TagLine -like '*!~*')
         {
           $RGTagQuery = "$ContainerScopeQuery | mvexpand tags | extend tagKey = tostring(bag_keys(tags)[0]) | extend tagValue = tostring(tags[tagKey]) | where tagKey in~ ($TagKey) and tagValue !in~ ($TagValue) | project id | order by id"
         }
@@ -756,12 +745,12 @@ $Script:Runtime = Measure-Command -Expression {
         {
           Write-host ('Running Resource Tag Inventory for: ' + $TagKey + ' : ' + $TagValue)
         }
-      if ($TagLine -like '*==*')
+      if ($TagLine -like '*=~*')
         {
           #Getting all the resources within the TAGs
           $ResourcesTagQuery = "$ResourceScopeQuery | mvexpand tags | extend tagKey = tostring(bag_keys(tags)[0]) | extend tagValue = tostring(tags[tagKey]) | where tagKey in~ ($TagKey) and tagValue in~ ($TagValue) | project id, name, subscriptionId, type, resourceGroup, location | order by id"
         }
-      elseif ($TagLine -like '*=/*')
+      elseif ($TagLine -like '*!~*')
         {
           $ResourcesTagQuery = "$ResourceScopeQuery | mvexpand tags | extend tagKey = tostring(bag_keys(tags)[0]) | extend tagValue = tostring(tags[tagKey]) | where tagKey in~ ($TagKey) and tagValue !in~ ($TagValue) | project id, name, subscriptionId, type, resourceGroup, location | order by id"
         }
@@ -1194,7 +1183,7 @@ $Script:Runtime = Measure-Command -Expression {
 
   function Invoke-ResourceFiltering {
     if ($Tags) {
-      $Script:InScope += foreach ($Resource in $Script:PreInScopeResources)
+      $Script:InScope = foreach ($Resource in $Script:PreInScopeResources)
         {
           if ($Resource.id -in $Script:TaggedResources.id)
             {
@@ -1212,7 +1201,9 @@ $Script:Runtime = Measure-Command -Expression {
         $Script:InScope = $Script:InScope | Where-Object {$_.id -notin $Script:ExcludeList.id}
       }
 
-    $Script:ImpactedResources += foreach ($Temp in $Script:results)
+    $Script:results = $Script:results | Select-Object -Property validationAction, recommendationId, name, Type, id, param1, param2, param3, param4, param5, checkName, selector -Unique
+
+    $Script:ImpactedResources = foreach ($Temp in $Script:results)
       {
         if ($Temp.id -eq "n/a") {
           $result = [PSCustomObject]@{
@@ -1258,7 +1249,7 @@ $Script:Runtime = Measure-Command -Expression {
           }
     }
 
-    $Script:OutOfScope += foreach ($ResIID in $Script:PreOutOfScopeResources)
+    $Script:OutOfScope = foreach ($ResIID in $Script:PreOutOfScopeResources)
       {
         if ($Tags)
           {
@@ -1333,7 +1324,7 @@ $Script:Runtime = Measure-Command -Expression {
         $queryResults = Get-AllAzGraphResource -Query $advquery -subscriptionId $Subid
       }
 
-      $Script:AllAdvisories += foreach ($row in $queryResults) {
+      $Script:AllAdvisories = foreach ($row in $queryResults) {
         if (![string]::IsNullOrEmpty($row.properties.resourceMetadata.resourceId)) {
           $TempResource = ''
           $TempResource = ($Script:PreInScopeResources | Where-Object { $_.id -eq $row.properties.resourceMetadata.resourceId } | Select-Object -First 1)
@@ -1357,7 +1348,7 @@ $Script:Runtime = Measure-Command -Expression {
   function Resolve-SupportTicket {
     $Tickets = $Script:SupportTickets
     $Script:SupportTickets = @()
-    $Script:SupportTickets += foreach ($Ticket in $Tickets) {
+    $Script:SupportTickets = foreach ($Ticket in $Tickets) {
       $tmp = @{
         'Ticket ID'         = [string]$Ticket.properties.supportTicketId;
         'Severity'          = [string]$Ticket.properties.severity;
@@ -1378,7 +1369,7 @@ $Script:Runtime = Measure-Command -Expression {
     $retquery = "servicehealthresources | where properties.EventSubType contains 'Retirement' | order by id"
     $queryResults = Get-AllAzGraphResource -Query $retquery -subscriptionId $Subid
 
-    $Script:AllRetirements += foreach ($row in $queryResults) {
+    $Script:AllRetirements = foreach ($row in $queryResults) {
       $OutagesRetired = $Script:RetiredOutages | Where-Object { $_.name -eq $row.properties.TrackingId }
 
       $result = [PSCustomObject]@{
@@ -1405,7 +1396,7 @@ $Script:Runtime = Measure-Command -Expression {
     $queryResults = Get-AllAzGraphResource -Query $Servicequery -subscriptionId $Subid
 
     $Rowler = @()
-    $Rowler += foreach ($row in $queryResults) {
+    $Rowler = foreach ($row in $queryResults) {
       foreach ($type in $row.properties.condition.allOf) {
         if ($type.equals -eq 'ServiceHealth') {
           $row
@@ -1413,7 +1404,7 @@ $Script:Runtime = Measure-Command -Expression {
       }
     }
 
-    $Script:AllServiceHealth += foreach ($Row in $Rowler) {
+    $Script:AllServiceHealth = foreach ($Row in $Rowler) {
       $SubName = ($SubIds | Where-Object { $_.Id -eq ($Row.properties.scopes.split('/')[2]) }).Name
       $EventType = if ($Row.Properties.condition.allOf.anyOf | Select-Object -Property equals) { $Row.Properties.condition.allOf.anyOf | Select-Object -Property equals | ForEach-Object { switch ($_.equals) { 'Incident' { 'Service Issues' } 'Informational' { 'Health Advisories' } 'ActionRequired' { 'Security Advisory' } 'Maintenance' { 'Planned Maintenance' } } } } Else { 'All' }
       $Services = if ($Row.Properties.condition.allOf | Where-Object { $_.field -eq 'properties.impactedServices[*].ServiceName' }) { $Row.Properties.condition.allOf | Where-Object { $_.field -eq 'properties.impactedServices[*].ServiceName' } | Select-Object -Property containsAny | ForEach-Object { $_.containsAny } } Else { 'All' }
@@ -1572,7 +1563,7 @@ $Script:Runtime = Measure-Command -Expression {
     $Scopes = @()
     if ($SubscriptionIds)
       {
-        $Scopes += foreach ($Sub in $SubscriptionIds)
+        $Scopes = foreach ($Sub in $SubscriptionIds)
         {
           $_guid = [Guid]::NewGuid()
 
@@ -1588,7 +1579,7 @@ $Script:Runtime = Measure-Command -Expression {
       }
     if ($ResourceGroups)
       {
-        $Scopes += foreach ($RG in $ResourceGroups)
+        $Scopes = foreach ($RG in $ResourceGroups)
           {
             Write-Host "[-ResourceGroups]: $RG" -ForegroundColor Cyan
             $RG
