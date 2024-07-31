@@ -1359,8 +1359,12 @@ $Script:Runtime = Measure-Command -Expression {
     $ConfigData = Import-ConfigFileData -file $ConfigFile
     $TenantID = $ConfigData.TenantID | Select-Object -First 1
     $Script:Scopes += $ConfigData.subscriptions
-    $Script:Scopes += $ConfigData.resourcegroups
-    $Script:Scopes += $ConfigData.resources
+    if (![string]::IsNullOrEmpty($ConfigData.resourcegroups)) {
+      $Script:Scopes += $ConfigData.resourcegroups
+    }
+    if (![string]::IsNullOrEmpty($ConfigData.resourcegroups)) {
+      $Script:Scopes += $ConfigData.resources
+    }
     $locations = $ConfigData.locations
     $RunbookFile = $ConfigData.RunbookFile
     $Tags = $ConfigData.Tags
@@ -1399,34 +1403,32 @@ $Script:Runtime = Measure-Command -Expression {
   . "$PSScriptRoot/Functions/Connect-ToAzure.ps1"
 
   # Invoke functions
-  Write-Debug 'Reseting Variables'
+  Write-Debug "Reseting Variables"
   Invoke-ResetVariable
 
   Write-Debug 'Calling Function: Test-Requirements'
   Test-Requirement
 
-  Write-Debug 'Calling Function: Set-LocalFiles
+  Write-Debug 'Calling Function: Set-LocalFiles'
   Set-LocalFile
 
   Write-Debug 'Calling Function: Test-Runbook'
   Test-Runbook
 
 
-Write-Host @"
+  Write-Host @"
   ===================================================
-  Scopes that will be processed: `n
-  $Script:Scopes
+  Scopes that will be processed:
+  $($Script:Scopes | ForEach-Object -Process { "`n$_"})
   ===================================================
 "@ -ForegroundColor Cyan
 
-Write-Output "========= VAR CHECK ========="
-Write-Output "Scopes: $Script:Scopes"
-Write-Output "TenantID: $TenantID"
-  # Write-Debug "Calling Function: Test-IsAzureCloudShell `n"
-  # if (-not $(Test-IsAzureCloudShell)) {
-  #   Connect-ToAzure -TenantID $TenantID -Scopes $Script:Scopes -AzureEnvironment $AzureEnvironment
-  # }
-# TODO: Uncomment the following lines to enable the functions
+  Write-Debug "Calling Function: Test-IsAzureCloudShell `n"
+  if (-not $(Test-IsAzureCloudShell)) {
+    Write-Debug "Calling Function: Connect-ToAzure `n"
+    Connect-ToAzure -TenantID $TenantID -Scopes $Script:Scopes -AzureEnvironment $AzureEnvironment
+  }
+
   # Write-Debug 'Calling Function: Start-ScopesLoop'
   # Start-ScopesLoop
 
