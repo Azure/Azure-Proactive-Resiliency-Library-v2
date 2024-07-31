@@ -320,24 +320,34 @@ $Script:Runtime = Measure-Command -Expression {
         $IsValid = $false
       }
 
-      if ($ConfigFile -and !(Test-Path $ConfigFile -PathType Leaf)) {
-        Write-Host "Configuration file (-ConfigFile) not found: [$ConfigFile]" -ForegroundColor Red
-        $IsValid = $false
-      }
+      if ($ConfigFile) {
 
-      if ($ConfigFile -and ($SubscriptionIds -or $ResourceGroups -or $Tags)) {
-        Write-Host "Configuration file (-ConfigFile) and (Subscription ID(s) (-SubscriptionIds), resource group(s) (-ResourceGroups), or tags (-Tags)) cannot be used together." -ForegroundColor Red
-        $IsValid = $false
-      }
+        if (!(Test-Path $ConfigFile -PathType Leaf)) {
+          Write-Host "Configuration file (-ConfigFile) not found: [$ConfigFile]" -ForegroundColor Red
+          $IsValid = $false
+        }
 
-      if ([string]::IsNullOrEmpty($TenantID) -and [string]::IsNullOrEmpty($ConfigFile)) {
-        Write-Host "Tenant ID is required." -ForegroundColor Red
-        $IsValid = $false
-      }
+        if ($SubscriptionIds -or $ResourceGroups -or $Tags) {
+          Write-Host "Configuration file (-ConfigFile) and [Subscription ID(s) (-SubscriptionIds), resource group(s) (-ResourceGroups), or tags (-Tags)] cannot be used together." -ForegroundColor Red
+          $IsValid = $false
+        }
 
-      if (![string]::IsNullOrEmpty($TenantID) -and [string]::IsNullOrEmpty($ConfigFile) -and [string]::IsNullOrEmpty($SubscriptionIds) -and [string]::IsNullOrEmpty($ResourceGroups)) {
-        Write-Host "Subscription ID(s) (-SubscriptionIds) or resource group(s) (-ResourceGroups) is required." -ForegroundColor Red
-        $IsValid = $false
+        if ($TenantId) {
+          Write-Host "Tenant ID (-TenantId) cannot be used with a configuration file (-ConfigFile). Include tenant ID in the [tenantid] section of the config file." -ForegroundColor Red
+          $IsValid = $false
+        }
+
+      } else {
+
+        if (!($TenantId)) {
+          Write-Host "Tenant ID (-TenantId) is required." -ForegroundColor Red
+          $IsValid = $false
+        }
+
+        if (!($SubscriptionIds) -and !($ResourceGroups)) {
+          Write-Host "Subscription ID(s) (-SubscriptionIds) or resource group(s) (-ResourceGroups) are required." -ForegroundColor Red
+          $IsValid = $false
+        }
       }
     }
 
