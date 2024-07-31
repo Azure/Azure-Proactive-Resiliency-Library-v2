@@ -1429,20 +1429,20 @@ $Script:Runtime = Measure-Command -Expression {
     Connect-ToAzure -TenantID $TenantID -Scopes $Script:Scopes -AzureEnvironment $AzureEnvironment
   }
 
-  # Write-Debug 'Calling Function: Start-ScopesLoop'
-  # Start-ScopesLoop
+  Write-Debug 'Calling Function: Start-ScopesLoop'
+  Start-ScopesLoop
 
-  # Write-Debug 'Calling Function: Invoke-ResourcesFiltering'
-  # Invoke-ResourceFiltering
+  Write-Debug 'Calling Function: Invoke-ResourcesFiltering'
+  Invoke-ResourceFiltering
 
-  # Write-Debug 'Calling Function: Resolve-ResourceTypes'
-  # Resolve-ResourceType
+  Write-Debug 'Calling Function: Resolve-ResourceTypes'
+  Resolve-ResourceType
 
-  # Write-Debug 'Calling Function: Resolve-SupportTickets'
-  # Resolve-SupportTicket
+  Write-Debug 'Calling Function: Resolve-SupportTickets'
+  Resolve-SupportTicket
 
-  # Write-Debug 'Calling Function: New-JsonFile'
-  # New-JsonFile
+  Write-Debug 'Calling Function: New-JsonFile'
+  New-JsonFile
 
 }
 
