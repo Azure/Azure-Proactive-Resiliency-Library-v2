@@ -5,7 +5,7 @@
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/expressRouteGateways
   recommendationMetadataState: Active
-  longDescription: To increase reliability, it's advised that each v-Hub's ExpressRoute gateway connects to at least two circuits, with each circuit originating from a different peering location than the other, ensuring diverse connectivity paths for enhanced resilience.|
+  longDescription: To increase reliability, it's advised that each v-Hub's ExpressRoute gateway connects to at least two circuits, with each circuit originating from a different peering location than the other, ensuring diverse connectivity paths for enhanced resilience.
   potentialBenefits: Enhance resiliency for Azure Service
   pgVerified: false
   publishedToLearn: false
@@ -23,7 +23,7 @@
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/expressRouteGateways
   recommendationMetadataState: Active
-  longDescription: Set up monitoring and alerts for Virtual WAN Express Route Gateway. Create alert rule for ensuring promptly response to critical events such as exceeding packets per second, exceeding BGP routes prefixes, Gateway overutilization and high frequency in route changes.
+  longDescription: Set up monitoring and alerts for Virtual WAN ExpressRoute Gateway. Create alert rule for ensuring promptly response to critical events such as exceeding packets per second, exceeding BGP routes prefixes, Gateway overutilization and high frequency in route changes.
   potentialBenefits: Detection and mitigation to avoid disruptions.
   pgVerified: false
   publishedToLearn: false
