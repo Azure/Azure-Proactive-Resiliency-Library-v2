@@ -475,8 +475,6 @@ $Script:Runtime = Measure-Command -Expression {
             Write-Host '---------------------------------------------------------------------'
             Write-Host 'Validating Scope: ' -NoNewline
             Write-Host $ScopeWithoutParameter -ForegroundColor Cyan
-            Write-Host '---------------------------------------------------------------------'
-            Write-Host $SubId
 
             if ($SubId -notin $LoopedSub) {
               $Token = Get-AzAccessToken
