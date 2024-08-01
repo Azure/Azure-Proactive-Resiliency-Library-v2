@@ -1359,7 +1359,7 @@ $Script:Runtime = Measure-Command -Expression {
     if (![string]::IsNullOrEmpty($ConfigData.resourcegroups)) {
       $Script:Scopes += $ConfigData.resourcegroups
     }
-    if (![string]::IsNullOrEmpty($ConfigData.resourcegroups)) {
+    if (![string]::IsNullOrEmpty($ConfigData.resources)) {
       $Script:Scopes += $ConfigData.resources
     }
     $locations = $ConfigData.locations
