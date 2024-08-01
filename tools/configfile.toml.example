@@ -1,8 +1,12 @@
 [tenantid]
-575d0680-060f-485d-916c-8f9336df76f4
+tenantid
 
 [subscriptions]
-/subscriptions/3d00f7eb-a0c3-4bbd-ab7e-e94eb80a7a76
+/subscriptions/<subid>
 
 [resourcegroups]
-/subscriptions/71aafef6-3944-4ef0-a83c-1aee062b4c55/resourceGroups/tfstate-rg
+/subscriptions/<subid>/resourceGroups/Demo1-RG
+
+[tags]
+env==prod
+application==demoapp1
