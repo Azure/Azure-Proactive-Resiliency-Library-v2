@@ -1259,6 +1259,14 @@ $Script:Runtime = Measure-Command -Expression {
           }
     }
 
+    $Script:Advisories = foreach ($adv in $Script:AllAdvisories)
+      {
+        if ($adv.id -in $Script:InScope.id)
+          {
+            $adv
+          }
+      }
+
     $Script:OutOfScope = foreach ($ResIID in $Script:PreOutOfScopeResources)
       {
         if ($Tags)
@@ -1451,7 +1459,7 @@ $Script:Runtime = Measure-Command -Expression {
         ResourceType = $Script:AllResourceTypesOrdered
       }
       $AdvisoryExporter = @{
-        Advisory = $Script:AllAdvisories
+        Advisory = $Script:Advisories
       }
       $OutageExporter = @{
         Outages = $Script:Outageslist
