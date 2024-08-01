@@ -477,7 +477,7 @@ $Script:Runtime = Measure-Command -Expression {
             Write-Host $ScopeWithoutParameter -ForegroundColor Cyan
 
             if ($SubId -notin $LoopedSub) {
-              $Token = Get-AzAccessToken
+              $Token = Get-AzAccessToken -WarningAction Ignore
 
               $header = @{
                 'Authorization' = 'Bearer ' + $Token.Token
@@ -1414,11 +1414,11 @@ $Script:Runtime = Measure-Command -Expression {
 
 
   Write-Host @"
-  ===================================================
-  Scopes that will be processed:
-  $($Script:Scopes | ForEach-Object -Process { "`n$_"})
-  ===================================================
-"@ -ForegroundColor Cyan
+`n
+Scopes that will be processed:
+$($Script:Scopes | ForEach-Object -Process { "`n$(([array]::IndexOf($Script:Scopes, $_) + 1).ToString()). $_" })
+`n
+"@ -ForegroundColor DarkBlue
 
   Write-Debug "Calling Function: Test-IsAzureCloudShell `n"
   if (-not $(Test-IsAzureCloudShell)) {

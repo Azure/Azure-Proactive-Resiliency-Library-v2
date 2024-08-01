@@ -79,7 +79,7 @@
         Write-Debug 'Process: Connecting to Azure.'
         # Connect to Azure using the first valid subscription ID
         $FirstValidSubscriptionId = $SubscriptionIdsToCheck | Select-Object -First 1
-        Connect-AzAccount -Tenant $TenantID -Subscription $FirstValidSubscriptionId -WarningAction SilentlyContinue -Environment $AzureEnvironment
+        Connect-AzAccount -Tenant $TenantID -Subscription $FirstValidSubscriptionId -WarningAction SilentlyContinue -InformationAction Ignore -Environment $AzureEnvironment
 
         if ($null -ne $WamState) {
           Write-Debug 'Process: Restoring interactive login experience (WamState).'
