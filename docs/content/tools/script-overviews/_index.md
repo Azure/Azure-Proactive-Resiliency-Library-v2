@@ -108,7 +108,7 @@ When calling the Collector script, you must provide some required parameters. Op
 
 ### How to run the script
 
-(See examples how to use the script here)[]
+See at the end of this page various examples of how to run this script - [Examples](#how-to-run-the-1_wara_collectorps1)
 
 **You have two options to run the collector script:**
 
@@ -137,10 +137,12 @@ When calling the Collector script, you must provide some required parameters. Op
 
     {{< figure src="../../img/tools/collector-3.png" width="100%" >}}
 
+    For complex Subscription, ResourceGroups and Tags filtering scenarios we highly recommend using [ConfigFiles - See here an example](#example-6---configfile-example)
+
 4. Select "A" to allow modules to install
   {{< figure src="../../img/tools/collector-4.png" width="100%" >}}
 
-5. After Script completes, download the results
+1. After Script completes, download the results
   {{< figure src="../../img/tools/collector-5.png" width="100%" >}}
 
 #### 1.2 Local Machine
@@ -309,7 +311,7 @@ The Reports Generator script serves as the final step during an Well-Architected
 
 ### Frequently asked questions
 
-## How to use Collector script filtering features
+## How to run the 1_wara_collector.ps1
 
 ### Example 1
 
