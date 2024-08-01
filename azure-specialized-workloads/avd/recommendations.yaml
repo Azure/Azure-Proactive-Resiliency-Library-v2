@@ -296,7 +296,7 @@
 
 - description: Ensure route tables accommodate failover
   aprlGuid: 4b1a45af-d35f-442d-922a-a3e7b6052de1
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: Medium
   recommendationResourceType: Specialized.Workload/AVD
@@ -375,7 +375,7 @@
 
 - description: Ensure user permissions are set correctly on FSLogix SMB shares
   aprlGuid: 7b170ddd-5770-4945-9bc3-cd1ccf5f8672
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Security
   recommendationImpact: Medium
   recommendationResourceType: Specialized.Workload/AVD
