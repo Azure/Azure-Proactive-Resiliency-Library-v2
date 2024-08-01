@@ -9,35 +9,48 @@ geekdocCollapseSection: false
 # Well-Architected Reliability Assessment (WARA) Collector Script
 
 ## Synopsis
+
 Well-Architected Reliability Assessment (WARA) collector script
 
 ## Description
-This script is used to collect data from Azure subscriptions to be used in the Well-Architected Reliability Assessment (WARA). The script collects data from the subscriptions, resource groups, and resources, and then runs resource graph queries (Kusto/KQL) to extract information about the resources. The script also collects information about outages, support tickets, advisor recommendations, service retirements, and service health alerts. The collected data is then used to generate a JSON file with recommendations for improving the reliability of the resources. Typically, this JSON file is used as an input for the WARA data analyzer script (2_wara_data_analyzer.ps1).
 
-By default, the script executes all relevant checks in the Azure Proactive Resiliency Library v2 but it can also be configured to run checks against specific groups of resources using a runbook (`-RunbookFile`).
+This script is part of the Microsoft Well-Architected Reliability Assessment (WARA) engagement, and helps customers to validate if Azure resources are architected and configured following Microsoft best practices. It accomplishes that by running Azure resource graph queries (Kusto/KQL) against Azure Subscriptions and Resources, and it also collects information about closed Support Tickets opened, active Azure Advisor Reliability recommendations, past Azure Service Health Retirements and Outages notifications, and configuration of Azure Service Health Alerts, which are relevant for the Reliability recommendations provided at the end of the engagement. The collected data is then structured and exported in a JSON file that is later used as an input for the second script, the Data-analyzer script (2_wara_data_analyzer.ps1).
+
+**Important:** This Azure Resource Graph Queries can only read ARM data (Azure Resource Manager), it DOES NOT have access or collects any keys, secrets, password, or any confidential information, only information about how resources are deployed and configured. If you would like to learn more about it, please go to Azure Resource Graph Explorer and run some of the query examples provided by the Portal.
+
+By default, the script executes all necessary queries/checks available in the Azure Proactive Resiliency Library v2, but it can also be configured to run only specific queries/checks against specific groups of resources using a runbook (`-RunbookFile`).
+
+<br>
 
 ## Requirements
+
 - [PowerShell 7](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.4)
 - [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
-- [Azure PowerShell](https://learn.microsoft.com/en-us/powershell/azure/install-azps-windows?view=azps-12.1.0&tabs=powershell&pivots=windows-psgallery)
+- [Azure PowerShell modules](https://learn.microsoft.com/en-us/powershell/azure/install-azps-windows?view=azps-12.1.0&tabs=powershell&pivots=windows-psgallery)
   - Az.ResourceGraph
   - Az.Accounts
-- Reader access to resources to be evaluated
+- Role Based Access Control: Reader role to access to resources to be evaluated
 
 ## Quick Start
+
 - Download and run the collector script by copying and modifying this script block
 - You must replace the TenantID and SubscriptionIds/ResourceGroups to match your tenant and scope resource ids.
 - Once the script is downloaded you can execute it by running ./1_wara_collector.ps1
+
 ```powershell
 #Download the latest version of the script
 invoke-webrequest https://aka.ms/aprl/tools/1 -out 1_wara_collector.ps1
+
 #Remove file blocking if active and running windows
 $iswindows ? (unblock-file ./1_wara_collector.ps1) : (Write-host "Unblock not required - Not Windows OS")
+
 #Modify these parameters and run the script
 ./1_wara_collector.ps1 -TenantID "00000000-0000-0000-0000-000000000000" -SubscriptionIds "/subscriptions/00000000-0000-0000-0000-000000000000"
 ```
+
 ### Local Machine
 ![Alt text](quickstartexample.gif)
+
 ### Cloud Shell
 ![Alt text](quickstartexample_cloudshell.gif)
 
@@ -99,7 +112,7 @@ In PowerShell this looks like:
 # Runbooks
 > __Important__: Runbooks are an advanced feature designed for specific workload-aligned use cases. If you're not sure if you need runbooks, you probably don't. Before diving into runbooks, [try using the filtering feature to see if it meets your needs](#filtering).
 
-Learn more about using runbooks with the WARA collector script in the [runbooks docs](runbooks.md). 
+Learn more about using runbooks with the WARA collector script in the [runbooks docs](runbooks.md).
 
 # Examples for Well-Architected Reliability Assessment (WARA) Collector Script
 
@@ -149,7 +162,7 @@ application==demoapp1
 
 ### Runbook Example
 
-> Learn more about runbooks [here](runbooks.md). 
+> Learn more about runbooks [here](runbooks.md).
 
 Run a runbook.
 
@@ -172,7 +185,7 @@ Run a runbook using implicit runbook selectors.
 
 > Note that `-SubscriptionIds` are required when using a runbook.
 
-Run a runbook 
+Run a runbook
 
 ## Parameters
 

@@ -25,9 +25,9 @@ The Collector PowerShell script is the first script to be run in the Azure Proac
 
 **You have two options for running the collector script:**
 
-1. Cloud Shell - Requires Cloud Shell be configured with write access to a fileshare within the same tenant
+1. Cloud Shell - Requires Cloud Shell be configured with write access to a file share within the same tenant
 
-1. Local Machine - Requires current modules leveraged in the script be installed
+2. Local Machine - Requires current modules leveraged in the script be installed
 
 ### 1.1 - Cloud Shell
 
@@ -37,7 +37,7 @@ The Collector PowerShell script is the first script to be run in the Azure Proac
 
     {{< figure src="../../img/tools/collector-1.png" width="100%" >}}
 
-1. Upload the WARA Collector Script to Cloud Shell
+2. Upload the WARA Collector Script to Cloud Shell
   {{< figure src="../../img/tools/collector-2.png" width="60%" >}}
 
     Or download the script from GtiHub
@@ -46,7 +46,7 @@ The Collector PowerShell script is the first script to be run in the Azure Proac
     iwr https://aka.ms/aprl/tools/1 -out 1_wara_collector.ps1
     ```
 
-1. Execute script leveraging optional parameters
+3. Execute script leveraging optional parameters
 
     - Parameters include:
       - **TenantID**:  *Required* ; tenant to be used.
@@ -64,10 +64,10 @@ The Collector PowerShell script is the first script to be run in the Azure Proac
 
     {{< figure src="../../img/tools/collector-3.png" width="100%" >}}
 
-1. Select "A" to allow modules to install
+4. Select "A" to allow modules to install
   {{< figure src="../../img/tools/collector-4.png" width="100%" >}}
 
-1. After Script completes, download the results
+5. After Script completes, download the results
   {{< figure src="../../img/tools/collector-5.png" width="100%" >}}
 
 ### 1.2 Local Machine
