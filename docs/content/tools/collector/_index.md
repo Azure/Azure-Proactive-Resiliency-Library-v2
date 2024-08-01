@@ -143,7 +143,7 @@ Run a configuration file:
 
 [tags]
 env==prod
-application==demoapp1
+application=~demoapp1
 ```
 **Note**: In a configuration file we separate multiple entries for a filter by new lines. Where as, from the command line we would pass multiple subscriptions or resource groups using the "string1","string2" pattern. The configuration file is useful for repeated runs, or numerous filters where it may be difficult to troubleshoot syntax in the command line.
 
