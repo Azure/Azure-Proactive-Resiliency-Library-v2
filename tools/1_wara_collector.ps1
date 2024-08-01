@@ -1394,52 +1394,56 @@ $Script:Runtime = Measure-Command -Expression {
           }
       }
   }
- # Import functions
+  # Import functions
   Write-Debug 'Calling Function: Connect-ToAzure'
   . "$PSScriptRoot/Functions/Test-IsAzureCloudShell.ps1"
   . "$PSScriptRoot/Functions/Connect-ToAzure.ps1"
 
   # Invoke functions
-  Write-Debug "Reseting Variables"
-  Invoke-ResetVariable
+  try {
+    Write-Debug 'Reseting Variables'
+    Invoke-ResetVariable
 
-  Write-Debug 'Calling Function: Test-Requirements'
-  Test-Requirement
+    Write-Debug 'Calling Function: Test-Requirements'
+    Test-Requirement
 
-  Write-Debug 'Calling Function: Set-LocalFiles'
-  Set-LocalFile
+    Write-Debug 'Calling Function: Set-LocalFiles'
+    Set-LocalFile
 
-  Write-Debug 'Calling Function: Test-Runbook'
-  Test-Runbook
+    Write-Debug 'Calling Function: Test-Runbook'
+    Test-Runbook
 
 
-  Write-Host @"
+    Write-Host @"
 `n
 Scopes that will be processed:
 $($Script:Scopes | ForEach-Object -Process { "`n$(([array]::IndexOf($Script:Scopes, $_) + 1).ToString()). $_" })
 `n
 "@ -ForegroundColor DarkBlue
 
-  Write-Debug "Calling Function: Test-IsAzureCloudShell `n"
-  if (-not $(Test-IsAzureCloudShell)) {
-    Write-Debug "Calling Function: Connect-ToAzure `n"
-    Connect-ToAzure -TenantID $TenantID -Scopes $Script:Scopes -AzureEnvironment $AzureEnvironment
+    Write-Debug "Calling Function: Test-IsAzureCloudShell `n"
+    if (-not $(Test-IsAzureCloudShell)) {
+      Write-Debug "Calling Function: Connect-ToAzure `n"
+      Connect-ToAzure -TenantID $TenantID -Scopes $Script:Scopes -AzureEnvironment $AzureEnvironment
+    }
+
+    Write-Debug 'Calling Function: Start-ScopesLoop'
+    Start-ScopesLoop
+
+    Write-Debug 'Calling Function: Invoke-ResourcesFiltering'
+    Invoke-ResourceFiltering
+
+    Write-Debug 'Calling Function: Resolve-ResourceTypes'
+    Resolve-ResourceType
+
+    Write-Debug 'Calling Function: Resolve-SupportTickets'
+    Resolve-SupportTicket
+
+    Write-Debug 'Calling Function: New-JsonFile'
+    New-JsonFile
+  } catch {
+    throw $_
   }
-
-  Write-Debug 'Calling Function: Start-ScopesLoop'
-  Start-ScopesLoop
-
-  Write-Debug 'Calling Function: Invoke-ResourcesFiltering'
-  Invoke-ResourceFiltering
-
-  Write-Debug 'Calling Function: Resolve-ResourceTypes'
-  Resolve-ResourceType
-
-  Write-Debug 'Calling Function: Resolve-SupportTickets'
-  Resolve-SupportTicket
-
-  Write-Debug 'Calling Function: New-JsonFile'
-  New-JsonFile
 
 }
 
