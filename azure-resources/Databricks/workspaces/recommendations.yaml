@@ -513,7 +513,7 @@
   tags: null
   learnMoreLink:
     - name: Azure Databricks Best Practices
-      url: "https://github.com/Azure/AzureDatabricksBestPractices/blob/master/toc.md#do-not-store-any-production-data-in-default-dbfs-foldersr"
+      url: "https://github.com/Azure/AzureDatabricksBestPractices/blob/master/toc.md#do-not-store-any-production-data-in-default-dbfs-folders"
 
 - description: Do not use Azure Spot VMs for critical Production workloads
   aprlGuid: b5af7e26-3939-1b48-8fba-f8d4a475c67a
