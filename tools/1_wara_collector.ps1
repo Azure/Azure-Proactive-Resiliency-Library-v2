@@ -1555,7 +1555,7 @@ $Script:Runtime = Measure-Command -Expression {
     $Scopes = @()
     $ConfigData = Import-ConfigFileData -file $ConfigFile
     $TenantID = $ConfigData.TenantID | Select-Object -First 1
-    $Scopes += foreach ($SubscriptionId in $ConfigData.subscriptions)
+    $Scopes += foreach ($SubscriptionId in $ConfigData.subscriptionids)
       {
         if ((Test-SubscriptionId $SubscriptionId))
           {
