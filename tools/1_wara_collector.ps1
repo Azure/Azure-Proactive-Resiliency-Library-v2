@@ -617,7 +617,10 @@ $Script:Runtime = Measure-Command -Expression {
               {
                 if ($Resource.type -in $Script:SupportedResTypes)
                   {
-                    $Script:PreInScopeResources += $Resource
+                    if ($Resource.id -notin $Script:PreInScopeResources.id)
+                      {
+                        $Script:PreInScopeResources += $Resource
+                      }
                   }
                 else
                   {
@@ -826,7 +829,7 @@ $Script:Runtime = Measure-Command -Expression {
         # $queryResults = Search-AzGraph -Query $query -First 1000 -Subscription $Subid -ErrorAction SilentlyContinue
         $queryResults = Get-AllAzGraphResource -query $query -subscriptionId $Subscription
 
-        $queryResults = $queryResults | Select-Object -Property name, id, param1, param2, param3, param4, param5 -Unique
+        $queryResults = $queryResults | Sort-Object -Property name, id, param1, param2, param3, param4, param5 -Unique
 
         foreach ($row in $queryResults) {
           $result = [PSCustomObject]@{
@@ -1191,8 +1194,20 @@ $Script:Runtime = Measure-Command -Expression {
       }
   }
 
+  Function Invoke-FilterResourceID {
+    [cmdletbinding()]
+    Param(
+        $ResourceID,
+        $List
+    )
+    ForEach ($item in $List){
+        If ($ResourceID -eq $Item.id){$item}
+    }
+}
+
   function Invoke-ResourceFiltering {
     if ($Tags) {
+      Write-Host "Filtering Resources In-Scope for Tag Filtering.." -ForegroundColor Cyan
       $Script:InScope = foreach ($Resource in $Script:PreInScopeResources)
         {
           if ($Resource.id -in $Script:TaggedResources.id)
@@ -1203,16 +1218,20 @@ $Script:Runtime = Measure-Command -Expression {
       }
     else
         {
+          Write-Host "Selecting In-Scope Resources.." -ForegroundColor Cyan
           $Script:InScope = $Script:PreInScopeResources
       }
 
     if (![string]::IsNullOrEmpty($Script:ExcludeList))
       {
+        Write-Host "Filtering Excluded Resources.." -ForegroundColor Cyan
         $Script:InScope = $Script:InScope | Where-Object {$_.id -notin $Script:ExcludeList.id}
       }
 
-    $Script:results = $Script:results | Select-Object -Property validationAction, recommendationId, name, Type, id, param1, param2, param3, param4, param5, checkName, selector -Unique
+    Write-Host "Ordering Impacted Resources.." -ForegroundColor Cyan
+    $Script:results = $Script:results | Sort-Object -Unique -Property validationAction, recommendationId, name, Type, id, param1, param2, param3, param4, param5, checkName, selector
 
+    Write-Host "Filtering Impacted Resources.." -ForegroundColor Cyan
     $Script:ImpactedResources = foreach ($Temp in $Script:results)
       {
         if ($Temp.id -eq "n/a") {
@@ -1237,7 +1256,7 @@ $Script:Runtime = Measure-Command -Expression {
         }
         elseif ($Temp.id -in $Script:InScope.id)
           {
-              $TempDetails = ($Script:PreInScopeResources | Where-Object { $_.id -eq $Temp.id } | Select-Object -First 1)
+              $TempDetails = Invoke-FilterResourceID -Resource $Temp.id -List $Script:PreInScopeResources
               $result = [PSCustomObject]@{
                 validationAction = $Temp.validationAction
                 recommendationId = $Temp.recommendationId
@@ -1256,9 +1275,10 @@ $Script:Runtime = Measure-Command -Expression {
                 selector         = $Temp.selector
               }
               $result
-          }
+            }
     }
 
+    Write-Host "Filtering Advisor Resources.." -ForegroundColor Cyan
     $Script:Advisories = foreach ($adv in $Script:AllAdvisories)
       {
         if ($adv.id -in $Script:InScope.id)
@@ -1267,6 +1287,7 @@ $Script:Runtime = Measure-Command -Expression {
           }
       }
 
+    Write-Host "Filtering Out of Scope Resources.." -ForegroundColor Cyan
     $Script:OutOfScope = foreach ($ResIID in $Script:PreOutOfScopeResources)
       {
         if ($Tags)
@@ -1304,7 +1325,7 @@ $Script:Runtime = Measure-Command -Expression {
   function Resolve-ResourceType {
     $TempTypes = $Script:ImpactedResources | Where-Object { $_.validationAction -eq 'IMPORTANT - Resource Type is not available in either APRL or Advisor - Validate Resources manually if Applicable, if not Delete this line' }
     $Script:AllResourceTypes = $Script:AllResourceTypes | Sort-Object -Property Count -Descending
-    $Looper = $Script:AllResourceTypes | Select-Object -Property Name -Unique
+    $Looper = $Script:AllResourceTypes | Sort-Object -Property Name -Unique
     foreach ($result in $Looper.Name) {
       $ResourceTypeCount = (($Script:AllResourceTypes | Where-Object { $_.Name -eq $result }) | Select-Object -ExpandProperty Count | Measure-Object -Sum).Sum
       $ResultType = $result
@@ -1345,7 +1366,7 @@ $Script:Runtime = Measure-Command -Expression {
       $Script:AllAdvisories = foreach ($row in $queryResults) {
         if (![string]::IsNullOrEmpty($row.properties.resourceMetadata.resourceId)) {
           $TempResource = ''
-          $TempResource = ($Script:PreInScopeResources | Where-Object { $_.id -eq $row.properties.resourceMetadata.resourceId } | Select-Object -First 1)
+          $TempResource = Invoke-FilterResourceID -ResourceID $row.properties.resourceMetadata.resourceId -List $Script:PreInScopeResources
           $result = [PSCustomObject]@{
             recommendationId = [string]$row.properties.recommendationTypeId
             type             = [string]$row.Properties.impactedField
