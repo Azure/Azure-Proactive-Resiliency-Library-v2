@@ -13,17 +13,8 @@ https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2
 .PARAMETER Debugging
 [Switch]: Enables debugging output.
 
-.PARAMETER SAP
-[Switch]: Enables recommendations and queries for the SAP specialized workload.
-
-.PARAMETER AVD
-[Switch]: Enables recommendations and queries for the AVD specialized workload.
-
-.PARAMETER AVS
-[Switch]: Enables recommendations and queries for the AVS specialized workload.
-
-.PARAMETER HPC
-[Switch]: Enables recommendations and queries for the HPC specialized workload.
+.PARAMETER TenantID
+Specifies the Entra tenant ID to be used to authenticate to Azure.
 
 .PARAMETER SubscriptionIds
 Specifies the subscription IDs to be included in the review. Multiple subscription IDs should be separated by commas. Subscription IDs must be in either GUID form (e.g., 00000000-0000-0000-0000-000000000000) or full subscription ID form (e.g., /subscriptions/00000000-0000-0000-0000-000000000000).
@@ -40,16 +31,25 @@ Specifies the tags to be used to filter resources.
 
 NOTE: Can't be used in combination with -ConfigFile or -RunbookFile parameters.
 
-.PARAMETER TenantID
-Specifies the Entra tenant ID to be used to authenticate to Azure.
-
-.PARAMETER AzureEnvironment
-Specifies the Azure environment to be used. Valid values are 'AzureCloud' and 'AzureUSGovernment'. Default value is 'AzureCloud'.
-
 .PARAMETER ConfigFile
 Specifies the configuration file to be used.
 
 NOTE: Can't be used in combination with -RunbookFile, -SubscriptionIds, -ResourceGroups, or -Tags parameters.
+
+.PARAMETER AzureEnvironment
+Specifies the Azure environment to be used. Valid values are 'AzureCloud' and 'AzureUSGovernment'. Default value is 'AzureCloud'.
+
+.PARAMETER SAP
+[Switch]: Enables recommendations and queries for the SAP specialized workload.
+
+.PARAMETER AVD
+[Switch]: Enables recommendations and queries for the AVD specialized workload.
+
+.PARAMETER AVS
+[Switch]: Enables recommendations and queries for the AVS specialized workload.
+
+.PARAMETER HPC
+[Switch]: Enables recommendations and queries for the HPC specialized workload.
 
 .PARAMETER RunbookFile
 Specifies the runbook file to be used. More information about runbooks:
@@ -68,19 +68,19 @@ NOTE: This parameter is only used when a runbook file (-RunbookFile) is provided
 
 .EXAMPLE
 Run against all subscriptions in tenant "00000000-0000-0000-0000-000000000000":
-.\1_wara_collector.ps1 -TenantID "00000000-0000-0000-0000-000000000000"
+.\1_wara_collector.ps1 -TenantID 00000000-0000-0000-0000-000000000000
 
 .EXAMPLE
 Run against specific subscriptions in tenant "00000000-0000-0000-0000-000000000000":
-.\1_wara_collector.ps1 -TenantID "00000000-0000-0000-0000-000000000000" -SubscriptionIds "00000000-0000-0000-0000-000000000000,11111111-1111-1111-1111-111111111111"
+.\1_wara_collector.ps1 -TenantID 00000000-0000-0000-0000-000000000000 -SubscriptionIds /subscriptions/00000000-0000-0000-0000-000000000000,/subscriptions/11111111-1111-1111-1111-111111111111
 
 .EXAMPLE
 Run against specific subscriptions, resource groups, and resources defined in a configuration file:
-.\1_wara_collector.ps1 -TenantID "00000000-0000-0000-0000-000000000000" -ConfigFile ".\config.json"
+.\1_wara_collector.ps1 -ConfigFile ".\config.json"
 
 .EXAMPLE
 Use a runbook:
-.\1_wara_collector.ps1 -TenantID "00000000-0000-0000-0000-000000000000" -SubscriptionIds "00000000-0000-0000-0000-000000000000" -RunbookFile ".\runbook.json
+.\1_wara_collector.ps1 -TenantID 00000000-0000-0000-0000-000000000000 -SubscriptionIds /subscriptions/00000000-0000-0000-0000-000000000000 -RunbookFile "runbook.json"
 
 .OUTPUTS
 A JSON file with the collected data.

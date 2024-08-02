@@ -8,9 +8,24 @@ This section provides an overview of the Azure Proactive Resiliency Library v2 (
 
 {{< toc >}}
 
-## 1 - Collector Script
+# Well-Architected Reliability Assessment (WARA) tools
 
-**The collector content is currently being deprecated. This section will be archived during a future release**
+## 1. Collector Script
+
+This script is part of the Microsoft Well-Architected Reliability Assessment (WARA) engagement, and helps customers to validate if Azure resources are architected and configured following Microsoft best practices. It accomplishes that by running Azure resource graph queries (Kusto/KQL) against Azure Subscriptions and Resources, and it also collects information about closed Support Tickets opened, active Azure Advisor Reliability recommendations, past Azure Service Health Retirements and Outages notifications, and configuration of Azure Service Health Alerts, which are relevant for the Reliability recommendations provided at the end of the engagement. The collected data is then structured and exported in a JSON file that is later used as an input for the second script, the Data-analyzer script (2_wara_data_analyzer.ps1).
+
+**Important:** This Azure Resource Graph Queries can only read ARM data (Azure Resource Manager), it DOES NOT have access or collects any keys, secrets, password, or any confidential information, only information about how resources are deployed and configured. If you would like to learn more about it, please go to Azure Resource Graph Explorer and run some of the query examples provided by the Portal.
+
+### Requirements
+
+- [PowerShell 7](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.4)
+- [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+- [Azure PowerShell modules](https://learn.microsoft.com/en-us/powershell/azure/install-azps-windows?view=azps-12.1.0&tabs=powershell&pivots=windows-psgallery)
+  - Az.ResourceGraph
+  - Az.Accounts
+- Role Based Access Control: Reader role to access to resources to be evaluated
+
+### How to download
 
 - [GitHub Link to Download](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/1_wara_collector.ps1)
 - Download the script using command-line
@@ -19,17 +34,89 @@ This section provides an overview of the Azure Proactive Resiliency Library v2 (
     ```
 - [GitHub Link to Sample Output](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/sample-output/WARA_File_2024-05-07_11_59.json)
 
-The Collector PowerShell script is the first script to be run in the Azure Proactive Resiliency Library (APRL) tooling suite. It is designed to collect data from the Azure environment to help identify potential issues and areas for improvement using the Azure Resource Graph queries within this repository. The script leverages the Az.ResourceGraph module to query Azure Resource Graph for relevant data.
+### Parameters
 
----
+When calling the Collector script, you must provide some required parameters. Optional parameters can also be included. See the list below:
 
-**You have two options for running the collector script:**
+- **TenantID**
+  - Required
+  - Description: Target Tenant where the workload resides
+  - Type: String (GUID)
+  - Example:
+    - "00000000-0000-0000-0000-000000000000"
+- **SubscriptionIds**
+  - Required if ResourceGroups is not provided
+  - Description: Specifies Subscription(s) to be included in the analysis.
+  - Type: String array
+  - Example:
+    - "/subscriptions/00000000-0000-0000-0000-000000000000","/subscriptions/AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA"
+- **ResourceGroups**
+  - Required if SubscriptionIds is not provided
+  - Description: Specifies Resource Group(s) to be included in the analysis
+  - Type: String array
+  - Example:
+    - "/subscriptions/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY/resourceGroups/ResourceGroup1","/subscriptions/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY/resourceGroups/ResourceGroup2"
+- **Tags**:
+  - Optional
+  - Type: String array
+  - Description: Specifies Tags to be used for filtering the resources.
+  - Operators:
+    - **=~** for "Equal" (non-case sensitive) to define your name/value pair values.
+    - **!~** for "Non Equal" (non-case sensitive) to define your name/value pair values.
+    - **||** for "Or" operations, when one or more TagName(s) could be equal to one or more TagValue(s).
+    - **,** to separate name/value pairs.
+  - Examples:
+    - "TagName=~TagValue"
+    - "TagName=~TagValue","TagName1=~TagValue1"
+    - "TagName1||TagName2=~TagValue1"
+    - "TagName1=~TagValue1||TagValue2"
+    - "TagName1||TagName2=~TagValue1||TagValue2"
+    - "Env||Environment=~Production||Prod","App=~Ecommerce" (Result: Subscriptions or ResourceGroups or Resources must have the Tag **Env** OR **Environment** EQUAL to **Production** OR **Prod**, AND must have the Tag **App** EQUAL to **Ecommerce** or **Ecom** (All non-case sensitive). If the Tag requirement is met at Subscription level, all Resources within the Subscription are included, if met at ResourceGroup level, all ResourceGroups with the Tags and all their resources are included; if only met at the Resource level, then only resources that met the tag requirement are included).
+- **ConfigFile**:
+  - Required when the following parameters are nor provided via command line: TenantId, SubscriptionIDs, ResourceGroups
+  - Description: Alternate option to providing command line parameters. Specifies a file for filtering of Subscription, ResourceGroup, ResourceId, and Tags.
+  - Type: String (file name and extension)
+  - Example:
+    - configFileName.txt
+    - See ConfigFile.Example [here](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/configfile.example)
+- **AzureEnvironment**:
+  - Optional
+  - Description: Specifies the Azure Environment to used for the analysis: AzureCloud, AzureUSGovernment.
+  - Type: String
+  - Examples:
+    - AzureCloud
+    - or
+    - AzureUSGovernment
+- **SAP, AVS, AVD, HPC**:
+  - Optional
+  - Description: Used for specialized workload analysis.
+  - Type: Switch
+  - Example:
+    - No values are required, simply pass the parameter (-sap or -avs or -avd or -hpc)
+- **Debugging**:
+  - Optional
+  - Description: Writes Debugging information of the script during the execution.
+  - Type: Switch
+  - Format/Values:
+    - No values are required, simply pass the parameter (-debugging)
+- **RunbookFile**:
+  - Optional
+  - Description: Specifies the file with the runbook (selectors & checks) to be used. Only used for a particular specialized workload.
+  - Type: String (file name and extension)
+  - Format/Values:
+    - runbook.json
+
+### How to run the script
+
+See at the end of this page various examples of how to run this script - [Examples](#how-to-run-the-1_wara_collectorps1)
+
+**You have two options to run the collector script:**
 
 1. Cloud Shell - Requires Cloud Shell be configured with write access to a file share within the same tenant
 
 2. Local Machine - Requires current modules leveraged in the script be installed
 
-### 1.1 - Cloud Shell
+#### 1.1 - Cloud Shell
 
 1. From the [Azure Portal](https://portal.azure.com/) open Cloud Shell, select PowerShell instead of BASH
 
@@ -46,77 +133,64 @@ The Collector PowerShell script is the first script to be run in the Azure Proac
     iwr https://aka.ms/aprl/tools/1 -out 1_wara_collector.ps1
     ```
 
-3. Execute script leveraging optional parameters
-
-    - Parameters include:
-      - **TenantID**:  *Required* ; tenant to be used.
-      - **SubscriptionIds**:  *Required (or ConfigFile)* ; Specifies Subscription(s) to be included in the analysis: /subscriptions/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY,/subscriptions/AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA.
-      - **RunbookFile**:  *Optional* ; specifies the file with the runbook (selectors & checks) to be used.
-      - **ResourceGroups**:  *Optional* ; specifies Resource Group(s) to be included in the analysis: /subscriptions/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY/resourceGroups/ResourceGroup1,/subscriptions/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY/resourceGroups/ResourceGroup2.
-      - **Tags**:  *Optional* ; specifies tags to be used for filtering the resources: TagName1||TagName2||TagNameN==TagValue1||TagValue2, TagName1==TagValue1.
-      - **ConfigFile**:  *Optional* ; specifies a file for advanced filtering, including: subscription, resourceGroup, resourceId, Tags.
-      - **AzureEnvironment**:  *Optional* ; specifies the Azure Environment to used for the analysis: AzureCloud, AzureUSGovernment.
-      - **SAP**:  *Optional* ; used for specialized workload analysis.
-      - **AVD**:  *Optional* ; used for specialized workload analysis.
-      - **AVS**:  *Optional* ; used for specialized workload analysis.
-      - **HPC**:  *Optional* ; used for specialized workload analysis.
-      - **Debugging**: *Optional* ; Writes Debugging information of the script during the execution.
+3. Execute script leveraging parameters
 
     {{< figure src="../../img/tools/collector-3.png" width="100%" >}}
+
+    For complex Subscription, ResourceGroups and Tags filtering scenarios we highly recommend using [ConfigFiles - See here an example](#example-6---configfile-example)
 
 4. Select "A" to allow modules to install
   {{< figure src="../../img/tools/collector-4.png" width="100%" >}}
 
-5. After Script completes, download the results
+1. After Script completes, download the results
   {{< figure src="../../img/tools/collector-5.png" width="100%" >}}
 
-### 1.2 Local Machine
+#### 1.2 Local Machine
 
 1. To run the script there are 5 prerequisites that must be completed first:
-    1. **The script must be executed from PowerShell 7, not Windows PowerShell or PowerShell ISE.**
+    1. **The script must be executed from PowerShell 7. Other versions are not supported, for example: Windows PowerShell and PowerShell ISE**
       {{< figure src="../../img/tools/collector-6.png" width="40%" >}}
-    1. **Git must be installed on the local machine - [Git](https://git-scm.com/download/win)**
-    1. **Install required PowerShell Modules:**
+    2. **Git must be installed on the local machine - [Git](https://git-scm.com/download/win)**
+    3. **Install required PowerShell Modules:**
         - Install-Module -Name ImportExcel -Force -SkipPublisherCheck
         - Install-Module -Name Az.ResourceGraph -SkipPublisherCheck
         - Install-Module -Name Az.Accounts -SkipPublisherCheck
-    1. **Unblock the Script**
+    4. **Unblock the Script**
         - The script is digitally signed, but the PowerShell module ImportExcel is not. So at this moment, you need to allow the execution of scripts not signed locally:
           - Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser
           - Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope LocalMachine
-    1. **Reader permissions to target subscription(s)**
+    5. **Reader permissions to target subscription(s)**
 
-1. Open a new PowerShell 7 session after completing prerequisites
+2. Open a new PowerShell 7 session after completing prerequisites
 
-1. Change your directory to the same location that you have downloaded the WARA collector script to.
+3. Change your directory to the same location where you are hosting your WARA Collector script.
 
-    - We recommend running this as close to your C:\ as path to avoid errors related to file path length.
+    - We recommend running this as close to your C:\ as path to avoid errors related to file path length. Create a **"c:\scripts\wara\"** folder and save all scripts in this folder.
     {{< figure src="../../img/tools/collector-7.png" width="40%" >}}
 
-1. Execute script leveraging optional parameters
+4. Execute script leveraging the necessary parameters
 
-      - Parameters include:
-        - **TenantID**:  *Optional* ; tenant to be used.
-        - **SubscriptionIds**:  *Optional if ResourceGroup(s) are provided or a ConfigFile is used* ; Specifies Subscription(s) to be included in the analysis: "/subscriptions/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY","/subscriptions/AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA".
-        - **RunbookFile**:  *Optional* ; specifies the file with the runbook (selectors & checks) to be used.
-        - **ResourceGroups**:  *Optional if subscription(s) are provided or a ConfigFile is used* ; specifies Resource Group(s) to be included in the analysis: "/subscriptions/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY/resourceGroups/ResourceGroup1","/subscriptions/YYYYYYYY-YYYY-YYYY-YYYY-YYYYYYYYYYYY/resourceGroups/ResourceGroup2".
-        - **Tags**:  *Optional* ; specifies tags to be used for filtering the resources: "TagName1==TagValue1","TagName2==TagValue2"
-        - **ConfigFile**:  *Optional* ; specifies a file for advanced filtering, including: subscription, resourceGroup, resourceId, Tags.
-          - See ConfigFile.Example [here](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/configfile.example)
-        - **AzureEnvironment**:  *Optional* ; specifies the Azure Environment to used for the analysis: AzureCloud, AzureUSGovernment.
-        - **SAP**:  *Optional* ; used for specialized workload analysis.
-        - **AVD**:  *Optional* ; used for specialized workload analysis.
-        - **AVS**:  *Optional* ; used for specialized workload analysis.
-        - **HPC**:  *Optional* ; used for specialized workload analysis.
-        - **Debugging**: *Optional* ; Writes Debugging information of the script during the execution.
-        {{< figure src="../../img/tools/collector-8.png" width="100%" >}}
+   - {{< figure src="../../img/tools/collector-8.png" width="100%" >}}
 
-2. Authenticate with the account that has Reader permissions to the target subscription(s)
+5. Authenticate with the account that has Reader permissions to the target subscription(s)
   {{< figure src="../../img/tools/collector-9.png" width="40%" >}}
 
-1. After script completes, the results will be saved to the same folder location.
+6. After script completes, the results will be saved to the same folder location.
 
-## 2 - Data Analyzer Script
+<br>
+
+## 2. Data Analyzer Script
+
+This Data Analyzer script is the second script used during Well-Architected Reliability (WARA) engagements. Based on the data generated by the Collector script, the Data Analyzer will collect necessary information about Recommendations from the Azure Proactive Resiliency Library (APRL) and will generate an ActionPlan Excel spreadsheet. The goal of this tool is to summarize the collected data and provide actionable insights into the health and resiliency of the Azure environment.
+
+### Requirements
+
+- [PowerShell 7](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.4)
+- [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+- Microsoft Excel installed
+- Role Based Access Control: Reader role to access to resources to be evaluated. Although access to the Azure Subscriptions is not required to run the script, the access will be required for the user to complete some manual validations of configurations of Azure resources after the script generates the Excel file.
+
+### How to download
 
 - [GitHub Link to Download](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/2_wara_data_analyzer.ps1)
 - Download the script using command-line
@@ -125,28 +199,24 @@ The Collector PowerShell script is the first script to be run in the Azure Proac
     ```
 - [GitHub Link to Sample Output](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/sample-output/WARA%20Action%20Plan%202024-05-07_12_07.xlsx)
 
-The Data Analyzer PowerShell script is the second script in the Azure Proactive Resiliency Library (APRL) tooling suite. It compares the output collected by the Collector script with the Azure Proactive Resiliency Guidelines (APRL) and generates an ActionPlan Excel spreadsheet. The goal of this tool is to summarize the collected data and provide actionable insights into the health and resiliency of the Azure environment.
+### How to run the script
 
----
-
-### Local Machine - Script Execution
-
-**The Data Analyzer script must be run from a Windows Machine with Excel installed.**
+**Important: The Data Analyzer script must be run from a Windows Machine with Excel installed.**
 
 1. Change your directory to the same location that you have downloaded the WARA Data Analyzer script to.
 
     - We recommend running this as close to your C:\ as path to avoid errors related to file path length.
     {{< figure src="../../img/tools/collector-7.png" width="40%" >}}
 
-1. Execute script pointing the -JSONFile parameter to file created by the WARA Collector script.
+2. Execute script pointing the -JSONFile parameter to file created by the WARA Collector script.
   {{< figure src="../../img/tools/analyzer-1.png" width="100%" >}}
 
-1. Select "R" to allow script to run
+3. Select "R" to allow script to run
   {{< figure src="../../img/tools/analyzer-2.png" width="100%" >}}
 
-1. After the script completes it will save a WARA Action Plan.xlsx file to the same file path.
+4. After the script completes it will save a WARA Action Plan.xlsx file to the same file path.
 
-### Local Machine - Action Plan Analysis
+#### Action Plan Analysis
 
 1. Once the script has completed, open the Excel Action Plan and familiarize yourself with the structure of the file, generated data, resources collected, pivot tables, and charts created.
 
@@ -154,7 +224,7 @@ The Data Analyzer PowerShell script is the second script in the Azure Proactive 
       - **Recommendations**: you will find all Recommendations, their category, impact, description, learn more links, and much more.
         - Note that Columns A and B are counting the number of Azure Resources associated with the RecommendationID.
       - **ImpactedResources**: you will find a list of Azure Resources associated with a RecommendationID. These are the Azure Resources NOT following Microsoft best practices for Reliability.
-      - **Other-OutOfScope**: you will find a list of the Resources that are Out of Scope of the Wara engagement based on the ResourceTypes, after all filters have been applied.
+      - **Other-OutOfScope**: you will find a list of the Resources that are Out of Scope of the WARA engagement based on the ResourceTypes, after all filters have been applied.
       - **ResourceTypes**: you will find a list of all ResourceTypes the customer is using, number of Resources deployed for each one, and if there are Recommendations for the ResourceType in APRL.
       - **Outages**: you will find a list of all the outages that impacted the subscriptions (this worksheet might not exist if there are no Outages to be found).
       - **Retirements**: you will find a list of all the next retirements in the subscriptions (this worksheet might not exist if there are no Retirements to be found).
@@ -163,15 +233,30 @@ The Data Analyzer PowerShell script is the second script in the Azure Proactive 
       - **Charts**: you will find 3 charts that will be used in the Executive Summary PPTx
     - At this point, all Azure Resources with recommendations and Azure Resource Graph queries available in APRL, were automatically validated. Follow the next steps to validate the remaining services without automation or that does not exist in APRL yet.
 
-1. Go to the "ImpactedResources" worksheet, filter Column "B" by "IMPORTANT", and validate manually the remaining resource configurations for reliabilty patterns.
+2. Go to the "ImpactedResources" worksheet, filter Column "B" by "IMPORTANT", and validate manually the remaining resource configurations for reliability patterns.
 
     - "IMPORTANT - Query under development"
     - "IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually"
     - "IMPORTANT - ServiceType Not Available in APRL - Validate Resources manually if Applicable, if not delete this line"
 
-1. Remove/add any recommendations based on your analysis prior to generating reports
+3. Remove/add any recommendations based on your analysis prior to generating reports
 
-## 3 - Reports Generator Script
+4. For relevant Outages, all Service Retirements, and relevant Support Tickets, create actionable Recommendations in the "Recommendations" worksheet.
+
+<br>
+
+## 3. Generator Script
+
+The Reports Generator script serves as the final step during an Well-Architected Reliability Assessment engagement. It takes the Excel spreadsheet generated by the Data Analyzer script and converts it into Microsoft Word and PowerPoint formats. The Reports Generator automates the process of creating comprehensive reports from the analyzed data, making it easier to share insights and recommendations.
+
+### Requirements
+
+- [PowerShell 7](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.4)
+- [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+- Microsoft Excel, Word and PowerPoint installed
+- Role Based Access Control: Reader role to access to resources to be evaluated. Although access to the Azure Subscriptions is not required to run the script, the access will be required for the user to complete some manual validations of configurations of Azure resources after the script generates the Excel file.
+
+### How to download
 
 - [GitHub Link to Download](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/3_wara_reports_generator.ps1)
 - Download the script using command-line
@@ -189,21 +274,21 @@ The Data Analyzer PowerShell script is the second script in the Azure Proactive 
 - [GitHub Link to Sample Output - Executive Summary Presentation](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/sample-output/Executive%20Summary%20Presentation%20-%20Contoso%20Hotels%20-%202024-05-07-12-12.pptx)
 - [GitHub Link to Sample Output - Assessment Report](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/sample-output/Assessment%20Report%20-%20Contoso%20Hotels%20-%202024-05-07-12-12.docx)
 
-The Reports Generator PowerShell script serves as the final step in the Azure Proactive Resiliency Library (APRL) tooling suite. It takes the Excel spreadsheet generated by the Data Analyzer script and converts it into Microsoft Word and PowerPoint formats. The Reports Generator automates the process of creating comprehensive reports from the analyzed data, making it easier to share insights and recommendations.
+### How to run the script
 
----
+**Important: The Data Analyzer script must be run from a Windows Machine with Excel installed.**
 
-### Local Machine - Report Generation
+#### Local Machine - Report Generation
 
 1. You will need to have both the Word and PowerPoint templates downloaded to the same file location.
   {{< figure src="../../img/tools/generator-1.png" width="80%" >}}
 
-1. Change your directory to the same location that you have downloaded the WARA Reports Generator script to.
+2. Change your directory to the same location that you have downloaded the WARA Reports Generator script to.
 
     - We recommend running this as close to your C:\ as path to avoid errors related to file path length.
     {{< figure src="../../img/tools/collector-7.png" width="40%" >}}
 
-1. Execute script leveraging needed parameters
+3. Execute script leveraging needed parameters
 
     - Parameters include:
       - **ExcelFile**:  *Mandatory*; WARA Excel file generated by '2_wara_data_analyzer.ps1' script and customized.
@@ -215,19 +300,109 @@ The Reports Generator PowerShell script serves as the final step in the Azure Pr
       - **Debugging**: *Optional*; Writes a Debugging information to a log file.
     {{< figure src="../../img/tools/generator-2.png" width="100%" >}}
 
-1. Select "R" to allow script to run
+4. Select "R" to allow script to run
   {{< figure src="../../img/tools/generator-3.png" width="100%" >}}
 
-1. After the script successfully runs, you will find two new files saved in your folder. Some of the information will be automatically populated based on the Action Plan.
-{{< hint type=important >}}
-Updates will need to be made prior to presenting to any audience.
-{{< /hint >}}
+5. After the script successfully runs, you will find two new files saved in your folder. Some of the information will be automatically populated based on the Action Plan.
 
-## Frequently asked questions
+  {{< hint type=important >}}
+  Updates will need to be made prior to presenting to any audience.
+  {{< /hint >}}
 
-### 3_wara_reports_generator.ps1
+### Frequently asked questions
 
-#### The specified Excel file may be encrypted. If a sensitivity label is applied to the file, please change the sensitivity label to the label without encryption temporarily
+## How to run the 1_wara_collector.ps1
+
+### Example 1
+
+Run against one subscriptions in tenant `00000000-0000-0000-0000-000000000000`:
+
+```powershell
+.\1_wara_collector.ps1 -TenantID "00000000-0000-0000-0000-000000000000" -SubscriptionIds "/subscriptions/00000000-0000-0000-0000-000000000000"
+```
+
+### Example 2
+
+Run against one subscription and one resource group in tenant `00000000-0000-0000-0000-000000000000`:
+
+```powershell
+.\1_wara_collector.ps1 -TenantID "00000000-0000-0000-0000-000000000000" -SubscriptionIds "/subscriptions/00000000-0000-0000-0000-000000000000" -ResourceGroups "/subscriptions/55555555-5555-5555-5555-555555555555/resourceGroups/Demo1-RG"
+```
+
+### Example 3
+
+Run against two subscriptions and one resource group in tenant using tags to filter resources within the scope of the subscription and resource group in the tenant`00000000-0000-0000-0000-000000000000`:
+
+```powershell
+.\1_wara_collector.ps1 -TenantID "00000000-0000-0000-0000-000000000000" -SubscriptionIds "/subscriptions/00000000-0000-0000-0000-000000000000","/subscriptions/33333333-3333-3333-3333-333333333333" -ResourceGroups "/subscriptions/55555555-5555-5555-5555-555555555555/resourceGroups/Demo1-RG" -Tags 'Criticality=~High','Env=~Prod'
+```
+
+### Example 4
+
+Run against one subscription and two resource groups in tenant `00000000-0000-0000-0000-000000000000` using tags to filter resources within the scope of the subscription and resource group in the tenant`00000000-0000-0000-0000-000000000000`:
+
+```powershell
+.\1_wara_collector.ps1 -TenantID "00000000-0000-0000-0000-000000000000" -SubscriptionIds "/subscriptions/00000000-0000-0000-0000-000000000000" -ResourceGroups "/subscriptions/55555555-5555-5555-5555-555555555555/resourceGroups/Demo1-RG","/subscriptions/44444444-4444-4444-4444-444444444444/resourceGroups/Demo2-RG" -Tags 'Criticality=~High','Env=~Prod'
+```
+
+**Note**: Multiple values do not have to be in the same subscription. You can specify multiple resource groups in unique subscriptions.
+
+### Example 5
+
+Run a configuration file:
+
+```powershell
+.\1_wara_collector.ps1 -ConfigFile ".\config.txt"
+```
+
+### Example 6 - ConfigFile Example
+
+```text
+[tenantid]
+00000000-0000-0000-0000-000000000000
+
+[subscriptions]
+/subscriptions/11111111-1111-1111-1111-111111111111
+
+[resourcegroups]
+/subscriptions/55555555-5555-5555-5555-555555555555/resourceGroups/Demo1-RG
+/subscriptions/22222222-2222-2222-2222-222222222222/resourceGroups/Demo1-RG
+
+[tags]
+env==prod
+application=~demoapp1
+```
+
+**Note**: In a configuration file we separate multiple entries for a filter by new lines. Where as, from the command line we would pass multiple subscriptions or resource groups using the "string1","string2" pattern. The configuration file is useful for repeated runs, or numerous filters where it may be difficult to troubleshoot syntax in the command line.
+
+### Example 7 - Runbook Example
+
+> Learn more about runbooks [here](runbooks.md).
+
+Run a runbook.
+
+```powershell
+.\1_wara_collector.ps1 `
+  -TenantID "00000000-0000-0000-0000-000000000000" `
+  -SubscriptionIds "/subscriptions/00000000-0000-0000-0000-000000000000" `
+  -RunbookFile ".\runbook.json"
+```
+
+Run a runbook using implicit runbook selectors.
+
+```powershell
+.\1_wara_collector.ps1 `
+  -TenantID "00000000-0000-0000-0000-000000000000" `
+  -SubscriptionIds "/subscriptions/00000000-0000-0000-0000-000000000000" `
+  -RunbookFile ".\runbook.json"
+  -UseImplicitRunbookSelectors
+```
+
+> Note that `-SubscriptionIds` are required when using a runbook.
+
+## 3_wara_reports_generator.ps1
+
+### The specified Excel file may be encrypted. If a sensitivity label is applied to the file, please change the sensitivity label to the label without encryption temporarily
 
 The specified Excel file may be has a sensitivity label (encrypted). The 3_wara_reports_generator.ps1 script does not support encrypted Excel file currently. To avoid this issue, you need to change the sensitivity label to the label without encryption temporarily. For example, **Confidential/Any User (No Protection)** sensitivity. After completing the script running, you can re-apply the original sensitivity label (recommended).
 
