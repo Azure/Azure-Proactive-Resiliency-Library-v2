@@ -130,7 +130,7 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Best practices for reliability?
+    - name: Best practices for reliability
       url: "https://learn.microsoft.com/en-us/azure/databricks/lakehouse-architecture/reliability/best-practices"
 
 - description: Enable Logging-Cluster log delivery
