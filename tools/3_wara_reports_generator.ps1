@@ -422,7 +422,7 @@ $Global:Runtime = Measure-Command -Expression {
                 ($Slide16.Shapes | Where-Object { $_.Id -eq 44 }).GroupItems[6].TextFrame.TextRange.Text = [string]($ExcelCore | Where-Object { $_."Number of Impacted Resources?" -gt 0 -and $_.Impact -eq 'Low' }).count
                 if ($Heavy) {Start-Sleep -Milliseconds 100}
                 #Impacted Resources
-                ($Slide16.Shapes | Where-Object { $_.Id -eq 44 }).GroupItems[7].TextFrame.TextRange.Text = [string]($ExcelContent.id | Where-Object { ![string]::IsNullOrEmpty($_) } | Select-Object -Unique).count
+                ($Slide16.Shapes | Where-Object { $_.Id -eq 44 }).GroupItems[7].TextFrame.TextRange.Text = [string]($ExcelContent.id | Where-Object { ![string]::IsNullOrEmpty($_) } | Select-Object -Unique -CaseInsensitive).count
                 if ($Heavy) {Start-Sleep -Milliseconds 100}
               }
             catch
