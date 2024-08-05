@@ -1,1 +1,4 @@
 /* You can add custom styles here. */
+.gdoc-nav__entry {
+  overflow-wrap: anywhere;
+}
