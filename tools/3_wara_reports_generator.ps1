@@ -12,6 +12,12 @@ Param(
   [string] $WordTemplateFile
 )
 
+# Checking the operating system running this script.
+if (-not $IsWindows) {
+  Write-Host 'This script only supports Windows operating systems currently. Please try to run with Windows operating systems.'
+  Exit
+}
+
 if ($Heavy.IsPresent) { $Global:Heavy = $true } else { $Global:Heavy = $false }
 
 if ($Debugging.IsPresent) { $Global:CoreDebugging = $true } else { $Global:CoreDebugging = $false }
