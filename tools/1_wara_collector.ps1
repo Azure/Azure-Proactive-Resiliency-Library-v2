@@ -89,6 +89,9 @@ A JSON file with the collected data.
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingWriteHost', '', Justification = 'False positive as Write-Host does not represent a security risk and this script will always run on host consoles')]
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', '', Justification = 'False positive as parameters are not always required')]
 
+#Requires -Version 7.0
+#Requires -PSEdition Core
+
 Param(
   [switch]$Debugging,
   [switch]$SAP,
@@ -339,7 +342,7 @@ $Script:Runtime = Measure-Command -Expression {
             Debugging           = if($Debugging.IsPresent){$true}else{$false}
             ConfigFile          = if($ConfigFile){$true}else{$false}
             ConfigFileTenant    = if($ConfigFile){$TenantID}else{$false}
-            ConfigFileScopes    = if($ConfigFile){$Scopes}else{$false}
+            ConfigFileScopes    = if($ConfigFile){$Script:Scopes}else{$false}
             ConfigFilelocations = if($ConfigFile){$locations}else{$false}
             ConfigFileTags      = if($ConfigFile){$Tags}else{$false}
             SubscriptionIds     = if($SubscriptionIds){$SubscriptionIds}else{$false}
@@ -410,42 +413,6 @@ $Script:Runtime = Measure-Command -Expression {
     }
   }
 
-  function Connect-ToAzure {
-    $Subscription0 = $Scopes | Select-Object -First 1 | ForEach-Object {$_.split("/")[2]}
-    # Connect To Azure Tenant
-    Write-Host 'Authenticating to Azure'
-    if ($Script:ShellPlatform -eq 'Win32NT') {
-      Clear-AzContext -Force -ErrorAction SilentlyContinue -WarningAction SilentlyContinue -InformationAction SilentlyContinue
-      if ([string]::IsNullOrEmpty($TenantID)) {
-        Write-Host 'Tenant ID not specified.'
-        Write-Host ''
-        Connect-AzAccount -WarningAction SilentlyContinue -Environment $AzureEnvironment
-        $Tenants = Get-AzTenant
-        if ($Tenants.count -gt 1) {
-          Write-Host 'Select the Azure Tenant to connect : '
-          $Selection = 1
-          foreach ($Tenant in $Tenants) {
-            $TenantName = $Tenant.Name
-            Write-Host "$Selection)  $TenantName"
-            $Selection ++
-          }
-          Write-Host ''
-          [int]$SelectedTenant = Read-Host 'Select Tenant'
-          $defaultTenant = --$SelectedTenant
-          $TenantID = $Tenants[$defaultTenant]
-          Connect-AzAccount -Tenant $TenantID -Subscription $Subscription0 -WarningAction SilentlyContinue -Environment $AzureEnvironment
-        }
-      } else {
-        Connect-AzAccount -Tenant $TenantID -Subscription $Subscription0 -WarningAction SilentlyContinue -Environment $AzureEnvironment
-      }
-      #Set the default variable with the list of subscriptions in case no Subscription File was informed
-      $Script:SubIds = Get-AzSubscription -TenantId $TenantID -WarningAction SilentlyContinue
-    } else {
-      Connect-AzAccount -Identity -Environment $AzureEnvironment
-      $Script:SubIds = Get-AzSubscription -WarningAction SilentlyContinue
-    }
-  }
-
   function Test-Runbook {
     # Checks if a runbook file was provided and, if so, loads selectors and checks hashtables
     if (![string]::IsNullOrEmpty($RunbookFile)) {
@@ -495,7 +462,7 @@ $Script:Runtime = Measure-Command -Expression {
     }
     $LoopedSub = @()
 
-    foreach ($Scope in $Scopes)
+    foreach ($Scope in $Script:Scopes)
       {
         if (![string]::IsNullOrEmpty($Scope))
           {
@@ -509,11 +476,8 @@ $Script:Runtime = Measure-Command -Expression {
             Write-Host 'Validating Scope: ' -NoNewline
             Write-Host $ScopeWithoutParameter -ForegroundColor Cyan
 
-            Set-AzContext -Subscription $Subid -ErrorAction SilentlyContinue -WarningAction SilentlyContinue | Out-Null
-            Select-AzSubscription -Subscription $Subid -WarningAction SilentlyContinue -InformationAction SilentlyContinue | Out-Null
-
             if ($SubId -notin $LoopedSub) {
-              $Token = Get-AzAccessToken
+              $Token = Get-AzAccessToken -WarningAction Ignore
 
               $header = @{
                 'Authorization' = 'Bearer ' + $Token.Token
@@ -1375,9 +1339,8 @@ $Script:Runtime = Measure-Command -Expression {
     }
   }
 
-
-  #Call the functions
-  $Script:Version = '2.0.14'
+  # Validate the script parameters and dependencies
+  $Script:Version = '2.0.15'
   Write-Host 'Version: ' -NoNewline
   Write-Host $Script:Version -ForegroundColor DarkBlue
 
@@ -1389,22 +1352,26 @@ $Script:Runtime = Measure-Command -Expression {
   }
 
   if ($ConfigFile) {
-    $Scopes = @()
+    $Script:Scopes = @()
     $ConfigData = Import-ConfigFileData -file $ConfigFile
     $TenantID = $ConfigData.TenantID | Select-Object -First 1
-    $Scopes += $ConfigData.subscriptions
-    $Scopes += $ConfigData.resourcegroups
-    $Scopes += $ConfigData.resources
+    $Script:Scopes += $ConfigData.subscriptions
+    if (![string]::IsNullOrEmpty($ConfigData.resourcegroups)) {
+      $Script:Scopes += $ConfigData.resourcegroups
+    }
+    if (![string]::IsNullOrEmpty($ConfigData.resources)) {
+      $Script:Scopes += $ConfigData.resources
+    }
     $locations = $ConfigData.locations
     $RunbookFile = $ConfigData.RunbookFile
     $Tags = $ConfigData.Tags
     $ResourceGroups = $ConfigData.ResourceGroups
   }
   else {
-    $Scopes = @()
+    $Script:Scopes = @()
     if ($SubscriptionIds)
       {
-        $Scopes += foreach ($Sub in $SubscriptionIds)
+        $Script:Scopes += foreach ($Sub in $SubscriptionIds)
         {
           $_guid = [Guid]::NewGuid()
 
@@ -1420,43 +1387,63 @@ $Script:Runtime = Measure-Command -Expression {
       }
     if ($ResourceGroups)
       {
-        $Scopes += foreach ($RG in $ResourceGroups)
+        $Script:Scopes += foreach ($RG in $ResourceGroups)
           {
             Write-Host "[-ResourceGroups]: $RG" -ForegroundColor Cyan
             $RG
           }
       }
   }
+  # Import functions
+  Write-Debug 'Calling Function: Connect-ToAzure'
+  . "$PSScriptRoot/Functions/Test-IsAzureCloudShell.ps1"
+  . "$PSScriptRoot/Functions/Connect-ToAzure.ps1"
 
-  Write-Debug 'Reseting Variables'
-  Invoke-ResetVariable
+  # Invoke functions
+  try {
+    Write-Debug 'Reseting Variables'
+    Invoke-ResetVariable
 
-  Write-Debug 'Calling Function: Test-Requirements'
-  Test-Requirement
+    Write-Debug 'Calling Function: Test-Requirements'
+    Test-Requirement
 
-  Write-Debug 'Calling Function: Set-LocalFiles'
-  Set-LocalFile
+    Write-Debug 'Calling Function: Set-LocalFiles'
+    Set-LocalFile
 
-  Write-Debug 'Calling Function: Test-Runbook'
-  Test-Runbook
+    Write-Debug 'Calling Function: Test-Runbook'
+    Test-Runbook
 
-  Write-Debug "Calling Function: Connect-ToAzure"
-  Connect-ToAzure
 
-  Write-Debug 'Calling Function: Start-ScopesLoop'
-  Start-ScopesLoop
+    Write-Host @"
+`n
+Scopes that will be processed:
+$($Script:Scopes | ForEach-Object -Process { "`n$(([array]::IndexOf($Script:Scopes, $_) + 1).ToString()). $_" })
+`n
+"@ -ForegroundColor DarkBlue
 
-  Write-Debug 'Calling Function: Invoke-ResourcesFiltering'
-  Invoke-ResourceFiltering
+    Write-Debug "Calling Function: Test-IsAzureCloudShell `n"
+    if (-not $(Test-IsAzureCloudShell)) {
+      Write-Debug "Calling Function: Connect-ToAzure `n"
+      Connect-ToAzure -TenantID $TenantID -Scopes $Script:Scopes -AzureEnvironment $AzureEnvironment
+    }
 
-  Write-Debug 'Calling Function: Resolve-ResourceTypes'
-  Resolve-ResourceType
+    Write-Debug 'Calling Function: Start-ScopesLoop'
+    Start-ScopesLoop
 
-  Write-Debug 'Calling Function: Resolve-SupportTickets'
-  Resolve-SupportTicket
+    Write-Debug 'Calling Function: Invoke-ResourcesFiltering'
+    Invoke-ResourceFiltering
 
-  Write-Debug 'Calling Function: New-JsonFile'
-  New-JsonFile
+    Write-Debug 'Calling Function: Resolve-ResourceTypes'
+    Resolve-ResourceType
+
+    Write-Debug 'Calling Function: Resolve-SupportTickets'
+    Resolve-SupportTicket
+
+    Write-Debug 'Calling Function: New-JsonFile'
+    New-JsonFile
+  } catch {
+    throw $_
+  }
 
 }
 

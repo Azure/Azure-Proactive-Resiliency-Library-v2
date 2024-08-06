@@ -2,7 +2,7 @@
 tenantid
 
 [subscriptions]
-/subscription/<subid>
+/subscriptions/<subid>
 
 [resourcegroups]
 /subscriptions/<subid>/resourceGroups/Demo1-RG
