@@ -296,7 +296,7 @@
 
 - description: Ensure route tables accommodate failover
   aprlGuid: 4b1a45af-d35f-442d-922a-a3e7b6052de1
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: Medium
   recommendationResourceType: Specialized.Workload/AVD
@@ -375,7 +375,7 @@
 
 - description: Ensure user permissions are set correctly on FSLogix SMB shares
   aprlGuid: 7b170ddd-5770-4945-9bc3-cd1ccf5f8672
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Security
   recommendationImpact: Medium
   recommendationResourceType: Specialized.Workload/AVD
@@ -491,7 +491,7 @@
     - name: Learn More
       url: "https://learn.microsoft.com/azure/key-vault/general/disaster-recovery-guidance"
 
-- description: Deploy two or more domain controllers on Azure VMs across availability zones in the AVD region
+- description: Deploy multiple domain controllers across availability zones in each region with AVD session hosts.
   aprlGuid: d61f6ee8-de1b-4fd9-9ce3-316cfe11ee05
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
@@ -511,7 +511,7 @@
     - name: Learn More
       url: "https://learn.microsoft.com/azure/architecture/example-scenario/azure-virtual-desktop/azure-virtual-desktop-multi-region-bcdr"
 
-- description: Deploy domain controllers on Azure VMs across availability zones in the AVD region
+- description: Deploy two or more DNS servers across availability zones in each region with AVD session hosts.
   aprlGuid: 99bf5c94-aa68-4bb3-8b7f-45d1c5f09b5d
   recommendationTypeId: null
   recommendationControl: High Availability
@@ -519,7 +519,7 @@
   recommendationResourceType: Specialized.Workload/AVD
   recommendationMetadataState: Active
   longDescription: |
-    When using custom DNS servers, it is recommended to deploy DNS servers on Azure virtual machines across availability zones. This improves the environment's reliability by removing a dependency on an on-premises service and improves performance by creating a shorter path for name resolution.
+    When using custom DNS servers, deploy DNS servers on Azure virtual machines across availability zones in the same region as the session hosts. This improves the environment's reliability by removing a dependency on an on-premises service and improves performance by creating a shorter path for name resolution.
   potentialBenefits: Enhanced reliability and performance
   pgVerified: true
   publishedToLearn: false
