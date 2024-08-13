@@ -71,8 +71,10 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: NSG and VNET Flow logs
+    - name: Flow logging for network security groups
       url: "https://learn.microsoft.com/en-us/azure/network-watcher/nsg-flow-logs-overview"
+    - name: Virtual network flow logs
+      url: "https://learn.microsoft.com/en-us/azure/network-watcher/vnet-flow-logs-overview"
 
 - description: Enable traffic analytics in Network Security Group and Virtual Network Flow Logs configuration.
   aprlGuid: bf0b7dbd-016d-458c-af99-70fcb03ad451
