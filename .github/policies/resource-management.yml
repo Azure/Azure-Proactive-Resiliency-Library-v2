@@ -96,7 +96,9 @@ configuration:
     eventResponderTasks:
     - if:
       - payloadType: Issues
-      - titleContains: "Bug Report"
+      - titleContains:
+          pattern: "Bug Report"
+          isRegex: false
       then:
       - addLabel:
           label: "Bug :lady_beetle:"
@@ -104,7 +106,9 @@ configuration:
 
     - if:
       - payloadType: Issues
-      - titleContains: "Feature Request"
+      - titleContains:
+          pattern: "Feature Request"
+          isRegex: false
       then:
       - addLabel:
           label: "Enhancement :new:"
@@ -112,7 +116,9 @@ configuration:
 
     - if:
         - payloadType: Pull_Request
-        - titleContains: "feat:"
+        - titleContains:
+            pattern: "feat:"
+            isRegex: false
       then:
       - addLabel:
           label: "Enhancement :new:"
@@ -120,7 +126,9 @@ configuration:
 
     - if:
         - payloadType: Pull_Request
-        - titleContains: "build:"
+        - titleContains:
+            pattern: "build:"
+            isRegex: false
       then:
       - addLabel:
           label: "Type: Hygiene :broom:"
@@ -128,7 +136,9 @@ configuration:
 
     - if:
         - payloadType: Pull_Request
-        - titleContains: "fix:"
+        - titleContains:
+            pattern: "fix:"
+            isRegex: false
       then:
       - addLabel:
           label: "Bug :lady_beetle:"
