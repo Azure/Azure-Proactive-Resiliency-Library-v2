@@ -466,7 +466,7 @@
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
   longDescription: |
-    Customers often naturally divide workspaces by teams or departments. However, it's crucial to also consider Azure Subscription and ADB Workspace limits when partitioning.
+    Customers often naturally divide workspaces by teams or departments. However, it's crucial to also consider Azure Subscription and Azure Databricks (ADB) Workspace limits when partitioning.
   potentialBenefits: Enhanced limits management, team separation
   pgVerified: false
   publishedToLearn: false
@@ -477,7 +477,7 @@
     - name: Azure Databricks Best Practices
       url: "https://github.com/Azure/AzureDatabricksBestPractices/blob/master/toc.md#deploy-workspaces-in-multiple-subscriptions-to-honor-azure-capacity-limits"
 
-- description: Isolate each workspace in its own Vnet
+- description: Isolate each workspace in its own VNet
   aprlGuid: 5e722c4f-415a-9b4c-bd4c-96b74dce29ad
   recommendationTypeId: null
   recommendationControl: Scalability
@@ -485,7 +485,7 @@
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
   longDescription: |
-    Deploying only one Databricks Workspace per VNet aligns with ADB's isolation model.
+    Deploying only one Databricks Workspace per VNet aligns with Azure Databricks' isolation model.
   potentialBenefits: Enhanced security and resource isolation
   pgVerified: false
   publishedToLearn: false
@@ -513,7 +513,7 @@
   tags: null
   learnMoreLink:
     - name: Azure Databricks Best Practices
-      url: "https://github.com/Azure/AzureDatabricksBestPractices/blob/master/toc.md#do-not-store-any-production-data-in-default-dbfs-foldersr"
+      url: "https://github.com/Azure/AzureDatabricksBestPractices/blob/master/toc.md#do-not-store-any-production-data-in-default-dbfs-folders"
 
 - description: Do not use Azure Spot VMs for critical Production workloads
   aprlGuid: b5af7e26-3939-1b48-8fba-f8d4a475c67a

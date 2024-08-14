@@ -120,7 +120,7 @@
   recommendationControl: Disaster Recovery
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/expressRouteCircuits
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     If you haven't added a second ExpressRoute circuit, use a site-to-site VPN as a temporary solution until the second circuit is available. This ensures network reliability and continuity of service.
   potentialBenefits: Ensures continuity and reliability
