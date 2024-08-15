@@ -99,7 +99,7 @@ Param(
   [String[]]$ResourceGroups,
   $TenantID,
   $Tags,
-  [ValidateSet('AzureCloud', 'AzureUSGovernment')]
+  [ValidateSet('AzureCloud', 'AzureUSGovernment', 'AzureChinaCloud', 'USSEC', 'USNAT')]
   $AzureEnvironment = 'AzureCloud',
   $ConfigFile,
   # Runbook parameters...
@@ -374,12 +374,14 @@ $Script:Runtime = Measure-Command -Expression {
           $Script:clonePath = "$workingFolderPath/Azure-Proactive-Resiliency-Library"
         }
         Write-Debug 'Checking default folder'
-        if ((Get-ChildItem -Path $Script:clonePath -Force -ErrorAction SilentlyContinue | Measure-Object).Count -gt 0) {
-          Write-Debug 'APRL Folder does exist. Reseting it...'
-          Get-Item -Path $Script:clonePath | Remove-Item -Recurse -Force
-          git clone $repoUrl $clonePath --quiet
-        } else {
-          git clone $repoUrl $clonePath --quiet
+        if (!($AzureEnvironment -eq "USSEC" -or $AzureEnvironment -eq "USNAT")) {  #No public internet access in AGC environments
+          if ((Get-ChildItem -Path $Script:clonePath -Force -ErrorAction SilentlyContinue | Measure-Object).Count -gt 0) {
+            Write-Debug 'APRL Folder does exist. Reseting it...'
+            Get-Item -Path $Script:clonePath | Remove-Item -Recurse -Force
+            git clone $repoUrl $clonePath --quiet
+          } else {
+            git clone $repoUrl $clonePath --quiet
+          }
         }
         Write-Debug 'Checking the version of the script'
         if ($Script:ShellPlatform -eq 'Win32NT') {
@@ -488,11 +490,7 @@ $Script:Runtime = Measure-Command -Expression {
     $DateOutages = (Get-Date).AddMonths(-3)
     $DateCore = (Get-Date).AddMonths(-3)
     $Date = $Date.ToString('MM/dd/yyyy')
-    if ($AzureEnvironment -eq 'AzureUSGovernment') {
-      $BaseURL = 'management.usgovcloudapi.net'
-    } else {
-      $BaseURL = 'management.azure.com'
-    }
+    $BaseURL = (Get-AzureEnvironment -name $AzureEnvironment).ResourceManagerUrl
     $LoopedSub = @()
 
     foreach ($Scope in $Scopes)
@@ -523,7 +521,7 @@ $Script:Runtime = Measure-Command -Expression {
                 Write-Host '----------------------------'
                 Write-Host 'Collecting: ' -NoNewline
                 Write-Host 'Outages' -ForegroundColor Magenta
-                $url = ('https://' + $BaseURL + '/subscriptions/' + $Subid + '/providers/Microsoft.ResourceHealth/events?api-version=2022-10-01&queryStartTime=' + $Date)
+                $url = ($BaseURL + '/subscriptions/' + $Subid + '/providers/Microsoft.ResourceHealth/events?api-version=2022-10-01&queryStartTime=' + $Date)
                 $Outages = Invoke-RestMethod -Uri $url -Headers $header -Method GET
                 $Script:Outageslist += $Outages.value | Where-Object { $_.properties.impactStartTime -gt $DateOutages } | Sort-Object @{Expression = 'properties.eventlevel'; Descending = $false }, @{Expression = 'properties.status'; Descending = $false } | Select-Object -Property name, properties -First 15
                 $Script:RetiredOutages += $Outages.value | Sort-Object @{Expression = 'properties.eventlevel'; Descending = $false }, @{Expression = 'properties.status'; Descending = $false } | Select-Object -Property name, properties
@@ -533,7 +531,7 @@ $Script:Runtime = Measure-Command -Expression {
                 Write-Host '----------------------------'
                 Write-Host 'Collecting: ' -NoNewline
                 Write-Host 'Support Tickets' -ForegroundColor Magenta
-                $supurl = ('https://' + $BaseURL + '/subscriptions/' + $Subid + '/providers/Microsoft.Support/supportTickets?api-version=2020-04-01')
+                $supurl = ($BaseURL + '/subscriptions/' + $Subid + '/providers/Microsoft.Support/supportTickets?api-version=2020-04-01')
                 $SupTickets = Invoke-RestMethod -Uri $supurl -Headers $header -Method GET
                 $Script:SupportTickets += $SupTickets.value | Where-Object { $_.properties.severity -ne 'Minimal' -and $_.properties.createdDate -gt $DateCore } | Select-Object -Property name, properties
               } catch { $null }
