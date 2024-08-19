@@ -296,3 +296,23 @@
   learnMoreLink:
     - name: Private link for Azure Front Door
       url: "https://learn.microsoft.com/azure/frontdoor/private-link"
+
+     - description: Avoid using Classic AFD
+  aprlGuid: 82fa3cff-74bd-4063-b726-834f160592fa
+  recommendationTypeId: null
+  recommendationControl: Service Upgrade and Retirement
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Cdn/profiles
+  recommendationMetadataState: Active
+  longDescription: |
+    Your Long Description Here
+    Azure Front Door standard is ~45% cheaper then AFD classic and has many additional benefits. Classic is also scheduled to be retired on March 31, 2027. 
+  potentialBenefits: Significant costs savings and additional features not supported in Azure Front Door Classic.
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Compare pricing between Azure Front Door tiers
+      url: https://learn.microsoft.com/en-us/azure/frontdoor/understanding-pricing
