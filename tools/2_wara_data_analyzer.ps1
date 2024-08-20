@@ -196,10 +196,13 @@ $Script:Runtime = Measure-Command -Expression {
         | Where-Object { ($_.aprlGuid -eq $Recom.recommendationId) -and ($_.checkName -eq $Recom.checkName) } `
         | Select-Object -First 1
 
+        if ($recomContent) {
+          Write-Host "Content found!"
+        }
 
         if (-not $recomContent) {
           # If we couldn't find a check-specific recommendation, try to find a generic one...
-          $recomContent = $Script:CustomYAMLContent `
+          $recomContent = $Script:ServicesYAMLContent `
           | Where-Object { ($_.aprlGuid -eq $Recom.recommendationId) } `
           | Select-Object -First 1
         }
