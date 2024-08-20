@@ -18,6 +18,8 @@ https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2
 Param(
   [switch]$Debugging,
   [switch]$Help,
+  [string]$CustomRecommendationsYAMLPath,
+
   [Parameter(mandatory = $true)]
   [string] $JSONFile)
 
@@ -120,9 +122,12 @@ $Script:Runtime = Measure-Command -Expression {
 
   function Convert-JSON {
     Write-Host 'Processing JSON File'
+
+    # Load the JSON file from the collector script...
     $JSONFile = Get-Item -Path $JSONFile
     $JSONFile = $JSONFile.FullName
     $results = Get-Content -Path $JSONFile | ConvertFrom-Json
+
     $Script:AllResourceTypesOrdered = $results.ResourceType
     $Script:Outages = $results.Outages
     $Script:SupportTickets = $results.SupportTickets
@@ -160,6 +165,15 @@ $Script:Runtime = Measure-Command -Expression {
 
     $Script:AdvisorContent = $CoreAdvisories | Select-Object -Property recommendationId, type, category, impact, description -Unique
 
+    # Load custom YAML content if provided...
+    # Custom YAML variable is always here regardless of whether a custom file is provided.
+    $Script:CustomYamlContent = @()
+
+    # If a custom file is provided, load it and add it to the custom YAML content.
+    if (![string]::IsNullOrWhiteSpace(($CustomRecommendationsYamlPath))) {
+      $Script:CustomYAMLContent = Get-Content -Path $CustomRecommendationsYamlPath | ConvertFrom-Yaml
+    }
+
     $Script:ServicesYAMLContent = @()
     foreach ($YAML in $Script:ServicesYAML) {
       if (![string]::IsNullOrEmpty($YAML)) {
@@ -174,17 +188,32 @@ $Script:Runtime = Measure-Command -Expression {
     }
 
     $Script:MergedRecommendation = @()
+
     foreach ($Recom in $CoreResources | Where-Object { $_ -ne $null }) {
 
-      $RecomTitle = $Script:ServicesYAMLContent | Where-Object { $_.aprlGuid -eq $Recom.recommendationId }
-      if (![string]::IsNullOrEmpty($Recom.checkName)) {
-        # We're coming from a runbook...
+      if ($Recom.checkName -and $Recom.selector) {
+
+        # This is a runbook recommendation...
+        $recomContent = $Script:ServicesYAMLContent `
+        | Where-Object { ($_.aprlGuid -eq $Recom.recommendationId) -and ($_.checkName -eq $Recom.checkName) } `
+        | Select-Object -First 1
+
+
+        if (-not $recomContent) {
+
+          # If we couldn't find a check-specific recommendation, try to find a generic one...
+          $recomContent = $Script.ServicesYAMLContent `
+          | Where-Object { ($_.aprlGuid -eq $Recom.recommendationId) } `
+          | Select-Object -First 1
+
+        }
+
         $tmp = @{
           'How was the resource/recommendation validated or what actions need to be taken?' = $Recom.validationAction;
           recommendationId                                                                  = $Recom.recommendationId;
-          recommendationTitle                                                               = $RecomTitle.description;
-          resourceType                                                                      = $RecomTitle.recommendationResourceType;
-          impact                                                                            = $RecomTitle.recommendationImpact;
+          recommendationTitle                                                               = if ($recomContent) { $recomContent.description } else { [string]::Empty };
+          resourceType                                                                      = if ($recomContent) { $recomContent.recommendationResourceType } else { [string]::Empty };
+          impact                                                                            = if ($recomContent) { $recomContent.recommendationImpact } else { [string]::Empty };
           subscriptionId                                                                    = $Recom.subscriptionId;
           resourceGroup                                                                     = $Recom.resourceGroup;
           name                                                                              = $Recom.name;
@@ -195,14 +224,20 @@ $Script:Runtime = Measure-Command -Expression {
           param3                                                                            = $Recom.param3;
           param4                                                                            = $Recom.param4;
           param5                                                                            = $Recom.param5;
-          supportTicketId                                                                   = $Tickets;
+          supportTicketId                                                                   = [string]::Empty;
           source                                                                            = $Recom.selector;
           checkName                                                                         = $Recom.checkName;
           'WAF Pillar'                                                                      = 'Reliability';
           tagged                                                                            = $Recom.tagged
         }
+
         $Script:MergedRecommendation += $tmp
+
       } else {
+
+        # This isn't a runbook recommendation...
+        $RecomTitle = $Script:ServicesYAMLContent | Where-Object { $_.aprlGuid -eq $Recom.recommendationId }
+
         if ([string]::IsNullOrEmpty($RecomTitle.recommendationTypeId)) {
           $Ticket = $Script:SupportTickets | Where-Object { $_.'Related Resource' -eq $Recom.id }
           if (($RecomTitle.recommendationMetadataState -eq 'Active' -and [string]::IsNullOrEmpty($RecomTitle.recommendationTypeId)) -or $Recom.validationAction -eq 'IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually' -or $Recom.validationAction -eq 'IMPORTANT - Query under development - Validate Resources manually' ) {
@@ -225,7 +260,7 @@ $Script:Runtime = Measure-Command -Expression {
               param3                                                                            = $Recom.param3;
               param4                                                                            = $Recom.param4;
               param5                                                                            = $Recom.param5;
-              supportTicketId                                                                   = "";
+              supportTicketId                                                                   = '';
               source                                                                            = $Recom.selector;
               checkName                                                                         = $Recom.checkName;
               'WAF Pillar'                                                                      = 'Reliability';
@@ -269,7 +304,7 @@ $Script:Runtime = Measure-Command -Expression {
           $Tickets = if ($Ticket.'Ticket ID'.count -gt 1) { $Ticket.'Ticket ID' | ForEach-Object { $_ + ' /' } }else { $Ticket.'Ticket ID' }
           $Tickets = [string]$Tickets
           $Tickets = if ($Tickets -like '* /*') { $Tickets -replace '.$' }else { $Tickets }
-          $WAFPillar = if($adv.category -eq 'HighAvailability'){'Reliability'}else{$adv.category}
+          $WAFPillar = if ($adv.category -eq 'HighAvailability') { 'Reliability' }else { $adv.category }
           $tmp = @{
             'How was the resource/recommendation validated or what actions need to be taken?' = 'Advisor - Queries';
             recommendationId                                                                  = $APRLADV.recommendationTypeId;
@@ -304,20 +339,20 @@ $Script:Runtime = Measure-Command -Expression {
         recommendationId                                                                  = [string]$WAF.aprlGuid;
         recommendationTitle                                                               = [string]$WAF.description;
         resourceType                                                                      = [string]$WAF.recommendationResourceType;
-        impact                                                                            = "";
-        subscriptionId                                                                    = "";
-        resourceGroup                                                                     = "";
-        name                                                                              = "Entire Workload";
-        id                                                                                = "";
-        location                                                                          = "";
-        param1                                                                            = "";
-        param2                                                                            = "";
-        param3                                                                            = "";
-        param4                                                                            = "";
-        param5                                                                            = "";
-        supportTicketId                                                                   = "";
-        source                                                                            = "APRL";
-        checkName                                                                         = ""
+        impact                                                                            = '';
+        subscriptionId                                                                    = '';
+        resourceGroup                                                                     = '';
+        name                                                                              = 'Entire Workload';
+        id                                                                                = '';
+        location                                                                          = '';
+        param1                                                                            = '';
+        param2                                                                            = '';
+        param3                                                                            = '';
+        param4                                                                            = '';
+        param5                                                                            = '';
+        supportTicketId                                                                   = '';
+        source                                                                            = 'APRL';
+        checkName                                                                         = ''
         'WAF Pillar'                                                                      = 'Reliability';
         tagged                                                                            = $true
       }
@@ -391,10 +426,10 @@ $Script:Runtime = Measure-Command -Expression {
 
 
       $Script:MergedRecommendation | ForEach-Object { [PSCustomObject]$_ } | Select-Object $ImpactedResourcesSheet |
-      Export-Excel -Path $ExcelFile -WorksheetName 'ImpactedResources' -TableName 'Table2' -ConditionalText $cond -AutoSize -TableStyle $TableStyle -Style $Styles1
+        Export-Excel -Path $ExcelFile -WorksheetName 'ImpactedResources' -TableName 'Table2' -ConditionalText $cond -AutoSize -TableStyle $TableStyle -Style $Styles1
 
       $Script:OutOfScope | ForEach-Object { [PSCustomObject]$_ } | Select-Object $OutOfScopeSheet |
-      Export-Excel -Path $ExcelFile -WorksheetName 'Other-OutOfScope' -TableName 'UnTagTable' -ConditionalText $cond2 -AutoSize -TableStyle $TableStyle -Style $Styles2
+        Export-Excel -Path $ExcelFile -WorksheetName 'Other-OutOfScope' -TableName 'UnTagTable' -ConditionalText $cond2 -AutoSize -TableStyle $TableStyle -Style $Styles2
     }
 
     function Add-ResourceType {
