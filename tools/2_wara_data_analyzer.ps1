@@ -167,11 +167,11 @@ $Script:Runtime = Measure-Command -Expression {
 
     # Load custom YAML content if provided...
     # Custom YAML variable is always here regardless of whether a custom file is provided.
-    $Script:CustomYamlContent = @()
+    $Script:CustomYAMLContent = @()
 
     # If a custom file is provided, load it and add it to the custom YAML content.
-    if (![string]::IsNullOrWhiteSpace(($CustomRecommendationsYamlPath))) {
-      $Script:CustomYAMLContent = Get-Content -Path $CustomRecommendationsYamlPath | ConvertFrom-Yaml
+    if (![string]::IsNullOrWhiteSpace(($CustomRecommendationsYAMLPath))) {
+      $Script:CustomYAMLContent = Get-Content -Path $CustomRecommendationsYAMLPath | ConvertFrom-Yaml
     }
 
     $Script:ServicesYAMLContent = @()
@@ -190,30 +190,35 @@ $Script:Runtime = Measure-Command -Expression {
     $Script:MergedRecommendation = @()
 
     foreach ($Recom in $CoreResources | Where-Object { $_ -ne $null }) {
-
-      if ($Recom.checkName -and $Recom.selector) {
-
+      if ($($Recom.checkName) -and $($Recom.selector)) {
         # This is a runbook recommendation...
-        $recomContent = $Script:ServicesYAMLContent `
+        $recomContent = $Script:CustomYAMLContent `
         | Where-Object { ($_.aprlGuid -eq $Recom.recommendationId) -and ($_.checkName -eq $Recom.checkName) } `
         | Select-Object -First 1
 
 
         if (-not $recomContent) {
-
           # If we couldn't find a check-specific recommendation, try to find a generic one...
-          $recomContent = $Script.ServicesYAMLContent `
+          $recomContent = $Script:CustomYAMLContent `
           | Where-Object { ($_.aprlGuid -eq $Recom.recommendationId) } `
           | Select-Object -First 1
+        }
 
+        if (-not $recomContent) {
+          # If we still couldn't find a recommendation, create a default one..
+          $recomContent = [pscustomobject]@{
+            description                = [string]::Empty
+            recommendationResourceType = 'Unknown'
+            recommendationImpact       = 'Unknown'
+          }
         }
 
         $tmp = @{
           'How was the resource/recommendation validated or what actions need to be taken?' = $Recom.validationAction;
           recommendationId                                                                  = $Recom.recommendationId;
-          recommendationTitle                                                               = if ($recomContent) { $recomContent.description } else { [string]::Empty };
-          resourceType                                                                      = if ($recomContent) { $recomContent.recommendationResourceType } else { [string]::Empty };
-          impact                                                                            = if ($recomContent) { $recomContent.recommendationImpact } else { [string]::Empty };
+          recommendationTitle                                                               = $recomContent.description;
+          resourceType                                                                      = $recomContent.recommendationResourceType;
+          impact                                                                            = $recomContent.recommendationImpact;
           subscriptionId                                                                    = $Recom.subscriptionId;
           resourceGroup                                                                     = $Recom.resourceGroup;
           name                                                                              = $Recom.name;
