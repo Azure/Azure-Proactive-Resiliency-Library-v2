@@ -39,7 +39,7 @@ invoke-webrequest https://aka.ms/aprl/tools/1 -out 1_wara_collector.ps1
 $iswindows ? (unblock-file ./1_wara_collector.ps1) : (Write-host "Unblock not required - Not Windows OS")
 
 #Modify these parameters and run the script
-./1_wara_collector.ps1 -TenantID "00000000-0000-0000-0000-000000000000" -Subscriptions "/subscriptions/00000000-0000-0000-0000-000000000000"
+./1_wara_collector.ps1 -TenantID "00000000-0000-0000-0000-000000000000" -SubscriptionIds "/subscriptions/00000000-0000-0000-0000-000000000000"
 ```
 
 ## How to download
@@ -135,7 +135,7 @@ The filtering capabilities are designed for targeting specific Azure resources, 
 ### Order of operations
 
 1. Subscriptions
-   - Subscription scopes like `-Subscriptions "/subscriptions/00000000-0000-0000-0000-000000000000"` or `[subscriptions]`
+   - Subscription scopes like `-SubscriptionIds "/subscriptions/00000000-0000-0000-0000-000000000000"` or `[subscriptionIds]`
 `/subscriptions/11111111-1111-1111-1111-111111111111` in a configuration file always take explicit precedence over any smaller, more specific scope.
 2. Resource Groups
    - These scopes can be used explicitly where you need to grab a resource group from a subscription but not evaluate the whole subscription.
@@ -213,7 +213,7 @@ The workload is entirely hosted in a single subscription that is not shared with
 Provide parameters in command line:
 
 ```powershell
-.\1_wara_collector.ps1 -TenantID "00000000-0000-0000-0000-000000000000" -Subscriptions "/subscriptions/00000000-0000-0000-0000-000000000000"
+.\1_wara_collector.ps1 -TenantID "00000000-0000-0000-0000-000000000000" -SubscriptionIds "/subscriptions/00000000-0000-0000-0000-000000000000"
 ```
 
 Provide parameters via ConfigFile:
@@ -239,7 +239,7 @@ The workload is hosted in two subscriptions (Sub-0 and Sub-5), but Sub 5 subscri
 Provide parameters in command line:
 
 ```powershell
-.\1_wara_collector.ps1 -TenantID "00000000-0000-0000-0000-000000000000" -Subscriptions "/subscriptions/00000000-0000-0000-0000-000000000000" -ResourceGroups "/subscriptions/55555555-5555-5555-5555-555555555555/resourceGroups/RG-1"
+.\1_wara_collector.ps1 -TenantID "00000000-0000-0000-0000-000000000000" -SubscriptionIds "/subscriptions/00000000-0000-0000-0000-000000000000" -ResourceGroups "/subscriptions/55555555-5555-5555-5555-555555555555/resourceGroups/RG-1"
 ```
 
 Provide parameters via ConfigFile:
@@ -254,7 +254,7 @@ config.txt
 [tenantid]
 00000000-0000-0000-0000-000000000000
 
-[subscriptions]
+[subscriptionIds]
 /subscriptions/00000000-0000-0000-0000-000000000000
 
 [resourceGroups]
@@ -268,7 +268,7 @@ config.txt
 The workload is hosted in three subscriptions (Sub-0, Sub-3 and Sub-5), but Sub 5 subscription is shared with other workloads and I want to not only filter the Sub-5 subscription by a single ResourceGroup where the components of my workload are hosted but also I need to filter by two Tags called Criticality and Env, since all my subscriptions are hosting NonProduction resources too:
 
 ```powershell
-.\1_wara_collector.ps1 -TenantID "00000000-0000-0000-0000-000000000000" -Subscriptions "/subscriptions/00000000-0000-0000-0000-000000000000","/subscriptions/33333333-3333-3333-3333-333333333333" -ResourceGroups "/subscriptions/55555555-5555-5555-5555-555555555555/resourceGroups/RG-1" -Tags 'Criticality=~High','Env=~Prod'
+.\1_wara_collector.ps1 -TenantID "00000000-0000-0000-0000-000000000000" -SubscriptionIds "/subscriptions/00000000-0000-0000-0000-000000000000","/subscriptions/33333333-3333-3333-3333-333333333333" -ResourceGroups "/subscriptions/55555555-5555-5555-5555-555555555555/resourceGroups/RG-1" -Tags 'Criticality=~High','Env=~Prod'
 ```
 
 Provide parameters via ConfigFile:
@@ -283,7 +283,7 @@ config.txt
 [tenantid]
 00000000-0000-0000-0000-000000000000
 
-[subscriptions]
+[subscriptionIds]
 /subscriptions/00000000-0000-0000-0000-000000000000
 /subscriptions/33333333-3333-3333-3333-333333333333
 
@@ -302,7 +302,7 @@ Env=~Prod
 The workload is hosted in three subscriptions (Sub-0, Sub-4 and Sub-5), but Sub4 and Sub-5 subscriptions are shared with other workloads and I want to not only filter them by ResourceGroups where the components of my workload are hosted but also I need to filter by two Tags called Criticality and Env, since all my subscriptions are hosting NonProduction resources too:
 
 ```powershell
-.\1_wara_collector.ps1 -TenantID "00000000-0000-0000-0000-000000000000" -Subscriptions "/subscriptions/00000000-0000-0000-0000-000000000000" -ResourceGroups "/subscriptions/55555555-5555-5555-5555-555555555555/resourceGroups/RG-1","
+.\1_wara_collector.ps1 -TenantID "00000000-0000-0000-0000-000000000000" -SubscriptionIds "/subscriptions/00000000-0000-0000-0000-000000000000" -ResourceGroups "/subscriptions/55555555-5555-5555-5555-555555555555/resourceGroups/RG-1","
 ","/subscriptions/44444444-4444-4444-4444-444444444444/resourceGroups/RG-2" -Tags 'Criticality=~High','Env=~Prod'
 ```
 
@@ -318,7 +318,7 @@ config.txt
 [tenantid]
 00000000-0000-0000-0000-000000000000
 
-[subscriptions]
+[subscriptionIds]
 /subscriptions/00000000-0000-0000-0000-000000000000
 
 [resourceGroups]
@@ -339,7 +339,7 @@ Env=~Prod
 The workload is hosted in three subscriptions (Sub-0, Sub-4 and Sub-5), but Sub4 and Sub-5 subscriptions are shared with other workloads and I want to not only filter them by ResourceGroups where the components of my workload are hosted, but also I need to filter by two groups of Tags called Criticality and Env or Environment, since all my subscriptions are hosting NonProduction resources, I want to make sure QA and DEV are excluded from my assessment:
 
 ```powershell
-.\1_wara_collector.ps1 -TenantID "00000000-0000-0000-0000-000000000000" -Subscriptions "/subscriptions/00000000-0000-0000-0000-000000000000" -ResourceGroups "/subscriptions/55555555-5555-5555-5555-555555555555/resourceGroups/RG-1","
+.\1_wara_collector.ps1 -TenantID "00000000-0000-0000-0000-000000000000" -SubscriptionIds "/subscriptions/00000000-0000-0000-0000-000000000000" -ResourceGroups "/subscriptions/55555555-5555-5555-5555-555555555555/resourceGroups/RG-1","
 ","/subscriptions/44444444-4444-4444-4444-444444444444/resourceGroups/RG-2" -Tags 'Criticality=~High','Env||Environment!~Dev||QA'
 ```
 
@@ -355,7 +355,7 @@ config.txt
 [tenantid]
 00000000-0000-0000-0000-000000000000
 
-[subscriptions]
+[subscriptionIds]
 /subscriptions/00000000-0000-0000-0000-000000000000
 
 [resourceGroups]
@@ -376,7 +376,7 @@ Run a runbook.
 ```powershell
 .\1_wara_collector.ps1 `
   -TenantID "00000000-0000-0000-0000-000000000000" `
-  -Subscriptions "/subscriptions/00000000-0000-0000-0000-000000000000" `
+  -SubscriptionIds "/subscriptions/00000000-0000-0000-0000-000000000000" `
   -RunbookFile ".\runbook.json"
 ```
 
@@ -385,12 +385,12 @@ Run a runbook using implicit runbook selectors.
 ```powershell
 .\1_wara_collector.ps1 `
   -TenantID "00000000-0000-0000-0000-000000000000" `
-  -Subscriptions "/subscriptions/00000000-0000-0000-0000-000000000000" `
+  -SubscriptionIds "/subscriptions/00000000-0000-0000-0000-000000000000" `
   -RunbookFile ".\runbook.json"
   -UseImplicitRunbookSelectors
 ```
 
-> Note that `-Subscriptions` are required when using a runbook. Runbooks are not compatible with `-ConfigFile`, `-ResourceGroups`,  `-Tags`, `-SAP`, `-AVS`, `-HPC`, `-AVD` parameters. Specify subscriptions in scope using `-Subscriptions` parameter.
+> Note that `-SubscriptionIds` are required when using a runbook. Runbooks are not compatible with `-ConfigFile`, `-ResourceGroups`,  `-Tags`, `-SAP`, `-AVS`, `-HPC`, `-AVD` parameters. Specify subscriptions in scope using `-SubscriptionIds` parameter.
 
 <br>
 
@@ -469,7 +469,7 @@ When calling the Collector script, you must provide some required parameters. Op
   - Type: String (file name and extension)
   - Format/Values:
     - `-RunbookFile runbook.json`
-  - **Note**: It can't be used in combination with `-ConfigFile`, `-ResourceGroups`, or `-Tags` parameters. Specify subscriptions in scope using `-Subscriptions` parameter.
+  - **Note**: It can't be used in combination with `-ConfigFile`, `-ResourceGroups`, or `-Tags` parameters. Specify subscriptions in scope using `-SubscriptionIds` parameter.
 - **UseImplicitRunbookSelectors**:
   - Optional
   - Description: Enables the use of implicit runbook selectors. When this switch is enabled, each resource graph query will be wrapped in an inner join that filters the results to only include resources that match the selector. This is useful when queries do not include selectors.
