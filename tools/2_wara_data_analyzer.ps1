@@ -21,6 +21,12 @@ Param(
   [Parameter(mandatory = $true)]
   [string] $JSONFile)
 
+# Checking the operating system running this script.
+if (-not $IsWindows) {
+  Write-Host 'This script only supports Windows operating systems currently. Please try to run with Windows operating systems.'
+  Exit
+}
+
 if ($Debugging.IsPresent) { $DebugPreference = 'Continue' } else { $DebugPreference = 'silentlycontinue' }
 
 $Script:FilterRecommendations = $true
@@ -723,19 +729,45 @@ $Script:Runtime = Measure-Command -Expression {
         $Script:Recommendations += $tmp
       }
 
+      $columnCommonStyle = @{
+        FontName = 'Calibri'
+        FontSize = 11
+        WrapText = $true
+      }
+
+      $headerCommonStyle = @{
+        FontName            = 'Calibri'
+        FontSize            = 11
+        FontColor           = 'White'
+        Bold                = $true
+        BackgroundColor     = 'DarkSlateGray'
+        HorizontalAlignment = 'Center'
+        VerticalAlignment   = 'Center'
+        WrapText            = $true
+      }
+
       $Styles2 = @(
-        New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor 'White' -VerticalAlignment Center -Bold -WrapText -BackgroundColor 'DarkSlateGray' -Width 14 -Range 'A1:B1'
-        New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor 'White' -VerticalAlignment Center -Bold -WrapText -BackgroundColor 'DarkSlateGray' -Width 18 -Range 'C1'
-        New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor 'White' -VerticalAlignment Center -Bold -WrapText -BackgroundColor 'DarkSlateGray' -Width 20 -Range 'D1'
-        New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor 'White' -VerticalAlignment Center -Bold -WrapText -BackgroundColor 'DarkSlateGray' -Width 35 -Range 'E1:F1'
-        New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor 'White' -VerticalAlignment Center -Bold -WrapText -BackgroundColor 'DarkSlateGray' -Width 20 -Range 'G1'
-        New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor 'White' -VerticalAlignment Center -Bold -WrapText -BackgroundColor 'DarkSlateGray' -Width 55 -Range 'H1'
-        New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor 'White' -VerticalAlignment Center -Bold -WrapText -BackgroundColor 'DarkSlateGray' -Width 10 -Range 'I1'
-        New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor 'White' -VerticalAlignment Center -Bold -WrapText -BackgroundColor 'DarkSlateGray' -Width 90 -Range 'J1'
-        New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor 'White' -VerticalAlignment Center -Bold -WrapText -BackgroundColor 'DarkSlateGray' -Width 45 -Range 'K1'
-        New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor 'White' -VerticalAlignment Center -Bold -WrapText -BackgroundColor 'DarkSlateGray' -Width 35 -Range 'L1:M1'
-        New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -FontColor 'White' -VerticalAlignment Center -Bold -WrapText -BackgroundColor 'DarkSlateGray' -Width 45 -Range 'N1'
-        New-ExcelStyle -HorizontalAlignment Center -FontName 'Calibri' -FontSize 11 -VerticalAlignment Center -WrapText -Range 'A:N'
+        # Apply the style to the columns.
+        New-ExcelStyle @columnCommonStyle -Range 'A:G' -HorizontalAlignment Center -VerticalAlignment Center
+        New-ExcelStyle @columnCommonStyle -Range 'H:H' -HorizontalAlignment Left -VerticalAlignment Center
+        New-ExcelStyle @columnCommonStyle -Range 'I:I' -HorizontalAlignment Center -VerticalAlignment Center
+        New-ExcelStyle @columnCommonStyle -Range 'J:K' -HorizontalAlignment Left -VerticalAlignment Top
+        New-ExcelStyle @columnCommonStyle -Range 'L:L' -HorizontalAlignment Center -VerticalAlignment Center
+        New-ExcelStyle @columnCommonStyle -Range 'M:M' -HorizontalAlignment Left -VerticalAlignment Top
+        New-ExcelStyle @columnCommonStyle -Range 'N:N' -HorizontalAlignment Center -VerticalAlignment Center
+
+        # Apply the style to the header row.
+        New-ExcelStyle @headerCommonStyle -Range 'A1:B1' -Width 14
+        New-ExcelStyle @headerCommonStyle -Range 'C1' -Width 18
+        New-ExcelStyle @headerCommonStyle -Range 'D1' -Width 20
+        New-ExcelStyle @headerCommonStyle -Range 'E1:F1' -Width 35
+        New-ExcelStyle @headerCommonStyle -Range 'G1' -Width 20
+        New-ExcelStyle @headerCommonStyle -Range 'H1' -Width 55
+        New-ExcelStyle @headerCommonStyle -Range 'I1' -Width 10
+        New-ExcelStyle @headerCommonStyle -Range 'J1' -Width 90
+        New-ExcelStyle @headerCommonStyle -Range 'K1' -Width 45
+        New-ExcelStyle @headerCommonStyle -Range 'L1:M1' -Width 35
+        New-ExcelStyle @headerCommonStyle -Range 'N1' -Width 45
       )
 
       # Configure the array of fields to be used in the Recommendations sheet

@@ -14,7 +14,7 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Configure a host pool as a validation environment
       url: "https://learn.microsoft.com/azure/virtual-desktop/configure-validation-environment?tabs=azure-portal"
 
 - description: Configure host pool scheduled agent updates
@@ -33,7 +33,7 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Scheduled Agent Updates for Azure Virtual Desktop host pools
       url: "https://learn.microsoft.com/azure/virtual-desktop/scheduled-agent-updates"
 
 - description: Ensure a unique OU is used when deploying host pools with domain joined session hosts
@@ -52,7 +52,7 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Configure the VMs and install Active Directory Domain Services
       url: "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/deploy/virtual-dc/adds-on-azure-vm#configure-the-vms-and-install-active-directory-domain-services"
 
 - description: Use Azure Site Recovery or backups to protect VMs supporting personal desktops
@@ -71,5 +71,5 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: About Site Recovery
       url: "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-overview"
