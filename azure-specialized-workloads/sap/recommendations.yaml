@@ -436,6 +436,7 @@
   learnMoreLink:
     - name: SAP on Azure NetApp Planning Guide
       url: "https://learn.microsoft.com/en-us/azure/sap/workloads/planning-guide-storage#azure-netapp-files"
+
 - description: Provision recommended storage configuration on database VMs
   aprlGuid: 697deb1d-d398-4989-9734-9e6c18f7e0ad
   recommendationTypeId: null
