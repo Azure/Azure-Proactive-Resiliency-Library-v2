@@ -7,7 +7,7 @@ where:
 configuration:
   resourceManagementConfiguration:
     scheduledSearches:
-    - description: 'If if open issue and label Needs: Author Feedback and Status: No Recent Activity with no update after 3 days, then close the issue.'
+    - description: 'If if open issue and label Needs: Author Feedback :ear: and Status: No Recent Activity :desert: with no update after 3 days, then close the issue.'
       frequencies:
       - hourly:
           hour: 3
@@ -15,15 +15,15 @@ configuration:
       - isIssue
       - isOpen
       - hasLabel:
-          label: 'Needs: Author Feedback'
+          label: 'Needs: Author Feedback :ear:'
       - hasLabel:
-          label: 'Status: No Recent Activity'
+          label: 'Status: No Recent Activity :desert:'
       - noActivitySince:
           days: 3
       actions:
       - closeIssue
 
-    - description: 'If open issue and label is Needs: Author Feedback is applied with no update after 4 days, then apply label "Status: No Recent Activity'
+    - description: 'If open issue and label is Needs: Author Feedback :ear: is applied with no update after 3 days, then apply label "Status: No Recent Activity :desert:'
       frequencies:
       - hourly:
           hour: 3
@@ -31,18 +31,18 @@ configuration:
       - isIssue
       - isOpen
       - hasLabel:
-          label: 'Needs: Author Feedback'
+          label: 'Needs: Author Feedback :ear:'
       - noActivitySince:
-          days: 4
+          days: 3
       - isNotLabeledWith:
-          label: 'Status: No Recent Activity'
+          label: 'Status: No Recent Activity :desert:'
       actions:
       - addLabel:
-          label: 'Status: No Recent Activity'
+          label: 'Status: No Recent Activity :desert:'
       - addReply:
           reply: This issue has been automatically marked as stale because it has been marked as requiring author feedback but has not had any activity for **4 days**. It will be closed if no further activity occurs **within 3 days of this comment**.
 
-    - description: 'If open issue and label is Resolution: Duplicate with no activity for 1 day, close issue.'
+    - description: 'If open issue and label is Resolution: Duplicate :file_cabinet: with no activity for 1 day, close issue.'
       frequencies:
       - hourly:
           hour: 3
@@ -50,7 +50,7 @@ configuration:
       - isIssue
       - isOpen
       - hasLabel:
-          label: 'Resolution: Duplicate'
+          label: 'Resolution: Duplicate :file_cabinet:'
       - noActivitySince:
           days: 1
       actions:
@@ -58,7 +58,7 @@ configuration:
           reply: This issue has been marked as duplicate and has not had any activity for **1 day**. It will be closed for housekeeping purposes.
       - closeIssue
 
-    - description: 'If open pr and label includes Needs: Author Feedback and Status: No Recent Activity with no update after 7 days, then close the issue.'
+    - description: 'If open pr and label includes Needs: Author Feedback :ear: and Status: No Recent Activity :desert: with no update after 7 days, then close the issue.'
       frequencies:
       - hourly:
           hour: 3
@@ -66,15 +66,15 @@ configuration:
       - isPullRequest
       - isOpen
       - hasLabel:
-          label: 'Needs: Author Feedback'
+          label: 'Needs: Author Feedback :ear:'
       - hasLabel:
-          label: 'Status: No Recent Activity'
+          label: 'Status: No Recent Activity :desert:'
       - noActivitySince:
           days: 7
       actions:
-      - closeIssue
+      - closePullRequest
 
-    - description: 'If open pull request and label includes Needs: Author Feedback and has not been updated in 7 days, then add label and request update.'
+    - description: 'If open pull request and label includes Needs: Author Feedback :ear: and has not been updated in 7 days, then add label and request update.'
       frequencies:
       - hourly:
           hour: 3
@@ -82,18 +82,68 @@ configuration:
       - isPullRequest
       - isOpen
       - hasLabel:
-          label: 'Needs: Author Feedback'
+          label: 'Needs: Author Feedback :ear:'
       - noActivitySince:
           days: 7
       - isNotLabeledWith:
-          label: 'Status: No Recent Activity'
+          label: 'Status: No Recent Activity :desert:'
       actions:
       - addLabel:
-          label: 'Status: No Recent Activity'
+          label: 'Status: No Recent Activity :desert:'
       - addReply:
           reply: This pull request has been automatically marked as stale because it has been marked as requiring author feedback but has not had any activity for **7 days**. It will be closed if no further activity occurs **within 7 days of this comment**.
 
     eventResponderTasks:
+    - if:
+      - payloadType: Issues
+      - titleContains:
+          pattern: "Bug Report"
+          isRegex: false
+      then:
+      - addLabel:
+          label: "Bug :lady_beetle:"
+      description: 'If issue title contains Bug Report, then add label.'
+
+    - if:
+      - payloadType: Issues
+      - titleContains:
+          pattern: "Feature Request"
+          isRegex: false
+      then:
+      - addLabel:
+          label: "Enhancement :new:"
+      description: 'If issue title contains Feature Request, then add label.'
+
+    - if:
+        - payloadType: Pull_Request
+        - titleContains:
+            pattern: "feat:"
+            isRegex: false
+      then:
+      - addLabel:
+          label: "Enhancement :new:"
+      description: 'If pr title contains feat:, then add label.'
+
+    - if:
+        - payloadType: Pull_Request
+        - titleContains:
+            pattern: "build:"
+            isRegex: false
+      then:
+      - addLabel:
+          label: "Type: Hygiene :broom:"
+      description: 'If pr title contains build:, then add label.'
+
+    - if:
+        - payloadType: Pull_Request
+        - titleContains:
+            pattern: "fix:"
+            isRegex: false
+      then:
+      - addLabel:
+          label: "Bug :lady_beetle:"
+      description: 'If pr title contains fix:, then add label.'
+
     - if:
       - payloadType: Issue_Comment
       - isAction:
@@ -101,14 +151,14 @@ configuration:
       - isActivitySender:
           issueAuthor: True
       - hasLabel:
-          label: 'Needs: Author Feedback'
+          label: 'Needs: Author Feedback :ear:'
       - isOpen
       then:
       - addLabel:
           label: 'Needs: Attention :wave:'
       - removeLabel:
-          label: 'Needs: Author Feedback'
-      description: 'If author comments on issue with label Needs: Author Feedback, then adjust labels'
+          label: 'Needs: Author Feedback :ear:'
+      description: 'If author comments on issue with label Needs: Author Feedback :ear:, then adjust labels'
 
     - if:
       - payloadType: Issues
@@ -116,20 +166,20 @@ configuration:
           isAction:
             action: Closed
       - hasLabel:
-          label: 'Status: No Recent Activity'
+          label: 'Status: No Recent Activity :desert:'
       then:
       - removeLabel:
-          label: 'Status: No Recent Activity'
-      description: 'If issue is closed and had Status: No Recent Activity, then remove the label.'
+          label: 'Status: No Recent Activity :desert:'
+      description: 'If issue is closed and had Status: No Recent Activity :desert:, then remove the label.'
 
     - if:
       - payloadType: Issue_Comment
       - hasLabel:
-          label: 'Status: No Recent Activity'
+          label: 'Status: No Recent Activity :desert:'
       then:
       - removeLabel:
-          label: 'Status: No Recent Activity'
-      description: 'If comment on issue and has label Status: No Recent Activity, then remove the label.'
+          label: 'Status: No Recent Activity :desert:'
+      description: 'If comment on issue and has label Status: No Recent Activity :desert:, then remove the label.'
 
     - if:
       - payloadType: Pull_Request
@@ -139,7 +189,7 @@ configuration:
           reviewState: Changes_requested
       then:
       - addLabel:
-          label: 'Needs: Author Feedback'
+          label: 'Needs: Author Feedback :ear:'
       description: 'If pr has review that requests changes, then add label.'
 
     - if:
@@ -150,33 +200,33 @@ configuration:
           isAction:
             action: Closed
       - hasLabel:
-          label: 'Needs: Author Feedback'
+          label: 'Needs: Author Feedback :ear:'
       then:
       - removeLabel:
-          label: 'Needs: Author Feedback'
-      description: 'If pr has label Needs: Author Feedback and is closed, then remove label.'
+          label: 'Needs: Author Feedback :ear:'
+      description: 'If pr has label Needs: Author Feedback :ear: and is closed, then remove label.'
 
     - if:
       - payloadType: Issue_Comment
       - isActivitySender:
           issueAuthor: True
       - hasLabel:
-          label: 'Needs: Author Feedback'
+          label: 'Needs: Author Feedback :ear:'
       then:
       - removeLabel:
-          label: 'Needs: Author Feedback'
-      description: 'If issue has label Needs: Author Feedback and author comments, then remove label.'
+          label: 'Needs: Author Feedback :ear:'
+      description: 'If issue has label Needs: Author Feedback :ear: and author comments, then remove label.'
 
     - if:
       - payloadType: Pull_Request
       - isActivitySender:
           issueAuthor: True
       - hasLabel:
-          label: 'Needs: Author Feedback'
+          label: 'Needs: Author Feedback :ear:'
       then:
       - removeLabel:
-          label: 'Needs: Author Feedback'
-      description: 'If pull request has label Needs: Author Feedback and author updates, then remove label.'
+          label: 'Needs: Author Feedback :ear:'
+      description: 'If pull request has label Needs: Author Feedback :ear: and author updates, then remove label.'
 
     - if:
       - payloadType: Pull_Request
@@ -184,29 +234,29 @@ configuration:
           isAction:
             action: Closed
       - hasLabel:
-          label: 'Status: No Recent Activity'
+          label: 'Status: No Recent Activity :desert:'
       then:
       - removeLabel:
-          label: 'Status: No Recent Activity'
-      description: 'If pull request has label Status: No Recent Activity and is closed, then remove label.'
+          label: 'Status: No Recent Activity :desert:'
+      description: 'If pull request has label Status: No Recent Activity :desert: and is closed, then remove label.'
 
     - if:
       - payloadType: Issue_Comment
       - hasLabel:
-          label: 'Status: No Recent Activity'
+          label: 'Status: No Recent Activity :desert:'
       then:
       - removeLabel:
-          label: 'Status: No Recent Activity'
-      description: 'If issue has new comment and has label Status: No Recent Activity, then remove label.'
+          label: 'Status: No Recent Activity :desert:'
+      description: 'If issue has new comment and has label Status: No Recent Activity :desert:, then remove label.'
 
     - if:
       - payloadType: Pull_Request
       - hasLabel:
-          label: 'Status: No Recent Activity'
+          label: 'Status: No Recent Activity :desert:'
       then:
       - removeLabel:
-          label: 'Status: No Recent Activity'
-      description: 'If pull request has update and has label Status: No Recent Activity, then remove label.'
+          label: 'Status: No Recent Activity :desert:'
+      description: 'If pull request has update and has label Status: No Recent Activity :desert:, then remove label.'
 
     - if:
       - payloadType: Issue_Comment
