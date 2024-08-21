@@ -186,6 +186,10 @@ Run a configuration file:
 /subscriptions/55555555-5555-5555-5555-555555555555/resourceGroups/Demo1-RG
 /subscriptions/22222222-2222-2222-2222-222222222222/resourceGroups/Demo1-RG
 
+[resources]
+/subscriptions/99999999-9999-9999-9999-999999999999/resourceGroups/Demo1-RG/providers/Microsoft.Compute/virtualMachines/vm-1
+/subscriptions/33333333-3333-3333-3333-333333333333/resourceGroups/Demo1-RG/providers/Microsoft.Network/virtualNetworks/vnet-1
+
 [tags]
 env==prod
 application=~demoapp1
