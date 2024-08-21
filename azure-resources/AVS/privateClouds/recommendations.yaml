@@ -14,7 +14,7 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Configure Azure Service Health alerts
       url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/azure-vmware/eslz-management-and-monitoring#design-recommendations"
 
 - description: Monitor when Azure VMware Solution Private Cloud is reaching the capacity limit
@@ -52,7 +52,7 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Configure and streamline alerts
       url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-vmware/monitoring#configure-and-streamline-alerts"
 
 - description: Enable Stretched Clusters for Multi-AZ Availability of the vSAN Datastore
@@ -71,7 +71,7 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Implement high availability
       url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-vmware/infrastructure#implement-high-availability"
     - name: Stretched Clusters
       url: "https://learn.microsoft.com/en-us/azure/azure-vmware/deploy-vsan-stretched-clusters"
@@ -92,7 +92,7 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Supported metrics and activities
       url: "https://learn.microsoft.com/en-us/azure/azure-vmware/configure-alerts-for-azure-vmware-solution#supported-metrics-and-activities"
 
 - description: Configure Syslog in Diagnostic Settings for Azure VMware Solution
@@ -111,7 +111,7 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Manage logs and archives
       url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-vmware/monitoring#manage-logs-and-archives"
 
 - description: Monitor CPU Utilization to ensure sufficient resources for workloads
@@ -130,7 +130,7 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Configure and streamline alerts
       url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-vmware/monitoring#configure-and-streamline-alerts"
 
 - description: Monitor Memory Utilization to ensure sufficient resources for workloads
@@ -149,7 +149,7 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Configure and streamline alerts
       url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-vmware/monitoring#configure-and-streamline-alerts"
 
 - description: Apply Resource delete lock on the resource group hosting the private cloud
