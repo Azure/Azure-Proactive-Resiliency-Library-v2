@@ -523,7 +523,7 @@ $Script:Runtime = Measure-Command -Expression {
 
                 Write-Verbose 'Process: Connecting to Azure.'
                 Write-Verbose "No existing context found or context does not match TenantID. Connecting to Azure..."
-                Connect-AzAccount -Tenant $TenantID -Environment $AzureEnvironment -ErrorAction Stop -WarningAction Ignore
+                Connect-AzAccount -Tenant $TenantID -Environment $AzureEnvironment -ErrorAction Stop -WarningAction Ignore -InformationAction Ignore
                 $AzContext = Get-AzContext -ErrorAction Stop
                 Write-Verbose "Successfully connected to Azure Tenant: $TenantID"
             }
