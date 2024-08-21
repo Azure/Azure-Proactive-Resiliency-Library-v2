@@ -306,7 +306,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Your Long Description Here
-    Azure Front Door standard is ~45% cheaper then AFD classic and has many additional benefits. Classic is also scheduled to be retired on March 31, 2027. 
+    Azure Front Door standard is ~45% cheaper then AFD classic and has many additional benefits. Classic is also scheduled to be retired on March 31, 2027.
   potentialBenefits: Costs savings and additional supported features
   pgVerified: false
   publishedToLearn: false
