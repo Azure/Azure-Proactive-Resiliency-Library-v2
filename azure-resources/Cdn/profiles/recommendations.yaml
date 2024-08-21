@@ -297,7 +297,7 @@
     - name: Private link for Azure Front Door
       url: "https://learn.microsoft.com/azure/frontdoor/private-link"
 
-     - description: Avoid using Classic AFD
+- description: Avoid using Classic AFD
   aprlGuid: 82fa3cff-74bd-4063-b726-834f160592fa
   recommendationTypeId: null
   recommendationControl: Service Upgrade and Retirement
