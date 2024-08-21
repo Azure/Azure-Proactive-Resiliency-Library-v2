@@ -46,7 +46,7 @@
   recommendationResourceType: Microsoft.Compute/virtualMachines
   recommendationMetadataState: Active
   longDescription: |
-    While availability sets are not scheduled for immediate deprecation, they are planned to be deprecated in the future. Migrate workloads from VMs to VMSS Flex for deployment across zones or within the same zone across different fault domains (FDs) and update domains (UDs) for better reliability.
+    While availability sets are not scheduled for immediate deprecation, they are planned to be deprecated in the future. Migrate workloads from VMs to VMSS Flex for deployment across zones or within the same zone across different fault domains (FDs) for better reliability.
   potentialBenefits: Enhances reliability and future-proofs VMs
   pgVerified: true
   publishedToLearn: false
@@ -54,8 +54,8 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Resiliency checklist for Virtual Machines
-      url: "https://learn.microsoft.com/azure/architecture/checklist/resiliency-per-service#virtual-machines"
+    - name: Migrate deployments and resources to Virtual Machine Scale Sets in Flexible orchestration
+      url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/flexible-virtual-machine-scale-sets-migration-resources"
 
 - description: Replicate VMs using Azure Site Recovery
   aprlGuid: cfe22a65-b1db-fd41-9e8e-d573922709ae
@@ -440,7 +440,7 @@
   recommendationResourceType: Microsoft.Compute/virtualMachines
   recommendationMetadataState: Active
   longDescription: |
-    Compared to Standard HDD and SSD, Premium SSD, SSDv2, and Ultra SSDs offer improved performance, configurability, and higher single-instance Virtual Machine uptime SLAs. The lowest SLA of all disks on a Virtual Machine applies, so it is best to use Premium or Ultra Disks for the highest uptime SLA.
+    Compared to Standard HDD and SSD, Premium SSD, SSD v2, and Ultra Disks offer improved performance, configurability, and higher single-instance VM uptime SLAs. The lowest SLA of all disks on a VM applies, so it is best to use Premium or Ultra Disks for the highest uptime SLA.
   potentialBenefits: Enhanced performance, cost efficiency, and uptime SLA
   pgVerified: true
   publishedToLearn: false
@@ -532,3 +532,22 @@
   learnMoreLink:
     - name: On-demand Capacity Reservation
       url: "https://aka.ms/on-demand-capacity-reservations-docs"
+
+- description: Update the Azure Linux VM Agent
+  aprlGuid: 5f7e8a12-3c4f-456b-919c-2e9adff98c38
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: Low
+  recommendationResourceType: Microsoft.Compute/virtualMachines
+  recommendationMetadataState: Active
+  longDescription: |
+    If you've installed the Azure Linux Agent or are using an endorsed distribution image, ensure your agent version is up-to-date. Some Linux distributions may disable auto-update or use older agent versions.
+  potentialBenefits: Reduces complications with VM provisioning
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: How to update the Azure Linux Agent on a VM
+      url: "https://learn.microsoft.com/en-us/azure/virtual-machines/extensions/update-linux-agent?tabs=ubuntu"

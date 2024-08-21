@@ -25,7 +25,7 @@
   recommendationResourceType: Microsoft.EventHub/namespaces
   recommendationMetadataState: Active
   longDescription: |
-    Enable auto-inflate on Event Hub Standard tier namespaces to automatically scale up TUs, meeting usage needs and preventing data ingress or egress throttle scenarios by adjusting to allowed rates.
+    Enable auto-inflate on Event Hub Standard tier namespaces to automatically scale up throughput units (TUs), meeting usage needs and preventing data ingress or egress throttle scenarios by adjusting to allowed rates.
   potentialBenefits: Prevents throttling by autoscaling TUs
   pgVerified: true
   publishedToLearn: false
