@@ -84,11 +84,6 @@ $iswindows ? (unblock-file ./3_wara_reports_generator.ps1) : (Write-host "Unbloc
   {{< hint type=important >}}
   Updates will need to be made prior to presenting to any audience.
   {{< /hint >}}
-## SYNOPSIS
-Well-Architected Reliability Assessment Report Generator Script
-
-## DESCRIPTION
-The script `3_wara_reports_generator` processes the Excel file created by the `2_wara_data_analyzer` script and generates the final PowerPoint and Word reports for the Well-Architected Reliability Assessment.
 
 ## PARAMETERS
 
