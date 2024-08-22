@@ -14,9 +14,9 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Distribute data globally with Azure Cosmos DB | Microsoft Learn
+    - name: Distribute data globally with Azure Cosmos DB
       url: "https://learn.microsoft.com/azure/cosmos-db/distribute-data-globally"
-    - name: Tips for building highly available applications | Microsoft Learn
+    - name: Tips for building highly available applications
       url: "https://learn.microsoft.com/azure/cosmos-db/high-availability#tips-for-building-highly-available-applications"
 
 - description: Enable service-managed failover for multi-region accounts with single write region
@@ -35,7 +35,7 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Manage an Azure Cosmos DB account by using the Azure portal | Microsoft Learn
+    - name: Manage an Azure Cosmos DB account by using the Azure portal
       url: "https://learn.microsoft.com/azure/cosmos-db/how-to-manage-database-account#automatic-failover"
 
 - description: Evaluate multi-region write capability
@@ -54,9 +54,9 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Distribute data globally with Azure Cosmos DB | Microsoft Learn
+    - name: Distribute data globally with Azure Cosmos DB
       url: "https://learn.microsoft.com/azure/cosmos-db/distribute-data-globally"
-    - name: Conflict resolution types and resolution policies in Azure Cosmos DB | Microsoft Learn
+    - name: Conflict resolution types and resolution policies in Azure Cosmos DB
       url: "https://learn.microsoft.com/azure/cosmos-db/conflict-resolution-policies"
 
 - description: Configure continuous backup mode
@@ -75,7 +75,7 @@
   automationAvailable: arg
   tags: null
   learnMoreLink:
-    - name: Continuous backup with point in time restore feature in Azure Cosmos DB | Microsoft Learn
+    - name: Continuous backup with point in time restore feature in Azure Cosmos DB
       url: "https://learn.microsoft.com/azure/cosmos-db/continuous-backup-restore-introduction"
 
 - description: Ensure query results are fully drained
@@ -94,7 +94,7 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Pagination in Azure Cosmos DB | Microsoft Learn
+    - name: Pagination in Azure Cosmos DB
       url: "https://learn.microsoft.com/azure/cosmos-db/nosql/query/pagination#handling-multiple-pages-of-results"
 
 - description: Maintain singleton pattern in your client
@@ -113,7 +113,7 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Designing resilient applications with Azure Cosmos DB SDKs | Microsoft Learn
+    - name: Designing resilient applications with Azure Cosmos DB SDKs
       url: "https://learn.microsoft.com/azure/cosmos-db/nosql/conceptual-resilient-sdk-applications"
 
 - description: Implement retry logic in your client
@@ -132,7 +132,7 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Designing resilient applications with Azure Cosmos DB SDKs | Microsoft Learn
+    - name: Designing resilient applications with Azure Cosmos DB SDKs
       url: "https://learn.microsoft.com/azure/cosmos-db/nosql/conceptual-resilient-sdk-applications"
 
 - description: Monitor Cosmos DB health and set up alerts
@@ -151,5 +151,5 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Create alerts for Azure Cosmos DB using Azure Monitor | Microsoft Learn
+    - name: Create alerts for Azure Cosmos DB using Azure Monitor
       url: "https://learn.microsoft.com/azure/cosmos-db/create-alerts"

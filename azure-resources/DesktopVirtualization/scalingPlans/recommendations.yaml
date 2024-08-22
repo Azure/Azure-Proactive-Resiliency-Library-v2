@@ -14,5 +14,5 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Create and assign an autoscale scaling plan
       url: "https://learn.microsoft.com/azure/virtual-desktop/autoscale-scaling-plan?tabs=portal"

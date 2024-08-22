@@ -482,17 +482,71 @@ $Script:Runtime = Measure-Command -Expression {
   }
 
   function Connect-ToAzure {
-    $Subscription0 = $Scopes | Select-Object -First 1 | ForEach-Object {$_.split("/")[2]}
-    # Connect To Azure Tenant
-    Write-Host 'Authenticating to Azure'
-    if ($Script:ShellPlatform -eq 'Win32NT') {
-      Clear-AzContext -Force -ErrorAction SilentlyContinue -WarningAction SilentlyContinue -InformationAction SilentlyContinue
-      Connect-AzAccount -Tenant $TenantID -Subscription $Subscription0 -WarningAction SilentlyContinue -Environment $AzureEnvironment
-      #Set the default variable with the list of subscriptions in case no Subscription File was informed
-      $Script:SubIds = Get-AzSubscription -TenantId $TenantID -WarningAction SilentlyContinue
-    } else {
-      Connect-AzAccount -Identity -Environment $AzureEnvironment
-      $Script:SubIds = Get-AzSubscription -WarningAction SilentlyContinue
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [ValidatePattern("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$")]
+        [GUID]$TenantID,
+
+        [ValidateSet('AzureCloud', 'AzureChinaCloud', 'AzureGermanCloud', 'AzureUSGovernment')]
+        [string]$AzureEnvironment = 'AzureCloud'
+    )
+
+    begin {
+        Write-Verbose "Starting connection process to Azure Tenant."
+        $AzContext = $null
+    }
+
+    process {
+        try {
+            # Attempt to get the current Azure context
+            $AzContext = Get-AzContext -ErrorAction SilentlyContinue
+
+            # Check if a valid context is available or if it matches the provided Tenant ID
+            if ($null -eq $AzContext -or $AzContext.Tenant.Id -ne $TenantID) {
+                Write-Verbose "Not logged into a tenant with any of the specified subscriptions. Authenticating to Azure. `n"
+
+                # Check if EnableLoginByWam is true
+                if ((Get-AzConfig -EnableLoginByWam).Value -eq $true) {
+                    Write-Verbose "Process: Disabling interactive login experience (EnableLoginByWam).`n"
+                    # Disable the WAM login experience for the current PowerShell session
+                    Update-AzConfig -EnableLoginByWam $false -Scope Process | Out-Null
+                }
+
+                # Check if LoginExperienceV2 is 'On'
+                if ((Get-AzConfig -LoginExperienceV2).Value -eq 'On') {
+                    Write-Verbose "Process: Disabling interactive login experience (LoginExperienceV2).`n"
+                    # Disable the new login experience for the current PowerShell session
+                    Update-AzConfig -LoginExperienceV2 Off -Scope Process | Out-Null
+                }
+
+                Write-Verbose 'Process: Connecting to Azure.'
+                Write-Verbose "No existing context found or context does not match TenantID. Connecting to Azure..."
+                Connect-AzAccount -Tenant $TenantID -Environment $AzureEnvironment -ErrorAction Stop -WarningAction Ignore -InformationAction Ignore
+                $AzContext = Get-AzContext -ErrorAction Stop
+                Write-Verbose "Successfully connected to Azure Tenant: $TenantID"
+            }
+            else {
+                Write-Host "`nAlready connected to Azure Tenant: $($AzContext.Tenant.Id)`n" -ForegroundColor Green
+            }
+
+            # Validate that the provided Subscription IDs exist in the current context
+            $Script:SubIds = Get-AzSubscription -ErrorAction Stop -WarningAction Ignore
+            Write-Verbose "Connected to Azure Tenant: $($AzContext.Tenant.Id) with Subscriptions: $($SubscriptionIds -join ', ')"
+        }
+        catch {
+            throw "Failed to connect to Azure Tenant: $TenantID or retrieve subscriptions. Error: $_"
+        }
+    }
+
+    end {
+        if ($AzContext) {
+            Write-Verbose "Connection process completed successfully."
+        }
+        else {
+            throw "Connection process failed. No valid Azure context available."
+        }
     }
   }
 
@@ -1639,7 +1693,7 @@ $Script:Runtime = Measure-Command -Expression {
   Test-Runbook
 
   Write-Debug "Calling Function: Connect-ToAzure"
-  Connect-ToAzure
+  Connect-ToAzure -TenantID $TenantID -AzureEnvironment $AzureEnvironment
 
   Write-Debug 'Calling Function: Start-ScopesLoop'
   Start-ScopesLoop
@@ -1667,3 +1721,4 @@ Write-Host (' Minutes')
 Write-Host 'Result File: ' -NoNewline
 Write-Host $Script:JsonFile -ForegroundColor Blue
 Write-Host '---------------------------------------------------------------------'
+
