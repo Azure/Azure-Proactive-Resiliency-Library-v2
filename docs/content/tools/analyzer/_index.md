@@ -57,12 +57,14 @@ $iswindows ? (unblock-file ./2_wara_data_analyzer.ps1) : (Write-host "Unblock no
     {{< figure src="../../img/tools/collector-7.png" width="40%" >}}
 
 2. Execute script pointing the -JSONFile parameter to file created by the WARA Collector script.
+   - The script accepts both short and/or full paths.
+
   {{< figure src="../../img/tools/analyzer-1.png" width="100%" >}}
 
-3. Select "R" to allow script to run
+1. Select "R" to allow script to run
   {{< figure src="../../img/tools/analyzer-2.png" width="100%" >}}
 
-4. After the script completes it will create a file called `WARA Action Plan.xlsx` to the same file path.
+1. After the script completes it will create a file called `WARA Action Plan.xlsx` to the same file path.
 
 ## Action Plan Analysis
 
