@@ -41,6 +41,13 @@ $iswindows ? (unblock-file ./1_wara_collector.ps1) : (Write-host "Unblock not re
 #Modify these parameters and run the script
 ./1_wara_collector.ps1 -TenantID "00000000-0000-0000-0000-000000000000" -SubscriptionIds "/subscriptions/00000000-0000-0000-0000-000000000000"
 ```
+### Local Machine
+
+![Alt text](quickstartexample.gif)
+
+### Cloud Shell
+
+![Alt text](quickstartexample_cloudshell.gif)
 
 ## How to download
 
