@@ -34,7 +34,7 @@ This script is part of the Microsoft Well-Architected Reliability Assessment (WA
 
 ```powershell
 #Create new "WARA" directory under C:\ and navigate to C:\WARA. If not Windows then do nothing and move on.
-$iswindows ? $(mkdir C:\WARA;cd C:\WARA) : (Write-Host "C:\WARA - Not Required")
+$iswindows ? $(mkdir C:\WARA -ErrorAction SilentlyContinue;cd C:\WARA) : (Write-Host "C:\WARA - Not Required")
 
 #Download the latest version of the script
 invoke-webrequest https://aka.ms/aprl/tools/1 -out 1_wara_collector.ps1
@@ -200,7 +200,7 @@ In the configFile.txt the configuration looks like:
 ```text
 [tags]
 App||Application!~App3
-env|environment!~dev||qa
+env||environment!~dev||qa
 ```
 
 In PowerShell command line the configuration looks like:
