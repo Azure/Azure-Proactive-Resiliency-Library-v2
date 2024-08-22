@@ -83,7 +83,7 @@ See at the end of this page various examples of how to run this script - [Exampl
 2. Upload the WARA Collector Script to Cloud Shell
   {{< figure src="../../img/tools/collector-2.png" width="60%" >}}
 
-    Or download the script from GtiHub
+    Or download the script from GitHub
 
     ```shell
     iwr https://aka.ms/aprl/tools/1 -out 1_wara_collector.ps1
@@ -363,7 +363,7 @@ Provide parameters via ConfigFile:
 config.txt
 
 ```text
-[tenantid]
+[tenantId]
 00000000-0000-0000-0000-000000000000
 
 [subscriptionIds]

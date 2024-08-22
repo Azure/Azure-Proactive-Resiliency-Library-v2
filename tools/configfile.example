@@ -1,7 +1,7 @@
-[tenantid]
+[tenantId]
 tenantid
 
-[subscriptions]
+[subscriptionIds]
 /subscriptions/<subid>
 
 [resourcegroups]
