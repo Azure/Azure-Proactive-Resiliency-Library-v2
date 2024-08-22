@@ -25,6 +25,9 @@ This Data Analyzer script is the second script used during Well-Architected Reli
 - Once the script is downloaded you can execute it by running ./2_wara_data_analyzer.ps1
 
 ```powershell
+#Create new "WARA" directory under C:\ and navigate to C:\WARA. If not Windows then do nothing and move on.
+$iswindows ? $(mkdir C:\WARA -ErrorAction SilentlyContinue;cd C:\WARA) : (Write-Host "C:\WARA - Not Required")
+
 #Download the latest version of the script
 invoke-webrequest https://aka.ms/aprl/tools/2 -out 2_wara_data_analyzer.ps1
 
@@ -115,4 +118,4 @@ Path to the JSON file created by the `1_wara_collector` script.
 
 ### Example 1
 ```powershell
-.\2_wara_data_analyzer.ps1 -JSONFile 'C:\Temp\WARA_File_2024-04-01_10_01.json' -Debugging
+.\2_wara_data_analyzer.ps1 -JSONFile 'C:\Temp\WARA_File_2024-04-01_10_01.json'
