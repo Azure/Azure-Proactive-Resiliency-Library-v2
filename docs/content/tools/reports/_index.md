@@ -32,7 +32,7 @@ $iswindows ? (unblock-file ./3_wara_reports_generator.ps1) : (Write-host "Unbloc
 
 #Modify these parameters and run the script
 .\3_wara_reports_generator.ps1 -CustomerName 'Contoso' -WorkloadName 'E-Commerce' -ExcelFile 'C:\scripts\wara\WARA Action Plan 2024-08-08-11-57.xlsx'
-
+```
 ## How to download
 
 - [GitHub Link to Download](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/3_wara_reports_generator.ps1)
