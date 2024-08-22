@@ -90,6 +90,7 @@ See at the end of this page various examples of how to run this script - [Exampl
     ```
 
 3. Execute script leveraging parameters
+   - The script accepts both short and/or full paths.
 
     {{< figure src="../../img/tools/collector-3.png" width="100%" >}}
 
@@ -98,10 +99,10 @@ See at the end of this page various examples of how to run this script - [Exampl
 4. Select "A" to allow modules to install
   {{< figure src="../../img/tools/collector-4.png" width="100%" >}}
 
-5. After Script completes, download the produced json file to your machine
+1. After Script completes, download the produced json file to your machine
   {{< figure src="../../img/tools/collector-5.png" width="100%" >}}
 
-6. Read how to execute the [Analyzer Script](../analyzer/_index.md) to generate the Excel report.
+1. Read how to execute the [Analyzer Script](../analyzer/_index.md) to generate the Excel report.
 
 ### 1.2 Local Machine
 
