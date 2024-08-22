@@ -10,9 +10,20 @@ Well-Architected Reliability Assessment Script
 .DESCRIPTION
 The script "2_wara_data_analyzer" will process the JSON file created by the "1_wara_collector" script and will create the core WARA Action Plan Excel file.
 
+.PARAMETER Debugging
+Switch to enable debugging mode.
+
+.PARAMETER Help
+Switch to display help information.
+
+.PARAMETER JSONFile
+Path to the JSON file created by the "1_wara_collector" script.
+
+.EXAMPLE
+.\2_wara_data_analyzer.ps1 -JSONFile 'C:\Temp\WARA_File_2024-04-01_10_01.json' -Debugging
+
 .LINK
 https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2
-
 #>
 
 Param(
