@@ -93,3 +93,20 @@ $iswindows ? (unblock-file ./2_wara_data_analyzer.ps1) : (Write-host "Unblock no
 5. Once all manual validations of the resources in the "ImpactedResources" worksheet categorized by "IMPORTANT" are completed, and all recommendations for Service Retirements, Support Tickets and Outages were created in the "Recommendations" worksheet, the Action Plan is completed and it is time to run the last script that will generate final reports in Word and PowerPoint formats.
 
 6. Read how to execute the [Reports Script](../reports/_index.md) to generate the final Word and PowerPoint reports.
+
+## PARAMETERS
+
+### Debugging
+Switch to enable debugging mode.
+
+### Help
+Switch to display help information.
+
+### JSONFile
+Path to the JSON file created by the `1_wara_collector` script.
+
+## EXAMPLES
+
+### Example 1
+```powershell
+.\2_wara_data_analyzer.ps1 -JSONFile 'C:\Temp\WARA_File_2024-04-01_10_01.json' -Debugging
