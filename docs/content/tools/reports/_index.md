@@ -90,3 +90,56 @@ $iswindows ? (unblock-file ./3_wara_reports_generator.ps1) : (Write-host "Unbloc
   {{< hint type=important >}}
   Updates will need to be made prior to presenting to any audience.
   {{< /hint >}}
+## SYNOPSIS
+Well-Architected Reliability Assessment Report Generator Script
+
+## DESCRIPTION
+The script `3_wara_reports_generator` processes the Excel file created by the `2_wara_data_analyzer` script and generates the final PowerPoint and Word reports for the Well-Architected Reliability Assessment.
+
+## PARAMETERS
+
+### Help
+Switch to display help information.
+- **Required**: No
+- **Position**: Named
+
+### Debugging
+Switch to enable debugging mode.
+- **Required**: No
+- **Position**: Named
+
+### CustomerName
+Name of the customer for whom the report is being generated.
+- **Required**: No
+- **Position**: Named
+
+### WorkloadName
+Name of the workload being assessed.
+- **Required**: No
+- **Position**: Named
+
+### ExcelFile
+Path to the Excel file created by the `2_wara_data_analyzer` script.
+- **Required**: Yes
+- **Position**: 0
+
+### Heavy
+Switch to enable heavy processing mode. When enabled, this mode introduces additional delays using Start-Sleep at various points in the script to handle heavy environments more gracefully. This can help in scenarios where the system resources are limited or the operations being performed are resource-intensive, ensuring the script doesn't overwhelm the system.
+- **Required**: No
+- **Position**: Named
+
+### PPTTemplateFile
+Path to the PowerPoint template file.
+- **Required**: No
+- **Position**: Named
+
+### WordTemplateFile
+Path to the Word template file.
+- **Required**: No
+- **Position**: Named
+
+## EXAMPLES
+
+### Example 1
+```powershell
+.\3_wara_reports_generator.ps1 -ExcelFile 'C:\WARA_Script\WARA Action Plan 2024-03-07_16_06.xlsx' -CustomerName 'ABC Customer' -WorkloadName 'SAP On Azure' -Heavy -PPTTemplateFile 'C:\Templates\Template.pptx' -WordTemplateFile 'C:\Templates\Template.docx'

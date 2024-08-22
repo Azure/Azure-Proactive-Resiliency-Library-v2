@@ -98,12 +98,18 @@ $iswindows ? (unblock-file ./2_wara_data_analyzer.ps1) : (Write-host "Unblock no
 
 ### Debugging
 Switch to enable debugging mode.
+- **Required**: No
+- **Position**: Named
 
 ### Help
 Switch to display help information.
+- **Required**: No
+- **Position**: Named
 
 ### JSONFile
 Path to the JSON file created by the `1_wara_collector` script.
+- **Required**: Yes
+- **Position**: 0
 
 ## EXAMPLES
 
