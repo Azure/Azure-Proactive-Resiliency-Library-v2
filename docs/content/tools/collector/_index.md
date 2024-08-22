@@ -26,12 +26,16 @@ This script is part of the Microsoft Well-Architected Reliability Assessment (WA
 - Role Based Access Control: Reader role to access to resources to be evaluated
 
 ## Quick Start (Cloud Shell or Local Machine)
-
+- We recommend running the script from a *Non-OneDrive* folder.
+  - The script block below will handle this for you.
 - Download and run the collector script by copying and modifying this script block
 - You must replace the TenantID and SubscriptionIds/ResourceGroups to match your tenant and scope resource ids.
 - Once the script is downloaded you can execute it by running ./1_wara_collector.ps1
 
 ```powershell
+#Create new "WARA" directory under C:\ and navigate to C:\WARA. If not Windows then do nothing and move on.
+$iswindows ? $(mkdir C:\WARA;cd C:\WARA) : (Write-Host "C:\WARA - Not Required")
+
 #Download the latest version of the script
 invoke-webrequest https://aka.ms/aprl/tools/1 -out 1_wara_collector.ps1
 
