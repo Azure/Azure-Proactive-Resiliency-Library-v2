@@ -1,7 +1,9 @@
-# Runbooks
+## Overview
+
 Runbooks are JSON files that allow extensive customization of KQL queries executed by WARA tooling and the resources these queries target. They also support the integration of custom KQL queries. Read on to learn more about using runbooks with WARA tooling.
 
 ## Selectors
+
 Runbooks use selectors to identify groups of Azure resources for specific checks. [Selectors can be any valid KQL `where` condition.](https://learn.microsoft.com/azure/data-explorer/kusto/query/where-operator)
 
 Here are a few examples of valid runbook selectors:
@@ -29,6 +31,7 @@ Each selector has a name (which can be referenced later in specific checks) and 
 Read on to learn how selectors and checks work together to run KQL queries against arbitrary groups of resources.
 
 ## Checks
+
 Checks combine selectors with specific KQL queries to run precise checks on arbitrary sets of resources.
 
 Here's an example using previously defined selectors:
@@ -58,7 +61,7 @@ Let's break this down line by line:
   - `my_app_uses_managed_disks`: Verifies that all resources with the tag `app` set to `my_app` use managed disks.
   - `my_group_uses_managed_disks`: Verifies that all resources in the `my_group` resource group use managed disks.
   - `my_app_and_my_group_uses_managed_disks`: Verifies that all resources in the `my_group` resource group with the tag `app` set to `my_app` use managed disks.
- 
+
 ### How selectors are applied to KQL queries
 There are two different ways in which selectors can be applied to KQL queries:
 
@@ -113,7 +116,7 @@ resources
 |-- network
     |-- virtualnetworks
         |-- kql
-            |-- bd24415f-2532-4943-8fe0-283abf1e2339.kql 
+            |-- bd24415f-2532-4943-8fe0-283abf1e2339.kql
 ```
 
 All queries must run the following properties:

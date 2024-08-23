@@ -110,6 +110,7 @@ Switch to display help information.
 ### JSONFile
 
 Path to the JSON file created by the `2_wara_data_analyzer.ps1` script.
+
 - **Required**: Yes
 - **Position**: 0
 
