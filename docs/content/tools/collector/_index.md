@@ -10,10 +10,9 @@ geekdocCollapseSection: false
 
 This script is part of the Microsoft Well-Architected Reliability Assessment (WARA) engagement. It helps customers validate whether their Azure resources are architected and configured according to Microsoft best practices. The script achieves this by running Azure Resource Graph queries (Kusto/KQL) against Azure subscriptions and resources. Additionally, it collects information about closed support tickets, active Azure Advisor reliability recommendations, past Azure Service Health retirement and outage notifications, and the configuration of Azure Service Health alerts, all of which are relevant for the reliability recommendations provided at the end of the engagement. The collected data is then structured and exported into a JSON file, which is later used as input for the second script, the Data Analyzer script (2_wara_data_analyzer.ps1).
 
-{{< hint type=important >}} 
+{{< hint type=important >}}
 These Azure Resource Graph queries only read ARM (Azure Resource Manager) data. They do not access or collect any keys, secrets, passwords, or other confidential information. The queries only gather information about how resources are deployed and configured. If you would like to learn more, you can explore the Azure Resource Graph Explorer and run some of the query examples provided in the Azure portal.
 {{< /hint >}}
-
 
 ## Requirements
 
@@ -74,7 +73,7 @@ See at the end of this page various examples of how to run this script - [Exampl
 
 1. Cloud Shell - Requires Cloud Shell be configured with write access to a file share within the same tenant
 
-2. Local Machine - Requires current modules leveraged in the script be installed
+1. Local Machine - Requires current modules leveraged in the script be installed
 
 ### 1.1 - Cloud Shell
 
@@ -82,7 +81,7 @@ See at the end of this page various examples of how to run this script - [Exampl
     - If this is your first time using Cloud Shell, refer to the getting started guide from Microsoft Learn - [Azure Cloud Shell](https://learn.microsoft.com/en-us/azure/cloud-shell/get-started/classic?tabs=azurecli#start-cloud-shell).
     {{< figure src="../../img/tools/collector-1.png" width="100%" >}}
 
-2. Upload the WARA Collector Script to Cloud Shell
+1. Upload the WARA Collector Script to Cloud Shell
     {{< figure src="../../img/tools/collector-2.png" width="60%" >}}
     Or download the script from GitHub
 
@@ -90,12 +89,12 @@ See at the end of this page various examples of how to run this script - [Exampl
     iwr https://aka.ms/aprl/tools/1 -out 1_wara_collector.ps1
     ```
 
-3. Execute script leveraging parameters
+1. Execute script leveraging parameters
    - The script accepts both short and/or full paths.
     {{< figure src="../../img/tools/collector-3.png" width="100%" >}}
     For complex Subscription, ResourceGroups and Tags filtering scenarios we highly recommend using [ConfigFiles - See here an example under config.txt in Example 5](#example-5)
 
-4. Select "A" to allow modules to install
+1. Select "A" to allow modules to install
   {{< figure src="../../img/tools/collector-4.png" width="100%" >}}
 
 1. After Script completes, download the produced json file to your machine
@@ -148,10 +147,10 @@ The filtering capabilities are designed for targeting specific Azure resources, 
 
 `/subscriptions/11111111-1111-1111-1111-111111111111` in a configuration file always take explicit precedence over any smaller, more specific scope.
 
-2. Resource Groups
+1. Resource Groups
    - These scopes can be used explicitly where you need to grab a resource group from a subscription but not evaluate the whole subscription.
 
-3. Tags
+1. Tags
    - When your resources have been explicitly scoped as above - the script will then further refine your results based on the tags provided to the script via parameters or configuration file.
 
 ### Filtering Considerations
@@ -275,9 +274,9 @@ config.txt
 /subscriptions/55555555-5555-5555-5555-555555555555/resourceGroups/RG-1
 ```
 
-{{< hint type=important >}}  
+{{< hint type=important >}}
 As you're filtering Sub-5 by ResourceGroup, do not pass Sub-5 in the Subscriptions parameter.
-{{< /hint >}} 
+{{< /hint >}}
 
 ### Example 3
 
@@ -311,9 +310,9 @@ Criticality=~High
 Env=~Prod
 ```
 
-{{< hint type=important >}}  
+{{< hint type=important >}}
 NAS you're filtering Sub-5 by ResourceGroup, you do not pass Sub-5 in the Subscriptions parameter. In this scenario, the script will set as scope all resources in Sub-0 and Sub-3, and in Sub5/RG1, as long as they all have both Tags, Criticality and Env equal to the values that I defined, High and Prod. Resource that do meet these requirements will be put in a separate array called  "out-of-scope", you will see a Worksheet in the excel file with this name and all resources not validated by the tool.
-{{< /hint >}}  
+{{< /hint >}}
 
 ### Example 4
 
@@ -348,13 +347,13 @@ Criticality=~High
 Env=~Prod
 ```
 
-{{< hint type=note >}}  
+{{< hint type=note >}}
 Multiple values do not have to be in the same subscription. You can specify multiple resource groups in unique subscriptions.
-{{< /hint >}}  
+{{< /hint >}}
 
-{{< hint type=note >}}  
+{{< hint type=note >}}
 In the configuration file, we separate multiple entries for a filter by new lines. Where as, from the command line we would pass multiple subscriptions or resource groups using the "string1","string2" pattern. The configuration file is useful for repeated runs, or numerous filters where it may be difficult to troubleshoot syntax in the command line.
-{{< /hint >}}  
+{{< /hint >}}
 
 ### Example 5
 
@@ -391,7 +390,9 @@ Env||Environment!~Dev||QA
 
 ### Runbook Example
 
-> Learn more about runbooks [here](runbooks.md).
+{{< hint type=tip >}}
+Learn more about runbooks [here](runbooks.md).
+{{/hint}}
 
 Run a runbook.
 
@@ -412,8 +413,9 @@ Run a runbook using implicit runbook selectors.
   -UseImplicitRunbookSelectors
 ```
 
-> Note that `-SubscriptionIds` are required when using a runbook. Runbooks are not compatible with `-ConfigFile`, `-ResourceGroups`,  `-Tags`, `-SAP`, `-AVS`, `-HPC`, `-AVD` parameters. Specify subscriptions in scope using `-SubscriptionIds` parameter.
-
+{{< hint type=caution >}}
+Note that `-SubscriptionIds` are required when using a runbook. Runbooks are not compatible with `-ConfigFile`, `-ResourceGroups`,  `-Tags`, `-SAP`, `-AVS`, `-HPC`, `-AVD` parameters. Specify subscriptions in scope using `-SubscriptionIds` parameter.
+{{/hint}}
 
 ## Parameters
 

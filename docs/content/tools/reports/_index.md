@@ -61,7 +61,9 @@ $iswindows ? (unblock-file ./3_wara_reports_generator.ps1) : (Write-host "Unbloc
 
 ## How to run the script
 
-**Important: The Reports Generator script must be run from a Windows Machine with Excel, Word, and PowerPoint installed.**
+{{< hint type=important >}}
+  The Reports Generator script must be run from a Windows Machine with Excel, Word, and PowerPoint installed.
+{{< /hint >}}
 
 ### Local Machine - Reports Generator
 

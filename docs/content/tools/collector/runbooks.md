@@ -1,4 +1,4 @@
-## Overview
+# Overview
 
 Runbooks are JSON files that allow extensive customization of KQL queries executed by WARA tooling and the resources these queries target. They also support the integration of custom KQL queries. Read on to learn more about using runbooks with WARA tooling.
 
@@ -63,6 +63,7 @@ Let's break this down line by line:
   - `my_app_and_my_group_uses_managed_disks`: Verifies that all resources in the `my_group` resource group with the tag `app` set to `my_app` use managed disks.
 
 ### How selectors are applied to KQL queries
+
 There are two different ways in which selectors can be applied to KQL queries:
 
 - **Explicitly**: Including a `// selector` comment in your KQL query will automatically inject the appropriate selector condition at runtime.
@@ -71,11 +72,14 @@ There are two different ways in which selectors can be applied to KQL queries:
   - `// selector` is the "default selector". You can also reference specific selectors in your KQL queries using this syntax: `// selector:name` where `name` is the name of a selector defined in the runbook (e.g., `my_app_resource`). This makes it easy to reference different selector-defined groups of resources within the same KQL query.
 - **Implicitly**: Most KQL queries including the default set included in APRL v2 don't include selector comments. Use the `-UseImplicitRunbookSelectors` script switch to automatically wrap every KQL query in an inner join that limits the scope of the query.
 
-> __Important__: By default, implicit selectors will not be applied due to constraints on the total number of joins that can be included in a resource graph query. To use implicit selectors, you have to include the `-UseImplicitRunbookSelectors` switch when running the script.
+{{< hint type=important >}}
+By default, implicit selectors will not be applied due to constraints on the total number of joins that can be included in a resource graph query. To use implicit selectors, you have to include the `-UseImplicitRunbookSelectors` switch when running the script.
+{{< /hint >}}
 
 By combining checks and selectors, you can easily define complex WARA review configurations using a simple JSON-based syntax.
 
 ### Parameters
+
 Parameters offer a simple syntax for dynamically customizing selectors and KQL queries. Parameters are arbitrary key/value pairs that are included in the `parameters` section of a runbook like this:
 
 ```json
@@ -102,6 +106,7 @@ resources
 ```
 
 ## Query overrides
+
 While the set of KQL queries included with APRL v2 is very comprehensive, sometimes you need to run a check that's not included in APRL v2. For this reason, runbooks enable you to include additional catalogs of KQL queries in your review.
 
 Query catalogs must follow this folder structure:
@@ -152,4 +157,6 @@ Given this configuration...
   - If there is no existing query, the new query will be added to the run.
 - Next, the script will look for all queries in the `c:\queries\some_more_queries` and apply the same logic as before: if a query has already been loaded with the same ID, it will replace the existing query; otherwise, it will simply load the new query.
 
-> Note that query paths can be absolute or relative to the location of the running script.
+{{< hint type=note >}}
+Note that query paths can be absolute or relative to the location of the running script.
+{{< /hint >}}
