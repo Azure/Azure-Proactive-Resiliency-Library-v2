@@ -207,7 +207,7 @@ env||environment!~dev||qa
 In PowerShell command line the configuration looks like:
 
 ```powershell
--tags "App||Application!~App3","env|environment!~dev||qa""
+-tags "App||Application!~App3","env||environment!~dev||qa""
 ```
 
 ## Runbooks
@@ -444,9 +444,10 @@ When calling the Collector script, you must provide some required parameters. Op
     - `"TagName1=~TagValue1||TagValue2"`
     - `"TagName1||TagName2=~TagValue1||TagValue2"`
     - `"Env||Environment=~Production||Prod","App=~Ecommerce"`
-      - (Result: Subscriptions or ResourceGroups or Resources must have the Tag `**Env**` OR `**Environment**` EQUAL to `**Production**` OR `**Prod**`, AND must have the Tag `**App**` EQUAL to `**Ecommerce**` or `**Ecom**` (All non-case sensitive). If the Tag requirement is met at Subscription level, all Resources within the Subscription are included, if met at ResourceGroup level, all ResourceGroups with the Tags and all their resources are included; if only met at the Resource level, then only resources that met the tag requirement are included).
+      - (Result: Subscriptions or ResourceGroups or Resources must have the Tag `Env` OR `Environment` EQUAL to `Production` OR `Prod`, AND must have the Tag `App` EQUAL to `Ecommerce` or `Ecom` (All non-case sensitive). If the Tag requirement is met at Subscription level, all Resources within the Subscription are included, if met at ResourceGroup level, all ResourceGroups with the Tags and all their resources are included; if only met at the Resource level, then only resources that met the tag requirement are included).
 - **ConfigFile**:
-  - Required when the following parameters are nor provided via command line: `TenantId`, `SubscriptionIDs`, `ResourceGroups` . **Note**: It can't be used in combination with command line parameters.
+  - Required when the following parameters are nor provided via command line: `TenantId`, `SubscriptionIDs`, `ResourceGroups` .
+    - **Note**: It can't be used in combination with command line parameters.
   - Description: Alternate option to providing command line parameters. Specifies a file for filtering of Subscription, ResourceGroup, ResourceId, and Tags.
   - Type: String (file name and extension)
   - Example:

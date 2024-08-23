@@ -1,3 +1,5 @@
+#Requires -Version 7
+
 <#
 .SYNOPSIS
 Well-Architected Reliability Assessment (WARA) v2 collector script

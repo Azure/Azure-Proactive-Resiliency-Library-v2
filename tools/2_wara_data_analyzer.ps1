@@ -1,6 +1,3 @@
-[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingWriteHost', '', Justification = 'False positive as Write-Host does not represent a security risk and this script will always run on host consoles')]
-[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', '', Justification = 'False positive as parameters are not always required')]
-
 #Requires -Version 7
 
 <#
@@ -25,6 +22,9 @@ Path to the JSON file created by the "1_wara_collector" script.
 .LINK
 https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2
 #>
+
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingWriteHost', '', Justification = 'False positive as Write-Host does not represent a security risk and this script will always run on host consoles')]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', '', Justification = 'False positive as parameters are not always required')]
 
 Param(
   [switch]$Debugging,
