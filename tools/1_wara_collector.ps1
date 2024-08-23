@@ -1229,14 +1229,16 @@ $Script:Runtime = Measure-Command -Expression {
           }
         }
 
-        if ($RunbookFile -or [string]::IsNullOrEmpty($ResourceGroup))
-          {
-            $Script:results += $TempResult
-          }
-        else
+        if ($Scope.split("/").count -gt 4 -and $Scope.split("/").count -lt 8)
           {
             $Script:results += Get-ResourceGroupsByList -ObjectList $TempResult -FilterList $Scope -KeyColumn "id"
           }
+        else
+          {
+            $Script:results += $TempResult
+          }
+
+
 
         # Unless we're using a runbook...
         if (!($Script:RunbookChecks -and $Script:RunbookChecks.Count -gt 0)) {
@@ -1290,6 +1292,9 @@ $Script:Runtime = Measure-Command -Expression {
     Write-Host "Filtering Impacted Resources.." -ForegroundColor Cyan
     $Script:ImpactedResources = foreach ($Temp in $Script:results)
       {
+        $TempResID = $Temp.id.split('/')
+        $TempResID = ('/'+$TempResID[1]+ '/'+ $TempResID[2]+ '/'+ $TempResID[3]+ '/'+ $TempResID[4]+ '/'+ $TempResID[5]+ '/'+ $TempResID[6]+ '/'+ $TempResID[7]+ '/'+ $TempResID[8])
+
         if ($Temp.id -eq "n/a") {
           $result = [PSCustomObject]@{
             validationAction = $Temp.validationAction
@@ -1310,9 +1315,9 @@ $Script:Runtime = Measure-Command -Expression {
           }
           $result
         }
-        elseif ($Temp.id -in $Script:InScope.id)
+        elseif ($TempResID -in $Script:InScope.id)
           {
-              $TempDetails = Invoke-FilterResourceID -Resource $Temp.id -List $Script:PreInScopeResources
+              $TempDetails = Invoke-FilterResourceID -Resource $TempResID -List $Script:PreInScopeResources
               $result = [PSCustomObject]@{
                 validationAction = $Temp.validationAction
                 recommendationId = $Temp.recommendationId
@@ -1351,7 +1356,7 @@ $Script:Runtime = Measure-Command -Expression {
             if ($ResIID.id -in $Script:TaggedResources.id)
             {
               $result = [PSCustomObject]@{
-                description      = 'No Action Required - This ResourceType is out of scope of Well-Architected Reliability Assessment engagements.'
+                description      = 'No Action Required - This ResourceType is already covered by its Parent ResourceType, or is out of scope of Well-Architected Reliability Assessment engagements.'
                 type             = $ResIID.type
                 subscriptionId   = $ResIID.subscriptionId
                 resourceGroup    = $ResIID.resourceGroup
@@ -1365,7 +1370,7 @@ $Script:Runtime = Measure-Command -Expression {
         else
           {
             $result = [PSCustomObject]@{
-              description      = 'No Action Required - This ResourceType is out of scope of Well-Architected Reliability Assessment engagements.'
+              description      = 'No Action Required - This ResourceType is already covered by its Parent ResourceType, or is out of scope of Well-Architected Reliability Assessment engagements.'
               type             = $ResIID.type
               subscriptionId   = $ResIID.subscriptionId
               resourceGroup    = $ResIID.resourceGroup
