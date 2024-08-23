@@ -60,7 +60,6 @@ The Data Analyzer script must be run from a Windows Machine with Excel installed
 
 1. Execute script pointing the -JSONFile parameter to file created by the WARA Collector script.
     - The script accepts both short and/or full paths.
-
     {{< figure src="../../img/tools/analyzer-1.png" width="100%" >}}
 
 1. Select "R" to allow script to run
