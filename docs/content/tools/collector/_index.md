@@ -137,8 +137,6 @@ See at the end of this page various examples of how to run this script - [Exampl
 
 1. Read how to execute the [Analyzer Script](../analyzer/_index.md) to generate the Excel report.
 
-<br>
-
 ## Resource Filtering
 
 The filtering capabilities are designed for targeting specific Azure resources, enabling precise and flexible reliability assessments. The scope of the feature includes functionalities that allow users to define the scope and tags and criteria of their reliability checks using parameters or text files.
