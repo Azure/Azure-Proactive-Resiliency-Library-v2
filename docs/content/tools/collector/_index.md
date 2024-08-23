@@ -237,10 +237,10 @@ Provide parameters via ConfigFile:
 config.txt
 
 ```text
-[tenantid]
+[tenantId]
 00000000-0000-0000-0000-000000000000
 
-[subscriptionids]
+[subscriptionIds]
 /subscriptions/00000000-0000-0000-0000-000000000000
 ```
 
@@ -263,7 +263,7 @@ Provide parameters via ConfigFile:
 config.txt
 
 ```text
-[tenantid]
+[tenantId]
 00000000-0000-0000-0000-000000000000
 
 [subscriptionIds]
