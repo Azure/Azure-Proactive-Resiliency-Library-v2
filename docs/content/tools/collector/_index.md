@@ -353,7 +353,7 @@ In the configuration file, we separate multiple entries for a filter by new line
 
 ### Example 5
 
-The workload is hosted in three subscriptions (Sub-0, Sub-4 and Sub-5), but Sub4 and Sub-5 subscriptions are shared with other workloads and I want to not only filter them by ResourceGroups where the components of my workload are hosted, but also I need to filter by two groups of Tags called Criticality and Env or Environment, since all my subscriptions are hosting NonProduction resources, I want to make sure QA and DEV are excluded from my assessment:
+The workload is hosted across three subscriptions (Sub-0, Sub-4, and Sub-5). Since Sub-4 and Sub-5 are shared with other workloads, I need to filter them by specific Resource Groups where my workload components are located, as well as by two sets of tags: 'Criticality' and 'Env' (or 'Environment'). This filtering will ensure that non-production resources, such as QA and DEV environments, are excluded from my assessment.
 
 ```powershell
 .\1_wara_collector.ps1 -TenantID "00000000-0000-0000-0000-000000000000" -SubscriptionIds "/subscriptions/00000000-0000-0000-0000-000000000000" -ResourceGroups "/subscriptions/55555555-5555-5555-5555-555555555555/resourceGroups/RG-1","
