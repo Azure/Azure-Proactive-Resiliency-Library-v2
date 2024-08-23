@@ -82,7 +82,7 @@ The Data Analyzer script must be run from a Windows Machine with Excel installed
       - **Support Tickets**: you will find a list of all the Support Tickets for the subscriptions in the past 6 months (this worksheet might not exist if there are no Support Tickets to be found).
       - **PivotTable**: you will find a couple of pivot tables used to automatically create the charts
       - **Charts**: you will find 3 charts that will be used in the Executive Summary PPTx
-    - At this point, all Azure Resources with recommendations and Azure Resource Graph queries available in APRL, were automatically validated. Follow the next steps to validate the remaining services without automation or that does not exist in APRL yet.
+    - At this point, all Azure Resources with recommendations and Azure Resource Graph queries available in APRL have been automatically validated. Follow the next steps to validate the remaining services without automation or that does not exist in APRL yet.
 
 2. Go to the **ImpactedResources** worksheet, filter Column **B** by **IMPORTANT**, and validate manually the remaining resources for reliability.
 
