@@ -26,6 +26,7 @@ This script is part of the Microsoft Well-Architected Reliability Assessment (WA
 - Role Based Access Control: Reader role to access to resources to be evaluated
 
 ## Quick Start (Cloud Shell or Local Machine)
+
 - We recommend running the script from a *Non-OneDrive* folder.
   - The script block below will handle this for you.
 - Download and run the collector script by copying and modifying this script block
@@ -45,6 +46,7 @@ $iswindows ? (unblock-file ./1_wara_collector.ps1) : (Write-host "Unblock not re
 #Modify these parameters and run the script
 ./1_wara_collector.ps1 -TenantID "00000000-0000-0000-0000-000000000000" -SubscriptionIds "/subscriptions/00000000-0000-0000-0000-000000000000"
 ```
+
 ### Local Machine
 
 ![Alt text](quickstartexample.gif)
@@ -56,10 +58,13 @@ $iswindows ? (unblock-file ./1_wara_collector.ps1) : (Write-host "Unblock not re
 ## How to download
 
 - [GitHub Link to Download](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/1_wara_collector.ps1)
+
 - Download the script using command-line
+
     ```shell
     iwr https://aka.ms/aprl/tools/1 -out 1_wara_collector.ps1
     ```
+
 - [GitHub Link to Sample Output](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/sample-output/WARA_File_2024-05-07_11_59.json)
 
 ## How to run the script
@@ -75,14 +80,11 @@ See at the end of this page various examples of how to run this script - [Exampl
 ### 1.1 - Cloud Shell
 
 1. From the [Azure Portal](https://portal.azure.com/) open Cloud Shell, select PowerShell instead of BASH
-
     - If this is your first time using Cloud Shell, refer to the getting started guide from Microsoft Learn - [Azure Cloud Shell](https://learn.microsoft.com/en-us/azure/cloud-shell/get-started/classic?tabs=azurecli#start-cloud-shell).
-
     {{< figure src="../../img/tools/collector-1.png" width="100%" >}}
 
 2. Upload the WARA Collector Script to Cloud Shell
-  {{< figure src="../../img/tools/collector-2.png" width="60%" >}}
-
+    {{< figure src="../../img/tools/collector-2.png" width="60%" >}}
     Or download the script from GitHub
 
     ```shell
@@ -91,12 +93,8 @@ See at the end of this page various examples of how to run this script - [Exampl
 
 3. Execute script leveraging parameters
    - The script accepts both short and/or full paths.
-
     {{< figure src="../../img/tools/collector-3.png" width="100%" >}}
-
     For complex Subscription, ResourceGroups and Tags filtering scenarios we highly recommend using [ConfigFiles - See here an example under config.txt in Example 5](#example-5)
-
-
 
 4. Select "A" to allow modules to install
   {{< figure src="../../img/tools/collector-4.png" width="100%" >}}
@@ -150,9 +148,12 @@ The filtering capabilities are designed for targeting specific Azure resources, 
 
 1. Subscriptions
    - Subscription scopes like `-SubscriptionIds "/subscriptions/00000000-0000-0000-0000-000000000000"` or `[subscriptionIds]`
+
 `/subscriptions/11111111-1111-1111-1111-111111111111` in a configuration file always take explicit precedence over any smaller, more specific scope.
+
 2. Resource Groups
    - These scopes can be used explicitly where you need to grab a resource group from a subscription but not evaluate the whole subscription.
+
 3. Tags
    - When your resources have been explicitly scoped as above - the script will then further refine your results based on the tags provided to the script via parameters or configuration file.
 
@@ -490,5 +491,3 @@ When calling the Collector script, you must provide some required parameters. Op
   - Description: Enables the use of implicit runbook selectors. When this switch is enabled, each resource graph query will be wrapped in an inner join that filters the results to only include resources that match the selector. This is useful when queries do not include selectors.
   - Type: Switch
   - `-UseImplicitRunbookSelectors`
-
-<br>
