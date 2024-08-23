@@ -311,7 +311,9 @@ Criticality=~High
 Env=~Prod
 ```
 
-**Important**: Note that since you are filtering Sub-5 by ResourceGroup, you do not pass Sub-5 in the Subscriptions parameter. In this scenario, the script will set as scope all resources in Sub-0 and Sub-3, and in Sub5/RG1, as long as they all have both Tags, Criticality and Env equal to the values that I defined, High and Prod. Resource that do meet these requirements will be put in a separate array called  "out-of-scope", you will see a Worksheet in the excel file with this name and all resources not validated by the tool.
+{{< hint type=important >}}  
+NAS you're filtering Sub-5 by ResourceGroup, you do not pass Sub-5 in the Subscriptions parameter. In this scenario, the script will set as scope all resources in Sub-0 and Sub-3, and in Sub5/RG1, as long as they all have both Tags, Criticality and Env equal to the values that I defined, High and Prod. Resource that do meet these requirements will be put in a separate array called  "out-of-scope", you will see a Worksheet in the excel file with this name and all resources not validated by the tool.
+{{< /hint >}}  
 
 ### Example 4
 
