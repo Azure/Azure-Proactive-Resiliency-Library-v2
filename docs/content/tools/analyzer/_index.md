@@ -70,7 +70,6 @@ The Data Analyzer script must be run from a Windows Machine with Excel installed
 ## Action Plan Analysis
 
 1. Once the script has completed, open the Excel Action Plan and familiarize yourself with the structure of the file, generated data, resources collected, pivot tables, and charts created.
-
     - These are the worksheets:
       - **Recommendations**: you will find all Recommendations, their category, impact, description, learn more links, and much more.
         - Note that Columns A and B are counting the number of Azure Resources associated with the RecommendationID.
@@ -82,23 +81,15 @@ The Data Analyzer script must be run from a Windows Machine with Excel installed
       - **Support Tickets**: you will find a list of all the Support Tickets for the subscriptions in the past 6 months (this worksheet might not exist if there are no Support Tickets to be found).
       - **PivotTable**: you will find a couple of pivot tables used to automatically create the charts
       - **Charts**: you will find 3 charts that will be used in the Executive Summary PPTx
-    - At this point, all Azure Resources with recommendations and Azure Resource Graph queries available in APRL have been automatically validated. Follow the next steps to validate the remaining services without automation or that does not exist in APRL yet.
-
-2. Go to the **ImpactedResources** worksheet, filter Column **B** by **IMPORTANT**, and manually validate the remaining resources for reliability.
-
+    - At this point, all Azure Resources with recommendations and Azure Resource Graph queries available in APRL, were automatically validated. Follow the next steps to validate the remaining services without automation or that does not exist in APRL yet.
+1. Go to the **ImpactedResources** worksheet, filter Column **B** by **IMPORTANT**, and validate manually the remaining resources for reliability.
    - **IMPORTANT - Query under development** - For each Azure Resource in each row in this category, the resource could not be validated automatically because the associated recommendation in APRL does not have a KQL/Azure Resource Graph Query yet, thus manual validation is necessary. Using the GUID of the Recommendation, go to the "Recommendations" worksheet, read the recommendation, then open the Azure Portal and validate if the resource is compliant with the recommendations. If it is compliant, delete the row.
-
    - **IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually** - For each Azure Resource in each row in this category, the resource could not be validated automatically because the associated recommendation in APRL is not possible to be validated with KQL/Azure Resource Graph Query, thus manual validation is necessary. Using the GUID of the Recommendation, go to the "Recommendations" worksheet, read the recommendation, then open the Azure Portal and validate if the resource is compliant with the recommendations. If it is compliant, delete the row.
-
    - **IMPORTANT - ServiceType Not Available in APRL - Validate Resources manually if Applicable, if not delete this row** - For each Azure Resource in each row in this category, the resource could not be validated automatically because there are no recommendations in APRL or Advisor for the Service, thus manual validation is necessary. Based on the Azure Documentation for each Service, go to the "Recommendations" worksheet, create your own recommendations for Reliability, then open the Azure Portal and validate if the resources are compliant with the recommendation you created. If they are compliant, delete the rows in the "ImpactedResources".
-
-3. Remove/add any recommendations based on your analysis prior to generating reports.
-
-4. For all relevant Outages, Service Retirements, and Support Tickets, create actionable Recommendations in the `Recommendations` worksheet.
-
-5. Once all manual validations of the resources in the 'ImpactedResources' worksheet categorized as 'IMPORTANT' are completed, and all recommendations for service retirements, support tickets, and outages have been created in the 'Recommendations' worksheet, the Action Plan is complete, and it is time to run the final script that will generate the reports in Word and PowerPoint formats.
-
-6. Read how to execute the [Reports Script](../reports/_index.md) to generate the final Word and PowerPoint reports.
+1. Remove/add any recommendations based on your analysis prior to generating reports
+1. For relevant Outages, all Service Retirements, and relevant Support Tickets, create actionable Recommendations in the "Recommendations" worksheet.
+1. Once all manual validations of the resources in the "ImpactedResources" worksheet categorized by "IMPORTANT" are completed, and all recommendations for Service Retirements, Support Tickets and Outages were created in the "Recommendations" worksheet, the Action Plan is completed and it is time to run the last script that will generate final reports in Word and PowerPoint formats.
+1. Read how to execute the [Reports Script](../reports/_index.md) to generate the final Word and PowerPoint reports.
 
 ## PARAMETERS
 
