@@ -6,9 +6,7 @@ geekdocCollapseSection: false
 
 {{< toc >}}
 
-# Well-Architected Reliability Assessment (WARA) Collector Script
-
-## Description
+## Overview
 
 This script is part of the Microsoft Well-Architected Reliability Assessment (WARA) engagement. It helps customers validate whether their Azure resources are architected and configured according to Microsoft best practices. The script achieves this by running Azure Resource Graph queries (Kusto/KQL) against Azure subscriptions and resources. Additionally, it collects information about closed support tickets, active Azure Advisor reliability recommendations, past Azure Service Health retirement and outage notifications, and the configuration of Azure Service Health alerts, all of which are relevant for the reliability recommendations provided at the end of the engagement. The collected data is then structured and exported into a JSON file, which is later used as input for the second script, the Data Analyzer script (2_wara_data_analyzer.ps1).
 
