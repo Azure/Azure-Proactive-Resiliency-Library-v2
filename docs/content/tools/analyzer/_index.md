@@ -77,7 +77,7 @@ $iswindows ? (unblock-file ./2_wara_data_analyzer.ps1) : (Write-host "Unblock no
       - **Other-OutOfScope**: you will find a list of the Resources that are Out of Scope of the WARA engagement based on the ResourceTypes, after all filters have been applied.
       - **ResourceTypes**: you will find a list of all ResourceTypes the customer is using, number of Resources deployed for each one, and if there are Recommendations for the ResourceType in APRL.
       - **Outages**: you will find a list of all the outages that impacted the subscriptions (this worksheet might not exist if there are no Outages to be found).
-      - **Retirements**: you will find a list of all the next retirements in the subscriptions (this worksheet might not exist if there are no Retirements to be found).
+      - **Retirements**: Azure services or features that are retired. You will find a list of all the next retirements in the subscriptions (this worksheet might not exist if there are no Retirements to be found).
       - **Support Tickets**: you will find a list of all the Support Tickets for the subscriptions in the past 6 months (this worksheet might not exist if there are no Support Tickets to be found).
       - **PivotTable**: you will find a couple of pivot tables used to automatically create the charts
       - **Charts**: you will find 3 charts that will be used in the Executive Summary PPTx
@@ -112,7 +112,7 @@ Switch to display help information.
 - **Position**: Named
 
 ### JSONFile
-Path to the JSON file created by the `1_wara_collector` script.
+Path to the JSON file created by the `2_wara_data_analyzer.ps1` script.
 - **Required**: Yes
 - **Position**: 0
 
@@ -120,4 +120,4 @@ Path to the JSON file created by the `1_wara_collector` script.
 
 ### Example 1
 ```powershell
-.\2_wara_data_analyzer.ps1 -JSONFile 'C:\Temp\WARA_File_2024-04-01_10_01.json'
+.\2_wara_data_analyzer.ps1 -JSONFile '.\WARA_File_2024-04-01_10_01.json'
