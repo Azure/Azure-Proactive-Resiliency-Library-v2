@@ -55,7 +55,6 @@ The Data Analyzer script must be run from a Windows Machine with Excel installed
 {{< /hint >}}
 
 1. Change your directory to the same location that you have downloaded the WARA Data Analyzer script to.
-
     - We recommend running this as close to your C:\ as path to avoid errors related to file path length.
     {{< figure src="../../img/tools/collector-7.png" width="40%" >}}
 
