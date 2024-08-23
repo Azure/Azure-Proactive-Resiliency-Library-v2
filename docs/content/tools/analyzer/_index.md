@@ -58,7 +58,7 @@ The Data Analyzer script must be run from a Windows Machine with Excel installed
     - We recommend running this as close to your C:\ as path to avoid errors related to file path length.
     {{< figure src="../../img/tools/collector-7.png" width="40%" >}}
 
-2. Execute script pointing the -JSONFile parameter to file created by the WARA Collector script.
+1. Execute script pointing the -JSONFile parameter to file created by the WARA Collector script.
     - The script accepts both short and/or full paths.
 
     {{< figure src="../../img/tools/analyzer-1.png" width="100%" >}}
