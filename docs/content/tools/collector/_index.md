@@ -281,7 +281,7 @@ As you're filtering Sub-5 by ResourceGroup, do not pass Sub-5 in the Subscriptio
 
 ### Example 3
 
-The workload is hosted in three subscriptions (Sub-0, Sub-3 and Sub-5), but Sub 5 subscription is shared with other workloads and I want to not only filter the Sub-5 subscription by a single ResourceGroup where the components of my workload are hosted but also I need to filter by two Tags called Criticality and Env, since all my subscriptions are hosting NonProduction resources too:
+The workload is hosted in three subscriptions (Sub-0, Sub-3, and Sub-5). However, since the Sub-5 subscription is shared with other workloads, I need to filter it not only by a specific Resource Group where the components of my workload are hosted but also by two tags, Criticality and Env, as all my subscriptions are hosting non-production resources as well.
 
 ```powershell
 .\1_wara_collector.ps1 -TenantID "00000000-0000-0000-0000-000000000000" -SubscriptionIds "/subscriptions/00000000-0000-0000-0000-000000000000","/subscriptions/33333333-3333-3333-3333-333333333333" -ResourceGroups "/subscriptions/55555555-5555-5555-5555-555555555555/resourceGroups/RG-1" -Tags 'Criticality=~High','Env=~Prod'
