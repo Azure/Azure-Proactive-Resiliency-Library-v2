@@ -90,7 +90,7 @@ See at the end of this page various examples of how to run this script - [Exampl
     ```
 
 1. Execute script leveraging parameters
-   - The script accepts both short and/or full paths.
+    - The script accepts both short and/or full paths.
     {{< figure src="../../img/tools/collector-3.png" width="100%" >}}
     For complex Subscription, ResourceGroups and Tags filtering scenarios we highly recommend using [ConfigFiles - See here an example under config.txt in Example 5](#example-5)
 
@@ -127,7 +127,7 @@ See at the end of this page various examples of how to run this script - [Exampl
 
 1. Access the folder `c:\wara\` and Execute script leveraging the necessary parameters
 
-   - {{< figure src="../../img/tools/collector-8.png" width="100%" >}}
+    - {{< figure src="../../img/tools/collector-8.png" width="100%" >}}
 
 1. Authenticate with the account that has Reader permissions to the target subscription(s)
   {{< figure src="../../img/tools/collector-9.png" width="40%" >}}
@@ -143,15 +143,15 @@ The filtering capabilities are designed for targeting specific Azure resources, 
 ### Order of operations
 
 1. Subscriptions
-   - Subscription scopes like `-SubscriptionIds "/subscriptions/00000000-0000-0000-0000-000000000000"` or `[subscriptionIds]`
+    - Subscription scopes like `-SubscriptionIds "/subscriptions/00000000-0000-0000-0000-000000000000"` or `[subscriptionIds]`
 
     `/subscriptions/11111111-1111-1111-1111-111111111111` in a configuration file always take explicit precedence over any smaller, more specific scope.
 
 1. Resource Groups
-   - These scopes can be used explicitly where you need to grab a resource group from a subscription but not evaluate the whole subscription.
+    - These scopes can be used explicitly where you need to grab a resource group from a subscription but not evaluate the whole subscription.
 
 1. Tags
-   - When your resources have been explicitly scoped as above - the script will then further refine your results based on the tags provided to the script via parameters or configuration file.
+    - When your resources have been explicitly scoped as above - the script will then further refine your results based on the tags provided to the script via parameters or configuration file.
 
 ### Filtering Considerations
 

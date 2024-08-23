@@ -170,7 +170,7 @@ See at the end of this page various examples of how to run this script - [Exampl
 
 4. Execute script leveraging the necessary parameters
 
-   - {{< figure src="../../img/tools/collector-8.png" width="100%" >}}
+  - {{< figure src="../../img/tools/collector-8.png" width="100%" >}}
 
 5. Authenticate with the account that has Reader permissions to the target subscription(s)
   {{< figure src="../../img/tools/collector-9.png" width="40%" >}}

@@ -76,7 +76,7 @@ $iswindows ? (unblock-file ./3_wara_reports_generator.ps1) : (Write-host "Unbloc
     {{< figure src="../../img/tools/collector-7.png" width="40%" >}}
 
 1. Execute script leveraging needed parameters
-   - The script accepts both short and/or full paths.
+    - The script accepts both short and/or full paths.
 
     ```powershell
       .\3_wara_reports_generator.ps1 -CustomerName 'Contoso' -WorkloadName 'E-Commerce' -ExcelFile '.\WARA Action Plan 2024-08-08-11-57.xlsx'
