@@ -12,7 +12,6 @@ This script is part of the Microsoft Well-Architected Reliability Assessment (WA
 
 **Important:** These Azure Resource Graph queries only read ARM (Azure Resource Manager) data. They do not access or collect any keys, secrets, passwords, or other confidential information. The queries only gather information about how resources are deployed and configured. If you would like to learn more, you can explore the Azure Resource Graph Explorer and run some of the query examples provided in the Azure portal.
 
-<br>
 
 ## Requirements
 
