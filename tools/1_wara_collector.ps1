@@ -1601,7 +1601,7 @@ $Script:Runtime = Measure-Command -Expression {
 
 
   #Call the functions
-  $Script:Version = '2.0.15'
+  $Script:Version = '2.1.14'
   Write-Host 'Version: ' -NoNewline
   Write-Host $Script:Version -ForegroundColor DarkBlue
 

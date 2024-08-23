@@ -2081,7 +2081,7 @@ $Global:Runtime = Measure-Command -Expression {
 
   #Call the functions
   $Global:LogFile = ($PSScriptRoot + '\wara_reports_generator.log')
-  $Global:Version = "2.0.5"
+  $Global:Version = "2.1.5"
   Write-Host "Version: " -NoNewline
   Write-Host $Global:Version -ForegroundColor DarkBlue -NoNewline
   Write-Host " "
