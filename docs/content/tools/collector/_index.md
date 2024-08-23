@@ -275,7 +275,9 @@ config.txt
 /subscriptions/55555555-5555-5555-5555-555555555555/resourceGroups/RG-1
 ```
 
-**Important**: Note that since you are filtering Sub-5 by ResourceGroup, you do not pass Sub-5 in the Subscriptions parameter.
+{{< hint type=important >}}  
+As you're filtering Sub-5 by ResourceGroup, do not pass Sub-5 in the Subscriptions parameter.
+{{< /hint >}} 
 
 ### Example 3
 
