@@ -124,10 +124,10 @@ See at the end of this page various examples of how to run this script - [Exampl
 
 3. Change your directory to the same location where you are hosting your WARA Collector script.
 
-    - We recommend running this as close to your `C:\` as path to avoid errors related to file path length. Create a `c:\scripts\wara\` folder and save all scripts in this folder.
+    - We recommend running this as close to your `C:\` as path to avoid errors related to file path length. Create a `c:\wara\` folder and save all scripts in this folder.
     {{< figure src="../../img/tools/collector-7.png" width="40%" >}}
 
-4. Access the folder `c:\scripts\wara\` and Execute script leveraging the necessary parameters
+4. Access the folder `c:\wara\` and Execute script leveraging the necessary parameters
 
    - {{< figure src="../../img/tools/collector-8.png" width="100%" >}}
 
@@ -159,7 +159,7 @@ The filtering capabilities are designed for targeting specific Azure resources, 
 - If you set a subscription filter for `subscription1` and you also set a resource group filter for `subscription1/resourcegroups/rg-demo1` your results will contain **all** of the resources in `subscription1`
   - This is because we specified `subscription1` and so all of `subscription1` will be evaluated. If we only wanted to evaluate `subscription1/resourcegroups/rg-demo1` then we would include that resource group as a filter and not the full subscription.
 - If you set a subscription filter for `subscription2` and a resourcegroup filter for `subscription1/resourcegroups/rg-demo1` you will evaluate all of `subscription2` and only the resource group `rg-demo-1`.
-- Setting a subscription filter for `subscription3`, a resource group filter for `subscription1/resourcegroups/rg-demo1`, and a tag filter for `environment=~prod` will return **only resources or those in resource groups tagged with environment=~prod within subscription3 and subscription1/resourcegroups/rg-demo1.**
+- Setting a subscription filter for `subscription3`, a resource group filter for `subscription1/resourcegroups/rg-demo1`, and a tag filter for `environment=~prod` will return only resources or those in resource groups tagged with `environment=~prod` within subscription3 and `subscription1/resourcegroups/rg-demo1`.
 
 ### Tags Filtering
 
