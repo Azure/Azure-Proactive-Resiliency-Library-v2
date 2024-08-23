@@ -108,34 +108,34 @@ See at the end of this page various examples of how to run this script - [Exampl
 1. To run the script there are 5 prerequisites that must be completed first:
     1. **The script must be executed from PowerShell 7. Other versions are not supported, for example: Windows PowerShell and PowerShell ISE**
       {{< figure src="../../img/tools/collector-6.png" width="40%" >}}
-    2. **Git must be installed on the local machine - [Git](https://git-scm.com/download/win)**
-    3. **Install required PowerShell Modules:**
+    1. **Git must be installed on the local machine - [Git](https://git-scm.com/download/win)**
+    1. **Install required PowerShell Modules:**
         - `Install-Module -Name ImportExcel -Force -SkipPublisherCheck`
         - `Install-Module -Name Az.ResourceGraph -SkipPublisherCheck`
         - `Install-Module -Name Az.Accounts -SkipPublisherCheck`
-    4. **Unblock the Script**
+    1. **Unblock the Script**
         - So at this moment, you need to allow the execution of scripts not signed locally:
           - `Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser`
           - `Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope LocalMachine`
-    5. **Reader permissions to target subscription(s)**
+    1. **Reader permissions to target subscription(s)**
 
-2. Open a new **PowerShell 7 session** after completing prerequisites
+1. Open a new **PowerShell 7 session** after completing prerequisites
 
-3. Change your directory to the same location where you are hosting your WARA Collector script.
+1. Change your directory to the same location where you are hosting your WARA Collector script.
 
     - We recommend running this as close to your `C:\` as path to avoid errors related to file path length. Create a `c:\wara\` folder and save all scripts in this folder.
     {{< figure src="../../img/tools/collector-7.png" width="40%" >}}
 
-4. Access the folder `c:\wara\` and Execute script leveraging the necessary parameters
+1. Access the folder `c:\wara\` and Execute script leveraging the necessary parameters
 
    - {{< figure src="../../img/tools/collector-8.png" width="100%" >}}
 
-5. Authenticate with the account that has Reader permissions to the target subscription(s)
+1. Authenticate with the account that has Reader permissions to the target subscription(s)
   {{< figure src="../../img/tools/collector-9.png" width="40%" >}}
 
-6. After script completes, a json file with all the results will be saved to the same folder location.
+1. After script completes, a json file with all the results will be saved to the same folder location.
 
-7. Read how to execute the [Analyzer Script](../analyzer/_index.md) to generate the Excel report.
+1. Read how to execute the [Analyzer Script](../analyzer/_index.md) to generate the Excel report.
 
 <br>
 
