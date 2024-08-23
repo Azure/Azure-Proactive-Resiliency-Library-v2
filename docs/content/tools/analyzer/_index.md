@@ -1,5 +1,5 @@
 ---
-title: Well-Architected Reliability Assessment (WARA) analyzer script
+title: Well-Architected Reliability Assessment (WARA) Analyzer Script
 weight: 10
 geekdocCollapseSection: false
 ---
