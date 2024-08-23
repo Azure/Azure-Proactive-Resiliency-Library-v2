@@ -21,7 +21,7 @@ The Reports Generator script serves as the final step in a Well-Architected Reli
 ## Quick Start (Local Machine only - Cloud Shell is not supported)
 
 - Download and run the reports generator script by copying and modifying this script block
-- Once the script is downloaded you can execute it by running ./2_wara_data_analyzer.ps1
+- Once the script is downloaded you can execute it by running ./3_wara_reports_generator.ps1
 
 ```powershell
 #Create new "WARA" directory under C:\ and navigate to C:\WARA. If not Windows then do nothing and move on.
@@ -34,7 +34,7 @@ invoke-webrequest https://aka.ms/aprl/tools/3 -out 3_wara_reports_generator.ps1
 $iswindows ? (unblock-file ./3_wara_reports_generator.ps1) : (Write-host "Unblock not required - Not Windows OS")
 
 #Modify these parameters and run the script
-.\3_wara_reports_generator.ps1 -CustomerName 'Contoso' -WorkloadName 'E-Commerce' -ExcelFile 'C:\wara\WARA Action Plan 2024-08-08-11-57.xlsx'
+.\3_wara_reports_generator.ps1 -CustomerName 'Contoso' -WorkloadName 'E-Commerce' -ExcelFile '.\WARA Action Plan 2024-08-08-11-57.xlsx'
 ```
 ## How to download
 
@@ -56,7 +56,7 @@ $iswindows ? (unblock-file ./3_wara_reports_generator.ps1) : (Write-host "Unbloc
 
 ## How to run the script
 
-**Important: The Reports Generator script must be run from a Windows Machine with Excel installed.**
+**Important: The Reports Generator script must be run from a Windows Machine with Excel, Word, and PowerPoint installed.**
 
 ### Local Machine - Reports Generator
 
@@ -72,7 +72,7 @@ $iswindows ? (unblock-file ./3_wara_reports_generator.ps1) : (Write-host "Unbloc
    - The script accepts both short and/or full paths.
 
   ```powershell
-    .\3_wara_reports_generator.ps1 -CustomerName 'Contoso' -WorkloadName 'E-Commerce' -ExcelFile 'C:\wara\WARA Action Plan 2024-08-08-11-57.xlsx'
+    .\3_wara_reports_generator.ps1 -CustomerName 'Contoso' -WorkloadName 'E-Commerce' -ExcelFile '.\WARA Action Plan 2024-08-08-11-57.xlsx'
   ```
 
   {{< figure src="../../img/tools/generator-2.png" width="100%" >}}
@@ -133,4 +133,4 @@ Path to the Word template file.
 
 ### Example 1
 ```powershell
-.\3_wara_reports_generator.ps1 -ExcelFile 'C:\WARA_Script\WARA Action Plan 2024-03-07_16_06.xlsx' -CustomerName 'ABC Customer' -WorkloadName 'SAP On Azure' -Heavy -PPTTemplateFile 'C:\Templates\Template.pptx' -WordTemplateFile 'C:\Templates\Template.docx'
+.\3_wara_reports_generator.ps1 -ExcelFile '.\WARA Action Plan 2024-03-07-16-06.xlsx' -CustomerName 'ABC Customer' -WorkloadName 'SAP On Azure' -Heavy -PPTTemplateFile '.\Template.pptx' -WordTemplateFile '.\Template.docx'

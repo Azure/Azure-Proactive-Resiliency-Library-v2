@@ -120,4 +120,4 @@ Path to the JSON file created by the `2_wara_data_analyzer.ps1` script.
 
 ### Example 1
 ```powershell
-.\2_wara_data_analyzer.ps1 -JSONFile '.\WARA_File_2024-04-01_10_01.json'
+.\2_wara_data_analyzer.ps1 -JSONFile '.\WARA_File_2024-04-01-10-01.json'
