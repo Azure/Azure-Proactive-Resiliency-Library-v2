@@ -347,7 +347,9 @@ Env=~Prod
 
 **Note**: Multiple values do not have to be in the same subscription. You can specify multiple resource groups in unique subscriptions.
 
-**Note**: In a configuration file we separate multiple entries for a filter by new lines. Where as, from the command line we would pass multiple subscriptions or resource groups using the "string1","string2" pattern. The configuration file is useful for repeated runs, or numerous filters where it may be difficult to troubleshoot syntax in the command line.
+{{< hint type=note >}}  
+In the configuration file, we separate multiple entries for a filter by new lines. Where as, from the command line we would pass multiple subscriptions or resource groups using the "string1","string2" pattern. The configuration file is useful for repeated runs, or numerous filters where it may be difficult to troubleshoot syntax in the command line.
+{{< /hint >}}  
 
 ### Example 5
 
