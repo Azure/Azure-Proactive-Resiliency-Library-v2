@@ -84,7 +84,7 @@ The Data Analyzer script must be run from a Windows Machine with Excel installed
       - **Charts**: you will find 3 charts that will be used in the Executive Summary PPTx
     - At this point, all Azure Resources with recommendations and Azure Resource Graph queries available in APRL have been automatically validated. Follow the next steps to validate the remaining services without automation or that does not exist in APRL yet.
 
-2. Go to the **ImpactedResources** worksheet, filter Column **B** by **IMPORTANT**, and validate manually the remaining resources for reliability.
+2. Go to the **ImpactedResources** worksheet, filter Column **B** by **IMPORTANT**, and manually validate the remaining resources for reliability.
 
    - **IMPORTANT - Query under development** - For each Azure Resource in each row in this category, the resource could not be validated automatically because the associated recommendation in APRL does not have a KQL/Azure Resource Graph Query yet, thus manual validation is necessary. Using the GUID of the Recommendation, go to the "Recommendations" worksheet, read the recommendation, then open the Azure Portal and validate if the resource is compliant with the recommendations. If it is compliant, delete the row.
 
