@@ -248,7 +248,7 @@ config.txt
 
 ### Example 2
 
-The workload is hosted in two subscriptions (Sub-0 and Sub-5), but Sub 5 subscription is shared with other workloads and I want to filter the Sub-5 subscription by a single ResourceGroup where the components of my workload are hosted:
+The workload is hosted in two subscriptions (Sub-0 and Sub-5), but the Sub-5 subscription is shared with other workloads. I want to filter it by a single ResourceGroup specifically where the components of my workload are hosted:
 
 Provide parameters in command line:
 
