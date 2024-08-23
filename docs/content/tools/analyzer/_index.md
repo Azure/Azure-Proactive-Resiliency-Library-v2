@@ -50,7 +50,9 @@ $iswindows ? (unblock-file ./2_wara_data_analyzer.ps1) : (Write-host "Unblock no
 
 ## How to run the script
 
-**Important: The Data Analyzer script must be run from a Windows Machine with Excel installed.**
+{{< hint type=important >}}
+The Data Analyzer script must be run from a Windows Machine with Excel installed.**
+{{< /hint >}}
 
 1. Change your directory to the same location that you have downloaded the WARA Data Analyzer script to.
 
