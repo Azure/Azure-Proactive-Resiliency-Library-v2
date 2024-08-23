@@ -1,6 +1,6 @@
 ---
-title: Well-Architected Reliability Assessment (WARA) Reports Generator Script
-weight: 10
+title: Reports Generator Script
+weight: 30
 geekdocCollapseSection: false
 ---
 

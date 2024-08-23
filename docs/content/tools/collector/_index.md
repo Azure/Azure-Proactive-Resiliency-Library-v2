@@ -1,5 +1,5 @@
 ---
-title: Well-Architected Reliability Assessment (WARA) collector script
+title: Collector Script
 weight: 10
 geekdocCollapseSection: false
 ---
