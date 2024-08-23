@@ -392,7 +392,7 @@ Env||Environment!~Dev||QA
 
 {{< hint type=tip >}}
 Learn more about runbooks [here](runbooks.md).
-{{/hint}}
+{{< /hint >}}
 
 Run a runbook.
 
@@ -415,7 +415,7 @@ Run a runbook using implicit runbook selectors.
 
 {{< hint type=caution >}}
 Note that `-SubscriptionIds` are required when using a runbook. Runbooks are not compatible with `-ConfigFile`, `-ResourceGroups`,  `-Tags`, `-SAP`, `-AVS`, `-HPC`, `-AVD` parameters. Specify subscriptions in scope using `-SubscriptionIds` parameter.
-{{/hint}}
+{{< /hint >}}
 
 ## Parameters
 
