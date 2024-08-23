@@ -406,7 +406,6 @@ Run a runbook using implicit runbook selectors.
 
 > Note that `-SubscriptionIds` are required when using a runbook. Runbooks are not compatible with `-ConfigFile`, `-ResourceGroups`,  `-Tags`, `-SAP`, `-AVS`, `-HPC`, `-AVD` parameters. Specify subscriptions in scope using `-SubscriptionIds` parameter.
 
-<br>
 
 ## Parameters
 
