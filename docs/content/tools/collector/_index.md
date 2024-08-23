@@ -286,7 +286,7 @@ The workload is hosted in three subscriptions (Sub-0, Sub-3 and Sub-5), but Sub 
 Provide parameters via ConfigFile:
 
 ```powershell
-.\Wara_Collector.ps1 -configFile config.txt
+.\1_Wara_Collector.ps1 -configFile config.txt
 ```
 
 config.txt
