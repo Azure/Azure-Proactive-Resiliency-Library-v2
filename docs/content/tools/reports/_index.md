@@ -70,19 +70,19 @@ $iswindows ? (unblock-file ./3_wara_reports_generator.ps1) : (Write-host "Unbloc
 1. You will need to have both the Word and PowerPoint templates downloaded to the same file location.
   {{< figure src="../../img/tools/generator-1.png" width="80%" >}}
 
-2. Change your directory to the same location that you have downloaded the WARA Reports Generator script to.
+1. Change your directory to the same location that you have downloaded the WARA Reports Generator script to.
 
     - We recommend running this as close to your C:\ as path to avoid errors related to file path length.
     {{< figure src="../../img/tools/collector-7.png" width="40%" >}}
 
-3. Execute script leveraging needed parameters
+1. Execute script leveraging needed parameters
    - The script accepts both short and/or full paths.
 
-  ```powershell
-    .\3_wara_reports_generator.ps1 -CustomerName 'Contoso' -WorkloadName 'E-Commerce' -ExcelFile '.\WARA Action Plan 2024-08-08-11-57.xlsx'
-  ```
+    ```powershell
+      .\3_wara_reports_generator.ps1 -CustomerName 'Contoso' -WorkloadName 'E-Commerce' -ExcelFile '.\WARA Action Plan 2024-08-08-11-57.xlsx'
+    ```
 
-  {{< figure src="../../img/tools/generator-2.png" width="100%" >}}
+    {{< figure src="../../img/tools/generator-2.png" width="100%" >}}
 
 1. Select "R" to allow script to run
   {{< figure src="../../img/tools/generator-3.png" width="100%" >}}
