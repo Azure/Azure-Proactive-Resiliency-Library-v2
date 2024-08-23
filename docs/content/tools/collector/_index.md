@@ -212,7 +212,9 @@ In PowerShell command line the configuration looks like:
 
 ## Runbooks
 
-> __Important__: Runbooks are an advanced feature designed for specific workload-aligned use cases. If you're not sure if you need runbooks, you probably don't. Before diving into runbooks, [try using the filtering feature to see if it meets your needs](#resource-filtering).
+{{< hint type=important >}}
+Runbooks are an advanced feature designed for specific workload-aligned use cases. If you're not sure if you need runbooks, you probably don't. Before diving into runbooks, [try using the filtering feature to see if it meets your needs](#resource-filtering).
+{{< /hint >}}
 
 Learn more about using runbooks with the WARA collector script in the [runbooks docs](runbooks.md).
 
