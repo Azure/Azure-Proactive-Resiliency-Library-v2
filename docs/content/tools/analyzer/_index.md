@@ -96,7 +96,7 @@ The Data Analyzer script must be run from a Windows Machine with Excel installed
 
 4. For all relevant Outages, Service Retirements, and Support Tickets, create actionable Recommendations in the `Recommendations` worksheet.
 
-5. Once all manual validations of the resources in the "ImpactedResources" worksheet categorized by "IMPORTANT" are completed, and all recommendations for Service Retirements, Support Tickets and Outages were created in the "Recommendations" worksheet, the Action Plan is completed and it is time to run the last script that will generate final reports in Word and PowerPoint formats.
+5. Once all manual validations of the resources in the 'ImpactedResources' worksheet categorized as 'IMPORTANT' are completed, and all recommendations for service retirements, support tickets, and outages have been created in the 'Recommendations' worksheet, the Action Plan is complete, and it is time to run the final script that will generate the reports in Word and PowerPoint formats.
 
 6. Read how to execute the [Reports Script](../reports/_index.md) to generate the final Word and PowerPoint reports.
 
