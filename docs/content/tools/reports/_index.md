@@ -36,21 +36,28 @@ $iswindows ? (unblock-file ./3_wara_reports_generator.ps1) : (Write-host "Unbloc
 #Modify these parameters and run the script
 .\3_wara_reports_generator.ps1 -CustomerName 'Contoso' -WorkloadName 'E-Commerce' -ExcelFile '.\WARA Action Plan 2024-08-08-11-57.xlsx'
 ```
+
 ## How to download
 
 - [GitHub Link to Download](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/3_wara_reports_generator.ps1)
 - Download the script using command-line
+
     ```shell
     iwr https://aka.ms/aprl/tools/3 -out 3_wara_reports_generator.ps1
     ```
+
 - Download the PowerPoint template using command-line
+
     ```shell
     iwr https://aka.ms/aprl/tools/pptx -out 'Mandatory - Executive Summary presentation - Template.pptx'
     ```
+
 - Download the Word template using command-line
+
     ```shell
     iwr https://aka.ms/aprl/tools/docx -out 'Optional - Assessment Report - Template.docx'
     ```
+
 - [GitHub Link to Sample Output - Executive Summary Presentation](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/sample-output/Executive%20Summary%20Presentation%20-%20Contoso%20Hotels%20-%202024-05-07-12-12.pptx)
 - [GitHub Link to Sample Output - Assessment Report](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/blob/main/tools/sample-output/Assessment%20Report%20-%20Contoso%20Hotels%20-%202024-05-07-12-12.docx)
 
@@ -89,48 +96,65 @@ $iswindows ? (unblock-file ./3_wara_reports_generator.ps1) : (Write-host "Unbloc
 ## PARAMETERS
 
 ### Help
+
 Switch to display help information.
+
 - **Required**: No
 - **Position**: Named
 
 ### Debugging
+
 Switch to enable debugging mode.
+
 - **Required**: No
 - **Position**: Named
 
 ### CustomerName
+
 Name of the customer for whom the report is being generated.
+
 - **Required**: No
 - **Position**: Named
 
 ### WorkloadName
+
 Name of the workload being assessed.
+
 - **Required**: No
 - **Position**: Named
 
 ### ExcelFile
+
 Path to the Excel file created by the `2_wara_data_analyzer` script.
+
 - **Required**: Yes
 - **Position**: 0
 
 ### Heavy
+
 Switch to enable heavy processing mode. When enabled, this mode introduces additional delays using Start-Sleep at various points in the script to handle heavy environments more gracefully. This can help in scenarios where the system resources are limited or the operations being performed are resource-intensive, ensuring the script doesn't overwhelm the system.
+
 - **Required**: No
 - **Position**: Named
 - **Notes**: Use this parameter when your excel action plan has over 10,000 resources or is greater than 10MB. This will ensure your workstation is minimally impacted by the processing.
 
 ### PPTTemplateFile
+
 Path to the PowerPoint template file.
+
 - **Required**: No
 - **Position**: Named
 
 ### WordTemplateFile
+
 Path to the Word template file.
+
 - **Required**: No
 - **Position**: Named
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
 .\3_wara_reports_generator.ps1 -ExcelFile '.\WARA Action Plan 2024-03-07-16-06.xlsx' -CustomerName 'ABC Customer' -WorkloadName 'SAP On Azure' -Heavy -PPTTemplateFile '.\Template.pptx' -WordTemplateFile '.\Template.docx'
