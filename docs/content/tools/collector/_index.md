@@ -94,7 +94,9 @@ See at the end of this page various examples of how to run this script - [Exampl
 
     {{< figure src="../../img/tools/collector-3.png" width="100%" >}}
 
-    For complex Subscription, ResourceGroups and Tags filtering scenarios we highly recommend using [ConfigFiles - See here an example](#example-6---configfile-example)
+    For complex Subscription, ResourceGroups and Tags filtering scenarios we highly recommend using [ConfigFiles - See here an example under config.txt in Example 5](#example-5)
+
+
 
 4. Select "A" to allow modules to install
   {{< figure src="../../img/tools/collector-4.png" width="100%" >}}
@@ -212,7 +214,7 @@ In PowerShell command line the configuration looks like:
 
 ## Runbooks
 
-> __Important__: Runbooks are an advanced feature designed for specific workload-aligned use cases. If you're not sure if you need runbooks, you probably don't. Before diving into runbooks, [try using the filtering feature to see if it meets your needs](#filtering).
+> __Important__: Runbooks are an advanced feature designed for specific workload-aligned use cases. If you're not sure if you need runbooks, you probably don't. Before diving into runbooks, [try using the filtering feature to see if it meets your needs](#resource-filtering).
 
 Learn more about using runbooks with the WARA collector script in the [runbooks docs](runbooks.md).
 
