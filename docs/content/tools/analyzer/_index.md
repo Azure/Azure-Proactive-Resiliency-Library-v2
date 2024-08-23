@@ -92,7 +92,7 @@ The Data Analyzer script must be run from a Windows Machine with Excel installed
 
    - **IMPORTANT - ServiceType Not Available in APRL - Validate Resources manually if Applicable, if not delete this row** - For each Azure Resource in each row in this category, the resource could not be validated automatically because there are no recommendations in APRL or Advisor for the Service, thus manual validation is necessary. Based on the Azure Documentation for each Service, go to the "Recommendations" worksheet, create your own recommendations for Reliability, then open the Azure Portal and validate if the resources are compliant with the recommendation you created. If they are compliant, delete the rows in the "ImpactedResources".
 
-3. Remove/add any recommendations based on your analysis prior to generating reports
+3. Remove/add any recommendations based on your analysis prior to generating reports.
 
 4. For relevant Outages, all Service Retirements, and relevant Support Tickets, create actionable Recommendations in the "Recommendations" worksheet.
 
