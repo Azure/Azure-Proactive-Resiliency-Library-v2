@@ -1,5 +1,46 @@
 #Requires -Version 7
 
+<#
+.SYNOPSIS
+Well-Architected Reliability Assessment Report Generator Script
+
+.DESCRIPTION
+The script "3_wara_reports_generator" processes the Excel file created by the "2_wara_data_analyzer" script and generates the final PowerPoint and Word reports for the Well-Architected Reliability Assessment.
+
+.PARAMETER Help
+Switch to display help information.
+
+.PARAMETER Debugging
+Switch to enable debugging mode.
+
+.PARAMETER CustomerName
+Name of the customer for whom the report is being generated.
+
+.PARAMETER WorkloadName
+Name of the workload being assessed.
+
+.PARAMETER ExcelFile
+Path to the Excel file created by the "2_wara_data_analyzer" script.
+
+.PARAMETER Heavy
+Switch to enable heavy processing mode. When enabled, this mode introduces additional delays using Start-Sleep at various points in the script to handle heavy environments more gracefully. This can help in scenarios where the system resources are limited or the operations being performed are resource-intensive, ensuring the script doesn't overwhelm the system.
+
+.PARAMETER PPTTemplateFile
+Path to the PowerPoint template file.
+
+.PARAMETER WordTemplateFile
+Path to the Word template file.
+
+.EXAMPLE
+.\3_wara_reports_generator.ps1 -ExcelFile 'C:\WARA_Script\WARA Action Plan 2024-03-07_16_06.xlsx' -CustomerName 'ABC Customer' -WorkloadName 'SAP On Azure' -Heavy -PPTTemplateFile 'C:\Templates\Template.pptx' -WordTemplateFile 'C:\Templates\Template.docx'
+
+.LINK
+https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2
+#>
+
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingWriteHost', '', Justification = 'False positive as Write-Host does not represent a security risk and this script will always run on host consoles')]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', '', Justification = 'False positive as parameters are not always required')]
+
 Param(
   [switch] $Help,
   [switch] $Debugging,
@@ -2040,7 +2081,7 @@ $Global:Runtime = Measure-Command -Expression {
 
   #Call the functions
   $Global:LogFile = ($PSScriptRoot + '\wara_reports_generator.log')
-  $Global:Version = "2.0.5"
+  $Global:Version = "2.1.5"
   Write-Host "Version: " -NoNewline
   Write-Host $Global:Version -ForegroundColor DarkBlue -NoNewline
   Write-Host " "

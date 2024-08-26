@@ -8,4 +8,7 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: daily
+      interval: "weekly"
+    labels:
+      - "Type: Hygiene :broom:"
+      - "Needs: Attention from aprl-maintainers :wave:"
