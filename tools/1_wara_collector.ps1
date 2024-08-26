@@ -1601,7 +1601,7 @@ $Script:Runtime = Measure-Command -Expression {
 
 
   #Call the functions
-  $Script:Version = '2.1.14'
+  $Script:Version = '2.1.15'
   Write-Host 'Version: ' -NoNewline
   Write-Host $Script:Version -ForegroundColor DarkBlue
 
@@ -1663,7 +1663,7 @@ $Script:Runtime = Measure-Command -Expression {
     $Scopes = @()
     if ($SubscriptionIds)
       {
-        $Scopes = foreach ($Sub in $SubscriptionIds)
+        $Scopes += foreach ($Sub in $SubscriptionIds)
         {
           $_guid = [Guid]::NewGuid()
 
@@ -1679,7 +1679,7 @@ $Script:Runtime = Measure-Command -Expression {
       }
     if ($ResourceGroups)
       {
-        $Scopes = foreach ($RG in $ResourceGroups)
+        $Scopes += foreach ($RG in $ResourceGroups)
           {
             Write-Host "[-ResourceGroups]: $RG" -ForegroundColor Cyan
             $RG
