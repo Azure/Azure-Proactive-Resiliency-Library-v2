@@ -717,18 +717,18 @@ $Script:Runtime = Measure-Command -Expression {
         $compliantFormula = 'IF((' + $countFormula + ')>0,"No","Yes")'
 
         $Script:Recommendations += @{
-          'Implemented?Yes/No' = $compliantFormula
-          'Number of Impacted Resources?' = $countFormula
+          'Implemented?Yes/No' = "=$compliantFormula"
+          'Number of Impacted Resources?' = "=$countFormula"
           'Azure Service / Well-Architected' = 'Custom'
           'Recommendation Source' = 'Custom'
-          'Resiliency Category' = $customRec.recommendationControl
+          'Resiliency Category' = [string]$customRec.recommendationControl
           'Azure Service Category / Well-Architected Area' = 'Custom'
           'Azure Service / Well-Architected Topic' = 'Custom'
-          'Recommendation Title' = $customRec.description
-          'Impact' = $customRec.recommendationImpact
-          'Best Practices Guidance' = $customRec.longDescription
-          'Read More' = $customRec.learnMoreLink.url
-          'Potential Benefits' = $customRec.potentialBenefits
+          'Recommendation Title' = [string]$customRec.description
+          'Impact' = [string]$customRec.recommendationImpact
+          'Best Practices Guidance' = [string]$customRec.longDescription
+          'Read More' = [string]$customRec.learnMoreLink.url
+          'Potential Benefits' = [string]$customRec.potentialBenefits
           'Add associated Outage TrackingID and/or Support Request # and/or Service Retirement TrackingID' = ''
           'Observation / Annotation' = ''
           'Recommendation Id' = $customRec.aprlGuid
