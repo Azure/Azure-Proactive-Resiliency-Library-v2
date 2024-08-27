@@ -158,3 +158,4 @@ Path to the Word template file.
 
 ```powershell
 .\3_wara_reports_generator.ps1 -ExcelFile '.\WARA Action Plan 2024-03-07-16-06.xlsx' -CustomerName 'ABC Customer' -WorkloadName 'SAP On Azure' -Heavy -PPTTemplateFile '.\Template.pptx' -WordTemplateFile '.\Template.docx'
+```
