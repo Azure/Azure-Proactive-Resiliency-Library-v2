@@ -18,7 +18,6 @@ https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2
 Param(
   [switch]$Debugging,
   [switch]$Help,
-  [switch]$GenerateRecommendationsCSV,
   [string]$CustomRecommendationsYAMLPath,
 
   [Parameter(mandatory = $true)]
@@ -703,29 +702,18 @@ $Script:Runtime = Measure-Command -Expression {
     function Add-Recommendation {
       ####################    Starts to process the main sheet
 
-      foreach ($customRec in $Script.$Script:CustomYAMLContent) {
+      foreach ($customRec in $Script:CustomYAMLContent) {
         $countFormula = 'COUNTIFS(ImpactedResources!D:D,"' + $customRec.aprlGuid + '",ImpactedResources!S:S,"' + $customRec.checkName + '")'
         $compliantFormula = 'IF((' + $countFormula + ')>0,"No","Yes")'
-
-        $Script:RecommendationsCsv += @{
-          "Recommendation GUID" = $customRec.aprlGuid
-          "Recommendation title" = $customRec.description
-          "Description" = $customRec.longDescription
-          "Priority" = $customRec.recommendationImpact
-          "Customer-facing annotation" = ""
-          "Internal-facing note" = "check: $($customRec.checkName); selector: $($customRec.selector)"
-          "Potential benefit" = $customRec.potentialBenefits
-          "Resource Type" = $customRec.recommendationResourceType
-        }
 
         $Script:Recommendations += @{
           'Implemented?Yes/No' = $compliantFormula
           'Number of Impacted Resources?' = $countFormula
-          'Azure Service / Well-Architected' = 'Epic WAF'
-          'Recommendation Source' = 'Epic WAF'
+          'Azure Service / Well-Architected' = 'Custom'
+          'Recommendation Source' = 'Custom'
           'Resiliency Category' = $customRec.recommendationControl
-          'Azure Service Category / Well-Architected Area' = 'Epic WAF'
-          'Azure Service / Well-Architected Topic' = 'Epic WAF'
+          'Azure Service Category / Well-Architected Area' = 'Custom'
+          'Azure Service / Well-Architected Topic' = 'Custom'
           'Recommendation Title' = $customRec.description
           'Impact' = $customRec.recommendationImpact
           'Best Practices Guidance' = $customRec.longDescription
@@ -742,17 +730,6 @@ $Script:Runtime = Measure-Command -Expression {
         if (($Service.recommendationResourceType -like 'Specialized.Workload/*' -or $Service.recommendationResourceType -in $Script:AllResourceTypesOrdered.'Resource Type' -or $Script:FilterRecommendations -eq $false) -and [string]::IsNullOrEmpty($Service.recommendationTypeId)) {
           $ID = $Service.aprlGuid
           $resourceType = $Service.recommendationResourceType
-
-          $Script:RecommendationsCsv += @{
-            "Recommendation GUID" = $Service.aprlGuid
-            "Recommendation title" = $Service.description
-            "Description" = $Service.longDescription
-            "Priority" = $Service.recommendationImpact
-            "Customer-facing annotation" = ""
-            "Internal-facing note" = ""
-            "Potential benefit" = $Service.potentialBenefits
-            "Resource Type" = $Service.recommendationResourceType
-          }
 
           $tmp = @{
             'Implemented?Yes/No'                                                                             = ('=IF((COUNTIF(ImpactedResources!D:D,"' + $ID + '")=0),"Yes","No")');
@@ -781,17 +758,6 @@ $Script:Runtime = Measure-Command -Expression {
           $ID = $advisor.recommendationId
           $resourceType = $advisor.type.ToLower()
 
-          $Script:RecommendationsCsv += @{
-            "Recommendation GUID" = $ID
-            "Recommendation title" = $advisor.description
-            "Description" = ""
-            "Priority" = $advisor.impact
-            "Customer-facing annotation" = ""
-            "Internal-facing note" = ""
-            "Potential benefit" = ""
-            "Resource Type" = $resourceType
-          }
-
           $tmp = @{
             'Implemented?Yes/No'                                                                             = ('=IF((COUNTIF(ImpactedResources!D:D,"' + $ID + '")=0),"Yes","No")');
             'Number of Impacted Resources?'                                                                  = ('=COUNTIF(ImpactedResources!D:D,"' + $ID + '")');
@@ -817,17 +783,6 @@ $Script:Runtime = Measure-Command -Expression {
       foreach ($WAFYAML in $Script:WAFYAMLContent) {
         $resourceType = $WAFYAML.recommendationResourceType
         $ID = $WAFYAML.aprlGuid
-
-        $Script:RecommendationsCsv += @{
-          "Recommendation GUID" = $ID
-          "Recommendation title" = $WAFYAML.description
-          "Description" = [string]$WAFYAML.longDescription
-          "Priority" = $WAFYAML.recommendationImpact
-          "Customer-facing annotation" = ""
-          "Internal-facing note" = ""
-          "Potential benefit" = [string]$WAFYAML.potentialBenefits
-          "Resource Type" = $resourceType
-        }
 
         $tmp = @{
           'Implemented?Yes/No'                                                                             = ('=IF((COUNTIF(ImpactedResources!D:D,"' + $ID + '")=0),"Yes","No")');
@@ -1067,12 +1022,6 @@ $Script:Runtime = Measure-Command -Expression {
 
   Write-Debug 'Calling Function: Build-ExcelFile'
   Build-ExcelFile
-
-  if ($GenerateRecommendationsCSV) {
-    Write-Debug 'Calling Function: Build-RecommendationsCSVFile'
-    Build-RecommendationsCSVFile
-  }
-
 }
 
 $TotalTime = $Script:Runtime.Totalminutes.ToString('#######.##')
