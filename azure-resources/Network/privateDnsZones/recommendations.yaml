@@ -54,3 +54,22 @@
   learnMoreLink:
     - name: Scenarios for Azure Private DNS zones
       url: "https://learn.microsoft.com/en-us/azure/dns/private-dns-scenarios"
+
+- description: Ensure Time-To-Live (TTL) is set appropriately to ensure RPOs can be met
+  aprlGuid: 3538aa48-c40b-455b-a93b-269fe6e65be2
+  recommendationTypeId: null
+  recommendationControl: Disaster Recovery
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/privateDnsZones
+  recommendationMetadataState: Active
+  longDescription: |
+    Azure Private DNS allows the Time-To-Live (TTL) for records in the zone to be set to any value between 1 and 2,147,483,647 seconds (about 68 years). You should ensure that your TTL for the DNS records in your Private DNS Zones are set appropriately to meet your RPO targets to ensure that records do not remain cached by another system beyond the RPO target.
+  potentialBenefits: Ensures that no cached DNS records in other systems exist past RPO targets
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Reliability in Azure DNS
+      url: "https://learn.microsoft.com/azure/reliability/reliability-dns"
