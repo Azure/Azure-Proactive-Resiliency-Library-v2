@@ -6,7 +6,7 @@
   recommendationResourceType: Microsoft.Network/dnsZones
   recommendationMetadataState: Active
   longDescription: |
-    Azure Public DNS allows the Time-To-Live (TTL) for records in the zone to be set to any value between 1 and 2,147,483,647 seconds (about 68 years). You should ensure that your TTL for the DNS records in your Private DNS Zones are set appropriately to meet your RPO targets to ensure that records do not remain cached by another system beyond the RPO target.
+    Azure Private DNS allows the Time-To-Live (TTL) for records in the zone to be set to a value between 1 and 2147483647 seconds. You should ensure that the TTL for the DNS records in your DNS Zones are set appropriately to meet your RPO targets to ensure that records are not cached by another system.
   potentialBenefits: Ensures that no cached DNS records in other systems exist past RPO targets
   pgVerified: false
   publishedToLearn: false
