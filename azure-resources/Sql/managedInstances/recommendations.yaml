@@ -39,7 +39,7 @@
 - description: Use Redirect connection type to accelerate application access
   aprlGuid: c14de326-2729-4be7-a91f-4ea185d24b10
   recommendationTypeId: null
-  recommendationControl: Performance
+  recommendationControl: Scalability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Sql/managedInstances
   recommendationMetadataState: Active
