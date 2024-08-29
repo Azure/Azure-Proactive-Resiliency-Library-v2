@@ -1,7 +1,7 @@
 - description: Run jobs in your own dedicated Stream Analytics cluster for increased reliability and security
   aprlGuid: e48a7227-5ec7-463a-b955-ee7cb598ded4
   recommendationTypeId: null
-  recommendationControl: Performance
+  recommendationControl: Scalability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.StreamAnalytics/streamingjobs
   recommendationMetadataState: Active
