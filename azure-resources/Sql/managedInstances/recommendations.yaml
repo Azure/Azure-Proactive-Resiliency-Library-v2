@@ -1,6 +1,6 @@
 - description: Enable zone redundancy for Azure SQL Managed Instance to achieve high availability and resiliency
   aprlGuid: f8f834a9-c761-4e84-b2cb-ac55494d0c37
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Sql/managedInstances
@@ -19,7 +19,7 @@
 
 - description: Use Zone-redundant or Geo-zone-redundant Backup storage redundancy
   aprlGuid: 15e2712c-f3ea-4a8d-9081-11e822b1ccfb
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Sql/managedInstances
@@ -36,9 +36,9 @@
     - name: Backup storage redundancy
       url: "https://learn.microsoft.com/azure/azure-sql/managed-instance/automated-backups-overview?view=azuresql-mi&preserve-view=true#backup-storage-redundancy"
 
-  - description: Use Redirect connection type to accelerate application access
+- description: Use Redirect connection type to accelerate application access
   aprlGuid: c14de326-2729-4be7-a91f-4ea185d24b10
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Performance
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Sql/managedInstances
@@ -55,9 +55,9 @@
     - name: Connection types
       url: "https://learn.microsoft.com/azure/azure-sql/managed-instance/connection-types-overview?view=azuresql#connection-types"
 
-  - description: Configure a secondary instance and a Failover group to enable failover to another region
+- description: Configure a secondary instance and a Failover group to enable failover to another region
   aprlGuid: 257cd903-700f-4a79-bd37-7dce2b511df4
-  recommendationTypeId:
+  recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.Sql/managedInstances
@@ -109,5 +109,5 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-     - name: Getting Started with Always Encrypted
+    - name: Overview of Always Encrypted
       url: "https://learn.microsoft.com/azure/azure-sql/database/always-encrypted-landing?view=azuresql"
