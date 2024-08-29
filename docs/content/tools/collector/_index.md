@@ -391,7 +391,7 @@ Env||Environment!~Dev||QA
 ### Runbook Example
 
 {{< hint type=tip >}}
-Learn more about runbooks [here](runbooks.md).
+Learn more about runbooks [here](/Azure-Proactive-Resiliency-Library-v2/tools/collector/runbooks/)
 {{< /hint >}}
 
 Run a runbook.
