@@ -1,0 +1,37 @@
+- description: Run jobs in your own dedicated Stream Analytics cluster for increased reliability and security
+  aprlGuid: e48a7227-5ec7-463a-b955-ee7cb598ded4
+  recommendationTypeId: null
+  recommendationControl: Scalability
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.StreamAnalytics/streamingjobs
+  recommendationMetadataState: Active
+  longDescription: |
+    Stream Analytics cluster (dedicated) offers more reliable performance guarantees. All the jobs running on your cluster belong only to you. You can also have access to important features like private endpoints, Auto-Scaling, Vnet Support, etc.
+  potentialBenefits: Enhanced reliability and security
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Overview of Azure Stream Analytics Cluster
+      url: "https://learn.microsoft.com/azure/stream-analytics/cluster-overview"
+
+- description: Migrate Stream Analytics jobs to StandardV2 SKU
+  aprlGuid: 5d40d3d4-179d-4cf5-ac24-901210f512e7
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.StreamAnalytics/streamingjobs
+  recommendationMetadataState: Active
+  longDescription: |
+    Configure Autoscale to allow your job to dynamically change the allocated number of Streaming Units (SU) based on load, metrics, and/or schedule.
+  potentialBenefits: Enhanced reliability and security
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: arg
+  tags: null
+  learnMoreLink:
+    - name: Understand and adjust streaming units
+      url: "https://learn.microsoft.com/azure/stream-analytics/stream-analytics-streaming-unit-consumption"
