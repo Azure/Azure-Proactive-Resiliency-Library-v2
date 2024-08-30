@@ -1,0 +1,6 @@
+// Azure Resource Graph Query
+// Find all Azure Stream Analytics jobs that are not associated with a dedicated cluster
+resources
+| where type =~ "Microsoft.StreamAnalytics/streamingjobs"
+| where isnull(properties.cluster.id)
+| project recommendationId = "e48a7227-5ec7-463a-b955-ee7cb598ded4", name, id, tags
