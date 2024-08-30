@@ -6,7 +6,7 @@
   recommendationResourceType: Microsoft.Network/privateDnsZones
   recommendationMetadataState: Active
   longDescription: |
-    Private DNS zones and records are critical and their deletion can cause service outages. To protect against unauthorized or accidental changes, the Private DNS Zone Contributor role, a built-in role for managing these resources, should be assigned to specific users or groups. Then, at a minimum, restrict access by only granting Private DNS Zone Contributor permission to all zones.
+    Private DNS zones and records are critical and their deletion can cause service outages. To protect against unauthorized or accidental changes, the Private DNS Zone Contributor role, a built-in role for managing these resources, should be assigned to specific users or groups. Restrict access by granting Private DNS Zone Contributor permission to all zones, and assigning Private DNS Zone Contributor to the entities that need to manage the zones.
   potentialBenefits: Prevents DNS outages
   pgVerified: true
   publishedToLearn: false
