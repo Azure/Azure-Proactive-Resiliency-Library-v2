@@ -36,7 +36,7 @@
     - name: Azure Monitor Baseline Alerts - privateDnsZones
       url: "https://azure.github.io/azure-monitor-baseline-alerts/services/Network/privateDnsZones/"
 
-- description: Use distinct regional Private DNS Zones when there is a low recovery time objective (RTO) requirement
+- description: Use regional Private DNS Zones when there is a low recovery time objective(RTO) requirement
   aprlGuid: 1e02335c-1f90-fd4e-a5a5-d359c7b22d70
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
@@ -44,7 +44,7 @@
   recommendationResourceType: Microsoft.Network/privateDnsZones
   recommendationMetadataState: Active
   longDescription: |
-    For business continuity scenarios with a low recovery time objective (RTO), ensure that distinct production and disaster recovery region (DR) Private DNS Zones are configured and have identical workload and resource DNS entries. This keeps DNS resolution consistent across both zones.
+    For business continuity scenarios with a low recovery time objective (RTO), ensure that distinct regional production and disaster recovery (DR) Private DNS Zones are configured and have identical workload and resource DNS entries. This keeps DNS resolution consistent across both zones.
   potentialBenefits: Ensures seamless failover for DNS during a regional outage
   pgVerified: true
   publishedToLearn: false
