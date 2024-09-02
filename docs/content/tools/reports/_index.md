@@ -158,3 +158,29 @@ Path to the Word template file.
 
 ```powershell
 .\3_wara_reports_generator.ps1 -ExcelFile '.\WARA Action Plan 2024-03-07-16-06.xlsx' -CustomerName 'ABC Customer' -WorkloadName 'SAP On Azure' -Heavy -PPTTemplateFile '.\Template.pptx' -WordTemplateFile '.\Template.docx'
+```
+
+## Frequently asked questions
+
+### The specified Excel file may be encrypted. If a sensitivity label is applied to the file, please change the sensitivity label to the label without encryption temporarily
+
+The specified Excel file may be has a sensitivity label (encrypted). The 3_wara_reports_generator.ps1 script does not support encrypted Excel file currently. To avoid this issue, you need to change the sensitivity label to the label without encryption temporarily. For example, **Confidential/Any User (No Protection)** sensitivity. After completing the script running, you can re-apply the original sensitivity label (recommended).
+
+You can change the sensitivity label on the file by **Excel** or **Information Protection File Labeler**.
+
+- Option 1: Excel
+
+    1. Select a sensitivity label that you want from the sensitivity bar at the top of the Excel window.
+    2. Save the Excel file.
+
+    Learn more about the [Sensitivity bar in Microsoft 365](https://support.microsoft.com/office/2f96e7cd-d5a4-403b-8bd7-4cc636bae0f9).
+
+- Option 2: Information Protection File Labeler
+
+    1. Install the [Microsoft Purview Information Protection client](https://www.microsoft.com/en-us/download/details.aspx?id=53018)
+    2. Right click the Excel file in the File Explorer then select **Show more options**.
+    3. Select **Apply sensitivity label with Microsoft Purview**
+    4. Select a sensitivity label that you want.
+    5. Click the **Apply** button.
+
+    Learn more about the [detailed usage of the Information Protection File Labeler](https://support.microsoft.com/topic/67829155-2d0e-4122-9677-7c53c8cba18a).
