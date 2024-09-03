@@ -1,3 +1,5 @@
+#Requires -Version 7
+
 <#
 .SYNOPSIS
 Well-Architected Reliability Assessment (WARA) v2 collector script
@@ -13,17 +15,8 @@ https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2
 .PARAMETER Debugging
 [Switch]: Enables debugging output.
 
-.PARAMETER SAP
-[Switch]: Enables recommendations and queries for the SAP specialized workload.
-
-.PARAMETER AVD
-[Switch]: Enables recommendations and queries for the AVD specialized workload.
-
-.PARAMETER AVS
-[Switch]: Enables recommendations and queries for the AVS specialized workload.
-
-.PARAMETER HPC
-[Switch]: Enables recommendations and queries for the HPC specialized workload.
+.PARAMETER TenantID
+Specifies the Entra tenant ID to be used to authenticate to Azure.
 
 .PARAMETER SubscriptionIds
 Specifies the subscription IDs to be included in the review. Multiple subscription IDs should be separated by commas. Subscription IDs must be in either GUID form (e.g., 00000000-0000-0000-0000-000000000000) or full subscription ID form (e.g., /subscriptions/00000000-0000-0000-0000-000000000000).
@@ -40,16 +33,25 @@ Specifies the tags to be used to filter resources.
 
 NOTE: Can't be used in combination with -ConfigFile or -RunbookFile parameters.
 
-.PARAMETER TenantID
-Specifies the Entra tenant ID to be used to authenticate to Azure.
-
-.PARAMETER AzureEnvironment
-Specifies the Azure environment to be used. Valid values are 'AzureCloud' and 'AzureUSGovernment'. Default value is 'AzureCloud'.
-
 .PARAMETER ConfigFile
 Specifies the configuration file to be used.
 
 NOTE: Can't be used in combination with -RunbookFile, -SubscriptionIds, -ResourceGroups, or -Tags parameters.
+
+.PARAMETER AzureEnvironment
+Specifies the Azure environment to be used. Valid values are 'AzureCloud' and 'AzureUSGovernment'. Default value is 'AzureCloud'.
+
+.PARAMETER SAP
+[Switch]: Enables recommendations and queries for the SAP specialized workload.
+
+.PARAMETER AVD
+[Switch]: Enables recommendations and queries for the AVD specialized workload.
+
+.PARAMETER AVS
+[Switch]: Enables recommendations and queries for the AVS specialized workload.
+
+.PARAMETER HPC
+[Switch]: Enables recommendations and queries for the HPC specialized workload.
 
 .PARAMETER RunbookFile
 Specifies the runbook file to be used. More information about runbooks:
@@ -68,19 +70,19 @@ NOTE: This parameter is only used when a runbook file (-RunbookFile) is provided
 
 .EXAMPLE
 Run against all subscriptions in tenant "00000000-0000-0000-0000-000000000000":
-.\1_wara_collector.ps1 -TenantID "00000000-0000-0000-0000-000000000000"
+.\1_wara_collector.ps1 -TenantID 00000000-0000-0000-0000-000000000000
 
 .EXAMPLE
 Run against specific subscriptions in tenant "00000000-0000-0000-0000-000000000000":
-.\1_wara_collector.ps1 -TenantID "00000000-0000-0000-0000-000000000000" -SubscriptionIds "00000000-0000-0000-0000-000000000000,11111111-1111-1111-1111-111111111111"
+.\1_wara_collector.ps1 -TenantID 00000000-0000-0000-0000-000000000000 -SubscriptionIds /subscriptions/00000000-0000-0000-0000-000000000000,/subscriptions/11111111-1111-1111-1111-111111111111
 
 .EXAMPLE
 Run against specific subscriptions, resource groups, and resources defined in a configuration file:
-.\1_wara_collector.ps1 -TenantID "00000000-0000-0000-0000-000000000000" -ConfigFile ".\config.json"
+.\1_wara_collector.ps1 -ConfigFile ".\config.json"
 
 .EXAMPLE
 Use a runbook:
-.\1_wara_collector.ps1 -TenantID "00000000-0000-0000-0000-000000000000" -SubscriptionIds "00000000-0000-0000-0000-000000000000" -RunbookFile ".\runbook.json
+.\1_wara_collector.ps1 -TenantID 00000000-0000-0000-0000-000000000000 -SubscriptionIds /subscriptions/00000000-0000-0000-0000-000000000000 -RunbookFile "runbook.json"
 
 .OUTPUTS
 A JSON file with the collected data.
@@ -90,22 +92,26 @@ A JSON file with the collected data.
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', '', Justification = 'False positive as parameters are not always required')]
 
 Param(
-  [switch]$Debugging,
-  [switch]$SAP,
-  [switch]$AVD,
-  [switch]$AVS,
-  [switch]$HPC,
-  $SubscriptionIds,
-  [String[]]$ResourceGroups,
-  $TenantID,
-  $Tags,
-  [ValidateSet('AzureCloud', 'AzureUSGovernment')]
-  $AzureEnvironment = 'AzureCloud',
-  $ConfigFile,
-  # Runbook parameters...
-  [switch]$UseImplicitRunbookSelectors,
-  $RunbookFile
-  )
+        [switch]$Debugging,
+        [switch]$SAP,
+        [switch]$AVD,
+        [switch]$AVS,
+        [switch]$HPC,
+        [ValidatePattern('^(\/subscriptions\/)?[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$')]
+        [String[]]$SubscriptionIds,
+        [ValidatePattern('^\/subscriptions\/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\/resourceGroups\/[a-zA-Z0-9._-]+$')]
+        [String[]]$ResourceGroups,
+        [GUID]$TenantID,
+        [ValidatePattern('^[^<>&%\\?/]+=~[^<>&%\\?/]+$|[^<>&%\\?/]+!~[^<>&%\\?/]+$')]
+        [String[]]$Tags,
+        [ValidateSet('AzureCloud', 'AzureUSGovernment')]
+        $AzureEnvironment = 'AzureCloud',
+        [ValidateScript({Test-Path $_ -PathType Leaf})]
+        $ConfigFile,
+        # Runbook parameters...
+        [switch]$UseImplicitRunbookSelectors,
+        $RunbookFile
+        )
 
 
 #import-module "./modules/collector.psm1" -Force
@@ -115,6 +121,54 @@ $Script:ShellPlatform = $PSVersionTable.Platform
 if ($Tags) {$TagsPresent = $true}else{$TagsPresent = $false}
 
 $Script:Runtime = Measure-Command -Expression {
+
+  Function Test-TagPattern {
+    param (
+      [string[]]$InputValue
+    )
+    $pattern = '^[^<>&%\\?/]+=~[^<>&%\\?/]+$|[^<>&%\\?/]+!~[^<>&%\\?/]+$'
+
+    $allMatch = $true
+
+    $InputValue | ForEach-Object {
+      if ($_ -notmatch $Pattern) {
+        $allMatch = $false
+      }
+    }
+    return $allMatch
+  }
+
+  Function Test-ResourceGroupId {
+    param (
+      [string[]]$InputValue
+    )
+    $pattern = '\/subscriptions\/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\/resourceGroups\/[a-zA-Z0-9._-]+'
+
+    $allMatch = $true
+
+    $InputValue | ForEach-Object {
+      if ($_ -notmatch $Pattern) {
+        $allMatch = $false
+      }
+    }
+    return $allMatch
+  }
+
+  Function Test-SubscriptionId {
+    param (
+      [string[]]$InputValue
+    )
+    $pattern = '\/subscriptions\/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}'
+
+    $allMatch = $true
+
+    $InputValue | ForEach-Object {
+      if ($_ -notmatch $Pattern) {
+        $allMatch = $false
+      }
+    }
+    return $allMatch
+  }
 
   Function Get-AllAzGraphResource {
     param (
@@ -138,7 +192,6 @@ $Script:Runtime = Measure-Command -Expression {
     # Output all resources
     return $allResources
   }
-
 
   function Get-AllResourceGroup {
     param (
@@ -269,14 +322,34 @@ $Script:Runtime = Measure-Command -Expression {
         $IsValid = $false
       }
 
-      if ($ConfigFile -and !(Test-Path $ConfigFile -PathType Leaf)) {
-        Write-Host "Configuration file (-ConfigFile) not found: [$ConfigFile]" -ForegroundColor Red
-        $IsValid = $false
-      }
+      if ($ConfigFile) {
 
-      if ($ConfigFile -and ($SubscriptionIds -or $ResourceGroups -or $Tags)) {
-        Write-Host "Configuration file (-ConfigFile) and (Subscription ID(s) (-SubscriptionIds), resource group(s) (-ResourceGroups), or tags (-Tags)) cannot be used together." -ForegroundColor Red
-        $IsValid = $false
+        if (!(Test-Path $ConfigFile -PathType Leaf)) {
+          Write-Host "Configuration file (-ConfigFile) not found: [$ConfigFile]" -ForegroundColor Red
+          $IsValid = $false
+        }
+
+        if ($SubscriptionIds -or $ResourceGroups -or $Tags) {
+          Write-Host "Configuration file (-ConfigFile) and [Subscription ID(s) (-SubscriptionIds), resource group(s) (-ResourceGroups), or tags (-Tags)] cannot be used together." -ForegroundColor Red
+          $IsValid = $false
+        }
+
+        if ($TenantId) {
+          Write-Host "Tenant ID (-TenantId) cannot be used with a configuration file (-ConfigFile). Include tenant ID in the [tenantid] section of the config file." -ForegroundColor Red
+          $IsValid = $false
+        }
+
+      } else {
+
+        if (!($TenantId)) {
+          Write-Host "Tenant ID (-TenantId) is required." -ForegroundColor Red
+          $IsValid = $false
+        }
+
+        if (!($SubscriptionIds) -and !($ResourceGroups)) {
+          Write-Host "Subscription ID(s) (-SubscriptionIds) or resource group(s) (-ResourceGroups) are required." -ForegroundColor Red
+          $IsValid = $false
+        }
       }
     }
 
@@ -411,38 +484,71 @@ $Script:Runtime = Measure-Command -Expression {
   }
 
   function Connect-ToAzure {
-    $Subscription0 = $Scopes | Select-Object -First 1 | ForEach-Object {$_.split("/")[2]}
-    # Connect To Azure Tenant
-    Write-Host 'Authenticating to Azure'
-    if ($Script:ShellPlatform -eq 'Win32NT') {
-      Clear-AzContext -Force -ErrorAction SilentlyContinue -WarningAction SilentlyContinue -InformationAction SilentlyContinue
-      if ([string]::IsNullOrEmpty($TenantID)) {
-        Write-Host 'Tenant ID not specified.'
-        Write-Host ''
-        Connect-AzAccount -WarningAction SilentlyContinue -Environment $AzureEnvironment
-        $Tenants = Get-AzTenant
-        if ($Tenants.count -gt 1) {
-          Write-Host 'Select the Azure Tenant to connect : '
-          $Selection = 1
-          foreach ($Tenant in $Tenants) {
-            $TenantName = $Tenant.Name
-            Write-Host "$Selection)  $TenantName"
-            $Selection ++
-          }
-          Write-Host ''
-          [int]$SelectedTenant = Read-Host 'Select Tenant'
-          $defaultTenant = --$SelectedTenant
-          $TenantID = $Tenants[$defaultTenant]
-          Connect-AzAccount -Tenant $TenantID -Subscription $Subscription0 -WarningAction SilentlyContinue -Environment $AzureEnvironment
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [ValidatePattern("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$")]
+        [GUID]$TenantID,
+
+        [ValidateSet('AzureCloud', 'AzureChinaCloud', 'AzureGermanCloud', 'AzureUSGovernment')]
+        [string]$AzureEnvironment = 'AzureCloud'
+    )
+
+    begin {
+        Write-Verbose "Starting connection process to Azure Tenant."
+        $AzContext = $null
+    }
+
+    process {
+        try {
+            # Attempt to get the current Azure context
+            $AzContext = Get-AzContext -ErrorAction SilentlyContinue
+
+            # Check if a valid context is available or if it matches the provided Tenant ID
+            if ($null -eq $AzContext -or $AzContext.Tenant.Id -ne $TenantID) {
+                Write-Verbose "Not logged into a tenant with any of the specified subscriptions. Authenticating to Azure. `n"
+
+                # Check if EnableLoginByWam is true
+                if ((Get-AzConfig -EnableLoginByWam).Value -eq $true) {
+                    Write-Verbose "Process: Disabling interactive login experience (EnableLoginByWam).`n"
+                    # Disable the WAM login experience for the current PowerShell session
+                    Update-AzConfig -EnableLoginByWam $false -Scope Process | Out-Null
+                }
+
+                # Check if LoginExperienceV2 is 'On'
+                if ((Get-AzConfig -LoginExperienceV2).Value -eq 'On') {
+                    Write-Verbose "Process: Disabling interactive login experience (LoginExperienceV2).`n"
+                    # Disable the new login experience for the current PowerShell session
+                    Update-AzConfig -LoginExperienceV2 Off -Scope Process | Out-Null
+                }
+
+                Write-Verbose 'Process: Connecting to Azure.'
+                Write-Verbose "No existing context found or context does not match TenantID. Connecting to Azure..."
+                Connect-AzAccount -Tenant $TenantID -Environment $AzureEnvironment -ErrorAction Stop -WarningAction Ignore -InformationAction Ignore
+                $AzContext = Get-AzContext -ErrorAction Stop
+                Write-Verbose "Successfully connected to Azure Tenant: $TenantID"
+            }
+            else {
+                Write-Host "`nAlready connected to Azure Tenant: $($AzContext.Tenant.Id)`n" -ForegroundColor Green
+            }
+
+            # Validate that the provided Subscription IDs exist in the current context
+            $Script:SubIds = Get-AzSubscription -ErrorAction Stop -WarningAction Ignore
+            Write-Verbose "Connected to Azure Tenant: $($AzContext.Tenant.Id) with Subscriptions: $($SubscriptionIds -join ', ')"
         }
-      } else {
-        Connect-AzAccount -Tenant $TenantID -Subscription $Subscription0 -WarningAction SilentlyContinue -Environment $AzureEnvironment
-      }
-      #Set the default variable with the list of subscriptions in case no Subscription File was informed
-      $Script:SubIds = Get-AzSubscription -TenantId $TenantID -WarningAction SilentlyContinue
-    } else {
-      Connect-AzAccount -Identity -Environment $AzureEnvironment
-      $Script:SubIds = Get-AzSubscription -WarningAction SilentlyContinue
+        catch {
+            throw "Failed to connect to Azure Tenant: $TenantID or retrieve subscriptions. Error: $_"
+        }
+    }
+
+    end {
+        if ($AzContext) {
+            Write-Verbose "Connection process completed successfully."
+        }
+        else {
+            throw "Connection process failed. No valid Azure context available."
+        }
     }
   }
 
@@ -509,8 +615,8 @@ $Script:Runtime = Measure-Command -Expression {
             Write-Host 'Validating Scope: ' -NoNewline
             Write-Host $ScopeWithoutParameter -ForegroundColor Cyan
 
-            Set-AzContext -Subscription $Subid -ErrorAction SilentlyContinue -WarningAction SilentlyContinue | Out-Null
-            Select-AzSubscription -Subscription $Subid -WarningAction SilentlyContinue -InformationAction SilentlyContinue | Out-Null
+            Set-AzContext -Subscription $Subscription -ErrorAction SilentlyContinue -WarningAction SilentlyContinue | Out-Null
+            Select-AzSubscription -Subscription $Subscription -WarningAction SilentlyContinue -InformationAction SilentlyContinue | Out-Null
 
             if ($SubId -notin $LoopedSub) {
               $Token = Get-AzAccessToken
@@ -567,7 +673,10 @@ $Script:Runtime = Measure-Command -Expression {
               {
                 if ($Resource.type -in $Script:SupportedResTypes)
                   {
-                    $Script:PreInScopeResources += $Resource
+                    if ($Resource.id -notin $Script:PreInScopeResources.id)
+                      {
+                        $Script:PreInScopeResources += $Resource
+                      }
                   }
                 else
                   {
@@ -616,7 +725,7 @@ $Script:Runtime = Measure-Command -Expression {
       {
         $InScopeSub = $Scope.split("/")[2]
         $ResourceScopeQuery = "resources | where subscriptionId =~ '$InScopeSub' "
-        $ContainerScopeQuery = "resourceContainers | where id =~ '$Scope' "
+        $ContainerScopeQuery = "resourceContainers | where id has '$Scope' "
       }
     elseif ($Scope.split("/").count -gt 4 -and $Scope.split("/").count -lt 8)
       {
@@ -632,22 +741,22 @@ $Script:Runtime = Measure-Command -Expression {
       }
 
     $TagFilter = $Tags
-    $Counter = 0
 
     # Each line in the Tag Filtering file will be processed
-    $AllTaggedResourceGroups = @()
     $AllTaggedResources = @()
+    $ResetTags = $false
     Foreach ($TagLine in $TagFilter) {
+      $AllTaggedResourceGroups = ''
       # Finding the TagKey and all the TagValues in the line
-      if ($TagLine -like '*==*')
+      if ($TagLine -like '*=~*')
         {
-          $TagKeys = $TagLine.split('==')[0]
-          $TagValues = $TagLine.split('==')[1]
+          $TagKeys = $TagLine.split('=~')[0]
+          $TagValues = $TagLine.split('=~')[1]
         }
-      elseif ($TagLine -like '*=/*')
+      elseif ($TagLine -like '*!~*')
         {
-          $TagKeys = $TagLine.split('=/')[0]
-          $TagValues = $TagLine.split('=/')[1]
+          $TagKeys = $TagLine.split('!~')[0]
+          $TagValues = $TagLine.split('!~')[1]
         }
 
       $TagKeys = $TagKeys.split('||')
@@ -661,58 +770,104 @@ $Script:Runtime = Measure-Command -Expression {
       $TagValue = [string]$TagValue
       $TagValue = if ($TagValue -like "*',*") { $TagValue -replace '.$' }else { "'$TagValue'" }
 
-      Write-Debug ('Running Resource Group Tag Inventory for: ' + $TagKey + ' : ' + $TagValue)
+      if ($Debugging.IsPresent)
+        {
+          Write-host ('Running Resource Group Tag Inventory for: ' + $TagKey + ' : ' + $TagValue)
+        }
 
-      if ($TagLine -like '*==*')
+      if ($TagLine -like '*=~*')
         {
           #Getting all the Resource Groups with the Tags, this will be used later
           $RGTagQuery = "$ContainerScopeQuery | mvexpand tags | extend tagKey = tostring(bag_keys(tags)[0]) | extend tagValue = tostring(tags[tagKey]) | where tagKey in~ ($TagKey) and tagValue in~ ($TagValue) | project id | order by id"
         }
-      elseif ($TagLine -like '*=/*')
+      elseif ($TagLine -like '*!~*')
         {
           $RGTagQuery = "$ContainerScopeQuery | mvexpand tags | extend tagKey = tostring(bag_keys(tags)[0]) | extend tagValue = tostring(tags[tagKey]) | where tagKey in~ ($TagKey) and tagValue !in~ ($TagValue) | project id | order by id"
         }
       $TaggedResourceGroups = Get-AllAzGraphResource -query $RGTagQuery -subscriptionId $InScopeSub
+      if ($Debugging.IsPresent)
+        {
+          Write-host "Tagged Resource Containers Found: " -NoNewline
+          $Tagged = [string]$TaggedResourceGroups.count
+          write-host $Tagged -ForegroundColor Magenta
+        }
 
-      Write-Debug ('Running Resource Tag Inventory for: ' + $TagKey + ' : ' + $TagValue)
-      if ($TagLine -like '*==*')
+        if ($TaggedResourceGroups) {
+          foreach ($ResourceGroup in $TaggedResourceGroups.id) {
+            if ($Debugging.IsPresent)
+              {
+                Write-host ('Checking Resources Inside: ' + $ResourceGroup)
+              }
+            $ResourcesTagQuery = "Resources | where id startswith '$ResourceGroup' | project id, name, subscriptionId, type, resourceGroup, location | order by id"
+
+            $AllTaggedResourceGroups = Get-AllAzGraphResource -query $ResourcesTagQuery -subscriptionId $InScopeSub
+          if ($Debugging.IsPresent)
+            {
+              Write-host "Resources Found Inside the Container: " -NoNewline
+              $Tagged = [string]$AllTaggedResourceGroups.count
+              write-host $Tagged -ForegroundColor Magenta
+            }
+          }
+        }
+
+      if ($Debugging.IsPresent)
+        {
+          Write-host ('Running Resource Tag Inventory for: ' + $TagKey + ' : ' + $TagValue)
+        }
+      if ($TagLine -like '*=~*')
         {
           #Getting all the resources within the TAGs
           $ResourcesTagQuery = "$ResourceScopeQuery | mvexpand tags | extend tagKey = tostring(bag_keys(tags)[0]) | extend tagValue = tostring(tags[tagKey]) | where tagKey in~ ($TagKey) and tagValue in~ ($TagValue) | project id, name, subscriptionId, type, resourceGroup, location | order by id"
         }
-      elseif ($TagLine -like '*=/*')
+      elseif ($TagLine -like '*!~*')
         {
           $ResourcesTagQuery = "$ResourceScopeQuery | mvexpand tags | extend tagKey = tostring(bag_keys(tags)[0]) | extend tagValue = tostring(tags[tagKey]) | where tagKey in~ ($TagKey) and tagValue !in~ ($TagValue) | project id, name, subscriptionId, type, resourceGroup, location | order by id"
         }
       $ResourcesWithTHETag = Get-AllAzGraphResource -query $ResourcesTagQuery -subscriptionId $InScopeSub
 
-      if ($Counter -gt 0) {
-        foreach ($resource in $AllTaggedResources) {
-          if ($resource.id -notin $ResourcesWithTHETag.id) {
-            $Script:TaggedResources += $AllTaggedResources | Where-Object { $_.id -ne $resource.id }
-            $AllTaggedResources = $AllTaggedResources | Where-Object { $_.id -ne $resource.id }
-          }
+      if ($Debugging.IsPresent)
+        {
+          Write-host "Tagged Resources Found: " -NoNewline
+          $Tagged = [string]$ResourcesWithTHETag.count
+          write-host $Tagged -ForegroundColor Magenta
         }
-        foreach ($RG in $AllTaggedResourceGroups) {
-          if ($RG -notin $TaggedResourceGroups) {
-            $AllTaggedResourceGroups = $AllTaggedResourceGroups | Where-Object { $_ -ne $RG }
-          }
-        }
-      } else {
-        $Counter ++
-        $Script:TaggedResources += $ResourcesWithTHETag
-        $AllTaggedResourceGroups += $TaggedResourceGroups
-      }
-    }
-    #If Tags are present in the Resource Group level we make sure to get all the resources within that resource group
-    if ($AllTaggedResourceGroups) {
-      foreach ($ResourceGroup in $TaggedResourceGroups) {
-        Write-Debug ('Double Checking Tagged Resources inside: ' + $ResourceGroup)
-        $ResourcesTagQuery = "Resources | where id startswith '$ResourceGroup' | project id, name, subscriptionId, type, resourceGroup, location | order by id"
 
-        $Script:TaggedResources += Get-AllAzGraphResource -query $ResourcesTagQuery -subscriptionId $InScopeSub
+        if (![string]::IsNullOrEmpty($ResourcesWithTHETag) -and [string]::IsNullOrEmpty($AllTaggedResources) -and $ResetTags -eq $false)
+          {
+            $AllTaggedResources += $ResourcesWithTHETag
+            $AllTaggedResources += $AllTaggedResourceGroups
+          }
+        elseif ([string]::IsNullOrEmpty($ResourcesWithTHETag) -and ![string]::IsNullOrEmpty($AllTaggedResourceGroups))
+          {
+            $AllTaggedResources += $AllTaggedResourceGroups
+          }
+        elseif ([string]::IsNullOrEmpty($ResourcesWithTHETag) -and [string]::IsNullOrEmpty($AllTaggedResourceGroups))
+          {
+            if ($Debugging.IsPresent)
+              {
+                Write-host "No Tagged Resources were found. Reseting Values."
+              }
+            $AllTaggedResources = @()
+            $ResetTags = $true
+          }
+        elseif (![string]::IsNullOrEmpty($AllTaggedResources) -and $ResetTags -eq $false)
+          {
+            foreach ($resource in $AllTaggedResources)
+              {
+                if ($resource.id -notin $ResourcesWithTHETag.id)
+                  {
+                    $AllTaggedResources = $AllTaggedResources | Where-Object { $_.id -ne $resource.id }
+                  }
+              }
+          }
       }
-    }
+        $Script:TaggedResources += $AllTaggedResources | Select-Object -Property id, name, subscriptionId, type, resourceGroup, location -Unique -CaseInsensitive
+        if ($Debugging.IsPresent)
+          {
+            Write-host "Tagged Resources Final Value: " -NoNewline
+            $Tagged = [string]$Script:TaggedResources.count
+            write-host $Tagged -ForegroundColor Magenta
+          }
   }
 
   function Invoke-QueryExecution {
@@ -730,7 +885,7 @@ $Script:Runtime = Measure-Command -Expression {
         # $queryResults = Search-AzGraph -Query $query -First 1000 -Subscription $Subid -ErrorAction SilentlyContinue
         $queryResults = Get-AllAzGraphResource -query $query -subscriptionId $Subscription
 
-        $queryResults = $queryResults | Select-Object -Property name, id, param1, param2, param3, param4, param5 -Unique
+        $queryResults = $queryResults | Sort-Object -Property name, id, param1, param2, param3, param4, param5 -Unique
 
         foreach ($row in $queryResults) {
           $result = [PSCustomObject]@{
@@ -1074,14 +1229,16 @@ $Script:Runtime = Measure-Command -Expression {
           }
         }
 
-        if (![string]::IsNullOrEmpty($ResourceGroup))
+        if ($Scope.split("/").count -gt 4 -and $Scope.split("/").count -lt 8)
           {
-            $script:results += Get-ResourceGroupsByList -ObjectList $TempResult -FilterList $ResourceGroups -KeyColumn "id"
+            $Script:results += Get-ResourceGroupsByList -ObjectList $TempResult -FilterList $Scope -KeyColumn "id"
           }
         else
           {
-            $script:results += $TempResult
+            $Script:results += $TempResult
           }
+
+
 
         # Unless we're using a runbook...
         if (!($Script:RunbookChecks -and $Script:RunbookChecks.Count -gt 0)) {
@@ -1093,11 +1250,23 @@ $Script:Runtime = Measure-Command -Expression {
           }
         }
       }
+  }
+
+  Function Invoke-FilterResourceID {
+    [cmdletbinding()]
+    Param(
+        $ResourceID,
+        $List
+    )
+    ForEach ($item in $List){
+        If ($ResourceID -eq $Item.id){$item}
     }
+}
 
   function Invoke-ResourceFiltering {
     if ($Tags) {
-      $Script:InScope += foreach ($Resource in $Script:PreInScopeResources)
+      Write-Host "Filtering Resources In-Scope for Tag Filtering.." -ForegroundColor Cyan
+      $Script:InScope = foreach ($Resource in $Script:PreInScopeResources)
         {
           if ($Resource.id -in $Script:TaggedResources.id)
             {
@@ -1107,19 +1276,48 @@ $Script:Runtime = Measure-Command -Expression {
       }
     else
         {
+          Write-Host "Selecting In-Scope Resources.." -ForegroundColor Cyan
           $Script:InScope = $Script:PreInScopeResources
       }
 
     if (![string]::IsNullOrEmpty($Script:ExcludeList))
       {
+        Write-Host "Filtering Excluded Resources.." -ForegroundColor Cyan
         $Script:InScope = $Script:InScope | Where-Object {$_.id -notin $Script:ExcludeList.id}
       }
 
-    $Script:ImpactedResources += foreach ($Temp in $Script:results)
+    Write-Host "Ordering Impacted Resources.." -ForegroundColor Cyan
+    $Script:results = $Script:results | Sort-Object -Unique -Property validationAction, recommendationId, name, Type, id, param1, param2, param3, param4, param5, checkName, selector
+
+    Write-Host "Filtering Impacted Resources.." -ForegroundColor Cyan
+    $Script:ImpactedResources = foreach ($Temp in $Script:results)
       {
-        if ($Temp.id -in $Script:InScope.id)
+        $TempResID = $Temp.id.split('/')
+        $TempResID = ('/'+$TempResID[1]+ '/'+ $TempResID[2]+ '/'+ $TempResID[3]+ '/'+ $TempResID[4]+ '/'+ $TempResID[5]+ '/'+ $TempResID[6]+ '/'+ $TempResID[7]+ '/'+ $TempResID[8])
+
+        if ($Temp.id -eq "n/a") {
+          $result = [PSCustomObject]@{
+            validationAction = $Temp.validationAction
+            recommendationId = $Temp.recommendationId
+            name             = 'n/a'
+            id               = 'n/a'
+            type             = 'n/a'
+            location         = 'n/a'
+            subscriptionId   = 'n/a'
+            resourceGroup    = 'n/a'
+            param1           = $Temp.param1
+            param2           = $Temp.param2
+            param3           = $Temp.param3
+            param4           = $Temp.param4
+            param5           = $Temp.param5
+            checkName        = $Temp.checkName
+            selector         = $Temp.selector
+          }
+          $result
+        }
+        elseif ($TempResID -in $Script:InScope.id)
           {
-              $TempDetails = ($Script:PreInScopeResources | Where-Object { $_.id -eq $Temp.id } | Select-Object -First 1)
+              $TempDetails = Invoke-FilterResourceID -Resource $TempResID -List $Script:PreInScopeResources
               $result = [PSCustomObject]@{
                 validationAction = $Temp.validationAction
                 recommendationId = $Temp.recommendationId
@@ -1137,16 +1335,42 @@ $Script:Runtime = Measure-Command -Expression {
                 checkName        = $Temp.checkName
                 selector         = $Temp.selector
               }
-          }
-      $result
+              $result
+            }
     }
 
-    $Script:OutOfScope += foreach ($ResIID in $Script:PreOutOfScopeResources)
+    Write-Host "Filtering Advisor Resources.." -ForegroundColor Cyan
+    $Script:Advisories = foreach ($adv in $Script:AllAdvisories)
       {
-        if ($ResIID.type -notin $Script:SupportedResTypes)
+        if ($adv.id -in $Script:InScope.id)
+          {
+            $adv
+          }
+      }
+
+    Write-Host "Filtering Out of Scope Resources.." -ForegroundColor Cyan
+    $Script:OutOfScope = foreach ($ResIID in $Script:PreOutOfScopeResources)
+      {
+        if ($Tags)
+          {
+            if ($ResIID.id -in $Script:TaggedResources.id)
+            {
+              $result = [PSCustomObject]@{
+                description      = 'No Action Required - This ResourceType is already covered by its Parent ResourceType, or is out of scope of Well-Architected Reliability Assessment engagements.'
+                type             = $ResIID.type
+                subscriptionId   = $ResIID.subscriptionId
+                resourceGroup    = $ResIID.resourceGroup
+                name             = $ResIID.name
+                location         = $ResIID.location
+                id               = $ResIID.id
+              }
+            $result
+            }
+          }
+        else
           {
             $result = [PSCustomObject]@{
-              description      = 'No Action Required - This ResourceType is out of scope of Well-Architected Reliability Assessment engagements.'
+              description      = 'No Action Required - This ResourceType is already covered by its Parent ResourceType, or is out of scope of Well-Architected Reliability Assessment engagements.'
               type             = $ResIID.type
               subscriptionId   = $ResIID.subscriptionId
               resourceGroup    = $ResIID.resourceGroup
@@ -1157,12 +1381,12 @@ $Script:Runtime = Measure-Command -Expression {
           $result
           }
       }
-    }
+  }
 
   function Resolve-ResourceType {
     $TempTypes = $Script:ImpactedResources | Where-Object { $_.validationAction -eq 'IMPORTANT - Resource Type is not available in either APRL or Advisor - Validate Resources manually if Applicable, if not Delete this line' }
     $Script:AllResourceTypes = $Script:AllResourceTypes | Sort-Object -Property Count -Descending
-    $Looper = $Script:AllResourceTypes | Select-Object -Property Name -Unique
+    $Looper = $Script:AllResourceTypes | Sort-Object -Property Name -Unique
     foreach ($result in $Looper.Name) {
       $ResourceTypeCount = (($Script:AllResourceTypes | Where-Object { $_.Name -eq $result }) | Select-Object -ExpandProperty Count | Measure-Object -Sum).Sum
       $ResultType = $result
@@ -1200,10 +1424,10 @@ $Script:Runtime = Measure-Command -Expression {
         $queryResults = Get-AllAzGraphResource -Query $advquery -subscriptionId $Subid
       }
 
-      $Script:AllAdvisories += foreach ($row in $queryResults) {
+      $Script:AllAdvisories = foreach ($row in $queryResults) {
         if (![string]::IsNullOrEmpty($row.properties.resourceMetadata.resourceId)) {
           $TempResource = ''
-          $TempResource = ($Script:PreInScopeResources | Where-Object { $_.id -eq $row.properties.resourceMetadata.resourceId } | Select-Object -First 1)
+          $TempResource = Invoke-FilterResourceID -ResourceID $row.properties.resourceMetadata.resourceId -List $Script:PreInScopeResources
           $result = [PSCustomObject]@{
             recommendationId = [string]$row.properties.recommendationTypeId
             type             = [string]$row.Properties.impactedField
@@ -1219,12 +1443,12 @@ $Script:Runtime = Measure-Command -Expression {
           $result
         }
       }
-    }
+  }
 
   function Resolve-SupportTicket {
     $Tickets = $Script:SupportTickets
     $Script:SupportTickets = @()
-    $Script:SupportTickets += foreach ($Ticket in $Tickets) {
+    $Script:SupportTickets = foreach ($Ticket in $Tickets) {
       $tmp = @{
         'Ticket ID'         = [string]$Ticket.properties.supportTicketId;
         'Severity'          = [string]$Ticket.properties.severity;
@@ -1245,7 +1469,7 @@ $Script:Runtime = Measure-Command -Expression {
     $retquery = "servicehealthresources | where properties.EventSubType contains 'Retirement' | order by id"
     $queryResults = Get-AllAzGraphResource -Query $retquery -subscriptionId $Subid
 
-    $Script:AllRetirements += foreach ($row in $queryResults) {
+    $Script:AllRetirements = foreach ($row in $queryResults) {
       $OutagesRetired = $Script:RetiredOutages | Where-Object { $_.name -eq $row.properties.TrackingId }
 
       $result = [PSCustomObject]@{
@@ -1272,7 +1496,7 @@ $Script:Runtime = Measure-Command -Expression {
     $queryResults = Get-AllAzGraphResource -Query $Servicequery -subscriptionId $Subid
 
     $Rowler = @()
-    $Rowler += foreach ($row in $queryResults) {
+    $Rowler = foreach ($row in $queryResults) {
       foreach ($type in $row.properties.condition.allOf) {
         if ($type.equals -eq 'ServiceHealth') {
           $row
@@ -1280,7 +1504,7 @@ $Script:Runtime = Measure-Command -Expression {
       }
     }
 
-    $Script:AllServiceHealth += foreach ($Row in $Rowler) {
+    $Script:AllServiceHealth = foreach ($Row in $Rowler) {
       $SubName = ($SubIds | Where-Object { $_.Id -eq ($Row.properties.scopes.split('/')[2]) }).Name
       $EventType = if ($Row.Properties.condition.allOf.anyOf | Select-Object -Property equals) { $Row.Properties.condition.allOf.anyOf | Select-Object -Property equals | ForEach-Object { switch ($_.equals) { 'Incident' { 'Service Issues' } 'Informational' { 'Health Advisories' } 'ActionRequired' { 'Security Advisory' } 'Maintenance' { 'Planned Maintenance' } } } } Else { 'All' }
       $Services = if ($Row.Properties.condition.allOf | Where-Object { $_.field -eq 'properties.impactedServices[*].ServiceName' }) { $Row.Properties.condition.allOf | Where-Object { $_.field -eq 'properties.impactedServices[*].ServiceName' } | Select-Object -Property containsAny | ForEach-Object { $_.containsAny } } Else { 'All' }
@@ -1317,7 +1541,7 @@ $Script:Runtime = Measure-Command -Expression {
         ResourceType = $Script:AllResourceTypesOrdered
       }
       $AdvisoryExporter = @{
-        Advisory = $Script:AllAdvisories
+        Advisory = $Script:Advisories
       }
       $OutageExporter = @{
         Outages = $Script:Outageslist
@@ -1377,7 +1601,7 @@ $Script:Runtime = Measure-Command -Expression {
 
 
   #Call the functions
-  $Script:Version = '2.0.14'
+  $Script:Version = '2.1.15'
   Write-Host 'Version: ' -NoNewline
   Write-Host $Script:Version -ForegroundColor DarkBlue
 
@@ -1392,13 +1616,48 @@ $Script:Runtime = Measure-Command -Expression {
     $Scopes = @()
     $ConfigData = Import-ConfigFileData -file $ConfigFile
     $TenantID = $ConfigData.TenantID | Select-Object -First 1
-    $Scopes += $ConfigData.subscriptions
-    $Scopes += $ConfigData.resourcegroups
+    $Scopes += foreach ($SubscriptionId in $ConfigData.subscriptionids)
+      {
+        if ((Test-SubscriptionId $SubscriptionId))
+          {
+            $SubscriptionId
+          }
+        else
+          {
+            Write-Host 'Invalid Subscription parameters. Exiting...' -ForegroundColor Red
+            Exit
+          }
+      }
+    $Scopes += foreach ($resourcegroup in $ConfigData.resourcegroups)
+      {
+        if ((Test-ResourceGroupId $resourcegroup))
+          {
+            $resourcegroup
+          }
+        else
+          {
+            Write-Host 'Invalid ResourceGroup parameters. Exiting...' -ForegroundColor Red
+            Exit
+          }
+      }
     $Scopes += $ConfigData.resources
     $locations = $ConfigData.locations
     $RunbookFile = $ConfigData.RunbookFile
-    $Tags = $ConfigData.Tags
-    $ResourceGroups = $ConfigData.ResourceGroups
+    if ($ConfigData.Tags)
+      {
+        $Tags = foreach ($tag in $ConfigData.Tags)
+          {
+            if ((Test-TagPattern $tag))
+              {
+                $tag
+              }
+            else
+              {
+                Write-Host 'Invalid Tag parameters. Exiting...' -ForegroundColor Red
+                Exit
+              }
+          }
+      }
   }
   else {
     $Scopes = @()
@@ -1441,7 +1700,7 @@ $Script:Runtime = Measure-Command -Expression {
   Test-Runbook
 
   Write-Debug "Calling Function: Connect-ToAzure"
-  Connect-ToAzure
+  Connect-ToAzure -TenantID $TenantID -AzureEnvironment $AzureEnvironment
 
   Write-Debug 'Calling Function: Start-ScopesLoop'
   Start-ScopesLoop
@@ -1469,3 +1728,4 @@ Write-Host (' Minutes')
 Write-Host 'Result File: ' -NoNewline
 Write-Host $Script:JsonFile -ForegroundColor Blue
 Write-Host '---------------------------------------------------------------------'
+

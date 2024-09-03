@@ -1,8 +1,5 @@
 #Requires -Version 7
 
-[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingWriteHost', '', Justification = 'False positive as Write-Host does not represent a security risk and this script will always run on host consoles')]
-[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', '', Justification = 'False positive as parameters are not always required')]
-
 <#
 .SYNOPSIS
 Well-Architected Reliability Assessment Script
@@ -10,10 +7,24 @@ Well-Architected Reliability Assessment Script
 .DESCRIPTION
 The script "2_wara_data_analyzer" will process the JSON file created by the "1_wara_collector" script and will create the core WARA Action Plan Excel file.
 
+.PARAMETER Debugging
+Switch to enable debugging mode.
+
+.PARAMETER Help
+Switch to display help information.
+
+.PARAMETER JSONFile
+Path to the JSON file created by the "1_wara_collector" script.
+
+.EXAMPLE
+.\2_wara_data_analyzer.ps1 -JSONFile 'C:\Temp\WARA_File_2024-04-01_10_01.json' -Debugging
+
 .LINK
 https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2
-
 #>
+
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingWriteHost', '', Justification = 'False positive as Write-Host does not represent a security risk and this script will always run on host consoles')]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', '', Justification = 'False positive as parameters are not always required')]
 
 Param(
   [switch]$Debugging,
@@ -174,7 +185,7 @@ $Script:Runtime = Measure-Command -Expression {
     }
 
     $Script:MergedRecommendation = @()
-    foreach ($Recom in $CoreResources | Where-Object { $_ -ne $null }) {
+    foreach ($Recom in ($CoreResources | Where-Object { $_ -ne $null })) {
 
       $RecomTitle = $Script:ServicesYAMLContent | Where-Object { $_.aprlGuid -eq $Recom.recommendationId }
       if (![string]::IsNullOrEmpty($Recom.checkName)) {
@@ -203,9 +214,9 @@ $Script:Runtime = Measure-Command -Expression {
         }
         $Script:MergedRecommendation += $tmp
       } else {
-        if ([string]::IsNullOrEmpty($RecomTitle.recommendationTypeId)) {
+        if ([string]::IsNullOrEmpty($RecomTitle.recommendationTypeId) -or (![string]::IsNullOrEmpty($RecomTitle.recommendationTypeId) -and $RecomTitle.recommendationTypeId -notin $CoreAdvisories.recommendationId)) {
           $Ticket = $Script:SupportTickets | Where-Object { $_.'Related Resource' -eq $Recom.id }
-          if (($RecomTitle.recommendationMetadataState -eq 'Active' -and [string]::IsNullOrEmpty($RecomTitle.recommendationTypeId)) -or $Recom.validationAction -eq 'IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually' -or $Recom.validationAction -eq 'IMPORTANT - Query under development - Validate Resources manually' ) {
+          if (($RecomTitle.recommendationMetadataState -eq 'Active') -or $Recom.validationAction -eq 'IMPORTANT - Recommendation cannot be validated with ARGs - Validate Resources manually' -or $Recom.validationAction -eq 'IMPORTANT - Query under development - Validate Resources manually' ) {
             $Tickets = if ($Ticket.'Ticket ID'.count -gt 1) { $Ticket.'Ticket ID' | ForEach-Object { $_ + ' /' } }else { $Ticket.'Ticket ID' }
             $Tickets = [string]$Tickets
             $Tickets = if ($Tickets -like '* /*') { $Tickets -replace '.$' }else { $Tickets }
@@ -655,7 +666,7 @@ $Script:Runtime = Measure-Command -Expression {
 
       # Build the APRL Recommendations
       foreach ($Service in $Script:ServicesYAMLContent) {
-        if (($Service.recommendationResourceType -like 'Specialized.Workload/*' -or $Service.recommendationResourceType -in $Script:AllResourceTypesOrdered.'Resource Type' -or $Script:FilterRecommendations -eq $false) -and [string]::IsNullOrEmpty($Service.recommendationTypeId)) {
+        if (($Service.recommendationResourceType -like 'Specialized.Workload/*' -or $Service.recommendationResourceType -in $Script:AllResourceTypesOrdered.'Resource Type' -or $Script:FilterRecommendations -eq $false) -and ([string]::IsNullOrEmpty($Service.recommendationTypeId) -or (![string]::IsNullOrEmpty($Service.recommendationTypeId) -and $Service.recommendationTypeId -notin $Script:RecommendedAdv))) {
           $ID = $Service.aprlGuid
           $resourceType = $Service.recommendationResourceType
           $tmp = @{
@@ -922,7 +933,7 @@ $Script:Runtime = Measure-Command -Expression {
   }
 
   #Call the functions
-  $Script:Version = '2.0.11'
+  $Script:Version = '2.1.11'
   Write-Host 'Version: ' -NoNewline
   Write-Host $Script:Version -ForegroundColor DarkBlue
 

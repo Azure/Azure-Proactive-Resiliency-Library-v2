@@ -1,0 +1,113 @@
+- description: Enable zone redundancy for Azure SQL Managed Instance to achieve high availability and resiliency
+  aprlGuid: f8f834a9-c761-4e84-b2cb-ac55494d0c37
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Sql/managedInstances
+  recommendationMetadataState: Active
+  longDescription: |
+    By default, Azure SQL Database premium tier provisions multiple copies within the same region. For geo redundancy, databases can be set as Zone Redundant, distributing copies across Azure Availability Zones to maintain availability during regional outages.
+  potentialBenefits: Enhanced availability and reliability
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: High availability through zone-redundancy
+      url: "https://learn.microsoft.com/azure/azure-sql/managed-instance/high-availability-sla-local-zone-redundancy?view=azuresql-mi#zone-redundant-availability"
+
+- description: Use Zone-redundant or Geo-zone-redundant Backup storage redundancy
+  aprlGuid: 15e2712c-f3ea-4a8d-9081-11e822b1ccfb
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Sql/managedInstances
+  recommendationMetadataState: Active
+  longDescription: |
+    This copies your backups synchronously across three Azure availability zones in the primary region, if Geo is selected it creates 3 more copies in a secondary region.
+  potentialBenefits: Enhanced availability and reliability
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Backup storage redundancy
+      url: "https://learn.microsoft.com/azure/azure-sql/managed-instance/automated-backups-overview?view=azuresql-mi&preserve-view=true#backup-storage-redundancy"
+
+- description: Use Redirect connection type to accelerate application access
+  aprlGuid: c14de326-2729-4be7-a91f-4ea185d24b10
+  recommendationTypeId: null
+  recommendationControl: Scalability
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Sql/managedInstances
+  recommendationMetadataState: Active
+  longDescription: |
+    Redirect mode enables direct connectivity to the instance resulting in improved latency and throughput. Redirect mode applies to the VNet-local endpoint only, while the public endpoint will always default to Proxy connection mode.
+  potentialBenefits: Improved latency and throughput
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Connection types
+      url: "https://learn.microsoft.com/azure/azure-sql/managed-instance/connection-types-overview?view=azuresql#connection-types"
+
+- description: Configure a secondary instance and a Failover group to enable failover to another region
+  aprlGuid: 257cd903-700f-4a79-bd37-7dce2b511df4
+  recommendationTypeId: null
+  recommendationControl: Disaster Recovery
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Sql/managedInstances
+  recommendationMetadataState: Active
+  longDescription: |
+    If an outage impacts one or more of the databases in the managed instance, you can manually or automatically failover all the databases inside the instance to a secondary region.
+  potentialBenefits: Ensure seamless service with cross-region failover
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Failover groups overview and best practices
+      url: "https://learn.microsoft.com/azure/azure-sql/managed-instance/failover-group-sql-mi?view=azuresql"
+
+- description: Monitor your Azure SQL MI Managed Instance in near-real time to detect reliability incidents
+  aprlGuid: c9afeb1e-e706-4809-be4e-75d9fac708f2
+  recommendationTypeId: null
+  recommendationControl: Monitoring and Alerting
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Sql/servers
+  recommendationMetadataState: Active
+  longDescription: |
+    Monitoring and alerting are an important part of database operations. When working with Azure SQL Database, make use of Azure Monitor and SQL Insights to ensure that you capture relevant database metrics.
+  potentialBenefits: Quick incident detection and response
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name:  Azure SQL Managed Instance monitoring options
+      url: "https://techcommunity.microsoft.com/t5/azure-sql/monitoring-options-available-for-azure-sql-managed-instance/ba-p/1065416"
+
+- description: Back Up Your Keys
+  aprlGuid: 9fad5392-b852-4807-9b6d-3f700ff9771a
+  recommendationTypeId: null
+  recommendationControl: Disaster Recovery
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Sql/servers
+  recommendationMetadataState: Active
+  longDescription: |
+    It is highly recommended to use Azure Key Vault (AKV) to store encryption keys related to Always Encrypted configurations, however it is not required. If you are not using AKV, then ensure that your keys are properly backed up and stored in a secure manner.
+  potentialBenefits: Enhanced security and data recovery
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Overview of Always Encrypted
+      url: "https://learn.microsoft.com/azure/azure-sql/database/always-encrypted-landing?view=azuresql"
