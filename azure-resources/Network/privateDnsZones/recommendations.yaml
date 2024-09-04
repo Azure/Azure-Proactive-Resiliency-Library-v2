@@ -52,8 +52,8 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Scenarios for Azure Private DNS zones
-      url: "https://learn.microsoft.com/en-us/azure/dns/private-dns-scenarios"
+    - name: Private Link and DNS integration at scale
+      url: "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/private-link-and-dns-integration-at-scale"
 
 - description: Ensure Time-To-Live (TTL) is set appropriately to ensure RPOs can be met
   aprlGuid: 3538aa48-c40b-455b-a93b-269fe6e65be2
