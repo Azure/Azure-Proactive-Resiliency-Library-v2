@@ -1,0 +1,18 @@
+- description: Ensure Time-To-Live (TTL) is set appropriately to ensure RPOs can be met
+  aprlGuid: 7d09523b-b3c0-403e-b104-d5d46240d683
+  recommendationTypeId: null
+  recommendationControl: Disaster Recovery
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/dnsZones
+  recommendationMetadataState: Active
+  longDescription: |
+    Azure DNS allows the Time-To-Live (TTL) for record sets in the zone to be set to a value between 1 and 2147483647 seconds. You should ensure that the TTL for the DNS record sets in your DNS Zones are set appropriately to meet your RPO targets.
+  potentialBenefits: Ensures that no cached DNS records exist past RPO targets
+  pgVerified: false
+  publishedToLearn: false
+  publishedToAdvisor: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Reliability in Azure DNS
+      url: "https://learn.microsoft.com/azure/reliability/reliability-dns"
