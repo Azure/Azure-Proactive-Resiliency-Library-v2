@@ -13,6 +13,6 @@ recommendation:
   potentialBenefits: str(max=60)
   pgVerified: bool()
   publishedToLearn: bool()
-  automationAvailable: any(enum('arg'), bool())
+  automationAvailable: bool()
   tags: null()
   learnMoreLink: list()

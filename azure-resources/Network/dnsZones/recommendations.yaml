@@ -10,7 +10,7 @@
   potentialBenefits: Ensures that no cached DNS records exist past RPO targets
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Reliability in Azure DNS

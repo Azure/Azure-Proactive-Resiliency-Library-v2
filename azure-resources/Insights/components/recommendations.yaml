@@ -10,7 +10,7 @@
   potentialBenefits: Avoid service disruption post-Feb 2024
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Migrate an Application Insights classic resource to a workspace-based resource

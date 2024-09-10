@@ -10,7 +10,7 @@
   potentialBenefits: Enhanced private cloud connectivity
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Connect Private Clouds in the same region
@@ -28,7 +28,7 @@
   potentialBenefits: Continuous login access during maintenances
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Set an external identity source for vCenter
@@ -48,7 +48,7 @@
   potentialBenefits: Improves HCX service continuity
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: HCX Network extension high availability
@@ -68,7 +68,7 @@
   potentialBenefits: Enhanced network safety and performance
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Requirements for Network Extension
@@ -86,7 +86,7 @@
   potentialBenefits: Enhanced cluster reliability
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Use fault domains
@@ -106,7 +106,7 @@
   potentialBenefits: Enhanced circuit resilience for Azure VMware
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: APRL guidance for ExpressRoute circuits
@@ -126,7 +126,7 @@
   potentialBenefits: Enhanced resilience and connectivity
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Deploy vSAN streched cluster
@@ -144,7 +144,7 @@
   potentialBenefits: Enhanced disaster recovery
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Private Clouds in two regions

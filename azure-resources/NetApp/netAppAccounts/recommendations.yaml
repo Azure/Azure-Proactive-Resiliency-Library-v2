@@ -10,7 +10,7 @@
   potentialBenefits: Optimized performance and cost efficiency
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Service levels for Azure NetApp Files | Microsoft Learn
@@ -28,7 +28,7 @@
   potentialBenefits: Enhanced connectivity and security
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Guidelines for Azure NetApp Files network planning | Microsoft Learn
@@ -46,7 +46,7 @@
   potentialBenefits: High Availability across availability zones
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Use availability zones for high availability in Azure NetApp Files | Microsoft Learn
@@ -64,7 +64,7 @@
   potentialBenefits: Within AZ latency and tolerate failure of other AZ
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Manage availability zone volume placement for Azure NetApp Files | Microsoft Learn
@@ -82,7 +82,7 @@
   potentialBenefits: Stable, scalable, swift recovery, no perf impact
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: How Azure NetApp Files snapshots work | Microsoft Learn
@@ -100,7 +100,7 @@
   potentialBenefits: Enhances data recovery and compliance
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Understand Azure NetApp Files backup | Microsoft Learn
@@ -118,7 +118,7 @@
   potentialBenefits: Enhanced data protection and disaster recovery
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Cross-region replication of Azure NetApp Files volumes
@@ -136,7 +136,7 @@
   potentialBenefits: Enhances disaster recovery across availability zones
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Cross-zone replication of Azure NetApp Files volumes | Microsoft Learn
@@ -154,7 +154,7 @@
   potentialBenefits: Optimize usage and performance
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Ways to monitor Azure NetApp Files | Microsoft Learn
@@ -172,7 +172,7 @@
   potentialBenefits: Enforce standards and assess compliance
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Azure Policy definitions for Azure NetApp Files | Microsoft Learn
@@ -192,7 +192,7 @@
   potentialBenefits: Enhanced security, Reduced data breach risk
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Configure network features for an Azure NetApp Files volume
@@ -218,7 +218,7 @@
   potentialBenefits: Zero downtime for SMB apps
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Do I need to take special precautions for SMB-based applications? | Microsoft Learn
@@ -236,7 +236,7 @@
   potentialBenefits: Minimizes downtime during maintenance
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: What do you recommend for handling potential application disruptions due to storage service maintenance events? | Microsoft Learn

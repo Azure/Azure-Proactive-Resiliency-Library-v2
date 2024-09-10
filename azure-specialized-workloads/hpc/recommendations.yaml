@@ -10,7 +10,7 @@
   potentialBenefits: Enhances job metadata availability
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Learn More
@@ -28,7 +28,7 @@
   potentialBenefits: Efficient, uninterrupted execution
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Learn More
@@ -46,7 +46,7 @@
   potentialBenefits: Enhanced reliability for HPC
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Learn More
@@ -64,7 +64,7 @@
   potentialBenefits: Enhanced reliability and job management
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Learn More

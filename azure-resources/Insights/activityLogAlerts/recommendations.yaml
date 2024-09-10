@@ -10,7 +10,7 @@
   potentialBenefits: Stay informed on resource status
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Resource Health
@@ -32,7 +32,7 @@
   potentialBenefits: Proactive outage and maintenance alerts
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: What is Azure Service Health?

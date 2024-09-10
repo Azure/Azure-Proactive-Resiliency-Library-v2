@@ -10,7 +10,7 @@
   potentialBenefits: High-volume support and geo-replication
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Container Registry Best Practices
@@ -28,7 +28,7 @@
   potentialBenefits: Enhances resiliency and high availability
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Registry best practices - Enable zone redundancy
@@ -46,7 +46,7 @@
   potentialBenefits: Simplifies management, reduces latency
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Registry best practices - Enable geo-replication
@@ -66,7 +66,7 @@
   potentialBenefits: Enables sharing and group isolation
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Registry best practices - use repository namespaces
@@ -84,7 +84,7 @@
   potentialBenefits: Safeguards image collection
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Registry best practices - Use dedicated resource group
@@ -102,7 +102,7 @@
   potentialBenefits: Reduce costs, optimize storage
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Registry best practices - Manage registry size
@@ -122,7 +122,7 @@
   potentialBenefits: Enhanced security and controlled access
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Enable anonymous pull access
@@ -140,7 +140,7 @@
   potentialBenefits: Enhanced tracking and debugging
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Monitoring Azure Container Registry data reference - Resource Logs
@@ -160,7 +160,7 @@
   potentialBenefits: Enhanced monitoring and operation
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Monitoring Azure Container Registry data reference
@@ -180,7 +180,7 @@
   potentialBenefits: Recovery of deleted artifacts
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Enable soft delete policy

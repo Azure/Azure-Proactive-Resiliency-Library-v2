@@ -10,7 +10,7 @@
   potentialBenefits: Enhances SLA and resilience
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Distribute data globally with Azure Cosmos DB
@@ -30,7 +30,7 @@
   potentialBenefits: Auto failover for high uptime
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Manage an Azure Cosmos DB account by using the Azure portal
@@ -48,7 +48,7 @@
   potentialBenefits: Enhances high availability
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Distribute data globally with Azure Cosmos DB
@@ -68,7 +68,7 @@
   potentialBenefits: Faster self-serve data restore
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Continuous backup with point in time restore feature in Azure Cosmos DB
@@ -86,7 +86,7 @@
   potentialBenefits: Maximizes data retrieval efficiency
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Pagination in Azure Cosmos DB
@@ -104,7 +104,7 @@
   potentialBenefits: Optimizes connections and efficiency
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Designing resilient applications with Azure Cosmos DB SDKs
@@ -122,7 +122,7 @@
   potentialBenefits: Enhances error handling resilience
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Designing resilient applications with Azure Cosmos DB SDKs
@@ -140,7 +140,7 @@
   potentialBenefits: Proactive issue management
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Create alerts for Azure Cosmos DB using Azure Monitor

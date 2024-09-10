@@ -10,7 +10,7 @@
   potentialBenefits: Enhanced uptime and data protection
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Overview of high availability with Azure Database for PostgreSQL
@@ -28,7 +28,7 @@
   potentialBenefits: Control update timings
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Scheduled maintenance in Azure Database for PostgreSQL - Flexible Server
@@ -46,7 +46,7 @@
   potentialBenefits: Recover from regional failure and/or disaster
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Backup and restore in Azure Database for PostgreSQL - Flexible Server
@@ -64,7 +64,7 @@
   potentialBenefits: Recover from regional failure and/or disaster
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Read replicas in Azure Database for PostgreSQL - Flexible Server
@@ -82,7 +82,7 @@
   potentialBenefits: Scale storage automatically to meet increasing demand
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Storage autogrow using Azure portal in Azure Database for PostgreSQL - Flexible Server

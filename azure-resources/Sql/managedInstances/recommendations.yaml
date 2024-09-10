@@ -10,7 +10,7 @@
   potentialBenefits: Enhanced availability and reliability
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: High availability through zone-redundancy
@@ -28,7 +28,7 @@
   potentialBenefits: Enhanced availability and reliability
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Backup storage redundancy
@@ -46,7 +46,7 @@
   potentialBenefits: Improved latency and throughput
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Connection types
@@ -64,7 +64,7 @@
   potentialBenefits: Ensure seamless service with cross-region failover
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Failover groups overview and best practices
@@ -82,7 +82,7 @@
   potentialBenefits: Quick incident detection and response
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name:  Azure SQL Managed Instance monitoring options
@@ -100,7 +100,7 @@
   potentialBenefits: Enhanced security and data recovery
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Overview of Always Encrypted

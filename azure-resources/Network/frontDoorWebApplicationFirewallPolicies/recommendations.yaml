@@ -10,7 +10,7 @@
   potentialBenefits: Reduces false positives, improves access
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Azure Web Application Firewall monitoring and logging - Access Log
@@ -34,7 +34,7 @@
   potentialBenefits: Improve false positive identification
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Azure Web Application Firewall Monitoring and Logging
@@ -54,7 +54,7 @@
   potentialBenefits: Enhanced security and health insight
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: WAF monitoring

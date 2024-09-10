@@ -10,7 +10,7 @@
   potentialBenefits: Higher resilience and availability
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Enable zone redundancy for Azure Cache for Redis
@@ -27,7 +27,7 @@
   potentialBenefits: Higher resilience and availability
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Schedule Redis Updates
@@ -45,7 +45,7 @@
   potentialBenefits: Secure, private VNet ingress, efficient data transfer
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Configure private endpoints for Azure Redis Cache

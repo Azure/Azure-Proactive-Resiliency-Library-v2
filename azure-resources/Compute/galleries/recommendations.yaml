@@ -10,7 +10,7 @@
   potentialBenefits: Enhances scalability and avoids throttling
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Compute Gallery best practices
@@ -28,7 +28,7 @@
   potentialBenefits: Enhances image version availability
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Compute Gallery best practices
@@ -48,7 +48,7 @@
   potentialBenefits: Enhances VM security and features
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Compute Gallery best practices

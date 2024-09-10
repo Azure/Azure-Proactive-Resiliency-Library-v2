@@ -10,7 +10,7 @@
   potentialBenefits: Enables recovery of deleted items
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Azure Key Vault soft-delete overview
@@ -28,7 +28,7 @@
   potentialBenefits: Protects from insider attacks, avoids data loss
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Azure Key Vault purge-protection overview
@@ -46,7 +46,7 @@
   potentialBenefits: Secure Key Vault with Private Link
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Azure Key Vault Private Link Service overview
@@ -64,7 +64,7 @@
   potentialBenefits: Enhanced security, Reduced risk
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Azure Key Vault best practices overview
@@ -82,7 +82,7 @@
   potentialBenefits: Enhanced monitoring and security compliance
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Azure Key Vault logging overview

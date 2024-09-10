@@ -10,7 +10,7 @@
   potentialBenefits: Enhanced fault tolerance for AKS
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: AKS Availability Zones
@@ -30,7 +30,7 @@
   potentialBenefits: Enhanced reliability via pod isolation
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: System and user node pools
@@ -48,7 +48,7 @@
   potentialBenefits: Enhanced security and access control
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Entra integration
@@ -70,7 +70,7 @@
   potentialBenefits: Dynamic IP allocation, scalable subnets, direct VNET access
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Configure Azure CNI networking
@@ -90,7 +90,7 @@
   potentialBenefits: Optimizes scaling and prevents outages
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Use the Cluster Autoscaler on AKS
@@ -114,7 +114,7 @@
   potentialBenefits: Ensures data safety for AKS
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: AKS Backups
@@ -134,7 +134,7 @@
   potentialBenefits: Increases data durability and availability
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Availability zones overview
@@ -160,7 +160,7 @@
   potentialBenefits: Ensures future compatibility
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: CSI Storage Drivers
@@ -180,7 +180,7 @@
   potentialBenefits: Limits AKS resource usage per namespace
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Resource Quotas
@@ -198,7 +198,7 @@
   potentialBenefits: Faster scaling with virtual nodes
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Virtual Nodes
@@ -218,7 +218,7 @@
   potentialBenefits: SLA guarantee and better scalability
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Pricing Tiers
@@ -238,7 +238,7 @@
   potentialBenefits: Real-time AKS health/performance insights
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Monitor AKS
@@ -256,7 +256,7 @@
   potentialBenefits: Lower latency, faster re-imaging and booting
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Ephemeral OS disk
@@ -278,7 +278,7 @@
   potentialBenefits: Enhanced AKS governance and security
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: AKS Baseline - Policy Management
@@ -298,7 +298,7 @@
   potentialBenefits: Ensures AKS config consistency
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: GitOps with AKS
@@ -318,7 +318,7 @@
   potentialBenefits: Ensures high availability and efficient use
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Topology Spread Constraints
@@ -338,7 +338,7 @@
   potentialBenefits: Enhances container health monitoring
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Configure probes
@@ -358,7 +358,7 @@
   potentialBenefits: Ensures stable pod availability
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Replica Sets
@@ -376,7 +376,7 @@
   potentialBenefits: Ensures pod resilience
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: System nodepools
@@ -394,7 +394,7 @@
   potentialBenefits: Ensures high app availability
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Azure Well-Architected Framework review for Azure Kubernetes Service (AKS)
@@ -412,7 +412,7 @@
   potentialBenefits: Ensures cluster resiliency during disruptions
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Configure PDBs
@@ -432,7 +432,7 @@
   potentialBenefits: Efficient scaling, reduced disruptions
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Azure CNI Dynamic IP Allocation
@@ -450,7 +450,7 @@
   potentialBenefits: Reduced disruptions
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Azure Quotas
@@ -468,7 +468,7 @@
   potentialBenefits: Reduced disruptions
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Azure Linux
@@ -486,7 +486,7 @@
   potentialBenefits: Ensures high app availability
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Multi-replica apps

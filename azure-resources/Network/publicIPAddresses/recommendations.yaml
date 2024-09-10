@@ -10,7 +10,7 @@
   potentialBenefits: Enhanced resilience with zone redundancy
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Public IP addresses - Availability Zones
@@ -30,7 +30,7 @@
   potentialBenefits: Avoids SNAT port exhaustion risks
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Use NAT GW for outbound connectivity
@@ -50,7 +50,7 @@
   potentialBenefits: Avoids service disruption
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Upgrading a basic public IP address to Standard SKU - Guidance
@@ -71,7 +71,7 @@
   potentialBenefits: Avoids service disruption
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Azure DDoS Protection

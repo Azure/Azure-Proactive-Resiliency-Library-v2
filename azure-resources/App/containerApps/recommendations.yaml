@@ -10,7 +10,7 @@
   potentialBenefits: Enhanced availability and resilience
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Health probes for Azure Container Apps

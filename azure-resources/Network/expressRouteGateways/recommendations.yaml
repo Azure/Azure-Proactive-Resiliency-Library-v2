@@ -9,7 +9,7 @@
   potentialBenefits: Enhance resiliency for Azure Service
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Designing for disaster recovery with ExpressRoute private peering
@@ -26,7 +26,7 @@
   potentialBenefits: Detection and mitigation to avoid disruptions.
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Virtual WAN Monitoring Best Practices

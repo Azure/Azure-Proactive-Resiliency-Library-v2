@@ -10,7 +10,7 @@
   potentialBenefits: More memory, supports >2TB disks, faster boot
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Generation 1 vs generation 2 virtual machines
@@ -28,7 +28,7 @@
   potentialBenefits: Enhances disaster recovery capability
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Image Template resiliency

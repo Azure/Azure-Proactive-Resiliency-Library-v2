@@ -10,7 +10,7 @@
   potentialBenefits: Enhanced stability and support
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Databricks runtime support lifecycles
@@ -28,7 +28,7 @@
   potentialBenefits: Reduces provisioning errors
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Best practices for reliability
@@ -46,7 +46,7 @@
   potentialBenefits: Faster, reliable VM performance
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Azure managed disk types
@@ -64,7 +64,7 @@
   potentialBenefits: Cost and performance optimization
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Best practices for reliability
@@ -82,7 +82,7 @@
   potentialBenefits: Improves concurrency and efficiency
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Best practices for reliability
@@ -100,7 +100,7 @@
   potentialBenefits: Optimized resource use and minimal latency
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Best practices for reliability
@@ -120,7 +120,7 @@
   potentialBenefits: Saves cluster resources, avoids idle use
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Best practices for reliability
@@ -138,7 +138,7 @@
   potentialBenefits: Improved troubleshooting and audit
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Create a cluster
@@ -156,7 +156,7 @@
   potentialBenefits: Enhances data reliability and processing
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Best practices for reliability
@@ -174,7 +174,7 @@
   potentialBenefits: Boosts speed and reliability for Spark tasks
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Best practices for reliability
@@ -192,7 +192,7 @@
   potentialBenefits: Enhanced data resilience and integrity
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Best practices for reliability
@@ -210,7 +210,7 @@
   potentialBenefits: Enhanced reliability and autoscaling
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Best practices for reliability
@@ -228,7 +228,7 @@
   potentialBenefits: Enhances scalability and reliability
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Best practices for reliability
@@ -246,7 +246,7 @@
   potentialBenefits: Enhances data quality and trust
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Best practices for reliability
@@ -264,7 +264,7 @@
   potentialBenefits: Enhanced data integrity and quality
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Best practices for reliability
@@ -282,7 +282,7 @@
   potentialBenefits: Prevents invalid data and job failures
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Best practices for reliability
@@ -300,7 +300,7 @@
   potentialBenefits: Ensures data quality and integrity
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Best practices for reliability
@@ -318,7 +318,7 @@
   potentialBenefits: Ensures data recovery and migration
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Best practices for reliability
@@ -336,7 +336,7 @@
   potentialBenefits: Fault-tolerance and auto-restart for queries
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Best practices for reliability
@@ -354,7 +354,7 @@
   potentialBenefits: Easy rollback and fix for ETL jobs
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Best practices for reliability
@@ -372,7 +372,7 @@
   potentialBenefits: Saves time and money with smart recovery
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Best practices for reliability
@@ -392,7 +392,7 @@
   potentialBenefits: Ensures service continuity during disasters
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Azure Databricks Best Practices
@@ -410,7 +410,7 @@
   potentialBenefits: Efficient, reliable automation
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Best practices for operational excellence
@@ -428,7 +428,7 @@
   potentialBenefits: Enhanced reliability and automation
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Best practices for operational excellence
@@ -446,7 +446,7 @@
   potentialBenefits: Enhanced limits management, team separation
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Azure Databricks Best Practices
@@ -464,7 +464,7 @@
   potentialBenefits: Enhanced security and resource isolation
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Azure Databricks Best Practices
@@ -482,7 +482,7 @@
   potentialBenefits: Enhanced security, data protection
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Azure Databricks Best Practices
@@ -500,7 +500,7 @@
   potentialBenefits: Ensures high reliability for production
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Use Azure Spot Virtual Machines
@@ -518,7 +518,7 @@
   potentialBenefits: Improves resilience and data sovereignty
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Azure Databricks control plane addresses
@@ -540,7 +540,7 @@
   potentialBenefits: Ensures service availability
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Compute configuration best practices

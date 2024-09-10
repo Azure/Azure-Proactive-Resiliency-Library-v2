@@ -10,7 +10,7 @@
   potentialBenefits: Enhanced environment stability
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Configure a host pool as a validation environment
@@ -28,7 +28,7 @@
   potentialBenefits: Enhanced environment stability
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Scheduled Agent Updates for Azure Virtual Desktop host pools
@@ -46,7 +46,7 @@
   potentialBenefits: Improved AVD hostpool config & segmentation
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Configure the VMs and install Active Directory Domain Services
@@ -64,7 +64,7 @@
   potentialBenefits: Ensures VM recovery & failover
   pgVerified: true
   publishedToLearn: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: About Site Recovery
