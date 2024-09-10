@@ -10,7 +10,6 @@
   potentialBenefits: Faster failover; Ensures device connectivity
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -31,7 +30,6 @@
   potentialBenefits: Ensures SLA for production
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -50,7 +48,6 @@
   potentialBenefits: Boosts IoT Hub availability
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -69,7 +66,6 @@
   potentialBenefits: Enhances scalability and availability
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -92,7 +88,6 @@
   potentialBenefits: Ensures business continuity
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -111,7 +106,6 @@
   potentialBenefits: Prevents undelivered messages
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:

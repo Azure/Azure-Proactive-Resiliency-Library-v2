@@ -10,7 +10,6 @@
   potentialBenefits: Enhanced private cloud connectivity
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -29,7 +28,6 @@
   potentialBenefits: Continuous login access during maintenances
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -50,7 +48,6 @@
   potentialBenefits: Improves HCX service continuity
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -71,7 +68,6 @@
   potentialBenefits: Enhanced network safety and performance
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -90,7 +86,6 @@
   potentialBenefits: Enhanced cluster reliability
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -111,7 +106,6 @@
   potentialBenefits: Enhanced circuit resilience for Azure VMware
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -132,7 +126,6 @@
   potentialBenefits: Enhanced resilience and connectivity
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -151,7 +144,6 @@
   potentialBenefits: Enhanced disaster recovery
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:

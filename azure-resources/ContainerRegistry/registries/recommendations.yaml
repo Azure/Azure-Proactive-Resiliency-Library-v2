@@ -10,7 +10,6 @@
   potentialBenefits: High-volume support and geo-replication
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -29,7 +28,6 @@
   potentialBenefits: Enhances resiliency and high availability
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -48,7 +46,6 @@
   potentialBenefits: Simplifies management, reduces latency
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -69,7 +66,6 @@
   potentialBenefits: Enables sharing and group isolation
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -88,7 +84,6 @@
   potentialBenefits: Safeguards image collection
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -107,7 +102,6 @@
   potentialBenefits: Reduce costs, optimize storage
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -128,7 +122,6 @@
   potentialBenefits: Enhanced security and controlled access
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -147,7 +140,6 @@
   potentialBenefits: Enhanced tracking and debugging
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -168,7 +160,6 @@
   potentialBenefits: Enhanced monitoring and operation
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -189,7 +180,6 @@
   potentialBenefits: Recovery of deleted artifacts
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:

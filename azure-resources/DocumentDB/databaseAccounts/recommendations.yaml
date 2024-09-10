@@ -10,7 +10,6 @@
   potentialBenefits: Enhances SLA and resilience
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -31,7 +30,6 @@
   potentialBenefits: Auto failover for high uptime
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -50,7 +48,6 @@
   potentialBenefits: Enhances high availability
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -71,7 +68,6 @@
   potentialBenefits: Faster self-serve data restore
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -90,7 +86,6 @@
   potentialBenefits: Maximizes data retrieval efficiency
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -109,7 +104,6 @@
   potentialBenefits: Optimizes connections and efficiency
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -128,7 +122,6 @@
   potentialBenefits: Enhances error handling resilience
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -147,7 +140,6 @@
   potentialBenefits: Proactive issue management
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:

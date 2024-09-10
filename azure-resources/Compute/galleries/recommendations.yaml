@@ -10,7 +10,6 @@
   potentialBenefits: Enhances scalability and avoids throttling
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -29,7 +28,6 @@
   potentialBenefits: Enhances image version availability
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -50,7 +48,6 @@
   potentialBenefits: Enhances VM security and features
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:

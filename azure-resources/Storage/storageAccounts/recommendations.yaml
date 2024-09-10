@@ -10,7 +10,6 @@
   potentialBenefits: High availability and durability for storage
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -31,7 +30,6 @@
   potentialBenefits: Avoids service retirement issues
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -52,7 +50,6 @@
   potentialBenefits: Optimized cost and performance
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -79,7 +76,6 @@
   potentialBenefits: Prevents accidental data/account loss
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -98,7 +94,6 @@
   potentialBenefits: Recover data, manage latency
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -117,7 +112,6 @@
   potentialBenefits: Protects data from loss/corruption
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -138,7 +132,6 @@
   potentialBenefits: Enhanced alerting and log analysis
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -159,7 +152,6 @@
   potentialBenefits: Latest features, lowest cost
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -180,7 +172,6 @@
   potentialBenefits: Secure, private access to storage with no public IPs
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:

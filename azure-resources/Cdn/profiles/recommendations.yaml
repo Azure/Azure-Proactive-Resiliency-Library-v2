@@ -10,7 +10,6 @@
   potentialBenefits: Optimized network routing and security
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -35,7 +34,6 @@
   potentialBenefits: Enhances security and performance
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -54,7 +52,6 @@
   potentialBenefits: Enhanced security and features
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -77,7 +74,6 @@
   potentialBenefits: Enhanced insights and solution monitoring
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -100,7 +96,6 @@
   potentialBenefits: Ensures data encryption in transit
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -119,7 +114,6 @@
   potentialBenefits: Enhances security and compliance
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -138,7 +132,6 @@
   potentialBenefits: Lowers costs, avoids outages
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -157,7 +150,6 @@
   potentialBenefits: Saves time and automates TLS updates
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -176,7 +168,6 @@
   potentialBenefits: Improves session/auth handling
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -195,7 +186,6 @@
   potentialBenefits: Enhances web app security
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -214,7 +204,6 @@
   potentialBenefits: Reduces unnecessary origin traffic
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -233,7 +222,6 @@
   potentialBenefits: Improves traffic routing and uptime
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -252,7 +240,6 @@
   potentialBenefits: Reduces traffic load on origins
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -271,7 +258,6 @@
   potentialBenefits: Enhanced regional access control
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -290,7 +276,6 @@
   potentialBenefits: Enhanced security and private connectivity
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -309,7 +294,6 @@
   potentialBenefits: Costs savings and additional supported features
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:

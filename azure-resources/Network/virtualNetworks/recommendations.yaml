@@ -10,7 +10,6 @@
   potentialBenefits: Enhanced subnet security and traffic control
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -35,7 +34,6 @@
   potentialBenefits: Enhanced DDoS attack mitigation
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -54,7 +52,6 @@
   potentialBenefits: Enhanced security and data isolation
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:

@@ -10,7 +10,6 @@
   potentialBenefits: Ensures failover functionality
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -33,7 +32,6 @@
   potentialBenefits: Enhances failover capabilities
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -52,7 +50,6 @@
   potentialBenefits: Enhances availability across regions
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -71,7 +68,6 @@
   potentialBenefits: Avoids traffic black holing, ensures availability
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:

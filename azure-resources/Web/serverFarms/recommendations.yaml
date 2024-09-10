@@ -10,7 +10,6 @@
   potentialBenefits: Enhances app resiliency and reliability
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -31,7 +30,6 @@
   potentialBenefits: Enhanced scaling and reliability
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -50,7 +48,6 @@
   potentialBenefits: Minimizes restarts, enhances stability
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -69,7 +66,6 @@
   potentialBenefits: Protects prod performance; avoids test impact
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -88,7 +84,6 @@
   potentialBenefits: Optimizes resources for traffic
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:

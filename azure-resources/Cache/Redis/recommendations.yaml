@@ -10,7 +10,6 @@
   potentialBenefits: Higher resilience and availability
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -28,7 +27,6 @@
   potentialBenefits: Higher resilience and availability
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -47,7 +45,6 @@
   potentialBenefits: Secure, private VNet ingress, efficient data transfer
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:

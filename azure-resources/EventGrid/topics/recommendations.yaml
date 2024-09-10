@@ -10,7 +10,6 @@
   potentialBenefits: Enhanced troubleshooting for Event Grid
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -29,7 +28,6 @@
   potentialBenefits: Saves undelivered events
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -48,7 +46,6 @@
   potentialBenefits: Secure, private VNet ingress
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:

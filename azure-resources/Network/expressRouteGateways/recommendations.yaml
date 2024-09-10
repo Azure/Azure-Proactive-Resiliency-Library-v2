@@ -9,7 +9,6 @@
   potentialBenefits: Enhance resiliency for Azure Service
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -27,7 +26,6 @@
   potentialBenefits: Detection and mitigation to avoid disruptions.
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:

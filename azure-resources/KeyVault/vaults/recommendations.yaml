@@ -10,7 +10,6 @@
   potentialBenefits: Enables recovery of deleted items
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -29,7 +28,6 @@
   potentialBenefits: Protects from insider attacks, avoids data loss
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -48,7 +46,6 @@
   potentialBenefits: Secure Key Vault with Private Link
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -67,7 +64,6 @@
   potentialBenefits: Enhanced security, Reduced risk
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -86,7 +82,6 @@
   potentialBenefits: Enhanced monitoring and security compliance
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:

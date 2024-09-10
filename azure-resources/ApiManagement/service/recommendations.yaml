@@ -10,7 +10,6 @@
   potentialBenefits: Enhanced availability and resilience
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -31,7 +30,6 @@
   potentialBenefits: Improved resilience to zone failures
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -52,7 +50,6 @@
   potentialBenefits: Ensures service continuity
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -73,7 +70,6 @@
   potentialBenefits: Enhanced availability and resilience
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:

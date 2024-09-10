@@ -10,7 +10,6 @@
   potentialBenefits: Ensures that no cached DNS records exist past RPO targets
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:

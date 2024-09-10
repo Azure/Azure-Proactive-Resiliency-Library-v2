@@ -10,7 +10,6 @@
   potentialBenefits: Enhanced SLA and reliability
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -31,7 +30,6 @@
   potentialBenefits: Improve health and performance monitoring
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -52,7 +50,6 @@
   potentialBenefits: Enhanced DDoS attack defense
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -71,7 +68,6 @@
   potentialBenefits: Enhanced compliance and rule hierarchy
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -90,7 +86,6 @@
   potentialBenefits: Avoids SNAT exhaustion.
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -109,7 +104,6 @@
   potentialBenefits: Improved CPU stress detection
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:

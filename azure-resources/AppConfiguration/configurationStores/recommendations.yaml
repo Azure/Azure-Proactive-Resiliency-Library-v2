@@ -10,7 +10,6 @@
   potentialBenefits: Prevent accidental deletion of configuration stores.
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -29,7 +28,6 @@
   potentialBenefits: High availability, more storage, higher request quota.
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:

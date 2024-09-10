@@ -10,7 +10,6 @@
   potentialBenefits: Reduces false positives, improves access
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -35,7 +34,6 @@
   potentialBenefits: Improve false positive identification
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -56,7 +54,6 @@
   potentialBenefits: Enhanced security and health insight
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:

@@ -10,7 +10,6 @@
   potentialBenefits: Enhances speed and resiliency
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -29,7 +28,6 @@
   potentialBenefits: Prevents accidental deletion of connections
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:

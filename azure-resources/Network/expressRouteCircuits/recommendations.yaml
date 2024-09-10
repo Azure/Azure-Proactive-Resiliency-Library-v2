@@ -10,7 +10,6 @@
   potentialBenefits: Enhanced reliability and redundancy
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -29,7 +28,6 @@
   potentialBenefits: Enhanced reliability and fault tolerance
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -50,7 +48,6 @@
   potentialBenefits: Improved high availability and load balancing
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -69,7 +66,6 @@
   potentialBenefits: Faster link failure detection
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -88,7 +84,6 @@
   potentialBenefits: Enhanced network performance and health
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -107,7 +102,6 @@
   potentialBenefits: Stay informed on circuit updates
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -126,7 +120,6 @@
   potentialBenefits: Ensures continuity and reliability
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -145,7 +138,6 @@
   potentialBenefits: Optimizes network, prevents congestion
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:

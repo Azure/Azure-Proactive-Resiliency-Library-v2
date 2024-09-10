@@ -10,7 +10,6 @@
   potentialBenefits: Enhances compliance and regional fault tolerance
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -31,7 +30,6 @@
   potentialBenefits: Early alert for workspace failure
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:

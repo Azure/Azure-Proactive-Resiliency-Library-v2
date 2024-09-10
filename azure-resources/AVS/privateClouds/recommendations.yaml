@@ -10,7 +10,6 @@
   potentialBenefits: Prompt mitigation of issues.
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -29,7 +28,6 @@
   potentialBenefits: Proactive capacity planning
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -48,7 +46,6 @@
   potentialBenefits: Proactive resource management
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -67,7 +64,6 @@
   potentialBenefits: 99.99% SLA, 0 RPO, Multi-AZ
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -88,7 +84,6 @@
   potentialBenefits: Optimized capacity planning for vSAN
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -107,7 +102,6 @@
   potentialBenefits: Faster issue resolution, early detection
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -126,7 +120,6 @@
   potentialBenefits: Avoids resource exhaustion, optimizes performance
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -145,7 +138,6 @@
   potentialBenefits: Avoids host exhaustion and swapping
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -164,7 +156,6 @@
   potentialBenefits: Prevents accidental deletion
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -183,7 +174,6 @@
   potentialBenefits: Avoid outages with key auto-rotation
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -202,7 +192,6 @@
   potentialBenefits: Enhances reliability and avoids failure
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:

@@ -11,7 +11,6 @@
   potentialBenefits: Potential Benefits of Implementing the Recommendation (less than 60 characters)
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no/arg
   tags: null
   learnMoreLink:
@@ -30,7 +29,6 @@
   potentialBenefits: Potential Benefits of Implementing the Recommendation (less than 60 characters)
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no/arg
   tags: null
   learnMoreLink:

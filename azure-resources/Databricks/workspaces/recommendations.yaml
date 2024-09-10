@@ -10,7 +10,6 @@
   potentialBenefits: Enhanced stability and support
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -29,7 +28,6 @@
   potentialBenefits: Reduces provisioning errors
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -48,7 +46,6 @@
   potentialBenefits: Faster, reliable VM performance
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -67,7 +64,6 @@
   potentialBenefits: Cost and performance optimization
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -86,7 +82,6 @@
   potentialBenefits: Improves concurrency and efficiency
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -105,7 +100,6 @@
   potentialBenefits: Optimized resource use and minimal latency
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -126,7 +120,6 @@
   potentialBenefits: Saves cluster resources, avoids idle use
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -145,7 +138,6 @@
   potentialBenefits: Improved troubleshooting and audit
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -164,7 +156,6 @@
   potentialBenefits: Enhances data reliability and processing
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -183,7 +174,6 @@
   potentialBenefits: Boosts speed and reliability for Spark tasks
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -202,7 +192,6 @@
   potentialBenefits: Enhanced data resilience and integrity
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -221,7 +210,6 @@
   potentialBenefits: Enhanced reliability and autoscaling
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -240,7 +228,6 @@
   potentialBenefits: Enhances scalability and reliability
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -259,7 +246,6 @@
   potentialBenefits: Enhances data quality and trust
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -278,7 +264,6 @@
   potentialBenefits: Enhanced data integrity and quality
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -297,7 +282,6 @@
   potentialBenefits: Prevents invalid data and job failures
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -316,7 +300,6 @@
   potentialBenefits: Ensures data quality and integrity
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -335,7 +318,6 @@
   potentialBenefits: Ensures data recovery and migration
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -354,7 +336,6 @@
   potentialBenefits: Fault-tolerance and auto-restart for queries
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -373,7 +354,6 @@
   potentialBenefits: Easy rollback and fix for ETL jobs
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -392,7 +372,6 @@
   potentialBenefits: Saves time and money with smart recovery
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -413,7 +392,6 @@
   potentialBenefits: Ensures service continuity during disasters
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -432,7 +410,6 @@
   potentialBenefits: Efficient, reliable automation
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -451,7 +428,6 @@
   potentialBenefits: Enhanced reliability and automation
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -470,7 +446,6 @@
   potentialBenefits: Enhanced limits management, team separation
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -489,7 +464,6 @@
   potentialBenefits: Enhanced security and resource isolation
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -508,7 +482,6 @@
   potentialBenefits: Enhanced security, data protection
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -527,7 +500,6 @@
   potentialBenefits: Ensures high reliability for production
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -546,7 +518,6 @@
   potentialBenefits: Improves resilience and data sovereignty
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -569,7 +540,6 @@
   potentialBenefits: Ensures service availability
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:

@@ -10,7 +10,6 @@
   potentialBenefits: Enhanced resiliency for Azure service
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -29,7 +28,6 @@
   potentialBenefits: Enhanced SLA and resilience
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -52,7 +50,6 @@
   potentialBenefits: Prevents accidental deletions
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -71,7 +68,6 @@
   potentialBenefits: Enhanced monitoring and alerting
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -92,7 +88,6 @@
   potentialBenefits: Enhanced VNet integration efficiency
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -111,7 +106,6 @@
   potentialBenefits: Minimizes update impact
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -130,7 +124,6 @@
   potentialBenefits: Enhanced reliability and scalability
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -153,7 +146,6 @@
   potentialBenefits: Enhanced reliability and network capacity
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -174,7 +166,6 @@
   potentialBenefits: Maximizes resilience and availability
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -193,7 +184,6 @@
   potentialBenefits: Improved uptime and issue awareness
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -212,7 +202,6 @@
   potentialBenefits: Improves VPN maintenance alerts
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -233,7 +222,6 @@
   potentialBenefits: Enhanced reliability and disaster recovery
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:

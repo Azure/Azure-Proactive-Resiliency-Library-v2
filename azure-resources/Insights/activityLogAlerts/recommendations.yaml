@@ -10,7 +10,6 @@
   potentialBenefits: Stay informed on resource status
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -33,7 +32,6 @@
   potentialBenefits: Proactive outage and maintenance alerts
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:

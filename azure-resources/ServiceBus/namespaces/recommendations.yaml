@@ -10,7 +10,6 @@
   potentialBenefits: Enhances fault tolerance and uptime
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: arg
   tags: null
   learnMoreLink:
@@ -33,7 +32,6 @@
   potentialBenefits: Ensures high availability and performance
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
