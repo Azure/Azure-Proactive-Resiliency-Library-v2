@@ -10,7 +10,6 @@
   potentialBenefits: Meet business requirements
   pgVerified: true
   publishedToLearn: true
-  publishedToAdvisor: no
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -29,7 +28,6 @@
   potentialBenefits: Align architecture with reliability goals
   pgVerified: true
   publishedToLearn: true
-  publishedToAdvisor: no
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -48,7 +46,6 @@
   potentialBenefits: Reduce risk of unpredicted behavior
   pgVerified: true
   publishedToLearn: true
-  publishedToAdvisor: no
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -67,7 +64,6 @@
   potentialBenefits: Communicate reliability expectations with stakeholders
   pgVerified: true
   publishedToLearn: true
-  publishedToAdvisor: no
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -86,7 +82,6 @@
   potentialBenefits: Optimize for resiliency
   pgVerified: true
   publishedToLearn: true
-  publishedToAdvisor: no
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -105,7 +100,6 @@
   potentialBenefits: Minimize downtime from regional outages
   pgVerified: true
   publishedToLearn: true
-  publishedToAdvisor: no
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -124,7 +118,6 @@
   potentialBenefits: Minimize downtime from zonal outages
   pgVerified: true
   publishedToLearn: true
-  publishedToAdvisor: no
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -143,7 +136,6 @@
   potentialBenefits: Improve data estate reliability
   pgVerified: true
   publishedToLearn: true
-  publishedToAdvisor: no
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -162,7 +154,6 @@
   potentialBenefits: Dynamically handle increased load
   pgVerified: true
   publishedToLearn: true
-  publishedToAdvisor: no
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -181,7 +172,6 @@
   potentialBenefits: Minimize application load
   pgVerified: true
   publishedToLearn: true
-  publishedToAdvisor: no
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -200,7 +190,6 @@
   potentialBenefits: Reduce the likelihood of outages
   pgVerified: true
   publishedToLearn: true
-  publishedToAdvisor: no
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -219,7 +208,6 @@
   potentialBenefits: Reduce the likelihood of outages
   pgVerified: true
   publishedToLearn: true
-  publishedToAdvisor: no
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -238,7 +226,6 @@
   potentialBenefits: Validate and optimize workload reliability
   pgVerified: true
   publishedToLearn: true
-  publishedToAdvisor: no
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -257,7 +244,6 @@
   potentialBenefits: Reliable disaster recovery
   pgVerified: true
   publishedToLearn: true
-  publishedToAdvisor: no
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -276,7 +262,6 @@
   potentialBenefits: Observability into workload health
   pgVerified: true
   publishedToLearn: true
-  publishedToAdvisor: no
   automationAvailable: no
   tags: null
   learnMoreLink:
