@@ -407,7 +407,7 @@
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
   longDescription: |
-    High availability of SAP while used with Azure NetApp Files relies on setting proper timeout values to prevent disruption to your application. Review the documentation to ensure your configuration meets the timeout values as noted in the documentation
+    High availability of SAP while used with Azure NetApp Files relies on setting proper timeout values to prevent disruption to your application. Review the documentation to ensure your configuration meets the timeout values as noted in the documentation.
   potentialBenefits: Improve resiliency and performance of SAP on Azure
   pgVerified: true
   publishedToLearn: false
