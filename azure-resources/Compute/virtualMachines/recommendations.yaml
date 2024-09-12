@@ -459,7 +459,7 @@
   recommendationResourceType: Microsoft.Compute/virtualMachines
   recommendationMetadataState: Active
   longDescription: |
-    If the workload is Maintenance sensitive, consider Azure Boost compatible VMs. Azure Boost is designed to lessen the impact on customers when Azure maintenance activities occur on the host, and the current list of compatible VM sizes are documented in the first link below.
+    If the workload is Maintenance sensitive, consider Azure Boost compatible VMs. Azure Boost is designed to lessen the impact on customers when Azure maintenance activities occur on the host. Azure Boost is currently available on several VM size families where the complete list can be consulted at the following address: https://learn.microsoft.com/en-us/azure/azure-boost/overview#current-availability
   potentialBenefits: Less maintenance impact
   pgVerified: true
   publishedToLearn: false
