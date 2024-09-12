@@ -10,8 +10,7 @@
   potentialBenefits: Enhances fault tolerance and uptime
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Service Bus and reliability
@@ -33,8 +32,7 @@
   potentialBenefits: Ensures high availability and performance
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Service Bus auto-scaling

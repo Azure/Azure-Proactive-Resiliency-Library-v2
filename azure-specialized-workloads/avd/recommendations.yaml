@@ -10,8 +10,7 @@
   potentialBenefits: Enhanced AVD error tracking and resolution
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Learn More
@@ -29,8 +28,7 @@
   potentialBenefits: Enhanced AVD monitoring and troubleshooting
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Learn More
@@ -48,8 +46,7 @@
   potentialBenefits: Improved DR visibility and operation
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Learn More
@@ -67,8 +64,7 @@
   potentialBenefits: Enhanced organization and scalability
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Learn More
@@ -87,8 +83,7 @@
   potentialBenefits: Avoids limits, ensures smooth scaling
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Capacity Planning
@@ -108,8 +103,7 @@
   potentialBenefits: Improves uptime & resilience
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Learn More
@@ -127,8 +121,7 @@
   potentialBenefits: Enhanced resilience and uptime
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Multi-region BCDR
@@ -148,8 +141,7 @@
   potentialBenefits: Enhanced scaling and performance
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Learn More
@@ -167,8 +159,7 @@
   potentialBenefits: Enhanced performance
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Learn More
@@ -186,8 +177,7 @@
   potentialBenefits: Ensures data resilience and consistency
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: FSLogix
@@ -207,8 +197,7 @@
   potentialBenefits: Better reliability and consistent latency
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Learn More
@@ -226,8 +215,7 @@
   potentialBenefits: Enhanced performance & user experience
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Learn More
@@ -248,8 +236,7 @@
   potentialBenefits: Improved failover reliability
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Learn More
@@ -267,8 +254,7 @@
   potentialBenefits: Enhanced availability & routing
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Learn More
@@ -287,8 +273,7 @@
   potentialBenefits: Enhances security and prevents IP conflicts
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Learn More
@@ -307,8 +292,7 @@
   potentialBenefits: Enhanced failover reliability
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags:
   learnMoreLink:
     - name: Learn More
@@ -326,8 +310,7 @@
   potentialBenefits: Enhanced performance and Disaster Recovery
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Learn More
@@ -347,8 +330,7 @@
   potentialBenefits: Ensures consistency; minimizes drift
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Learn More
@@ -366,8 +348,7 @@
   potentialBenefits: Optimized session reliability and performance
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Learn More
@@ -385,8 +366,7 @@
   potentialBenefits: Enhanced security & disaster recovery
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags:
   learnMoreLink:
     - name: Learn More
@@ -404,8 +384,7 @@
   potentialBenefits: Enhanced AVD error tracking and resolution
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Learn More
@@ -425,8 +404,7 @@
   potentialBenefits: Enhanced reliability & support
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Learn More
@@ -445,8 +423,7 @@
   potentialBenefits: Enhanced stability & user limit checks
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Learn More
@@ -465,8 +442,7 @@
   potentialBenefits: Enhances performance and scalability
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Learn More
@@ -484,8 +460,7 @@
   potentialBenefits: Ensures DR readiness and access
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Learn More
@@ -504,8 +479,7 @@
   potentialBenefits: Enhanced identity resilience
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Learn More
@@ -523,8 +497,7 @@
   potentialBenefits: Enhanced reliability and performance
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Learn More

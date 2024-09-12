@@ -10,8 +10,7 @@
   potentialBenefits: Meet business requirements
   pgVerified: true
   publishedToLearn: true
-  publishedToAdvisor: no
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: RE:01 Simplicity and efficiency
@@ -29,8 +28,7 @@
   potentialBenefits: Align architecture with reliability goals
   pgVerified: true
   publishedToLearn: true
-  publishedToAdvisor: no
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: RE:02 Critical flows
@@ -48,8 +46,7 @@
   potentialBenefits: Reduce risk of unpredicted behavior
   pgVerified: true
   publishedToLearn: true
-  publishedToAdvisor: no
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: RE:03 Failure mode analysis
@@ -67,8 +64,7 @@
   potentialBenefits: Communicate reliability expectations with stakeholders
   pgVerified: true
   publishedToLearn: true
-  publishedToAdvisor: no
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: RE:04 Target metrics
@@ -86,8 +82,7 @@
   potentialBenefits: Optimize for resiliency
   pgVerified: true
   publishedToLearn: true
-  publishedToAdvisor: no
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: RE:05 Redundancy
@@ -105,8 +100,7 @@
   potentialBenefits: Minimize downtime from regional outages
   pgVerified: true
   publishedToLearn: true
-  publishedToAdvisor: no
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: RE:05 High-availability multi-region design
@@ -124,8 +118,7 @@
   potentialBenefits: Minimize downtime from zonal outages
   pgVerified: true
   publishedToLearn: true
-  publishedToAdvisor: no
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Regions and availability zones
@@ -143,8 +136,7 @@
   potentialBenefits: Improve data estate reliability
   pgVerified: true
   publishedToLearn: true
-  publishedToAdvisor: no
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: RE:06 Data partitioning
@@ -162,8 +154,7 @@
   potentialBenefits: Dynamically handle increased load
   pgVerified: true
   publishedToLearn: true
-  publishedToAdvisor: no
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: RE:06 Scaling
@@ -181,8 +172,7 @@
   potentialBenefits: Minimize application load
   pgVerified: true
   publishedToLearn: true
-  publishedToAdvisor: no
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: RE:07 Background jobs
@@ -200,8 +190,7 @@
   potentialBenefits: Reduce the likelihood of outages
   pgVerified: true
   publishedToLearn: true
-  publishedToAdvisor: no
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: RE:07 Self-preservation
@@ -219,8 +208,7 @@
   potentialBenefits: Reduce the likelihood of outages
   pgVerified: true
   publishedToLearn: true
-  publishedToAdvisor: no
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: RE:07 Transient faults
@@ -238,8 +226,7 @@
   potentialBenefits: Validate and optimize workload reliability
   pgVerified: true
   publishedToLearn: true
-  publishedToAdvisor: no
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: RE:08 Testing
@@ -257,8 +244,7 @@
   potentialBenefits: Reliable disaster recovery
   pgVerified: true
   publishedToLearn: true
-  publishedToAdvisor: no
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: RE:09 Disaster recovery
@@ -276,8 +262,7 @@
   potentialBenefits: Observability into workload health
   pgVerified: true
   publishedToLearn: true
-  publishedToAdvisor: no
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: RE:10 Monitoring and alerting

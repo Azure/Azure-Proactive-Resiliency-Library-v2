@@ -30,8 +30,7 @@ To contribute a new recommendation for an Azure resource, follow these steps:
       potentialBenefits: Potential Benefits of Implementing the Recommendation (less than 60 characters)
       pgVerified: false
       publishedToLearn: false
-      publishedToAdvisor: false
-      automationAvailable: no/arg
+      automationAvailable: false
       tags: null
       learnMoreLink:
         - name: Learn More
@@ -79,8 +78,7 @@ The YAML structure for adding new recommendations consists of several key-value 
 | potentialBenefits | Enhanced data redundancy and boosts availability | String | The length should be less than 60 characters | The potential benefits of implementing the recommendation |
 | pgVerified | false | Boolean | true, false | Indicates whether the recommendation is verified by the relevant product group |
 | publishedToLearn | false | Boolean | true, false | Indicates whether the recommendation is published to [Microsoft Learn](https://learn.microsoft.com/en-us/azure/well-architected/pillars) |
-| publishedToAdvisor | false | Boolean | true, false | Indicates whether the recommendation is published to Azure Advisor |
-| automationAvailable | no | String | no, arg | Indicates whether automation is available for validating the recommendation |
+| automationAvailable | false| Boolean | true, false | Indicates whether automation is available for validating the recommendation |
 | tags | null | String | null | Generalized tags used for incorporating fields to automate |
 | learnMoreLink | - name: Learn More url: "<https://learn.microsoft.com/en-us/azure/reliability/reliability-batch#cross-region-disaster-recovery-and-business-continuity>" | Object | Only 1 link per recommendation | Links related to the recommendation, such as announcements or documentation |
 

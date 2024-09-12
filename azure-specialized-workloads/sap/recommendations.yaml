@@ -10,8 +10,7 @@
   potentialBenefits: High availability for SAP systems
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: SAP ACSS Quality Insights
@@ -37,8 +36,7 @@
   potentialBenefits: Enhanced resiliency for SAP on Azure
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: OpenSource Inventory Checks
@@ -62,8 +60,7 @@
   potentialBenefits: Higher SLA of 99.9% with SSDs
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: SAP ACSS Insights
@@ -89,8 +86,7 @@
   potentialBenefits: Ensures high availability for SAP data
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: SAP ACSS Insights
@@ -111,8 +107,7 @@
   potentialBenefits: Enhanced data availability for SAP
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: OpenSource Inventory Checks
@@ -131,8 +126,7 @@
   potentialBenefits: Ensures SAP Azure's failover reliability
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Test Cases
@@ -153,8 +147,7 @@
   potentialBenefits: Enhanced maintenance and failover handling
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: OpenSource Inventory Checks
@@ -174,8 +167,7 @@
   potentialBenefits: Guarantees DR region availability
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Capacity Reservation
@@ -193,8 +185,7 @@
   potentialBenefits: Enhanced DR resilience
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: SAP Disaster Recovery Guide
@@ -212,8 +203,7 @@
   potentialBenefits: Ensures SAP data safety and recovery
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: SAP ACSS Insights
@@ -233,8 +223,7 @@
   potentialBenefits: Enhances SAP DR oversight
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: DR Guidance
@@ -252,8 +241,7 @@
   potentialBenefits: Faster SAP recovery, reduced downtime
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: DR Guidance
@@ -273,8 +261,7 @@
   potentialBenefits: Ensures robust DR, meets RPO/RTO
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: DR Guidance
@@ -292,8 +279,7 @@
   potentialBenefits: Improved DR oversight and rapid issue response
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: DR Guidance
@@ -317,8 +303,7 @@
   potentialBenefits: Proactive maintenance awareness
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: VM Scheduled Events
@@ -338,8 +323,7 @@
   potentialBenefits: Enhances SAP ASCS uptime
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: SAP ACSS Insights
@@ -361,8 +345,7 @@
   potentialBenefits: Enhanced HA for SAP ASCS
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: SAP ACSS Insights
@@ -384,8 +367,7 @@
   potentialBenefits: Enhances SAP HANA DB uptime
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: SAP ACSS Insights
@@ -407,8 +389,7 @@
   potentialBenefits: Enhanced DB availability
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: SAP ACSS Insights
@@ -430,8 +411,7 @@
   potentialBenefits: Improve resiliency and performance of SAP on Azure
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: SAP on Azure NetApp Planning Guide
@@ -451,8 +431,7 @@
   potentialBenefits: Improve reliability, performance and optimize costs
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: High-availability SAP NetWeaver with simple mount and NFS on SLES for SAP Applications VMs

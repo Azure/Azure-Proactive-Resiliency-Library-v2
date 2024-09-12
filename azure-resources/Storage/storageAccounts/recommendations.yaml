@@ -10,8 +10,7 @@
   potentialBenefits: High availability and durability for storage
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Azure Storage redundancy
@@ -31,8 +30,7 @@
   potentialBenefits: Avoids service retirement issues
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Azure classic storage accounts retirement announcement
@@ -52,8 +50,7 @@
   potentialBenefits: Optimized cost and performance
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Types of storage accounts
@@ -79,8 +76,7 @@
   potentialBenefits: Prevents accidental data/account loss
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Soft delete detail docs
@@ -98,8 +94,7 @@
   potentialBenefits: Recover data, manage latency
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Blob versioning
@@ -117,8 +112,7 @@
   potentialBenefits: Protects data from loss/corruption
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Point-in-time restore for block blobs
@@ -138,8 +132,7 @@
   potentialBenefits: Enhanced alerting and log analysis
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Monitor Azure Blob Storage
@@ -159,8 +152,7 @@
   potentialBenefits: Latest features, lowest cost
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Legacy storage account types
@@ -180,8 +172,7 @@
   potentialBenefits: Secure, private access to storage with no public IPs
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Learn More

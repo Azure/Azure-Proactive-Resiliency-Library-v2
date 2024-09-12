@@ -10,8 +10,7 @@
   potentialBenefits: Enhanced resiliency for Azure service
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Designing for disaster recovery with ExpressRoute private peering
@@ -29,8 +28,7 @@
   potentialBenefits: Enhanced SLA and resilience
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: About ExpressRoute virtual network gateways - Zone-redundant gateway SKUs
@@ -52,8 +50,7 @@
   potentialBenefits: Prevents accidental deletions
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Protect your Azure resources with a lock - Azure Resource Manager | Microsoft Learn
@@ -71,8 +68,7 @@
   potentialBenefits: Enhanced monitoring and alerting
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: ExpressRoute monitoring, metrics, and alerts | ExpressRoute gateways
@@ -92,8 +88,7 @@
   potentialBenefits: Enhanced VNet integration efficiency
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: About ExpressRoute virtual network gateways - VNet-to-VNet connectivity
@@ -111,8 +106,7 @@
   potentialBenefits: Minimizes update impact
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Configure customer-controlled maintenance for your virtual network gateway - ExpressRoute | Microsoft Learn
@@ -130,8 +124,7 @@
   potentialBenefits: Enhanced reliability and scalability
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Zone redundant Virtual network gateway in availability zone
@@ -153,8 +146,7 @@
   potentialBenefits: Enhanced reliability and network capacity
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Active-active VPN gateway
@@ -174,8 +166,7 @@
   potentialBenefits: Maximizes resilience and availability
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Dual-redundancy active-active VPN gateways for both Azure and on-premises networks
@@ -193,8 +184,7 @@
   potentialBenefits: Improved uptime and issue awareness
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: VPN gateway data reference
@@ -212,8 +202,7 @@
   potentialBenefits: Improves VPN maintenance alerts
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Getting started with Azure Metrics Explorer
@@ -233,8 +222,7 @@
   potentialBenefits: Enhanced reliability and disaster recovery
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: About zone-redundant virtual network gateway in Azure availability zones

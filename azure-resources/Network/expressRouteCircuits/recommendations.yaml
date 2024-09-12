@@ -10,8 +10,7 @@
   potentialBenefits: Enhanced reliability and redundancy
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Designing for disaster recovery with ExpressRoute private peering
@@ -29,8 +28,7 @@
   potentialBenefits: Enhanced reliability and fault tolerance
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Designing for high availability with ExpressRoute
@@ -50,8 +48,7 @@
   potentialBenefits: Improved high availability and load balancing
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Designing for high availability with ExpressRoute - Active-active connections
@@ -69,8 +66,7 @@
   potentialBenefits: Faster link failure detection
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Configure BFD over ExpressRoute
@@ -88,8 +84,7 @@
   potentialBenefits: Enhanced network performance and health
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Azure Monitor Baseline Alerts - expressRouteCircuits
@@ -107,8 +102,7 @@
   potentialBenefits: Stay informed on circuit updates
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: How to view and configure alerts for Azure ExpressRoute circuit maintenance
@@ -126,8 +120,7 @@
   potentialBenefits: Ensures continuity and reliability
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Using S2S VPN as a backup for ExpressRoute private peering
@@ -145,8 +138,7 @@
   potentialBenefits: Optimizes network, prevents congestion
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Rate limiting for ExpressRoute Direct circuits (Preview)

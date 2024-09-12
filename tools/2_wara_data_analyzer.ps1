@@ -321,7 +321,7 @@ $Script:Runtime = Measure-Command -Expression {
     foreach ($adv in $CoreAdvisories) {
       if (![string]::IsNullOrEmpty($adv.recommendationId)) {
         $APRLADV = $Script:ServicesYAMLContent | Where-Object { $_.recommendationTypeId -eq $adv.recommendationId }
-        if ($APRLADV.recommendationTypeId -eq $adv.recommendationId <#-and $APRLADV.automationAvailable -ne 'arg' #>) {
+        if ($APRLADV.recommendationTypeId -eq $adv.recommendationId <#-and $APRLADV.automationAvailable -ne 'true' #>) {
           $Ticket = $Script:SupportTickets | Where-Object { $_.'Related Resource' -eq $adv.id }
           $Tickets = if ($Ticket.'Ticket ID'.count -gt 1) { $Ticket.'Ticket ID' | ForEach-Object { $_ + ' /' } }else { $Ticket.'Ticket ID' }
           $Tickets = [string]$Tickets

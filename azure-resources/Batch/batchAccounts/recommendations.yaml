@@ -10,8 +10,7 @@
   potentialBenefits: Ensures business continuity
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Learn More
@@ -29,8 +28,7 @@
   potentialBenefits: Enhanced reliability and failure protection
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Learn More

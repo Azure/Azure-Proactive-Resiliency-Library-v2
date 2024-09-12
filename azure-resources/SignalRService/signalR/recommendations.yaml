@@ -10,8 +10,7 @@
   potentialBenefits: Enhances reliability and uptime
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Availability zones support in Azure SignalR Service

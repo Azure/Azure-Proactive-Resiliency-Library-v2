@@ -10,8 +10,7 @@
   potentialBenefits: Enhanced subnet security and traffic control
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Azure Virtual Network - Concepts and best practices | Microsoft Learn
@@ -35,8 +34,7 @@
   potentialBenefits: Enhanced DDoS attack mitigation
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Reliability and Azure Virtual Network - Microsoft Azure Well-Architected Framework | Microsoft Learn
@@ -54,8 +52,7 @@
   potentialBenefits: Enhanced security and data isolation
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Azure Virtual Network FAQ | Microsoft Learn

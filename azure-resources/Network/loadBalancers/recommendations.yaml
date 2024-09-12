@@ -10,8 +10,7 @@
   potentialBenefits: Enhanced reliability and SLA support
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Reliability and Azure Load Balancer
@@ -31,8 +30,7 @@
   potentialBenefits: Enhances reliability and scalability
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Resiliency checklist for specific Azure services- Azure Load Balancer
@@ -50,8 +48,7 @@
   potentialBenefits: Enhanced scalability and reliability
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Resiliency checklist for specific Azure services- Azure Load Balancer
@@ -69,8 +66,7 @@
   potentialBenefits: Enhances uptime and resilience
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Load Balancer and Availability Zones
@@ -88,8 +84,7 @@
   potentialBenefits: Ensures backend uptime monitoring.
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Load Balancer Health Probe Overview

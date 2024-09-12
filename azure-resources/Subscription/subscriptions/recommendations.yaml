@@ -10,8 +10,7 @@
   potentialBenefits: Avoids hitting limit, ensures reliability
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Citrix Limits
@@ -29,8 +28,7 @@
   potentialBenefits: Enhanced security, compliance, and management
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Management group recommendations

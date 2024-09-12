@@ -10,8 +10,7 @@
   potentialBenefits: Monitoring and Alerting
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Enable diagnostics logging for apps in Azure App Service
@@ -29,8 +28,7 @@
   potentialBenefits: Real-time insights and issue diagnosis
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Application Insights
@@ -50,8 +48,7 @@
   potentialBenefits: Independent scaling, easier management
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Resiliency checklist for specific Azure services
@@ -69,8 +66,7 @@
   potentialBenefits: Improves app performance
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Resiliency checklist
@@ -88,8 +84,7 @@
   potentialBenefits: Safer updates and easy rollback
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Set up staging environments in Azure App Service
@@ -107,8 +102,7 @@
   potentialBenefits: Enhanced reliability via automation
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Configure web apps in Azure App Service
@@ -126,8 +120,7 @@
   potentialBenefits: Enhanced reliability via automation
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Monitor the health of App Service instances
@@ -145,8 +138,7 @@
   potentialBenefits: Enhanced security
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Set up Azure App Service access restrictions
@@ -164,8 +156,7 @@
   potentialBenefits: Improves app performace
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Ultimate guide to running healthy apps in the cloud
@@ -183,8 +174,7 @@
   potentialBenefits: Improved app availability
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Announcing the New Auto Healing Experience in App Service Diagnostics - Azure App Service
@@ -202,8 +192,7 @@
   potentialBenefits: Improved app availability
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Azure Functions Warmup Trigger
@@ -221,8 +210,7 @@
   potentialBenefits: Easier management
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Resource naming restrictions - Azure Resource Manager
@@ -240,8 +228,7 @@
   potentialBenefits: Better governance
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Migrate version 3.x to 4.x
@@ -259,8 +246,7 @@
   potentialBenefits: Better governance
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: FUNCTIONS_WORKER_RUNTIME
