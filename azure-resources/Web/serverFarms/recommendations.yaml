@@ -10,8 +10,7 @@
   potentialBenefits: Enhances app resiliency and reliability
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Migrate App Service to availability zone support
@@ -31,8 +30,7 @@
   potentialBenefits: Enhanced scaling and reliability
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Resiliency checklist for specific Azure services
@@ -50,8 +48,7 @@
   potentialBenefits: Minimizes restarts, enhances stability
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Resiliency checklist for specific Azure services
@@ -69,8 +66,7 @@
   potentialBenefits: Protects prod performance; avoids test impact
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Resiliency checklist for specific Azure services
@@ -88,8 +84,7 @@
   potentialBenefits: Optimizes resources for traffic
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Automatic scaling in Azure App Service

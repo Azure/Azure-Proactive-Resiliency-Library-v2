@@ -10,8 +10,7 @@
   potentialBenefits: Enhanced disaster recovery and read scalability
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Active Geo Replication
@@ -29,8 +28,7 @@
   potentialBenefits: Improves load balancing and disaster recovery
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: AutoFailover Groups
@@ -50,8 +48,7 @@
   potentialBenefits: Enhanced reliability, no extra cost
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Zone Redundant Databases
@@ -69,8 +66,7 @@
   potentialBenefits: Enhanced connectivity stability
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: How to Implement Retry Logic
@@ -88,8 +84,7 @@
   potentialBenefits: Quick incident detection and response
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Azure Monitor
@@ -111,8 +106,7 @@
   potentialBenefits: Enhanced security and data recovery
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Azure Key Vault

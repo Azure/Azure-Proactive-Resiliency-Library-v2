@@ -10,8 +10,7 @@
   potentialBenefits: Improves outage management
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Azure Resource Manager Overview

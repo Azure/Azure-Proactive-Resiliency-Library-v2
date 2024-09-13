@@ -10,8 +10,7 @@
   potentialBenefits: Enhanced availability and resilience
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Change your API Management service tier
@@ -31,8 +30,7 @@
   potentialBenefits: Improved resilience to zone failures
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Ensure API Management availability and reliability
@@ -52,8 +50,7 @@
   potentialBenefits: Ensures service continuity
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Azure API Management - stv1 platform retirement (August 2024)
@@ -73,8 +70,7 @@
   potentialBenefits: Enhanced availability and resilience
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Setting up auto-scale for Azure API Management

@@ -10,8 +10,7 @@
   potentialBenefits: Enhanced scaling
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Create and assign an autoscale scaling plan

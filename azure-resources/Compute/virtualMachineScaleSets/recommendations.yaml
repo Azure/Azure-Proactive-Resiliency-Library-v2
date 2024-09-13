@@ -10,8 +10,7 @@
   potentialBenefits: Higher scalability and availability
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: When to use VMSS instead of VMs
@@ -31,8 +30,7 @@
   potentialBenefits: Enhances deployment management and upgrades
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Using Application Health extension with Virtual Machine Scale Sets
@@ -50,8 +48,7 @@
   potentialBenefits: Boosts app availability by auto-repair
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Automatic instance repairs for Azure Virtual Machine Scale Sets
@@ -69,8 +66,7 @@
   potentialBenefits: Enhances performance and cost-efficiency
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Get started with autoscale in Azure
@@ -90,8 +86,7 @@
   potentialBenefits: Optimizes scaling with ML predictions
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Use predictive autoscale to scale out before load demands in virtual machine scale sets
@@ -109,8 +104,7 @@
   potentialBenefits: Improves scaling, reduces fail attempts
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Use scale-in policies with Azure Virtual Machine Scale Sets
@@ -128,8 +122,7 @@
   potentialBenefits: Enhances disaster resilience
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Create a Virtual Machine Scale Set that uses Availability Zones
@@ -149,8 +142,7 @@
   potentialBenefits: Eases patch management, enhances security
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Automatic VM Guest Patching for Azure VMs
@@ -170,8 +162,7 @@
   potentialBenefits: Avoid disruptions by updating VMSS images.
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Deprecated Azure Marketplace images

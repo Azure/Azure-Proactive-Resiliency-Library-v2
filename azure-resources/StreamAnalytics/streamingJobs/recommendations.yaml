@@ -10,8 +10,7 @@
   potentialBenefits: Enhanced reliability and security
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Overview of Azure Stream Analytics Cluster
@@ -29,8 +28,7 @@
   potentialBenefits: Enhanced reliability and security
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Understand and adjust streaming units

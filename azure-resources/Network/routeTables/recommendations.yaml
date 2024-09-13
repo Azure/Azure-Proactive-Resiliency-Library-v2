@@ -10,8 +10,7 @@
   potentialBenefits: Enhanced security and change detection
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Azure activity log - Azure Monitor | Microsoft Learn
@@ -29,8 +28,7 @@
   potentialBenefits: Prevents accidental edits/deletions
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Protect your Azure resources with a lock - Azure Resource Manager | Microsoft Learn

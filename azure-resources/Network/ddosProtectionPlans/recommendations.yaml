@@ -10,8 +10,7 @@
   potentialBenefits: Enhanced security and traffic insight
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Monitoring Azure DDoS Protection

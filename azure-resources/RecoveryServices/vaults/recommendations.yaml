@@ -10,8 +10,7 @@
   potentialBenefits: Smooth failover IP management
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Setup network mapping for site recovery
@@ -29,8 +28,7 @@
   potentialBenefits: Ensures BCDR plan accuracy and VM performance
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Run a test failover
@@ -48,8 +46,7 @@
   potentialBenefits: Enhanced, scalable, and consistent alerting.
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Move to Azure monitor Alerts
@@ -69,8 +66,7 @@
   potentialBenefits: Enhances disaster recovery capabilities
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Set Cross Region Restore
@@ -94,8 +90,7 @@
   potentialBenefits: Enhances disaster recovery capabilities
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Soft Delete for Azure Backup

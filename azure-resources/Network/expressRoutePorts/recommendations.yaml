@@ -10,8 +10,7 @@
   potentialBenefits: Ensures optimal connectivity.
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: How to configure ExpressRoute Direct Change Admin State of links
@@ -29,8 +28,7 @@
   potentialBenefits: Improves resilience during port failures
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: About ExpressRoute Direct Circuit Sizes
@@ -48,8 +46,7 @@
   potentialBenefits: Enhanced network performance and health
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Azure Monitor Baseline Alerts - expressRoutePorts

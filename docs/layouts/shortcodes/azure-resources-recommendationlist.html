@@ -26,7 +26,7 @@ Recommendation List
       </td>
       <td>{{ .recommendationImpact }}</td>
       <td>{{ .recommendationControl }}</td>
-      <td>{{ if eq .automationAvailable "arg" }}Yes{{ else }}No{{ end }}</td>
+      <td>{{ if eq .automationAvailable true }}Yes{{ else }}No{{ end }}</td>
       <td>{{ if eq .pgVerified true }}Verified{{ else }}Preview{{ end }}</td>
     </tr>
     {{ end }} {{ end }}
