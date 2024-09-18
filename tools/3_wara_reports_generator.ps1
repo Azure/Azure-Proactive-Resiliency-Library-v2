@@ -2126,7 +2126,7 @@ https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2
             'Recommendation Guid'       = $Recommendation.recommendationId
             'Recommendation Title'      = $Recommendation.recommendationTitle
             'Priority'                  = $Recommendation.impact
-            'Potential Benefits'        = ''
+            'Potential Benefits'        = $Description.'Potential Benefits'
             'Description'               = $Description.'Best Practices Guidance'
             'Resource ID'               = $Recommendation.id
             'Customer-facing annotation'= ''
