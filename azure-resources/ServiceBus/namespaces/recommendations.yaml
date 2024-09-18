@@ -6,11 +6,11 @@
   recommendationResourceType: Microsoft.ServiceBus/namespaces
   recommendationMetadataState: Active
   longDescription: |
-    Use Service Bus with zone redundancy for high availability. The Premium SKU supports availability zones, ensuring isolation within the same region. It manages 3 copies of the messaging store, kept in sync.
+    Availability zones are now enabled by default on new namespaces where possible. Existing namespaces are being migrated to availability zones where possible. The property zoneRedundant might still show as false, even when availability zones has been enabled.
   potentialBenefits: Enhances fault tolerance and uptime
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: true
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Service Bus and reliability
