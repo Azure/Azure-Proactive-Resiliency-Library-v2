@@ -321,7 +321,7 @@ $Script:Runtime = Measure-Command -Expression {
     foreach ($adv in $CoreAdvisories) {
       if (![string]::IsNullOrEmpty($adv.recommendationId)) {
         $APRLADV = $Script:ServicesYAMLContent | Where-Object { $_.recommendationTypeId -eq $adv.recommendationId }
-        if ($APRLADV.recommendationTypeId -eq $adv.recommendationId <#-and $APRLADV.automationAvailable -ne 'true' #>) {
+        if ($APRLADV.recommendationTypeId -eq $adv.recommendationId <#-and $APRLADV.automationAvailable -ne 'arg' #>) {
           $Ticket = $Script:SupportTickets | Where-Object { $_.'Related Resource' -eq $adv.id }
           $Tickets = if ($Ticket.'Ticket ID'.count -gt 1) { $Ticket.'Ticket ID' | ForEach-Object { $_ + ' /' } }else { $Ticket.'Ticket ID' }
           $Tickets = [string]$Tickets
@@ -750,7 +750,7 @@ $Script:Runtime = Measure-Command -Expression {
             'Recommendation Title'                                                                           = $Service.description;
             'Impact'                                                                                         = $Service.recommendationImpact;
             'Best Practices Guidance'                                                                        = [string]$Service.longDescription;
-            'Read More'                                                                                      = [string]($Service.learnMoreLink.url -join "`n");
+            'Read More'                                                                                      = [string]$Service.learnMoreLink.url;
             'Potential Benefits'                                                                             = [string]$Service.potentialBenefits;
             'Add associated Outage TrackingID and/or Support Request # and/or Service Retirement TrackingID' = '';
             'Observation / Annotation'                                                                       = '';
@@ -765,13 +765,14 @@ $Script:Runtime = Measure-Command -Expression {
         if ($advisor.recommendationId -in $Script:RecommendedAdv) {
           $ID = $advisor.recommendationId
           $resourceType = $advisor.type.ToLower()
+          $Category = if($advisor.category -eq 'HighAvailability'){'High Availability'}else{$advisor.category}
 
           $tmp = @{
             'Implemented?Yes/No'                                                                             = ('=IF((COUNTIF(ImpactedResources!D:D,"' + $ID + '")=0),"Yes","No")');
             'Number of Impacted Resources?'                                                                  = ('=COUNTIF(ImpactedResources!D:D,"' + $ID + '")');
             'Azure Service / Well-Architected'                                                               = 'Azure Service';
             'Recommendation Source'                                                                          = 'ADVISOR';
-            'Resiliency Category'                                                                            = $advisor.category;
+            'Resiliency Category'                                                                            = $Category;
             'Azure Service Category / Well-Architected Area'                                                 = ($resourceType.split('/')[0]);
             'Azure Service / Well-Architected Topic'                                                         = ($resourceType.split('/')[1]);
             'Recommendation Title'                                                                           = $advisor.description;
@@ -803,7 +804,7 @@ $Script:Runtime = Measure-Command -Expression {
           'Recommendation Title'                                                                           = $WAFYAML.description;
           'Impact'                                                                                         = $WAFYAML.recommendationImpact;
           'Best Practices Guidance'                                                                        = [string]$WAFYAML.longDescription;
-          'Read More'                                                                                      = [string]($WAFYAML.learnMoreLink.url -join "`n");
+          'Read More'                                                                                      = [string]$WAFYAML.learnMoreLink.url;
           'Potential Benefits'                                                                             = [string]$WAFYAML.potentialBenefits;
           'Add associated Outage TrackingID and/or Support Request # and/or Service Retirement TrackingID' = '';
           'Observation / Annotation'                                                                       = '';
