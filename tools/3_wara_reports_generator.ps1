@@ -43,7 +43,7 @@ https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2
 
     Param(
     [switch] $Help,
-    [switch] $csvExport,
+    [switch] $GenerateCSV,
     [switch] $includeLow,
     [switch] $byPassValidationStatus,
     [switch] $Debugging,
@@ -62,7 +62,7 @@ https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2
     Exit
     }
 
-    if ($Heavy.IsPresent -or $csvExport.IsPresent) { $Global:Heavy = $true } else { $Global:Heavy = $false }
+    if ($Heavy.IsPresent -or $GenerateCSV.IsPresent) { $Global:Heavy = $true } else { $Global:Heavy = $false }
 
     if ($Debugging.IsPresent) { $Global:CoreDebugging = $true } else { $Global:CoreDebugging = $false }
 
@@ -105,8 +105,8 @@ https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2
     Write-Host " -WorkloadName           :  Optional; specifies the Name of the Workload of the analyses to be added to the PPTx and DOCx files. "
     Write-Host " -PPTTemplateFile        :  Optional; specifies the PPTx template file to be used as source. If not specified the script will look for the file in the same path as the script. "
     Write-Host " -WordTemplateFile       :  Optional; specifies the DOCx template file to be used as source. If not specified the script will look for the file in the same path as the script. "
-    Write-Host " -csvExport              :  Optional; when used will trigger the creation of a CSV File with the exported Impacted Resources. "
-    Write-Host " -includeLow             :  Optional; only used in with -csvExport to also include Low recommendations in the CSV File. "
+    Write-Host " -GenerateCSV              :  Optional; when used will trigger the creation of a CSV File with the exported Impacted Resources. "
+    Write-Host " -includeLow             :  Optional; only used in with -GenerateCSV to also include Low recommendations in the CSV File. "
     Write-Host " -byPassValidationStatus :  Optional; used to skip the High and Medium Resource Validation. "
 
     byPassValidationStatus
@@ -2227,9 +2227,9 @@ https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2
     Write-Progress -Id 1 -activity "Processing Office Apps" -Status "90% Complete." -PercentComplete 90
     }
 
-    if($csvExport.IsPresent)
+    if($GenerateCSV.IsPresent)
     {
-        $WorkloadRecommendationTemplate = Build-SummaryActionPlan -ExcelContent $ExcelContent -ExcelRecommendations $ExcelRecommendations
+        $WorkloadRecommendationTemplate = Build-SummaryActionPlan -ExcelContent $ExcelContent -ExcelRecommendations $ExcelRecommendations -includeLow $includeLow
 
         $CSVFile = ($PSScriptRoot + '\Impacted Resources and Recommendations Template ' + (get-date -Format "yyyy-MM-dd-HH-mm") + '.csv')
 
@@ -2253,7 +2253,7 @@ https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2
         Write-Host 'Word File Saved As: ' -NoNewline
         Write-Host $WordFinalFile -ForegroundColor Cyan
     }
-    if ($csvExport.IsPresent)
+    if ($GenerateCSV.IsPresent)
     {
         Write-Host 'CSV File Saved as: ' -NoNewline
         Write-Host $CSVFile -ForegroundColor Cyan
