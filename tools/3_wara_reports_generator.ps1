@@ -268,11 +268,22 @@ $Global:Runtime = Measure-Command -Expression {
             {
               if (![string]::IsNullOrEmpty($ID))
                 {
-                  $obj = @{
-                    'ID'             = $ID;
-                    'Subscription'   = $ID.split('/')[2];
-                    'Resource Group' = $ID.split('/')[4];
-                    'Resource Type'  = ($ID.split('/')[6] + '/' + $ID.split('/')[7])
+                  if ($ID -eq 'n/a') {
+                    # Need special care for the recommendation 4e133bd0-8762-bc40-a95b-b29142427d73 because it returns 'n/a' as resource IDs.
+                    $obj = @{
+                      'ID'             = $ID
+                      'Subscription'   = 'n/a'
+                      'Resource Group' = 'n/a'
+                      'Resource Type'  = 'Microsoft.Network/networkWatchers'
+                    }
+                  }
+                  else {
+                    $obj = @{
+                      'ID'             = $ID;
+                      'Subscription'   = $ID.split('/')[2];
+                      'Resource Group' = $ID.split('/')[4];
+                      'Resource Type'  = ($ID.split('/')[6] + '/' + $ID.split('/')[7])
+                    }
                   }
                   $Resources += $obj
                 }
