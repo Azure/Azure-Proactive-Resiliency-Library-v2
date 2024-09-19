@@ -16,3 +16,4 @@ Resources
     'Poland Central', 'Qatar Central', 'South Africa North', 'South Central US', 'Southeast Asia',
     'Spain Central', 'Sweden Central', 'Switzerland North', 'UAE North', 'UK South',
     'US Gov Virginia', 'West Europe', 'West US 2', 'West US 3') // filter out regions unsupported for AZs
+| project-rename param1=location
