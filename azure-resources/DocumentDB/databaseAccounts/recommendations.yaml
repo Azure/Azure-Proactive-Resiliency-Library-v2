@@ -36,7 +36,7 @@
     - name: Manage an Azure Cosmos DB account by using the Azure portal
       url: "https://learn.microsoft.com/azure/cosmos-db/how-to-manage-database-account#automatic-failover"
 
-  - description: Enable availability zones
+- description: Enable availability zones
   aprlGuid: 921631f6-ed59-49a5-94c1-f0f3ececa580
   recommendationTypeId: null
   recommendationControl: High Availability
