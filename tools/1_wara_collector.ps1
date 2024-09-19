@@ -69,7 +69,7 @@ NOTE: Can't be used in combination with -ConfigFile, -ResourceGroups, or -Tags p
 NOTE: This parameter is only used when a runbook file (-RunbookFile) is provided.
 
 .PARAMETER RepoUrl
-Specifies the git repository URL that contains APRL contents if you want to use non-standard APRL repository.
+Specifies the git repository URL that contains APRL contents if you want to use custom APRL repository.
 
 .EXAMPLE
 Run against all subscriptions in tenant "00000000-0000-0000-0000-000000000000":
