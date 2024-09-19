@@ -113,7 +113,7 @@
   aprlGuid: 0714d039-535e-468d-9732-e32b5c094faa
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
-  recommendationImpact: Medium
+  recommendationImpact: High
   recommendationResourceType: Specialized.Workload/AVD
   recommendationMetadataState: Active
   longDescription: |
@@ -283,7 +283,7 @@
   aprlGuid: 4b1a45af-d35f-442d-922a-a3e7b6052de1
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
-  recommendationImpact: Medium
+  recommendationImpact: High
   recommendationResourceType: Specialized.Workload/AVD
   recommendationMetadataState: Active
   longDescription: |
