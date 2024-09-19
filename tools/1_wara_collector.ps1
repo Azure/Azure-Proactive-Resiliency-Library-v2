@@ -68,6 +68,9 @@ NOTE: Can't be used in combination with -ConfigFile, -ResourceGroups, or -Tags p
 
 NOTE: This parameter is only used when a runbook file (-RunbookFile) is provided.
 
+.PARAMETER RepoUrl
+Specifies the git repository URL that contains APRL contents if you want to use non-standard APRL repository.
+
 .EXAMPLE
 Run against all subscriptions in tenant "00000000-0000-0000-0000-000000000000":
 .\1_wara_collector.ps1 -TenantID 00000000-0000-0000-0000-000000000000
@@ -108,6 +111,8 @@ Param(
         $AzureEnvironment = 'AzureCloud',
         [ValidateScript({Test-Path $_ -PathType Leaf})]
         $ConfigFile,
+        [ValidatePattern('^https:\/\/.+$')]
+        [string]$RepoUrl = 'https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2',
         # Runbook parameters...
         [switch]$UseImplicitRunbookSelectors,
         $RunbookFile
@@ -418,6 +423,7 @@ $Script:Runtime = Measure-Command -Expression {
             SubscriptionIds     = if($SubscriptionIds){$SubscriptionIds}else{$false}
             ResourceGroups      = if($ResourceGroups){$ResourceGroups}else{$false}
             Tags                = if($TagsPresent){$Tags}else{$false}
+            RepoUrl             = $RepoUrl
           }
       }
     catch
@@ -436,7 +442,6 @@ $Script:Runtime = Measure-Command -Expression {
       Write-Debug 'Setting local path'
       try {
         # Clone the GitHub repository to a temporary folder
-        $repoUrl = 'https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2'
 
         # Define script path as the default path to save files
         $workingFolderPath = $PSScriptRoot
@@ -450,9 +455,9 @@ $Script:Runtime = Measure-Command -Expression {
         if ((Get-ChildItem -Path $Script:clonePath -Force -ErrorAction SilentlyContinue | Measure-Object).Count -gt 0) {
           Write-Debug 'APRL Folder does exist. Reseting it...'
           Get-Item -Path $Script:clonePath | Remove-Item -Recurse -Force
-          git clone $repoUrl $clonePath --quiet
+          git clone $Script:ScriptData.RepoUrl $clonePath --quiet
         } else {
-          git clone $repoUrl $clonePath --quiet
+          git clone $Script:ScriptData.RepoUrl $clonePath --quiet
         }
         Write-Debug 'Checking the version of the script'
         if ($Script:ShellPlatform -eq 'Win32NT') {
