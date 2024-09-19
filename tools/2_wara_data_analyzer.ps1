@@ -14,7 +14,7 @@ Switch to enable debugging mode.
 Switch to display help information.
 
 .PARAMETER RepoUrl
-Specifies the git repository URL that contains APRL contents if you want to use non-standard APRL repository.
+Specifies the git repository URL that contains APRL contents if you want to use custom APRL repository.
 
 .PARAMETER JSONFile
 Path to the JSON file created by the "1_wara_collector" script.
