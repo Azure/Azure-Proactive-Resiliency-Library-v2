@@ -1,4 +1,4 @@
-import-module powershell-yaml -force -scope CurrentUser
+install-module powershell-yaml -force -scope currentuser
 
 function Build-APRLJsonObject {
   param (
@@ -28,6 +28,7 @@ function Build-APRLJsonObject {
   return $aprlobj
 }
 
+#Try to build and export the object. If it fails, catch the error and exit with code 1
 try{
   Build-APRLJsonObject -path "./azure-resources" | ConvertTo-Json -Depth 10 | Out-File -FilePath "./tools/data/recommendations.json" -Force
   exit 0
