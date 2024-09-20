@@ -67,26 +67,37 @@ https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2
     if ($Debugging.IsPresent) { $Global:CoreDebugging = $true } else { $Global:CoreDebugging = $false }
 
     if (!$PPTTemplateFile) {
-    if ((Test-Path -Path ($PSScriptRoot + '\Mandatory - Executive Summary presentation - Template.pptx') -PathType Leaf) -eq $true) {
-        $PPTTemplateFile = ($PSScriptRoot + '\Mandatory - Executive Summary presentation - Template.pptx')
-    }
-    else {
-        Write-Host "This script requires specific Microsoft PowerPoint and Word templates, which are available in the Azure Proactive Resiliency Library. You can download the templates from this GitHub repository:"
-        Write-Host "https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/tree/main/tools"
-        Exit
-    }
-    }
+            if ((Test-Path -Path ($PSScriptRoot + '\Mandatory - Executive Summary presentation - Template.pptx') -PathType Leaf) -eq $true) {
+                    $PPTTemplateFile = ($PSScriptRoot + '\Mandatory - Executive Summary presentation - Template.pptx')
+                }
+            else {
+                Write-Host "This script requires specific Microsoft PowerPoint and Word templates, which are available in the Azure Proactive Resiliency Library. You can download the templates from this GitHub repository:"
+                Write-Host "https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/tree/main/tools"
+                Exit
+            }
+        }
+    else
+        {
+            $PPTTemplateFile = get-item -Path $PPTTemplateFile
+            $PPTTemplateFile = $PPTTemplateFile.FullName
+        }
+
 
     if (!$WordTemplateFile) {
-    if ((Test-Path -Path ($PSScriptRoot + '\Optional - Assessment Report - Template.docx') -PathType Leaf) -eq $true) {
-        $WordTemplateFile = ($PSScriptRoot + '\Optional - Assessment Report - Template.docx')
-    }
-    else {
-        Write-Host "This script requires specific Microsoft PowerPoint and Word templates, which are available in the Azure Proactive Resiliency Library. You can download the templates from this GitHub repository:"
-        Write-Host "https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/tree/main/tools"
-        Exit
-    }
-    }
+            if ((Test-Path -Path ($PSScriptRoot + '\Optional - Assessment Report - Template.docx') -PathType Leaf) -eq $true) {
+                    $WordTemplateFile = ($PSScriptRoot + '\Optional - Assessment Report - Template.docx')
+                }
+            else {
+                Write-Host "This script requires specific Microsoft PowerPoint and Word templates, which are available in the Azure Proactive Resiliency Library. You can download the templates from this GitHub repository:"
+                Write-Host "https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/tree/main/tools"
+                Exit
+            }
+        }
+    else
+        {
+            $WordTemplateFile = get-item -Path $WordTemplateFile
+            $WordTemplateFile = $WordTemplateFile.FullName
+        }
 
     if (!$CustomerName) {
     $CustomerName = '[Customer Name]'
