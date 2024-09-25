@@ -113,3 +113,21 @@
       url: "https://learn.microsoft.com/en-us/azure/key-vault/general/overview"
     - name: Getting Started with Always Encrypted
       url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/always-encrypted-landing?view=azuresql"
+
+- description: Use Failover Group endpoints for database connections
+  aprlGuid: de266d8a-a9f3-4cb9-be95-9306001fceea
+  recommendationTypeId: null
+  recommendationControl: Disaster Recovery
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Sql/servers
+  recommendationMetadataState: Active
+  longDescription: |
+    When using Failover Groups, it is recommended to connect to the Failover Group endpoint instead of individual database endpoints. This allows for automatic redirection to the secondary database in case of a failover, ensuring high availability.
+  potentialBenefits: Enhanced disaster recovery
+  pgVerified: false
+  publishedToLearn: false
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: Failover Group endpoint redirection
+      url: "https://learn.microsoft.com/azure/azure-sql/database/failover-group-sql-db?view=azuresql#endpoint-redirection"

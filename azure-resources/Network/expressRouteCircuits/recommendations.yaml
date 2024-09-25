@@ -108,24 +108,6 @@
     - name: How to view and configure alerts for Azure ExpressRoute circuit maintenance
       url: "https://learn.microsoft.com/azure/expressroute/maintenance-alerts"
 
-- description: Use a site-to-site VPN as an interim backup solution for a single ExpressRoute circuit
-  aprlGuid: f902cf86-2b53-2942-abc2-781f4fb62be6
-  recommendationTypeId: null
-  recommendationControl: Disaster Recovery
-  recommendationImpact: Medium
-  recommendationResourceType: Microsoft.Network/expressRouteCircuits
-  recommendationMetadataState: Disabled
-  longDescription: |
-    If you haven't added a second ExpressRoute circuit, use a site-to-site VPN as a temporary solution until the second circuit is available. This ensures network reliability and continuity of service.
-  potentialBenefits: Ensures continuity and reliability
-  pgVerified: true
-  publishedToLearn: false
-  automationAvailable: false
-  tags: null
-  learnMoreLink:
-    - name: Using S2S VPN as a backup for ExpressRoute private peering
-      url: "https://learn.microsoft.com/azure/expressroute/use-s2s-vpn-as-backup-for-expressroute-privatepeering"
-
 - description: Implement rate-limiting across ExpressRoute Direct Circuits to optimize network flow
   aprlGuid: d40c769d-2f08-4980-8d8f-a386946276e6
   recommendationTypeId: null

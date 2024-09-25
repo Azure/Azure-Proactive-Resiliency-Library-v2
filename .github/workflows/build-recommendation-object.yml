@@ -1,0 +1,27 @@
+name: Nightly Recommendation Object Build
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          ref: main
+
+      - name: Run Recommendation Object Builder
+        run: |
+          pwsh .github/scripts/build-recommendation-object.ps1
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add ./tools/data/recommendations.json
+          git commit -m "Update recommendations.json"
+          git push
