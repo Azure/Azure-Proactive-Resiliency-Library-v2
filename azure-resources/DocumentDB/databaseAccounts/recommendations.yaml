@@ -36,6 +36,24 @@
     - name: Manage an Azure Cosmos DB account by using the Azure portal
       url: "https://learn.microsoft.com/azure/cosmos-db/how-to-manage-database-account#automatic-failover"
 
+- description: Enable availability zones
+  aprlGuid: 921631f6-ed59-49a5-94c1-f0f3ececa580
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.DocumentDB/databaseAccounts
+  recommendationMetadataState: Active
+  longDescription: |
+    When availability zones are configured, Azure Cosmos DB intelligently distributes the 4 replicas of your data across all available zones. It ensures that your Azure Cosmos DB can withstand an outage in one availability zone and remain fully operational throughout.
+  potentialBenefits: Enhances high availability
+  pgVerified: false
+  publishedToLearn: false
+  automationAvailable: true
+  tags: null
+  learnMoreLink:
+    - name: High availability in Azure Cosmos DB
+      url: "https://learn.microsoft.com/en-us/azure/reliability/reliability-cosmos-db-nosql"
+
 - description: Evaluate multi-region write capability
   aprlGuid: 9ce78192-74a0-104c-b5bb-9a443f941649
   recommendationTypeId: null

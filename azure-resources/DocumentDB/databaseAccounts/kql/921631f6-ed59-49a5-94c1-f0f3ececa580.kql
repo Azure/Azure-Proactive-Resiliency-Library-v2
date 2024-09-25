@@ -1,0 +1,19 @@
+// Azure Resource Graph Query
+// Query to find Azure Cosmos DB accounts that do not utilize availability zones and are deployed in availability-zone supported regions
+Resources
+| where type == "microsoft.documentdb/databaseaccounts"
+| where properties.capabilities !has_cs 'EnableServerless'
+| project recommendationId='921631f6-ed59-49a5-94c1-f0f3ececa580', name, id, tags, locations=properties.locations
+| mv-expand locations
+| where not(locations.isZoneRedundant) //filter out already AZ enabled regions
+| extend location=tostring(locations.locationName)
+| project-away locations
+| where location in (
+    'Australia East', 'Brazil South', 'Canada Central', 'Central India', 'Central US',
+    'China North 3', 'East Asia', 'East US', 'East US 2', 'France Central',
+    'Germany West Central', 'Israel Central', 'Italy North', 'Japan East', 'Japan West',
+    'Korea Central', 'Mexico Central', 'New Zealand North', 'North Europe', 'Norway East',
+    'Poland Central', 'Qatar Central', 'South Africa North', 'South Central US', 'Southeast Asia',
+    'Spain Central', 'Sweden Central', 'Switzerland North', 'UAE North', 'UK South',
+    'US Gov Virginia', 'West Europe', 'West US 2', 'West US 3') // filter out regions unsupported for AZs
+| project-rename param1=location
