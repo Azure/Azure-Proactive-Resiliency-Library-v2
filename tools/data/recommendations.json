@@ -3718,7 +3718,7 @@
     "recommendationMetadataState": "Active",
     "learnMoreLink": [
       {
-        "url": "https://learn.microsoft.com/en-us/azure/reliability/reliability-image-builder?toc=%2Fazure%2Fvirtual-machines%2Ftoc.json&bc=%2Fazure%2Fvirtual-machines%2Fbreadcrumb%2Ftoc.json#capacity-and-proactive-disaster-recovery-resiliency",
+        "url": "https://learn.microsoft.com/en-us/azure/reliability/reliability-image-builder?toc=%2Fazure%2Fvirtual-machines%2Ftoc.json&bc=%2Fazure%2Fvirtual-machines%2Fbreadcrumb%2Ftoc.json&tabs=graph#disaster-recovery",
         "name": "Image Template resiliency"
       },
       {
@@ -3727,7 +3727,7 @@
       }
     ],
     "recommendationControl": "Disaster Recovery",
-    "longDescription": "The Azure Image Builder service, used for deploying Image Templates, lacks availability zones support. By replicating Image Templates to a secondary, preferably paired, region, quick recovery from a region failure is enabled, ensuring continuous virtual machine deployment from these templates.\n",
+    "longDescription": "The Azure Image Builder service, lacks availability zones support. Replicating Image Templates to a secondary region, this will enable the build of new images in secondary region.\n",
     "pgVerified": true,
     "description": "Replicate your Image Templates to a secondary region",
     "potentialBenefits": "Enhances disaster recovery capability",
@@ -6357,6 +6357,52 @@
   },
   {
     "publishedToAdvisor": null,
+    "aprlGuid": "b14ee8ed-7d27-447b-b6fb-6472cb5f4b75",
+    "recommendationTypeId": null,
+    "recommendationMetadataState": "Active",
+    "learnMoreLink": [
+      {
+        "url": "https://learn.microsoft.com/azure/virtual-machines/azure-compute-gallery#replication",
+        "name": "Compute Gallery Replication"
+      }
+    ],
+    "recommendationControl": "Disaster Recovery",
+    "longDescription": "On multi-region deployments, replicate Image Versions to a secondary region to ensure disaster recovery capability. This ensures that the Image Versions are available in the secondary region in case of a disaster in the primary region.\n",
+    "pgVerified": true,
+    "description": "Create Image Versions replicas in secondary region",
+    "potentialBenefits": "Enhances disaster recovery capability",
+    "publishedToLearn": false,
+    "tags": null,
+    "recommendationResourceType": "Microsoft.Compute/galleries",
+    "recommendationImpact": "Medium",
+    "automationAvailable": true,
+    "query": "// under-development\n"
+  },
+  {
+    "publishedToAdvisor": null,
+    "aprlGuid": "b3c3ba1d-7de6-442d-8c50-023330fbf765",
+    "recommendationTypeId": null,
+    "recommendationMetadataState": "Active",
+    "learnMoreLink": [
+      {
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/azure-compute-gallery#scaling",
+        "name": "Compute Gallery Scaling"
+      }
+    ],
+    "recommendationControl": "Disaster Recovery",
+    "longDescription": "You can set a different replica count in each target region, based on the scale needs for the region. For every 20 VMs that you create concurrently, we recommend you keep one replica.\n",
+    "pgVerified": true,
+    "description": "Configure Image version replica count per region.",
+    "potentialBenefits": "Enhances disaster recovery capability",
+    "publishedToLearn": false,
+    "tags": null,
+    "recommendationResourceType": "Microsoft.Compute/galleries",
+    "recommendationImpact": "Medium",
+    "automationAvailable": true,
+    "query": "// under-development\n"
+  },
+  {
+    "publishedToAdvisor": null,
     "aprlGuid": "74fcb9f2-9a25-49a6-8c42-d32851c4afb7",
     "recommendationTypeId": null,
     "recommendationMetadataState": "Active",
@@ -6716,9 +6762,9 @@
       }
     ],
     "recommendationControl": "Scalability",
-    "longDescription": "Each region has its own scaling plans assigned to host pools within that region. However, these plans can become inaccessible if there's a regional failure. To mitigate this risk, it's advisable to create a secondary scaling plan in another region.\n",
+    "longDescription": "Scaling plans can only be assigned to host pools in the same region, on multi-region deployment scenario each region should has its own scaling plan.\n",
     "pgVerified": true,
-    "description": "Scaling plans should be created per region and not scaled across regions",
+    "description": "Create scaling plans per region",
     "potentialBenefits": "Enhanced scaling",
     "publishedToLearn": false,
     "tags": null,
@@ -6739,9 +6785,9 @@
       }
     ],
     "recommendationControl": "Governance",
-    "longDescription": "Create a Validation Pool for early issue detection with planned AVD updates. Adjust limits based on needs. Scale by adding multiple host pools for more users. Regularly test updates on host pools. Validate changes before applying to main environment to avoid downtime.\n",
+    "longDescription": "Create a validation host pool where service updates are applied first. Validation host pools let you monitor service updates before the service applies them to your standard or non-validation environment. Without a validation host pool, you may not discover changes that introduce errors, which could result in downtime for users in your standard environment.\n",
     "pgVerified": true,
-    "description": "Create a validation host pool for testing of planned updates",
+    "description": "Create a validation host pool",
     "potentialBenefits": "Enhanced environment stability",
     "publishedToLearn": false,
     "tags": null,
@@ -6762,7 +6808,7 @@
       }
     ],
     "recommendationControl": "Governance",
-    "longDescription": "Create maintenance schedules for AVD agent updates to avoid disruptions. Use Scheduled Agent Updates to set maintenance windows for updating Azure Virtual Desktop agent, side-by-side stack, and Geneva Monitoring agent.\n",
+    "longDescription": "Create up to two maintenance windows for the Azure Virtual Desktop agent, side-by-side stack, and Geneva Monitoring agent to get updated so that updates don't happen during peak business hours.\n",
     "pgVerified": true,
     "description": "Configure host pool scheduled agent updates",
     "potentialBenefits": "Enhanced environment stability",
@@ -6785,7 +6831,7 @@
       }
     ],
     "recommendationControl": "Governance",
-    "longDescription": "For optimized AVD configuration, place Hybrid VMs in unique OUs. Segregate Prod and DR units for environment-specific settings. This ensures targeted configurations for session hosts, including FSLogix, timeouts, and session controls.\n",
+    "longDescription": "Place domain joined session hosts VMs in unique OUs. Segregate Prod and DR units for environment-specific settings. This ensures targeted configurations for session hosts, including FSLogix, session controls, etc.\n",
     "pgVerified": true,
     "description": "Ensure a unique OU is used when deploying host pools with domain joined session hosts",
     "potentialBenefits": "Improved AVD hostpool config & segmentation",
@@ -6808,9 +6854,9 @@
       }
     ],
     "recommendationControl": "Disaster Recovery",
-    "longDescription": "Implement Azure Site Recovery (ASR) or Azure Backup for personal host pools to enable seamless failover and failback. This replicates VMs supporting personal desktops to a secondary Azure region, ensuring recovery from a known state in case of a disaster or outage.\n",
+    "longDescription": "Implement Azure Site Recovery (ASR) to replicate or backup stateful session hosts. This replicates VMs to a secondary Azure region or availability zone, ensuring recovery from a known VM state in case of an outage.\n",
     "pgVerified": true,
-    "description": "Use Azure Site Recovery or backups to protect VMs supporting personal desktops",
+    "description": "Use Azure Site Recovery to protect stateful session hosts",
     "potentialBenefits": "Ensures VM recovery & failover",
     "publishedToLearn": false,
     "tags": null,
