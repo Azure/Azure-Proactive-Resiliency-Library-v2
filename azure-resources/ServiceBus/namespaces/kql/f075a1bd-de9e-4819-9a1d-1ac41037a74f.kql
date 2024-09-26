@@ -1,5 +1,5 @@
 resources
-| where type == "microsoft.servicebus/namespaces" and properties.minimumTlsVersion in ("1.0", "1.1")
+| where type =~ "Microsoft.ServiceBus/namespaces" and properties.minimumTlsVersion in ("1.0", "1.1")
 | project
     recommendationId = "f075a1bd-de9e-4819-9a1d-1ac41037a74f",
     name,
