@@ -1,0 +1,6 @@
+// Azure Resource Graph Query
+// Find all Azure Stream Analytics jobs that are not using the latest version of the service.
+resources
+| where type =~ "Microsoft.StreamAnalytics/streamingjobs"
+| where properties.sku.name !~ "StandardV2"
+| project recommendationId = "5d40d3d4-179d-4cf5-ac24-901210f512e7", name, id, tags

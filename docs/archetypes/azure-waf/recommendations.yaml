@@ -10,9 +10,8 @@
     (less than 300 characters)
   potentialBenefits: Potential Benefits of Implementing the Recommendation (less than 60 characters)
   pgVerified: false
-  publishedToLearn: false
-  publishedToAdvisor: no/arg
-  automationAvailable: no/arg
+  publishedToLearn: false/arg
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Learn More
@@ -30,9 +29,8 @@
     (less than 300 characters)
   potentialBenefits: Potential Benefits of Implementing the Recommendation (less than 60 characters)
   pgVerified: false
-  publishedToLearn: false
-  publishedToAdvisor: no/arg
-  automationAvailable: no/arg
+  publishedToLearn: false/arg
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Learn More

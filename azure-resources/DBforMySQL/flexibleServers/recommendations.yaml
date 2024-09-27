@@ -10,8 +10,7 @@
   potentialBenefits: Enhanced uptime and data protection
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: High availability concepts in Azure Database for MySQL - Flexible Server
@@ -29,8 +28,7 @@
   potentialBenefits: Control update timings
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Scheduled maintenance in Azure Database for MySQL - Flexible Server
@@ -48,8 +46,7 @@
   potentialBenefits: Recover from regional failure and/or disaster
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Backup and restore in Azure Database for MySQL - Flexible Server
@@ -67,8 +64,7 @@
   potentialBenefits: Recover from regional failure and/or disaster
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Read replicas in Azure Database for MySQL - Flexible Server
@@ -86,8 +82,7 @@
   potentialBenefits: Scale storage automatically to meet increasing demand
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Azure Database for MySQL - Flexible Server service tiers - Storage auto grow

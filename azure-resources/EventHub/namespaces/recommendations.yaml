@@ -10,8 +10,7 @@
   potentialBenefits: Enhanced fault tolerance for Event Hub
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Azure Event Hubs - Geo-disaster recovery
@@ -29,8 +28,7 @@
   potentialBenefits: Prevents throttling by autoscaling TUs
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Azure Event Hubs - Automatically scale throughput units

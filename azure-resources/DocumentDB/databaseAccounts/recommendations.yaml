@@ -10,8 +10,7 @@
   potentialBenefits: Enhances SLA and resilience
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Distribute data globally with Azure Cosmos DB
@@ -31,12 +30,29 @@
   potentialBenefits: Auto failover for high uptime
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Manage an Azure Cosmos DB account by using the Azure portal
       url: "https://learn.microsoft.com/azure/cosmos-db/how-to-manage-database-account#automatic-failover"
+
+- description: Enable availability zones
+  aprlGuid: 921631f6-ed59-49a5-94c1-f0f3ececa580
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.DocumentDB/databaseAccounts
+  recommendationMetadataState: Active
+  longDescription: |
+    When availability zones are configured, Azure Cosmos DB intelligently distributes the 4 replicas of your data across all available zones. It ensures that your Azure Cosmos DB can withstand an outage in one availability zone and remain fully operational throughout.
+  potentialBenefits: Enhances high availability
+  pgVerified: false
+  publishedToLearn: false
+  automationAvailable: true
+  tags: null
+  learnMoreLink:
+    - name: High availability in Azure Cosmos DB
+      url: "https://learn.microsoft.com/en-us/azure/reliability/reliability-cosmos-db-nosql"
 
 - description: Evaluate multi-region write capability
   aprlGuid: 9ce78192-74a0-104c-b5bb-9a443f941649
@@ -50,8 +66,7 @@
   potentialBenefits: Enhances high availability
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Distribute data globally with Azure Cosmos DB
@@ -71,8 +86,7 @@
   potentialBenefits: Faster self-serve data restore
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Continuous backup with point in time restore feature in Azure Cosmos DB
@@ -90,8 +104,7 @@
   potentialBenefits: Maximizes data retrieval efficiency
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Pagination in Azure Cosmos DB
@@ -109,8 +122,7 @@
   potentialBenefits: Optimizes connections and efficiency
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Designing resilient applications with Azure Cosmos DB SDKs
@@ -128,8 +140,7 @@
   potentialBenefits: Enhances error handling resilience
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Designing resilient applications with Azure Cosmos DB SDKs
@@ -147,8 +158,7 @@
   potentialBenefits: Proactive issue management
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Create alerts for Azure Cosmos DB using Azure Monitor

@@ -10,8 +10,7 @@
   potentialBenefits: Enhances uptime and enables autoscaling
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Application Gateway Autoscaling Zone-Redundant
@@ -29,8 +28,7 @@
   potentialBenefits: Enhanced security and privacy
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Application Gateway Security
@@ -56,8 +54,7 @@
   potentialBenefits: Enhanced security for HTTP/S traffic
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Well-Architected Framework Application Gateway Overview
@@ -77,8 +74,7 @@
   potentialBenefits: Better performance, autoscaling, more features
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Application Gateway Overview V2
@@ -100,8 +96,7 @@
   potentialBenefits: Enhanced traffic insight and audit
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Application Gateway Metrics
@@ -121,8 +116,7 @@
   potentialBenefits: Ensures backend uptime monitoring.
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Application Gateway Probe Overview
@@ -142,8 +136,7 @@
   potentialBenefits: Enhanced uptime and customer access
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Well-Architected Framework Application Gateway Reliability
@@ -163,8 +156,7 @@
   potentialBenefits: Smooth updates, no dropped users
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Application Gateway Connection Draining
@@ -184,8 +176,7 @@
   potentialBenefits: Allows autoscaling and maintenance
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Azure Application Gateway infrastructure configuration | Microsoft Learn

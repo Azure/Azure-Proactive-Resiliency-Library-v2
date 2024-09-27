@@ -1110,7 +1110,7 @@ $Script:Runtime = Measure-Command -Expression {
             $typeRaw = $kqlFile.DirectoryName.split('/')
           }
 
-          $kqltype = ('microsoft.' + $typeRaw[-3] + '/' + $typeRaw[-2])
+          $kqltype = ('Microsoft.' + $typeRaw[-3] + '/' + $typeRaw[-2])
           $checkId = $kqlname.Split('/')[-1].ToLower()
 
           if ($Script:RunbookChecks -and $Script:RunbookChecks.Count -gt 0) {
@@ -1209,7 +1209,7 @@ $Script:Runtime = Measure-Command -Expression {
 
           Write-Host '++++++++++++++++++ ' -NoNewline
           if ($selector -eq 'APRL') {
-            Write-Host "[APRL]: Microsoft.$type - $checkId" -ForegroundColor Green -NoNewline
+            Write-Host "[APRL]: $type - $checkId" -ForegroundColor Green -NoNewline
           } else {
             Write-Host "[-RunbookFile]: [$checkName (selector: '$selector')]: $checkId" -ForegroundColor Green -NoNewline
           }
@@ -1338,6 +1338,8 @@ $Script:Runtime = Measure-Command -Expression {
               $result
             }
     }
+
+    $Script:ImpactedResources = $Script:ImpactedResources | Sort-Object -Unique -Property validationAction, recommendationId, name, Type, id, param1, param2, param3, param4, param5, checkName, selector
 
     Write-Host "Filtering Advisor Resources.." -ForegroundColor Cyan
     $Script:Advisories = foreach ($adv in $Script:AllAdvisories)

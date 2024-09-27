@@ -10,8 +10,7 @@
   potentialBenefits: Enhanced monitoring and security insights
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Diagnostic settings in Azure Monitor
@@ -29,8 +28,7 @@
   potentialBenefits: Enhanced security and change monitoring
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Azure Monitor activity log
@@ -48,8 +46,7 @@
   potentialBenefits: Prevents accidental edits/deletions
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Lock your resources to protect your infrastructure
@@ -67,8 +64,7 @@
   potentialBenefits: Enhances security and optimizes network
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Flow logging for network security groups
@@ -86,8 +82,7 @@
   potentialBenefits: Enhanced traffic control and security
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Security rules

@@ -10,8 +10,7 @@
   potentialBenefits: Enhanced reliability and redundancy
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Designing for disaster recovery with ExpressRoute private peering
@@ -29,8 +28,7 @@
   potentialBenefits: Enhanced reliability and fault tolerance
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Designing for high availability with ExpressRoute
@@ -50,8 +48,7 @@
   potentialBenefits: Improved high availability and load balancing
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Designing for high availability with ExpressRoute - Active-active connections
@@ -69,8 +66,7 @@
   potentialBenefits: Faster link failure detection
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Configure BFD over ExpressRoute
@@ -88,8 +84,7 @@
   potentialBenefits: Enhanced network performance and health
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Azure Monitor Baseline Alerts - expressRouteCircuits
@@ -107,31 +102,11 @@
   potentialBenefits: Stay informed on circuit updates
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: How to view and configure alerts for Azure ExpressRoute circuit maintenance
       url: "https://learn.microsoft.com/azure/expressroute/maintenance-alerts"
-
-- description: Use a site-to-site VPN as an interim backup solution for a single ExpressRoute circuit
-  aprlGuid: f902cf86-2b53-2942-abc2-781f4fb62be6
-  recommendationTypeId: null
-  recommendationControl: Disaster Recovery
-  recommendationImpact: Medium
-  recommendationResourceType: Microsoft.Network/expressRouteCircuits
-  recommendationMetadataState: Disabled
-  longDescription: |
-    If you haven't added a second ExpressRoute circuit, use a site-to-site VPN as a temporary solution until the second circuit is available. This ensures network reliability and continuity of service.
-  potentialBenefits: Ensures continuity and reliability
-  pgVerified: true
-  publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
-  tags: null
-  learnMoreLink:
-    - name: Using S2S VPN as a backup for ExpressRoute private peering
-      url: "https://learn.microsoft.com/azure/expressroute/use-s2s-vpn-as-backup-for-expressroute-privatepeering"
 
 - description: Implement rate-limiting across ExpressRoute Direct Circuits to optimize network flow
   aprlGuid: d40c769d-2f08-4980-8d8f-a386946276e6
@@ -145,8 +120,7 @@
   potentialBenefits: Optimizes network, prevents congestion
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Rate limiting for ExpressRoute Direct circuits (Preview)

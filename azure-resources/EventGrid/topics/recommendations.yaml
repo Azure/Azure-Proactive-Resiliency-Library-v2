@@ -10,8 +10,7 @@
   potentialBenefits: Enhanced troubleshooting for Event Grid
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Azure Event Grid - Enable diagnostic logs for Event Grid resources
@@ -29,8 +28,7 @@
   potentialBenefits: Saves undelivered events
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Azure Event Grid delivery and retry
@@ -48,8 +46,7 @@
   potentialBenefits: Secure, private VNet ingress
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Configure private endpoints for Azure Event Grid topics or domains

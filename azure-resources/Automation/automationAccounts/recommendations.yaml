@@ -10,8 +10,7 @@
   potentialBenefits: Ensures continuity during outages
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Disaster recovery for Automation accounts

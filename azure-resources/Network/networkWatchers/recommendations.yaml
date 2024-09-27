@@ -10,8 +10,7 @@
   potentialBenefits: Enhanced monitoring and diagnostics for Azure IaaS
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: What is Azure Network Watcher?
@@ -29,8 +28,7 @@
   potentialBenefits: Ensures IP traffic logging
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Manage NSG flow logs using the Azure portal
@@ -48,8 +46,7 @@
   potentialBenefits: Improves monitoring for Azure and Hybrid connectivity
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Connection monitor overview
@@ -67,8 +64,7 @@
   potentialBenefits: Improves monitoring and security for Azure connectivity
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Flow logging for network security groups
@@ -88,8 +84,7 @@
   potentialBenefits: Improves monitoring, security and troubleshooting.
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Network Watcher traffic analytics

@@ -10,8 +10,7 @@
   potentialBenefits: Ensures failover functionality
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Azure Traffic Manager endpoint monitoring
@@ -33,8 +32,7 @@
   potentialBenefits: Enhances failover capabilities
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Traffic Manager Endpoint Types
@@ -52,8 +50,7 @@
   potentialBenefits: Enhances availability across regions
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Reliability recommendations
@@ -71,8 +68,7 @@
   potentialBenefits: Avoids traffic black holing, ensures availability
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Add an endpoint configured to "All (World)"

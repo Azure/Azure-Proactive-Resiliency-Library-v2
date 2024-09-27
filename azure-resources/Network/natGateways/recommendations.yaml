@@ -10,8 +10,7 @@
   potentialBenefits: Enhances reliability and scalability
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Scale a NAT gateway to meet the demand of a dynamic workload
@@ -31,8 +30,7 @@
   potentialBenefits: Enhanced network performance and health
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: What is Azure NAT Gateway metrics and alerts?
@@ -52,8 +50,7 @@
   potentialBenefits: Enhances reliability and scalability
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Zonal NAT gateway resource for each zone in a region to create zone-resiliency

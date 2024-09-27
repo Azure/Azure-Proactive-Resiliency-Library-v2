@@ -10,8 +10,7 @@
   potentialBenefits: Prompt mitigation of issues.
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Configure Azure Service Health alerts
@@ -29,8 +28,7 @@
   potentialBenefits: Proactive capacity planning
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Configure and streamline alerts
@@ -48,8 +46,7 @@
   potentialBenefits: Proactive resource management
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Configure and streamline alerts
@@ -67,8 +64,7 @@
   potentialBenefits: 99.99% SLA, 0 RPO, Multi-AZ
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Implement high availability
@@ -88,8 +84,7 @@
   potentialBenefits: Optimized capacity planning for vSAN
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Supported metrics and activities
@@ -107,8 +102,7 @@
   potentialBenefits: Faster issue resolution, early detection
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Manage logs and archives
@@ -118,7 +112,7 @@
   aprlGuid: 4ee5d535-c47b-470a-9557-4a3dd297d62f
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
-  recommendationImpact: Medium
+  recommendationImpact: High
   recommendationResourceType: Microsoft.AVS/privateClouds
   recommendationMetadataState: Active
   longDescription: |
@@ -126,8 +120,7 @@
   potentialBenefits: Avoids resource exhaustion, optimizes performance
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Configure and streamline alerts
@@ -137,7 +130,7 @@
   aprlGuid: 029208c8-5186-4a76-8ee8-6e3445fef4dd
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
-  recommendationImpact: Medium
+  recommendationImpact: High
   recommendationResourceType: Microsoft.AVS/privateClouds
   recommendationMetadataState: Active
   longDescription: |
@@ -145,8 +138,7 @@
   potentialBenefits: Avoids host exhaustion and swapping
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Configure and streamline alerts
@@ -164,8 +156,7 @@
   potentialBenefits: Prevents accidental deletion
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Lock your resources to protect your infrastructure
@@ -183,8 +174,7 @@
   potentialBenefits: Avoid outages with key auto-rotation
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Configure Customer Managed Keys
@@ -202,8 +192,7 @@
   potentialBenefits: Enhances reliability and avoids failure
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Configure DNS forwarder

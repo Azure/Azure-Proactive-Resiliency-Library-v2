@@ -10,8 +10,7 @@
   potentialBenefits: High availability for SAP systems
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: SAP ACSS Quality Insights
@@ -37,8 +36,7 @@
   potentialBenefits: Enhanced resiliency for SAP on Azure
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: OpenSource Inventory Checks
@@ -62,8 +60,7 @@
   potentialBenefits: Higher SLA of 99.9% with SSDs
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: SAP ACSS Insights
@@ -89,8 +86,7 @@
   potentialBenefits: Ensures high availability for SAP data
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: SAP ACSS Insights
@@ -111,8 +107,7 @@
   potentialBenefits: Enhanced data availability for SAP
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: OpenSource Inventory Checks
@@ -131,8 +126,7 @@
   potentialBenefits: Ensures SAP Azure's failover reliability
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Test Cases
@@ -153,8 +147,7 @@
   potentialBenefits: Enhanced maintenance and failover handling
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: OpenSource Inventory Checks
@@ -174,8 +167,7 @@
   potentialBenefits: Guarantees DR region availability
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Capacity Reservation
@@ -193,8 +185,7 @@
   potentialBenefits: Enhanced DR resilience
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: SAP Disaster Recovery Guide
@@ -212,8 +203,7 @@
   potentialBenefits: Ensures SAP data safety and recovery
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: SAP ACSS Insights
@@ -233,8 +223,7 @@
   potentialBenefits: Enhances SAP DR oversight
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: DR Guidance
@@ -252,8 +241,7 @@
   potentialBenefits: Faster SAP recovery, reduced downtime
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: DR Guidance
@@ -273,8 +261,7 @@
   potentialBenefits: Ensures robust DR, meets RPO/RTO
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: DR Guidance
@@ -292,8 +279,7 @@
   potentialBenefits: Improved DR oversight and rapid issue response
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: DR Guidance
@@ -317,8 +303,7 @@
   potentialBenefits: Proactive maintenance awareness
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: VM Scheduled Events
@@ -338,8 +323,7 @@
   potentialBenefits: Enhances SAP ASCS uptime
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: SAP ACSS Insights
@@ -361,8 +345,7 @@
   potentialBenefits: Enhanced HA for SAP ASCS
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: SAP ACSS Insights
@@ -384,8 +367,7 @@
   potentialBenefits: Enhances SAP HANA DB uptime
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: SAP ACSS Insights
@@ -407,8 +389,7 @@
   potentialBenefits: Enhanced DB availability
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: SAP ACSS Insights
@@ -417,3 +398,51 @@
       url: "https://github.com/Azure/SAP-on-Azure-Scripts-and-Utilities/tree/main/QualityCheck"
     - name: DBHANA-LB- Database Instance
       url: "https://docs.microsoft.com/en-us/azure/advisor/advisor-reference-reliability-recommendations"
+
+- description: Review SAP configuration for timeout values used with Azure NetApp Files
+  aprlGuid: 4884cada-b9c7-42d5-8153-3853e4a6f6c4
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Specialized.Workload/SAP
+  recommendationMetadataState: Active
+  longDescription: |
+    High availability of SAP while used with Azure NetApp Files relies on setting proper timeout values to prevent disruption to your application. Review the documentation to ensure your configuration meets the timeout values as noted in the documentation.
+  potentialBenefits: Improve resiliency and performance of SAP on Azure
+  pgVerified: true
+  publishedToLearn: false
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: SAP on Azure NetApp Planning Guide
+      url: "https://learn.microsoft.com/en-us/azure/sap/workloads/planning-guide-storage#azure-netapp-files"
+
+- description: Provision recommended storage configuration on database VMs
+  aprlGuid: 697deb1d-d398-4989-9734-9e6c18f7e0ad
+  recommendationTypeId: null
+  recommendationControl: Scalability
+  recommendationImpact: High
+  recommendationResourceType: Specialized.Workload/SAP
+  recommendationMetadataState: Active
+  longDescription: |
+    It is strongly recommended to review database storage configuration to ensure the right type and number of disks are used to provision the data and log volumes. This is to ensure that the database VMs meets performance requirements for IOPS and throughput for the given database.
+    You should also use Microsoft recommended settings such as disk caching, WriteAccelerator, stripe size and Linux I/O Scheduler mode for all database VMs.
+    SAP on Azure QualityCheck tool can help you identify any deviations from Microsoft recommendations quickly and at scale.
+  potentialBenefits: Improve reliability, performance and optimize costs
+  pgVerified: true
+  publishedToLearn: false
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: High-availability SAP NetWeaver with simple mount and NFS on SLES for SAP Applications VMs
+      url: "https://learn.microsoft.com/en-us/azure/sap/workloads/high-availability-guide-suse-nfs-simple-mount?tabs=lb-portal%2Censa1"
+    - name: High availability for SAP NetWeaver on Azure VMs on SUSE Linux Enterprise Server with Azure NetApp Files for SAP applications
+      url: "https://learn.microsoft.com/en-us/azure/sap/workloads/high-availability-guide-suse-netapp-files?tabs=lb-portal%2Censa1"
+    - name: High availability of SAP HANA scale-up with Azure NetApp Files on SUSE Enterprise Linux
+      url: "https://learn.microsoft.com/en-us/azure/sap/workloads/sap-hana-high-availability-netapp-files-suse?tabs=lb-portal"
+    - name: Azure Virtual Machines HA for SAP NetWeaver on RHEL with Azure NetApp Files for SAP applications
+      url: "https://learn.microsoft.com/en-us/azure/sap/workloads/high-availability-guide-rhel-netapp-files?tabs=lb-portal%2Censa1"
+    - name: High availability of SAP HANA scale-up with Azure NetApp Files on RHEL
+      url: "https://learn.microsoft.com/en-us/azure/sap/workloads/sap-hana-high-availability-netapp-files-red-hat?tabs=lb-portal"
+    - name: OpenSource Quality Checks
+      url: "https://github.com/Azure/SAP-on-Azure-Scripts-and-Utilities/blob/main/QualityCheck/"

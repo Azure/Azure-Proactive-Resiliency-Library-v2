@@ -10,8 +10,7 @@
   potentialBenefits: Enhances speed and resiliency
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: About ExpressRoute FastPath
@@ -29,8 +28,7 @@
   potentialBenefits: Prevents accidental deletion of connections
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Protect your Azure resources with a lock - Azure Resource Manager | Microsoft Learn
