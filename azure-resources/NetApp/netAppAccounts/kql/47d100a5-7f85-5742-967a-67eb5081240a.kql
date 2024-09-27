@@ -2,6 +2,7 @@
 // This Resource Graph query will return all Azure NetApp Files volumes without an availability zone defined.
 Resources
 | where type =~ "Microsoft.NetApp/netAppAccounts/capacityPools/volumes"
+| where location in~ ("australiaeast", "brazilsouth", "canadacentral", "centralindia", "centralus", "eastasia", "eastus", "eastus2", "francecentral", "germanywestcentral", "israelcentral", "italynorth", "japaneast", "japanwest", "koreacentral", "mexicocentral", "newzealandnorth", "northeurope", "norwayeast", "polandcentral", "qatarcentral", "southafricanorth", "southcentralus", "southeastasia", "spaincentral", "swedencentral", "switzerlandnorth", "uaenorth", "uksouth", "westeurope", "westus2", "westus3", "usgovvirginia", "chinanorth3")
 | where array_length(zones) == 0 or isnull(zones)
 | project recommendationId = "47d100a5-7f85-5742-967a-67eb5081240a", name, id, tags
 
