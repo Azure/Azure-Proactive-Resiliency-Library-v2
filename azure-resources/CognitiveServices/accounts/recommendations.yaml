@@ -10,8 +10,7 @@
   potentialBenefits: Enhanced monitoring and troubleshooting capabilities
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Enable diagnostic logging for Azure AI services
