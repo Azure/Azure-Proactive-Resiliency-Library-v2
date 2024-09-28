@@ -1,5 +1,5 @@
 // Azure Resource Graph Query
-// Returns all AKS clusters not running on the Standard tier
+// Returns all AKS clusters not running on the Standard tier or the Premium tier.
 resources
 | where type =~ "Microsoft.ContainerService/managedClusters"
 | where sku.tier !in~ ("Standard", "Premium")
