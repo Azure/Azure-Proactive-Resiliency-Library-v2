@@ -2,6 +2,7 @@
 // Returns AKS clusters that do not have any availability zones enabled or only use a single zone
 resources
 | where type =~ "Microsoft.ContainerService/managedClusters"
+| where location in~ ("australiaeast", "brazilsouth", "canadacentral", "centralindia", "centralus", "eastasia", "eastus", "eastus2", "francecentral", "germanywestcentral", "israelcentral", "italynorth", "japaneast", "japanwest", "koreacentral", "mexicocentral", "newzealandnorth", "northeurope", "norwayeast", "polandcentral", "qatarcentral", "southafricanorth", "southcentralus", "southeastasia", "spaincentral", "swedencentral", "switzerlandnorth", "uaenorth", "uksouth", "westeurope", "westus2", "westus3", "usgovvirginia", "chinanorth3")
 | project id, name, tags, location, pools = properties.agentPoolProfiles
 | mv-expand pool = pools
 | extend

@@ -2,6 +2,7 @@
 // Find VMSS instances with one or no Zones selected
 resources
 | where type == "microsoft.compute/virtualmachinescalesets"
+| where location in~ ("australiaeast", "brazilsouth", "canadacentral", "centralindia", "centralus", "eastasia", "eastus", "eastus2", "francecentral", "germanywestcentral", "israelcentral", "italynorth", "japaneast", "japanwest", "koreacentral", "mexicocentral", "newzealandnorth", "northeurope", "norwayeast", "polandcentral", "qatarcentral", "southafricanorth", "southcentralus", "southeastasia", "spaincentral", "swedencentral", "switzerlandnorth", "uaenorth", "uksouth", "westeurope", "westus2", "westus3", "usgovvirginia", "chinanorth3")
 | where array_length(zones) <= 1 or isnull(zones)
 | project recommendationId = "1422c567-782c-7148-ac7c-5fc14cf45adc", name, id, tags, param1 = "AvailabilityZones: Single Zone"
 | order by id asc
