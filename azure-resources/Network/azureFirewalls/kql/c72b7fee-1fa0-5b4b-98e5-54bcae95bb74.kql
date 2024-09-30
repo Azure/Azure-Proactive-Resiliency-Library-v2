@@ -2,6 +2,7 @@
 // List all Azure Firewalls that are not configured with multiple availability zones or deployed without a zone
 resources
 | where type == 'microsoft.network/azurefirewalls'
+| where location in~ ("australiaeast", "brazilsouth", "canadacentral", "centralindia", "centralus", "eastasia", "eastus", "eastus2", "francecentral", "germanywestcentral", "israelcentral", "italynorth", "japaneast", "japanwest", "koreacentral", "mexicocentral", "newzealandnorth", "northeurope", "norwayeast", "polandcentral", "qatarcentral", "southafricanorth", "southcentralus", "southeastasia", "spaincentral", "swedencentral", "switzerlandnorth", "uaenorth", "uksouth", "westeurope", "westus2", "westus3", "usgovvirginia", "chinanorth3")
 | where array_length(zones) <= 1 or isnull(zones)
 | where isempty(properties.virtualHub.id) or isnull(properties.virtualHub.id)
 | project recommendationId = "c72b7fee-1fa0-5b4b-98e5-54bcae95bb74", name, id, tags, param1="multipleZones:false"

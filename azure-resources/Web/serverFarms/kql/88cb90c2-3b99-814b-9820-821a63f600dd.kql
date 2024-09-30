@@ -4,6 +4,7 @@
 
 resources
 | where type =~ 'microsoft.web/serverfarms'
+| where location in~ ("australiaeast", "brazilsouth", "canadacentral", "centralindia", "centralus", "eastasia", "eastus", "eastus2", "francecentral", "germanywestcentral", "israelcentral", "italynorth", "japaneast", "japanwest", "koreacentral", "mexicocentral", "newzealandnorth", "northeurope", "norwayeast", "polandcentral", "qatarcentral", "southafricanorth", "southcentralus", "southeastasia", "spaincentral", "swedencentral", "switzerlandnorth", "uaenorth", "uksouth", "westeurope", "westus2", "westus3", "usgovvirginia", "chinanorth3")
 | extend zoneRedundant = tobool(properties.zoneRedundant)
 | extend sku_tier = tostring(sku.tier)
 | where (tolower(sku_tier) contains "isolated" or tolower(sku_tier) contains "premium") and zoneRedundant == false

@@ -2,12 +2,14 @@
 // Provides a list of zone-redundant Azure VPN gateways associated with non-zone-redundant Public IPs
 resources
 | where type =~ "Microsoft.Network/virtualNetworkGateways"
+| where location in~ ("australiaeast", "brazilsouth", "canadacentral", "centralindia", "centralus", "eastasia", "eastus", "eastus2", "francecentral", "germanywestcentral", "israelcentral", "italynorth", "japaneast", "japanwest", "koreacentral", "mexicocentral", "newzealandnorth", "northeurope", "norwayeast", "polandcentral", "qatarcentral", "southafricanorth", "southcentralus", "southeastasia", "spaincentral", "swedencentral", "switzerlandnorth", "uaenorth", "uksouth", "westeurope", "westus2", "westus3", "usgovvirginia", "chinanorth3")
 | where properties.gatewayType == "Vpn"
 | where properties.sku.tier contains 'AZ'
 | mv-expand ipconfig = properties.ipConfigurations
 | extend pipId = tostring(ipconfig.properties.publicIPAddress.id)
 | join kind=inner (
     resources
+    | where location in~ ("australiaeast", "brazilsouth", "canadacentral", "centralindia", "centralus", "eastasia", "eastus", "eastus2", "francecentral", "germanywestcentral", "israelcentral", "italynorth", "japaneast", "japanwest", "koreacentral", "mexicocentral", "newzealandnorth", "northeurope", "norwayeast", "polandcentral", "qatarcentral", "southafricanorth", "southcentralus", "southeastasia", "spaincentral", "swedencentral", "switzerlandnorth", "uaenorth", "uksouth", "westeurope", "westus2", "westus3", "usgovvirginia", "chinanorth3")
     | where type == "microsoft.network/publicipaddresses"
     | where isnull(zones) or array_length(zones) < 3   )
     on $left.pipId == $right.id
