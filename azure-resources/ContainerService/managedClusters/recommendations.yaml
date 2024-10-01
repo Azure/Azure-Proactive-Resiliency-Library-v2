@@ -214,7 +214,7 @@
   recommendationResourceType: Microsoft.ContainerService/managedClusters
   recommendationMetadataState: Active
   longDescription: |
-    Production AKS clusters require the Standard tier for a financially backed SLA and enhanced node scalability, as the free service lacks these features. The Premium tier for mission-critical workloads.
+    Production AKS clusters require the Standard or Premium tier for a financially backed SLA and enhanced node scalability, as the free service lacks these features. Use the Premium tier for mission-critical workloads.
   potentialBenefits: SLA guarantee and better scalability
   pgVerified: true
   publishedToLearn: false
