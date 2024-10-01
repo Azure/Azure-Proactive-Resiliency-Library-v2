@@ -1,10 +1,11 @@
 // Azure Resource Graph Query
 // This Resource Graph query will return all Azure NetApp Files volumes without cross-zone replication.
 resources
-| where type == "microsoft.netapp/netappaccounts/capacitypools/volumes"
-| extend remoteVolumeRegion = properties.dataProtection.replication.remoteVolumeRegion
-| extend volumeType = properties.volumeType
-| extend replicationType = iff((remoteVolumeRegion == location), "CZR", iff((remoteVolumeRegion == ""),"n/a","CRR"))
+| where type == "microsoft.netapp/netappaccounts/capacitypools/volumes"
+| where location in~ ("australiaeast", "brazilsouth", "canadacentral", "centralindia", "centralus", "eastasia", "eastus", "eastus2", "francecentral", "germanywestcentral", "israelcentral", "italynorth", "japaneast", "japanwest", "koreacentral", "mexicocentral", "newzealandnorth", "northeurope", "norwayeast", "polandcentral", "qatarcentral", "southafricanorth", "southcentralus", "southeastasia", "spaincentral", "swedencentral", "switzerlandnorth", "uaenorth", "uksouth", "westeurope", "westus2", "westus3", "usgovvirginia", "chinanorth3")
+| extend remoteVolumeRegion = properties.dataProtection.replication.remoteVolumeRegion
+| extend volumeType = properties.volumeType
+| extend replicationType = iff((remoteVolumeRegion == location), "CZR", iff((remoteVolumeRegion == ""),"n/a","CRR"))
 | where replicationType != "CZR" and volumeType != "DataProtection"
 | project recommendationId = "e3d742e1-dacd-9b48-b6b1-510ec9f87c96", name, id, tags
 

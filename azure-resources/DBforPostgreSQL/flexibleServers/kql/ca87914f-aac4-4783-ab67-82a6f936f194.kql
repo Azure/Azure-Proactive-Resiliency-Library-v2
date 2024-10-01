@@ -2,5 +2,6 @@
 // Find Database for PostgreSQL instances that are not zone redundant
 resources
 | where type == "microsoft.dbforpostgresql/flexibleservers"
+| where location in~ ("australiaeast", "brazilsouth", "canadacentral", "centralindia", "centralus", "eastasia", "eastus", "eastus2", "francecentral", "germanywestcentral", "israelcentral", "italynorth", "japaneast", "japanwest", "koreacentral", "mexicocentral", "newzealandnorth", "northeurope", "norwayeast", "polandcentral", "qatarcentral", "southafricanorth", "southcentralus", "southeastasia", "spaincentral", "swedencentral", "switzerlandnorth", "uaenorth", "uksouth", "westeurope", "westus2", "westus3", "usgovvirginia", "chinanorth3")
 | where properties.highAvailability.mode != "ZoneRedundant"
 | project recommendationId = "ca87914f-aac4-4783-ab67-82a6f936f194", name, id, tags, param1 = "ZoneRedundant: False"

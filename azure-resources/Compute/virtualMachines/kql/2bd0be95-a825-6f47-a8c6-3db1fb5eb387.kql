@@ -2,6 +2,6 @@
 // Find all VMs that are not assigned to a Zone
 Resources
 | where type =~ 'Microsoft.Compute/virtualMachines'
+| where location in~ ("australiaeast", "brazilsouth", "canadacentral", "centralindia", "centralus", "eastasia", "eastus", "eastus2", "francecentral", "germanywestcentral", "israelcentral", "italynorth", "japaneast", "japanwest", "koreacentral", "mexicocentral", "newzealandnorth", "northeurope", "norwayeast", "polandcentral", "qatarcentral", "southafricanorth", "southcentralus", "southeastasia", "spaincentral", "swedencentral", "switzerlandnorth", "uaenorth", "uksouth", "westeurope", "westus2", "westus3", "usgovvirginia", "chinanorth3")
 | where isnull(zones)
 | project recommendationId="2bd0be95-a825-6f47-a8c6-3db1fb5eb387", name, id, tags, param1="No Zone"
-
