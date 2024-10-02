@@ -20,13 +20,13 @@
   aprlGuid: a7e8bb3d-8ceb-442d-b26f-007cd63f9ffc
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
-  recommendationImpact: Medium
+  recommendationImpact: High
   recommendationResourceType: Microsoft.Web/sites
   recommendationMetadataState: Active
   longDescription: |
     Use Application Insights to monitor app performance and load behavior, offering real-time insights, issue diagnosis, and root-cause analysis. It supports ASP.NET, ASP.NET Core, Java, and Node.js on Azure App Service, now with built-in monitoring.
   potentialBenefits: Real-time insights and issue diagnosis
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   automationAvailable: false
   tags: null
@@ -64,7 +64,7 @@
   longDescription: |
     Creating a separate storage account for logs and not using the same one for application data prevents logging activities from reducing application performance by ensuring that the resources dedicated to handling application data are not burdened by logging processes.
   potentialBenefits: Improves app performance
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   automationAvailable: false
   tags: null
@@ -100,7 +100,7 @@
   longDescription: |
     Use app settings for configuration and define them in Resource Manager templates or via PowerShell to facilitate part of an automated deployment/update process for improved reliability.
   potentialBenefits: Enhanced reliability via automation
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   automationAvailable: true
   tags: null
@@ -112,14 +112,14 @@
   aprlGuid: fd049c28-ae6d-48f0-a641-cc3ba1a3fe1d
   recommendationTypeId: null
   recommendationControl: Other Best Practices
-  recommendationImpact: Medium
+  recommendationImpact: High
   recommendationResourceType: Microsoft.Web/sites
   recommendationMetadataState: Active
   longDescription: |
     Use Health Check for production workloads. Health check increases your application's availability by rerouting requests away from unhealthy instances, and replacing instances if they remain unhealthy. The Health check path should check critical components of your application.
   potentialBenefits: Enhanced reliability via automation
   pgVerified: false
-  publishedToLearn: false
+  publishedToLearn: true
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -136,7 +136,7 @@
   longDescription: |
     Use network access restrictions to define a priority-ordered allow/deny list that controls network access to your app. Web application firewalls, such as the one available in Application Gateway, are recommended for protection of public-facing web applications.
   potentialBenefits: Enhanced security
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   automationAvailable: true
   tags: null
@@ -148,13 +148,13 @@
   aprlGuid: 9e6682ac-31bc-4635-9959-ab74b52454e6
   recommendationTypeId: null
   recommendationControl: Scalability
-  recommendationImpact: Medium
+  recommendationImpact: High
   recommendationResourceType: Microsoft.Web/sites
   recommendationMetadataState: Active
   longDescription: |
     App Service should be configured with a minimum of two instances for production workloads. If apps have a longer warmup time a minimum of three instances should be used.
   potentialBenefits: Improves app performace
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   automationAvailable: true
   tags: null
