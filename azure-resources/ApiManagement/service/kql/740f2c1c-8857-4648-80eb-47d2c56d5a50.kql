@@ -2,6 +2,7 @@
 // Find all Premium API Management instances that aren't zone redundant
 resources
 | where type =~ 'Microsoft.ApiManagement/service'
+| where location in~ ("australiaeast", "brazilsouth", "canadacentral", "centralindia", "centralus", "eastasia", "eastus", "eastus2", "francecentral", "germanywestcentral", "israelcentral", "italynorth", "japaneast", "japanwest", "koreacentral", "mexicocentral", "newzealandnorth", "northeurope", "norwayeast", "polandcentral", "qatarcentral", "southafricanorth", "southcentralus", "southeastasia", "spaincentral", "swedencentral", "switzerlandnorth", "uaenorth", "uksouth", "westeurope", "westus2", "westus3", "usgovvirginia", "chinanorth3")
 | extend skuName = sku.name
 | where tolower(skuName) == tolower('premium')
 | where isnull(zones) or array_length(zones) < 2

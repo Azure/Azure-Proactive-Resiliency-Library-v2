@@ -2,6 +2,7 @@
 // The query filters the qualified Container app environments that do not have Zone Redundancy enabled.
 resources
 | where type =~ "microsoft.app/managedenvironments"
+| where location in~ ("australiaeast", "brazilsouth", "canadacentral", "centralindia", "centralus", "eastasia", "eastus", "eastus2", "francecentral", "germanywestcentral", "israelcentral", "italynorth", "japaneast", "japanwest", "koreacentral", "mexicocentral", "newzealandnorth", "northeurope", "norwayeast", "polandcentral", "qatarcentral", "southafricanorth", "southcentralus", "southeastasia", "spaincentral", "swedencentral", "switzerlandnorth", "uaenorth", "uksouth", "westeurope", "westus2", "westus3", "usgovvirginia", "chinanorth3")
 | where tobool(properties.zoneRedundant) == false
 | project recommendationId = "f4201965-a88d-449d-b3b4-021394719eb2", name, id, tags, param1 = "AvailabilityZones: Single Zone"
 | order by id asc

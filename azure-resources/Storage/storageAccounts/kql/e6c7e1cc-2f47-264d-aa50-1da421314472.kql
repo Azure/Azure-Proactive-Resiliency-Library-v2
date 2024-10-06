@@ -2,6 +2,7 @@
 // This query will return all storage accounts that are not using Zone or Region replication
 Resources
 | where type =~ "Microsoft.Storage/storageAccounts"
+| where location in~ ("australiaeast", "brazilsouth", "canadacentral", "centralindia", "centralus", "eastasia", "eastus", "eastus2", "francecentral", "germanywestcentral", "israelcentral", "italynorth", "japaneast", "japanwest", "koreacentral", "mexicocentral", "newzealandnorth", "northeurope", "norwayeast", "polandcentral", "qatarcentral", "southafricanorth", "southcentralus", "southeastasia", "spaincentral", "swedencentral", "switzerlandnorth", "uaenorth", "uksouth", "westeurope", "westus2", "westus3", "usgovvirginia", "chinanorth3")
 | where sku.name in~ ("Standard_LRS", "Premium_LRS")
 | project recommendationId = "e6c7e1cc-2f47-264d-aa50-1da421314472", name, id, tags, param1 = strcat("sku: ", sku.name)
 

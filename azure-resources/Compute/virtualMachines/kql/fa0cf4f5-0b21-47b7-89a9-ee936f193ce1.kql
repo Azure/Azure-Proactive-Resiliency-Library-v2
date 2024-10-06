@@ -2,6 +2,7 @@
 // Find eligible Disks that are not zonal nor zone redundant
 resources
 | where type == 'microsoft.compute/disks'
+| where location in~ ("australiaeast", "brazilsouth", "canadacentral", "centralindia", "centralus", "eastasia", "eastus", "eastus2", "francecentral", "germanywestcentral", "israelcentral", "italynorth", "japaneast", "japanwest", "koreacentral", "mexicocentral", "newzealandnorth", "northeurope", "norwayeast", "polandcentral", "qatarcentral", "southafricanorth", "southcentralus", "southeastasia", "spaincentral", "swedencentral", "switzerlandnorth", "uaenorth", "uksouth", "westeurope", "westus2", "westus3", "usgovvirginia", "chinanorth3")
 | where sku has "Premium_LRS" or sku has "StandardSSD_LRS"
 | where sku.name has_cs 'ZRS' or array_length(zones) > 0
 | project recommendationId="fa0cf4f5-0b21-47b7-89a9-ee936f193ce1", name, id, tags, param1 = sku, param2 = sku.name
