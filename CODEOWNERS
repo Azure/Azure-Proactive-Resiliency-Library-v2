@@ -27,7 +27,7 @@ tools @Azure/aprl-wara-tools
 azure-resources/DocumentDB/databaseAccounts @Azure/aprl-maintainers @Azure/aprl-cosmosdb
 
 ## The aprl-mysql team is responsible for all MySQL-related PRs
-azure-resources/DBforMySQL@Azure/aprl-maintainers @Azure/aprl-mysql
+azure-resources/DBforMySQL @Azure/aprl-maintainers @Azure/aprl-mysql
 
 ## The aprl-postgres team is responsible for all PostgreSQL-related PRs
 azure-resources/DBforPostgreSQL @Azure/aprl-maintainers @Azure/aprl-postgres
