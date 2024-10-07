@@ -72,7 +72,7 @@ The YAML structure for adding new recommendations consists of several key-value 
 | recommendationTypeId | 3464854d-6f75-4922-95e4-a2a308b53ce6 | String | `null` until updated by the Azure Advisor team | The unique identifier for the recommendation in the context of Advisor. |
 | recommendationControl | Monitoring and Alerting | String | [High Availability, Business Continuity, Disaster Recovery, Scalability, Monitoring and Alerting, Service Upgrade and Retirement, Other Best Practices, Personalized, Governance, Security](#recommendation-categories) | Resiliency category associated with the recommendation |
 | recommendationImpact | Medium | String | Low, Medium, High | Importance of adopting the recommendation and/or the risk of choosing not to adopt |
-| recommendationResourceType | Storage Account | String | Align with the resource type | Friendly name to identity resource type |
+| recommendationResourceType | Microsoft.Storage/storageAccounts | String | Align with the resource type | Friendly name to identity resource type |
 | recommendationMetadataState | Active | String | Active, Disabled | Indicates whether the recommendation is visible |
 | longDescription | To enable Cross-region disaster recovery and business continuity, ensure that the appropriate quotas are set for all user subscription Batch accounts. | String | The length should be less than 300 characters | Detailed description of the recommendation and its implications |
 | potentialBenefits | Enhanced data redundancy and boosts availability | String | The length should be less than 60 characters | The potential benefits of implementing the recommendation |
