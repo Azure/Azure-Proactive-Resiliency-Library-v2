@@ -1,0 +1,17 @@
+- description: Establish a tunnel between the on-premises device(s) and each VPN gateway instance.
+  aprlGuid: 02bdbdb8-d138-4090-951c-23e45b8700f7
+  recommendationTypeId: null
+  recommendationControl: Disaster Recovery
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/vpnSites
+  recommendationMetadataState: Active
+  longDescription: Establish a tunnel between the on-premises device(s) and each VPN gateway instance. Create two or more links to two different on premises endpoints.
+  potentialBenefits: Fault tolerance and high availability.
+  pgVerified: false
+  publishedToLearn: false
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: vWAN VPN Gateway Disaster Recovery
+      url: "https://learn.microsoft.com/en-us/azure/virtual-wan/disaster-recovery-design#multi-link-topology"
+
