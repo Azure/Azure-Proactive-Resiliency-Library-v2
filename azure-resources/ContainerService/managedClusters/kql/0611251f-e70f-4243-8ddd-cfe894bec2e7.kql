@@ -1,7 +1,6 @@
 // Azure Resource Graph Query
-// Returns all AKS clusters not running on the Standard tier
+// Returns all AKS clusters not running on the Standard tier or the Premium tier.
 resources
-| where type == "microsoft.containerservice/managedclusters"
-| where sku.tier != "Standard"
-| project recommendationId="0611251f-e70f-4243-8ddd-cfe894bec2e7", id, name, tags, param1=strcat("skuName: ", sku.name), param2=strcat("skuTier: ", sku.tier)
-
+| where type =~ "Microsoft.ContainerService/managedClusters"
+| where sku.tier !in~ ("Standard", "Premium")
+| project recommendationId = "0611251f-e70f-4243-8ddd-cfe894bec2e7", id, name, tags, param1 = strcat("skuName: ", sku.name), param2 = strcat("skuTier: ", sku.tier)
