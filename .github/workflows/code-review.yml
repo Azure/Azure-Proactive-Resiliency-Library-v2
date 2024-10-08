@@ -11,14 +11,13 @@ on:
 permissions:
   contents: read
   packages: read
-      # To report GitHub Actions status checks
-  statuses: write
 
 jobs:
   lint:
+    permissions:
+      statuses: write
     name: Lint code base
     runs-on: ubuntu-latest
-
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
@@ -51,7 +50,6 @@ jobs:
   markdown_link_check:
     name: Markdown Link Check
     runs-on: ubuntu-latest
-
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
