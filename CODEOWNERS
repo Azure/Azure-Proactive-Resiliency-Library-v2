@@ -1,9 +1,7 @@
 # The aprl-maintainers team is responsible for reviewing and merging all PRs
-
 * @Azure/aprl-maintainers
 
 ## The aprl-networking team is partially responsible for all networking-related PRs
-
 azure-resources/Cdn @Azure/aprl-maintainers @Azure/aprl-networking
 azure-resources/Network @Azure/aprl-maintainers @Azure/aprl-networking
 azure-resources/NetworkCloud @Azure/aprl-maintainers @Azure/aprl-networking
@@ -12,19 +10,28 @@ azure-resources/Peerings @Azure/aprl-maintainers @Azure/aprl-networking
 azure-resources/Relay @Azure/aprl-maintainers @Azure/aprl-networking
 
 ## The aprl-sap team is partially responsible for all SAP-related PRs
-
 azure-specialized-workloads/sap @Azure/aprl-maintainers @Azure/aprl-sap
 
 ## The aprl-hpc team is partially responsible for all HPC-related PRs
-
 azure-resources/Batch @Azure/aprl-maintainers @Azure/aprl-hpc
 azure-specialized-workloads/hpc @Azure/aprl-maintainers @Azure/aprl-hpc
 
 ## The aprl-avd team is partially responsible for all AVD-related PRs
-
 azure-resources/DesktopVirtualization @Azure/aprl-maintainers @Azure/aprl-avd
 azure-specialized-workloads/avd @Azure/aprl-maintainers @Azure/aprl-avd
 
-## The aprl-wara-tools team is responsible for all WARA tools-related PRs
-
+## The aprl-wara-tools team is partially responsible for all WARA tools-related PRs
 tools @Azure/aprl-wara-tools
+
+## The aprl-cosmosdb team is responsible for all CosmosDB-related PRs
+azure-resources/DocumentDB/databaseAccounts @Azure/aprl-maintainers @Azure/aprl-cosmosdb
+
+## The aprl-mysql team is responsible for all MySQL-related PRs
+azure-resources/DBforMySQL @Azure/aprl-maintainers @Azure/aprl-mysql
+
+## The aprl-postgres team is responsible for all PostgreSQL-related PRs
+azure-resources/DBforPostgreSQL @Azure/aprl-maintainers @Azure/aprl-postgres
+
+## The aprl-sql team is responsible for all SQL-related PRs
+azure-resources/SQL @Azure/aprl-maintainers @Azure/aprl-sql
+azure-resources/SQLVirtualMachines @Azure/aprl-maintainers @Azure/aprl-sql
