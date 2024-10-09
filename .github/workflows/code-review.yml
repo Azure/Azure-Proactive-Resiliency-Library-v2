@@ -20,13 +20,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
+        with:
+          egress-policy: audit
+
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
         with:
           fetch-depth: 0
 
       - name: Run github/super-linter
-        uses: github/super-linter@v7
+        uses: github/super-linter@b807e99ddd37e444d189cfd2c2ca1274d8ae8ef1 # v7
         env:
           VALIDATE_ALL_CODEBASE: false
           # Need to define main branch as default is set to master in super-linter
@@ -48,13 +53,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
+        with:
+          egress-policy: audit
+
       - name: Checkout code
-        uses: actions/checkout@main
+        uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # main
         with:
           fetch-depth: 0
 
       - name: Check links in markdown files
-        uses: gaurav-nelson/github-action-markdown-link-check@1.0.15
+        uses: gaurav-nelson/github-action-markdown-link-check@d53a906aa6b22b8979d33bc86170567e619495ec # 1.0.15
         with:
           config-file: ".github/linters/mlc_config.json"
           use-verbose-mode: "yes"

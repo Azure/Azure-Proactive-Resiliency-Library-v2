@@ -37,3 +37,23 @@
   learnMoreLink:
     - name: Service Bus auto-scaling
       url: "https://learn.microsoft.com/azure/service-bus-messaging/automate-update-messaging-units"
+
+- description: Configure the minimum TLS version for Service Bus namespaces to TLS v1.2 or higher
+  aprlGuid: f075a1bd-de9e-4819-9a1d-1ac41037a74f
+  recommendationTypeId: null
+  recommendationControl: Service Upgrade and Retirement
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.ServiceBus/namespaces
+  recommendationMetadataState: Active
+  longDescription: |
+    As of 31 October 2024, TLS 1.0 and TLS 1.1 will no longer be supported on Azure including Service Bus to enhance security and provide best-in-class encryption for your data. Change the minimum TLS version for your Service Bus namespace to TLS v1.2 or higher.
+  potentialBenefits: Avoids service disruption
+  pgVerified: false
+  publishedToLearn: false
+  automationAvailable: true
+  tags: null
+  learnMoreLink:
+    - name: Azure support for TLS 1.0 and TLS 1.1 will end by 31 October 2024
+      url: "https://azure.microsoft.com/updates/azure-support-tls-will-end-by-31-october-2024-2/"
+    - name: Configure the minimum TLS version for a Service Bus namespace
+      url: "https://learn.microsoft.com/azure/service-bus-messaging/transport-layer-security-configure-minimum-version"
