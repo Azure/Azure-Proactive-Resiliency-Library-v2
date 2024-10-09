@@ -6516,7 +6516,7 @@
     "publishedToLearn": false,
     "tags": null,
     "recommendationResourceType": "Microsoft.AVS/privateClouds",
-    "recommendationImpact": "High",
+    "recommendationImpact": "Medium",
     "automationAvailable": true,
     "query": "// Azure Resource Graph Query\n// Provides a list of Azure VMware Solution resources that don't have a Cluster CPU capacity critical alert with a threshold of 95%.\nresources\n| where ['type'] == \"microsoft.avs/privateclouds\"\n| extend scopeId = tolower(tostring(id))\n| project ['scopeId'], name, id, tags\n| join kind=leftouter (\nresources\n| where type == \"microsoft.insights/metricalerts\"\n| extend alertProperties = todynamic(properties)\n| mv-expand alertProperties.scopes\n| mv-expand alertProperties.criteria.allOf\n| extend scopeId = tolower(tostring(alertProperties_scopes))\n| extend metric = alertProperties_criteria_allOf.metricName\n| extend threshold = alertProperties_criteria_allOf.threshold\n| project scopeId, tostring(metric), toint(['threshold'])\n| where metric == \"EffectiveCpuAverage\"\n| where threshold == 95\n) on scopeId\n| where isnull(['threshold'])\n| project recommendationId = \"4ee5d535-c47b-470a-9557-4a3dd297d62f\", name, id, tags, param1 = \"hostCpuCriticalAlert: isNull or threshold != 95\"\n\n"
   },
@@ -6539,7 +6539,7 @@
     "publishedToLearn": false,
     "tags": null,
     "recommendationResourceType": "Microsoft.AVS/privateClouds",
-    "recommendationImpact": "High",
+    "recommendationImpact": "Medium",
     "automationAvailable": true,
     "query": "// Azure Resource Graph Query\n// Provides a list of Azure VMware Solution resources that don't have a cluster host memory critical alert with a threshold of 95%.\nresources\n| where ['type'] == \"microsoft.avs/privateclouds\"\n| extend scopeId = tolower(tostring(id))\n| project ['scopeId'], name, id, tags\n| join kind=leftouter (\nresources\n| where type == \"microsoft.insights/metricalerts\"\n| extend alertProperties = todynamic(properties)\n| mv-expand alertProperties.scopes\n| mv-expand alertProperties.criteria.allOf\n| extend scopeId = tolower(tostring(alertProperties_scopes))\n| extend metric = alertProperties_criteria_allOf.metricName\n| extend threshold = alertProperties_criteria_allOf.threshold\n| project scopeId, tostring(metric), toint(['threshold'])\n| where metric == \"UsageAverage\"\n| where threshold == 95\n) on scopeId\n| where isnull(['threshold'])\n| project recommendationId = \"029208c8-5186-4a76-8ee8-6e3445fef4dd\", name, id, tags, param1 = \"hostMemoryCriticalAlert: isNull or threshold != 95\"\n\n"
   },
