@@ -17,17 +17,16 @@ on:
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
-  pages: write
-  id-token: write
-
 # Default to bash
 defaults:
   run:
     shell: bash
 
 jobs:
-  # Build PR job
   buildpr:
+    permissions:
+      pages: write
+      id-token: write
     runs-on: ubuntu-latest
     env:
       HUGO_VERSION: 0.124.1
