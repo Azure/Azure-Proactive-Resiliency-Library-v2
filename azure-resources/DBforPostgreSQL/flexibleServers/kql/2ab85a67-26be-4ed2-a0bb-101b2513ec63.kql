@@ -1,6 +1,8 @@
 // Azure Resource Graph Query
-// Find Database for PostgreSQL instances that are read replicas
+// Find Database for PostgreSQL instances that do not have read replicas
 resources
-| where type == "microsoft.dbforpostgresql/flexibleservers"
-| where properties.replicationRole == "AsyncReplica"
-| project recommendationId = "2ab85a67-26be-4ed2-a0bb-101b2513ec63", name, id, tags, param1 = strcat("replicationRole:", properties['replicationRole'])
+| where type == "microsoft.dbforpostgresql/flexibleservers" and properties.replicationRole == "AsyncReplica"
+| project replicaServerId = id, id = tostring(properties.sourceServerResourceId)
+| join kind=fullouter (resources | where type == "microsoft.dbforpostgresql/flexibleservers" and properties.replicationRole != "AsyncReplica") on id
+| where isempty(replicaServerId)
+| project recommendationId = "2ab85a67-26be-4ed2-a0bb-101b2513ec63", name, id = id1, tags, param1 = strcat("replicationRole:", properties['replicationRole'])

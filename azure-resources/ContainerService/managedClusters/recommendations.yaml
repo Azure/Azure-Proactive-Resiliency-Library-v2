@@ -206,7 +206,7 @@
     - name: Azure Container Instances
       url: "https://learn.microsoft.com/azure/container-instances/container-instances-overview"
 
-- description: Update AKS tier to Standard
+- description: Update AKS tier to Standard or Premium
   aprlGuid: 0611251f-e70f-4243-8ddd-cfe894bec2e7
   recommendationTypeId: null
   recommendationControl: High Availability
@@ -214,7 +214,7 @@
   recommendationResourceType: Microsoft.ContainerService/managedClusters
   recommendationMetadataState: Active
   longDescription: |
-    Production AKS clusters require the Standard tier for a financially backed SLA and enhanced node scalability, as the free service lacks these features.
+    Production AKS clusters require the Standard or Premium tier for a financially backed SLA and enhanced node scalability, as the free service lacks these features. Use the Premium tier for mission-critical workloads.
   potentialBenefits: SLA guarantee and better scalability
   pgVerified: true
   publishedToLearn: false
