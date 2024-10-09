@@ -6,7 +6,7 @@
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
   recommendationMetadataState: Active
   longDescription: |
-    Create a validation host pool where service updates are applied first. Validation host pools let you monitor service updates before the service applies them to your standard or non-validation environment. Without a validation host pool, you may not discover changes that introduce errors, which could result in downtime for users in your standard environment.
+    Validation host pools let you monitor service updates before the service applies them to your standard or non-validation environment.
   potentialBenefits: Enhanced environment stability
   pgVerified: true
   publishedToLearn: false
