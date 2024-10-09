@@ -6,7 +6,7 @@
   recommendationResourceType: Microsoft.Sql/managedInstances
   recommendationMetadataState: Active
   longDescription: |
-    By default, Azure SQL Managed Instance has built in availability that is based on deploying multiple replicas within the same zone. To achieve high availability leverage zone-redundant configuration that is based on placing replicas across three Azure availability zones in the primary region. Each availability zone is a separate physical location with independent power, cooling, and networking.
+    Azure SQL Managed Instance ensures built-in availability by deploying multiple replicas within the same zone. For high availability, use zone-redundant configuration, placing replicas across three Azure availability zones, each being a separate location with independent power, cooling, and networking.
   potentialBenefits: Enhanced availability and reliability
   pgVerified: false
   publishedToLearn: false
@@ -60,7 +60,7 @@
   recommendationResourceType: Microsoft.Sql/managedInstances
   recommendationMetadataState: Active
   longDescription: |
-    If an outage impacts managed instance, with failover group you can manually or automatically failover all the databases inside the instance to a secondary region. Make sure to route connections to failover group’s listener instead of the primary instance, so that you don’t need to change connection string after geo-failover.
+    In case of an outage on the managed instance, use the failover group to manually or automatically switch all databases to a secondary region. Ensure connections are routed to the failover group’s listener, not the primary instance, so there's no need to change the connection string after geo-failover.
   potentialBenefits: Ensure seamless service with cross-region failover
   pgVerified: false
   publishedToLearn: false
