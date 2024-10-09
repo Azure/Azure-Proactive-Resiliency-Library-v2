@@ -1,2 +1,5 @@
-// under-development
-
+resources
+| where type =~ 'Microsoft.Sql/managedInstances'
+| extend connectionpolicy=properties.proxyOverride
+| where connectionpolicy != 'Redirect'
+| project name,  connectionpolicy
