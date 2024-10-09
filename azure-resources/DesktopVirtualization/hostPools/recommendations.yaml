@@ -1,4 +1,4 @@
-- description: Create a validation host pool for testing of planned updates
+- description: Create a validation host pool
   aprlGuid: 013ac34e-7c4b-425f-9e0c-216f0cc06181
   recommendationTypeId: null
   recommendationControl: Governance
@@ -6,7 +6,7 @@
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
   recommendationMetadataState: Active
   longDescription: |
-    Create a Validation Pool for early issue detection with planned AVD updates. Adjust limits based on needs. Scale by adding multiple host pools for more users. Regularly test updates on host pools. Validate changes before applying to main environment to avoid downtime.
+    Validation host pools let you monitor service updates before the service applies them to your standard or non-validation environment.
   potentialBenefits: Enhanced environment stability
   pgVerified: true
   publishedToLearn: false
@@ -24,7 +24,7 @@
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
   recommendationMetadataState: Active
   longDescription: |
-    Create maintenance schedules for AVD agent updates to avoid disruptions. Use Scheduled Agent Updates to set maintenance windows for updating Azure Virtual Desktop agent, side-by-side stack, and Geneva Monitoring agent.
+    Create up to two maintenance windows for the Azure Virtual Desktop agent, side-by-side stack, and Geneva Monitoring agent to get updated so that updates don't happen during peak business hours.
   potentialBenefits: Enhanced environment stability
   pgVerified: true
   publishedToLearn: false
@@ -42,7 +42,7 @@
   recommendationResourceType: Microsoft.DesktopVirtualization/hostPools
   recommendationMetadataState: Active
   longDescription: |
-    For optimized AVD configuration, place Hybrid VMs in unique OUs. Segregate Prod and DR units for environment-specific settings. This ensures targeted configurations for session hosts, including FSLogix, timeouts, and session controls.
+    Place domain joined session hosts VMs in unique OUs. Segregate Prod and DR units for environment-specific settings. This ensures targeted configurations for session hosts, including FSLogix, session controls, etc.
   potentialBenefits: Improved AVD hostpool config & segmentation
   pgVerified: true
   publishedToLearn: false
@@ -52,7 +52,7 @@
     - name: Configure the VMs and install Active Directory Domain Services
       url: "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/deploy/virtual-dc/adds-on-azure-vm#configure-the-vms-and-install-active-directory-domain-services"
 
-- description: Use Azure Site Recovery or backups to protect VMs supporting personal desktops
+- description: Use Azure Site Recovery to protect stateful session hosts
   aprlGuid: 38721758-2cc2-4d6b-b7b7-8b47dadbf7df
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
@@ -60,7 +60,7 @@
   recommendationResourceType: Microsoft.Compute/virtualMachines
   recommendationMetadataState: Active
   longDescription: |
-    Implement Azure Site Recovery (ASR) or Azure Backup for personal host pools to enable seamless failover and failback. This replicates VMs supporting personal desktops to a secondary Azure region, ensuring recovery from a known state in case of a disaster or outage.
+    Implement Azure Site Recovery (ASR) to replicate or backup stateful session hosts. This replicates VMs to a secondary Azure region or availability zone, ensuring recovery from a known VM state in case of an outage.
   potentialBenefits: Ensures VM recovery & failover
   pgVerified: true
   publishedToLearn: false
