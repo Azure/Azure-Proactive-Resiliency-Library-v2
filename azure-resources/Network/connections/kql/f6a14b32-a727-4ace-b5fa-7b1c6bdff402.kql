@@ -17,4 +17,3 @@ resources
 | project recommendationId = "f6a14b32-a727-4ace-b5fa-7b1c6bdff402", id, name, tags,
     param1 = iff(erGatewayBypass, "Enabled: Gateway Bypass", "Disabled: Gateway Bypass"),
     param2 = iff(privateLinkFastPath, "Enabled: PE FastPath", "Disabled: PE FastPath"),
-    param3 = "More info: https://learn.microsoft.com/en-us/azure/expressroute/about-fastpath"
