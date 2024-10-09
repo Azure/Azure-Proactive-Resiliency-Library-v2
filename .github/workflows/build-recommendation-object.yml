@@ -3,14 +3,11 @@ name: Nightly Recommendation Object Build
 on:
   schedule:
     - cron: "0 0 * * *"
-
-permissions:
-  contents: write
+  workflow_dispatch: {}
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
@@ -22,14 +19,38 @@ jobs:
         with:
           ref: main
 
+      - name: Configure Git
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        shell: bash
+
+      - name: Create and Switch to New Branch
+        run: |
+          git checkout -b json-object-update
+        shell: bash
+
       - name: Run Recommendation Object Builder
         run: |
           pwsh .github/scripts/build-recommendation-object.ps1
 
       - name: Commit and push changes
         run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add ./tools/data/recommendations.json
           git commit -m "Update recommendations.json"
           git push
+
+      - name: Create PR
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr create --title "chore: Update APRL JSON Object" --body "This PR updates the single JSON object for all APRL recommendations." --base main --head json-object-update
+        shell: bash
+
+      - name: Merge PR
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          pr_number=$(gh pr list --state open --limit 1 --json number --jq '.[0].number')
+          gh pr merge $pr_number --merge
+        shell: bash
