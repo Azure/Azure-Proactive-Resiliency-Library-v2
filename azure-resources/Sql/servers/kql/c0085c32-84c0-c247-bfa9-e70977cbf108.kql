@@ -2,6 +2,7 @@
 // Finds non-zone redundant SQL databases and lists them
 Resources
 | where type =~ 'microsoft.sql/servers/databases'
+| where location in~ ("australiaeast", "brazilsouth", "canadacentral", "centralindia", "centralus", "eastasia", "eastus", "eastus2", "francecentral", "germanywestcentral", "israelcentral", "italynorth", "japaneast", "japanwest", "koreacentral", "mexicocentral", "newzealandnorth", "northeurope", "norwayeast", "polandcentral", "qatarcentral", "southafricanorth", "southcentralus", "southeastasia", "spaincentral", "swedencentral", "switzerlandnorth", "uaenorth", "uksouth", "westeurope", "westus2", "westus3", "usgovvirginia", "chinanorth3")
 | where tolower(tostring(properties.zoneRedundant))=~'false'
 |project recommendationId = "c0085c32-84c0-c247-bfa9-e70977cbf108", name, id, tags
 

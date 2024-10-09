@@ -2,6 +2,7 @@
 // Query to list all image versions and its associated image and gallery name whose Storage account type is not using ZRS
 resources
 | where type =~ "microsoft.compute/galleries/images/versions"
+| where location in~ ("australiaeast", "brazilsouth", "canadacentral", "centralindia", "centralus", "eastasia", "eastus", "eastus2", "francecentral", "germanywestcentral", "israelcentral", "italynorth", "japaneast", "japanwest", "koreacentral", "mexicocentral", "newzealandnorth", "northeurope", "norwayeast", "polandcentral", "qatarcentral", "southafricanorth", "southcentralus", "southeastasia", "spaincentral", "swedencentral", "switzerlandnorth", "uaenorth", "uksouth", "westeurope", "westus2", "westus3", "usgovvirginia", "chinanorth3")
 | extend GalleryName = tostring(split(tostring(id), "/")[8]), ImageName = tostring(split(tostring(id), "/")[10])
 | extend StorageAccountType = tostring(properties.publishingProfile.storageAccountType)
 | where StorageAccountType !has "ZRS"
