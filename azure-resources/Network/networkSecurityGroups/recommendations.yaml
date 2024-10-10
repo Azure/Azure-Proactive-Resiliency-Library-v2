@@ -52,24 +52,6 @@
     - name: Lock your resources to protect your infrastructure
       url: "https://learn.microsoft.com/azure/azure-resource-manager/management/lock-resources?toc=%2Fazure%2Fvirtual-network%2Ftoc.json&tabs=json"
 
-- description: Configure NSG Flow Logs
-  aprlGuid: da1a3c06-d1d5-a940-9a99-fcc05966fe7c
-  recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
-  recommendationImpact: Medium
-  recommendationResourceType: Microsoft.Network/networkSecurityGroups
-  recommendationMetadataState: Active
-  longDescription: |
-    Monitoring, managing, and understanding your network is crucial for protection and optimization. Knowing the current state, who and from where connections are made, open internet ports, expected and irregular behavior, and traffic spikes is essential.
-  potentialBenefits: Enhances security and optimizes network
-  pgVerified: true
-  publishedToLearn: false
-  automationAvailable: true
-  tags: null
-  learnMoreLink:
-    - name: Flow logging for network security groups
-      url: "https://learn.microsoft.com/azure/network-watcher/network-watcher-nsg-flow-logging-overview"
-
 - description: The NSG only has Default Security Rules, make sure to configure the necessary rules
   aprlGuid: 8291c1fa-650c-b44b-b008-4deb7465919d
   recommendationTypeId: null
