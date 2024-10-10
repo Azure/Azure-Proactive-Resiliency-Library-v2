@@ -1,4 +1,4 @@
-- description: For better data path performance enable FastPath on ExpressRoute Direct and Gateway
+- description: For better data path performance enable FastPath on ExpressRoute Connections
   aprlGuid: f6a14b32-a727-4ace-b5fa-7b1c6bdff402
   recommendationTypeId: null
   recommendationControl: Scalability
