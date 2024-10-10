@@ -57,3 +57,39 @@
       url: "https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/plan/should-i-create-a-generation-1-or-2-virtual-machine-in-hyper-v"
     - name: Images in Compute gallery
       url: "https://learn.microsoft.com/en-us/azure/virtual-machines/shared-image-galleries?tabs=azure-cli"
+
+- description: Create Image Versions replicas in secondary region
+  aprlGuid: b14ee8ed-7d27-447b-b6fb-6472cb5f4b75
+  recommendationTypeId: null
+  recommendationControl: Disaster Recovery
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Compute/galleries
+  recommendationMetadataState: Active
+  longDescription: |
+    On multi-region deployments, replicate Image Versions to a secondary region to ensure disaster recovery capability. This ensures that the Image Versions are available in the secondary region in case of a disaster in the primary region.
+  potentialBenefits: Enhances disaster recovery capability
+  pgVerified: true
+  publishedToLearn: false
+  automationAvailable: true
+  tags: null
+  learnMoreLink:
+    - name: Compute Gallery Replication
+      url: "https://learn.microsoft.com/azure/virtual-machines/azure-compute-gallery#replication"
+
+- description: Configure Image version replica count per region.
+  aprlGuid: b3c3ba1d-7de6-442d-8c50-023330fbf765
+  recommendationTypeId: null
+  recommendationControl: Disaster Recovery
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Compute/galleries
+  recommendationMetadataState: Active
+  longDescription: |
+    You can set a different replica count in each target region, based on the scale needs for the region. For every 20 VMs that you create concurrently, we recommend you keep one replica.
+  potentialBenefits: Enhances disaster recovery capability
+  pgVerified: true
+  publishedToLearn: false
+  automationAvailable: true
+  tags: null
+  learnMoreLink:
+    - name: Compute Gallery Scaling
+      url: "https://learn.microsoft.com/en-us/azure/virtual-machines/azure-compute-gallery#scaling"
