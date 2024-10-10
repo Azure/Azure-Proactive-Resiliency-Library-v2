@@ -1,2 +1,7 @@
-// under-development
-
+//////Managed Instance storage backup redundancy check – any server that is not configured for GZRS
+resources 
+| where type =~ 'Microsoft.Sql/managedInstances'
+| extend backupredundancy=properties.storageAccountType
+| extend ServiceTier = sku.tier
+| where backupredundancy != 'GeoZone'
+| project name, ServiceTier, backupredundancy
