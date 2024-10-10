@@ -699,7 +699,12 @@ $Script:Runtime = Measure-Command -Expression {
             Write-Host '----------------------------'
             Write-Host 'Collecting: ' -NoNewline
             Write-Host 'Advisor Recommendations' -ForegroundColor Magenta
-            Invoke-AdvisoryExtraction -SubId $SubId -ResourceGroup $RGroup
+            $AdvGroup = $null
+            if(![string]::IsNullOrEmpty($RGroup))
+              {
+                $AdvGroup = $RGroup.split("/")[4]
+              }
+            Invoke-AdvisoryExtraction -SubId $SubId -ResourceGroup $AdvGroup
 
             if ($SubId -notin $LoopedSub) {
               Write-Host '----------------------------'
@@ -1735,4 +1740,3 @@ Write-Host (' Minutes')
 Write-Host 'Result File: ' -NoNewline
 Write-Host $Script:JsonFile -ForegroundColor Blue
 Write-Host '---------------------------------------------------------------------'
-
