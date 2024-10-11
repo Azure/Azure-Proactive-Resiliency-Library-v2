@@ -10,7 +10,7 @@ jobs:
   alert:
     runs-on: ubuntu-latest
     name: Sync workflow
-    if: github.repository == 'Azure/Enterprise-Scale'
+    if: github.repository == 'Azure/Azure-Proactive-Resiliency-Library-v2'
 
     steps:
       - name: Checkout code
