@@ -41,7 +41,7 @@ jobs:
         run: |
           git add ./tools/data/recommendations.json
           git commit -m "Update recommendations.json"
-          git push
+          git push --set-upstream origin json-object-update
 
       - name: Create PR
         env:
