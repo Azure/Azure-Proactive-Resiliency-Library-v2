@@ -1,8 +1,8 @@
-install-module powershell-yaml -force -scope currentuser
+#install-module powershell-yaml -force -scope currentuser
 
 function Build-APRLJsonObject {
   param (
-      [string]$path
+      [string[]]$path
   )
 
   $kqlfiles = Get-ChildItem -Path $path -Recurse -Filter "*.kql"
@@ -30,7 +30,7 @@ function Build-APRLJsonObject {
 
 #Try to build and export the object. If it fails, catch the error and exit with code 1
 try{
-  Build-APRLJsonObject -path "./azure-resources" | ConvertTo-Json -Depth 10 | Out-File -FilePath "./tools/data/recommendations.json" -Force
+  Build-APRLJsonObject -path @("./azure-resources","./azure-specialized-workloads","./azure-waf") | ConvertTo-Json -Depth 10 | Out-File -FilePath "./tools/data/recommendations.json" -Force
   exit 0
 }
 catch{
