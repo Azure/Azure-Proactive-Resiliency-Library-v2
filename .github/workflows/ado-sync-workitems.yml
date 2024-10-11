@@ -1,5 +1,8 @@
 name: Sync Issues to Azure DevOps Work Items
 
+permissions:
+  contents: read
+
 on:
   issues:
     types: [opened, closed, deleted, reopened, edited, labeled, unlabeled, assigned, unassigned]
