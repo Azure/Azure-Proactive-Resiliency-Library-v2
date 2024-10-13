@@ -7,7 +7,7 @@
   recommendationMetadataState: Active
   longDescription:
     Regional replication is a key strategy to ensure business continuity and disaster recovery for your Oracle workloads. Implement a regional replication strategy to meet your workload requirements.
-  potentialBenefits: Ensure business continuity of your Oracle workloads in case of a regional failure.
+  potentialBenefits: Ensure business continuity in case of regional failure.
   pgVerified: false
   publishedToLearn: false
   automationAvailable: no
@@ -133,7 +133,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Deploy Data Guard observer nodes in different AZs and make sure that an observer node will always stay up if anything happens to the Production deployment.
-  potentialBenefits: Data Guard observer automates failover from primary to standby.
+  potentialBenefits: Data Guard observer automates database failover.
   pgVerified: false
   publishedToLearn: false
   automationAvailable: no
@@ -181,7 +181,7 @@
     - name: Learn about Oracle Maximum Availability Architecture for Oracle Database@Azure
       url: "https://docs.oracle.com/en/solutions/oracle-maa-db-at-azure/#GUID-7723E2B1-9588-40BC-88BE-44637B1AF0D9"
 
-- description: Ensure that the Exadata Infrastructure is updated in a rolling fashion (default), one server at a time.
+- description: Ensure Infrastructure is updated in a rolling manner.
   aprlGuid: 02bfe908-d958-451a-a603-bef8277ae56a
   recommendationTypeId: null
   recommendationControl: Other Best Practices
@@ -191,7 +191,7 @@
   longDescription: |
     You can select non-rolling maintenance to update database and storage servers in parallel. However, non-rolling maintenance incurs a full system downtime.
     Automatic infrastructure maintenance occurs each quarter. Oracle will notify you of the exact date and time of your maintenance a few weeks in advance. You can change the automatically chosen date and time at any time before the maintenance starts.
-  potentialBenefits: Keep your Oracle workloads up-to-date with the latest patches and updates.
+  potentialBenefits: Keep Oracle workloads up-to-date.
   pgVerified: false
   publishedToLearn: false
   automationAvailable: no
