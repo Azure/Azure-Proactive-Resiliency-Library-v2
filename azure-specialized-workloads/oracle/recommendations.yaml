@@ -1,7 +1,7 @@
 - description: Implement a regional replication strategy for Oracle to meet your workload requirements
   aprlGuid: dfeb9c7a-7dae-4751-9625-b23a7160a3e1
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery, Business Continuity
+  recommendationControl: Business Continuity
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/oracle
   recommendationMetadataState: Active
@@ -25,7 +25,7 @@
 - description: Implement a strategy for resiliency that is tailored to your Oracle workload requirements
   aprlGuid: e2750bd4-d12c-409a-bb56-49238d9a8013
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery, Business Continuity
+  recommendationControl: Business Continuity
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/oracle
   recommendationMetadataState: Active
@@ -51,7 +51,7 @@
 - description: Implement a backup and restore strategy for Oracle databases to meet your workload requirements
   aprlGuid: 0583239a-dfb5-44d4-94db-804bfc8e3bd1
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery, Business Continuity
+  recommendationControl: Business Continuity
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/oracle
   recommendationMetadataState: Active
@@ -133,7 +133,7 @@
 - description: Deploy Data Guard observer in a redundant manner
   aprlGuid: 768a5b06-41d4-4f10-b544-fbd2f6999af4
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery, Business Continuity
+  recommendationControl: Business Continuity
   recommendationImpact: Medium
   recommendationResourceType: Specialized.Workload/oracle
   recommendationMetadataState: Active
