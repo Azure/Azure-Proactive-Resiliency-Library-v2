@@ -10,7 +10,6 @@
   potentialBenefits: Ensure the business continuity and disaster recovery of your Oracle workloads in case of a regional failure. Replication strategy should meet your RPO requirements.
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -37,7 +36,6 @@
   potentialBenefits: The cloud MAA architecture achieves comprehensive data protection and disaster recovery.
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -60,7 +58,6 @@
   potentialBenefits: Provide data protection and disaster recovery for your Oracle workloads.
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -84,7 +81,6 @@
   potentialBenefits: Meet workload scalability requirements.
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -104,7 +100,6 @@
   potentialBenefits: Avoid conflicts in IP addressing for the database, application and backup infrastructure.
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -123,7 +118,6 @@
   potentialBenefits: Avoid any issues caused by multiple ODAA delegated subnets within the VNet.
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -142,7 +136,6 @@
   potentialBenefits: Data Guard observer automates failover from primary to standby database in case of primary database failure.
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: no
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -162,7 +155,6 @@
   potentialBenefits: Protect access to keys in case of VM or AZ failure.
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -181,7 +173,6 @@
   potentialBenefits: Azure Availability Zones provide high availability to your applications and data.
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
@@ -203,7 +194,6 @@
   potentialBenefits: Keep your Oracle workloads up-to-date with the latest patches and updates.
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
   automationAvailable: no
   tags: null
   learnMoreLink:
