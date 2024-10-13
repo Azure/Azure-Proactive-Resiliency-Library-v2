@@ -111,7 +111,7 @@
     - name: Plan for IP Address Space
       url: "https://docs.oracle.com/en-us/iaas/Content/database-at-azure/oaa_ip.htm"
 
-- description: The one ODAA delegated subnet must exist within the VNet
+- description: Only one ODAA delegated subnet must exist within the VNet
   aprlGuid: 76c9136c-642d-4ea3-a4f5-655f28d2ee07
   recommendationTypeId: null
   recommendationControl: Other Best Practices
