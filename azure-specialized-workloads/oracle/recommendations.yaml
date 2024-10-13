@@ -7,7 +7,7 @@
   recommendationMetadataState: Active
   longDescription:
     Regional replication is a key strategy to ensure business continuity and disaster recovery for your Oracle workloads. Implement a regional replication strategy to meet your workload requirements.
-  potentialBenefits: Ensure the business continuity and disaster recovery of your Oracle workloads in case of a regional failure. Replication strategy should meet your RPO requirements.
+  potentialBenefits: Ensure business continuity of your Oracle workloads in case of a regional failure.
   pgVerified: false
   publishedToLearn: false
   automationAvailable: no
@@ -33,7 +33,7 @@
     Oracle has set of best practices and reference architectures tailored to meet various workload RPO/RTO requirements. This framework is known as the Oracle Maximum Availability Architecture (MAA).
     By default, The Oracle Database@Azure solution follows a Silver level reference architecture. The primary database residing in ExaDB-D provides high availability, data protection, elasticity, and scalability benefits, however it is vulnerable to any AZ failure.
     Gold service level reference architectures with Oracle Database@Azure is recommended. It could be within the same Azure Region or across one or more Azure Regions.
-  potentialBenefits: The cloud MAA architecture achieves comprehensive data protection and disaster recovery.
+  potentialBenefits: The cloud MAA architecture achieves data protection and DR.
   pgVerified: false
   publishedToLearn: false
   automationAvailable: no
@@ -55,7 +55,7 @@
   recommendationMetadataState: Active
   longDescription: |
     When you configure automatic backup to Autonomous Recovery Service or Object Storage Service in OCI, backup copies provide additional protection. Oracle Recovery Manager (RMAN) validates cloud database backups for any physical corruptions.
-  potentialBenefits: Provide data protection and disaster recovery for your Oracle workloads.
+  potentialBenefits: Provide workload data protection.
   pgVerified: false
   publishedToLearn: false
   automationAvailable: no
@@ -97,7 +97,7 @@
   longDescription: |
     It is important to design an IP addressing scheme taking into consideration the current and future requirements of your Oracle workloads. This will help you to avoid IP address conflicts and ensure that your Oracle workloads are always available.
     Primary, standby, client and backup subnets should be designed without overlapping IP CIDR ranges.
-  potentialBenefits: Avoid conflicts in IP addressing for the database, application and backup infrastructure.
+  potentialBenefits: Avoid conflicts in IP addressing.
   pgVerified: false
   publishedToLearn: false
   automationAvailable: no
@@ -115,7 +115,7 @@
   recommendationMetadataState: Active
   longDescription: |
     An Azure VNet must have only one ODAA delegated subnet. However other delegated subnets can exist for other services e.g. Azure NetApp Files.
-  potentialBenefits: Avoid any issues caused by multiple ODAA delegated subnets within the VNet.
+  potentialBenefits: Avoid multiple ODAA delegated subnets within a VNet.
   pgVerified: false
   publishedToLearn: false
   automationAvailable: no
@@ -133,7 +133,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Deploy Data Guard observer nodes in different AZs and make sure that an observer node will always stay up if anything happens to the Production deployment.
-  potentialBenefits: Data Guard observer automates failover from primary to standby database in case of primary database failure.
+  potentialBenefits: Data Guard observer automates failover from primary to standby.
   pgVerified: false
   publishedToLearn: false
   automationAvailable: no
@@ -143,7 +143,7 @@
       url: "https://www.oracle.com/technical-resources/articles/smiley-fsfo.html
             https://docs.oracle.com/en/database/oracle/oracle-database/19/haovw/configure-and-deploy-oracle-data-guard.html#GUID-FA4AAC8F-EDA8-489F-9168-E83AE23B86F7"
 
-- description: When using own encryption keys facilitated by OKV as VMs in Azure, make sure that the VMs are set up in a redundant manner
+- description: When using own encryption keys with OKV as VMs in Azure, set up VMs in a redundant manner.
   aprlGuid: bbe4014f-c49d-475d-9c48-76cb3c190483
   recommendationTypeId: null
   recommendationControl: High Availability
@@ -161,7 +161,7 @@
     - name: Deploy Oracle Key Vault for Oracle Database@Azure
       url: "https://docs.oracle.com/en/solutions/deploy-key-vault-database-at-azure/index.html#GUID-3C967419-6461-470C-AC86-07F419CDF967"
 
-- description: Ensure that the application tier spans at least two availability zones which are the same AZs where ODAA is deployed
+- description: Ensure that the application tier spans at least two availability zones.
   aprlGuid: 2ce48b43-bc8f-4b9e-850e-6cf827592daa
   recommendationTypeId: null
   recommendationControl: Business Continuity
@@ -170,7 +170,7 @@
   recommendationMetadataState: Active
   longDescription:
     The application tier spans at least two availability zones which are the same AZs where ODAA is deployed.
-  potentialBenefits: Azure Availability Zones provide high availability to your applications and data.
+  potentialBenefits: Azure Availability Zones provide high availability.
   pgVerified: false
   publishedToLearn: false
   automationAvailable: no
