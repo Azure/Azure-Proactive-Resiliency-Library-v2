@@ -5,9 +5,15 @@ on:
     - cron: "0 0 * * *"
   workflow_dispatch: {}
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
@@ -38,7 +44,7 @@ jobs:
         run: |
           git add ./tools/data/recommendations.json
           git commit -m "Update recommendations.json"
-          git push
+          git push --set-upstream origin json-object-update
 
       - name: Create PR
         env:
