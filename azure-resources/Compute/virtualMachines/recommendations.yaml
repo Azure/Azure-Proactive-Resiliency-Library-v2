@@ -532,9 +532,9 @@
   recommendationResourceType: Microsoft.Compute/virtualMachines
   recommendationMetadataState: Active
   longDescription: |
-    Azure Capacity Reservations ensure recovery for virtual machines in the event of a natural disaster by reserving compute capacity in advance within a specific region. This guarantees that VMs will have the necessary resources during disaster recovery failover events thus reducing downtime.
+    On-Demand Capacity Reservations ensure recovery of virtual machines in the event of a natural disaster by reserving compute capacity in advance within a specific region or zone. This guarantees that VMs have the necessary resources during disaster recovery failover events thus reducing downtime.
   potentialBenefits: Guaranteed capacity in disaster recovery regions
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
   automationAvailable: false
   tags: null
