@@ -24,7 +24,7 @@
   recommendationResourceType: Microsoft.VirtualMachineImages/imageTemplates
   recommendationMetadataState: Active
   longDescription: |
-    The Azure Image Builder service, used for deploying Image Templates, lacks availability zones support. By replicating Image Templates to a secondary, preferably paired, region, quick recovery from a region failure is enabled, ensuring continuous virtual machine deployment from these templates.
+    The Azure Image Builder service lacks availability zones support. Replicating Image Templates to a secondary region will enable the build of new images in secondary region.
   potentialBenefits: Enhances disaster recovery capability
   pgVerified: true
   publishedToLearn: false
@@ -32,6 +32,6 @@
   tags: null
   learnMoreLink:
     - name: Image Template resiliency
-      url: "https://learn.microsoft.com/en-us/azure/reliability/reliability-image-builder?toc=%2Fazure%2Fvirtual-machines%2Ftoc.json&bc=%2Fazure%2Fvirtual-machines%2Fbreadcrumb%2Ftoc.json#capacity-and-proactive-disaster-recovery-resiliency"
+      url: "https://learn.microsoft.com/en-us/azure/reliability/reliability-image-builder?toc=%2Fazure%2Fvirtual-machines%2Ftoc.json&bc=%2Fazure%2Fvirtual-machines%2Fbreadcrumb%2Ftoc.json&tabs=graph#disaster-recovery"
     - name: Azure Image Builder Supported Regions
       url: "https://learn.microsoft.com/en-us/azure/virtual-machines/image-builder-overview?tabs=azure-powershell#regions"

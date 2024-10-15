@@ -19,7 +19,6 @@ jobs:
       security-events: write
       # Needed for GitHub OIDC token if publish_results is true
       id-token: write
-
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
