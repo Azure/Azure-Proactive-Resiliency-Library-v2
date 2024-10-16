@@ -1,0 +1,19 @@
+- description: Enable zone redundancy in Managed Grafana
+  aprlGuid: 6cd57b65-ef84-4088-9ada-c0d8de74c2f7
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Dashboard/grafana
+  recommendationMetadataState: Active
+  longDescription: |
+    Managed Grafana Standard tier is hosted on a dedicated set of VMs to provide redundancy. With zone redundancy enabled, VMs are spread across availability zones (AZ). Related resources are also configured for AZ. Zone redundancy can only be enabled when creating the Azure Managed Grafana instance.
+  potentialBenefits: Enhanced Managed Grafana resilience to failures
+  pgVerified: false
+  publishedToLearn: false
+  automationAvailable: true
+  tags: null
+  learnMoreLink:
+    - name: Azure Managed Grafana service reliability
+      url: "https://learn.microsoft.com/azure/managed-grafana/high-availability"
+    - name: Enable zone redundancy in Azure Managed Grafana
+      url: "https://learn.microsoft.com/Azure/managed-grafana/how-to-enable-zone-redundancy"

@@ -279,25 +279,6 @@
     - name: Learn More
       url: "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/plan-for-ip-addressing"
 
-- description: Ensure route tables accommodate failover
-  aprlGuid: 4b1a45af-d35f-442d-922a-a3e7b6052de1
-  recommendationTypeId: null
-  recommendationControl: Disaster Recovery
-  recommendationImpact: High
-  recommendationResourceType: Specialized.Workload/AVD
-  recommendationMetadataState: Active
-  longDescription: |
-    Ensure Route Tables that force tunnel traffic to FW/NVA have failover considerations evaluated and won't fail or trigger next-gen FW protections.
-    AVD workload teams should collaborate with centralized teams that manage the shared infrastructure, like networking, to ensure that both Production and DR workloads have the appropriate route tables in place for failover of routing to perform as expected.
-  potentialBenefits: Enhanced failover reliability
-  pgVerified: true
-  publishedToLearn: false
-  automationAvailable: false
-  tags:
-  learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/management-business-continuity-disaster-recovery"
-
 - description: Configure static routes for session hosts to directly access the AVD control plane subnet
   aprlGuid: 1c6c97d7-4d03-4f53-985d-fa239f715173
   recommendationTypeId: null
