@@ -523,3 +523,21 @@
   learnMoreLink:
     - name: How to update the Azure Linux Agent on a VM
       url: "https://learn.microsoft.com/en-us/azure/virtual-machines/extensions/update-linux-agent?tabs=ubuntu"
+
+- description: Reserve Compute Capacity in Disaster Recovery Regions
+  aprlGuid: 587ca3e4-113b-4c4f-b4e0-92cd8d2065b6
+  recommendationTypeId: null
+  recommendationControl: Disaster Recovery
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Compute/virtualMachines
+  recommendationMetadataState: Active
+  longDescription: |
+    On-Demand Capacity Reservations ensure recovery of virtual machines in the event of a natural disaster by reserving compute capacity in advance within a specific region or zone. This guarantees that VMs have the necessary resources during disaster recovery failover events thus reducing downtime.
+  potentialBenefits: Guaranteed capacity in disaster recovery regions
+  pgVerified: true
+  publishedToLearn: false
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: On-demand Capacity Reservation
+      url: "https://aka.ms/on-demand-capacity-reservations-docs"
