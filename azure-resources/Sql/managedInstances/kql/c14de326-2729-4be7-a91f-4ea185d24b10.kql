@@ -1,3 +1,5 @@
+// Azure Resource Graph Query
+// Use Redirect connection type to accelerate application access
 resources
 | where type =~ 'Microsoft.Sql/managedInstances'
 | extend connectionpolicy=properties.proxyOverride
