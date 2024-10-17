@@ -1,4 +1,4 @@
-- description: Enable zone redundancy for Azure SQL Managed Instance to achieve high availability and resiliency
+- description: Enable zone redundancy for Azure SQL Managed Instance to improve high availability and resiliency
   aprlGuid: f8f834a9-c761-4e84-b2cb-ac55494d0c37
   recommendationTypeId: null
   recommendationControl: High Availability
@@ -6,11 +6,11 @@
   recommendationResourceType: Microsoft.Sql/managedInstances
   recommendationMetadataState: Active
   longDescription: |
-    By default, Azure SQL Database premium tier provisions multiple copies within the same region. For geo redundancy, databases can be set as Zone Redundant, distributing copies across Azure Availability Zones to maintain availability during regional outages.
+    Azure SQL Managed Instance offers built-in availability by deploying multiple replicas in the same zone. For higher availability, use a zone-redundant configuration that spreads replicas across three Azure availability zones, each with independent power, cooling, and networking.
   potentialBenefits: Enhanced availability and reliability
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: false
+  automationAvailable: True
   tags: null
   learnMoreLink:
     - name: High availability through zone-redundancy
@@ -19,16 +19,16 @@
 - description: Use Zone-redundant or Geo-zone-redundant Backup storage redundancy
   aprlGuid: 15e2712c-f3ea-4a8d-9081-11e822b1ccfb
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: Disaster Recovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.Sql/managedInstances
   recommendationMetadataState: Active
   longDescription: |
-    This copies your backups synchronously across three Azure availability zones in the primary region, if Geo is selected it creates 3 more copies in a secondary region.
+    Configuring zone redundancy option for backups copies your backup file synchronously across three Azure availability zones in the primary region. If Geo is selected, then it copies your data asynchronously three times to a single physical location in the paired secondary region.
   potentialBenefits: Enhanced availability and reliability
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: false
+  automationAvailable: True
   tags: null
   learnMoreLink:
     - name: Backup storage redundancy
@@ -42,11 +42,11 @@
   recommendationResourceType: Microsoft.Sql/managedInstances
   recommendationMetadataState: Active
   longDescription: |
-    Redirect mode enables direct connectivity to the instance resulting in improved latency and throughput. Redirect mode applies to the VNet-local endpoint only, while the public endpoint will always default to Proxy connection mode.
+    Redirect mode enables direct connectivity to the instance bypassing the local gateway component and resulting in improved latency and throughput. Redirect mode applies to the VNet-local endpoint only, while the public and private endpoint will always operate in Proxy connection mode.
   potentialBenefits: Improved latency and throughput
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: false
+  automationAvailable: True
   tags: null
   learnMoreLink:
     - name: Connection types
@@ -60,7 +60,7 @@
   recommendationResourceType: Microsoft.Sql/managedInstances
   recommendationMetadataState: Active
   longDescription: |
-    If an outage impacts one or more of the databases in the managed instance, you can manually or automatically failover all the databases inside the instance to a secondary region.
+    During an outage on the managed instance, use the failover group to switch all databases to a secondary region, either manually or automatically. Route connections to the failover group’s listener instead of the primary instance to avoid changing the connection string after geo-failover.
   potentialBenefits: Ensure seamless service with cross-region failover
   pgVerified: false
   publishedToLearn: false
@@ -78,7 +78,7 @@
   recommendationResourceType: Microsoft.Sql/servers
   recommendationMetadataState: Active
   longDescription: |
-    Monitoring and alerting are an important part of database operations. When working with Azure SQL Database, make use of Azure Monitor and SQL Insights to ensure that you capture relevant database metrics.
+    Monitoring and alerting are an important part of database operations. When working with Azure SQL Managed Instance, make use of Azure Monitor and Database watcher to ensure that you capture relevant database metrics.
   potentialBenefits: Quick incident detection and response
   pgVerified: false
   publishedToLearn: false
@@ -86,7 +86,7 @@
   tags: null
   learnMoreLink:
     - name:  Azure SQL Managed Instance monitoring options
-      url: "https://techcommunity.microsoft.com/t5/azure-sql/monitoring-options-available-for-azure-sql-managed-instance/ba-p/1065416"
+      url: "https://learn.microsoft.com/azure/azure-sql/managed-instance/monitoring-sql-managed-instance-azure-monitor?view=azuresql-mi"
 
 - description: Back Up Your Keys
   aprlGuid: 9fad5392-b852-4807-9b6d-3f700ff9771a
