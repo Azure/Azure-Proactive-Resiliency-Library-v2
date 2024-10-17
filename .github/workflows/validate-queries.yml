@@ -54,7 +54,6 @@ jobs:
           fetch-depth: 0
           repository: ${{github.event.pull_request.head.repo.full_name}}
 
-
       - name: Azure login (OIDC)
         uses: azure/login@a65d910e8af852a8061c627c456678983e180302 # v2.2.0
         if:
