@@ -1,6 +1,6 @@
 // Azure Resource Graph Query
 // Managed Instance storage backup redundancy check – any server that is not configured for GZRS
-resources 
+resources
 | where type =~ 'Microsoft.Sql/managedInstances'
 | extend backupredundancy=properties.storageAccountType
 | extend ServiceTier = sku.tier

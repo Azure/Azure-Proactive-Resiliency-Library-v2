@@ -1,7 +1,7 @@
 // Azure Resource Graph Query
 // Managed Instance zone redundancy check – any server that is not configured for ZR
 resources
-| where type =~ 'Microsoft.Sql/managedInstances' 
+| where type =~ 'Microsoft.Sql/managedInstances'
 | extend InstanceName = properties.fullyQualifiedDomainName
 | extend ServiceTier = sku.tier
 | extend zoneRedundant=properties.zoneRedundant
