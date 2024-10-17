@@ -9,4 +9,3 @@ resources
 | extend zoneValue = iff((isnull(zones)), "null", zones)
 | project recommendationId = "740f2c1c-8857-4648-80eb-47d2c56d5a50", name, id, tags, param1="Zones: No Zone or Zonal", param2=strcat("Zones value: ", zoneValue )
 
-BAD
