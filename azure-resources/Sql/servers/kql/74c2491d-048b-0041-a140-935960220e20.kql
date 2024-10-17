@@ -1,12 +1,12 @@
 // Azure Resource Graph Query
 // Provides a list of SQL databases that are not part of Geo Replication.
 resources
-| where type == "microsoft.sql/servers/databases"
+| where type == "microsoft.sql/servers/databases" and name != "master"
 | summarize secondaryTypeCount = countif(isnotempty(properties.secondaryType)) by name
 | where secondaryTypeCount == 0
 | join kind=inner (
-    Resources
-    | where type == "microsoft.sql/servers/databases"
+    resources
+    | where type == "microsoft.sql/servers/databases" and name != "master"
 ) on name
 | extend param1 = "Not part of Geo Replication"
 | project recommendationId = "74c2491d-048b-0041-a140-935960220e20", name, id, tags, param1
