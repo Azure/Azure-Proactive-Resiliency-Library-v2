@@ -10,7 +10,7 @@
   potentialBenefits: Enhanced availability and reliability
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: false
+  automationAvailable: True
   tags: null
   learnMoreLink:
     - name: High availability through zone-redundancy
@@ -28,7 +28,7 @@
   potentialBenefits: Enhanced availability and reliability
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: false
+  automationAvailable: True
   tags: null
   learnMoreLink:
     - name: Backup storage redundancy
@@ -46,7 +46,7 @@
   potentialBenefits: Improved latency and throughput
   pgVerified: false
   publishedToLearn: false
-  automationAvailable: false
+  automationAvailable: True
   tags: null
   learnMoreLink:
     - name: Connection types
