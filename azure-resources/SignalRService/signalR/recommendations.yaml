@@ -1,4 +1,4 @@
-﻿- description: Enable zone redundancy for SignalR
+- description: Enable zone redundancy for SignalR
   aprlGuid: 6a8b3db9-5773-413a-a127-4f7032f34bbd
   recommendationTypeId: null
   recommendationControl: High Availability
@@ -10,8 +10,7 @@
   potentialBenefits: Enhances reliability and uptime
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Availability zones support in Azure SignalR Service

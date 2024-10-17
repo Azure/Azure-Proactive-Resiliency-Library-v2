@@ -1,6 +1,6 @@
 ---
 title: Specialized Workloads
-weight: 40
+weight: 30
 geekdocCollapseSection: true
 ---
 

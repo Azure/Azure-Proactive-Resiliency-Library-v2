@@ -1,6 +1,6 @@
-﻿- description: Key vaults should have soft delete enabled
+- description: Key vaults should have soft delete enabled
   aprlGuid: 1cca00d2-d9ab-8e42-a788-5d40f49405cb
-  recommendationTypeId: null
+  recommendationTypeId: 78211c00-15a9-336e-17c4-0b48613dadf4
   recommendationControl: Disaster Recovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.KeyVault/vaults
@@ -10,8 +10,7 @@
   potentialBenefits: Enables recovery of deleted items
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Azure Key Vault soft-delete overview
@@ -19,9 +18,9 @@
 
 - description: Key vaults should have purge protection enabled
   aprlGuid: 70fcfe6d-00e9-5544-a63a-fff42b9f2edb
-  recommendationTypeId: null
+  recommendationTypeId: 4ed62ae4-5072-f9e7-8d94-51c76c48159a
   recommendationControl: Disaster Recovery
-  recommendationImpact: High
+  recommendationImpact: Medium
   recommendationResourceType: Microsoft.KeyVault/vaults
   recommendationMetadataState: Active
   longDescription: |
@@ -29,18 +28,17 @@
   potentialBenefits: Protects from insider attacks, avoids data loss
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Azure Key Vault purge-protection overview
       url: "https://learn.microsoft.com/azure/key-vault/general/soft-delete-overview#purge-protection"
 
-- description: Enable Azure Private Link Service for Key vault
+- description: Private endpoint should be configured for Key Vault
   aprlGuid: 00c3d2b0-ea6e-4c4b-89be-b78a35caeb51
-  recommendationTypeId: null
+  recommendationTypeId: 2e96bc2f-1972-e471-9e70-ae58d41e9d2a
   recommendationControl: Security
-  recommendationImpact: High
+  recommendationImpact: Medium
   recommendationResourceType: Microsoft.KeyVault/vaults
   recommendationMetadataState: Active
   longDescription: |
@@ -48,8 +46,7 @@
   potentialBenefits: Secure Key Vault with Private Link
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Azure Key Vault Private Link Service overview
@@ -67,8 +64,7 @@
   potentialBenefits: Enhanced security, Reduced risk
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Azure Key Vault best practices overview
@@ -76,7 +72,7 @@
 
 - description: Diagnostic logs in Key Vault should be enabled
   aprlGuid: 1dc0821d-4f14-7644-bab4-ba208ff5f7fa
-  recommendationTypeId: null
+  recommendationTypeId: 88bbc99c-e5af-ddd7-6105-6150b2bfa519
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Low
   recommendationResourceType: Microsoft.KeyVault/vaults
@@ -86,8 +82,7 @@
   potentialBenefits: Enhanced monitoring and security compliance
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Azure Key Vault logging overview

@@ -1,4 +1,4 @@
-﻿- description: Monitor Batch Account quota
+- description: Monitor Batch Account quota
   aprlGuid: 3464854d-6f75-4922-95e4-a2a308b53ce6
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
@@ -10,8 +10,7 @@
   potentialBenefits: Ensures business continuity
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Learn More
@@ -29,8 +28,7 @@
   potentialBenefits: Enhanced reliability and failure protection
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Learn More

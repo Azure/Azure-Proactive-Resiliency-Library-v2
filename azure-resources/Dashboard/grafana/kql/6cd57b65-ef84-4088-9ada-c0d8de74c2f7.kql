@@ -1,0 +1,14 @@
+// Azure Resource Graph Query
+// Provides a list of Azure Managed Grafana resources that do not zone redundancy enabled.
+resources
+| where type =~ "Microsoft.Dashboard/grafana"
+| extend zoneRedundancy = properties.zoneRedundancy
+| where zoneRedundancy !~ "Enabled"
+| project
+    recommendationId = "6cd57b65-ef84-4088-9ada-c0d8de74c2f7",
+    name,
+    id,
+    tags,
+    param1 = strcat("location: ", location),
+    param2 = strcat("sku: ", sku.name),
+    param3 = strcat("zoneRedundancy: ", zoneRedundancy)

@@ -2,16 +2,11 @@
 
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/Azure/Azure-Proactive-Resiliency-Library-v2.svg)](http://isitmaintained.com/project/Azure/Azure-Proactive-Resiliency-Library-v2 "Average time to resolve an issue")
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/Azure/Azure-Proactive-Resiliency-Library-v2.svg)](http://isitmaintained.com/project/Azure/Azure-Proactive-Resiliency-Library-v2 "Percentage of issues still open")
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/Azure/Azure-Proactive-Resiliency-Library-v2/badge)](https://scorecard.dev/viewer/?uri=github.com/Azure/Azure-Proactive-Resiliency-Library-v2)
 
 > **Please access the GitHub Pages site, unless looking to contribute, over at: [aka.ms/aprl](https://aka.ms/aprl)**
 
-Welcome to the home of the Azure Proactive Resiliency Library v2 (APRL).
-
-<img src="docs/static/img/aprl-white.png" alt="APRL" width="400">
-
-This library is built with the intention of being a staging area for guidance and recommendations that can be used by customers, partners and the field in Well-Architected Framework reliability engagements/assessments; with the intent of the guidance and recommendations being promoted, once tested and validated with customers and partners, into the official [Well-Architected Framework documentation](https://aka.ms/waf).
-
-The library also contains supporting [Azure Resource Graph (ARG)](https://learn.microsoft.com/azure/governance/resource-graph/overview) queries that can help customers, partners and the field identify resources that may or may not be compliant with the guidance and recommendations. The intent for these queries, in the long-term, is to make them part of the [Azure Advisor](https://learn.microsoft.com/azure/advisor/advisor-overview) resource.
+Welcome to the home of the Azure Proactive Resiliency Library v2 (APRL). The purpose of this site is to provide a curated catalog of resiliency recommendations for workloads running in Azure. Many of the recommendations contain supporting [Azure Resource Graph (ARG)](https://learn.microsoft.com/azure/governance/resource-graph/overview) queries to help identify non-compliant resources.
 
 ## Contributing
 

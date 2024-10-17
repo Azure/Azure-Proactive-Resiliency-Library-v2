@@ -1,4 +1,4 @@
-﻿- description: Avoid combining Traffic Manager and Front Door
+- description: Avoid combining Traffic Manager and Front Door
   aprlGuid: 9437634c-d69e-2747-b13e-631c13182150
   recommendationTypeId: null
   recommendationControl: Business Continuity
@@ -10,8 +10,7 @@
   potentialBenefits: Optimized network routing and security
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Azure Load Balancing Options
@@ -35,8 +34,7 @@
   potentialBenefits: Enhances security and performance
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Secure traffic to Azure Front Door origins
@@ -44,8 +42,8 @@
 
 - description: Use the latest API version and SDK version
   aprlGuid: 52bc9a7b-23c8-bc4c-9d2a-7bc43b50104a
-  recommendationTypeId: null
-  recommendationControl: Governance
+  recommendationTypeId: e607041e-3194-42ad-9994-b6ea5ec12f5e
+  recommendationControl: Scalability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Cdn/profiles
   recommendationMetadataState: Active
@@ -54,8 +52,7 @@
   potentialBenefits: Enhanced security and features
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: REST API Reference
@@ -77,8 +74,7 @@
   potentialBenefits: Enhanced insights and solution monitoring
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Monitor metrics and logs in Azure Front Door
@@ -100,8 +96,7 @@
   potentialBenefits: Ensures data encryption in transit
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: End-to-end TLS with Azure Front Door
@@ -119,8 +114,7 @@
   potentialBenefits: Enhances security and compliance
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Create HTTP to HTTPS redirect rule
@@ -138,8 +132,7 @@
   potentialBenefits: Lowers costs, avoids outages
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Configure HTTPS on an Azure Front Door custom domain using the Azure portal
@@ -147,8 +140,8 @@
 
 - description: Use latest version for customer-managed certificates
   aprlGuid: 4638c2c0-03de-6d42-9e09-82ee4478cbf3
-  recommendationTypeId: null
-  recommendationControl: Security
+  recommendationTypeId: 2c057605-4707-4d3e-bbb0-a7fe9b6a626b
+  recommendationControl: High Availability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Cdn/profiles
   recommendationMetadataState: Active
@@ -157,8 +150,7 @@
   potentialBenefits: Saves time and automates TLS updates
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Select the certificate for Azure Front Door to deploy
@@ -176,8 +168,7 @@
   potentialBenefits: Improves session/auth handling
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Preserve the original HTTP host name between a reverse proxy and its back-end web application
@@ -195,8 +186,7 @@
   potentialBenefits: Enhances web app security
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Web Application Firewall on Azure Front Door
@@ -214,8 +204,7 @@
   potentialBenefits: Reduces unnecessary origin traffic
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Health probes
@@ -233,8 +222,7 @@
   potentialBenefits: Improves traffic routing and uptime
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Health Endpoint Monitoring pattern
@@ -252,8 +240,7 @@
   potentialBenefits: Reduces traffic load on origins
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Supported HTTP methods for health probes
@@ -271,8 +258,7 @@
   potentialBenefits: Enhanced regional access control
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Geo filter WAF policy - GeoMatch
@@ -290,9 +276,26 @@
   potentialBenefits: Enhanced security and private connectivity
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Private link for Azure Front Door
       url: "https://learn.microsoft.com/azure/frontdoor/private-link"
+
+- description: Avoid using Classic Azure Front Door
+  aprlGuid: 82fa3cff-74bd-4063-b726-834f160592fa
+  recommendationTypeId: null
+  recommendationControl: Service Upgrade and Retirement
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Cdn/profiles
+  recommendationMetadataState: Active
+  longDescription: |
+    Azure Front Door standard is ~45% cheaper then AFD classic and has many additional benefits. Classic is also scheduled to be retired on March 31, 2027.
+  potentialBenefits: Costs savings and additional supported features
+  pgVerified: false
+  publishedToLearn: false
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: Compare pricing between Azure Front Door tiers
+      url: https://learn.microsoft.com/en-us/azure/frontdoor/understanding-pricing

@@ -1,4 +1,4 @@
-﻿- description: Monitor Azure DDoS Protection Plan metrics
+- description: Monitor Azure DDoS Protection Plan metrics
   aprlGuid: ae054bf2-aefa-cf4a-8282-741194cef8da
   recommendationTypeId: null
   recommendationControl: Security
@@ -10,8 +10,7 @@
   potentialBenefits: Enhanced security and traffic insight
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Monitoring Azure DDoS Protection

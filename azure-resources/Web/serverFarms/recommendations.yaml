@@ -1,4 +1,4 @@
-﻿- description: Migrate App Service to availability Zone Support
+- description: Migrate App Service to availability Zone Support
   aprlGuid: 88cb90c2-3b99-814b-9820-821a63f600dd
   recommendationTypeId: null
   recommendationControl: High Availability
@@ -10,8 +10,7 @@
   potentialBenefits: Enhances app resiliency and reliability
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Migrate App Service to availability zone support
@@ -31,8 +30,7 @@
   potentialBenefits: Enhanced scaling and reliability
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Resiliency checklist for specific Azure services
@@ -48,10 +46,9 @@
   longDescription: |
     Avoid frequent scaling up/down of Azure App Service instances to prevent service disruptions. Choose the right tier and size for the workload and scale out for traffic changes, as scaling adjustments can trigger application restarts.
   potentialBenefits: Minimizes restarts, enhances stability
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Resiliency checklist for specific Azure services
@@ -69,8 +66,7 @@
   potentialBenefits: Protects prod performance; avoids test impact
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Resiliency checklist for specific Azure services
@@ -86,10 +82,9 @@
   longDescription: |
     Enabling Autoscale/Automatic Scaling for your Azure App Service ensures sufficient resources for incoming requests. Autoscaling is rule-based, whereas Automatic Scaling, a newer feature, automatically adjusts resources based on HTTP traffic.
   potentialBenefits: Optimizes resources for traffic
-  pgVerified: false
+  pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Automatic scaling in Azure App Service

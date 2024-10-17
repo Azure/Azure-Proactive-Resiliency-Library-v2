@@ -1,4 +1,4 @@
-﻿- description: Do not create more than 2000 Citrix VDA servers per subscription
+- description: Do not create more than 2000 Citrix VDA servers per subscription
   aprlGuid: c041d596-6c97-4c5f-b4b3-9cd37628f2e2
   recommendationTypeId: null
   recommendationControl: Governance
@@ -10,8 +10,7 @@
   potentialBenefits: Avoids hitting limit, ensures reliability
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Citrix Limits
@@ -29,8 +28,7 @@
   potentialBenefits: Enhanced security, compliance, and management
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Management group recommendations

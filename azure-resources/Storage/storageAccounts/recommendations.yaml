@@ -1,4 +1,4 @@
-﻿- description: Ensure that storage accounts are zone or region redundant
+- description: Ensure that storage accounts are zone or region redundant
   aprlGuid: e6c7e1cc-2f47-264d-aa50-1da421314472
   recommendationTypeId: null
   recommendationControl: High Availability
@@ -10,8 +10,7 @@
   potentialBenefits: High availability and durability for storage
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Azure Storage redundancy
@@ -19,9 +18,9 @@
     - name: Change the redundancy configuration for a storage account
       url: "https://learn.microsoft.com/azure/storage/common/redundancy-migration"
 
-- description: Do not use classic storage accounts
+- description: Classic Storage Accounts must be migrated to new Azure Resource Manager resources
   aprlGuid: 63ad027e-611c-294b-acc5-8e3234db9a40
-  recommendationTypeId: null
+  recommendationTypeId: 47bb383c-8e25-95f0-c2aa-437add1d87d3
   recommendationControl: Service Upgrade and Retirement
   recommendationImpact: High
   recommendationResourceType: Microsoft.Storage/storageAccounts
@@ -31,8 +30,7 @@
   potentialBenefits: Avoids service retirement issues
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Azure classic storage accounts retirement announcement
@@ -40,20 +38,19 @@
     - name: Migrate your classic storage accounts to Azure Resource Manager
       url: "https://learn.microsoft.com/azure/storage/common/classic-account-migration-overview"
 
-- description: Ensure Performance tier is set as per workload
+- description: Use premium performance block blob storage for high performance workloads
   aprlGuid: 5587ef77-7a05-a74d-9c6e-449547a12f27
-  recommendationTypeId: null
+  recommendationTypeId: c6b94711-f1f5-4e7e-9c89-c17ed4190969
   recommendationControl: Scalability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Storage/storageAccounts
   recommendationMetadataState: Active
   longDescription: |
-    Consider using the appropriate storage performance tier for workload scenarios. Each workload scenario requires appropriate performance tiers, and selecting the appropriate tiers based on storage usage is crucial.
+    Use premium performance block blob storage instead of standard performance storage for workloads that require fast storage response times and/or high transaction rates.
   potentialBenefits: Optimized cost and performance
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Types of storage accounts
@@ -67,9 +64,9 @@
     - name: Premium block blob storage accounts
       url: "https://learn.microsoft.com/azure/storage/blobs/storage-blob-block-blob-premium"
 
-- description: Enable soft delete for recovery of data
+- description: Enable Soft Delete to protect your data
   aprlGuid: 03263c57-c869-3841-9e0a-3dbb9ef3e28d
-  recommendationTypeId: null
+  recommendationTypeId: 42dbf883-9e4b-4f84-9da4-232b87c4b5e9
   recommendationControl: Disaster Recovery
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Storage/storageAccounts
@@ -79,8 +76,7 @@
   potentialBenefits: Prevents accidental data/account loss
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Soft delete detail docs
@@ -98,8 +94,7 @@
   potentialBenefits: Recover data, manage latency
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Blob versioning
@@ -117,8 +112,7 @@
   potentialBenefits: Protects data from loss/corruption
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Point-in-time restore for block blobs
@@ -138,8 +132,7 @@
   potentialBenefits: Enhanced alerting and log analysis
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Monitor Azure Blob Storage
@@ -159,8 +152,7 @@
   potentialBenefits: Latest features, lowest cost
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Legacy storage account types
@@ -168,7 +160,7 @@
     - name: Upgrade to a general-purpose v2 storage account
       url: "https://learn.microsoft.com/azure/storage/common/storage-account-upgrade"
 
-- description: Enable Azure Private Link service for FSLogix storage account
+- description: Enable Azure Private Link service for storage accounts
   aprlGuid: dc55be60-6f8c-461e-a9d5-a3c7686ed94e
   recommendationTypeId: null
   recommendationControl: Security
@@ -176,13 +168,11 @@
   recommendationResourceType: Microsoft.Storage/storageAccounts
   recommendationMetadataState: Active
   longDescription: |
-    Azure Private Link Service enables you to access Azure Storage Account and Azure hosted customer/partner services over a Private Endpoint in your virtual network. An Azure Private Endpoint is a network interface that connects you privately and securely to a service powered by Azure Private Link. The private endpoint uses a private IP address from your VNet, effectively bringing the service into your VNet. All traffic to the service can be routed through the private endpoint, so no gateways, NAT devices, ExpressRoute or VPN connections, or public IP addresses are needed. Traffic between your virtual network and the service traverses over the Microsoft backbone network, eliminating exposure from the public Internet. You can connect to an instance of an Azure resource, giving you the highest level of granularity in access control.
-    Azure Private Link Service offers secure access to Azure Storage and services via a Private Endpoint in your VNet. No public IPs needed, ensuring privacy. Granular access control provided.
+    Leverage Azure Private Link Service for secure access to Azure Storage and services via Private Endpoint in your VNet. Eliminate the need for public IPs, ensuring data privacy. Enjoy granular access control for enhanced security.
   potentialBenefits: Secure, private access to storage with no public IPs
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: ARG
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Learn More

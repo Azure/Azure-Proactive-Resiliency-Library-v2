@@ -1,3 +1,46 @@
+#Requires -Version 7
+
+<#
+.SYNOPSIS
+Well-Architected Reliability Assessment Report Generator Script
+
+.DESCRIPTION
+The script "3_wara_reports_generator" processes the Excel file created by the "2_wara_data_analyzer" script and generates the final PowerPoint and Word reports for the Well-Architected Reliability Assessment.
+
+.PARAMETER Help
+Switch to display help information.
+
+.PARAMETER Debugging
+Switch to enable debugging mode.
+
+.PARAMETER CustomerName
+Name of the customer for whom the report is being generated.
+
+.PARAMETER WorkloadName
+Name of the workload being assessed.
+
+.PARAMETER ExcelFile
+Path to the Excel file created by the "2_wara_data_analyzer" script.
+
+.PARAMETER Heavy
+Switch to enable heavy processing mode. When enabled, this mode introduces additional delays using Start-Sleep at various points in the script to handle heavy environments more gracefully. This can help in scenarios where the system resources are limited or the operations being performed are resource-intensive, ensuring the script doesn't overwhelm the system.
+
+.PARAMETER PPTTemplateFile
+Path to the PowerPoint template file.
+
+.PARAMETER WordTemplateFile
+Path to the Word template file.
+
+.EXAMPLE
+.\3_wara_reports_generator.ps1 -ExcelFile 'C:\WARA_Script\WARA Action Plan 2024-03-07_16_06.xlsx' -CustomerName 'ABC Customer' -WorkloadName 'SAP On Azure' -Heavy -PPTTemplateFile 'C:\Templates\Template.pptx' -WordTemplateFile 'C:\Templates\Template.docx'
+
+.LINK
+https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2
+#>
+
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingWriteHost', '', Justification = 'False positive as Write-Host does not represent a security risk and this script will always run on host consoles')]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', '', Justification = 'False positive as parameters are not always required')]
+
 Param(
   [switch] $Help,
   [switch] $Debugging,
@@ -9,6 +52,12 @@ Param(
   [string] $PPTTemplateFile,
   [string] $WordTemplateFile
 )
+
+# Checking the operating system running this script.
+if (-not $IsWindows) {
+  Write-Host 'This script only supports Windows operating systems currently. Please try to run with Windows operating systems.'
+  Exit
+}
 
 if ($Heavy.IsPresent) { $Global:Heavy = $true } else { $Global:Heavy = $false }
 
@@ -110,6 +159,12 @@ $Global:Runtime = Measure-Command -Expression {
   function Excel {
 
     if ($Debugging.IsPresent) { ('FunctExcel - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Processing Excel variables..') | Out-File -FilePath $LogFile -Append }
+
+    if (-not (Test-Path -PathType Leaf -Path $ExcelFile))
+      {
+        Write-Error ('The specified Excel file "{0}" was not found.' -f $ExcelFile)
+        Exit
+      }
     $ExcelFile = get-item -Path $ExcelFile
     if ($Global:Heavy) {Start-Sleep -Milliseconds 100}
     $ExcelFile = $ExcelFile.FullName
@@ -125,7 +180,14 @@ $Global:Runtime = Measure-Command -Expression {
         $ErrorStack = $_.ScriptStackTrace
         if ($CoreDebugging) { ('OfficeApps - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Error - ' + $errorMessage) | Out-File -FilePath $LogFile -Append }
         if ($CoreDebugging) { ('OfficeApps - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Error - ' + $ErrorStack) | Out-File -FilePath $LogFile -Append }
-        Write-Error "Excel File not found.."
+        if (($_.Exception -is [System.Management.Automation.MethodInvocationException]) -and ($_.Exception.Message -like '*encrypted*'))
+          {
+            Write-Error ('The specified Excel file "{0}" may be encrypted. If a sensitivity label is applied to the file, please change the sensitivity label to the label without encryption temporarily. Learn more: https://aka.ms/aprl/tools/faq' -f $ExcelFile)
+          }
+        else
+          {
+            Write-Error $errorMessage
+          }
         Exit
       }
 
@@ -206,11 +268,22 @@ $Global:Runtime = Measure-Command -Expression {
             {
               if (![string]::IsNullOrEmpty($ID))
                 {
-                  $obj = @{
-                    'ID'             = $ID;
-                    'Subscription'   = $ID.split('/')[2];
-                    'Resource Group' = $ID.split('/')[4];
-                    'Resource Type'  = ($ID.split('/')[6] + '/' + $ID.split('/')[7])
+                  if ($ID -eq 'n/a') {
+                    # Need special care for the recommendation 4e133bd0-8762-bc40-a95b-b29142427d73 because it returns 'n/a' as resource IDs.
+                    $obj = @{
+                      'ID'             = $ID
+                      'Subscription'   = 'n/a'
+                      'Resource Group' = 'n/a'
+                      'Resource Type'  = 'Microsoft.Network/networkWatchers'
+                    }
+                  }
+                  else {
+                    $obj = @{
+                      'ID'             = $ID;
+                      'Subscription'   = $ID.split('/')[2];
+                      'Resource Group' = $ID.split('/')[4];
+                      'Resource Type'  = ($ID.split('/')[6] + '/' + $ID.split('/')[7])
+                    }
                   }
                   $Resources += $obj
                 }
@@ -354,7 +427,7 @@ $Global:Runtime = Measure-Command -Expression {
                   {
                     $LogImpactName = $Impact.'Recommendation Title'
                     if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 16 - Adding Service High Impact Name: ' + $LogImpactName) | Out-File -FilePath $LogFile -Append }
-                    if ($count -lt 5)
+                    if ($count -le 5)
                       {
                         ($Slide16.Shapes | Where-Object { $_.Id -eq 9 }).TextFrame.TextRange.Paragraphs($count).text = $Impact.'Recommendation Title'
                         $count ++
@@ -407,7 +480,7 @@ $Global:Runtime = Measure-Command -Expression {
                 ($Slide16.Shapes | Where-Object { $_.Id -eq 44 }).GroupItems[6].TextFrame.TextRange.Text = [string]($ExcelCore | Where-Object { $_."Number of Impacted Resources?" -gt 0 -and $_.Impact -eq 'Low' }).count
                 if ($Heavy) {Start-Sleep -Milliseconds 100}
                 #Impacted Resources
-                ($Slide16.Shapes | Where-Object { $_.Id -eq 44 }).GroupItems[7].TextFrame.TextRange.Text = [string]($ExcelContent.id | Where-Object { ![string]::IsNullOrEmpty($_) } | Select-Object -Unique).count
+                ($Slide16.Shapes | Where-Object { $_.Id -eq 44 }).GroupItems[7].TextFrame.TextRange.Text = [string]($ExcelContent.id | Where-Object { ![string]::IsNullOrEmpty($_) } | Select-Object -Unique -CaseInsensitive).count
                 if ($Heavy) {Start-Sleep -Milliseconds 100}
               }
             catch
@@ -1334,7 +1407,7 @@ $Global:Runtime = Measure-Command -Expression {
                                 $RetireName = ($Retirement.'Tracking ID' + ' - ' + $Retirement.Status + ' : ' + $Retirement.title)
 
                                 ($Slide30.Shapes | Where-Object { $_.Id -eq 7 }).TextFrame.TextRange.InsertAfter(".") | Out-Null
-                                Sif ($Heavy) {Start-Sleep -Milliseconds 500} else {Start-Sleep -Milliseconds 100}
+                                if ($Heavy) {Start-Sleep -Milliseconds 500} else {Start-Sleep -Milliseconds 100}
                                 ($Slide30.Shapes | Where-Object { $_.Id -eq 7 }).TextFrame.TextRange.Paragraphs(1).Copy()
                                 if ($Heavy) {Start-Sleep -Milliseconds 500} else {Start-Sleep -Milliseconds 100}
                                 ($Slide30.Shapes | Where-Object { $_.Id -eq 7 }).TextFrame.TextRange.Paragraphs($Loop).Paste() | Out-Null
@@ -2019,7 +2092,7 @@ $Global:Runtime = Measure-Command -Expression {
 
   #Call the functions
   $Global:LogFile = ($PSScriptRoot + '\wara_reports_generator.log')
-  $Global:Version = "2.0.4"
+  $Global:Version = "2.1.5"
   Write-Host "Version: " -NoNewline
   Write-Host $Global:Version -ForegroundColor DarkBlue -NoNewline
   Write-Host " "

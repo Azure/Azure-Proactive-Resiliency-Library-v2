@@ -1,4 +1,4 @@
-﻿- description: Migrate API Management services to Premium SKU to support Availability Zones
+- description: Migrate API Management services to Premium SKU to support Availability Zones
   aprlGuid: baf3bfc0-32a2-4c0c-926d-c9bf0b49808e
   recommendationTypeId: null
   recommendationControl: High Availability
@@ -10,8 +10,7 @@
   potentialBenefits: Enhanced availability and resilience
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Change your API Management service tier
@@ -31,8 +30,7 @@
   potentialBenefits: Improved resilience to zone failures
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Ensure API Management availability and reliability
@@ -40,9 +38,9 @@
     - name: Migrate Azure API Management to availability zone support
       url: "https://learn.microsoft.com/en-us/azure/reliability/migrate-api-mgt"
 
-- description: Upgrade to platform version stv2
+- description: Azure API Management platform version should be stv2
   aprlGuid: e35cf148-8eee-49d1-a1c9-956160f99e0b
-  recommendationTypeId: null
+  recommendationTypeId: e5f60ef8-3fcc-4fb5-bee7-7aaeb44c1509
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.ApiManagement/service
@@ -52,11 +50,28 @@
   potentialBenefits: Ensures service continuity
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Azure API Management - stv1 platform retirement (August 2024)
       url: "https://learn.microsoft.com/en-us/azure/api-management/breaking-changes/stv1-platform-retirement-august-2024"
     - name: Azure API Management compute platform
       url: "https://learn.microsoft.com/en-us/azure/api-management/compute-infrastructure"
+
+- description: Enable auto-scale for production workloads on API Management services
+  aprlGuid: c79680ea-de85-44fa-a596-f31fa17a952f
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: Low
+  recommendationResourceType: Microsoft.ApiManagement/service
+  recommendationMetadataState: Active
+  longDescription: |
+    Use API Management with auto-scale for high availability in workloads that experience variable traffic patterns. There are several limitations with auto-scale, so review the documentation to ensure it meets your requirements.
+  potentialBenefits: Enhanced availability and resilience
+  pgVerified: false
+  publishedToLearn: false
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: Setting up auto-scale for Azure API Management
+      url: "https://learn.microsoft.com/azure/api-management/api-management-howto-autoscale"

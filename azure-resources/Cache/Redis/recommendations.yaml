@@ -1,4 +1,4 @@
-﻿- description: Enable zone redundancy for Azure Cache for Redis
+- description: Enable zone redundancy for Azure Cache for Redis
   aprlGuid: 5a44bd30-ae6a-4b81-9b68-dc3a8ffca4d8
   recommendationTypeId: null
   recommendationControl: High Availability
@@ -10,9 +10,44 @@
   potentialBenefits: Higher resilience and availability
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Enable zone redundancy for Azure Cache for Redis
       url: "https://learn.microsoft.com/azure/azure-cache-for-redis/cache-how-to-zone-redundancy"
+- description: Schedule updates by setting a maintenance window
+  aprlGuid: cabc1f98-c8a7-44f7-ab24-977982ef3f70
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Cache/redis
+  recommendationMetadataState: Active
+  longDescription: |
+    Azure Cache for Redis allows for specifying maintenance windows. A maintenance window allows you to control the days and times of a week during which the VMs hosting your cache can be updated.
+  potentialBenefits: Higher resilience and availability
+  pgVerified: false
+  publishedToLearn: false
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: Schedule Redis Updates
+      url: "https://learn.microsoft.com/en-us/azure/azure-cache-for-redis/cache-administration#update-channel-and-schedule-updates"
+
+- description: Configure Private Endpoints
+  aprlGuid: c474fc96-4e6a-4fb0-95d0-a26b3f35933c
+  recommendationTypeId: null
+  recommendationControl: Security
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Cache/redis
+  recommendationMetadataState: Active
+  longDescription: |
+    Use private endpoints for secure connection to cache via a private link, avoiding the public internet.
+  potentialBenefits: Secure, private VNet ingress, efficient data transfer
+  pgVerified: false
+  publishedToLearn: false
+  automationAvailable: true
+  tags: null
+  learnMoreLink:
+    - name: Configure private endpoints for Azure Redis Cache
+      url: "https://learn.microsoft.com/azure/azure-cache-for-redis/cache-network-isolation"
+

@@ -1,4 +1,4 @@
-﻿- description: Use the correct service level and volume quota size for the expected performance level
+- description: Use the correct service level and volume quota size for the expected performance level
   aprlGuid: af426a99-62a6-6b4c-9662-42d220b413b8
   recommendationTypeId: null
   recommendationControl: Scalability
@@ -10,8 +10,7 @@
   potentialBenefits: Optimized performance and cost efficiency
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Service levels for Azure NetApp Files | Microsoft Learn
@@ -20,7 +19,7 @@
 - description: Use standard network features for production in Azure NetApp Files
   aprlGuid: ab984130-c57b-6c4a-8d04-6723b4e1bdb6
   recommendationTypeId: null
-  recommendationControl: Governance
+  recommendationControl: Scalability
   recommendationImpact: High
   recommendationResourceType: Microsoft.NetApp/netAppAccounts
   recommendationMetadataState: Active
@@ -29,8 +28,7 @@
   potentialBenefits: Enhanced connectivity and security
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Guidelines for Azure NetApp Files network planning | Microsoft Learn
@@ -44,16 +42,33 @@
   recommendationResourceType: Microsoft.NetApp/netAppAccounts
   recommendationMetadataState: Active
   longDescription: |
-    Azure availability zones are distinct locations within each Azure region designed to withstand local failures through redundancy and logical isolation, improving service resiliency with at least three zones in enabled regions.
-  potentialBenefits: Enhances disaster recovery
+    Availability zones are distinct locations within an Azure region to withstand local failures. Deploy your workload in multiple availability zones and use application-based replication or Azure NetApp Files cross-zone replication to achieve high availability. Note that failover is a manual process.
+  potentialBenefits: High Availability across availability zones
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Use availability zones for high availability in Azure NetApp Files | Microsoft Learn
       url: "https://learn.microsoft.com/azure/azure-netapp-files/use-availability-zones"
+
+- description: Deploy ANF volumes in the same availability zone with Azure compute and other services
+  aprlGuid: 8bb690e8-64d5-4838-8703-9ee3dbac688f
+  recommendationTypeId: null
+  recommendationControl: Other Best Practices
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.NetApp/netAppAccounts
+  recommendationMetadataState: Active
+  longDescription: |
+    Azure NetApp Files' availability zone (AZ) volume placement feature lets you deploy volumes in the same AZ with Azure compute and other services to have within AZ latency and share the same AZ failure domain.
+  potentialBenefits: Within AZ latency and tolerate failure of other AZ
+  pgVerified: true
+  publishedToLearn: false
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: Manage availability zone volume placement for Azure NetApp Files | Microsoft Learn
+      url: "https://learn.microsoft.com/azure/azure-netapp-files/manage-availability-zone-volume-placement"
 
 - description: Use snapshots for data protection in Azure NetApp Files
   aprlGuid: 72827434-c773-4345-9493-34848ddf5803
@@ -67,8 +82,7 @@
   potentialBenefits: Stable, scalable, swift recovery, no perf impact
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: How Azure NetApp Files snapshots work | Microsoft Learn
@@ -86,8 +100,7 @@
   potentialBenefits: Enhances data recovery and compliance
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Understand Azure NetApp Files backup | Microsoft Learn
@@ -101,12 +114,11 @@
   recommendationResourceType: Microsoft.NetApp/netAppAccounts
   recommendationMetadataState: Active
   longDescription: |
-    Azure NetApp Files replication offers data protection by allowing asynchronous cross-region volume replication for application failover in case of regional outages. Volumes can be replicated across regions, not concurrently with cross-zone replication.
+    Azure NetApp Files replication offers data protection by allowing asynchronous cross-region volume replication for application failover in case of regional outages. Volumes can be replicated across regions, not concurrently with cross-zone replication. Note that failover is a manual process.
   potentialBenefits: Enhanced data protection and disaster recovery
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Cross-region replication of Azure NetApp Files volumes
@@ -115,17 +127,16 @@
 - description: Enable Cross-zone replication of Azure NetApp Files volumes
   aprlGuid: e3d742e1-dacd-9b48-b6b1-510ec9f87c96
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: Disaster Recovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.NetApp/netAppAccounts
   recommendationMetadataState: Active
   longDescription: |
-    The cross-zone replication (CZR) feature enables asynchronous data replication between Azure NetApp Files volumes across different availability zones, ensuring data protection and critical application failover in case of zone-wide disasters.
-  potentialBenefits: Enhances disaster recovery
+    The cross-zone replication (CZR) feature enables asynchronous data replication between Azure NetApp Files volumes across different availability zones, ensuring data protection and critical application failover in case of zone-wide disasters. Note that failover is a manual process.
+  potentialBenefits: Enhances disaster recovery across availability zones
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Cross-zone replication of Azure NetApp Files volumes | Microsoft Learn
@@ -143,8 +154,7 @@
   potentialBenefits: Optimize usage and performance
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Ways to monitor Azure NetApp Files | Microsoft Learn
@@ -162,8 +172,7 @@
   potentialBenefits: Enforce standards and assess compliance
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Azure Policy definitions for Azure NetApp Files | Microsoft Learn
@@ -183,8 +192,7 @@
   potentialBenefits: Enhanced security, Reduced data breach risk
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Configure network features for an Azure NetApp Files volume
@@ -200,9 +208,9 @@
 
 - description: Make use of SMB continuous availability for supported applications
   aprlGuid: d1e7ccc3-e6c1-40e9-a36e-fd134711c808
-  recommendationTypeId: null
+  recommendationTypeId: e4bebd74-387a-4a74-b757-475d2d1b4e3e
   recommendationControl: High Availability
-  recommendationImpact: Medium
+  recommendationImpact: High
   recommendationResourceType: Microsoft.NetApp/netAppAccounts
   recommendationMetadataState: Active
   longDescription: |
@@ -210,8 +218,7 @@
   potentialBenefits: Zero downtime for SMB apps
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Do I need to take special precautions for SMB-based applications? | Microsoft Learn
@@ -229,8 +236,7 @@
   potentialBenefits: Minimizes downtime during maintenance
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: What do you recommend for handling potential application disruptions due to storage service maintenance events? | Microsoft Learn

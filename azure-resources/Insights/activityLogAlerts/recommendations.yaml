@@ -1,17 +1,16 @@
-﻿- description: Configure Resource Health Alerts
+- description: Configure Resource Health Alerts
   aprlGuid: be448849-0d7d-49ba-9c94-9573ee533d5d
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Low
-  recommendationResourceType: microsoft.insights/activityLogAlerts
+  recommendationResourceType: Microsoft.Insights/activityLogAlerts
   recommendationMetadataState: Active
   longDescription: |
     Configure Resource Health Alerts for all applicable resources to stay informed about the current and historical health status of your Azure resources. They notify you when these resources have a change in their health status.
   potentialBenefits: Stay informed on resource status
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Resource Health
@@ -26,15 +25,14 @@
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: High
-  recommendationResourceType: microsoft.insights/activityLogAlerts
+  recommendationResourceType: Microsoft.Insights/activityLogAlerts
   recommendationMetadataState: Active
   longDescription: |
     Service health gives a personalized health view of Azure services and regions used, offering the best place for notifications on outages, planned maintenance, and health advisories by knowing the services used.
   potentialBenefits: Proactive outage and maintenance alerts
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: What is Azure Service Health?

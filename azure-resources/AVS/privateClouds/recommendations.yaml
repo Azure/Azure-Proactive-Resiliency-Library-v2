@@ -1,4 +1,4 @@
-﻿- description: Configure Azure Service Health notifications and alerts for Azure VMware Solution
+- description: Configure Azure Service Health notifications and alerts for Azure VMware Solution
   aprlGuid: 74fcb9f2-9a25-49a6-8c42-d32851c4afb7
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
@@ -10,11 +10,10 @@
   potentialBenefits: Prompt mitigation of issues.
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Configure Azure Service Health alerts
       url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/azure-vmware/eslz-management-and-monitoring#design-recommendations"
 
 - description: Monitor when Azure VMware Solution Private Cloud is reaching the capacity limit
@@ -29,8 +28,7 @@
   potentialBenefits: Proactive capacity planning
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Configure and streamline alerts
@@ -48,11 +46,10 @@
   potentialBenefits: Proactive resource management
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Configure and streamline alerts
       url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-vmware/monitoring#configure-and-streamline-alerts"
 
 - description: Enable Stretched Clusters for Multi-AZ Availability of the vSAN Datastore
@@ -67,11 +64,10 @@
   potentialBenefits: 99.99% SLA, 0 RPO, Multi-AZ
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Implement high availability
       url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-vmware/infrastructure#implement-high-availability"
     - name: Stretched Clusters
       url: "https://learn.microsoft.com/en-us/azure/azure-vmware/deploy-vsan-stretched-clusters"
@@ -88,11 +84,10 @@
   potentialBenefits: Optimized capacity planning for vSAN
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Supported metrics and activities
       url: "https://learn.microsoft.com/en-us/azure/azure-vmware/configure-alerts-for-azure-vmware-solution#supported-metrics-and-activities"
 
 - description: Configure Syslog in Diagnostic Settings for Azure VMware Solution
@@ -107,18 +102,17 @@
   potentialBenefits: Faster issue resolution, early detection
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Manage logs and archives
       url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-vmware/monitoring#manage-logs-and-archives"
 
 - description: Monitor CPU Utilization to ensure sufficient resources for workloads
   aprlGuid: 4ee5d535-c47b-470a-9557-4a3dd297d62f
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
-  recommendationImpact: Medium
+  recommendationImpact: High
   recommendationResourceType: Microsoft.AVS/privateClouds
   recommendationMetadataState: Active
   longDescription: |
@@ -126,18 +120,17 @@
   potentialBenefits: Avoids resource exhaustion, optimizes performance
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Configure and streamline alerts
       url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-vmware/monitoring#configure-and-streamline-alerts"
 
 - description: Monitor Memory Utilization to ensure sufficient resources for workloads
   aprlGuid: 029208c8-5186-4a76-8ee8-6e3445fef4dd
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
-  recommendationImpact: Medium
+  recommendationImpact: High
   recommendationResourceType: Microsoft.AVS/privateClouds
   recommendationMetadataState: Active
   longDescription: |
@@ -145,11 +138,10 @@
   potentialBenefits: Avoids host exhaustion and swapping
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
-    - name: Learn More
+    - name: Configure and streamline alerts
       url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-vmware/monitoring#configure-and-streamline-alerts"
 
 - description: Apply Resource delete lock on the resource group hosting the private cloud
@@ -164,8 +156,7 @@
   potentialBenefits: Prevents accidental deletion
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Lock your resources to protect your infrastructure
@@ -183,8 +174,7 @@
   potentialBenefits: Avoid outages with key auto-rotation
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Configure Customer Managed Keys
@@ -202,8 +192,7 @@
   potentialBenefits: Enhances reliability and avoids failure
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Configure DNS forwarder

@@ -2,19 +2,23 @@
 
 # Overview/Summary
 
-Replace this with a brief description of what this Pull Request fixes, changes, etc.
+<!-- Thank you for your contribution! Please add a brief description of what this Pull Request fixes, changes, etc. -->
 
 ## Related Issues/Work Items
 
-Replace this with a list of related GitHub Issues and/or ADO Work Items (Internal Only)
-
+<!--
 - To associate a GitHub Issue, use a [key word](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword) preceded with the GitHub issue number.
-- To associate an ADO Work Item, use the key word `AB#` succeeded with the [ADO Work Item ID](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword).
 
-## This PR fixes/adds/changes/removes
+Examples:
+Fixes #123
+Resolves #123
+Closes #789
 
-1. _Replace me_
-2. _Replace me_
+- To associate an ADO Work Item (internal Microsoft team member), use the key word `AB#` succeeded with the [ADO Work Item ID](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword).
+
+Examples:
+Fixes AB#123
+-->
 
 ### Breaking Changes
 
@@ -22,6 +26,8 @@ Replace this with a list of related GitHub Issues and/or ADO Work Items (Interna
 2. _Replace me_
 
 ## As part of this pull request I have
+
+<!-- Use the checkboxes [x] on the options that are relevant. -->
 
 - [ ] Read the [Contribution Guide](https://azure.github.io/Azure-Proactive-Resiliency-Library-v2/contributing) and ensured this PR is compliant with the guide
 - [ ] Checked for duplicate [Pull Requests](https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/pulls)

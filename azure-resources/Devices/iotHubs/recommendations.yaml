@@ -1,4 +1,4 @@
-﻿- description: Device Identities are exported to a secondary region
+- description: Device Identities are exported to a secondary region
   aprlGuid: 783c6c18-760b-4867-9ced-3010a0bc5aa3
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
@@ -6,12 +6,11 @@
   recommendationResourceType: Microsoft.Devices/IotHubs
   recommendationMetadataState: Active
   longDescription: |
-    Device Identities should be copied to the failover region IoT-Hub for all IoT devices to ensure connectivity in case of a failover. Manual Failover to another region is quicker (RTO), suitable for mission critical workloads.
+    Device Identities should be copied to the failover region IoT Hub for all IoT devices to ensure connectivity in case of a failover. Manual Failover to another region is quicker (RTO), suitable for mission critical workloads.
   potentialBenefits: Faster failover; Ensures device connectivity
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Import and export IoT Hub device identities in bulk
@@ -31,8 +30,7 @@
   potentialBenefits: Ensures SLA for production
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Choose the right IoT Hub tier and size for your solution
@@ -50,8 +48,7 @@
   potentialBenefits: Boosts IoT Hub availability
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Azure IoT Hub high availability and disaster recovery
@@ -69,8 +66,7 @@
   potentialBenefits: Enhances scalability and availability
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: IoT Hub Device Provisioning Service (DPS) terminology
@@ -92,8 +88,7 @@
   potentialBenefits: Ensures business continuity
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: IoT Hub high availability and disaster recovery
@@ -111,8 +106,7 @@
   potentialBenefits: Prevents undelivered messages
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Use message routing - Fallback route

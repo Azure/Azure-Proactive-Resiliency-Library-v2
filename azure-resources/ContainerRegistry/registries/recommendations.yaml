@@ -1,4 +1,4 @@
-﻿- description: Use Premium tier for critical production workloads
+- description: Use Premium tier for critical production workloads
   aprlGuid: eb005943-40a8-194b-9db2-474d430046b7
   recommendationTypeId: null
   recommendationControl: Scalability
@@ -10,8 +10,7 @@
   potentialBenefits: High-volume support and geo-replication
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Container Registry Best Practices
@@ -29,12 +28,11 @@
   potentialBenefits: Enhances resiliency and high availability
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Registry best practices - Enable zone redundancy
-      url: "https://review.learn.microsoft.com/en-us/azure/container-registry/zone-redundancy?toc=%2Fazure%2Freliability%2Ftoc.json&bc=%2Fazure%2Freliability%2Fbreadcrumb%2Ftoc.json&branch=main"
+      url: "https://learn.microsoft.com/en-us/azure/container-registry/zone-redundancy?toc=%2Fazure%2Freliability%2Ftoc.json&bc=%2Fazure%2Freliability%2Fbreadcrumb%2Ftoc.json&branch=main"
 
 - description: Enable geo-replication
   aprlGuid: 36ea6c09-ef6e-d743-9cfb-bd0c928a430b
@@ -48,8 +46,7 @@
   potentialBenefits: Simplifies management, reduces latency
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Registry best practices - Enable geo-replication
@@ -69,8 +66,7 @@
   potentialBenefits: Enables sharing and group isolation
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Registry best practices - use repository namespaces
@@ -88,8 +84,7 @@
   potentialBenefits: Safeguards image collection
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Registry best practices - Use dedicated resource group
@@ -107,8 +102,7 @@
   potentialBenefits: Reduce costs, optimize storage
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Registry best practices - Manage registry size
@@ -128,8 +122,7 @@
   potentialBenefits: Enhanced security and controlled access
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Enable anonymous pull access
@@ -147,8 +140,7 @@
   potentialBenefits: Enhanced tracking and debugging
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Monitoring Azure Container Registry data reference - Resource Logs
@@ -168,8 +160,7 @@
   potentialBenefits: Enhanced monitoring and operation
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: no
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Monitoring Azure Container Registry data reference
@@ -189,8 +180,7 @@
   potentialBenefits: Recovery of deleted artifacts
   pgVerified: false
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Enable soft delete policy

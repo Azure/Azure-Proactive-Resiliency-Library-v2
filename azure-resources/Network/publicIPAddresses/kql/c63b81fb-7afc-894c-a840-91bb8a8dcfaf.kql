@@ -2,6 +2,7 @@
 // List public IP addresses that are not Zone-Redundant
 Resources
 | where type =~ "Microsoft.Network/publicIPAddresses" and sku.tier =~ "Regional"
+| where location in~ ("australiaeast", "brazilsouth", "canadacentral", "centralindia", "centralus", "eastasia", "eastus", "eastus2", "francecentral", "germanywestcentral", "israelcentral", "italynorth", "japaneast", "japanwest", "koreacentral", "mexicocentral", "newzealandnorth", "northeurope", "norwayeast", "polandcentral", "qatarcentral", "southafricanorth", "southcentralus", "southeastasia", "spaincentral", "swedencentral", "switzerlandnorth", "uaenorth", "uksouth", "westeurope", "westus2", "westus3", "usgovvirginia", "chinanorth3")
 | where isempty(zones) or array_length(zones) <= 1
 | extend az = case(isempty(zones), "Non-zonal", array_length(zones) <= 1, strcat("Zonal (", strcat_array(zones, ","), ")"), zones)
 | project recommendationId = "c63b81fb-7afc-894c-a840-91bb8a8dcfaf", name, id, tags, param1 = strcat("sku: ", sku.name), param2 = strcat("availabilityZone: ", az)

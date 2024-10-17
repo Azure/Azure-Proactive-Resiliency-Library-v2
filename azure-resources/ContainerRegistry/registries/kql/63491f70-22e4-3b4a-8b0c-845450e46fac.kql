@@ -2,6 +2,7 @@
 // Find all Container Registries that do not have zone redundancy enabled
 resources
 | where type =~ "microsoft.containerregistry/registries"
+| where location in~ ("australiaeast", "brazilsouth", "canadacentral", "centralindia", "centralus", "eastasia", "eastus", "eastus2", "francecentral", "germanywestcentral", "israelcentral", "italynorth", "japaneast", "japanwest", "koreacentral", "mexicocentral", "newzealandnorth", "northeurope", "norwayeast", "polandcentral", "qatarcentral", "southafricanorth", "southcentralus", "southeastasia", "spaincentral", "swedencentral", "switzerlandnorth", "uaenorth", "uksouth", "westeurope", "westus2", "westus3", "usgovvirginia", "chinanorth3")
 | where properties.zoneRedundancy != "Enabled"
 | project recommendationId = "63491f70-22e4-3b4a-8b0c-845450e46fac", name, id, tags, param1=strcat("zoneRedundancy: ", tostring(properties.zoneRedundancy))
 | order by id asc

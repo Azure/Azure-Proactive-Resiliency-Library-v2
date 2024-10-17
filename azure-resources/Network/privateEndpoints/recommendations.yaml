@@ -1,4 +1,4 @@
-﻿- description: Resolve issues with Private Endpoints in non Succeeded connection state
+- description: Resolve issues with Private Endpoints in non Succeeded connection state
   aprlGuid: b89c9acc-0aba-fb44-9ff2-3dbfcf97dce7
   recommendationTypeId: null
   recommendationControl: High Availability
@@ -10,8 +10,7 @@
   potentialBenefits: Ensure connection availability
   pgVerified: true
   publishedToLearn: false
-  publishedToAdvisor: false
-  automationAvailable: arg
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Private endpoint connections
