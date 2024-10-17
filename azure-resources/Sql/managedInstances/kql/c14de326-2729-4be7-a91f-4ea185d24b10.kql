@@ -4,4 +4,4 @@ resources
 | where type =~ 'Microsoft.Sql/managedInstances'
 | extend connectionpolicy=properties.proxyOverride
 | where connectionpolicy != 'Redirect'
-| project name,  connectionpolicy
+| project recommendationId='c14de326-2729-4be7-a91f-4ea185d24b10', name, id, tags, param1=strcat('Connection Policy:', connectionpolicy)

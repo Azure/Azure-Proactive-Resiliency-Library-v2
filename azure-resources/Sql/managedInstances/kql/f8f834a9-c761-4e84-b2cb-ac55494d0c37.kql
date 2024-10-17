@@ -6,4 +6,4 @@ resources
 | extend ServiceTier = sku.tier
 | extend zoneRedundant=properties.zoneRedundant
 | where zoneRedundant == 'false'
-| project  name, ServiceTier, zoneRedundant
+| project recommendationId='f8f834a9-c761-4e84-b2cb-ac55494d0c37', name, id, tags, param1=strcat('Service Tier:', ServiceTier), param2=strcat('Zone Redundant:', zoneRedundant)
