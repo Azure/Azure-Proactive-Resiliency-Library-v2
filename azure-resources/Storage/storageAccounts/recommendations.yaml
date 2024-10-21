@@ -9,7 +9,6 @@
     Redundancy ensures storage accounts meet availability and durability targets amidst failures, weighing lower costs against higher availability. Locally redundant storage offers the least durability at the lowest cost.
   potentialBenefits: High availability and durability for storage
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -29,7 +28,6 @@
     Classic storage accounts will be fully retired on August 31, 2024. If you have classic storage accounts, start planning your migration now.
   potentialBenefits: Avoids service retirement issues
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -49,7 +47,6 @@
     Use premium performance block blob storage instead of standard performance storage for workloads that require fast storage response times and/or high transaction rates.
   potentialBenefits: Optimized cost and performance
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -75,7 +72,6 @@
     The soft delete option enables data recovery if mistakenly deleted, while the Lock feature prevents the accidental deletion of the storage account itself, ensuring additional security and data integrity measures.
   potentialBenefits: Prevents accidental data/account loss
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -93,7 +89,6 @@
     Consider enabling versioning for Azure Storage Accounts to recover from accidental modifications or deletions and manage blob operation latency. Microsoft advises maintaining fewer than 1000 versions per blob to optimize performance. Lifecycle management can help delete old versions automatically.
   potentialBenefits: Recover data, manage latency
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -111,7 +106,6 @@
     Consider enabling point-in-time restore for standard general purpose v2 accounts with flat namespace to protect against accidental deletion or corruption by restoring block blob data to an earlier state.
   potentialBenefits: Protects data from loss/corruption
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -131,7 +125,6 @@
     For critical applications and business processes relying on Azure, monitoring and alerts are crucial. Resource logs are only stored after creating a diagnostic setting to route logs to specified locations, requiring selection of log categories to collect.
   potentialBenefits: Enhanced alerting and log analysis
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -151,7 +144,6 @@
     General-purpose v2 accounts are recommended for most storage scenarios offering the latest features or the lowest per-gigabyte pricing. Legacy accounts like Standard general-purpose v1 and Blob Storage aren't advised by Microsoft but may fit specific scenarios.
   potentialBenefits: Latest features, lowest cost
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -171,7 +163,6 @@
     Leverage Azure Private Link Service for secure access to Azure Storage and services via Private Endpoint in your VNet. Eliminate the need for public IPs, ensuring data privacy. Enjoy granular access control for enhanced security.
   potentialBenefits: Secure, private access to storage with no public IPs
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:

@@ -9,7 +9,6 @@
     Set up disaster recovery for Automation accounts and resources like Modules, Connections, Credentials, Certificates, Variables, and Schedules to deal with region or zone failures. A replica Automation account should be ready in a secondary region for failover.
   potentialBenefits: Ensures continuity during outages
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
