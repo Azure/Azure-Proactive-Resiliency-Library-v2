@@ -1,17 +1,6 @@
 name: Validate ARG Queries
 
 on:
-  pull_request_target:
-    branches:
-      - main
-      - dev-tools
-    types:
-      - opened
-      - reopened
-      - synchronize
-      - ready_for_review
-    paths:
-    - '**/*.kql'
   workflow_dispatch: {}
 
 permissions:
@@ -22,25 +11,6 @@ jobs:
     permissions:
       id-token: write # This is required for requesting the JWT
     runs-on: ubuntu-latest
-    if: |
-      (
-        github.event.pull_request.head.repo.full_name == 'Azure/Azure-Proactive-Resiliency-Library-v2'
-      )
-      ||
-      (
-        github.event.pull_request.head.repo.full_name != 'Azure/Azure-Proactive-Resiliency-Library-v2'
-        &&
-        contains(github.event.pull_request.labels.*.name, 'PR: Safe to Test ARG Queries :test_tube:')
-      )
-      ||
-      (
-        github.event_name == 'workflow_dispatch'
-      )
-      ||
-      (
-        github.event_name == 'merge_group'
-      )
-
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
@@ -50,7 +20,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
         with:
-          ref: "refs/pull/${{ github.event.number }}/merge"
+          ref: "refs/pull/${{ inputs.pr_number }}/merge"
           fetch-depth: 2
 
       - name: Sanity Check
