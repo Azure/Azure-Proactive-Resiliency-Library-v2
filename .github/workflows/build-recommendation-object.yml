@@ -4,9 +4,12 @@ on:
   pull_request:
     types: [opened, synchronize]
     paths:
-      - 'azure-resources/**'
-      - 'azure-specialized-workloads/**'
-      - 'azure-waf/**'
+      - 'azure-resources/**/*.yaml'
+      - 'azure-resources/**/*.kql'
+      - 'azure-specialized-workloads/**/*.yaml'
+      - 'azure-specialized-workloads/**/*.kql'
+      - 'azure-waf/**/*.yaml'
+      - 'azure-waf/**/*.kql'
   workflow_dispatch:
 
 permissions:
