@@ -9,7 +9,6 @@
     Enable HA with zone redundancy on flexible server instances to deploy a standby replica in a different zone, offering automatic failover capability for improved reliability and disaster recovery.
   potentialBenefits: Enhanced uptime and data protection
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -27,7 +26,6 @@
     Use custom maintenance schedule on flexible server instances to select a preferred time for service updates to be applied.
   potentialBenefits: Control update timings
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -45,7 +43,6 @@
     Configure GRS to ensure that your database meets its availability and durability targets even in the face of failures or disasters.
   potentialBenefits: Recover from regional failure and/or disaster
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -63,7 +60,6 @@
     Configure one or more read replicas to ensure that your database meets its availability and durability targets even in the face of failures or disasters.
   potentialBenefits: Recover from regional failure and/or disaster
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -81,7 +77,6 @@
     Configure storage auto-grow to prevent the server from running out of storage and becoming read-only.
   potentialBenefits: Scale storage automatically to meet increasing demand
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:

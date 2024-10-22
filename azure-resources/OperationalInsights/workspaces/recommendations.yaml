@@ -1,4 +1,4 @@
-﻿- description: Enable Log Analytics data export to GRS or GZRS
+- description: Enable Log Analytics data export to GRS or GZRS
   aprlGuid: b36fd2ac-dd83-664a-ab48-ff7b8d3b189d
   recommendationTypeId: null
   recommendationControl: Governance
@@ -9,7 +9,6 @@
     Data export in a Log Analytics workspace to an Azure Storage account enhances data protection against regional failures by using geo-redundant (GRS) or geo-zone-redundant storage (GZRS), mainly for compliance and integration with other Azure services and tools.
   potentialBenefits: Enhances compliance and regional fault tolerance
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -29,7 +28,6 @@
     A health status alert will proactively notify you if a workspace becomes unavailable because of a datacenter or regional failure.
   potentialBenefits: Early alert for workspace failure
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:

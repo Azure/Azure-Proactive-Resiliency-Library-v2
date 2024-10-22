@@ -9,7 +9,6 @@
     Scaling plans can only be assigned to host pools in the same region, on multi-region deployment scenario each region should has its own scaling plan.
   potentialBenefits: Enhanced scaling
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:

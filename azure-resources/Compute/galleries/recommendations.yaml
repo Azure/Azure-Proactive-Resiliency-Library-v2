@@ -9,7 +9,6 @@
     Keeping a minimum of 3 replicas for production images in Azure's Compute Gallery ensures scalability and prevents throttling in multi-VM deployments by distributing VM deployments across different replicas. This reduces the risk of overloading a single replica.
   potentialBenefits: Enhances scalability and avoids throttling
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -27,7 +26,6 @@
     Use ZRS for high availability when creating image/VM versions in Azure Compute Gallery, offering resilience against Availability Zone failures. ZRS accounts are advisable in regions with Availability Zones, with the choice of Standard_ZRS recommended over Standard_LRS for these regions.
   potentialBenefits: Enhances image version availability
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -47,7 +45,6 @@
     We recommend creating Trusted Launch Supported Images for benefits like Secure Boot, vTPM, trusted launch VMs, large boot volume. These are Gen 2 Images by default and you cannot change a VM's generation after creation, so review the considerations first.
   potentialBenefits: Enhances VM security and features
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -69,7 +66,6 @@
     On multi-region deployments, replicate Image Versions to a secondary region to ensure disaster recovery capability. This ensures that the Image Versions are available in the secondary region in case of a disaster in the primary region.
   potentialBenefits: Enhances disaster recovery capability
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -87,7 +83,6 @@
     You can set a different replica count in each target region, based on the scale needs for the region. For every 20 VMs that you create concurrently, we recommend you keep one replica.
   potentialBenefits: Enhances disaster recovery capability
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
