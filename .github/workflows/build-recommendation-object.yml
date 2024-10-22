@@ -16,7 +16,7 @@ permissions:
     contents: read
 
 jobs:
-  Generate-Documentation:
+  update-json-object:
     runs-on: ubuntu-latest
 
     steps:
