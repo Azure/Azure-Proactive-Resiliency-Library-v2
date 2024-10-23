@@ -2,7 +2,7 @@
   aprlGuid: e7495e1c-0c75-0946-b266-b429b5c7f3bf
   recommendationTypeId: null
   recommendationControl: Scalability
-  recommendationImpact: Medium
+  recommendationImpact: High
   recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
   recommendationMetadataState: Active
   longDescription: |
@@ -21,7 +21,7 @@
   aprlGuid: 94794d2a-eff0-2345-9b67-6f9349d0a627
   recommendationTypeId: 3b587048-b04b-4f81-aaed-e43793652b0f
   recommendationControl: Monitoring and Alerting
-  recommendationImpact: Medium
+  recommendationImpact: High
   recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
   recommendationMetadataState: Active
   longDescription: |
