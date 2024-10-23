@@ -218,7 +218,7 @@ $Script:Runtime = Measure-Command -Expression {
     return $r
   }
 
-  function Import-ConfigFileData($file) {
+  function Import-WAFConfigFileData($file) {
     # Read the file content and store it in a variable
     $filecontent,$linetable,$objarray,$count,$start,$stop,$configsection = $null
     $filecontent = (Get-content $file).trim().tolower()
@@ -227,14 +227,31 @@ $Script:Runtime = Measure-Command -Expression {
     $linetable = @()
     $objarray = [ordered]@{}
 
-    $filecontent = $filecontent | Where-Object {$_ -ne ""}
+    $filecontent = $filecontent | Where-Object {$_ -ne "" -and $_ -notlike "*#*"}
+
+    #Remove empty space.
+    foreach($line in $filecontent){
+        $index = $filecontent.IndexOf($line)
+        if ($line -match "^\[([^\]]+)\]$" -and ($filecontent[$index+1] -match "^\[([^\]]+)\]$" -or [string]::IsNullOrEmpty($filecontent[$index+1]))) {
+            # Set this line to empty because the next line is a section as well.
+            $filecontent[$index] = ""
+    }
+}
+
+    #Remove empty space again.
+    $filecontent = $filecontent | Where-Object {$_ -ne "" -and $_ -notlike "*#*"}
 
     # Iterate through the file content and store the line number of each section
     foreach ($line in $filecontent) {
         if (-not [string]::IsNullOrWhiteSpace($line) -and -not $line.startswith("#")) {
+            #Get the Index of the current line
+            $index = $filecontent.IndexOf($line)
+
+            Write-host The Index is $index
             # If the line is a section, store the line number
             if ($line -match "^\[([^\]]+)\]$") {
                 # Store the section name and line number. Remove the brackets from the section name
+                Write-host the line is $line and $filecontent[$index+1] is the next line.
                 $linetable += $filecontent.indexof($line)
             }
         }
@@ -243,6 +260,7 @@ $Script:Runtime = Measure-Command -Expression {
     # Iterate through the line numbers and extract the section content
     $count = 0
     foreach ($entry in $linetable) {
+
         # Get the section name
         $name = $filecontent[$entry]
         # Remove the brackets from the section name
