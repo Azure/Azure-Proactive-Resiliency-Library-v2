@@ -483,3 +483,20 @@
       url: "https://learn.microsoft.com/azure/databricks/compute/cluster-config-best-practices"
     - name: GPU-enabled compute
       url: "https://learn.microsoft.com/azure/databricks/compute/gpu"
+
+- description: Use managed services where possible
+  aprlGuid: e94da1f8-33e7-48a6-b301-72f19a53bc29
+  recommendationTypeId: null
+  recommendationControl: Scalability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Databricks/workspaces
+  recommendationMetadataState: Active
+  longDescription: |
+    Where possible Leverage managed services (serverless compute) from the Databricks Data Intelligence Platform, such as:serverless SQL warehouses, model serving, serverless jobs, serverless compute for notebooks.
+  potentialBenefits: These services are operated by Databricks in a reliable and scalable manner at no additional cost to the customer, making workloads more reliable.
+  pgVerified: true
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: Best practices for reliability
+      url: "https://learn.microsoft.com/en-us/azure/databricks/lakehouse-architecture/reliability/best-practices#use-managed-services-where-possible"
