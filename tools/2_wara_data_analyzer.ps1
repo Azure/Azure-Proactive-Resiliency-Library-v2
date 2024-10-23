@@ -325,9 +325,10 @@ $Script:Runtime = Measure-Command -Expression {
 
     $Script:RecommendedAdv = @()
     foreach ($adv in $CoreAdvisories) {
-      if (![string]::IsNullOrEmpty($adv.recommendationId)) {
-        $APRLADV = $Script:ServicesYAMLContent | Where-Object { $_.recommendationTypeId -eq $adv.recommendationId }
-        if ($APRLADV.recommendationTypeId -eq $adv.recommendationId <#-and $APRLADV.automationAvailable -ne 'arg' #>) {
+      #if (![string]::IsNullOrEmpty($adv.recommendationId)) {
+        #$APRLADV = $Script:ServicesYAMLContent | Where-Object { $_.recommendationTypeId -eq $adv.recommendationId }
+
+        #if ($APRLADV.recommendationTypeId -eq $adv.recommendationId ) {
           $Ticket = $Script:SupportTickets | Where-Object { $_.'Related Resource' -eq $adv.id }
           $Tickets = if ($Ticket.'Ticket ID'.count -gt 1) { $Ticket.'Ticket ID' | ForEach-Object { $_ + ' /' } }else { $Ticket.'Ticket ID' }
           $Tickets = [string]$Tickets
@@ -335,7 +336,7 @@ $Script:Runtime = Measure-Command -Expression {
           $WAFPillar = if ($adv.category -eq 'HighAvailability') { 'Reliability' }else { $adv.category }
           $tmp = @{
             'How was the resource/recommendation validated or what actions need to be taken?' = 'Advisor - Queries';
-            recommendationId                                                                  = $APRLADV.recommendationTypeId;
+            recommendationId                                                                  = $adv.recommendationId;
             recommendationTitle                                                               = $adv.description;
             impact                                                                            = $adv.impact;
             resourceType                                                                      = $adv.type;
@@ -357,8 +358,8 @@ $Script:Runtime = Measure-Command -Expression {
           }
           $Script:MergedRecommendation += $tmp
           $Script:RecommendedAdv += $adv.recommendationId
-        }
-      }
+        #}
+      #}
     }
 
     foreach ($WAF in $Script:WAFYAMLContent) {
