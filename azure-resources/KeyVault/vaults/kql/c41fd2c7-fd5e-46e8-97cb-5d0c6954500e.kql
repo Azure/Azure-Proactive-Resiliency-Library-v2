@@ -1,0 +1,8 @@
+// Azure Resource Graph Query
+// Provides a list of Azure Key Vault resources that do not use RBAC for Data Plane
+
+resources
+| where type == "microsoft.keyvault/vaults"
+| where isnull(properties.enableRbacAuthorization) or properties.enableRbacAuthorization != true
+| extend param1 = 'Role-based access control: Not Configured'
+| project recommendationId = "00c3d2b0-ea6e-4c4b-89be-b78a35caeb51", name, id, tags, param1
