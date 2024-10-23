@@ -83,7 +83,7 @@
     - name: Azure Key Vault logging overview
       url: "https://learn.microsoft.com/azure/key-vault/general/logging?tabs=Vault"
 
-- description: Azure Key Vault RBAC for Data Plane: Integrates with Azure RBAC, replacing the legacy Access model
+- description: 'Integrate Azure Key Vault RBAC for Data Plane with Azure RBAC, replacing the legacy access model.'
   aprlGuid: c41fd2c7-fd5e-46e8-97cb-5d0c6954500e
   recommendationTypeId: null
   recommendationControl: Other Best Practices
