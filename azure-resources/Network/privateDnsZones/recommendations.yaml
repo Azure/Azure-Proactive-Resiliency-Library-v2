@@ -9,7 +9,6 @@
     Assign the built-in Private DNS Zone Contributor role to specific authorized users, groups, and entities to protect against unauthorized or accidental changes to Private DNS Zones and records. Restrict access by granting Private DNS Zone Contributor permission to all zones.
   potentialBenefits: Prevents DNS outages
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -27,7 +26,6 @@
     Use Azure Monitor to monitor Private DNS Zone query volume, record set count, and capacity metrics for Record Set, Virtual Network Link, and Virtual Network Link with auto-registration. Create alerts based on Azure Monitor Baseline Alerts for these metrics that exceed specific thresholds.
   potentialBenefits: Enhanced DNS reliability and alerting
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -45,7 +43,6 @@
     For business continuity scenarios with a low recovery time objective (RTO), ensure that distinct regional production and disaster recovery (DR) Private DNS Zones are configured and have identical workload and resource DNS entries. This keeps DNS resolution consistent across both zones.
   potentialBenefits: Ensures seamless failover for DNS during a regional outage
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -63,7 +60,6 @@
     Azure Private DNS allows the Time-To-Live (TTL) for record sets in the zone to be set to a value between 1 and 2147483647 seconds. You should ensure that the TTL for the DNS record sets in your DNS Zones are set appropriately to meet your RPO targets.
   potentialBenefits: Ensures that no cached DNS records exist past RPO targets
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:

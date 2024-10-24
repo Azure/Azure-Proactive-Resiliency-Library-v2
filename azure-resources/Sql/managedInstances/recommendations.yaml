@@ -9,7 +9,6 @@
     Azure SQL Managed Instance offers built-in availability by deploying multiple replicas in the same zone. For higher availability, use a zone-redundant configuration that spreads replicas across three Azure availability zones, each with independent power, cooling, and networking.
   potentialBenefits: Enhanced availability and reliability
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: True
   tags: null
   learnMoreLink:
@@ -27,7 +26,6 @@
     Configuring zone redundancy option for backups copies your backup file synchronously across three Azure availability zones in the primary region. If Geo is selected, then it copies your data asynchronously three times to a single physical location in the paired secondary region.
   potentialBenefits: Enhanced availability and reliability
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: True
   tags: null
   learnMoreLink:
@@ -45,7 +43,6 @@
     Redirect mode enables direct connectivity to the instance bypassing the local gateway component and resulting in improved latency and throughput. Redirect mode applies to the VNet-local endpoint only, while the public and private endpoint will always operate in Proxy connection mode.
   potentialBenefits: Improved latency and throughput
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: True
   tags: null
   learnMoreLink:
@@ -63,7 +60,6 @@
     During an outage on the managed instance, use the failover group to switch all databases to a secondary region, either manually or automatically. Route connections to the failover group’s listener instead of the primary instance to avoid changing the connection string after geo-failover.
   potentialBenefits: Ensure seamless service with cross-region failover
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -81,7 +77,6 @@
     Monitoring and alerting are an important part of database operations. When working with Azure SQL Managed Instance, make use of Azure Monitor and Database watcher to ensure that you capture relevant database metrics.
   potentialBenefits: Quick incident detection and response
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -99,7 +94,6 @@
     It is highly recommended to use Azure Key Vault (AKV) to store encryption keys related to Always Encrypted configurations, however it is not required. If you are not using AKV, then ensure that your keys are properly backed up and stored in a secure manner.
   potentialBenefits: Enhanced security and data recovery
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:

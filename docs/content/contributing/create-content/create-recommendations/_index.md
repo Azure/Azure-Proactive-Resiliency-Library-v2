@@ -29,7 +29,6 @@ To contribute a new recommendation for an Azure resource, follow these steps:
         (less than 300 characters)
       potentialBenefits: Potential Benefits of Implementing the Recommendation (less than 60 characters)
       pgVerified: false
-      publishedToLearn: false
       automationAvailable: false
       tags: null
       learnMoreLink:
@@ -77,7 +76,6 @@ The YAML structure for adding new recommendations consists of several key-value 
 | longDescription | To enable Cross-region disaster recovery and business continuity, ensure that the appropriate quotas are set for all user subscription Batch accounts. | String | The length should be less than 300 characters | Detailed description of the recommendation and its implications |
 | potentialBenefits | Enhanced data redundancy and boosts availability | String | The length should be less than 60 characters | The potential benefits of implementing the recommendation |
 | pgVerified | false | Boolean | true, false | Indicates whether the recommendation is verified by the relevant product group |
-| publishedToLearn | false | Boolean | true, false | Indicates whether the recommendation is published to [Microsoft Learn](https://learn.microsoft.com/en-us/azure/well-architected/pillars) |
 | automationAvailable | false| Boolean | true, false | Indicates whether automation is available for validating the recommendation |
 | tags | null | String | null | Generalized tags used for incorporating fields to automate |
 | learnMoreLink | - name: Learn More url: "<https://learn.microsoft.com/en-us/azure/reliability/reliability-batch#cross-region-disaster-recovery-and-business-continuity>" | Object | Only 1 link per recommendation | Links related to the recommendation, such as announcements or documentation |

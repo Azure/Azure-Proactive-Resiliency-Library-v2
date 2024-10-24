@@ -8,7 +8,6 @@
   longDescription: Set up monitoring and alerts for v-Hub's VPN Gateway. Create alert rule for ensuring promptly response to critical events such as packet drop counts, BGP status, Gateway overutilization.
   potentialBenefits: Detection and mitigation to avoid disruptions.
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:

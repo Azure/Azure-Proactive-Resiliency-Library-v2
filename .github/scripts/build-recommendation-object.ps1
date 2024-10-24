@@ -10,7 +10,7 @@ function Build-APRLJsonObject {
 
   $yamlobj = foreach($file in $yamlfiles){
       $content = Get-Content $file.FullName -Raw | ConvertFrom-Yaml
-      $content | Select-Object publishedToAdvisor,aprlGuid,recommendationTypeId,recommendationMetadataState,learnMoreLink,recommendationControl,longDescription,pgVerified,description,potentialBenefits,publishedToLearn,tags,recommendationResourceType,recommendationImpact,automationAvailable,query
+      $content | Select-Object publishedToAdvisor,aprlGuid,recommendationTypeId,recommendationMetadataState,learnMoreLink,recommendationControl,longDescription,pgVerified,description,potentialBenefits,tags,recommendationResourceType,recommendationImpact,automationAvailable,query
   }
 
   $kqlobj = foreach($file in $kqlfiles){
