@@ -19,6 +19,7 @@ permissions:
 
 jobs:
   kql_file_check:
+    environment: azure
     permissions:
       id-token: write # This is required for requesting the JWT
     runs-on: ubuntu-latest
