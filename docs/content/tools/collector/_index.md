@@ -71,7 +71,7 @@ See at the end of this page various examples of how to run this script - [Exampl
 
 **You have two options to run the collector script:**
 
-1. Cloud Shell - Requires Cloud Shell be configured with write access to a file share within the same tenant
+1. Cloud Shell
 
 1. Local Machine - Requires current modules leveraged in the script be installed
 
