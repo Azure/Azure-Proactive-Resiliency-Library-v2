@@ -156,7 +156,7 @@
   recommendationResourceType: Microsoft.Cdn/profiles
   recommendationMetadataState: Active
   longDescription: |
-    Front Door can rewrite Host headers for custom domain names routing to a single origin, useful for avoiding custom domain configuration at both Front Door and the origin.
+    Front Door can rewrite Host headers for custom domain names routing to a single origin, useful for avoiding custom domain configuration at both Front Door and the origin. But the recommendation is that you configure the custom domain at the Front Door and also at the Origin/Backend resource as well.
   potentialBenefits: Improves session/auth handling
   pgVerified: true
   automationAvailable: false
