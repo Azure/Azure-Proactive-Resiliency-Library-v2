@@ -9,7 +9,6 @@
     Azure Availability Zones ensure high availability by offering independent locations within regions, equipped with their own power, cooling, and networking to ensure applications and data are protected from datacenter-level failures.
   potentialBenefits: Enhanced fault tolerance for AKS
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -29,7 +28,6 @@
     AKS assigns the kubernetes.azure.com/mode: system label to nodes in system node pools signaling the preference for system pods should be scheduled there. The CriticalAddonsOnly=true:NoSchedule taint can be added to your system nodes to prohibit application pods from being scheduled on them.
   potentialBenefits: Enhanced reliability via pod isolation
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -47,7 +45,6 @@
     Local Kubernetes accounts in AKS, being non-auditable and legacy, are discouraged. Microsoft Entra's integration offers centralized management, multi-factor authentication, RBAC for detailed access, and a secure, scalable authentication system compatible with Azure and external identity providers.
   potentialBenefits: Enhanced security and access control
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -69,7 +66,6 @@
     Azure CNI enhances cluster IP and network management, allowing dynamic IP allocation, scalable subnets, direct pod-VNET connectivity, and supports diverse network policies for pods and nodes with Azure Network Policies and Calico, optimizing network efficiency and security
   potentialBenefits: Dynamic IP allocation, scalable subnets, direct VNET access
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -89,7 +85,6 @@
     The cluster auto-scaler in AKS adjusts node counts based on pod resource needs and available capacity, enabling scaling as per demand to prevent outages.
   potentialBenefits: Optimizes scaling and prevents outages
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -113,7 +108,6 @@
     AKS, popular for stateful apps needing backups, can now use Azure Backup to secure clusters and attached volumes through an installed Backup Extension, enabling backup and restore operations via a Backup Vault.
   potentialBenefits: Ensures data safety for AKS
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -133,7 +127,6 @@
     ZRS ensures data replication across three zones, protecting against zonal outages. It's available for Azure Disks, Container Storage, Files, and Blob by setting the SKU to ZRS in storage classes, enhancing multi-zone AKS clusters from v1.29.
   potentialBenefits: Increases data durability and availability
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -159,7 +152,6 @@
     From Kubernetes 1.26, Azure Disk and Azure File in-tree drivers are deprecated in favor of CSI drivers. Existing deployments remain operational but untested; users should switch to CSI drivers for new features and SKUs.
   potentialBenefits: Ensures future compatibility
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -179,7 +171,6 @@
     A ResourceQuota object sets limits on resource use per namespace, controlling the number and type of objects created, and the total compute resources available.
   potentialBenefits: Limits AKS resource usage per namespace
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -197,7 +188,6 @@
     To rapidly scale AKS workloads, utilize virtual nodes for quick pod provisioning, unlike Kubernetes auto-scaler. For clusters with availability zones, ensure one nodepool per AZ due to persistent volumes not working across AZs, preventing auto-scaler pod creation failures if lacking access.
   potentialBenefits: Faster scaling with virtual nodes
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -217,7 +207,6 @@
     Production AKS clusters require the Standard or Premium tier for a financially backed SLA and enhanced node scalability, as the free service lacks these features. Use the Premium tier for mission-critical workloads.
   potentialBenefits: SLA guarantee and better scalability
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -237,7 +226,6 @@
     Azure Monitor enables real-time health and performance insights for AKS by collecting events, capturing container logs, and gathering CPU/Memory data from the Metrics API. It allows data visualization using Azure Monitor Container Insights, Prometheus, Grafana, or others.
   potentialBenefits: Real-time AKS health/performance insights
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -255,7 +243,6 @@
     Ephemeral OS disks on AKS offer lower read/write latency due to local attachment, eliminating the need for replication seen with managed disks. This enhances performance and speeds up cluster operations such as scaling or upgrading due to quicker re-imaging and boot times.
   potentialBenefits: Lower latency, faster re-imaging and booting
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -277,7 +264,6 @@
     Azure Policies in AKS clusters help enforce governance best practices concerning security, authentication, provisioning, networking, and more, ensuring a robust and secure environment for operations.
   potentialBenefits: Enhanced AKS governance and security
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -297,7 +283,6 @@
     GitOps, an operating model for cloud-native apps, uses Git for storing application and infrastructure code as a source of truth for continuous delivery.
   potentialBenefits: Ensures AKS config consistency
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -317,7 +302,6 @@
     Enhance availability and reliability by using pod topology spread constraints to control pod distribution based on node or zone topology, ensuring pods are spread across your cluster.
   potentialBenefits: Ensures high availability and efficient use
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -337,7 +321,6 @@
     AKS kubelet controller uses liveness probes to validate containers and applications health, ensuring the system knows when to restart a container based on its health status.
   potentialBenefits: Enhances container health monitoring
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -357,7 +340,6 @@
     Configuring multiple replicas in Pod or Deployment manifests stabilizes the number of replica Pods, ensuring that a specified number of identical Pods are always available, thereby guaranteeing their availability.
   potentialBenefits: Ensures stable pod availability
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -375,7 +357,6 @@
     The system node pool should be configured with a minimum node count of two to ensure critical system pods are resilient to node outages.
   potentialBenefits: Ensures pod resilience
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -393,7 +374,6 @@
     Configuring the user node pool with at least two nodes is essential for applications needing high availability, ensuring they remain operational and accessible without interruption.
   potentialBenefits: Ensures high app availability
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -411,7 +391,6 @@
     A Pod Disruption Budget is a Kubernetes resource configuring the minimum number or percentage of pods that should remain available during disruptions like maintenance or scaling, ensuring a minimum number of pods are always available in the cluster.
   potentialBenefits: Ensures cluster resiliency during disruptions
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -431,7 +410,6 @@
     Nodepool subnets sized for max auto-scale settings enable AKS to efficiently scale out nodes, meeting increased demand while reducing resource constraints and potential service disruptions.
   potentialBenefits: Efficient scaling, reduced disruptions
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -449,7 +427,6 @@
     Node pool settings should not exceed the subscription core quota to ensure AKS can scale out nodes efficiently, meeting increased demand while reducing resource constraints and potential service disruptions.
   potentialBenefits: Reduced disruptions
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -467,7 +444,6 @@
     Azure Linux on AKS boosts resiliency with a native image using validated, source-built components. It's lightweight, reducing the attack surface and maintenance. A Microsoft-hardened kernel, optimized for Azure, enhances stability and security for container workloads.
   potentialBenefits: Reduced disruptions
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -485,7 +461,6 @@
     Deploying at least two replicas of your application ensures that your application is highly available and can tolerate node failures.
   potentialBenefits: Ensures high app availability
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:

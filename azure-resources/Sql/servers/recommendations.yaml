@@ -9,7 +9,6 @@
     Active Geo Replication ensures business continuity by utilizing readable secondary database replicas. In case of primary database failure, manually failover to secondary database. Secondaries, up to four, can be in same/different regions, used for read-only access.
   potentialBenefits: Enhanced disaster recovery and read scalability
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -27,7 +26,6 @@
     Failover Groups facilitate disaster recovery by configuring databases on one logical server to replicate to another region's logical server. This streamlines geo-replicated database management, offering a single endpoint for connection routing to replicated databases if the primary server fails.
   potentialBenefits: Improves load balancing and disaster recovery
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -47,7 +45,6 @@
     By default, Azure SQL Database premium tier provisions multiple copies within the same region. For geo redundancy, databases can be set as Zone Redundant, distributing copies across Azure Availability Zones to maintain availability during regional outages.
   potentialBenefits: Enhanced reliability, no extra cost
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -65,7 +62,6 @@
     During transient failures, the application should handle connection retries effectively with Azure SQL Database. No Database layer configuration is needed; instead, the application must be set up for graceful retrying.
   potentialBenefits: Enhanced connectivity stability
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -83,7 +79,6 @@
     Monitoring and alerting are an important part of database operations. When working with Azure SQL Database, make use of Azure Monitor and SQL Insights to ensure that you capture relevant database metrics.
   potentialBenefits: Quick incident detection and response
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -105,7 +100,6 @@
     It is highly recommended to use Azure Key Vault (AKV) to store encryption keys related to Always Encrypted configurations, however it is not required. If you are not using AKV, then ensure that your keys are properly backed up and stored in a secure manner.
   potentialBenefits: Enhanced security and data recovery
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -125,7 +119,6 @@
     When using Failover Groups, it is recommended to connect to the Failover Group endpoint instead of individual database endpoints. This allows for automatic redirection to the secondary database in case of a failover, ensuring high availability.
   potentialBenefits: Enhanced disaster recovery
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
