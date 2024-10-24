@@ -55,7 +55,7 @@
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/networkSecurityGroups
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Monitoring, managing, and understanding your network is crucial for protection and optimization. Knowing the current state, who and from where connections are made, open internet ports, expected and irregular behavior, and traffic spikes is essential.
   potentialBenefits: Enhances security and optimizes network
