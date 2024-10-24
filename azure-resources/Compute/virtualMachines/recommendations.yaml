@@ -55,7 +55,7 @@
   aprlGuid: cfe22a65-b1db-fd41-9e8e-d573922709ae
   recommendationTypeId: ed651749-cd37-4fd5-9897-01b416926745
   recommendationControl: Disaster Recovery
-  recommendationImpact: Medium
+  recommendationImpact: High
   recommendationResourceType: Microsoft.Compute/virtualMachines
   recommendationMetadataState: Active
   longDescription: |
@@ -148,7 +148,7 @@
   aprlGuid: dfedbeb1-1519-fc47-86a5-52f96cf07105
   recommendationTypeId: 3a3c1a2a-8597-4d3a-981a-0a24a0ee9de4
   recommendationControl: Scalability
-  recommendationImpact: Medium
+  recommendationImpact: High
   recommendationResourceType: Microsoft.Compute/virtualMachines
   recommendationMetadataState: Active
   longDescription: |
