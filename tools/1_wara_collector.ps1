@@ -246,12 +246,9 @@ $Script:Runtime = Measure-Command -Expression {
         if (-not [string]::IsNullOrWhiteSpace($line) -and -not $line.startswith("#")) {
             #Get the Index of the current line
             $index = $filecontent.IndexOf($line)
-
-            Write-host The Index is $index
             # If the line is a section, store the line number
             if ($line -match "^\[([^\]]+)\]$") {
                 # Store the section name and line number. Remove the brackets from the section name
-                Write-host the line is $line and $filecontent[$index+1] is the next line.
                 $linetable += $filecontent.indexof($line)
             }
         }
