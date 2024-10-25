@@ -1257,11 +1257,16 @@ $Script:Runtime = Measure-Command -Expression {
 
         if ($Scope.split("/").count -gt 4 -and $Scope.split("/").count -lt 8)
           {
-            $Script:results += Get-ResourceGroupsByList -ObjectList $TempResult -FilterList $Scope -KeyColumn "id"
+            if(![string]::IsNullOrEmpty($TempResult)){
+              $Script:results += Get-ResourceGroupsByList -ObjectList $TempResult -FilterList $Scope -KeyColumn "id"
+            }
+
           }
         else
           {
+            if(![string]::IsNullOrEmpty($TempResult)){
             $Script:results += $TempResult
+            }
           }
 
 
