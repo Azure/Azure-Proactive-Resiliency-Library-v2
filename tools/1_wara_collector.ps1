@@ -218,7 +218,7 @@ $Script:Runtime = Measure-Command -Expression {
     return $r
   }
 
-  function Import-WAFConfigFileData($file) {
+  function Import-ConfigFileData($file) {
     # Read the file content and store it in a variable
     $filecontent,$linetable,$objarray,$count,$start,$stop,$configsection = $null
     $filecontent = (Get-content $file).trim().tolower()
