@@ -43,7 +43,7 @@ https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2
 
     Param(
     [switch] $Help,
-    [switch] $GenerateCSV,
+    #[switch] $GenerateCSV,
     [switch] $includeLow,
     [switch] $byPassValidationStatus,
     [switch] $Debugging,
