@@ -1457,7 +1457,7 @@ $Script:Runtime = Measure-Command -Expression {
         $queryResults = Get-AllAzGraphResource -Query $advquery -subscriptionId $Subid
       }
 
-      $Script:AllAdvisories = foreach ($row in $queryResults) {
+      $loopAdvisories = foreach ($row in $queryResults) {
         if (![string]::IsNullOrEmpty($row.properties.resourceMetadata.resourceId)) {
           $TempResource = ''
           $TempResource = Invoke-FilterResourceID -ResourceID $row.properties.resourceMetadata.resourceId -List $Script:PreInScopeResources
@@ -1476,6 +1476,7 @@ $Script:Runtime = Measure-Command -Expression {
           $result
         }
       }
+      $Script:AllAdvisories = $loopAdvisories
   }
 
   function Resolve-SupportTicket {
