@@ -1331,7 +1331,7 @@
     "publishedToAdvisor": null,
     "aprlGuid": "da1a3c06-d1d5-a940-9a99-fcc05966fe7c",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "url": "https://learn.microsoft.com/azure/network-watcher/network-watcher-nsg-flow-logging-overview",
@@ -2015,7 +2015,7 @@
       }
     ],
     "recommendationControl": "Monitoring and Alerting",
-    "longDescription": "Enable logging in storage accounts, Log Analytics, and monitoring services for auditing and insights. If using NSGs, enable NSG flow logs to be stored, providing in-depth traffic analysis into Azure Cloud.\n",
+    "longDescription": "Enable logging in storage accounts, Log Analytics, and monitoring services for auditing and insights.\n",
     "pgVerified": true,
     "description": "Monitor and Log the configurations and traffic",
     "potentialBenefits": "Enhanced traffic insight and audit",
