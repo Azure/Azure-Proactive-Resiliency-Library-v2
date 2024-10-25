@@ -1,62 +1,41 @@
-name: Nightly Recommendation Object Build
+name: Update Recommendation Object on Pull Request
 
 on:
-  schedule:
-    - cron: "0 0 * * *"
-  workflow_dispatch: {}
+  pull_request:
+    types: [opened, synchronize]
+    paths:
+      - 'azure-resources/**/*.yaml'
+      - 'azure-resources/**/*.kql'
+      - 'azure-specialized-workloads/**/*.yaml'
+      - 'azure-specialized-workloads/**/*.kql'
+      - 'azure-waf/**/*.yaml'
+      - 'azure-waf/**/*.kql'
+  workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
-  build:
+  update-json-object:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
+
     steps:
-      - name: Harden Runner
-        uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
-        with:
-          egress-policy: audit
+    - name: Checkout repository
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938
+      with:
+        ref: ${{ github.head_ref }}
 
-      - name: Checkout repository
-        uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
-        with:
-          ref: main
+    - name: Run Object Generation Script
+      run: |
+        pwsh .github/scripts/build-recommendation-object.ps1
+      shell: pwsh
 
-      - name: Configure Git
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        shell: bash
-
-      - name: Create and Switch to New Branch
-        run: |
-          git checkout -b json-object-update
-        shell: bash
-
-      - name: Run Recommendation Object Builder
-        run: |
-          pwsh .github/scripts/build-recommendation-object.ps1
-
-      - name: Commit and push changes
-        run: |
-          git add ./tools/data/recommendations.json
-          git commit -m "Update recommendations.json"
-          git push --set-upstream origin json-object-update
-
-      - name: Create PR
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh pr create --title "chore: Update APRL JSON Object" --body "This PR updates the single JSON object for all APRL recommendations." --base main --head json-object-update
-        shell: bash
-
-      - name: Merge PR
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          pr_number=$(gh pr list --state open --limit 1 --json number --jq '.[0].number')
-          gh pr merge $pr_number --merge
-        shell: bash
+    - name: Commit and push changes
+      run: |
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git config --global user.name "github-actions[bot]"
+        git add .
+        git commit -m "Update Recommendation Object during PR validation"
+        git push origin ${{ github.head_ref }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
