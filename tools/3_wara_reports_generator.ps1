@@ -78,8 +78,9 @@ https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2
         }
     else
         {
-            $PPTTemplateFile = get-item -Path $PPTTemplateFile
-            $PPTTemplateFile = $PPTTemplateFile.FullName
+          $PPTTemplateFile = (Resolve-Path -Path $PPTTemplateFile).Path
+            #$PPTTemplateFile = get-item -Path $PPTTemplateFile
+            #$PPTTemplateFile = $PPTTemplateFile.FullName
         }
 
 
@@ -95,8 +96,9 @@ https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2
         }
     else
         {
-            $WordTemplateFile = get-item -Path $WordTemplateFile
-            $WordTemplateFile = $WordTemplateFile.FullName
+          $WordTemplateFile = (Resolve-Path -Path $WordTemplateFile).Path
+            #$WordTemplateFile = get-item -Path $WordTemplateFile
+            #$WordTemplateFile = $WordTemplateFile.FullName
         }
 
     if (!$CustomerName) {
@@ -340,7 +342,11 @@ https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2
             $ExcelApplication = New-Object -ComObject Excel.Application
             Start-Sleep 1
             if ($CoreDebugging) { ('OfficeApps - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Opening Excel file..') | Out-File -FilePath $LogFile -Append }
-            $Ex = $ExcelApplication.Workbooks.Open($ExcelFile)
+            # Resolve the full path of the Excel file
+            $ExcelFileFullPath = (Resolve-Path -Path $ExcelFile).Path
+
+            # Open the Excel file using the full path
+            $Ex = $ExcelApplication.Workbooks.Open($ExcelFileFullPath)
             while ([string]::IsNullOrEmpty($Ex)) {
                 Start-Sleep 2
                 if ($CoreDebugging) { ('OfficeApps - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Waiting Excel document..') | Out-File -FilePath $LogFile -Append }
@@ -531,7 +537,7 @@ https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2
                     $TargetShape.TextFrame.TextRange.Text = $AUTOMESSAGE
 
                     if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 17 - Looking Charts in Excel File...') | Out-File -FilePath $LogFile -Append }
-                    $WS2 = $Global:Ex.Worksheets | Where-Object { $_.Name -eq 'Charts' }
+                    $WS2 = $Ex.Worksheets | Where-Object { $_.Name -eq 'Charts' }
 
                     if ($CoreDebugging) { ('PPT_Thread - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Editing Slide 17 - Replacing Chart 1..') | Out-File -FilePath $LogFile -Append }
                     #Copy Excel Chart0
