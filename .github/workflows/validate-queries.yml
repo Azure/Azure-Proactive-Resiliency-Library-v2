@@ -81,6 +81,11 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
+        with:
+          egress-policy: audit
+
       - run: |
           gh pr edit ${{ github.event.pull_request.number }} --remove-label "PR: Safe to Test ARG Queries :test_tube:"
         env:

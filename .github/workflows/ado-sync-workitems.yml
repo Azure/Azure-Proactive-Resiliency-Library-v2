@@ -16,13 +16,18 @@ jobs:
     if: github.repository == 'Azure/Azure-Proactive-Resiliency-Library-v2'
 
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
+        with:
+          egress-policy: audit
+
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           fetch-depth: 0
 
       - name: GitHub/ADO Sync
-        uses: a11smiles/GitSync@v1.2.3
+        uses: a11smiles/GitSync@74d80b4ef67578135781e76ee1d4add1b98969b1 # v1.2.3
         env:
           ado_token: '${{ secrets.ADO_PERSONAL_ACCESS_TOKEN }}'
           github_token: '${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}'

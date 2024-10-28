@@ -12,30 +12,73 @@ on:
       - 'azure-waf/**/*.kql'
   workflow_dispatch:
 
+env:
+  github_user_name: 'github-actions'
+  github_email: '41898282+github-actions[bot]@users.noreply.github.com'
+  github_commit_message: 'Generate Updated Recommendation Object'
+  github_pr_number: ${{ github.event.number }}
+  github_pr_repo: ${{ github.event.pull_request.head.repo.full_name }}
+
 permissions:
   contents: read
 
 jobs:
   update-json-object:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
 
     steps:
+    - name: Harden Runner
+      uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
+      with:
+        egress-policy: audit
+
     - name: Checkout repository
       uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938
-      with:
-        ref: ${{ github.head_ref }}
+
+    - name: Configure local git
+      run: |
+        echo "git user name  : $github_user_name"
+        git config --global user.name "$github_user_name"
+        echo "git user email : $github_email"
+        git config --global user.email "$github_email"
 
     - name: Run Object Generation Script
       run: |
         pwsh .github/scripts/build-recommendation-object.ps1
       shell: pwsh
 
-    - name: Commit and push changes
+    - name: Check git status
       run: |
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        git config --global user.name "github-actions[bot]"
-        git add .
-        git commit -m "Update Recommendation Object during PR validation"
-        git push origin ${{ github.head_ref }}
+        echo "==> Check git status..."
+        git status --short --branch
+
+    - name: Stage changes
+      run: |
+        echo "==> Stage changes..."
+        mapfile -t STATUS_LOG < <(git status --short | grep .)
+        if [ ${#STATUS_LOG[@]} -gt 0 ]; then
+            echo "Found changes to the following files:"
+            printf "%s\n" "${STATUS_LOG[@]}"
+            git add --all
+        else
+            echo "No changes to add."
+            fi
+
+    - name: Push changes
+      run: |
+        echo "==> Check git diff..."
+        mapfile -t GIT_DIFF < <(git diff --cached)
+        printf "%s\n" "${GIT_DIFF[@]}"
+        if [ ${#GIT_DIFF[@]} -gt 0 ]; then
+            echo "==> Commit changes..."
+            git commit --message "$github_commit_message [$GITHUB_ACTOR/${GITHUB_SHA::8}]"
+            echo "==> Push changes..."
+            echo "Pushing changes to: $github_pr_repo"
+            git push "https://$GITHUB_TOKEN@github.com/$github_pr_repo.git"
+        else
+            echo "No changes found."
+        fi
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
