@@ -31,12 +31,6 @@ Path to the PowerPoint template file.
 .PARAMETER WordTemplateFile
 Path to the Word template file.
 
-.PARAMETER includeLow
-Switch to include low impact recommendations in the generated reports.
-
-.PARAMETER byPassValidationStatus
-Switch to bypass the validation status check for high and medium impact recommendations.
-
 .EXAMPLE
 .\3_wara_reports_generator.ps1 -ExcelFile 'C:\WARA_Script\WARA Action Plan 2024-03-07_16_06.xlsx' -CustomerName 'ABC Customer' -WorkloadName 'SAP On Azure' -Heavy -PPTTemplateFile 'C:\Templates\Template.pptx' -WordTemplateFile 'C:\Templates\Template.docx'
 
@@ -50,8 +44,8 @@ https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2
     Param(
     [switch] $Help,
     #[switch] $GenerateCSV,
-    [switch] $includeLow,
-    [switch] $byPassValidationStatus,
+    #[switch] $includeLow,
+    #[switch] $byPassValidationStatus,
     [switch] $Debugging,
     [string] $CustomerName,
     [string] $WorkloadName,
@@ -2130,14 +2124,16 @@ https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2
     function Build-SummaryActionPlan {
     Param($ExcelContent,$ExcelRecommendations,$includeLow)
 
-    if ($includeLow.IsPresent)
+    $Recommendations = $ExcelContent | Where-Object {$_.impact -in ('High','Medium','Low')}
+
+<#     if ($includeLow.IsPresent)
         {
         $Recommendations = $ExcelContent | Where-Object {$_.impact -in ('High','Medium','Low')}
         }
     else
         {
         $Recommendations = $ExcelContent | Where-Object {$_.impact -in ('High','Medium')}
-        }
+        } #>
 
     $RecomCount = ($Recommendations.recommendationId | Select-Object -Unique).count
     if ($Debugging.IsPresent) { ('CSVProcess - ' + (get-date -Format 'yyyy-MM-dd HH:mm:ss') + ' - Info - Creating CSV file for: '+$RecomCount+' recommendations') | Out-File -FilePath $LogFile -Append }
@@ -2208,7 +2204,7 @@ https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2
 
     if ($Global:Heavy) {Start-Sleep -Milliseconds 20}
 
-    Test-Excel -ExcelContent $Global:ExcelContent -byPassValidationStatus $byPassValidationStatus
+    #Test-Excel -ExcelContent $Global:ExcelContent -byPassValidationStatus $byPassValidationStatus
 
     Write-Host "Editing " -NoNewline
     $Global:PPTFinalFile = ($PSScriptRoot + '\Executive Summary Presentation - ' + $CustomerName + ' - ' + (get-date -Format "yyyy-MM-dd-HH-mm") + '.pptx')
@@ -2253,14 +2249,14 @@ https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2
     Write-Progress -Id 1 -activity "Processing Office Apps" -Status "90% Complete." -PercentComplete 90
     }
 
-    if($GenerateCSV.IsPresent)
+<#     if($GenerateCSV.IsPresent)
     {
         $WorkloadRecommendationTemplate = Build-SummaryActionPlan -ExcelContent $ExcelContent -ExcelRecommendations $ExcelRecommendations -includeLow $includeLow
 
         $CSVFile = ($PSScriptRoot + '\Impacted Resources and Recommendations Template ' + (get-date -Format "yyyy-MM-dd-HH-mm") + '.csv')
 
         $WorkloadRecommendationTemplate | Export-Csv -Path $CSVFile
-    }
+    } #>
 
     Write-Progress -Id 1 -activity "Processing Office Apps" -Status "100% Complete." -Completed
     $TotalTime = $Global:Runtime.Totalminutes.ToString('#######.##')
