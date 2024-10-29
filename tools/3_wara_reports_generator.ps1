@@ -31,6 +31,12 @@ Path to the PowerPoint template file.
 .PARAMETER WordTemplateFile
 Path to the Word template file.
 
+.PARAMETER includeLow
+Switch to include low impact recommendations in the generated reports.
+
+.PARAMETER byPassValidationStatus
+Switch to bypass the validation status check for high and medium impact recommendations.
+
 .EXAMPLE
 .\3_wara_reports_generator.ps1 -ExcelFile 'C:\WARA_Script\WARA Action Plan 2024-03-07_16_06.xlsx' -CustomerName 'ABC Customer' -WorkloadName 'SAP On Azure' -Heavy -PPTTemplateFile 'C:\Templates\Template.pptx' -WordTemplateFile 'C:\Templates\Template.docx'
 

@@ -152,6 +152,20 @@ Path to the Word template file.
 - **Required**: No
 - **Position**: Named
 
+### includeLow
+
+Switch to include low impact recommendations in the generated reports.
+
+- **Required**: No
+- **Position**: Named
+
+### byPassValidationStatus
+
+Switch to bypass the validation status check for high and medium impact recommendations.
+
+- **Required**: No
+- **Position**: Named
+
 ## EXAMPLES
 
 ### Example 1
@@ -161,6 +175,8 @@ Path to the Word template file.
 ```
 
 ## Frequently asked questions
+
+###
 
 ### The specified Excel file may be encrypted. If a sensitivity label is applied to the file, please change the sensitivity label to the label without encryption temporarily
 
