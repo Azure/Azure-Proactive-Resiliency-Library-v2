@@ -68,6 +68,9 @@ NOTE: Can't be used in combination with -ConfigFile, -ResourceGroups, or -Tags p
 
 NOTE: This parameter is only used when a runbook file (-RunbookFile) is provided.
 
+.PARAMETER RepoUrl
+Specifies the git repository URL that contains APRL contents if you want to use custom APRL repository.
+
 .EXAMPLE
 Run against all subscriptions in tenant "00000000-0000-0000-0000-000000000000":
 .\1_wara_collector.ps1 -TenantID 00000000-0000-0000-0000-000000000000
@@ -88,8 +91,14 @@ Use a runbook:
 A JSON file with the collected data.
 #>
 
+
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingWriteHost', '', Justification = 'False positive as Write-Host does not represent a security risk and this script will always run on host consoles')]
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSReviewUnusedParameter', '', Justification = 'False positive as parameters are not always required')]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments','', Justification='Variable is reserved for future use')]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidGlobalVars','', Justification='This will be fixed in refactor')]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseSingularNouns','', Justification='This will be fixed in refactor')]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseShouldProcessForStateChangingFunctions','', Justification='This will be fixed in refactor')]
+
 
 Param(
         [switch]$Debugging,
@@ -108,6 +117,8 @@ Param(
         $AzureEnvironment = 'AzureCloud',
         [ValidateScript({Test-Path $_ -PathType Leaf})]
         $ConfigFile,
+        [ValidatePattern('^https:\/\/.+$')]
+        [string]$RepoUrl = 'https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2',
         # Runbook parameters...
         [switch]$UseImplicitRunbookSelectors,
         $RunbookFile
@@ -213,59 +224,75 @@ $Script:Runtime = Measure-Command -Expression {
     return $r
   }
 
-  function Import-ConfigFileData($file){
+  function Import-ConfigFileData($file) {
     # Read the file content and store it in a variable
+    $filecontent,$linetable,$objarray,$count,$start,$stop,$configsection = $null
     $filecontent = (Get-content $file).trim().tolower()
 
     # Create an array to store the line number of each section
     $linetable = @()
-    $objarray = @{}
+    $objarray = [ordered]@{}
+
+    $filecontent = $filecontent | Where-Object {$_ -ne "" -and $_ -notlike "*#*"}
+
+    #Remove empty space.
+    foreach($line in $filecontent){
+        $index = $filecontent.IndexOf($line)
+        if ($line -match "^\[([^\]]+)\]$" -and ($filecontent[$index+1] -match "^\[([^\]]+)\]$" -or [string]::IsNullOrEmpty($filecontent[$index+1]))) {
+            # Set this line to empty because the next line is a section as well.
+            $filecontent[$index] = ""
+    }
+}
+
+    #Remove empty space again.
+    $filecontent = $filecontent | Where-Object {$_ -ne "" -and $_ -notlike "*#*"}
 
     # Iterate through the file content and store the line number of each section
-    Foreach($line in $filecontent){
-        if (-not [string]::IsNullOrWhiteSpace($line) -and -not $line.startswith("#")){
+    foreach ($line in $filecontent) {
+        if (-not [string]::IsNullOrWhiteSpace($line) -and -not $line.startswith("#")) {
+            #Get the Index of the current line
+            $index = $filecontent.IndexOf($line)
             # If the line is a section, store the line number
             if ($line -match "^\[([^\]]+)\]$") {
                 # Store the section name and line number. Remove the brackets from the section name
                 $linetable += $filecontent.indexof($line)
-
             }
         }
     }
 
     # Iterate through the line numbers and extract the section content
     $count = 0
-    foreach($entry in $linetable){
+    foreach ($entry in $linetable) {
 
         # Get the section name
         $name = $filecontent[$entry]
         # Remove the brackets from the section name
-        $name = $name.replace("[","").replace("]","")
+        $name = $name.replace("[", "").replace("]", "")
 
         # Get the start and stop line numbers for the section content
         # If the section is the last one, set the stop line number to the end of the file
         $start = $entry + 1
-        if($count -eq ($linetable.length-1)){
-            $stop = $filecontent.length - 1
+
+        if($linetable.count -eq $count+1){
+            $stop = $filecontent.count - 1
+        }else{
+            $stop = $linetable[$count + 1] -1
         }
-        else{
-            $stop = $linetable[$count+1] - 2
-        }
+
 
         # Extract the section content
         $configsection = $filecontent[$start..$stop]
 
         # Add the section content to the object array
-        $objarray += @{$Name=$configsection}
+        $objarray += @{$name = $configsection}
 
         # Increment the count
         $count++
     }
 
-    # Return the object array and cast to pscustomobject
+    # Return the object array and cast to PSCustomObject
     return [pscustomobject]$objarray
-
-  }
+}
 
   function Get-ResourceGroupsByList {
     param (
@@ -418,6 +445,7 @@ $Script:Runtime = Measure-Command -Expression {
             SubscriptionIds     = if($SubscriptionIds){$SubscriptionIds}else{$false}
             ResourceGroups      = if($ResourceGroups){$ResourceGroups}else{$false}
             Tags                = if($TagsPresent){$Tags}else{$false}
+            RepoUrl             = $RepoUrl
           }
       }
     catch
@@ -436,7 +464,6 @@ $Script:Runtime = Measure-Command -Expression {
       Write-Debug 'Setting local path'
       try {
         # Clone the GitHub repository to a temporary folder
-        $repoUrl = 'https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2'
 
         # Define script path as the default path to save files
         $workingFolderPath = $PSScriptRoot
@@ -450,9 +477,9 @@ $Script:Runtime = Measure-Command -Expression {
         if ((Get-ChildItem -Path $Script:clonePath -Force -ErrorAction SilentlyContinue | Measure-Object).Count -gt 0) {
           Write-Debug 'APRL Folder does exist. Reseting it...'
           Get-Item -Path $Script:clonePath | Remove-Item -Recurse -Force
-          git clone $repoUrl $clonePath --quiet
+          git clone $Script:ScriptData.RepoUrl $clonePath --quiet
         } else {
-          git clone $repoUrl $clonePath --quiet
+          git clone $Script:ScriptData.RepoUrl $clonePath --quiet
         }
         Write-Debug 'Checking the version of the script'
         if ($Script:ShellPlatform -eq 'Win32NT') {
@@ -694,7 +721,12 @@ $Script:Runtime = Measure-Command -Expression {
             Write-Host '----------------------------'
             Write-Host 'Collecting: ' -NoNewline
             Write-Host 'Advisor Recommendations' -ForegroundColor Magenta
-            Invoke-AdvisoryExtraction -SubId $SubId -ResourceGroup $RGroup
+            $AdvGroup = $null
+            if(![string]::IsNullOrEmpty($RGroup))
+              {
+                $AdvGroup = $RGroup.split("/")[4]
+              }
+            Invoke-AdvisoryExtraction -SubId $SubId -ResourceGroup $AdvGroup
 
             if ($SubId -notin $LoopedSub) {
               Write-Host '----------------------------'
@@ -1231,11 +1263,16 @@ $Script:Runtime = Measure-Command -Expression {
 
         if ($Scope.split("/").count -gt 4 -and $Scope.split("/").count -lt 8)
           {
-            $Script:results += Get-ResourceGroupsByList -ObjectList $TempResult -FilterList $Scope -KeyColumn "id"
+            if(![string]::IsNullOrEmpty($TempResult)){
+              $Script:results += Get-ResourceGroupsByList -ObjectList $TempResult -FilterList $Scope -KeyColumn "id"
+            }
+
           }
         else
           {
+            if(![string]::IsNullOrEmpty($TempResult)){
             $Script:results += $TempResult
+            }
           }
 
 
@@ -1426,7 +1463,7 @@ $Script:Runtime = Measure-Command -Expression {
         $queryResults = Get-AllAzGraphResource -Query $advquery -subscriptionId $Subid
       }
 
-      $Script:AllAdvisories = foreach ($row in $queryResults) {
+      $loopAdvisories = foreach ($row in $queryResults) {
         if (![string]::IsNullOrEmpty($row.properties.resourceMetadata.resourceId)) {
           $TempResource = ''
           $TempResource = Invoke-FilterResourceID -ResourceID $row.properties.resourceMetadata.resourceId -List $Script:PreInScopeResources
@@ -1445,6 +1482,7 @@ $Script:Runtime = Measure-Command -Expression {
           $result
         }
       }
+      $Script:AllAdvisories = $loopAdvisories
   }
 
   function Resolve-SupportTicket {
@@ -1603,7 +1641,7 @@ $Script:Runtime = Measure-Command -Expression {
 
 
   #Call the functions
-  $Script:Version = '2.1.15'
+  $Script:Version = '2.1.16'
   Write-Host 'Version: ' -NoNewline
   Write-Host $Script:Version -ForegroundColor DarkBlue
 
@@ -1730,4 +1768,3 @@ Write-Host (' Minutes')
 Write-Host 'Result File: ' -NoNewline
 Write-Host $Script:JsonFile -ForegroundColor Blue
 Write-Host '---------------------------------------------------------------------'
-
