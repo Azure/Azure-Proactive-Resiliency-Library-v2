@@ -12,7 +12,6 @@ recommendation:
   longDescription: str()
   potentialBenefits: str(max=60)
   pgVerified: bool()
-  publishedToLearn: bool()
   automationAvailable: bool()
   tags: null()
   learnMoreLink: list()

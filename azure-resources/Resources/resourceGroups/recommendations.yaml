@@ -9,7 +9,6 @@
     Ensure resource locations align with their resource group to manage resources during regional outages. ARM stores resource data, which if in an unavailable region, could halt updates, rendering resources read-only.
   potentialBenefits: Improves outage management
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:

@@ -1,5 +1,5 @@
 <!--
-Azure WAF and Specialized Workloads Recommendation List
+Azure Specialized Workloads Recommendation List
 -->
 
 <!-- Get category from page path -->
@@ -15,8 +15,9 @@ Azure WAF and Specialized Workloads Recommendation List
       <th>Impact</th>
       <th>Category</th>
       <th>Automation Available</th>
+      <th>In Azure Advisor</th>
     </tr>
-    <!-- Loop through recommendations under category -->
+    <!-- Loop through recommendations under category/type -->
     {{ range sort .recommendations "recommendation" "asc" }}
     {{ if and (eq .recommendationMetadataState "Active") (or (not $.Site.Params.aprlDevMode) true) }}
     <tr>
@@ -26,6 +27,7 @@ Azure WAF and Specialized Workloads Recommendation List
       <td>{{ .recommendationImpact }}</td>
       <td>{{ .recommendationControl }}</td>
       <td>{{ if eq .automationAvailable true }}Yes{{ else }}No{{ end }}</td>
+      <td>{{ if .recommendationTypeId }}Yes{{ else }}No{{ end }}</td>
     </tr>
     {{ end }} {{ end }}
   </table>

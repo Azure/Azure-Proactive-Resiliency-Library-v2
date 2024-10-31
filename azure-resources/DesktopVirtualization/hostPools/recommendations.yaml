@@ -9,7 +9,6 @@
     Validation host pools let you monitor service updates before the service applies them to your standard or non-validation environment.
   potentialBenefits: Enhanced environment stability
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -27,7 +26,6 @@
     Create up to two maintenance windows for the Azure Virtual Desktop agent, side-by-side stack, and Geneva Monitoring agent to get updated so that updates don't happen during peak business hours.
   potentialBenefits: Enhanced environment stability
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -45,7 +43,6 @@
     Place domain joined session hosts VMs in unique OUs. Segregate Prod and DR units for environment-specific settings. This ensures targeted configurations for session hosts, including FSLogix, session controls, etc.
   potentialBenefits: Improved AVD hostpool config & segmentation
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -63,7 +60,6 @@
     Implement Azure Site Recovery (ASR) to replicate or backup stateful session hosts. This replicates VMs to a secondary Azure region or availability zone, ensuring recovery from a known VM state in case of an outage.
   potentialBenefits: Ensures VM recovery & failover
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:

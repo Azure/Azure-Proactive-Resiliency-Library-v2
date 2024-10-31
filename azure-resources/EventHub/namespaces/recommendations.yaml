@@ -9,7 +9,6 @@
     When using the Azure portal, zone redundancy is automatically enabled. However, some Infrastructure as Code (IaC) tools may default this to false. To ensure replication of metadata and events across data centers in an availability zone, always verify that zone redundancy is enabled.
   potentialBenefits: Enhanced fault tolerance for Event Hub
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -27,7 +26,6 @@
     Enable auto-inflate on Event Hub Standard tier namespaces to automatically scale up throughput units (TUs), meeting usage needs and preventing data ingress or egress throttle scenarios by adjusting to allowed rates.
   potentialBenefits: Prevents throttling by autoscaling TUs
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:

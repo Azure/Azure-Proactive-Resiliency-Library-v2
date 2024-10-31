@@ -9,7 +9,6 @@
     Enable container health probes to monitor the health of your container apps and ensure that unhealthy containers are restarted automatically.
   potentialBenefits: Enhanced availability and resilience
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:

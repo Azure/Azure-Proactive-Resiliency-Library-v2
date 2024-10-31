@@ -9,7 +9,6 @@
     Managed Grafana Standard tier is hosted on a dedicated set of VMs to provide redundancy. With zone redundancy enabled, VMs are spread across availability zones (AZ). Related resources are also configured for AZ. Zone redundancy can only be enabled when creating the Azure Managed Grafana instance.
   potentialBenefits: Enhanced Managed Grafana resilience to failures
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:

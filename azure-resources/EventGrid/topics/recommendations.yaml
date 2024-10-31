@@ -9,7 +9,6 @@
     Enabling diagnostic settings on Azure Event Grid resources like custom topics, system topics, and domains lets you capture and view diagnostic information to troubleshoot failures effectively.
   potentialBenefits: Enhanced troubleshooting for Event Grid
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -27,7 +26,6 @@
     Event Grid may not deliver an event within a specific time or after several attempts, leading to dead-lettering where undelivered events are sent to a storage account.
   potentialBenefits: Saves undelivered events
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -45,7 +43,6 @@
     Use private endpoints for secure event ingress to custom topics/domains via a private link, avoiding the public internet. It employs an IP from the VNet space for your topic/domain.
   potentialBenefits: Secure, private VNet ingress
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:

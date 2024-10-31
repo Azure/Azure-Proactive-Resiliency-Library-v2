@@ -9,7 +9,6 @@
     A Citrix Managed Azure subscription supports VMs with VDA for app/desktop delivery, excluding other machines like Cloud Connectors. When close to the limit, signaled by a dashboard notification, and with sufficient licenses, request another subscription. Can't exceed the given limits for catalogs.
   potentialBenefits: Avoids hitting limit, ensures reliability
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -27,7 +26,6 @@
     The root management group in Azure is designed for organizational hierarchy, allowing for all management groups and subscriptions to fold into it.
   potentialBenefits: Enhanced security, compliance, and management
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:

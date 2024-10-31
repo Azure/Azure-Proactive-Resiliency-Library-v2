@@ -9,7 +9,6 @@
     Enable a secondary region in Cosmos DB for higher SLA without downtime. Simple as pinning a location on a map. For Strong consistency, configure at least three regions for write availability in case of failure.
   potentialBenefits: Enhances SLA and resilience
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -29,7 +28,6 @@
     Cosmos DB boasts high uptime and resiliency. Even so, issues may arise. With Service-Managed failover, if a region is down, Cosmos DB automatically switches to the next available region, requiring no user action.
   potentialBenefits: Auto failover for high uptime
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -47,7 +45,6 @@
     When availability zones are configured, Azure Cosmos DB intelligently distributes the 4 replicas of your data across all available zones. It ensures that your Azure Cosmos DB can withstand an outage in one availability zone and remain fully operational throughout.
   potentialBenefits: Enhances high availability
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -65,7 +62,6 @@
     Multi-region write capability allows for designing applications that are highly available across multiple regions, though it demands careful attention to consistency requirements and conflict resolution. Improper setup may decrease availability and cause data corruption due to unhandled conflicts.
   potentialBenefits: Enhances high availability
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -85,7 +81,6 @@
     Cosmos DB's backup is always on, offering protection against data mishaps. Continuous mode allows for self-serve restoration to a pre-mishap point, unlike periodic mode which requires contacting Microsoft support, leading to longer restore times.
   potentialBenefits: Faster self-serve data restore
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -103,7 +98,6 @@
     Cosmos DB has a 4 MB response limit, leading to paginated results for large or partition-spanning queries. Each page shows availability and provides a continuation token for the next. A while loop in code is necessary to traverse all pages until completion.
   potentialBenefits: Maximizes data retrieval efficiency
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -121,7 +115,6 @@
     Using a single instance of the SDK client for each account and application is crucial as connections are tied to the client. Compute environments have a limit on open connections, affecting connectivity when exceeded.
   potentialBenefits: Optimizes connections and efficiency
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -139,7 +132,6 @@
     Cosmos DB SDKs automatically manage many transient errors through retries. Despite this, it's crucial for applications to implement additional retry policies targeting specific cases that the SDKs can't generically address, ensuring more robust error handling.
   potentialBenefits: Enhances error handling resilience
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -157,7 +149,6 @@
     Monitoring the availability and responsiveness of Azure Cosmos DB resources and having alerts set up for your workload is a good practice. This ensures you stay proactive in handling unforeseen events.
   potentialBenefits: Proactive issue management
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
