@@ -9,7 +9,6 @@
     You need to use a minimum of Enterprise SKU for your managed domain to support replica sets.
   potentialBenefits: The Enterprise SKU enables creation of replica sets.
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -28,7 +27,6 @@
     You can add a replica set to any peered virtual network in any Azure region that supports Domain Services.
   potentialBenefits: The replica sets provide geographical resiliency.
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:

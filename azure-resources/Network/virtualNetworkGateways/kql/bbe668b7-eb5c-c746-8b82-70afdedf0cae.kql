@@ -1,10 +1,13 @@
 // Azure Resource Graph Query
-// For all VNGs of type ExpressRoute, show any that do not have AZ in the SKU tier
-resources
-| where type =~ "Microsoft.Network/virtualNetworkGateways"
-| where location in~ ("australiaeast", "brazilsouth", "canadacentral", "centralindia", "centralus", "eastasia", "eastus", "eastus2", "francecentral", "germanywestcentral", "israelcentral", "italynorth", "japaneast", "japanwest", "koreacentral", "mexicocentral", "newzealandnorth", "northeurope", "norwayeast", "polandcentral", "qatarcentral", "southafricanorth", "southcentralus", "southeastasia", "spaincentral", "swedencentral", "switzerlandnorth", "uaenorth", "uksouth", "westeurope", "westus2", "westus3", "usgovvirginia", "chinanorth3")
-| where properties.gatewayType == "ExpressRoute"
-| where properties.sku.tier !contains 'AZ'
-| project recommendationId = "bbe668b7-eb5c-c746-8b82-70afdedf0cae", name, id, tags, param1= strcat("sku-tier: " , properties.sku.tier), param2=location
-| order by id asc
-
+// For all VNGs of type ExpressRoute, show all that are not zone redundant (Zonal or Regional)
+advisorresources
+| where properties.recommendationTypeId == 'c9af1ef6-55bc-48af-bfe4-2c80490159f8' // RecommendationID from Advisor
+| mv-expand resId = properties.resourceMetadata.resourceId
+| extend resId = tostring(resId)
+| project recId = properties.recommendationTypeId, resId
+| join kind=leftouter (
+    resources
+    | extend id = tostring(id)
+    | project id, name, tags, location, properties
+) on $left.resId == $right.id
+| project recommendationId = "bbe668b7-eb5c-c746-8b82-70afdedf0cae", name , resId, tags, param1 = strcat("sku-tier: ", properties.sku.tier), param2 = location,param3 = "Non Zone-Redundant GW"

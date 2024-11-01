@@ -9,7 +9,6 @@
     In Azure ExpressRoute Direct, the "Admin State" indicates the administrative status of layer 1 links, showing if a link is enabled or disabled, effectively turning the physical port on or off.
   potentialBenefits: Ensures optimal connectivity.
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -27,7 +26,6 @@
     Provisioning ExpressRoute circuits on a 10-Gbps or 100-Gbps ExpressRoute Direct resource up to 20-Gbps or 200-Gbps is possible but not recommended for resiliency. If an ExpressRoute Direct port fails, and circuits are using full capacity, the remaining port won't handle the extra load.
   potentialBenefits: Improves resilience during port failures
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -45,7 +43,6 @@
     Use Network Insights for monitoring ExpressRoute Port light levels, bits per second in/out, and line protocol. Set alerts based on Azure Monitor Baseline Alerts for light levels, bits per second in/out, and line protocol exceeding specific thresholds.
   potentialBenefits: Enhanced network performance and health
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:

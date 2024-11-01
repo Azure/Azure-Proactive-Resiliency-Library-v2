@@ -9,7 +9,6 @@
     Availability zones are now enabled by default on new namespaces where possible. Existing namespaces are being migrated to availability zones where possible. The property zoneRedundant might still show as false, even when availability zones has been enabled.
   potentialBenefits: Enhances fault tolerance and uptime
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -31,7 +30,6 @@
     Use Service Bus with auto-scale for high availability. The Premium SKU supports auto-scale, ensuring that the resources are automatically scaled based on the load.
   potentialBenefits: Ensures high availability and performance
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -49,7 +47,6 @@
     As of 31 October 2024, TLS 1.0 and TLS 1.1 will no longer be supported on Azure including Service Bus to enhance security and provide best-in-class encryption for your data. Change the minimum TLS version for your Service Bus namespace to TLS v1.2 or higher.
   potentialBenefits: Avoids service disruption
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:

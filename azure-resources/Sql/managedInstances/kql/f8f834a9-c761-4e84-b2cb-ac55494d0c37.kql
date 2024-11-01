@@ -1,2 +1,9 @@
-// under-development
-
+// Azure Resource Graph Query
+// Managed Instance zone redundancy check – any server that is not configured for ZR
+resources
+| where type =~ 'Microsoft.Sql/managedInstances'
+| extend InstanceName = properties.fullyQualifiedDomainName
+| extend ServiceTier = sku.tier
+| extend zoneRedundant=properties.zoneRedundant
+| where zoneRedundant == 'false'
+| project recommendationId='f8f834a9-c761-4e84-b2cb-ac55494d0c37', name, id, tags, param1=strcat('Service Tier:', ServiceTier), param2=strcat('Zone Redundant:', zoneRedundant)
