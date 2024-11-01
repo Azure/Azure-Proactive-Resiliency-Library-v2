@@ -51,7 +51,7 @@ no,microsoft.insights/components/featureCapabilities,Application Insights,No
 no,microsoft.insights/components/getAvailableBillingFeatures,Application Insights,No
 no,microsoft.insights/webtests,Application Insights,No
 no,microsoft.insights/webtests/getTestResultFile,Application Insights,No
-yes,microsoft.insights/scheduledqueryrules,Alert Rule,Yes
+no,microsoft.insights/scheduledqueryrules,Alert Rule,Yes
 no,microsoft.insights/scheduledqueryrules/networkSecurityPerimeterAssociationProxies,null,No
 no,microsoft.insights/scheduledqueryrules/networkSecurityPerimeterConfigurations,null,No
 no,microsoft.insights/components/pricingPlans,null,No
@@ -60,15 +60,15 @@ no,microsoft.insights/rollbackToLegacyPricingModel,null,No
 no,microsoft.insights/listMigrationdate,null,No
 no,microsoft.insights/logprofiles,null,No
 no,microsoft.insights/migratealertrules,null,No
-yes,microsoft.insights/metricalerts,Metric Alerts,No
-yes,microsoft.insights/alertrules,Alert Rule,No
-yes,microsoft.insights/autoscalesettings,Auto Scale Settings,No
+no,microsoft.insights/metricalerts,Metric Alerts,No
+no,microsoft.insights/alertrules,Alert Rule,No
+no,microsoft.insights/autoscalesettings,Auto Scale Settings,No
 no,microsoft.insights/eventtypes,null,No
 no,microsoft.insights/locations,null,No
 no,microsoft.insights/locations/operationResults,null,No
-yes,microsoft.insights/vmInsightsOnboardingStatuses,VM Insights Onboarding,No
+no,microsoft.insights/vmInsightsOnboardingStatuses,VM Insights Onboarding,No
 no,microsoft.insights/operations,null,No
-yes,microsoft.insights/diagnosticSettings,Diagnostic Settings,No
+no,microsoft.insights/diagnosticSettings,Diagnostic Settings,No
 no,microsoft.insights/diagnosticSettingsCategories,null,No
 no,microsoft.insights/extendedDiagnosticSettings,null,No
 no,microsoft.insights/metricDefinitions,null,No
@@ -80,7 +80,7 @@ no,microsoft.insights/metricNamespaces,null,No
 no,microsoft.insights/notificationstatus,null,No
 no,microsoft.insights/createnotifications,null,No
 no,microsoft.insights/tenantactiongroups,null,No
-yes,microsoft.insights/actiongroups,Action Groups,No
+no,microsoft.insights/actiongroups,Action Groups,No
 yes,microsoft.insights/activityLogAlerts,Resource Health Alerts,Yes
 no,microsoft.insights/metricbaselines,null,No
 no,microsoft.insights/workbooks,null,No
@@ -99,19 +99,19 @@ no,microsoft.insights/actiongroups/networkSecurityPerimeterAssociationProxies,nu
 no,microsoft.insights/actiongroups/networkSecurityPerimeterConfigurations,null,No
 no,microsoft.insights/dataCollectionEndpoints/networkSecurityPerimeterAssociationProxies,null,No
 no,microsoft.insights/dataCollectionEndpoints/networkSecurityPerimeterConfigurations,null,No
-yes,microsoft.insights/privateLinkScopes,Private Link Scopes,No
+no,microsoft.insights/privateLinkScopes,Private Link Scopes,No
 no,microsoft.insights/privateLinkScopes/privateEndpointConnections,null,No
 no,microsoft.insights/privateLinkScopes/privateEndpointConnectionProxies,null,No
 no,microsoft.insights/privateLinkScopes/scopedResources,null,No
 no,microsoft.insights/components/linkedstorageaccounts,null,No
 no,microsoft.insights/privateLinkScopeOperationStatuses,null,No
 no,microsoft.insights/locations/notifyNetworkSecurityPerimeterUpdatesAvailable,null,No
-yes,Microsoft.AlertsManagement/alerts,Alerts,No
+no,Microsoft.AlertsManagement/alerts,Alerts,No
 no,Microsoft.AlertsManagement/alertsSummary,null,No
 no,Microsoft.AlertsManagement/smartGroups,null,No
-yes,Microsoft.AlertsManagement/smartDetectorAlertRules,Smart Detector Alert Rules,No
+no,Microsoft.AlertsManagement/smartDetectorAlertRules,Smart Detector Alert Rules,No
 no,Microsoft.AlertsManagement/migrateFromSmartDetection,null,No
-yes,Microsoft.AlertsManagement/actionRules,Action Rules,No
+no,Microsoft.AlertsManagement/actionRules,Action Rules,No
 no,Microsoft.AlertsManagement/alertsMetaData,null,No
 no,Microsoft.AlertsManagement/prometheusRuleGroups,null,No
 no,Microsoft.AlertsManagement/operations,null,No
@@ -199,8 +199,8 @@ no,Microsoft.Network/azureWebCategories,null,No
 no,Microsoft.Network/locations/nfvOperations,null,No
 no,Microsoft.Network/locations/nfvOperationResults,null,No
 yes,Microsoft.Network/virtualRouters,Virtual Routers,No
-No,Microsoft.Network/networkVirtualAppliances,null,No
-No,Microsoft.Network/networkVirtualApplianceSkus,null,No
+no,Microsoft.Network/networkVirtualAppliances,null,No
+no,Microsoft.Network/networkVirtualApplianceSkus,null,No
 no,Microsoft.Network/frontdoorOperationResults,null,No
 no,Microsoft.Network/checkFrontdoorNameAvailability,null,No
 yes,Microsoft.Network/frontdoors,Front door,Yes
@@ -212,7 +212,7 @@ no,Microsoft.Network/networkExperimentProfiles,null,No
 yes,Microsoft.Network/dnsResolvers,DNS Resolvers,No
 no,Microsoft.Network/dnsResolvers/inboundEndpoints,null,No
 no,Microsoft.Network/dnsResolvers/outboundEndpoints,null,No
-yes,Microsoft.Network/dnsForwardingRulesets,DNS Forwarding Rule Sets,No
+no,Microsoft.Network/dnsForwardingRulesets,DNS Forwarding Rule Sets,No
 no,Microsoft.Network/dnsForwardingRulesets/forwardingRules,null,No
 no,Microsoft.Network/dnsForwardingRulesets/virtualNetworkLinks,null,No
 no,Microsoft.Network/virtualNetworks/listDnsResolvers,null,No
@@ -314,7 +314,7 @@ no,Microsoft.Network/locations/validateResourceOwnership,null,No
 no,Microsoft.Network/locations/setResourceOwnership,null,No
 no,Microsoft.Network/locations/effectiveResourceOwnership,null,No
 no,Microsoft.Network/operations,null,No
-No,Microsoft.Network/virtualNetworkTaps,null,No
+no,Microsoft.Network/virtualNetworkTaps,null,No
 yes,Microsoft.Network/privateLinkServices,Private Link Services,No
 no,Microsoft.Network/locations/privateLinkServices,null,No
 yes,Microsoft.Network/ddosProtectionPlans,Ddos Protection Plans,Yes
@@ -628,11 +628,11 @@ no,Microsoft.Sql/locations/managedLedgerDigestUploadsOperationResults,null,No
 no,Microsoft.Sql/locations/managedLedgerDigestUploadsAzureAsyncOperation,null,No
 no,Microsoft.Sql/locations/serverConfigurationOptionAzureAsyncOperation,null,No
 no,Microsoft.Sql/servers/failoverGroups/tryPlannedBeforeForcedFailover,null,No
-yes,Microsoft.Maintenance/maintenanceConfigurations,Maintenance Configurations,No
-yes,Microsoft.Maintenance/updates,Maintenance Updates,No
-yes,Microsoft.Maintenance/configurationAssignments,Maintenance Configuration Assignments,No
-yes,Microsoft.Maintenance/applyUpdates,Maintenance Apply Updates,No
-yes,Microsoft.Maintenance/publicMaintenanceConfigurations,Maintenance Oublic Maintenance Configurations,No
+no,Microsoft.Maintenance/maintenanceConfigurations,Maintenance Configurations,No
+no,Microsoft.Maintenance/updates,Maintenance Updates,No
+no,Microsoft.Maintenance/configurationAssignments,Maintenance Configuration Assignments,No
+no,Microsoft.Maintenance/applyUpdates,Maintenance Apply Updates,No
+no,Microsoft.Maintenance/publicMaintenanceConfigurations,Maintenance Oublic Maintenance Configurations,No
 no,Microsoft.Maintenance/operations,null,No
 yes,Microsoft.DataFactory/factories,Data Factory,No
 no,Microsoft.DataFactory/factories/integrationRuntimes,null,No
@@ -741,7 +741,7 @@ no,Microsoft.Logic/locations/validateWorkflowExport,null,No
 no,Microsoft.Logic/locations/workflowExport,null,No
 no,Microsoft.Logic/locations,null,No
 no,Microsoft.Logic/operations,null,No
-Yes,Microsoft.Logic/integrationAccounts,Logic Integration Accounts,No
+yes,Microsoft.Logic/integrationAccounts,Logic Integration Accounts,No
 yes,Microsoft.Logic/integrationServiceEnvironments,Logic Integration Service Environments,No
 no,Microsoft.Logic/integrationServiceEnvironments/managedApis,null,No
 no,Microsoft.Logic/locations/generateCopilotResponse,null,No
@@ -799,23 +799,23 @@ no,Microsoft.Chaos/locations/operationStatuses,null,No
 no,Microsoft.Chaos/locations/operationResults,null,No
 no,Microsoft.Chaos/privateAccesses,null,No
 no,Microsoft.Advisor/suppressions,null,No
-yes,Microsoft.Advisor/configurations,Advisor Configurations,No
+no,Microsoft.Advisor/configurations,Advisor Configurations,No
 no,Microsoft.Advisor/metadata,null,No
 yes,Microsoft.Advisor/recommendations,Advisor Recommendations,No
 no,Microsoft.Advisor/generateRecommendations,null,No
 no,Microsoft.Advisor/operations,null,No
-yes,Microsoft.Advisor/advisorScore,Advisor Score,No
+no,Microsoft.Advisor/advisorScore,Advisor Score,No
 no,Microsoft.Advisor/predict,null,No
 no,Microsoft.Advisor/resiliencyReviews,Advisor Resiliency Reviews,No
-Yes,Microsoft.Advisor/triageRecommendations,Advisor Triage Recommendations,No
-yes,Microsoft.Advisor/assessments,Advisor Assessments,Yes
+no,Microsoft.Advisor/triageRecommendations,Advisor Triage Recommendations,No
+no,Microsoft.Advisor/assessments,Advisor Assessments,Yes
 no,Microsoft.Advisor/assessmentTypes,null,No
-No,Microsoft.Advisor/workloads,Advisor Workloads,No
+no,Microsoft.Advisor/workloads,Advisor Workloads,No
 no,Microsoft.MarketplaceNotifications/reviewsnotifications,null,No
 no,Microsoft.MarketplaceNotifications/operations,null,No
 no,Microsoft.ChangeAnalysis/operations,null,No
 no,Microsoft.ChangeAnalysis/resourceChanges,null,No
-No,Microsoft.ChangeAnalysis/changes,null,No
+no,Microsoft.ChangeAnalysis/changes,null,No
 no,Microsoft.ChangeAnalysis/changeSnapshots,null,No
 no,Microsoft.ChangeAnalysis/computeChanges,null,No
 yes,Microsoft.EventHub/namespaces,Event Hub Namespaces,Yes
@@ -1099,7 +1099,7 @@ no,Dynatrace.Observability/operations,null,No
 no,Dynatrace.Observability/registeredSubscriptions,null,No
 no,Dynatrace.Observability/locations,null,No
 no,Dynatrace.Observability/locations/operationStatuses,null,No
-No,Dynatrace.Observability/monitors,null,No
+no,Dynatrace.Observability/monitors,null,No
 no,Dynatrace.Observability/monitors/tagRules,null,No
 no,Dynatrace.Observability/monitors/singleSignOnConfigurations,null,No
 no,Dynatrace.Observability/checkNameAvailability,null,No
@@ -1168,7 +1168,7 @@ no,Microsoft.ApiSecurity/Locations,null,No
 no,Microsoft.ApiSecurity/Locations/OperationStatuses,null,No
 no,Microsoft.ApiSecurity/Operations,null,No
 yes,Microsoft.ApiSecurity/apiCollections,API Collection,Yes
-yes,Microsoft.ApiSecurity/apiCollections/apiCollectionDetails,API Collection Detail,Yes
+no,Microsoft.ApiSecurity/apiCollections/apiCollectionDetails,API Collection Detail,Yes
 no,Microsoft.ApiSecurity/apiCollectionsMeta,null,No
 no,Microsoft.ApiSecurity/apiCollectionsMeta/apiCollectionMetaDetails,null,No
 yes,Microsoft.App/managedEnvironments,Managed Environment,Yes
@@ -1189,7 +1189,7 @@ no,Microsoft.App/locations/sourceControlOperationResults,null,No
 no,Microsoft.App/locations/sourceControlOperationStatuses,null,No
 no,Microsoft.App/locations/usages,null,No
 no,Microsoft.App/operations,null,No
-No,Microsoft.App/connectedEnvironments,null,No
+no,Microsoft.App/connectedEnvironments,null,No
 no,Microsoft.App/connectedEnvironments/certificates,null,No
 no,Microsoft.App/locations/connectedEnvironmentOperationResults,null,No
 no,Microsoft.App/locations/connectedEnvironmentOperationStatuses,null,No
@@ -1264,7 +1264,7 @@ no,Microsoft.AppSecurity/Operations,null,No
 no,Microsoft.ArcNetworking/locations,null,No
 no,Microsoft.ArcNetworking/locations/operationStatuses,null,No
 no,Microsoft.ArcNetworking/arcNwLoadBalancers,null,No
-yes,Microsoft.Attestation/attestationProviders,Attestation provider,Yes
+no,Microsoft.Attestation/attestationProviders,Attestation provider,Yes
 no,Microsoft.Attestation/defaultProviders,null,No
 no,Microsoft.Attestation/locations,null,No
 no,Microsoft.Attestation/locations/defaultProvider,null,No
@@ -1287,7 +1287,7 @@ no,Microsoft.Authorization/roleDefinitions,null,No
 no,Microsoft.Authorization/classicAdministrators,null,No
 no,Microsoft.Authorization/permissions,null,No
 no,Microsoft.Authorization/denyAssignments,null,No
-yes,Microsoft.Authorization/locks,Locks,No
+no,Microsoft.Authorization/locks,Locks,No
 no,Microsoft.Authorization/operations,null,No
 yes,Microsoft.Authorization/policyDefinitions,Policy Definitions,No
 no,Microsoft.Authorization/policyDefinitions/versions,null,No
@@ -1435,7 +1435,7 @@ no,Microsoft.AzureStackHCI/locations,null,No
 no,Microsoft.AzureStackHCI/locations/operationstatuses,null,No
 no,Microsoft.AzureStackHCI/galleryImages,null,No
 no,Microsoft.AzureStackHCI/networkInterfaces,null,No
-No,Microsoft.AzureStackHCI/virtualMachines,Azure Stack HCI Virtual Machines,No
+no,Microsoft.AzureStackHCI/virtualMachines,Azure Stack HCI Virtual Machines,No
 no,Microsoft.AzureStackHCI/virtualNetworks,null,No
 no,Microsoft.AzureStackHCI/virtualHardDisks,null,No
 yes,Microsoft.AzureStackHCI/clusters,Azure Stack HCI,Yes
@@ -1453,7 +1453,7 @@ no,Microsoft.AzureStackHCI/clusters/updates,null,No
 no,Microsoft.AzureStackHCI/clusters/updates/updateRuns,null,No
 no,Microsoft.AzureStackHCI/clusters/updateSummaries,null,No
 no,Microsoft.AzureStackHCI/registeredSubscriptions,null,No
-No,Microsoft.AzureStackHCI/virtualMachineInstances,Azure Stack HCI Virtual Machine Instances,No
+no,Microsoft.AzureStackHCI/virtualMachineInstances,Azure Stack HCI Virtual Machine Instances,No
 no,Microsoft.AzureStackHCI/clusters/deploymentSettings,null,No
 no,Microsoft.AzureStackHCI/edgeDevices,null,No
 no,Microsoft.AzureStackHCI/logicalNetworks,null,No
@@ -1718,7 +1718,7 @@ no,Microsoft.Capacity/resources,null,No
 no,Microsoft.Capacity/reservationOrders,null,No
 yes,Microsoft.Capacity/reservationOrders/reservations,Reservation,Yes
 no,Microsoft.Capacity/listbenefits,null,No
-Yes,Microsoft.Capacity/reservations,Capacity Reservations,No
+yes,Microsoft.Capacity/reservations,Capacity Reservations,No
 no,Microsoft.Capacity/reservationOrders/reservations/revisions,null,No
 no,Microsoft.Capacity/operations,null,No
 no,Microsoft.Capacity/catalogs,null,No
@@ -1895,7 +1895,7 @@ no,Microsoft.Compute/locations/galleries,null,No
 no,Microsoft.Compute/payloadGroups,null,No
 no,Microsoft.Compute/galleries/applications,null,No
 no,Microsoft.Compute/galleries/applications/versions,null,No
-Yes,Microsoft.Compute/disks,Disks,Yes
+yes,Microsoft.Compute/disks,Disks,Yes
 yes,Microsoft.Compute/snapshots,Managed Disk Snapshot,Yes
 no,Microsoft.Compute/locations/diskoperations,null,No
 no,Microsoft.Compute/diskEncryptionSets,null,No
@@ -2390,12 +2390,12 @@ no,Microsoft.DesktopVirtualization/hostpools/msixpackages,null,No
 no,Microsoft.DesktopVirtualization/hostpools/sessionhosts,null,No
 no,Microsoft.DesktopVirtualization/hostpools/sessionhosts/usersessions,null,No
 no,Microsoft.DesktopVirtualization/hostpools/usersessions,null,No
-Yes,Microsoft.DesktopVirtualization/scalingplans,Desktop Virtualization Scaling Plans,Yes
+yes,Microsoft.DesktopVirtualization/scalingplans,Desktop Virtualization Scaling Plans,Yes
 no,Microsoft.DesktopVirtualization/appattachpackages,null,No
 no,Microsoft.DesktopVirtualization/operations,null,No
 no,Microsoft.DevAI/Locations,null,No
 no,Microsoft.DevAI/Locations/operationstatuses,null,No
-No,Microsoft.DevAI/instances,null,No
+no,Microsoft.DevAI/instances,null,No
 no,Microsoft.DevAI/instances/experiments,null,No
 no,Microsoft.DevAI/instances/sandboxes,null,No
 no,Microsoft.DevAI/instances/sandboxes/experiments,null,No
@@ -2468,7 +2468,7 @@ no,Microsoft.DeviceUpdate/accounts/privateLinkResources,null,No
 no,Microsoft.DeviceUpdate/accounts/privateEndpointConnections,null,No
 no,Microsoft.DeviceUpdate/accounts/privateEndpointConnectionProxies,null,No
 no,Microsoft.DevTestLab/labs/environments,null,No
-No,Microsoft.DevTestLab/labs,null,No
+no,Microsoft.DevTestLab/labs,null,No
 no,Microsoft.DevTestLab/schedules,null,No
 no,Microsoft.DevTestLab/labs/virtualMachines,null,No
 no,Microsoft.DevTestLab/labs/serviceRunners,null,No
@@ -2477,14 +2477,14 @@ no,Microsoft.DevTestLab/locations,null,No
 no,Microsoft.DevTestLab/locations/operations,null,No
 no,Microsoft.DigitalTwins/locations,null,No
 no,Microsoft.DigitalTwins/locations/checkNameAvailability,null,No
-Yes,Microsoft.DigitalTwins/digitalTwinsInstances,DigitalTwins Instances,No
+yes,Microsoft.DigitalTwins/digitalTwinsInstances,DigitalTwins Instances,No
 no,Microsoft.DigitalTwins/digitalTwinsInstances/operationResults,null,No
 no,Microsoft.DigitalTwins/locations/operationResults,null,No
 no,Microsoft.DigitalTwins/locations/operationsStatuses,null,No
 no,Microsoft.DigitalTwins/digitalTwinsInstances/endpoints,null,No
 no,Microsoft.DigitalTwins/digitalTwinsInstances/timeSeriesDatabaseConnections,null,No
 no,Microsoft.DigitalTwins/operations,null,No
-No,Microsoft.Easm/workspaces,null,No
+no,Microsoft.Easm/workspaces,null,No
 no,Microsoft.Easm/workspaces/labels,null,No
 no,Microsoft.Easm/operations,null,No
 no,Microsoft.Easm/workspaces/tasks,null,No
@@ -2542,7 +2542,7 @@ no,Microsoft.ExtendedLocation/customLocations/resourceSyncRules,null,No
 no,Microsoft.ExtendedLocation/locations/operationsstatus,null,No
 no,Microsoft.ExtendedLocation/locations/operationresults,null,No
 no,Microsoft.ExtendedLocation/operations,null,No
-No,Microsoft.Fabric/capacities,null,No
+no,Microsoft.Fabric/capacities,null,No
 no,Microsoft.Fabric/locations,null,No
 no,Microsoft.Fabric/locations/checkNameAvailability,null,No
 no,Microsoft.Fabric/locations/operationresults,null,No
@@ -2756,7 +2756,7 @@ no,Microsoft.IoTOperationsOrchestrator/targets,null,No
 no,Microsoft.IoTOperationsOrchestrator/solutions,null,No
 no,Microsoft.IoTOperationsOrchestrator/instances,null,No
 no,Microsoft.IoTOperationsOrchestrator/operations,null,No
-yes,Microsoft.Kubernetes/connectedClusters,Kubernetes,Yes
+no,Microsoft.Kubernetes/connectedClusters,Kubernetes,Yes
 no,Microsoft.Kubernetes/locations,null,No
 no,Microsoft.Kubernetes/locations/operationStatuses,null,No
 no,Microsoft.Kubernetes/registeredSubscriptions,null,No
@@ -2892,8 +2892,8 @@ no,Microsoft.ManagedServices/registrationAssignments,null,No
 no,Microsoft.ManagedServices/operations,null,No
 no,Microsoft.ManagedServices/marketplaceRegistrationDefinitions,null,No
 no,Microsoft.ManagedServices/operationStatuses,null,No
-yes,Microsoft.Management/resources,Resources,No
-yes,Microsoft.Management/managementGroups,Management Group,No
+no,Microsoft.Management/resources,Resources,No
+no,Microsoft.Management/managementGroups,Management Group,No
 no,Microsoft.Management/getEntities,null,No
 no,Microsoft.Management/managementGroups/settings,null,No
 no,Microsoft.Management/checkNameAvailability,null,No
@@ -3067,25 +3067,25 @@ no,Microsoft.NetworkAnalytics/Operations,null,No
 no,Microsoft.NetworkAnalytics/registeredSubscriptions,null,No
 no,Microsoft.NetworkCloud/locations,null,No
 no,Microsoft.NetworkCloud/locations/operationStatuses,null,No
-yes,Microsoft.NetworkCloud/clusterManagers,Network Cloud Cluster Managers,No
-yes,Microsoft.NetworkCloud/racks,Network Cloud Racks,No
-yes,Microsoft.NetworkCloud/clusters,Network Cloud Clusters,No
-yes,Microsoft.NetworkCloud/bareMetalMachines,Network Cloud BareMetal Machines,No
-yes,Microsoft.NetworkCloud/virtualMachines,Network Cloud Virtual Machines,No
+no,Microsoft.NetworkCloud/clusterManagers,Network Cloud Cluster Managers,No
+no,Microsoft.NetworkCloud/racks,Network Cloud Racks,No
+no,Microsoft.NetworkCloud/clusters,Network Cloud Clusters,No
+no,Microsoft.NetworkCloud/bareMetalMachines,Network Cloud BareMetal Machines,No
+no,Microsoft.NetworkCloud/virtualMachines,Network Cloud Virtual Machines,No
 no,Microsoft.NetworkCloud/operations,null,No
 no,Microsoft.NetworkCloud/rackSkus,null,No
-yes,Microsoft.NetworkCloud/cloudServicesNetworks,Network Cloud Cloud Services Networks,No
+no,Microsoft.NetworkCloud/cloudServicesNetworks,Network Cloud Cloud Services Networks,No
 no,Microsoft.NetworkCloud/l2Networks,null,No
-yes,Microsoft.NetworkCloud/storageAppliances,Network Cloud Storage Appliances,No
-yes,Microsoft.NetworkCloud/trunkedNetworks,Network Cloud Trunked Networks,No
-yes,Microsoft.NetworkCloud/l3Networks,Network Cloud L3 Networks,No
+no,Microsoft.NetworkCloud/storageAppliances,Network Cloud Storage Appliances,No
+no,Microsoft.NetworkCloud/trunkedNetworks,Network Cloud Trunked Networks,No
+no,Microsoft.NetworkCloud/l3Networks,Network Cloud L3 Networks,No
 no,Microsoft.NetworkCloud/clusters/metricsConfigurations,null,No
 no,Microsoft.NetworkCloud/virtualMachines/consoles,null,No
 no,Microsoft.NetworkCloud/clusters/bareMetalMachineKeySets,null,No
 no,Microsoft.NetworkCloud/clusters/bmcKeySets,null,No
-yes,Microsoft.NetworkCloud/volumes,Network Cloud Volumes,No
+no,Microsoft.NetworkCloud/volumes,Network Cloud Volumes,No
 no,Microsoft.NetworkCloud/registeredSubscriptions,null,No
-yes,Microsoft.NetworkCloud/kubernetesClusters,Network Cloud Kubernetes Clusters,No
+no,Microsoft.NetworkCloud/kubernetesClusters,Network Cloud Kubernetes Clusters,No
 no,Microsoft.NetworkCloud/kubernetesClusters/agentPools,null,No
 yes,Microsoft.NetworkFunction/azureTrafficCollectors,Expressroute Traffic Collector,Yes
 no,Microsoft.NetworkFunction/azureTrafficCollectors/collectorPolicies,null,No
@@ -3266,7 +3266,7 @@ no,Microsoft.RecoveryServices/locations/backupAadProperties,null,No
 no,Microsoft.RecoveryServices/locations/backupCrossRegionRestore,null,No
 no,Microsoft.RecoveryServices/locations/backupCrrOperationResults,null,No
 no,Microsoft.RecoveryServices/locations/backupCrrOperationsStatus,null,No
-Yes,Microsoft.RecoveryServices/backupProtectedItems,Recovery Services Backup Protected Items,No
+yes,Microsoft.RecoveryServices/backupProtectedItems,Recovery Services Backup Protected Items,No
 no,Microsoft.RecoveryServices/replicationEligibilityResults,null,No
 no,Microsoft.RecoveryServices/locations/capabilities,null,No
 no,Microsoft.RedHatOpenShift/locations,null,No
@@ -3319,7 +3319,7 @@ no,Microsoft.Resources/tenants,null,No
 no,Microsoft.Resources/locations,null,No
 no,Microsoft.Resources/operationresults,null,No
 no,Microsoft.Resources/notifyResourceJobs,null,No
-No,Microsoft.Resources/tags,null,No
+no,Microsoft.Resources/tags,null,No
 no,Microsoft.Resources/checkPolicyCompliance,null,No
 no,Microsoft.Resources/providers,null,No
 no,Microsoft.Resources/checkresourcename,null,No
@@ -3397,14 +3397,14 @@ no,Microsoft.SecurityDevOps/Locations,null,No
 no,Microsoft.SecurityDevOps/Locations/OperationStatuses,null,No
 no,Microsoft.SecurityDevOps/gitHubConnectors,null,No
 no,Microsoft.SecurityDevOps/azureDevOpsConnectors,null,No
-yes,Microsoft.SecurityDevOps/azureDevOpsConnectors/orgs,DevOps Connectors Org,Yes
+no,Microsoft.SecurityDevOps/azureDevOpsConnectors/orgs,DevOps Connectors Org,Yes
 no,Microsoft.SecurityDevOps/gitHubConnectors/owners,null,No
 no,Microsoft.SecurityDevOps/azureDevOpsConnectors/orgs/projects,null,No
-yes,Microsoft.SecurityDevOps/gitHubConnectors/owners/repos,Github Owner Repository,Yes
+no,Microsoft.SecurityDevOps/gitHubConnectors/owners/repos,Github Owner Repository,Yes
 no,Microsoft.SecurityDevOps/azureDevOpsConnectors/orgs/projects/repos,null,No
 no,Microsoft.SecurityDevOps/Operations,null,No
 no,Microsoft.SecurityDevOps/gitHubConnectors/stats,null,No
-yes,Microsoft.SecurityDevOps/gitHubConnectors/repos,Github Connectors Repo,Yes
+no,Microsoft.SecurityDevOps/gitHubConnectors/repos,Github Connectors Repo,Yes
 no,Microsoft.SecurityDevOps/azureDevOpsConnectors/stats,null,No
 no,Microsoft.SecurityDevOps/azureDevOpsConnectors/repos,null,No
 no,Microsoft.SecurityDevOps/gitLabConnectors,null,No
@@ -3506,7 +3506,7 @@ no,Microsoft.ServiceNetworking/locations,null,No
 no,Microsoft.ServiceNetworking/locations/operations,null,No
 no,Microsoft.ServiceNetworking/locations/operationResults,null,No
 no,Microsoft.ServicesHub/connectors,null,No
-No,Microsoft.ServicesHub/workspaces,Services Hub Workspaces,No
+no,Microsoft.ServicesHub/workspaces,Services Hub Workspaces,No
 no,Microsoft.ServicesHub/supportOfferingEntitlement,null,No
 no,Microsoft.ServicesHub/operations,null,No
 no,Microsoft.ServicesHub/getRecommendationsContent,null,No
@@ -3758,7 +3758,7 @@ yes,Microsoft.Workloads/sapVirtualInstances/applicationInstances,App Server Inst
 yes,Microsoft.Workloads/sapVirtualInstances/centralInstances,Central Server Instance,Yes
 yes,Microsoft.Workloads/sapVirtualInstances/databaseInstances,Database Instance,Yes
 no,Microsoft.Workloads/Operations,null,No
-Yes,Microsoft.Workloads/monitors,Monitor,Yes
+yes,Microsoft.Workloads/monitors,Monitor,Yes
 no,Microsoft.Workloads/monitors/providerInstances,null,No
 no,Microsoft.Workloads/Locations/sapVirtualInstanceMetadata,null,No
 no,Microsoft.Workloads/connectors,null,No
@@ -3771,7 +3771,7 @@ no,NewRelic.Observability/locations/operationStatuses,null,No
 no,NewRelic.Observability/monitors,null,No
 no,NewRelic.Observability/monitors/tagRules,null,No
 no,NewRelic.Observability/checkNameAvailability,null,No
-No,NewRelic.Observability/accounts,null,No
+no,NewRelic.Observability/accounts,null,No
 no,NewRelic.Observability/plans,null,No
 no,NewRelic.Observability/organizations,null,No
 no,NewRelic.Observability/monitors/monitoredSubscriptions,null,No
@@ -3844,19 +3844,19 @@ no,Wandisco.Fusion/migrators/metadataTargets,null,No
 no,Wandisco.Fusion/migrators/pathMappings,null,No
 no,Wandisco.Fusion/migrators/dataTransferAgents,null,No
 no,Wandisco.Fusion/migrators/verifications,null,No
-No,Oracle.Database,null,No
+no,Oracle.Database,null,No
 yes,Microsoft.Network/expressRouteCrossConnections,ExpressRoute Cross Connections,No
-Yes,Specialized.Workload/AVD,Specialized-AVD,Yes
-Yes,Specialized.Workload/AVS,Specialized-AVS,Yes
-Yes,Specialized.Workload/HPC,Specialized-HPC,Yes
-Yes,Specialized.Workload/SAP,Specialized-SAP,Yes
-Yes,WellArchitected/Define,WellArchitected/Define,Yes
-Yes,WellArchitected/Deploy,WellArchitected/Deploy,Yes
-Yes,WellArchitected/Design,WellArchitected/Design,Yes
-Yes,WellArchitected/Respond,WellArchitected/Respond,Yes
-Yes,WellArchitected/Test,WellArchitected/Test,Yes
-Yes,WellArchitected/Monitor,WellArchitected/Monitor,Yes
-Yes,WellArchitected/Reliability,WellArchitected/Reliability,Yes
-Yes,WellArchitected/OperationalExcellence,WellArchitected/OperationalExcellence,Yes
-Yes,WellArchitected/Performance,WellArchitected/Performance,Yes
-Yes,WellArchitected/Security,WellArchitected/Security,Yes
+yes,Specialized.Workload/AVD,Specialized-AVD,Yes
+yes,Specialized.Workload/AVS,Specialized-AVS,Yes
+yes,Specialized.Workload/HPC,Specialized-HPC,Yes
+yes,Specialized.Workload/SAP,Specialized-SAP,Yes
+no,WellArchitected/Define,WellArchitected/Define,Yes
+no,WellArchitected/Deploy,WellArchitected/Deploy,Yes
+no,WellArchitected/Design,WellArchitected/Design,Yes
+no,WellArchitected/Respond,WellArchitected/Respond,Yes
+no,WellArchitected/Test,WellArchitected/Test,Yes
+no,WellArchitected/Monitor,WellArchitected/Monitor,Yes
+yes,WellArchitected/Reliability,WellArchitected/Reliability,Yes
+yes,WellArchitected/OperationalExcellence,WellArchitected/OperationalExcellence,Yes
+yes,WellArchitected/Performance,WellArchitected/Performance,Yes
+yes,WellArchitected/Security,WellArchitected/Security,Yes
