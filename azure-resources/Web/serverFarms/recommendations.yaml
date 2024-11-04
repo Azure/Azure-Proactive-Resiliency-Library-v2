@@ -9,6 +9,7 @@
     Azure's feature of deploying App Service plans across availability zones enhances resiliency and reliability by ensuring operation during datacenter failures, providing redundancy without needing different regions, thus minimizing downtime and maintaining uninterrupted services.
   potentialBenefits: Enhances app resiliency and reliability
   pgVerified: false
+  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -28,6 +29,7 @@
     Choose Standard/Premium Azure App Service Plan for robust apps with advanced scaling, high availability, better performance, and multiple slots, ensuring resilience and continuous operation.
   potentialBenefits: Enhanced scaling and reliability
   pgVerified: false
+  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -44,7 +46,8 @@
   longDescription: |
     Avoid frequent scaling up/down of Azure App Service instances to prevent service disruptions. Choose the right tier and size for the workload and scale out for traffic changes, as scaling adjustments can trigger application restarts.
   potentialBenefits: Minimizes restarts, enhances stability
-  pgVerified: true
+  pgVerified: false
+  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -62,6 +65,7 @@
     It is strongly recommended to create separate App Service plans for production and test environments to avoid using slots within your production deployment for testing purposes.
   potentialBenefits: Protects prod performance; avoids test impact
   pgVerified: false
+  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -79,6 +83,7 @@
     Enabling Autoscale/Automatic Scaling for your Azure App Service ensures sufficient resources for incoming requests. Autoscaling is rule-based, whereas Automatic Scaling, a newer feature, automatically adjusts resources based on HTTP traffic.
   potentialBenefits: Optimizes resources for traffic
   pgVerified: true
+  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
