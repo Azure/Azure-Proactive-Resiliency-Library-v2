@@ -46,7 +46,7 @@
   recommendationResourceType: Microsoft.ApiManagement/service
   recommendationMetadataState: Active
   longDescription: |
-    If there is any stv1 instance exist, that needs to migrate now, the deadline 31 Aug 2024 has already passed. This is the best and safest way, otherwise auto migration will be triggered, but there are scenarios where this is not technically possible. In those cases, services may be shut down in March next year.
+    stv1 instances are deprecated on 31 Aug 2024 and if not migrated to stv2, auto migration will be triggered. In few cases, due to technical feasibility, services may be shut down in March 2025.
   potentialBenefits: Ensures service continuity
   pgVerified: true
   publishedToLearn: false
