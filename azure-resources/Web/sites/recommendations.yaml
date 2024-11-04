@@ -9,6 +9,7 @@
     Enabling diagnostics logging for your Azure App Service is crucial for monitoring and diagnostics, including both application logging and web server logging.
   potentialBenefits: Monitoring and Alerting
   pgVerified: false
+  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -26,6 +27,7 @@
     Use Application Insights to monitor app performance and load behavior, offering real-time insights, issue diagnosis, and root-cause analysis. It supports ASP.NET, ASP.NET Core, Java, and Node.js on Azure App Service, now with built-in monitoring.
   potentialBenefits: Real-time insights and issue diagnosis
   pgVerified: true
+  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -45,6 +47,7 @@
     If your solution includes both a web front end and a web API, decomposing them into separate App Service apps facilitates solution decomposition by workload, allowing for independent scaling. Initially, you can deploy both in the same plan and separate them for independent scaling when necessary.
   potentialBenefits: Independent scaling, easier management
   pgVerified: false
+  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -62,6 +65,7 @@
     Creating a separate storage account for logs and not using the same one for application data prevents logging activities from reducing application performance by ensuring that the resources dedicated to handling application data are not burdened by logging processes.
   potentialBenefits: Improves app performance
   pgVerified: true
+  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -79,6 +83,7 @@
     Create a deployment slot for staging to deploy updates, verify them, and ensure all instances are warmed up before production swap, reducing bad update chances. An LKG slot allows easy rollback to a previous good deployment if issues arise later, enhancing reliability.
   potentialBenefits: Safer updates and easy rollback
   pgVerified: false
+  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -96,6 +101,7 @@
     Use app settings for configuration and define them in Resource Manager templates or via PowerShell to facilitate part of an automated deployment/update process for improved reliability.
   potentialBenefits: Enhanced reliability via automation
   pgVerified: true
+  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -113,6 +119,7 @@
     Use Health Check for production workloads. Health check increases your application's availability by rerouting requests away from unhealthy instances, and replacing instances if they remain unhealthy. The Health check path should check critical components of your application.
   potentialBenefits: Enhanced reliability via automation
   pgVerified: true
+  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -130,6 +137,7 @@
     Use network access restrictions to define a priority-ordered allow/deny list that controls network access to your app. Web application firewalls, such as the one available in Application Gateway, are recommended for protection of public-facing web applications.
   potentialBenefits: Enhanced security
   pgVerified: true
+  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -147,6 +155,7 @@
     App Service should be configured with a minimum of two instances for production workloads. If apps have a longer warmup time a minimum of three instances should be used.
   potentialBenefits: Improves app performace
   pgVerified: true
+  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -164,6 +173,7 @@
     Auto Heal allows you to mitigate your apps when it runs into unexpected situations like HTTP server errors, resource exhaustion, etc. You can configure different triggers based on your need and choose to recycle the app to recover it from a bad state.
   potentialBenefits: Improved app availability
   pgVerified: false
+  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -181,6 +191,7 @@
     Add a warmup trigger to pre-load custom dependencies during the pre-warming process so that your functions are ready to start processing requests immediately.
   potentialBenefits: Improved app availability
   pgVerified: false
+  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -198,6 +209,7 @@
     A host ID must be between 1 and 32 characters, contain only lowercase letters, numbers, and dashes, not start or end with a dash, and not contain consecutive dashes. The host ID value should be unique for all apps/slots you're running.
   potentialBenefits: Easier management
   pgVerified: false
+  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -215,6 +227,7 @@
     Beginning on December 13, 2022, function apps running on versions 2.x and 3.x of the Azure Functions runtime have reached the end of life (EOL) of extended support. We highly recommend you migrating your function apps to version 4.x of the Functions runtime.
   potentialBenefits: Better governance
   pgVerified: false
+  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -232,6 +245,7 @@
     The FUNCTIONS_WORKER_RUNTIME setting in the Function App configuration should be set to the appropriate value based on the language you are using. This setting is used to determine the language worker that will be used to execute your functions.
   potentialBenefits: Better governance
   pgVerified: false
+  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
