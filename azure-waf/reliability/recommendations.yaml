@@ -6,7 +6,7 @@
   recommendationResourceType: Microsoft.Subscription/Subscriptions
   recommendationMetadataState: Active
   longDescription: |
-     Design your workload to align with business objectives and avoid unnecessary complexity or overhead. Use a practical and balanced approach to make design decisions that deliver the desired results. Contain your design to the necessities to reduce inefficiencies and potential problems.
+     Design  your workload to align with business objectives and avoid unnecessary complexity or overhead. Use a practical and balanced approach to make design decisions that deliver the desired results. Contain your design to the necessities to reduce inefficiencies and potential problems.
   potentialBenefits: Meet business requirements
   pgVerified: true
   automationAvailable: false
