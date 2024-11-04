@@ -1,8 +1,12 @@
 name: Update Recommendation Object on Pull Request
 
 on:
-  pull_request:
-    types: [opened, synchronize]
+  pull_request_target:
+    types:
+      - edited
+      - opened
+      - reopened
+      - synchronize
     paths:
       - 'azure-resources/**/*.yaml'
       - 'azure-resources/**/*.kql'
@@ -20,7 +24,7 @@ env:
   github_pr_repo: ${{ github.event.pull_request.head.repo.full_name }}
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   update-json-object:
