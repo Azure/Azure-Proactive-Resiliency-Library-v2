@@ -43,7 +43,7 @@
     Improves monitoring for Azure and Hybrid connectivity
   potentialBenefits: Improves monitoring for Azure and Hybrid connectivity
   pgVerified: true
-  automationAvailable: true
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Connection monitor overview
