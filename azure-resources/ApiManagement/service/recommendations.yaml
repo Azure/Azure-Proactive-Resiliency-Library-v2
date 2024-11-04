@@ -46,7 +46,7 @@
   recommendationResourceType: Microsoft.ApiManagement/service
   recommendationMetadataState: Active
   longDescription: |
-    stv1 instances are deprecated on 31 Aug 2024 and if not migrated to stv2, auto migration will be triggered. In few cases, due to technical feasibility, services may be shut down in March 2025.
+    stv1 instances were deprecated on August 31, 2024. If not migrated to stv2 by then, auto-migration will occur. In some cases, due to technical limitations, services may be shut down in March 2025.
   potentialBenefits: Ensures service continuity
   pgVerified: true
   publishedToLearn: false
