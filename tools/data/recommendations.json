@@ -1815,7 +1815,7 @@
     ],
     "recommendationControl": "Scalability",
     "longDescription": "Avoid frequent scaling up/down of Azure App Service instances to prevent service disruptions. Choose the right tier and size for the workload and scale out for traffic changes, as scaling adjustments can trigger application restarts.\n",
-    "pgVerified": true,
+    "pgVerified": false,
     "description": "Avoid scaling up or down",
     "potentialBenefits": "Minimizes restarts, enhances stability",
     "tags": null,
