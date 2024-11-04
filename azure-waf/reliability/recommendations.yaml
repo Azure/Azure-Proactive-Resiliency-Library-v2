@@ -3,13 +3,12 @@
   recommendationTypeId: null
   recommendationControl: Other Best Practices
   recommendationImpact: Medium
-  recommendationResourceType: WellArchitected/Reliability
+  recommendationResourceType: Microsoft.Subscription/Subscriptions
   recommendationMetadataState: Active
   longDescription: |
     Design your workload to align with business objectives and avoid unnecessary complexity or overhead. Use a practical and balanced approach to make design decisions that deliver the desired results. Contain your design to the necessities to reduce inefficiencies and potential problems.
   potentialBenefits: Meet business requirements
   pgVerified: true
-  publishedToLearn: true
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -21,13 +20,12 @@
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: Medium
-  recommendationResourceType: WellArchitected/Reliability
+  recommendationResourceType: Microsoft.Subscription/Subscriptions
   recommendationMetadataState: Active
   longDescription: |
     Identify and rate user and system flows. Use a criticality scale based on your business requirements to prioritize the flows.
   potentialBenefits: Align architecture with reliability goals
   pgVerified: true
-  publishedToLearn: true
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -39,13 +37,12 @@
   recommendationTypeId: null
   recommendationControl: Other Best Practices
   recommendationImpact: Medium
-  recommendationResourceType: WellArchitected/Reliability
+  recommendationResourceType: Microsoft.Subscription/Subscriptions
   recommendationMetadataState: Active
   longDescription: |
     Use failure mode analysis (FMA) to identify and prioritize potential failures in your solution components. Perform FMA to help you assess the risk and effect of each failure mode. Determine how the workload responds and recovers.
   potentialBenefits: Reduce risk of unpredicted behavior
   pgVerified: true
-  publishedToLearn: true
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -57,13 +54,12 @@
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: Medium
-  recommendationResourceType: WellArchitected/Reliability
+  recommendationResourceType: Microsoft.Subscription/Subscriptions
   recommendationMetadataState: Active
   longDescription: |
     Define reliability and recovery targets for the components, the flows, and the overall solution. Use the defined targets to build the health model. The health model defines what healthy, degraded, and unhealthy states look like.
   potentialBenefits: Communicate reliability expectations with stakeholders
   pgVerified: true
-  publishedToLearn: true
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -75,13 +71,12 @@
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: Medium
-  recommendationResourceType: WellArchitected/Reliability
+  recommendationResourceType: Microsoft.Subscription/Subscriptions
   recommendationMetadataState: Active
   longDescription: |
     Add redundancy at different levels, especially for critical flows. Apply redundancy to the compute, data, network, and other infrastructure tiers in accordance with the identified reliability targets.
   potentialBenefits: Optimize for resiliency
   pgVerified: true
-  publishedToLearn: true
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -93,13 +88,12 @@
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: Medium
-  recommendationResourceType: WellArchitected/Reliability
+  recommendationResourceType: Microsoft.Subscription/Subscriptions
   recommendationMetadataState: Active
   longDescription: |
     High availability is a foundational tenet of designing for reliability. A highly available architecture can help you avoid downtime as much as possible and recover efficiently if downtime does occur.
   potentialBenefits: Minimize downtime from regional outages
   pgVerified: true
-  publishedToLearn: true
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -111,13 +105,12 @@
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: Medium
-  recommendationResourceType: WellArchitected/Reliability
+  recommendationResourceType: Microsoft.Subscription/Subscriptions
   recommendationMetadataState: Active
   longDescription: |
     High availability is a foundational tenet of designing for reliability. A highly available architecture can help you avoid downtime as much as possible and recover efficiently if downtime does occur.
   potentialBenefits: Minimize downtime from zonal outages
   pgVerified: true
-  publishedToLearn: true
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -129,13 +122,12 @@
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: Medium
-  recommendationResourceType: WellArchitected/Reliability
+  recommendationResourceType: Microsoft.Subscription/Subscriptions
   recommendationMetadataState: Active
   longDescription: |
     Partitioning data improves scalability, reduces contention, and optimizes performance. Implement data partitioning to divide data by usage pattern.
   potentialBenefits: Improve data estate reliability
   pgVerified: true
-  publishedToLearn: true
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -147,13 +139,12 @@
   recommendationTypeId: null
   recommendationControl: Scalability
   recommendationImpact: Medium
-  recommendationResourceType: WellArchitected/Reliability
+  recommendationResourceType: Microsoft.Subscription/Subscriptions
   recommendationMetadataState: Active
   longDescription: |
     Implement a timely and reliable scaling strategy at the application, data, and infrastructure levels.
   potentialBenefits: Dynamically handle increased load
   pgVerified: true
-  publishedToLearn: true
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -165,13 +156,12 @@
   recommendationTypeId: null
   recommendationControl: Other Best Practices
   recommendationImpact: Medium
-  recommendationResourceType: WellArchitected/Reliability
+  recommendationResourceType: Microsoft.Subscription/Subscriptions
   recommendationMetadataState: Active
   longDescription: |
     Background jobs help minimize the load on the application UI, which improves availability and reduces interactive response time.
   potentialBenefits: Minimize application load
   pgVerified: true
-  publishedToLearn: true
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -183,13 +173,12 @@
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: Medium
-  recommendationResourceType: WellArchitected/Reliability
+  recommendationResourceType: Microsoft.Subscription/Subscriptions
   recommendationMetadataState: Active
   longDescription: |
     Strengthen the resiliency and recoverability of your workload by implementing self-preservation and self-healing measures. Self-healing capabilities help you avoid downtime by building in failure detection and automatic corrective actions to respond to different failure types.
   potentialBenefits: Reduce the likelihood of outages
   pgVerified: true
-  publishedToLearn: true
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -201,13 +190,12 @@
   recommendationTypeId: null
   recommendationControl: High Availability
   recommendationImpact: Medium
-  recommendationResourceType: WellArchitected/Reliability
+  recommendationResourceType: Microsoft.Subscription/Subscriptions
   recommendationMetadataState: Active
   longDescription: |
     Build capabilities into the solution by using infrastructure-based reliability patterns and software-based design patterns to handle component failures and transient errors.
   potentialBenefits: Reduce the likelihood of outages
   pgVerified: true
-  publishedToLearn: true
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -219,13 +207,12 @@
   recommendationTypeId: null
   recommendationControl: Other Best Practices
   recommendationImpact: Medium
-  recommendationResourceType: WellArchitected/Reliability
+  recommendationResourceType: Microsoft.Subscription/Subscriptions
   recommendationMetadataState: Active
   longDescription: |
     Test resiliency and availability scenarios by applying the principles of chaos engineering in your test and production environments. Use testing to ensure that your graceful degradation implementation and scaling strategies are effective by performing active malfunction and simulated load testing.
   potentialBenefits: Validate and optimize workload reliability
   pgVerified: true
-  publishedToLearn: true
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -237,13 +224,12 @@
   recommendationTypeId: null
   recommendationControl: Disaster Recovery
   recommendationImpact: Medium
-  recommendationResourceType: WellArchitected/Reliability
+  recommendationResourceType: Microsoft.Subscription/Subscriptions
   recommendationMetadataState: Active
   longDescription: |
     Implement structured, tested, and documented business continuity and disaster recovery (BCDR) plans that align with the recovery targets. Plans must cover all components and the system as a whole.
   potentialBenefits: Reliable disaster recovery
   pgVerified: true
-  publishedToLearn: true
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -255,13 +241,12 @@
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
   recommendationImpact: Medium
-  recommendationResourceType: WellArchitected/Reliability
+  recommendationResourceType: Microsoft.Subscription/Subscriptions
   recommendationMetadataState: Active
   longDescription: |
     Measure and publish the solution's health indicators. Continuously capture uptime and other reliability data from across the workload and also from individual components and key flows.
   potentialBenefits: Observability into workload health
   pgVerified: true
-  publishedToLearn: true
   automationAvailable: false
   tags: null
   learnMoreLink:

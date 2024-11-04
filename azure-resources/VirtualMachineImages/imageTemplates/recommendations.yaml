@@ -9,7 +9,6 @@
     When building Image Templates, use sources for gen 2 VMs. Gen 2 offers more memory, supports >2TB disks, uses UEFI for faster boot/installation, has Intel SGX, and virtualized persistent memory (vPMEM), unlike gen 1's BIOS-based architecture.
   potentialBenefits: More memory, supports >2TB disks, faster boot
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -27,7 +26,6 @@
     The Azure Image Builder service lacks availability zones support. Replicating Image Templates to a secondary region will enable the build of new images in secondary region.
   potentialBenefits: Enhances disaster recovery capability
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:

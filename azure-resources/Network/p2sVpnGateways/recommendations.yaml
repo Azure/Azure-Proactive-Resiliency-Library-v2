@@ -8,7 +8,6 @@
   longDescription: Set up monitoring and alerts for Point-to-Site VPN gateways. Create alert rule for ensuring promptly response to critical events such as Gateway overutilization, connection count limits and User VPN route limits.
   potentialBenefits: Detection and mitigation to avoid disruptions.
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
