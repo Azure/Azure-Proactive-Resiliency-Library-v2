@@ -329,7 +329,7 @@ $Script:Runtime = Measure-Command -Expression {
 
     $Script:RecommendedAdv = @()
     foreach ($adv in $CoreAdvisories) {
-      #if (![string]::IsNullOrEmpty($adv.recommendationId)) {
+      if (![string]::IsNullOrEmpty($adv.recommendationId)) {
         #$APRLADV = $Script:ServicesYAMLContent | Where-Object { $_.recommendationTypeId -eq $adv.recommendationId }
 
         #if ($APRLADV.recommendationTypeId -eq $adv.recommendationId ) {
@@ -363,7 +363,7 @@ $Script:Runtime = Measure-Command -Expression {
           $Script:MergedRecommendation += $tmp
           $Script:RecommendedAdv += $adv.recommendationId
         #}
-      #}
+      }
     }
 
     foreach ($WAF in $Script:WAFYAMLContent) {
@@ -1017,7 +1017,7 @@ $Script:Runtime = Measure-Command -Expression {
   }
 
   #Call the functions
-  $Script:Version = '2.1.12'
+  $Script:Version = '2.1.13'
   Write-Host 'Version: ' -NoNewline
   Write-Host $Script:Version -ForegroundColor DarkBlue
 
