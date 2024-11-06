@@ -1482,7 +1482,7 @@ $Script:Runtime = Measure-Command -Expression {
           $result
         }
       }
-      $Script:AllAdvisories = $loopAdvisories
+      $Script:AllAdvisories += $loopAdvisories
   }
 
   function Resolve-SupportTicket {
