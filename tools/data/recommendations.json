@@ -4085,7 +4085,7 @@
     "recommendationResourceType": "Microsoft.Network/trafficManagerProfiles",
     "recommendationImpact": "Medium",
     "automationAvailable": false,
-    "query": "// cannot-be-validated-with-arg\n\n"
+    "query": "// Azure Resource Graph Query\n// Find traffic manager profiles that do not have at least two endpoints in different regions\nresources\n| where type == \"microsoft.network/trafficmanagerprofiles\"\n| extend endpoints = properties.endpoints\n| mv-expand endpoint = endpoints\n| extend endpointLocation = endpoint.properties.endpointLocation\n| summarize\n    regions = makeset(endpointLocation),\n    tags = any(tags),\n    name = any(name)\n  by id\n| extend regionCount = array_length(regions)\n| where regionCount <= 1\n| project recommendationId = \"1ad9d7b7-9692-1441-a8f4-93792efbe97a\", name, id, tags, param1 = regions\n"
   },
   {
     "aprlGuid": "c31f76a0-48cd-9f44-aa43-99ee904db9bc",
