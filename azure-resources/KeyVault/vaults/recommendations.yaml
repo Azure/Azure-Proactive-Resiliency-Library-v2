@@ -86,7 +86,7 @@
 - description: 'Integrate Azure Key Vault RBAC for Data Plane with Azure RBAC, replacing the legacy access model.'
   aprlGuid: c41fd2c7-fd5e-46e8-97cb-5d0c6954500e
   recommendationTypeId: null
-  recommendationControl: Other Best Practices
+  recommendationControl: Security
   recommendationImpact: High
   recommendationResourceType: Microsoft.KeyVault/vaults
   recommendationMetadataState: Active
