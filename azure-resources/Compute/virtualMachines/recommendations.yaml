@@ -472,7 +472,7 @@
   longDescription: |
     Azure Capacity Reservations ensure high availability for virtual machines by reserving compute capacity in advance within a specific region or availability zone. This guarantees that VMs will have the necessary resources during peak demand or maintenance events, enhancing reliability and uptime.
   potentialBenefits: Guaranteed capacity in constrained regions/zones
-  pgVerified: false
+  pgVerified: true
   automationAvailable: true
   tags: null
   learnMoreLink:
