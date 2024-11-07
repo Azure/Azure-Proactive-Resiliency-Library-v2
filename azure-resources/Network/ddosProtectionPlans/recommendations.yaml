@@ -9,7 +9,6 @@
     Azure DDoS Plan metrics differentiate packets and bytes by tags: Dropped (packets scrubbed by DDoS), Forwarded (packets to VIP not filtered), and No tag (total packets, sum of dropped and forwarded).
   potentialBenefits: Enhanced security and traffic insight
   pgVerified: true
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:

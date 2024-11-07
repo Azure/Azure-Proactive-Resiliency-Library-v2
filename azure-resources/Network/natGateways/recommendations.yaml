@@ -9,7 +9,6 @@
     NAT Gateway provides 64,512 SNAT ports per public IP address and supports up to 16 public IP addresses. Monitor "Total SNAT connection count" metric to determine if you're nearing the connection limit of NAT gateway. You can scale the NAT gateway by adding more public IP addresses.
   potentialBenefits: Enhances reliability and scalability
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -29,7 +28,6 @@
     Use Network Insights for monitoring and alerting on your NAT gateway.Use Total SNAT connection count metric to determine if you're nearing the connection limit of NAT gateway. Set alerts based on Azure Monitor Baseline Alerts (AMBA) thresholds for NAT Gateway
   potentialBenefits: Enhanced network performance and health
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -49,7 +47,6 @@
     A zonal promise for zone isolation scenarios exists when a virtual machine instance using a NAT gateway resource is in the same zone as the NAT gateway resource and its public IP addresses. The pattern you want to use for zone isolation is creating a "zonal stack" per availability zone.
   potentialBenefits: Enhances reliability and scalability
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:

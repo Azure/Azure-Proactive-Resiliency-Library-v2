@@ -30,6 +30,8 @@ Each selector has a name (which can be referenced later in specific checks) and 
 
 Read on to learn how selectors and checks work together to run KQL queries against arbitrary groups of resources.
 
+> When using selectors in this runbook, especially those that involve regex or string patterns, it is important to correctly escape backslashes due to the way Azure Resource Graph and JSON parsing handle these characters. Selectors are used to define groups of resources, and if you include patterns like regex within them, each backslash must be doubled for both JSON encoding and Azure Resource Graph interpretation. For instance, a single backslash (`\`) in your regex pattern needs to be written as four (`\\\\`) when defined in a JSON-based selector. This ensures compatibility at all levels of parsing. Failure to do so can lead to errors and improperly matched resources, so it’s critical to review and verify the formatting of your selectors when working with these escape sequences.
+
 ## Checks
 
 Checks combine selectors with specific KQL queries to run precise checks on arbitrary sets of resources.

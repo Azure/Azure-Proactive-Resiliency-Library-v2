@@ -9,7 +9,6 @@
     Currently in all HPC Pack ARM templates we create the cluster share on one of the head node which is not highly available.
   potentialBenefits: Enhances job metadata availability
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -27,7 +26,6 @@
     By deploying Azure "burst" nodes (both Windows and Linux) in your HPC Pack cluster or creating your HPC Pack cluster in Azure, you can automatically grow or shrink the cluster's resources such as nodes or cores according to the workload on the cluster.
   potentialBenefits: Efficient, uninterrupted execution
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -45,7 +43,6 @@
     Establish a cluster with a minimum of two head nodes. In the event of a head node failure, the active HPC Service will be automatically transferred from the affected head node to another functioning one.
   potentialBenefits: Enhanced reliability for HPC
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -63,7 +60,6 @@
     When HPC failed to connect to the Domain controller, admin and user will not be able to connect to the HPC Service thus not able to manage and submit jobs to the cluster.
   potentialBenefits: Enhanced reliability and job management
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:

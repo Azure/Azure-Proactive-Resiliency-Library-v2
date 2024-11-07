@@ -9,7 +9,6 @@
     To take advantage of availability zones, you must enable zone redundancy when you create a Container Apps environment. The environment must include a virtual network with an available subnet. To ensure proper distribution of replicas, set your app's minimum replica count to three.
   potentialBenefits: Enhances app resiliency and reliability
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:

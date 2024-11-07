@@ -12,3 +12,4 @@ updates:
     labels:
       - "Type: Hygiene :broom:"
       - "Needs: Attention from aprl-maintainers :wave:"
+      - "Auto-Merge :heavy_check_mark:"

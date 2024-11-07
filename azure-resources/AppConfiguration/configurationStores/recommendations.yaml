@@ -9,7 +9,6 @@
     With Purge protection enabled, soft deleted stores can't be purged in the retention period. If disabled, the soft deleted store can be purged before the retention period expires.
   potentialBenefits: Prevent accidental deletion of configuration stores.
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -27,7 +26,6 @@
     SLA is not available for Free tier. Upgrade to the Standard tier to get an SLA of 99.9%
   potentialBenefits: High availability, more storage, higher request quota.
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:

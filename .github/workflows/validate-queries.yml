@@ -15,11 +15,13 @@ on:
   workflow_dispatch: {}
 
 permissions:
-  id-token: write # This is required for requesting the JWT
   contents: read  # This is required for actions/checkout
 
 jobs:
   kql_file_check:
+    environment: Azure
+    permissions:
+      id-token: write # This is required for requesting the JWT
     runs-on: ubuntu-latest
     if: |
       (
@@ -41,11 +43,23 @@ jobs:
       )
 
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
+        with:
+          egress-policy: audit
+
       - name: Checkout repository
-        uses: actions/checkout@v4.2.0
+        uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
+        with:
+          ref: "refs/pull/${{ github.event.number }}/merge"
+          fetch-depth: 2
+
+      - name: Sanity Check
+        run: |
+          [[ "$(git rev-parse 'HEAD^2')" == "${{ github.event.pull_request.head.sha }}" ]]
 
       - name: Azure login (OIDC)
-        uses: azure/login@v2
+        uses: azure/login@a65d910e8af852a8061c627c456678983e180302 # v2.2.0
         if:
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
@@ -60,3 +74,22 @@ jobs:
       - name: Run KQL Syntax Check
         run: |
           pwsh .github/scripts/validate-kql-syntax.ps1
+
+  remove_label:
+    permissions:
+      contents: read
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
+        with:
+          egress-policy: audit
+
+      - run: |
+          gh pr edit ${{ github.event.pull_request.number }} --remove-label "PR: Safe to Test ARG Queries :test_tube:"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+

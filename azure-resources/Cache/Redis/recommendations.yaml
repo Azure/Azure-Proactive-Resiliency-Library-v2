@@ -9,7 +9,6 @@
     Azure Cache for Redis offers zone redundancy in Premium and Enterprise tiers, using VMs across multiple Availability Zones to ensure greater resilience and availability.
   potentialBenefits: Higher resilience and availability
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -26,7 +25,6 @@
     Azure Cache for Redis allows for specifying maintenance windows. A maintenance window allows you to control the days and times of a week during which the VMs hosting your cache can be updated.
   potentialBenefits: Higher resilience and availability
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -44,7 +42,6 @@
     Use private endpoints for secure connection to cache via a private link, avoiding the public internet.
   potentialBenefits: Secure, private VNet ingress, efficient data transfer
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: true
   tags: null
   learnMoreLink:
