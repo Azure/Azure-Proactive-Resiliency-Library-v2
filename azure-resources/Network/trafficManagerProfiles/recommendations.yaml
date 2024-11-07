@@ -47,7 +47,7 @@
     Profiles should have multiple endpoints to ensure availability in case an endpoint fails. It's also advised to distribute these endpoints across different regions for enhanced reliability.
   potentialBenefits: Enhances availability across regions
   pgVerified: true
-  automationAvailable: false
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Reliability recommendations
