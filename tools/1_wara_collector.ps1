@@ -1571,20 +1571,17 @@ $Script:Runtime = Measure-Command -Expression {
   function Get-OtherRecommendations() {
 
     $token = 'Bearer ' + (Get-AzAccessToken).Token
-
-
-
     $authHeaders = @{
       'Authorization' = $token
     }
 
-    $uri2 = 'https://management.azure.com/providers/Microsoft.Advisor/metadata?api-version=2023-01-01'
-    $r = Invoke-WebRequest -Uri $uri2 -Method Get -Headers $authHeaders
-    $advmetadata = $r.content | ConvertFrom-Json -Depth 100
-
     $APRL_recommendationTypeID = $recommendationobject.recommendationTypeId | Where-Object { ![String]::IsNullOrEmpty($_) }
 
-    $nonadvmeta = $SCRIPT:advmetadata.value.properties[0].supportedvalues | Where-Object { $_.recommendationCategory -ne 'HighAvailability' }
+    $uri2 = 'https://management.azure.com/providers/Microsoft.Advisor/metadata?api-version=2023-01-01'
+    $r = Invoke-WebRequest -Uri $uri2 -Method Get -Headers $authHeaders
+
+    $advmetadata = $r.content | ConvertFrom-Json -Depth 100
+    $nonadvmeta = $advmetadata.value.properties[0].supportedvalues | Where-Object { $_.recommendationCategory -ne 'HighAvailability' }
 
     $Advisor_ID = $nonadvmeta.id
 
