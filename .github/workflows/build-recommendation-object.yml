@@ -39,7 +39,7 @@ jobs:
       (
         github.event.pull_request.head.repo.full_name != 'Azure/Azure-Proactive-Resiliency-Library-v2'
         &&
-        contains(github.event.pull_request.labels.*.name, 'PR: Safe to Build Recommendation Object :white_check_mark:')
+        contains(github.event.pull_request.labels.*.name, 'PR: Safe to Build Recommendation Object :mag:')
       )
       ||
       (
@@ -132,6 +132,6 @@ jobs:
         uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v4.2.1
 
       - run: |
-          gh pr edit ${{ github.event.pull_request.number }} --remove-label "PR: Safe to Build Recommendation Object :white_check_mark:"
+          gh pr edit ${{ github.event.pull_request.number }} --remove-label "PR: Safe to Build Recommendation Object :mag:"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
