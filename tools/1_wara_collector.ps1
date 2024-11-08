@@ -1509,7 +1509,7 @@ $Script:Runtime = Measure-Command -Expression {
     $retquery = "servicehealthresources | where properties.EventSubType contains 'Retirement' | order by id"
     $queryResults = Get-AllAzGraphResource -Query $retquery -subscriptionId $Subid
 
-    $Script:AllRetirements = foreach ($row in $queryResults) {
+    $theseRetirements = foreach ($row in $queryResults) {
       $OutagesRetired = $Script:RetiredOutages | Where-Object { $_.name -eq $row.properties.TrackingId }
 
       $result = [PSCustomObject]@{
@@ -1527,6 +1527,7 @@ $Script:Runtime = Measure-Command -Expression {
       }
       $result
     }
+    $Script:AllRetirements += $theseRetirements
   }
 
   function Invoke-ServiceHealthExtraction {
@@ -1544,7 +1545,7 @@ $Script:Runtime = Measure-Command -Expression {
       }
     }
 
-    $Script:AllServiceHealth = foreach ($Row in $Rowler) {
+    $theseServiceHealth = foreach ($Row in $Rowler) {
       $SubName = ($SubIds | Where-Object { $_.Id -eq ($Row.properties.scopes.split('/')[2]) }).Name
       $EventType = if ($Row.Properties.condition.allOf.anyOf | Select-Object -Property equals) { $Row.Properties.condition.allOf.anyOf | Select-Object -Property equals | ForEach-Object { switch ($_.equals) { 'Incident' { 'Service Issues' } 'Informational' { 'Health Advisories' } 'ActionRequired' { 'Security Advisory' } 'Maintenance' { 'Planned Maintenance' } } } } Else { 'All' }
       $Services = if ($Row.Properties.condition.allOf | Where-Object { $_.field -eq 'properties.impactedServices[*].ServiceName' }) { $Row.Properties.condition.allOf | Where-Object { $_.field -eq 'properties.impactedServices[*].ServiceName' } | Select-Object -Property containsAny | ForEach-Object { $_.containsAny } } Else { 'All' }
@@ -1562,6 +1563,7 @@ $Script:Runtime = Measure-Command -Expression {
       }
       $result
     }
+    $Script:AllServiceHealth += $theseServiceHealth
   }
 
   function New-JsonFile {
