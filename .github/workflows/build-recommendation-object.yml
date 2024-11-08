@@ -31,6 +31,24 @@ jobs:
     permissions:
       contents: write
     runs-on: ubuntu-latest
+    if: |
+      (
+        github.event.pull_request.head.repo.full_name == 'Azure/Azure-Proactive-Resiliency-Library-v2'
+      )
+      ||
+      (
+        github.event.pull_request.head.repo.full_name != 'Azure/Azure-Proactive-Resiliency-Library-v2'
+        &&
+        contains(github.event.pull_request.labels.*.name, 'PR: Safe to Build Recommendation Object :white_check_mark:')
+      )
+      ||
+      (
+        github.event_name == 'workflow_dispatch'
+      )
+      ||
+      (
+        github.event_name == 'merge_group'
+      )
 
     steps:
     - name: Harden Runner
@@ -96,3 +114,24 @@ jobs:
         fi
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  remove_label:
+    if: ${{ always()}}
+    needs: update-json-object
+    permissions:
+      contents: read
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
+        with:
+          egress-policy: audit
+
+      - name: 'Checkout Repository'
+        uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v4.2.1
+
+      - run: |
+          gh pr edit ${{ github.event.pull_request.number }} --remove-label "PR: Safe to Build Recommendation Object :white_check_mark:"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
