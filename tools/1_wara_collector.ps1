@@ -1580,7 +1580,7 @@ $Script:Runtime = Measure-Command -Expression {
 
     $uri2 = 'https://management.azure.com/providers/Microsoft.Advisor/metadata?api-version=2023-01-01'
     $r = Invoke-WebRequest -Uri $uri2 -Method Get -Headers $authHeaders
-    $nonadvmeta = $r.content | ConvertFrom-Json -Depth 100
+    $advmetadata = $r.content | ConvertFrom-Json -Depth 100
 
     $APRL_recommendationTypeID = $recommendationobject.recommendationTypeId | Where-Object { ![String]::IsNullOrEmpty($_) }
 
