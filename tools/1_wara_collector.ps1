@@ -1586,9 +1586,11 @@ $Script:Runtime = Measure-Command -Expression {
 
     $nonadvmeta = $SCRIPT:advmetadata.value.properties[0].supportedvalues | Where-Object { $_.recommendationCategory -ne 'HighAvailability' }
 
+    $Advisor_ID = $nonadvmeta.id
+
     $RecommendationsThatAreInAdvisorAndAprlButAreNotHighAvailability = (Get-WAFObjectByList -ObjectList $APRL_recommendationTypeID -FilterList $Advisor_ID) -join "','"
 
-    $Advisor_ID = $nonadvmeta.id
+
     $AdvisorQueryForRecommendationsThatAreInAdvisorAndAprlButAreNotHighAvailability = `
       "advisorresources
 | where type == 'microsoft.advisor/recommendations'
