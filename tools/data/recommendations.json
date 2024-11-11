@@ -4944,6 +4944,31 @@
     "query": "// Azure Resource Graph Query\n// Provides a list of Azure Subscriptions that are placed under the Tenant Root Management Group\nresourcecontainers\n| where type == 'microsoft.resources/subscriptions'\n| extend mgParentSize = array_length(properties.managementGroupAncestorsChain)\n| where mgParentSize == 1\n| project recommendationId=\"5ada5ffa-7149-4e49-9fbf-e67be7c2594c\", name, id, tags\n\n"
   },
   {
+    "aprlGuid": "9729c89d-8118-41b4-a39b-e12468fa872b",
+    "recommendationTypeId": null,
+    "recommendationMetadataState": "Active",
+    "learnMoreLink": [
+      {
+        "url": "https://learn.microsoft.com/azure/service-health/overview",
+        "name": "What is Azure Service Health?"
+      },
+      {
+        "url": "https://learn.microsoft.com/azure/service-health/alerts-activity-log-service-notifications-portal",
+        "name": "Configure alerts for service health events"
+      }
+    ],
+    "recommendationControl": "Monitoring and Alerting",
+    "longDescription": "Service health gives a personalized health view of Azure services and regions used, offering the best place for notifications on outages, planned maintenance, and health advisories by knowing the services used.\n",
+    "pgVerified": true,
+    "description": "Configure Service Health Alerts",
+    "potentialBenefits": "Proactive outage and maintenance alerts",
+    "tags": null,
+    "recommendationResourceType": "Microsoft.Subscription/Subscriptions",
+    "recommendationImpact": "High",
+    "automationAvailable": true,
+    "query": "// Azure Resource Graph Query\n// This resource graph query will return all subscriptions without Service Health alerts configured.\n\nresourcecontainers\n| where type == 'microsoft.resources/subscriptions'\n| project subscriptionAlerts=tostring(id),name,tags\n| join kind=leftouter (\n  resources\n  | where type == 'microsoft.insights/activitylogalerts' and properties.condition contains \"ServiceHealth\"\n  | extend subscriptions = properties.scopes\n  | project subscriptions\n  | mv-expand subscriptions\n  | project subscriptionAlerts = tostring(subscriptions)\n) on subscriptionAlerts\n| where isempty(subscriptionAlerts1)\n| project-away subscriptionAlerts1\n| project recommendationId = \"9729c89d-8118-41b4-a39b-e12468fa872b\",id=subscriptionAlerts,name,tags\n\n"
+  },
+  {
     "aprlGuid": "273f6b30-68e0-4241-85ea-acf15ffb60bf",
     "recommendationTypeId": null,
     "recommendationMetadataState": "Active",
