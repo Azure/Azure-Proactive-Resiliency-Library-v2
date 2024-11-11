@@ -1608,7 +1608,7 @@
     "recommendationResourceType": "Microsoft.Insights/activityLogAlerts",
     "recommendationImpact": "High",
     "automationAvailable": true,
-    "query": "// Azure Resource Graph Query\n// This resource graph query will return all subscriptions without Service Health alerts configured.\n\nresourcecontainers\n| where type == 'microsoft.resources/subscriptions'\n| project subscriptionAlerts=tostring(id),name,tags\n| join kind=leftouter (\n  resources\n  | where type == 'microsoft.insights/activitylogalerts' and properties.condition contains \"ServiceHealth\"\n  | extend subscriptions = properties.scopes\n  | project subscriptions\n  | mv-expand subscriptions\n  | project subscriptionAlerts = tostring(subscriptions)\n) on subscriptionAlerts\n| where isempty(subscriptionAlerts1)\n| project-away subscriptionAlerts1\n| project recommendationId = \"9729c89d-8118-41b4-a39b-e12468fa872b\",id=subscriptionAlerts,name,tags\n\n"
+    "query": "// Azure Resource Graph Query\n// This resource graph query will return all subscriptions without Service Health alerts configured.\nresourcecontainers\n| where type == 'microsoft.resources/subscriptions'\n| project subscriptionAlerts=tostring(id),name,tags\n| join kind=leftouter (\n  resources\n  | where type == 'microsoft.insights/activitylogalerts' and properties.condition contains \"ServiceHealth\"\n  | extend subscriptions = properties.scopes\n  | project subscriptions\n  | mv-expand subscriptions\n  | project subscriptionAlerts = tostring(subscriptions)\n) on subscriptionAlerts\n| where isempty(subscriptionAlerts1)\n| project-away subscriptionAlerts1\n| project recommendationId = \"9729c89d-8118-41b4-a39b-e12468fa872b\",name,id=subscriptionAlerts,tags\n\n"
   },
   {
     "aprlGuid": "e48a7227-5ec7-463a-b955-ee7cb598ded4",
@@ -4539,7 +4539,7 @@
   },
   {
     "aprlGuid": "8364fd0a-7c0e-e240-9d95-4bf965aec243",
-    "recommendationTypeId": "ef4da732-f541-4109-bc0e-465c68b6c7eb",
+    "recommendationTypeId": null,
     "recommendationMetadataState": "Active",
     "learnMoreLink": [
       {
@@ -4547,7 +4547,7 @@
         "url": "https://learn.microsoft.com/en-us/azure/application-gateway/configuration-infrastructure#size-of-the-subnet"
       }
     ],
-    "recommendationControl": "Other Best Practices",
+    "recommendationControl": "Performance",
     "longDescription": "Application Gateway v2 (Standard_v2 or WAF_v2 SKU) can support up to 125 instances. A /24 subnet isn't mandatory for deployment but is advised to provide enough space for autoscaling and maintenance upgrades.\n",
     "pgVerified": true,
     "description": "Ensure Application Gateway Subnet is using a /24 subnet mask",
