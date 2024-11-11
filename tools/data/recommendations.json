@@ -3268,31 +3268,6 @@
     "query": "// under-development\n"
   },
   {
-    "aprlGuid": "4281631c-3d19-4994-8d96-084c2a51a534",
-    "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
-    "learnMoreLink": [
-      {
-        "name": "Scale a NAT gateway to meet the demand of a dynamic workload",
-        "url": "https://learn.microsoft.com/en-us/azure/nat-gateway/nat-gateway-design#scale-a-nat-gateway-to-meet-the-demand-of-a-dynamic-workload"
-      },
-      {
-        "name": "Total SNAT Connection Count",
-        "url": "https://learn.microsoft.com/en-us/azure/nat-gateway/nat-metrics#total-snat-connection-count"
-      }
-    ],
-    "recommendationControl": "Scalability",
-    "longDescription": "NAT Gateway provides 64,512 SNAT ports per public IP address and supports up to 16 public IP addresses. Monitor \"Total SNAT connection count\" metric to determine if you're nearing the connection limit of NAT gateway. You can scale the NAT gateway by adding more public IP addresses.\n",
-    "pgVerified": false,
-    "description": "Scale a NAT gateway to meet the demand of a dynamic workload",
-    "potentialBenefits": "Enhances reliability and scalability",
-    "tags": null,
-    "recommendationResourceType": "Microsoft.Network/natGateways",
-    "recommendationImpact": "Medium",
-    "automationAvailable": false,
-    "query": "// under-development\n\n"
-  },
-  {
     "aprlGuid": "babf75d6-6407-4d90-b01e-5a1768e621f5",
     "recommendationTypeId": null,
     "recommendationMetadataState": "Active",
@@ -3308,33 +3283,12 @@
     ],
     "recommendationControl": "Monitoring and Alerting",
     "longDescription": "Use Network Insights for monitoring and alerting on your NAT gateway.Use Total SNAT connection count metric to determine if you're nearing the connection limit of NAT gateway. Set alerts based on Azure Monitor Baseline Alerts (AMBA) thresholds for NAT Gateway\n",
-    "pgVerified": false,
+    "pgVerified": true,
     "description": "Configure monitoring and alerting for NAT gateway",
     "potentialBenefits": "Enhanced network performance and health",
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/natGateways",
     "recommendationImpact": "High",
-    "automationAvailable": false,
-    "query": "// under-development\n\n"
-  },
-  {
-    "aprlGuid": "419df1ea-336b-460a-b6b2-fefe2588fcef",
-    "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
-    "learnMoreLink": [
-      {
-        "name": "Zonal NAT gateway resource for each zone in a region to create zone-resiliency",
-        "url": "https://learn.microsoft.com/en-us/azure/nat-gateway/nat-availability-zones#zonal-nat-gateway-resource-for-each-zone-in-a-region-to-create-zone-resiliency"
-      }
-    ],
-    "recommendationControl": "High Availability",
-    "longDescription": "A zonal promise for zone isolation scenarios exists when a virtual machine instance using a NAT gateway resource is in the same zone as the NAT gateway resource and its public IP addresses. The pattern you want to use for zone isolation is creating a \"zonal stack\" per availability zone.\n",
-    "pgVerified": false,
-    "description": "Consider zonal NAT gateway deployment for zone isolation scenarios",
-    "potentialBenefits": "Enhances reliability and scalability",
-    "tags": null,
-    "recommendationResourceType": "Microsoft.Network/natGateways",
-    "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// under-development\n\n"
   },
