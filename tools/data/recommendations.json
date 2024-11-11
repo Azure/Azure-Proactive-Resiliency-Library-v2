@@ -1815,7 +1815,7 @@
     ],
     "recommendationControl": "Scalability",
     "longDescription": "Avoid frequent scaling up/down of Azure App Service instances to prevent service disruptions. Choose the right tier and size for the workload and scale out for traffic changes, as scaling adjustments can trigger application restarts.\n",
-    "pgVerified": true,
+    "pgVerified": false,
     "description": "Avoid scaling up or down",
     "potentialBenefits": "Minimizes restarts, enhances stability",
     "tags": null,
@@ -4944,6 +4944,31 @@
     "query": "// Azure Resource Graph Query\n// Provides a list of Azure Subscriptions that are placed under the Tenant Root Management Group\nresourcecontainers\n| where type == 'microsoft.resources/subscriptions'\n| extend mgParentSize = array_length(properties.managementGroupAncestorsChain)\n| where mgParentSize == 1\n| project recommendationId=\"5ada5ffa-7149-4e49-9fbf-e67be7c2594c\", name, id, tags\n\n"
   },
   {
+    "aprlGuid": "9729c89d-8118-41b4-a39b-e12468fa872b",
+    "recommendationTypeId": null,
+    "recommendationMetadataState": "Active",
+    "learnMoreLink": [
+      {
+        "url": "https://learn.microsoft.com/azure/service-health/overview",
+        "name": "What is Azure Service Health?"
+      },
+      {
+        "url": "https://learn.microsoft.com/azure/service-health/alerts-activity-log-service-notifications-portal",
+        "name": "Configure alerts for service health events"
+      }
+    ],
+    "recommendationControl": "Monitoring and Alerting",
+    "longDescription": "Service health gives a personalized health view of Azure services and regions used, offering the best place for notifications on outages, planned maintenance, and health advisories by knowing the services used.\n",
+    "pgVerified": true,
+    "description": "Configure Service Health Alerts",
+    "potentialBenefits": "Proactive outage and maintenance alerts",
+    "tags": null,
+    "recommendationResourceType": "Microsoft.Subscription/Subscriptions",
+    "recommendationImpact": "High",
+    "automationAvailable": true,
+    "query": "// Azure Resource Graph Query\n// This resource graph query will return all subscriptions without Service Health alerts configured.\n\nresourcecontainers\n| where type == 'microsoft.resources/subscriptions'\n| project subscriptionAlerts=tostring(id),name,tags\n| join kind=leftouter (\n  resources\n  | where type == 'microsoft.insights/activitylogalerts' and properties.condition contains \"ServiceHealth\"\n  | extend subscriptions = properties.scopes\n  | project subscriptions\n  | mv-expand subscriptions\n  | project subscriptionAlerts = tostring(subscriptions)\n) on subscriptionAlerts\n| where isempty(subscriptionAlerts1)\n| project-away subscriptionAlerts1\n| project recommendationId = \"9729c89d-8118-41b4-a39b-e12468fa872b\",id=subscriptionAlerts,name,tags\n\n"
+  },
+  {
     "aprlGuid": "273f6b30-68e0-4241-85ea-acf15ffb60bf",
     "recommendationTypeId": null,
     "recommendationMetadataState": "Active",
@@ -6654,7 +6679,7 @@
     ],
     "recommendationControl": "High Availability",
     "longDescription": "Upgrading the API Management instance to the Premium SKU adds support for Availability Zones, enhancing availability and resilience by distributing services across physically separate locations within Azure regions.\n",
-    "pgVerified": false,
+    "pgVerified": true,
     "description": "Migrate API Management services to Premium SKU to support Availability Zones",
     "potentialBenefits": "Enhanced availability and resilience",
     "tags": null,
@@ -6679,7 +6704,7 @@
     ],
     "recommendationControl": "High Availability",
     "longDescription": "Zone redundancy for APIM instances ensures the gateway and control plane (Management API, developer portal, Git configuration) are replicated across datacenters in physically separated zones, boosting resilience to zone failures.\n",
-    "pgVerified": false,
+    "pgVerified": true,
     "description": "Enable Availability Zones on Premium API Management instances",
     "potentialBenefits": "Improved resilience to zone failures",
     "tags": null,
@@ -6703,8 +6728,8 @@
       }
     ],
     "recommendationControl": "High Availability",
-    "longDescription": "Upgrading to API Management stv2 is required as stv1 retires on 31 Aug 2024, offering enhanced capabilities with the new platform version.\n",
-    "pgVerified": false,
+    "longDescription": "stv1 instances were deprecated on August 31, 2024. If not migrated to stv2 by then, auto-migration will occur. In some cases, due to technical limitations, services may be shut down in March 2025.\n",
+    "pgVerified": true,
     "description": "Azure API Management platform version should be stv2",
     "potentialBenefits": "Ensures service continuity",
     "tags": null,
@@ -6725,7 +6750,7 @@
     ],
     "recommendationControl": "High Availability",
     "longDescription": "Use API Management with auto-scale for high availability in workloads that experience variable traffic patterns. There are several limitations with auto-scale, so review the documentation to ensure it meets your requirements.\n",
-    "pgVerified": false,
+    "pgVerified": true,
     "description": "Enable auto-scale for production workloads on API Management services",
     "potentialBenefits": "Enhanced availability and resilience",
     "tags": null,
