@@ -1,7 +1,7 @@
 // Azure Resource Graph Query
 // For all VNGs of type ExpressRoute, show all that are not zone redundant (Zonal or Regional)
 advisorresources
-| where properties.recommendationTypeId == 'c9af1ef6-55bc-48af-bfe4-2c80490159f8' // RecommendationID from Advisor
+| where properties.recommendationTypeId =~ 'c9af1ef6-55bc-48af-bfe4-2c80490159f8' // RecommendationID from Advisor
 | mv-expand resId = properties.resourceMetadata.resourceId
 | extend resId = tostring(resId)
 | project recId = properties.recommendationTypeId, resId
