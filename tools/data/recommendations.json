@@ -3680,7 +3680,7 @@
     "recommendationResourceType": "Microsoft.Network/virtualNetworkGateways",
     "recommendationImpact": "High",
     "automationAvailable": true,
-    "query": "// Azure Resource Graph Query\n// For all VNGs of type ExpressRoute, show all that are not zone redundant (Zonal or Regional)\nadvisorresources\n| where properties.recommendationTypeId == 'c9af1ef6-55bc-48af-bfe4-2c80490159f8' // RecommendationID from Advisor\n| mv-expand resId = properties.resourceMetadata.resourceId\n| extend resId = tostring(resId)\n| project recId = properties.recommendationTypeId, resId\n| join kind=leftouter (\n    resources\n    | extend id = tostring(id)\n    | project id, name, tags, location, properties\n) on $left.resId == $right.id\n| project recommendationId = \"bbe668b7-eb5c-c746-8b82-70afdedf0cae\", name , resId, tags, param1 = strcat(\"sku-tier: \", properties.sku.tier), param2 = location,param3 = \"Non Zone-Redundant GW\"\n"
+    "query": "// Azure Resource Graph Query\n// For all VNGs of type ExpressRoute, show all that are not zone redundant (Zonal or Regional)\nadvisorresources\n| where properties.recommendationTypeId =~ 'c9af1ef6-55bc-48af-bfe4-2c80490159f8' // RecommendationID from Advisor\n| mv-expand resId = properties.resourceMetadata.resourceId\n| extend resId = tostring(resId)\n| project recId = properties.recommendationTypeId, resId\n| join kind=leftouter (\n    resources\n    | extend id = tostring(id)\n    | project id, name, tags, location, properties\n) on $left.resId == $right.id\n| project recommendationId = \"bbe668b7-eb5c-c746-8b82-70afdedf0cae\", name , resId, tags, param1 = strcat(\"sku-tier: \", properties.sku.tier), param2 = location,param3 = \"Non Zone-Redundant GW\"\n"
   },
   {
     "aprlGuid": "c0f23a92-d322-4d4d-97e9-a238b5e3bbb8",
@@ -4084,8 +4084,8 @@
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/trafficManagerProfiles",
     "recommendationImpact": "Medium",
-    "automationAvailable": false,
-    "query": "// cannot-be-validated-with-arg\n\n"
+    "automationAvailable": true,
+    "query": "// Azure Resource Graph Query\n// Find traffic manager profiles that do not have at least two endpoints in different regions\nresources\n| where type == \"microsoft.network/trafficmanagerprofiles\"\n| extend endpoints = properties.endpoints\n| mv-expand endpoint = endpoints\n| extend endpointLocation = endpoint.properties.endpointLocation\n| summarize\n    regions = makeset(endpointLocation),\n    tags = any(tags),\n    name = any(name)\n  by id\n| extend regionCount = array_length(regions)\n| where regionCount <= 1\n| project recommendationId = \"1ad9d7b7-9692-1441-a8f4-93792efbe97a\", name, id, tags, param1 = regions\n"
   },
   {
     "aprlGuid": "c31f76a0-48cd-9f44-aa43-99ee904db9bc",
@@ -4172,7 +4172,7 @@
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/networkWatchers",
     "recommendationImpact": "High",
-    "automationAvailable": true,
+    "automationAvailable": false,
     "query": "// under-development\n"
   },
   {
@@ -4686,8 +4686,8 @@
       }
     ],
     "recommendationControl": "Monitoring and Alerting",
-    "longDescription": "Creating a metric to monitor latency probes over 20ms for periods longer than 30ms helps identify when firewall instance CPUs are stressed, potentially indicating issues.\n",
-    "pgVerified": false,
+    "longDescription": "Using the Azure Firewall latency probe metric to monitor sustained latency over 30ms (accounting for normal spikes) can help identify when firewall instance CPU utilization is under stress, potentially indicating performance issues\n",
+    "pgVerified": true,
     "description": "Monitor \"AZFW Latency Probe\" metric",
     "potentialBenefits": "Improved CPU stress detection",
     "tags": null,
@@ -5689,7 +5689,7 @@
     "tags": null,
     "recommendationResourceType": "Microsoft.Compute/galleries",
     "recommendationImpact": "Medium",
-    "automationAvailable": true,
+    "automationAvailable": false,
     "query": "// under-development\n"
   },
   {
@@ -5710,7 +5710,7 @@
     "tags": null,
     "recommendationResourceType": "Microsoft.Compute/galleries",
     "recommendationImpact": "Medium",
-    "automationAvailable": true,
+    "automationAvailable": false,
     "query": "// under-development\n"
   },
   {
@@ -7340,7 +7340,7 @@
     "recommendationResourceType": "Microsoft.EventHub/namespaces",
     "recommendationImpact": "High",
     "automationAvailable": true,
-    "query": null
+    "query": "// Azure Resource Graph Query\n// Find Event Hub namespace instances that are not zone redundant\nresources\n| where type == \"microsoft.eventhub/namespaces\"\n| where properties.zoneRedundant == false\n| project recommendationId = \"84636c6c-b317-4722-b603-7b1ffc16384b\", name, id, tags, param1 = \"ZoneRedundant: False\"\n| order by id asc\n\n"
   },
   {
     "aprlGuid": "fbfef3df-04a5-41b2-a8fd-b8541eb04956",
@@ -7381,27 +7381,6 @@
     "tags": null,
     "recommendationResourceType": "Microsoft.Databricks/workspaces",
     "recommendationImpact": "Medium",
-    "automationAvailable": false,
-    "query": "// under-development\n\n"
-  },
-  {
-    "aprlGuid": "c166602e-0804-e34b-be8f-09b4d56e1fcd",
-    "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
-    "learnMoreLink": [
-      {
-        "name": "Best practices for reliability",
-        "url": "https://learn.microsoft.com/en-us/azure/databricks/lakehouse-architecture/reliability/best-practices"
-      }
-    ],
-    "recommendationControl": "Scalability",
-    "longDescription": "Databricks pools pre-provision VMs, reducing risks of provisioning errors during cluster start or scale, enhancing reliability.\n",
-    "pgVerified": true,
-    "description": "Use Databricks Pools",
-    "potentialBenefits": "Reduces provisioning errors",
-    "tags": null,
-    "recommendationResourceType": "Microsoft.Databricks/workspaces",
-    "recommendationImpact": "High",
     "automationAvailable": false,
     "query": "// under-development\n\n"
   },
@@ -7553,27 +7532,6 @@
     "tags": null,
     "recommendationResourceType": "Microsoft.Databricks/workspaces",
     "recommendationImpact": "High",
-    "automationAvailable": false,
-    "query": "// under-development\n\n"
-  },
-  {
-    "aprlGuid": "892ca809-e2b5-9a47-924a-71132bf6f902",
-    "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
-    "learnMoreLink": [
-      {
-        "name": "Best practices for reliability",
-        "url": "https://learn.microsoft.com/en-us/azure/databricks/lakehouse-architecture/reliability/best-practices#use-apache-spark-or-photon-for-distributed-compute"
-      }
-    ],
-    "recommendationControl": "High Availability",
-    "longDescription": "Apache Spark in Databricks Lakehouse ensures resilient distributed data processing by automatically rescheduling failed tasks, aiding in overcoming external issues like network problems or revoked VMs.\n",
-    "pgVerified": true,
-    "description": "Use Photon Acceleration",
-    "potentialBenefits": "Boosts speed and reliability for Spark tasks",
-    "tags": null,
-    "recommendationResourceType": "Microsoft.Databricks/workspaces",
-    "recommendationImpact": "Low",
     "automationAvailable": false,
     "query": "// under-development\n\n"
   },
@@ -8008,6 +7966,27 @@
     "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// under-development\n\n"
+  },
+  {
+    "aprlGuid": "e94da1f8-33e7-48a6-b301-72f19a53bc29",
+    "recommendationTypeId": null,
+    "recommendationMetadataState": "Active",
+    "learnMoreLink": [
+      {
+        "name": "Best practices for reliability",
+        "url": "https://learn.microsoft.com/en-us/azure/databricks/lakehouse-architecture/reliability/best-practices#use-managed-services-where-possible"
+      }
+    ],
+    "recommendationControl": "Scalability",
+    "longDescription": "Where possible Leverage managed services (serverless compute) from the Databricks Data Intelligence Platform, such as:serverless SQL warehouses, model serving, serverless jobs, serverless compute for notebooks.\n",
+    "pgVerified": true,
+    "description": "Use managed services where possible",
+    "potentialBenefits": "Improve resiliency and scalability at no additional cost",
+    "tags": null,
+    "recommendationResourceType": "Microsoft.Databricks/workspaces",
+    "recommendationImpact": "High",
+    "automationAvailable": false,
+    "query": "// cannot-be-validated-with-arg\n"
   },
   {
     "aprlGuid": "726abfe3-adae-4a6d-8eb8-4b27a7214ca1",
