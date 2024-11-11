@@ -1,2 +1,15 @@
-// cannot-be-validated-with-arg
-
+// Azure Resource Graph Query
+// Find traffic manager profiles that do not have at least two endpoints in different regions
+resources
+| where type == "microsoft.network/trafficmanagerprofiles"
+| extend endpoints = properties.endpoints
+| mv-expand endpoint = endpoints
+| extend endpointLocation = endpoint.properties.endpointLocation
+| summarize
+    regions = makeset(endpointLocation),
+    tags = any(tags),
+    name = any(name)
+  by id
+| extend regionCount = array_length(regions)
+| where regionCount <= 1
+| project recommendationId = "1ad9d7b7-9692-1441-a8f4-93792efbe97a", name, id, tags, param1 = regions
