@@ -159,7 +159,7 @@
 - description: Ensure Application Gateway Subnet is using a /24 subnet mask
   aprlGuid: 8364fd0a-7c0e-e240-9d95-4bf965aec243
   recommendationTypeId: null
-  recommendationControl: Performance
+  recommendationControl: Other Best Practices
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/applicationGateways
   recommendationMetadataState: Active
