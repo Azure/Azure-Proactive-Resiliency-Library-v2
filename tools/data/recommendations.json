@@ -4924,12 +4924,12 @@
     "recommendationMetadataState": "Active",
     "learnMoreLink": [
       {
-        "name": "What is Azure Service Health?",
-        "url": "https://learn.microsoft.com/azure/service-health/overview"
+        "url": "https://learn.microsoft.com/azure/service-health/overview",
+        "name": "What is Azure Service Health?"
       },
       {
-        "name": "Configure alerts for service health events",
-        "url": "https://learn.microsoft.com/azure/service-health/alerts-activity-log-service-notifications-portal"
+        "url": "https://learn.microsoft.com/azure/service-health/alerts-activity-log-service-notifications-portal",
+        "name": "Configure alerts for service health events"
       }
     ],
     "recommendationControl": "Monitoring and Alerting",
