@@ -1,4 +1,4 @@
-- description: Connect on-prem networks to Azure critical workloads via multiple ExpressRoutes
+- description: Connect on-prem networks to Azure critical workloads via multiple ExpressRoutes peering locations
   aprlGuid: 4d703025-dafc-f840-a183-5dc440456134
   recommendationTypeId: null
   recommendationControl: High Availability
