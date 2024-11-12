@@ -183,7 +183,7 @@
   recommendationResourceType: Specialized.Workload/AVD
   recommendationMetadataState: Active
   longDescription: |
-    RDP Shortpath establishes a direct UDP-based connection between a client and the session host. By default, Remote Desktop Protocol (RDP) tries to establish connection using UDP and uses a TCP-based reverse connect transport as a fallback connection mechanism. UDP-based transport offers better connection reliability and more consistent latency.
+    RDP Shortpath establishes a direct UDP-based connection between a client and the session host. By default, RDP tries to use UDP and falls back to TCP if needed. UDP transport offers better connection reliability and consistent latency.
   potentialBenefits: Better reliability and consistent latency
   pgVerified: true
   automationAvailable: false
@@ -200,7 +200,7 @@
   recommendationResourceType: Specialized.Workload/AVD
   recommendationMetadataState: Active
   longDescription: |
-    Ensure that AVD session hosts can effectively communicate with the AVD control plane and that UDP ports are open if UDP is utilized. Validate the connectivity of VMs to the AVD Control Plane and confirm the accessibility of UDP TURN ports. Whitelist global URLs and ensure that UDP/TURN ports are open and accessible to facilitate smooth user connections.
+    Ensure AVD session hosts can communicate with the AVD control plane and that UDP ports are open if used. Validate VM connectivity to the AVD Control Plane and confirm UDP TURN port accessibility. Whitelist global URLs and ensure UDP/TURN ports are open for smooth user connections.
   potentialBenefits: Enhanced performance & user experience
   pgVerified: true
   automationAvailable: false
@@ -254,8 +254,7 @@
   recommendationResourceType: Specialized.Workload/AVD
   recommendationMetadataState: Active
   longDescription: |
-    NSG and ASG per AVD persona and IP space per Prod/DR regions.
-    It's important your organization plans for IP addressing in Azure. Planning ensures the IP address space doesn't overlap across on-premises locations and Azure regions. Overlapping IP address spaces across on-premises and Azure regions create major contention challenges.
+    NSG and ASG per AVD persona and IP space per Prod/DR regions. Plan IP addressing to avoid overlaps between on-premises and Azure regions, preventing major contention challenges.
   potentialBenefits: Enhances security and prevents IP conflicts
   pgVerified: true
   automationAvailable: false
@@ -272,7 +271,7 @@
   recommendationResourceType: Specialized.Workload/AVD
   recommendationMetadataState: Active
   longDescription: |
-    Ensure that Route Tables have static routes to allow session host traffic that targets AVD control plane to go outbound directly out of the subnet to the internet (next hop), this will avoid any delays of inspecting or adding additional hops in the communication of trusted traffic.
+    Ensure Route Tables have static routes for session host traffic targeting the AVD control plane to go directly to the internet (next hop). This avoids delays from additional hops or inspections in trusted traffic communication.
   potentialBenefits: Enhanced performance and Disaster Recovery
   pgVerified: true
   automationAvailable: false
@@ -291,7 +290,7 @@
   recommendationResourceType: Specialized.Workload/AVD
   recommendationMetadataState: Active
   longDescription: |
-    Establish a systematic process for handling image updates within your Azure Virtual Desktop environment. Instead of directly updating individual session hosts, create a new version of the updated image. This process involves creating and configuring a golden image with the necessary updates and configurations.
+    Establish a process for handling image updates in your AVD environment. Instead of updating session hosts directly, create a new version of the updated image. This involves creating and configuring a golden image with the necessary updates and configurations.
   potentialBenefits: Ensures consistency; minimizes drift
   pgVerified: true
   automationAvailable: false
@@ -342,7 +341,7 @@
   recommendationResourceType: Specialized.Workload/AVD
   recommendationMetadataState: Active
   longDescription: |
-    Configure diagnostic settings on FSLogix storage resources and regularly its metrics and FSLogix logs for errors. Events can be reviewed by looking locally inside the Session Host, but it is recommended to configure AVD insights workbook to consolidate this information to a Log Analytics workspace.
+    Configure diagnostic settings on FSLogix storage and regularly monitor its metrics and logs for errors. While events can be reviewed locally on the Session Host, it is recommended to use AVD insights workbook to consolidate this information into a Log Analytics workspace.
   potentialBenefits: Enhanced AVD error tracking and resolution
   pgVerified: true
   automationAvailable: false
@@ -361,7 +360,7 @@
   recommendationResourceType: Specialized.Workload/AVD
   recommendationMetadataState: Active
   longDescription: |
-    Ensure a process is in place to regularly check for FSLogix agent upgrades and maintain FSLogix up to date. We recommend customers upgrade to the latest version of FSLogix as quickly as their deployment process can allow. FSLogix will provide hotfix releases which address current and potential bugs that impact customer deployments. Additionally, it is the first requirement when opening any support case.
+    Ensure a process to regularly check and update FSLogix agent. Upgrade to the latest version promptly to address bugs and meet support requirements. FSLogix releases hotfixes to resolve issues impacting deployments. Keeping FSLogix updated is crucial for support and reliability.
   potentialBenefits: Enhanced reliability & support
   pgVerified: true
   automationAvailable: false
@@ -396,8 +395,7 @@
   recommendationResourceType: Specialized.Workload/AVD
   recommendationMetadataState: Active
   longDescription: |
-    App Attach packages should be on a separate share from profiles. And App Attach files should be backed up. Requirements can vary greatly depending on how many packaged applications are stored in an image, and you need to test your applications to understand your requirements.
-    Your file share should be in the same Azure region as your session hosts.
+    App Attach packages should be on a separate share from profiles and backed up. Requirements vary based on the number of packaged applications. Test your applications to understand your needs. Ensure the file share is in the same Azure region as your session hosts.
   potentialBenefits: Enhances performance and scalability
   pgVerified: true
   automationAvailable: false
@@ -414,7 +412,7 @@
   recommendationResourceType: Specialized.Workload/AVD
   recommendationMetadataState: Active
   longDescription: |
-    To ensure continuous availability and disaster recovery readiness, it is recommended to provision a secondary Key Vault in a secondary region. In the event of a primary region failure, this secondary Key Vault will ensure that critical secrets are accessible for use in deployments in the secondary region.
+    To ensure continuous availability and disaster recovery readiness, provision a secondary Key Vault in a secondary region. In case of a primary region failure, the secondary Key Vault will ensure critical secrets remain accessible for deployments in the secondary region.
   potentialBenefits: Ensures DR readiness and access
   pgVerified: true
   automationAvailable: false
@@ -431,8 +429,7 @@
   recommendationResourceType: Specialized.Workload/AVD
   recommendationMetadataState: Active
   longDescription: |
-    When using an AD DS identity solution with AVD, it is recommended to deploy two or more domain controllers on Azure virtual machines across availability zones. This improves the environment's reliability by removing a dependency on an on-premises service and improves performance by creating a shorter path for user authentication.
-    This recommendation doesn't apply when using Microsoft Entra ID or Entra Domain Services joined session hosts.
+    Deploy multiple domain controllers on Azure VMs across availability zones with AVD session hosts. This removes on-premises dependencies and improves performance with a shorter authentication path. This doesn't apply to Microsoft Entra ID or Entra Domain Services joined session hosts.
   potentialBenefits: Enhanced identity resilience
   pgVerified: true
   automationAvailable: false
@@ -449,7 +446,7 @@
   recommendationResourceType: Specialized.Workload/AVD
   recommendationMetadataState: Active
   longDescription: |
-    When using custom DNS servers, deploy DNS servers on Azure virtual machines across availability zones in the same region as the session hosts. This improves the environment's reliability by removing a dependency on an on-premises service and improves performance by creating a shorter path for name resolution.
+    Deploy custom DNS servers on Azure VMs across availability zones in the same region as session hosts. This removes on-premises dependencies and improves performance by shortening the name resolution path.
   potentialBenefits: Enhanced reliability and performance
   pgVerified: true
   automationAvailable: false
