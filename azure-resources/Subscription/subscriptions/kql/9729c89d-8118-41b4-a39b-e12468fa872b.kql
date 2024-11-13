@@ -14,5 +14,5 @@ resourcecontainers
 ) on subscriptionAlerts
 | where isempty(subscriptionAlerts1)
 | project-away subscriptionAlerts1
-| project recommendationId = "9729c89d-8118-41b4-a39b-e12468fa872b",id=subscriptionAlerts,name,tags
+| project recommendationId = "9729c89d-8118-41b4-a39b-e12468fa872b",name,id=subscriptionAlerts,tags
 

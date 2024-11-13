@@ -1586,31 +1586,6 @@
     "query": "// cannot-be-validated-with-arg\n\n"
   },
   {
-    "aprlGuid": "9729c89d-8118-41b4-a39b-e12468fa872b",
-    "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
-    "learnMoreLink": [
-      {
-        "name": "What is Azure Service Health?",
-        "url": "https://learn.microsoft.com/azure/service-health/overview"
-      },
-      {
-        "name": "Configure alerts for service health events",
-        "url": "https://learn.microsoft.com/azure/service-health/alerts-activity-log-service-notifications-portal"
-      }
-    ],
-    "recommendationControl": "Monitoring and Alerting",
-    "longDescription": "Service health gives a personalized health view of Azure services and regions used, offering the best place for notifications on outages, planned maintenance, and health advisories by knowing the services used.\n",
-    "pgVerified": true,
-    "description": "Configure Service Health Alerts",
-    "potentialBenefits": "Proactive outage and maintenance alerts",
-    "tags": null,
-    "recommendationResourceType": "Microsoft.Insights/activityLogAlerts",
-    "recommendationImpact": "High",
-    "automationAvailable": true,
-    "query": "// Azure Resource Graph Query\n// This resource graph query will return all subscriptions without Service Health alerts configured.\n\nresourcecontainers\n| where type == 'microsoft.resources/subscriptions'\n| project subscriptionAlerts=tostring(id),name,tags\n| join kind=leftouter (\n  resources\n  | where type == 'microsoft.insights/activitylogalerts' and properties.condition contains \"ServiceHealth\"\n  | extend subscriptions = properties.scopes\n  | project subscriptions\n  | mv-expand subscriptions\n  | project subscriptionAlerts = tostring(subscriptions)\n) on subscriptionAlerts\n| where isempty(subscriptionAlerts1)\n| project-away subscriptionAlerts1\n| project recommendationId = \"9729c89d-8118-41b4-a39b-e12468fa872b\",id=subscriptionAlerts,name,tags\n\n"
-  },
-  {
     "aprlGuid": "e48a7227-5ec7-463a-b955-ee7cb598ded4",
     "recommendationTypeId": null,
     "recommendationMetadataState": "Active",
@@ -1664,7 +1639,7 @@
     ],
     "recommendationControl": "Disaster Recovery",
     "longDescription": "Key Vault's soft-delete feature enables recovery of deleted vaults and objects like keys, secrets, and certificates. When enabled, marked resources are retained for 90 days, allowing for their recovery, essentially undoing deletion.\n",
-    "pgVerified": false,
+    "pgVerified": true,
     "description": "Key vaults should have soft delete enabled",
     "potentialBenefits": "Enables recovery of deleted items",
     "tags": null,
@@ -1685,7 +1660,7 @@
     ],
     "recommendationControl": "Disaster Recovery",
     "longDescription": "Purge protection secures against malicious deletions by enforcing a retention period for soft deleted key vaults, ensuring no one, not even insiders or Microsoft, can purge your key vaults during this period, preventing permanent data loss.\n",
-    "pgVerified": false,
+    "pgVerified": true,
     "description": "Key vaults should have purge protection enabled",
     "potentialBenefits": "Protects from insider attacks, avoids data loss",
     "tags": null,
@@ -1706,7 +1681,7 @@
     ],
     "recommendationControl": "Security",
     "longDescription": "Azure Private Link Service lets you securely and privately connect to Azure Key Vault via a Private Endpoint in your VNet, using a private IP and eliminating public Internet exposure.\n",
-    "pgVerified": false,
+    "pgVerified": true,
     "description": "Private endpoint should be configured for Key Vault",
     "potentialBenefits": "Secure Key Vault with Private Link",
     "tags": null,
@@ -1727,7 +1702,7 @@
     ],
     "recommendationControl": "Governance",
     "longDescription": "Key vaults are security boundaries for secret storage. Grouping secrets together increases risk during a security event, as attacks could access multiple secrets.\n",
-    "pgVerified": false,
+    "pgVerified": true,
     "description": "Use separate key vaults per application per environment",
     "potentialBenefits": "Enhanced security, Reduced risk",
     "tags": null,
@@ -1748,7 +1723,7 @@
     ],
     "recommendationControl": "Monitoring and Alerting",
     "longDescription": "Enable logs, set up alerts, and adhere to retention requirements for improved monitoring and security of Key Vault access, detailing the frequency and identity of users.\n",
-    "pgVerified": false,
+    "pgVerified": true,
     "description": "Diagnostic logs in Key Vault should be enabled",
     "potentialBenefits": "Enhanced monitoring and security compliance",
     "tags": null,
@@ -1815,7 +1790,7 @@
     ],
     "recommendationControl": "Scalability",
     "longDescription": "Avoid frequent scaling up/down of Azure App Service instances to prevent service disruptions. Choose the right tier and size for the workload and scale out for traffic changes, as scaling adjustments can trigger application restarts.\n",
-    "pgVerified": true,
+    "pgVerified": false,
     "description": "Avoid scaling up or down",
     "potentialBenefits": "Minimizes restarts, enhances stability",
     "tags": null,
@@ -4944,6 +4919,31 @@
     "query": "// Azure Resource Graph Query\n// Provides a list of Azure Subscriptions that are placed under the Tenant Root Management Group\nresourcecontainers\n| where type == 'microsoft.resources/subscriptions'\n| extend mgParentSize = array_length(properties.managementGroupAncestorsChain)\n| where mgParentSize == 1\n| project recommendationId=\"5ada5ffa-7149-4e49-9fbf-e67be7c2594c\", name, id, tags\n\n"
   },
   {
+    "aprlGuid": "9729c89d-8118-41b4-a39b-e12468fa872b",
+    "recommendationTypeId": null,
+    "recommendationMetadataState": "Active",
+    "learnMoreLink": [
+      {
+        "name": "What is Azure Service Health?",
+        "url": "https://learn.microsoft.com/azure/service-health/overview"
+      },
+      {
+        "name": "Configure alerts for service health events",
+        "url": "https://learn.microsoft.com/azure/service-health/alerts-activity-log-service-notifications-portal"
+      }
+    ],
+    "recommendationControl": "Monitoring and Alerting",
+    "longDescription": "Service health gives a personalized health view of Azure services and regions used, offering the best place for notifications on outages, planned maintenance, and health advisories by knowing the services used.\n",
+    "pgVerified": true,
+    "description": "Configure Service Health Alerts",
+    "potentialBenefits": "Proactive outage and maintenance alerts",
+    "tags": null,
+    "recommendationResourceType": "Microsoft.Subscription/Subscriptions",
+    "recommendationImpact": "High",
+    "automationAvailable": true,
+    "query": "// Azure Resource Graph Query\n// This resource graph query will return all subscriptions without Service Health alerts configured.\n\nresourcecontainers\n| where type == 'microsoft.resources/subscriptions'\n| project subscriptionAlerts=tostring(id),name,tags\n| join kind=leftouter (\n  resources\n  | where type == 'microsoft.insights/activitylogalerts' and properties.condition contains \"ServiceHealth\"\n  | extend subscriptions = properties.scopes\n  | project subscriptions\n  | mv-expand subscriptions\n  | project subscriptionAlerts = tostring(subscriptions)\n) on subscriptionAlerts\n| where isempty(subscriptionAlerts1)\n| project-away subscriptionAlerts1\n| project recommendationId = \"9729c89d-8118-41b4-a39b-e12468fa872b\",name,id=subscriptionAlerts,tags\n\n"
+  },
+  {
     "aprlGuid": "273f6b30-68e0-4241-85ea-acf15ffb60bf",
     "recommendationTypeId": null,
     "recommendationMetadataState": "Active",
@@ -5545,7 +5545,7 @@
     ],
     "recommendationControl": "High Availability",
     "longDescription": "Azure Capacity Reservations ensure high availability for virtual machines by reserving compute capacity in advance within a specific region or availability zone. This guarantees that VMs will have the necessary resources during peak demand or maintenance events, enhancing reliability and uptime.\n",
-    "pgVerified": false,
+    "pgVerified": true,
     "description": "Reserve Compute Capacity for critical workloads",
     "potentialBenefits": "Guaranteed capacity in constrained regions/zones",
     "tags": null,
@@ -5566,12 +5566,12 @@
     ],
     "recommendationControl": "High Availability",
     "longDescription": "If you've installed the Azure Linux Agent or are using an endorsed distribution image, ensure your agent version is up-to-date. Some Linux distributions may disable auto-update or use older agent versions.\n",
-    "pgVerified": false,
+    "pgVerified": true,
     "description": "Update the Azure Linux VM Agent",
     "potentialBenefits": "Reduces complications with VM provisioning",
     "tags": null,
     "recommendationResourceType": "Microsoft.Compute/virtualMachines",
-    "recommendationImpact": "Low",
+    "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// under-development\n"
   },
@@ -6654,7 +6654,7 @@
     ],
     "recommendationControl": "High Availability",
     "longDescription": "Upgrading the API Management instance to the Premium SKU adds support for Availability Zones, enhancing availability and resilience by distributing services across physically separate locations within Azure regions.\n",
-    "pgVerified": false,
+    "pgVerified": true,
     "description": "Migrate API Management services to Premium SKU to support Availability Zones",
     "potentialBenefits": "Enhanced availability and resilience",
     "tags": null,
@@ -6679,7 +6679,7 @@
     ],
     "recommendationControl": "High Availability",
     "longDescription": "Zone redundancy for APIM instances ensures the gateway and control plane (Management API, developer portal, Git configuration) are replicated across datacenters in physically separated zones, boosting resilience to zone failures.\n",
-    "pgVerified": false,
+    "pgVerified": true,
     "description": "Enable Availability Zones on Premium API Management instances",
     "potentialBenefits": "Improved resilience to zone failures",
     "tags": null,
@@ -6703,8 +6703,8 @@
       }
     ],
     "recommendationControl": "High Availability",
-    "longDescription": "Upgrading to API Management stv2 is required as stv1 retires on 31 Aug 2024, offering enhanced capabilities with the new platform version.\n",
-    "pgVerified": false,
+    "longDescription": "stv1 instances were deprecated on August 31, 2024. If not migrated to stv2 by then, auto-migration will occur. In some cases, due to technical limitations, services may be shut down in March 2025.\n",
+    "pgVerified": true,
     "description": "Azure API Management platform version should be stv2",
     "potentialBenefits": "Ensures service continuity",
     "tags": null,
@@ -6725,7 +6725,7 @@
     ],
     "recommendationControl": "High Availability",
     "longDescription": "Use API Management with auto-scale for high availability in workloads that experience variable traffic patterns. There are several limitations with auto-scale, so review the documentation to ensure it meets your requirements.\n",
-    "pgVerified": false,
+    "pgVerified": true,
     "description": "Enable auto-scale for production workloads on API Management services",
     "potentialBenefits": "Enhanced availability and resilience",
     "tags": null,
@@ -8203,7 +8203,7 @@
       }
     ],
     "recommendationControl": "High Availability",
-    "longDescription": "Azure Availability Zones are physically separate locations within each Azure region that are tolerant to local failures. Use availability zones to protect your applications and data against unlikely data center failures. Ensure each single point of failure of each SAP production system is protected with high availability using multiple availability zones. If you cannot deploy across different zones in a region, then  refer to Microsoft guidance for High availability deployment options for SAP workload.\n",
+    "longDescription": "Use Azure Availability Zones to protect SAP systems against data center failures. Ensure high availability by deploying across multiple zones. If deployment across zones isn't possible, refer to Microsoft's guidance for high availability options for SAP workloads.\n",
     "pgVerified": true,
     "description": "Ensure that each SAP production system is designed for high availability across availability zones",
     "potentialBenefits": "High availability for SAP systems",
@@ -8236,7 +8236,7 @@
       }
     ],
     "recommendationControl": "High Availability",
-    "longDescription": "Use Virtual Machines Scale Set (VMSS) with flexible orchestration to distribute the virtual machines across specified zones and within each zone to also distribute VMs across different fault domains within the zone on a best effort basis. Configure VMSS Flex following Microsoft recommendation for SAP workload using the right mode and correct settings. If you aren't currently using VMSS Flex for SAP application servers and also not using Availability Sets with Fault domain and Update domain distribution, then you should consider moving to VMSS Flex architecture to improve the resiliency posture of your SAP deployment. The following blog post in links below outlines the details on the process of migrating existing SAP workloads that are deployed in an availability set or availability zone to a flexible scale set with FD=1 deployment option.\n",
+    "longDescription": "Use VMSS Flex to distribute VMs across zones and fault domains. Follow Microsoft's SAP workload recommendations for settings. If not using VMSS Flex or Availability Sets, consider migrating to VMSS Flex for improved resiliency. Refer to the provided blog post for migration details.\n",
     "pgVerified": true,
     "description": "Run SAP application servers on two or more VMs using VMSS Flex",
     "potentialBenefits": "Enhanced resiliency for SAP on Azure",
@@ -8340,7 +8340,7 @@
       }
     ],
     "recommendationControl": "High Availability",
-    "longDescription": "Test all high availability solutions thoroughly (including kernel panic in Linux VMs and also fail-back). Include zonal failure scenarios in your testing, the testing should confirm that each layer of your SAP solution including database, central services, application servers and shared file systems is configured correctly for zone redundancy, the solution meets RPO = 0 and the application fails over automatically meeting your RTO.\nThe fail back can be either automatic or manual.\n",
+    "longDescription": "Test high availability solutions thoroughly, including kernel panic in Linux VMs and fail-back. Ensure zonal failure scenarios for each SAP layer (database, central services, application servers, shared file systems) are zone redundant, meet RPO = 0, and fail over automatically within your RTO.\n",
     "pgVerified": true,
     "description": "Test high availability solutions thoroughly to ensure fail overs work as expected",
     "potentialBenefits": "Ensures SAP Azure's failover reliability",
@@ -8361,7 +8361,7 @@
       }
     ],
     "recommendationControl": "High Availability",
-    "longDescription": "When executing a migrate command in a Linux Pacemaker cluster, the system generates a temporary \"prefer\" location constraint, aiming to move a resource to a specified node. This constraint prioritizes the target node for the resource temporarily without permanently altering the cluster's configuration.\nDuring planned maintenances and fail over testing, you can leverage the migrate command for temporary resource relocation during maintenance or administrative tasks to ensure minimal disruption. This constraint is not permanent and does not survive reboots or cluster resets. It's designed for short-term adjustments.\nOnce the planned task necessitating the resource migration is complete, manually remove the temporary constraint to revert to the cluster's original resource management policies.\nThis approach allows for controlled resource movement within the cluster, facilitating maintenance while preserving the integrity and efficiency of the cluster's configuration.\n",
+    "longDescription": "Use the migrate command in a Linux Pacemaker cluster to create a temporary \"prefer\" location constraint, moving a resource to a specified node for maintenance or testing. This constraint is temporary and should be removed after the task to revert to the original cluster configuration.\n",
     "pgVerified": true,
     "description": "Remove unwanted location constraints from Linux Pacemaker clusters",
     "potentialBenefits": "Enhanced maintenance and failover handling",
@@ -8382,7 +8382,7 @@
       }
     ],
     "recommendationControl": "Disaster Recovery",
-    "longDescription": "To ensure the availability of compute resources for critical VM roles in a DR region, consider securing capacity either through a warm standby approach or by utilizing Azure's On-demand Capacity Reservation.\n\nWarm standby involves keeping VMs in the DR region running. On-demand Capacity Reservation, on the other hand, reserves compute capacity without having to run the VMs, allowing you to start them when needed. When DR VMs are not needed, the reserved capacity may safely be used to run other workloads without the risk of losing the capacity to other customers. This strategy guarantees resource availability for your critical workloads in the event of a disaster, balancing cost and readiness.\n",
+    "longDescription": "Ensure compute resource availability for critical VM roles in a DR region using a warm standby approach or Azure's On-demand Capacity Reservation. Warm standby keeps VMs running in the DR region, while On-demand Capacity Reservation reserves compute capacity without running VMs.\n",
     "pgVerified": true,
     "description": "Secure compute resource capacity for critical VM roles in DR region",
     "potentialBenefits": "Guarantees DR region availability",
@@ -8449,7 +8449,7 @@
       }
     ],
     "recommendationControl": "Disaster Recovery",
-    "longDescription": "Implementing robust monitoring and alerting for DR in SAP on Azure ensures coverage across its complex, multi-layer architecture. This strategy is crucial for databases, services, applications, and shared systems.\n",
+    "longDescription": "Implement robust monitoring and alerting for DR in SAP on Azure to cover its complex, multi-layer architecture. This is crucial for databases, services, applications, and shared systems.\n",
     "pgVerified": true,
     "description": "SAP shared files systems are replicated or backed up to DR location",
     "potentialBenefits": "Enhances SAP DR oversight",
@@ -8491,7 +8491,7 @@
       }
     ],
     "recommendationControl": "Disaster Recovery",
-    "longDescription": "Create detailed documentation of your DR procedures for each layer of the SAP architecture-database, central services, application servers, and shared file systems. This documentation should include configuration details, failover mechanisms, and step-by-step recovery procedures.\n\nTest a wide range of failure scenarios, including regional outages. Testing should confirm that your DR strategy is robust, meets your RPO and RTO targets, and provides seamless failover across all layers of the SAP architecture. This will ensure a comprehensive and resilient DR strategy capable of withstanding regional failures and ensuring business continuity.\n",
+    "longDescription": "Document DR procedures for each SAP layer: database, central services, application servers, and shared file systems. Include configuration, failover mechanisms, and recovery steps. Test various failure scenarios to ensure the DR strategy meets RPO/RTO targets and provides seamless failover.\n",
     "pgVerified": true,
     "description": "Document and test DR procedure ensure it meets RPO and RTO targets",
     "potentialBenefits": "Ensures robust DR, meets RPO/RTO",
@@ -8512,7 +8512,7 @@
       }
     ],
     "recommendationControl": "Disaster Recovery",
-    "longDescription": "For an SAP solution hosted on Azure it is imperative to implement a robust monitoring and alerting solution that comprehensively covers DR of each layer of the SAP architecture. Given the complexity of SAP systems, which span multiple layers using diverse technologies and Azure resources, each with potentially distinct DR replication mechanisms, an appropriate monitoring strategy is crucial. The different layers include database, central services, application, and shared file systems.\n",
+    "longDescription": "Implement robust monitoring and alerting for SAP on Azure, covering DR for databases, central services, applications, and shared file systems. Given SAP's complexity, a comprehensive monitoring strategy is crucial for effective DR replication and rapid issue response.\n",
     "pgVerified": true,
     "description": "Ensure there is a robust monitoring and alerting solution in place for the entire DR solution",
     "potentialBenefits": "Improved DR oversight and rapid issue response",
@@ -8537,7 +8537,7 @@
       }
     ],
     "recommendationControl": "Monitoring and Alerting",
-    "longDescription": "Scheduled events is an Azure Metadata Services that provides proactive notifications about upcoming maintenance events (for example, reboot) so that your application can prepare for them and limit disruption. You should configure scheduled events for all your critical Azure VMs.\n\nResource agent azure-events-az can also integrate with Pacemaker clusters.\n\nTo ensure high availability and service continuity in your Azure VMs, you should configure the azure-events-az resource agent within your Pacemaker clusters. This agent monitors for scheduled Azure maintenance events and can proactively relocate resources for a graceful node shutdown. Configure the agent to monitor specific event types such as Reboot and Redeploy, and enable verbose logging for detailed diagnostics.\n\nIn addition, it is also important that you define a procedure on how to react to scheduled events.\n",
+    "longDescription": "Scheduled events notify about upcoming maintenance (e.g., reboot) to limit disruption. Configure for all critical Azure VMs. Use the azure-events-az resource agent in Pacemaker clusters to monitor and react to events like Reboot and Redeploy, ensuring high availability.\n",
     "pgVerified": true,
     "description": "Configure scheduled events notification",
     "potentialBenefits": "Proactive maintenance awareness",
@@ -8674,7 +8674,7 @@
       }
     ],
     "recommendationControl": "High Availability",
-    "longDescription": "High availability of SAP while used with Azure NetApp Files relies on setting proper timeout values to prevent disruption to your application. Review the documentation to ensure your configuration meets the timeout values as noted in the documentation.\n",
+    "longDescription": "Ensure high availability of SAP with Azure NetApp Files by setting proper timeout values to prevent disruptions. Review the documentation to confirm your configuration meets the recommended timeout values.\n",
     "pgVerified": true,
     "description": "Review SAP configuration for timeout values used with Azure NetApp Files",
     "potentialBenefits": "Improve resiliency and performance of SAP on Azure",
@@ -8715,7 +8715,7 @@
       }
     ],
     "recommendationControl": "Scalability",
-    "longDescription": "It is strongly recommended to review database storage configuration to ensure the right type and number of disks are used to provision the data and log volumes. This is to ensure that the database VMs meets performance requirements for IOPS and throughput for the given database.\nYou should also use Microsoft recommended settings such as disk caching, WriteAccelerator, stripe size and Linux I/O Scheduler mode for all database VMs.\nSAP on Azure QualityCheck tool can help you identify any deviations from Microsoft recommendations quickly and at scale.\n",
+    "longDescription": "Ensure optimal disk types and configurations for data and log volumes, meeting IOPS and throughput requirements. Follow Microsoft's recommendations for disk caching, WriteAccelerator, stripe size, and Linux I/O Scheduler. Use SAP on Azure QualityCheck tool to identify deviations.\n",
     "pgVerified": true,
     "description": "Provision recommended storage configuration on database VMs",
     "potentialBenefits": "Improve reliability, performance and optimize costs",
@@ -9042,7 +9042,7 @@
       }
     ],
     "recommendationControl": "Other Best Practices",
-    "longDescription": "RDP Shortpath establishes a direct UDP-based connection between a client and the session host. By default, Remote Desktop Protocol (RDP) tries to establish connection using UDP and uses a TCP-based reverse connect transport as a fallback connection mechanism. UDP-based transport offers better connection reliability and more consistent latency.\n",
+    "longDescription": "RDP Shortpath establishes a direct UDP-based connection between a client and the session host. By default, RDP tries to use UDP and falls back to TCP if needed. UDP transport offers better connection reliability and consistent latency.\n",
     "pgVerified": true,
     "description": "Implement RDP shortpath for public or managed networks",
     "potentialBenefits": "Better reliability and consistent latency",
@@ -9067,7 +9067,7 @@
       }
     ],
     "recommendationControl": "Governance",
-    "longDescription": "Ensure that AVD session hosts can effectively communicate with the AVD control plane and that UDP ports are open if UDP is utilized. Validate the connectivity of VMs to the AVD Control Plane and confirm the accessibility of UDP TURN ports. Whitelist global URLs and ensure that UDP/TURN ports are open and accessible to facilitate smooth user connections.\n",
+    "longDescription": "Ensure AVD session hosts can communicate with the AVD control plane and that UDP ports are open if used. Validate VM connectivity to the AVD Control Plane and confirm UDP TURN port accessibility. Whitelist global URLs and ensure UDP/TURN ports are open for smooth user connections.\n",
     "pgVerified": true,
     "description": "Ensure AVD session hosts connect to control plane & allow UDP ports for RDP shortpath",
     "potentialBenefits": "Enhanced performance & user experience",
@@ -9130,7 +9130,7 @@
       }
     ],
     "recommendationControl": "Business Continuity",
-    "longDescription": "NSG and ASG per AVD persona and IP space per Prod/DR regions.\nIt's important your organization plans for IP addressing in Azure. Planning ensures the IP address space doesn't overlap across on-premises locations and Azure regions. Overlapping IP address spaces across on-premises and Azure regions create major contention challenges.\n",
+    "longDescription": "NSG and ASG per AVD persona and IP space per Prod/DR regions. Plan IP addressing to avoid overlaps between on-premises and Azure regions, preventing major contention challenges.\n",
     "pgVerified": true,
     "description": "Ensure virtual networks isolation with separate IP space and NSGs for Prod and DR",
     "potentialBenefits": "Enhances security and prevents IP conflicts",
@@ -9155,7 +9155,7 @@
       }
     ],
     "recommendationControl": "Other Best Practices",
-    "longDescription": "Ensure that Route Tables have static routes to allow session host traffic that targets AVD control plane to go outbound directly out of the subnet to the internet (next hop), this will avoid any delays of inspecting or adding additional hops in the communication of trusted traffic.\n",
+    "longDescription": "Ensure Route Tables have static routes for session host traffic targeting the AVD control plane to go directly to the internet (next hop). This avoids delays from additional hops or inspections in trusted traffic communication.\n",
     "pgVerified": true,
     "description": "Configure static routes for session hosts to directly access the AVD control plane subnet",
     "potentialBenefits": "Enhanced performance and Disaster Recovery",
@@ -9176,7 +9176,7 @@
       }
     ],
     "recommendationControl": "Governance",
-    "longDescription": "Establish a systematic process for handling image updates within your Azure Virtual Desktop environment. Instead of directly updating individual session hosts, create a new version of the updated image. This process involves creating and configuring a golden image with the necessary updates and configurations.\n",
+    "longDescription": "Establish a process for handling image updates in your AVD environment. Instead of updating session hosts directly, create a new version of the updated image. This involves creating and configuring a golden image with the necessary updates and configurations.\n",
     "pgVerified": true,
     "description": "Create updated image version and replace session hosts rather than updating host directly",
     "potentialBenefits": "Ensures consistency; minimizes drift",
@@ -9243,7 +9243,7 @@
       }
     ],
     "recommendationControl": "Monitoring and Alerting",
-    "longDescription": "Configure diagnostic settings on FSLogix storage resources and regularly its metrics and FSLogix logs for errors. Events can be reviewed by looking locally inside the Session Host, but it is recommended to configure AVD insights workbook to consolidate this information to a Log Analytics workspace.\n",
+    "longDescription": "Configure diagnostic settings on FSLogix storage and regularly monitor its metrics and logs for errors. While events can be reviewed locally on the Session Host, it is recommended to use AVD insights workbook to consolidate this information into a Log Analytics workspace.\n",
     "pgVerified": true,
     "description": "Configure Diagnostic Settings on FSLogix storage and capture session hosts FSLogix events",
     "potentialBenefits": "Enhanced AVD error tracking and resolution",
@@ -9264,7 +9264,7 @@
       }
     ],
     "recommendationControl": "Governance",
-    "longDescription": "Ensure a process is in place to regularly check for FSLogix agent upgrades and maintain FSLogix up to date. We recommend customers upgrade to the latest version of FSLogix as quickly as their deployment process can allow. FSLogix will provide hotfix releases which address current and potential bugs that impact customer deployments. Additionally, it is the first requirement when opening any support case.\n",
+    "longDescription": "Ensure a process to regularly check and update FSLogix agent. Upgrade to the latest version promptly to address bugs and meet support requirements. FSLogix releases hotfixes to resolve issues impacting deployments. Keeping FSLogix updated is crucial for support and reliability.\n",
     "pgVerified": true,
     "description": "Manually install FSLogix updates",
     "potentialBenefits": "Enhanced reliability & support",
@@ -9306,7 +9306,7 @@
       }
     ],
     "recommendationControl": "Disaster Recovery",
-    "longDescription": "App Attach packages should be on a separate share from profiles. And App Attach files should be backed up. Requirements can vary greatly depending on how many packaged applications are stored in an image, and you need to test your applications to understand your requirements.\nYour file share should be in the same Azure region as your session hosts.\n",
+    "longDescription": "App Attach packages should be on a separate share from profiles and backed up. Requirements vary based on the number of packaged applications. Test your applications to understand your needs. Ensure the file share is in the same Azure region as your session hosts.\n",
     "pgVerified": true,
     "description": "Use dedicated file share for App attach and include the storage in the disaster recovery plan",
     "potentialBenefits": "Enhances performance and scalability",
@@ -9327,7 +9327,7 @@
       }
     ],
     "recommendationControl": "Disaster Recovery",
-    "longDescription": "To ensure continuous availability and disaster recovery readiness, it is recommended to provision a secondary Key Vault in a secondary region. In the event of a primary region failure, this secondary Key Vault will ensure that critical secrets are accessible for use in deployments in the secondary region.\n",
+    "longDescription": "To ensure continuous availability and disaster recovery readiness, provision a secondary Key Vault in a secondary region. In case of a primary region failure, the secondary Key Vault will ensure critical secrets remain accessible for deployments in the secondary region.\n",
     "pgVerified": true,
     "description": "Ensure resilient deployment of key vaults for AVD Host Pools",
     "potentialBenefits": "Ensures DR readiness and access",
@@ -9348,7 +9348,7 @@
       }
     ],
     "recommendationControl": "Disaster Recovery",
-    "longDescription": "When using an AD DS identity solution with AVD, it is recommended to deploy two or more domain controllers on Azure virtual machines across availability zones. This improves the environment's reliability by removing a dependency on an on-premises service and improves performance by creating a shorter path for user authentication.\nThis recommendation doesn't apply when using Microsoft Entra ID or Entra Domain Services joined session hosts.\n",
+    "longDescription": "Deploy multiple domain controllers on Azure VMs across availability zones with AVD session hosts. This removes on-premises dependencies and improves performance with a shorter authentication path. This doesn't apply to Microsoft Entra ID or Entra Domain Services joined session hosts.\n",
     "pgVerified": true,
     "description": "Deploy multiple domain controllers across availability zones in each region with AVD session hosts.",
     "potentialBenefits": "Enhanced identity resilience",
@@ -9369,7 +9369,7 @@
       }
     ],
     "recommendationControl": "High Availability",
-    "longDescription": "When using custom DNS servers, deploy DNS servers on Azure virtual machines across availability zones in the same region as the session hosts. This improves the environment's reliability by removing a dependency on an on-premises service and improves performance by creating a shorter path for name resolution.\n",
+    "longDescription": "Deploy custom DNS servers on Azure VMs across availability zones in the same region as session hosts. This removes on-premises dependencies and improves performance by shortening the name resolution path.\n",
     "pgVerified": true,
     "description": "Deploy two or more DNS servers across availability zones in each region with AVD session hosts.",
     "potentialBenefits": "Enhanced reliability and performance",
