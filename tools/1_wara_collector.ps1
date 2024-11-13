@@ -1611,7 +1611,7 @@ $Script:Runtime = Measure-Command -Expression {
   | where type == 'microsoft.advisor/recommendations'
   | where properties.category =~ 'HighAvailability'
   | where properties.impactedField =~ 'microsoft.subscriptions/subscriptions'
-  | project recommendationId = properties.recommendationTypeId, type = tolower(properties.impactedField), name = properties.impactedValue, id = strcat('/subscriptions/',subscriptionId), subscriptionId ,resourceGroup = 'N/A', location = 'Global', category = properties.category, impact = properties.impact, description = properties.shortDescription.solution"
+  | project recommendationId = properties.recommendationTypeId, type = 'microsoft.subscription/subscriptions', name = properties.impactedValue, id = strcat('/subscriptions/',subscriptionId), subscriptionId ,resourceGroup = 'N/A', location = 'Global', category = properties.category, impact = properties.impact, description = properties.shortDescription.solution"
 
       $tempids = $Script:ImplicitSubscriptionIds -replace '/subscriptions/', ''
 
