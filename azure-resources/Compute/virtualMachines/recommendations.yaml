@@ -416,7 +416,7 @@
     If the workload is Maintenance sensitive, consider Azure Boost compatible VMs. Azure Boost is designed to lessen the impact on customers when Azure maintenance activities occur on the host.
   potentialBenefits: Less maintenance impact
   pgVerified: true
-  automationAvailable: false
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Microsoft Azure Boost

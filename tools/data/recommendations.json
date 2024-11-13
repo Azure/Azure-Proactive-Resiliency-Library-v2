@@ -5480,7 +5480,7 @@
     "tags": null,
     "recommendationResourceType": "Microsoft.Compute/virtualMachines",
     "recommendationImpact": "Medium",
-    "automationAvailable": false,
+    "automationAvailable": true,
     "query": "// under-development\n\n"
   },
   {
