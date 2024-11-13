@@ -1,4 +1,4 @@
-- description: Connect ExpressRoute gateway with circuits from diverse peering locations for resilience
+- description: Connect ExpressRoute gateway with circuits from diverse peering locations
   aprlGuid: d37db635-157f-584d-9bce-4f6fc8c65ce5
   recommendationTypeId: 8d61a7d4-5405-4f43-81e3-8c6239b844a6
   recommendationControl: High Availability
@@ -6,8 +6,8 @@
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
   recommendationMetadataState: Active
   longDescription: |
-    To increase reliability, it's advised that each ExpressRoute gateway connects to at least two circuits, with each circuit originating from a different peering location than the other, ensuring diverse connectivity paths for enhanced resilience.
-  potentialBenefits: Enhanced resiliency for Azure service
+    For improved reliability, each ExpressRoute gateway should connect to at least two circuits, with each circuit sourced from a different peering location. This setup ensures diverse connectivity paths, enhancing resilience and minimizing service disruption risks.
+  potentialBenefits: Enhanced resilience through diverse connectivity paths
   pgVerified: true
   automationAvailable: true
   tags: null
@@ -53,7 +53,7 @@
     - name: Protect your Azure resources with a lock - Azure Resource Manager | Microsoft Learn
       url: "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources?tabs=json"
 
-- description: Monitor gateway health for ExpressRoute gateways
+- description: Monitor health for ExpressRoute gateway
   aprlGuid: 1c34faa8-8b99-974c-adbf-71922eae943c
   recommendationTypeId: null
   recommendationControl: Monitoring and Alerting
