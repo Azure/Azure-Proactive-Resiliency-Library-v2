@@ -1618,16 +1618,20 @@ $Script:Runtime = Measure-Command -Expression {
       $return = Get-AllAzGraphResource -Query $q -subscriptionId $tempids
 
       if(![String]::IsNullOrEmpty($return)){
+
+          $tmp = [PSCustomObject]@{
+          'Resource Type'              = 'microsoft.subscription/subscriptions'
+          'Number of Resources'        =  $return.Count
+          'Available in APRL/ADVISOR?' = 'Yes'
+          'Assessment Owner'           = ''
+          'Status'                     = ''
+          'Notes'                      = ''
+        }
+
+        $Script:AllResourceTypesOrdered += $tmp
       }
-      $tmp = [PSCustomObject]@{
-      'Resource Type'              = 'microsoft.subscription/subscriptions'
-      'Number of Resources'        =  $return.Count
-      'Available in APRL/ADVISOR?' = 'Yes'
-      'Assessment Owner'           = ''
-      'Status'                     = ''
-      'Notes'                      = ''
-    }
-    $Script:AllResourceTypesOrdered += $tmp
+
+
 
 
       $Script:Advisories += $return
