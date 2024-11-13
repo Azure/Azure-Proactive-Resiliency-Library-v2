@@ -77,7 +77,7 @@
   recommendationTypeId: null
   recommendationControl: Business Continuity
   recommendationImpact: High
-  recommendationResourceType: Microsoft.Cdn/profiles
+  recommendationResourceType: Microsoft.Network/trafficManagerProfiles
   recommendationMetadataState: Active
   longDescription: |
     For most solutions, choose either Azure Front Door for content caching, CDN, TLS termination, and WAF, or Traffic Manager for simple global load balancing.
