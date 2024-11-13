@@ -1598,11 +1598,26 @@ $Script:Runtime = Measure-Command -Expression {
 | project recommendationId = properties.recommendationTypeId, type = tolower(properties.impactedField), name = properties.impactedValue, id = resId1, subscriptionId = subscriptionId1,resourceGroup = resourceGroup, location = location1, category = properties.category, impact = properties.impact, description = properties.shortDescription.solution
 | order by ['id']"
 
-    $tempids = $Script:SubIds -replace '/subscriptions/', ''
+    $tempids = $Script:ImplicitSubscriptionIds -replace '/subscriptions/', ''
 
     $return = Get-AllAzGraphResource -Query $AdvisorQueryForRecommendationsThatAreInAdvisorAndAprlButAreNotHighAvailability -subscriptionId $tempids
 
     $Script:AllAdvisories += $return
+  }
+
+  function Get-GlobalAdvisorRecommendations()
+  {
+      $q = "advisorresources
+  | where type == 'microsoft.advisor/recommendations'
+  | where properties.category =~ 'HighAvailability'
+  | where properties.impactedField =~ 'microsoft.subscriptions/subscriptions'
+  | project recommendationId = properties.recommendationTypeId, type = tolower(properties.impactedField), name = properties.impactedValue, id = strcat('/subscriptions/',subscriptionId), subscriptionId ,resourceGroup = 'N/A', location = 'Global', category = properties.category, impact = properties.impact, description = properties.shortDescription.solution"
+
+      $tempids = $Script:ImplicitSubscriptionIds -replace '/subscriptions/', ''
+
+      $return = Get-AllAzGraphResource -Query $q -subscriptionId $tempids
+
+      $Script:Advisories += $return
   }
 
 
@@ -1618,8 +1633,10 @@ $Script:Runtime = Measure-Command -Expression {
     Exit
   }
 
+
+
   if ($ConfigFile) {
-    $Scopes = @()
+    $Scopes=@()
     $ConfigData = Import-ConfigFileData -file $ConfigFile
     $TenantID = $ConfigData.TenantID | Select-Object -First 1
     $Scopes += foreach ($SubscriptionId in $ConfigData.subscriptionids) {
@@ -1675,6 +1692,9 @@ $Script:Runtime = Measure-Command -Expression {
     }
   }
 
+  $scopes = $scopes | where {$_ -and $_.trim()}
+  $Script:ImplicitSubscriptionIds = ($scopes | ForEach-Object {$_.split("/")[0..2] -join "/"} | Group-Object | Select-Object Name).Name
+
   Write-Debug 'Reseting Variables'
   Invoke-ResetVariable
 
@@ -1701,6 +1721,9 @@ $Script:Runtime = Measure-Command -Expression {
 
   Write-Debug 'Calling Function: Invoke-ResourcesFiltering'
   Invoke-ResourceFiltering
+
+  Write-Debug 'Calling Function: Get-GLobalAdvisorRecommendations'
+  Get-GlobalAdvisorRecommendations
 
   Write-Debug 'Calling Function: Resolve-ResourceTypes'
   Resolve-ResourceType
