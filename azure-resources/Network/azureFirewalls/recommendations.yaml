@@ -95,9 +95,9 @@
   recommendationResourceType: Microsoft.Network/azureFirewalls
   recommendationMetadataState: Active
   longDescription: |
-    Creating a metric to monitor latency probes over 20ms for periods longer than 30ms helps identify when firewall instance CPUs are stressed, potentially indicating issues.
+    Using the Azure Firewall latency probe metric to monitor sustained latency over 30ms (accounting for normal spikes) can help identify when firewall instance CPU utilization is under stress, potentially indicating performance issues
   potentialBenefits: Improved CPU stress detection
-  pgVerified: false
+  pgVerified: true
   automationAvailable: false
   tags: null
   learnMoreLink:

@@ -9,7 +9,7 @@
     Your Long Description Here
     (less than 300 characters)
   potentialBenefits: Potential Benefits of Implementing the Recommendation (less than 60 characters)
-  pgVerified: false/arg
+  pgVerified: false
   automationAvailable: false
   tags: null
   learnMoreLink:
@@ -27,7 +27,7 @@
     Your Long Description Here
     (less than 300 characters)
   potentialBenefits: Potential Benefits of Implementing the Recommendation (less than 60 characters)
-  pgVerified: false/arg
+  pgVerified: false
   automationAvailable: false
   tags: null
   learnMoreLink:

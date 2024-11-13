@@ -15,23 +15,6 @@
     - name: Databricks runtime support lifecycles
       url: "https://learn.microsoft.com/en-us/azure/databricks/release-notes/runtime/databricks-runtime-ver"
 
-- description: Use Databricks Pools
-  aprlGuid: c166602e-0804-e34b-be8f-09b4d56e1fcd
-  recommendationTypeId: null
-  recommendationControl: Scalability
-  recommendationImpact: High
-  recommendationResourceType: Microsoft.Databricks/workspaces
-  recommendationMetadataState: Active
-  longDescription: |
-    Databricks pools pre-provision VMs, reducing risks of provisioning errors during cluster start or scale, enhancing reliability.
-  potentialBenefits: Reduces provisioning errors
-  pgVerified: true
-  automationAvailable: false
-  tags: null
-  learnMoreLink:
-    - name: Best practices for reliability
-      url: "https://learn.microsoft.com/en-us/azure/databricks/lakehouse-architecture/reliability/best-practices"
-
 - description: Use SSD backed VMs for Worker VM Type and Driver type
   aprlGuid: 5877a510-8444-7a4c-8412-a8dab8662f7e
   recommendationTypeId: null
@@ -152,23 +135,6 @@
   learnMoreLink:
     - name: Best practices for reliability
       url: "https://learn.microsoft.com/en-us/azure/databricks/lakehouse-architecture/reliability/best-practices"
-
-- description: Use Photon Acceleration
-  aprlGuid: 892ca809-e2b5-9a47-924a-71132bf6f902
-  recommendationTypeId: null
-  recommendationControl: High Availability
-  recommendationImpact: Low
-  recommendationResourceType: Microsoft.Databricks/workspaces
-  recommendationMetadataState: Active
-  longDescription: |
-    Apache Spark in Databricks Lakehouse ensures resilient distributed data processing by automatically rescheduling failed tasks, aiding in overcoming external issues like network problems or revoked VMs.
-  potentialBenefits: Boosts speed and reliability for Spark tasks
-  pgVerified: true
-  automationAvailable: false
-  tags: null
-  learnMoreLink:
-    - name: Best practices for reliability
-      url: "https://learn.microsoft.com/en-us/azure/databricks/lakehouse-architecture/reliability/best-practices#use-apache-spark-or-photon-for-distributed-compute"
 
 - description: Automatically rescue invalid or nonconforming data with Databricks Auto Loader or Delta Live Tables
   aprlGuid: 7e52d64d-8cc0-8548-a593-eb49ab45630d
@@ -517,3 +483,20 @@
       url: "https://learn.microsoft.com/azure/databricks/compute/cluster-config-best-practices"
     - name: GPU-enabled compute
       url: "https://learn.microsoft.com/azure/databricks/compute/gpu"
+
+- description: Use managed services where possible
+  aprlGuid: e94da1f8-33e7-48a6-b301-72f19a53bc29
+  recommendationTypeId: null
+  recommendationControl: Scalability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Databricks/workspaces
+  recommendationMetadataState: Active
+  longDescription: |
+    Where possible Leverage managed services (serverless compute) from the Databricks Data Intelligence Platform, such as:serverless SQL warehouses, model serving, serverless jobs, serverless compute for notebooks.
+  potentialBenefits: Improve resiliency and scalability at no additional cost
+  pgVerified: true
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: Best practices for reliability
+      url: "https://learn.microsoft.com/en-us/azure/databricks/lakehouse-architecture/reliability/best-practices#use-managed-services-where-possible"
