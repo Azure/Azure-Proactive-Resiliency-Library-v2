@@ -1,7 +1,7 @@
 - description: Enable diagnostic logging for Azure AI services and send the data to Log Analytics
   aprlGuid: d6d9e18a-9ad2-491e-878d-86d621785453
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: Low
   recommendationResourceType: Microsoft.CognitiveServices/Accounts
   recommendationMetadataState: Active

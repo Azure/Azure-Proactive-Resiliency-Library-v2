@@ -1,7 +1,7 @@
 - description: Configure at least two regions for high availability
   aprlGuid: 43663217-a1d3-844b-80ea-571a2ce37c6c
   recommendationTypeId: b57f7a29-dcc8-43de-86fa-18d3f9d3764d
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.DocumentDB/databaseAccounts
   recommendationMetadataState: Active
@@ -20,7 +20,7 @@
 - description: Enable service-managed failover for multi-region accounts with single write region
   aprlGuid: 9cabded7-a1fc-6e4a-944b-d7dd98ea31a2
   recommendationTypeId: 5de9f2e6-087e-40da-863a-34b7943beed4
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.DocumentDB/databaseAccounts
   recommendationMetadataState: Active
@@ -37,7 +37,7 @@
 - description: Enable availability zones
   aprlGuid: 921631f6-ed59-49a5-94c1-f0f3ececa580
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.DocumentDB/databaseAccounts
   recommendationMetadataState: Active
@@ -54,7 +54,7 @@
 - description: Evaluate multi-region write capability
   aprlGuid: 9ce78192-74a0-104c-b5bb-9a443f941649
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.DocumentDB/databaseAccounts
   recommendationMetadataState: Active
@@ -73,7 +73,7 @@
 - description: Configure continuous backup mode
   aprlGuid: e544520b-8505-7841-9e77-1f1974ee86ec
   recommendationTypeId: 52fef986-5897-4359-8b92-0f22749f0d73
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.DocumentDB/databaseAccounts
   recommendationMetadataState: Active
@@ -124,7 +124,7 @@
 - description: Implement retry logic in your client
   aprlGuid: fa6ac22f-0584-bb4b-80e4-80f4755d1a97
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.DocumentDB/databaseAccounts
   recommendationMetadataState: Active
@@ -141,7 +141,7 @@
 - description: Monitor Cosmos DB health and set up alerts
   aprlGuid: deaea200-013c-414b-ac9f-bfa7a7fb13f0
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.DocumentDB/databaseAccounts
   recommendationMetadataState: Active

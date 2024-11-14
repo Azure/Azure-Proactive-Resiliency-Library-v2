@@ -1,7 +1,7 @@
 - description: Configure Diagnostic Settings for all network security groups
   aprlGuid: d2976d3e-294b-4b49-a1f0-c42566a3758f
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/networkSecurityGroups
   recommendationMetadataState: Active
@@ -18,7 +18,7 @@
 - description: Monitor changes in Network Security Groups with Azure Monitor
   aprlGuid: 8bb4a57b-55e4-d24e-9c19-2679d8bc779f
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Network/networkSecurityGroups
   recommendationMetadataState: Active
@@ -52,7 +52,7 @@
 - description: Configure NSG Flow Logs
   aprlGuid: da1a3c06-d1d5-a940-9a99-fcc05966fe7c
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/networkSecurityGroups
   recommendationMetadataState: Disabled

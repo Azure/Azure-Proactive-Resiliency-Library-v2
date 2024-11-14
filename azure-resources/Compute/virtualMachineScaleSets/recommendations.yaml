@@ -20,7 +20,7 @@
 - description: Enable Azure Virtual Machine Scale Set Application Health Monitoring
   aprlGuid: 94794d2a-eff0-2345-9b67-6f9349d0a627
   recommendationTypeId: 3b587048-b04b-4f81-aaed-e43793652b0f
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
   recommendationMetadataState: Active
@@ -37,7 +37,7 @@
 - description: Enable Automatic Repair Policy on Azure Virtual Machine Scale Sets
   aprlGuid: 820f4743-1f94-e946-ae0b-45efafd87962
   recommendationTypeId: b4d988a9-85e6-4179-b69c-549bdd8a55bb
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
   recommendationMetadataState: Active
@@ -90,7 +90,7 @@
 - description: Disable Force strictly even balance across zones to avoid scale in and out fail attempts
   aprlGuid: b5a63aa0-c58e-244f-b8a6-cbba0560a6db
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
   recommendationMetadataState: Active
@@ -107,7 +107,7 @@
 - description: Deploy VMSS across availability zones with VMSS Flex
   aprlGuid: 1422c567-782c-7148-ac7c-5fc14cf45adc
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
   recommendationMetadataState: Active
@@ -126,7 +126,7 @@
 - description: Set Patch orchestration options to Azure-orchestrated
   aprlGuid: e4ffd7b0-ba24-c84e-9352-ba4819f908c0
   recommendationTypeId: null
-  recommendationControl: Other Best Practices
+  recommendationControl: OtherBestPractices
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
   recommendationMetadataState: Active

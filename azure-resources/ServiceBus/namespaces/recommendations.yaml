@@ -1,7 +1,7 @@
 - description: Enable Availability Zones for Service Bus namespaces
   aprlGuid: 20057905-262c-49fe-a9be-49f423afb359
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.ServiceBus/namespaces
   recommendationMetadataState: Active
@@ -22,7 +22,7 @@
 - description: Enable auto-scale for production workloads on Service Bus namespaces
   aprlGuid: d810e3a8-600f-4be1-895b-1a93e61d37fd
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.ServiceBus/namespaces
   recommendationMetadataState: Active
@@ -39,7 +39,7 @@
 - description: Configure the minimum TLS version for Service Bus namespaces to TLS v1.2 or higher
   aprlGuid: f075a1bd-de9e-4819-9a1d-1ac41037a74f
   recommendationTypeId: null
-  recommendationControl: Service Upgrade and Retirement
+  recommendationControl: ServiceUpgradeAndRetirement
   recommendationImpact: High
   recommendationResourceType: Microsoft.ServiceBus/namespaces
   recommendationMetadataState: Active

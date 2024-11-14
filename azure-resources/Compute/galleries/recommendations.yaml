@@ -1,7 +1,7 @@
 - description: A minimum of three replicas should be kept for production image versions
   aprlGuid: b49a39fd-f431-4b61-9062-f2157849d845
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Compute/galleries
   recommendationMetadataState: Active
@@ -18,7 +18,7 @@
 - description: Zone redundant storage should be used for image versions
   aprlGuid: 488dcc8b-f2e3-40ce-bf95-73deb2db095f
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Compute/galleries
   recommendationMetadataState: Active
@@ -37,7 +37,7 @@
 - description: Consider creating TrustedLaunchSupported images where possible
   aprlGuid: 1c5e1e58-4e56-491c-8529-10f37af9d4ed
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Compute/galleries
   recommendationMetadataState: Active
@@ -58,7 +58,7 @@
 - description: Create Image Versions replicas in secondary region
   aprlGuid: b14ee8ed-7d27-447b-b6fb-6472cb5f4b75
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Compute/galleries
   recommendationMetadataState: Active
@@ -75,7 +75,7 @@
 - description: Configure Image version replica count per region.
   aprlGuid: b3c3ba1d-7de6-442d-8c50-023330fbf765
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Compute/galleries
   recommendationMetadataState: Active

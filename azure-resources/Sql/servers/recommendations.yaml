@@ -1,7 +1,7 @@
 - description: Use Active Geo Replication to Create a Readable Secondary in Another Region
   aprlGuid: 74c2491d-048b-0041-a140-935960220e20
   recommendationTypeId: 2ea11bcb-dfd0-48dc-96f0-beba578b989a
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.Sql/servers
   recommendationMetadataState: Active
@@ -18,7 +18,7 @@
 - description: Auto Failover Groups can encompass one or multiple databases, usually used by the same app.
   aprlGuid: 943c168a-2ec2-a94c-8015-85732a1b4859
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.Sql/servers
   recommendationMetadataState: Active
@@ -37,7 +37,7 @@
 - description: Enable zone redundancy for Azure SQL Database to achieve high availability and resiliency
   aprlGuid: c0085c32-84c0-c247-bfa9-e70977cbf108
   recommendationTypeId: 807e58d0-e385-41ad-987b-4a4b3e3fb563
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Sql/servers
   recommendationMetadataState: Active
@@ -54,7 +54,7 @@
 - description: Implement Retry Logic
   aprlGuid: cbb17a29-64fb-c943-95d0-8df814a37c40
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Sql/servers
   recommendationMetadataState: Active
@@ -71,7 +71,7 @@
 - description: Monitor your Azure SQL Database in Near Real-Time to Detect Reliability Incidents
   aprlGuid: 7e7daec9-6a81-3546-a4cc-9aef72fec1f7
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.Sql/servers
   recommendationMetadataState: Active
@@ -92,7 +92,7 @@
 - description: Back Up Your Keys
   aprlGuid: d6ef87aa-574e-584e-a955-3e6bb8b5425b
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Sql/servers
   recommendationMetadataState: Active
@@ -111,7 +111,7 @@
 - description: Use Failover Group endpoints for database connections
   aprlGuid: de266d8a-a9f3-4cb9-be95-9306001fceea
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.Sql/servers
   recommendationMetadataState: Active

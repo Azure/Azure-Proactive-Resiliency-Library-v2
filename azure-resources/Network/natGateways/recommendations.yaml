@@ -20,7 +20,7 @@
 - description: Configure monitoring and alerting for NAT gateway
   aprlGuid: babf75d6-6407-4d90-b01e-5a1768e621f5
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/natGateways
   recommendationMetadataState: Active
@@ -39,7 +39,7 @@
 - description: Consider zonal NAT gateway deployment for zone isolation scenarios
   aprlGuid: 419df1ea-336b-460a-b6b2-fefe2588fcef
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/natGateways
   recommendationMetadataState: Active

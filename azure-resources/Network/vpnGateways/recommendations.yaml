@@ -1,7 +1,7 @@
 - description: Monitor gateway for Site-to-site v-Hub's VPN gateway
   aprlGuid: f0d4f766-ac19-48c4-b228-4601cc038baa
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/vpnGateways
   recommendationMetadataState: Active

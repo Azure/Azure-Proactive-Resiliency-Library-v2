@@ -1,7 +1,7 @@
 - description: RE:01 Design your workload to align with business objectives
   aprlGuid: 8c0a0a4c-9e34-41af-9f6d-89d8dc00370e
   recommendationTypeId: null
-  recommendationControl: Other Best Practices
+  recommendationControl: OtherBestPractices
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Subscription/Subscriptions
   recommendationMetadataState: Active
@@ -18,7 +18,7 @@
 - description: RE:02 Identify and rate user and system flows
   aprlGuid: 74415e66-7baf-43f3-8def-164bc7b48215
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Subscription/Subscriptions
   recommendationMetadataState: Active
@@ -35,7 +35,7 @@
 - description: RE:03 Use failure mode analysis to identify and prioritize potential failures
   aprlGuid: f5fbe3d4-7196-46b8-9b09-0e29e7cf43ac
   recommendationTypeId: null
-  recommendationControl: Other Best Practices
+  recommendationControl: OtherBestPractices
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Subscription/Subscriptions
   recommendationMetadataState: Active
@@ -52,7 +52,7 @@
 - description: RE:04 Define reliability and recovery targets
   aprlGuid: 2c41b97c-af27-47b5-aafb-81bbf95fe8ba
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Subscription/Subscriptions
   recommendationMetadataState: Active
@@ -69,7 +69,7 @@
 - description: RE:05 Design for redundancy
   aprlGuid: e404ef3f-e427-4e43-a1df-09da987e744f
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Subscription/Subscriptions
   recommendationMetadataState: Active
@@ -86,7 +86,7 @@
 - description: RE:05 Design for multi-region high availability
   aprlGuid: df93ae26-260e-408f-860c-42cd189f8bf8
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Subscription/Subscriptions
   recommendationMetadataState: Active
@@ -103,7 +103,7 @@
 - description: RE:05 Design for high availability with availability zones
   aprlGuid: 3d6adb0a-042f-47f7-a7ea-db2e360903d5
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Subscription/Subscriptions
   recommendationMetadataState: Active
@@ -120,7 +120,7 @@
 - description: RE:06 Design for data partitioning
   aprlGuid: 7f0b9ea3-0159-4ea7-b854-a4313fe76d7f
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Subscription/Subscriptions
   recommendationMetadataState: Active
@@ -154,7 +154,7 @@
 - description: RE:07 Use background jobs
   aprlGuid: 4e1094dd-2d85-4a1a-8ca8-1e6ea21206fb
   recommendationTypeId: null
-  recommendationControl: Other Best Practices
+  recommendationControl: OtherBestPractices
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Subscription/Subscriptions
   recommendationMetadataState: Active
@@ -171,7 +171,7 @@
 - description: RE:07 Implement self-preservation and self-healing measures
   aprlGuid: 7b5008cf-1853-44c4-827d-bca091678c3f
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Subscription/Subscriptions
   recommendationMetadataState: Active
@@ -188,7 +188,7 @@
 - description: RE:07 Handle transient faults
   aprlGuid: 66ae4a5c-7f58-4293-bed8-5caa4f9f34e2
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Subscription/Subscriptions
   recommendationMetadataState: Active
@@ -205,7 +205,7 @@
 - description: RE:08 Design a reliability testing strategy
   aprlGuid: 7db74a6a-4062-46a8-a0cd-18684fb0ec08
   recommendationTypeId: null
-  recommendationControl: Other Best Practices
+  recommendationControl: OtherBestPractices
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Subscription/Subscriptions
   recommendationMetadataState: Active
@@ -222,7 +222,7 @@
 - description: RE:09 Implement business continuity and disaster recovery plan
   aprlGuid: 5f95df03-cae2-4761-90b7-7afd657ac124
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Subscription/Subscriptions
   recommendationMetadataState: Active
@@ -239,7 +239,7 @@
 - description: RE:10 Design a reliable monitoring and alerting strategy
   aprlGuid: 90adebf7-bc90-4939-9aa8-119c46bee0fc
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Subscription/Subscriptions
   recommendationMetadataState: Active

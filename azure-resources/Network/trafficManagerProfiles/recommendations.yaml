@@ -1,7 +1,7 @@
 - description: Traffic Manager Monitor Status Should be Online
   aprlGuid: f05a3e6d-49db-2740-88e2-2b13706c1f67
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/trafficManagerProfiles
   recommendationMetadataState: Active
@@ -22,7 +22,7 @@
 - description: Traffic manager profiles should have more than one endpoint
   aprlGuid: 5b422a7f-8caa-3d48-becb-511599e5bba9
   recommendationTypeId: 6cd70072-c45c-4716-bf7b-b35c18e46e72
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/trafficManagerProfiles
   recommendationMetadataState: Active
@@ -39,7 +39,7 @@
 - description: Configure at least one endpoint within a another region
   aprlGuid: 1ad9d7b7-9692-1441-a8f4-93792efbe97a
   recommendationTypeId: 0db76759-6d22-4262-93f0-2f989ba2b58e
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/trafficManagerProfiles
   recommendationMetadataState: Active
@@ -56,7 +56,7 @@
 - description: Ensure endpoint configured to (All World) for geographic profiles
   aprlGuid: c31f76a0-48cd-9f44-aa43-99ee904db9bc
   recommendationTypeId: 0bbe0a49-3c63-49d3-ab4a-aa24198f03f7
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/trafficManagerProfiles
   recommendationMetadataState: Active

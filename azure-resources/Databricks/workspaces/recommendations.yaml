@@ -88,7 +88,7 @@
 - description: Automatic Job Termination is enabled, ensure there are no user-defined local processes
   aprlGuid: 3d3e53b5-ebd1-db42-b43b-d4fad74824ec
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
@@ -105,7 +105,7 @@
 - description: Enable Logging-Cluster log delivery
   aprlGuid: 7fb90127-5364-bb4d-86fa-30778ed713fb
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
@@ -122,7 +122,7 @@
 - description: Use Delta Lake for higher reliability
   aprlGuid: da4ea916-4df3-8c4d-8060-17b49da45977
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
@@ -139,7 +139,7 @@
 - description: Automatically rescue invalid or nonconforming data with Databricks Auto Loader or Delta Live Tables
   aprlGuid: 7e52d64d-8cc0-8548-a593-eb49ab45630d
   recommendationTypeId: null
-  recommendationControl: Business Continuity
+  recommendationControl: BusinessContinuity
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
@@ -156,7 +156,7 @@
 - description: Configure jobs for automatic retries and termination
   aprlGuid: 84e44da6-8cd7-b349-b02c-c8bf72cf587c
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
@@ -190,7 +190,7 @@
 - description: Use a layered storage architecture
   aprlGuid: 1b0d0893-bf0e-8f4c-9dc6-f18f145c1ecf
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
@@ -207,7 +207,7 @@
 - description: Improve data integrity by reducing data redundancy
   aprlGuid: e93fe702-e385-d741-ba37-1f1656482ecd
   recommendationTypeId: null
-  recommendationControl: Business Continuity
+  recommendationControl: BusinessContinuity
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
@@ -224,7 +224,7 @@
 - description: Actively manage schemas
   aprlGuid: b7e1d13f-54c9-1648-8a52-34c0abe8ce16
   recommendationTypeId: null
-  recommendationControl: Other Best Practices
+  recommendationControl: OtherBestPractices
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
@@ -241,7 +241,7 @@
 - description: Use constraints and data expectations
   aprlGuid: a42297c4-7e4f-8b41-8d4b-114033263f0e
   recommendationTypeId: null
-  recommendationControl: Business Continuity
+  recommendationControl: BusinessContinuity
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
@@ -258,7 +258,7 @@
 - description: Create regular backups
   aprlGuid: 932d45d6-b46d-e341-abfb-d97bce832f1f
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
@@ -275,7 +275,7 @@
 - description: Recover from Structured Streaming query failures
   aprlGuid: 12e9d852-5cdc-2743-bffe-ee21f2ef7781
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
@@ -292,7 +292,7 @@
 - description: Recover ETL jobs based on Delta time travel
   aprlGuid: a18d60f8-c98c-ba4e-ad6e-2fac72879df1
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
@@ -309,7 +309,7 @@
 - description: Use Databricks Workflows and built-in recovery
   aprlGuid: c0e22580-3819-444d-8546-a80e4ed85c83
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
@@ -326,7 +326,7 @@
 - description: Configure a disaster recovery pattern
   aprlGuid: 4fdb7112-4531-6f48-b60e-c917a6068d9b
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
@@ -345,7 +345,7 @@
 - description: Automate deployments and workloads
   aprlGuid: 42aedaa8-6151-424d-b782-b8666c779969
   recommendationTypeId: null
-  recommendationControl: Other Best Practices
+  recommendationControl: OtherBestPractices
   recommendationImpact: High
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
@@ -362,7 +362,7 @@
 - description: Set up monitoring, alerting, and logging
   aprlGuid: 20193ff9-dbcd-a74e-b197-71d7d9d3c1e6
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
@@ -413,7 +413,7 @@
 - description: Do not Store any Production Data in Default DBFS Folders
   aprlGuid: 14310ba6-77ad-3641-a2db-57a2218b9bc7
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
@@ -430,7 +430,7 @@
 - description: Do not use Azure Spot VMs for critical Production workloads
   aprlGuid: b5af7e26-3939-1b48-8fba-f8d4a475c67a
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active
@@ -447,7 +447,7 @@
 - description: Evaluate regional isolation for workspaces
   aprlGuid: 8aa63c34-dd9d-49bd-9582-21ec310dfbdd
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active

@@ -1,7 +1,7 @@
 - description: Ensure File shares that stores jobs metadata are accessible from all head nodes
   aprlGuid: 4c78fab4-845a-495d-ab14-3ad51de53a2a
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/HPC
   recommendationMetadataState: Active
@@ -35,7 +35,7 @@
 - description: Use multiple head nodes for HPC Pack
   aprlGuid: a48b1be6-77a3-4e3c-8205-dda2ba010a99
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Medium
   recommendationResourceType: Specialized.Workload/HPC
   recommendationMetadataState: Active
@@ -52,7 +52,7 @@
 - description: Use HPC Pack Azure AD Integration or other highly available AD configuration
   aprlGuid: 37eec891-7880-4759-b597-7cd925512fe3
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/HPC
   recommendationMetadataState: Active

@@ -1,7 +1,7 @@
 - description: Deploy Azure Firewall across multiple availability zones
   aprlGuid: c72b7fee-1fa0-5b4b-98e5-54bcae95bb74
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/azureFirewalls
   recommendationMetadataState: Active
@@ -20,7 +20,7 @@
 - description: Monitor Azure Firewall metrics
   aprlGuid: 3c8fa7c6-6b78-a24a-a63f-348a7c71acb9
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/azureFirewalls
   recommendationMetadataState: Active
@@ -73,7 +73,7 @@
 - description: Configure 2-4 PIPs for SNAT Port utilization
   aprlGuid: d2e4a38e-2307-4299-a217-4c0cebc9a7f6
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/azureFirewalls
   recommendationMetadataState: Active
@@ -90,7 +90,7 @@
 - description: Monitor "AZFW Latency Probe" metric
   aprlGuid: 8faace2d-a36e-425c-aa58-2ad99e3e0b7a
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/azureFirewalls
   recommendationMetadataState: Active

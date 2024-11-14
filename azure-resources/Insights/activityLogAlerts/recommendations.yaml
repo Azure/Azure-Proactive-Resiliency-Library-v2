@@ -1,7 +1,7 @@
 - description: Configure Resource Health Alerts
   aprlGuid: be448849-0d7d-49ba-9c94-9573ee533d5d
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Insights/activityLogAlerts
   recommendationMetadataState: Active
