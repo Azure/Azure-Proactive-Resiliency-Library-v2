@@ -368,11 +368,11 @@ $Script:Runtime = Measure-Command -Expression {
 
     foreach ($WAF in $Script:WAFYAMLContent) {
       $tmp = @{
-        'How was the resource/recommendation validated or what actions need to be taken?' = 'Update this item based on Discovery Workshop Questionnaire';
+        'How was the resource/recommendation validated or what actions need to be taken?' = "IMPORTANT - Update this item based on Discovery Workshop Questionnaire";
         recommendationId                                                                  = [string]$WAF.aprlGuid;
         recommendationTitle                                                               = [string]$WAF.description;
         resourceType                                                                      = [string]$WAF.recommendationResourceType;
-        impact                                                                            = '';
+        impact                                                                            = [string]$WAF.recommendationImpact;
         subscriptionId                                                                    = '';
         resourceGroup                                                                     = '';
         name                                                                              = 'Entire Workload';
@@ -421,7 +421,7 @@ $Script:Runtime = Measure-Command -Expression {
       )
 
       $cond = @()
-      $cond += New-ConditionalText 'Update this item based on Discovery Workshop Questionnaire' -Range A:A
+      $cond += New-ConditionalText "IMPORTANT - Update this item based on Discovery Workshop Questionnaire" -Range A:A
       $cond += New-ConditionalText 'IMPORTANT' -Range A:A
 
       $cond2 = @()
