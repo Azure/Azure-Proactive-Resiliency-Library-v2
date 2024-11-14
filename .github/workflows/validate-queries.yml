@@ -23,25 +23,6 @@ jobs:
     permissions:
       id-token: write # This is required for requesting the JWT
     runs-on: ubuntu-latest
-    if: |
-      (
-        github.event.pull_request.head.repo.full_name == 'Azure/Azure-Proactive-Resiliency-Library-v2'
-      )
-      ||
-      (
-        github.event.pull_request.head.repo.full_name != 'Azure/Azure-Proactive-Resiliency-Library-v2'
-        &&
-        contains(github.event.pull_request.labels.*.name, 'PR: Safe to Test ARG Queries :test_tube:')
-      )
-      ||
-      (
-        github.event_name == 'workflow_dispatch'
-      )
-      ||
-      (
-        github.event_name == 'merge_group'
-      )
-
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
@@ -49,10 +30,9 @@ jobs:
           egress-policy: audit
 
       - name: Checkout repository
-        uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           ref: "refs/pull/${{ github.event.number }}/merge"
-          fetch-depth: 2
 
       - name: Azure login (OIDC)
         uses: azure/login@a65d910e8af852a8061c627c456678983e180302 # v2.2.0
@@ -70,25 +50,3 @@ jobs:
       - name: Run KQL Syntax Check
         run: |
           pwsh .github/scripts/validate-kql-syntax.ps1
-
-  remove_label:
-    permissions:
-      contents: read
-      pull-requests: write
-    runs-on: ubuntu-latest
-    steps:
-      - name: Harden Runner
-        uses: step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7 # v2.10.1
-        with:
-          egress-policy: audit
-
-      - name: 'Checkout Repository'
-        uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v4.2.1
-
-      - run: |
-          gh pr edit ${{ github.event.pull_request.number }} --remove-label "PR: Safe to Test ARG Queries :test_tube:"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-
-
