@@ -23,7 +23,7 @@
   recommendationControl: Service Upgrade and Retirement
   recommendationImpact: High
   recommendationResourceType: Microsoft.Storage/storageAccounts
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Classic storage accounts will be fully retired on August 31, 2024. If you have classic storage accounts, start planning your migration now.
   potentialBenefits: Avoids service retirement issues
