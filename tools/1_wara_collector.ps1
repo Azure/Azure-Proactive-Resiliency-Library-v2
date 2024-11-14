@@ -1709,7 +1709,7 @@ $Script:Runtime = Measure-Command -Expression {
     }
   }
 
-  $scopes = $scopes | where {$_ -and $_.trim()}
+  $scopes = $scopes | Where-Object {$_ -and $_.trim()}
   $Script:ImplicitSubscriptionIds = ($scopes | ForEach-Object {$_.split("/")[0..2] -join "/"} | Group-Object | Select-Object Name).Name
 
   Write-Debug 'Reseting Variables'
