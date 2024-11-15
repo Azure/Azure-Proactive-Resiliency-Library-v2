@@ -298,6 +298,7 @@ $Script:Runtime = Measure-Command -Expression {
               'WAF Pillar'                                                                      = 'Reliability';
               tagged                                                                            = $Recom.tagged
             }
+            $Script:MergedRecommendation += $tmp
           } elseif ($Recom.validationAction -eq 'IMPORTANT - Resource Type is not available in either APRL or Advisor - Validate Resources manually if Applicable, if not Delete this line' ) {
             $tmp = @{
               'How was the resource/recommendation validated or what actions need to be taken?' = $Recom.validationAction;
@@ -321,8 +322,8 @@ $Script:Runtime = Measure-Command -Expression {
               'WAF Pillar'                                                                      = 'Reliability';
               tagged                                                                            = $Recom.tagged
             }
+            $Script:MergedRecommendation += $tmp
           }
-          $Script:MergedRecommendation += $tmp
         }
       }
     }
