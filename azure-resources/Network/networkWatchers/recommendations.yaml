@@ -9,7 +9,7 @@
     Azure Network Watcher offers tools for monitoring, diagnosing, viewing metrics, and managing logs for IaaS resources. It helps maintain the health of VMs, VNets, application gateways, load balancers, but not for PaaS or Web analytics.
   potentialBenefits: Enhanced monitoring and diagnostics for Azure IaaS
   pgVerified: true
-  automationAvailable: true
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: What is Azure Network Watcher?
