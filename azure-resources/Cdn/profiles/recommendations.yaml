@@ -1,26 +1,3 @@
-- description: Avoid combining Traffic Manager and Front Door
-  aprlGuid: 9437634c-d69e-2747-b13e-631c13182150
-  recommendationTypeId: null
-  recommendationControl: BusinessContinuity
-  recommendationImpact: High
-  recommendationResourceType: Microsoft.Cdn/profiles
-  recommendationMetadataState: Active
-  longDescription: |
-    For most solutions, choose either Azure Front Door for content caching, CDN, TLS termination, and WAF, or Traffic Manager for simple global load balancing.
-  potentialBenefits: Optimized network routing and security
-  pgVerified: true
-  automationAvailable: true
-  tags: null
-  learnMoreLink:
-    - name: Azure Load Balancing Options
-      url: "https://learn.microsoft.com/azure/architecture/guide/technology-choices/load-balancing-overview"
-    - name: Azure Traffic Manager
-      url: "https://learn.microsoft.com/azure/traffic-manager/traffic-manager-overview"
-    - name: Azure Front Door
-      url: "https://learn.microsoft.com/azure/frontdoor/front-door-overview"
-    - name: Mission-critical global content delivery
-      url: "https://learn.microsoft.com/en-us/azure/architecture/guide/networking/global-web-applications/mission-critical-content-delivery"
-
 - description: Restrict traffic to your origins
   aprlGuid: 6c40b7ae-2bea-5748-be1a-9e9e3b834649
   recommendationTypeId: null
