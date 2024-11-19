@@ -298,6 +298,7 @@ $Script:Runtime = Measure-Command -Expression {
               'WAF Pillar'                                                                      = 'Reliability';
               tagged                                                                            = $Recom.tagged
             }
+            $Script:MergedRecommendation += $tmp
           } elseif ($Recom.validationAction -eq 'IMPORTANT - Resource Type is not available in either APRL or Advisor - Validate Resources manually if Applicable, if not Delete this line' ) {
             $tmp = @{
               'How was the resource/recommendation validated or what actions need to be taken?' = $Recom.validationAction;
@@ -321,8 +322,8 @@ $Script:Runtime = Measure-Command -Expression {
               'WAF Pillar'                                                                      = 'Reliability';
               tagged                                                                            = $Recom.tagged
             }
+            $Script:MergedRecommendation += $tmp
           }
-          $Script:MergedRecommendation += $tmp
         }
       }
     }
@@ -368,11 +369,11 @@ $Script:Runtime = Measure-Command -Expression {
 
     foreach ($WAF in $Script:WAFYAMLContent) {
       $tmp = @{
-        'How was the resource/recommendation validated or what actions need to be taken?' = 'Update this item based on Discovery Workshop Questionnaire';
+        'How was the resource/recommendation validated or what actions need to be taken?' = "IMPORTANT - Update this item based on Discovery Workshop Questionnaire";
         recommendationId                                                                  = [string]$WAF.aprlGuid;
         recommendationTitle                                                               = [string]$WAF.description;
         resourceType                                                                      = [string]$WAF.recommendationResourceType;
-        impact                                                                            = '';
+        impact                                                                            = [string]$WAF.recommendationImpact;
         subscriptionId                                                                    = '';
         resourceGroup                                                                     = '';
         name                                                                              = 'Entire Workload';
@@ -421,7 +422,7 @@ $Script:Runtime = Measure-Command -Expression {
       )
 
       $cond = @()
-      $cond += New-ConditionalText 'Update this item based on Discovery Workshop Questionnaire' -Range A:A
+      $cond += New-ConditionalText "IMPORTANT - Update this item based on Discovery Workshop Questionnaire" -Range A:A
       $cond += New-ConditionalText 'IMPORTANT' -Range A:A
 
       $cond2 = @()
@@ -788,7 +789,7 @@ $Script:Runtime = Measure-Command -Expression {
             'Azure Service / Well-Architected Topic'                                                         = ($resourceType.split('/')[1]);
             'Recommendation Title'                                                                           = $advisor.description;
             'Impact'                                                                                         = $advisor.impact;
-            'Best Practices Guidance'                                                                        = '';
+            'Best Practices Guidance'                                                                        = $advisor.description;
             'Read More'                                                                                      = '';
             'Potential Benefits'                                                                             = '';
             'Add associated Outage TrackingID and/or Support Request # and/or Service Retirement TrackingID' = '';
@@ -1017,7 +1018,7 @@ $Script:Runtime = Measure-Command -Expression {
   }
 
   #Call the functions
-  $Script:Version = '2.1.13'
+  $Script:Version = '2.1.14'
   Write-Host 'Version: ' -NoNewline
   Write-Host $Script:Version -ForegroundColor DarkBlue
 
