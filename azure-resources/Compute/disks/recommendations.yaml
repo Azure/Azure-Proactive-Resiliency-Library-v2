@@ -1,0 +1,35 @@
+- description: Shared disks should only be enabled in clustered servers
+  aprlGuid: 3263a64a-c256-de48-9818-afd3cbc55c2a
+  recommendationTypeId: null
+  recommendationControl: Other Best Practices
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Compute/disks
+  recommendationMetadataState: Active
+  longDescription: |
+    Azure shared disks let you attach a disk to multiple VMs at once for deploying or migrating clustered applications, suitable only when a disk is shared among VM cluster members.
+  potentialBenefits: Enhances clustered server performance
+  pgVerified: true
+  automationAvailable: true
+  tags: null
+  learnMoreLink:
+    - name: Azure Shared Disk Introduction
+      url: "https://learn.microsoft.com/azure/virtual-machines/disks-shared"
+    - name: Enable Shared Disks
+      url: "https://learn.microsoft.com/azure/virtual-machines/disks-shared-enable?tabs=azure-portal"
+
+- description: Use Azure Disks with Zone Redundant Storage for higher resiliency and availability
+  aprlGuid: fa0cf4f5-0b21-47b7-89a9-ee936f193ce1
+  recommendationTypeId: d4102c0f-ebe3-4b22-8fe0-e488866a87af
+  recommendationControl: High Availability
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Compute/disks
+  recommendationMetadataState: Active
+  longDescription: |
+    Azure disks offers a zone-redundant storage (ZRS) option for workloads that need to be resilient to an entire zone being down. Due to the cross-zone data replication, ZRS disks have higher write latency when compared to the locally-redundant option (LRS), so make sure to benchmark your disks.
+  potentialBenefits: Enhanced Disk resilience to failures
+  pgVerified: true
+  automationAvailable: true
+  tags: null
+  learnMoreLink:
+    - name: Redundancy options for managed disks
+      url: "https://aka.ms/zrsdisksdoc"
