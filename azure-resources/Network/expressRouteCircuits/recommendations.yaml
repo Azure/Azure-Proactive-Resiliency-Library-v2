@@ -1,4 +1,4 @@
-- description: Connect on-prem networks to Azure critical workloads via multiple ExpressRoutes
+- description: Connect on-prem networks to Azure critical workloads via multiple ExpressRoutes peering locations
   aprlGuid: 4d703025-dafc-f840-a183-5dc440456134
   recommendationTypeId: null
   recommendationControl: High Availability
@@ -34,7 +34,7 @@
     - name: Azure Well-Architected Framework review - Azure ExpressRoute - Design Checklist
       url: "https://learn.microsoft.com/azure/well-architected/services/networking/azure-expressroute#recommendations"
 
-- description: Ensure both connections of an ExpressRoute circuit are configured in active-active mode
+- description: Ensure both connections of an ExpressRoute are configured in active-active mode
   aprlGuid: f06a2bbe-5839-d447-9f39-fc3d20562d88
   recommendationTypeId: null
   recommendationControl: High Availability
