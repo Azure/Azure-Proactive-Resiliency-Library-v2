@@ -42,7 +42,7 @@
   recommendationControl: Scalability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Storage/storageAccounts
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Use premium performance block blob storage instead of standard performance storage for workloads that require fast storage response times and/or high transaction rates.
   potentialBenefits: Optimized cost and performance
@@ -158,7 +158,7 @@
   recommendationControl: Security
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Storage/storageAccounts
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Leverage Azure Private Link Service for secure access to Azure Storage and services via Private Endpoint in your VNet. Eliminate the need for public IPs, ensuring data privacy. Enjoy granular access control for enhanced security.
   potentialBenefits: Secure, private access to storage with no public IPs

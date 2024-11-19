@@ -57,7 +57,7 @@
   recommendationControl: High Availability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Sql/servers
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     During transient failures, the application should handle connection retries effectively with Azure SQL Database. No Database layer configuration is needed; instead, the application must be set up for graceful retrying.
   potentialBenefits: Enhanced connectivity stability

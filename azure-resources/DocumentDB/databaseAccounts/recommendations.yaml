@@ -93,7 +93,7 @@
   recommendationControl: Scalability
   recommendationImpact: High
   recommendationResourceType: Microsoft.DocumentDB/databaseAccounts
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Cosmos DB has a 4 MB response limit, leading to paginated results for large or partition-spanning queries. Each page shows availability and provides a continuation token for the next. A while loop in code is necessary to traverse all pages until completion.
   potentialBenefits: Maximizes data retrieval efficiency
@@ -110,7 +110,7 @@
   recommendationControl: Scalability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.DocumentDB/databaseAccounts
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Using a single instance of the SDK client for each account and application is crucial as connections are tied to the client. Compute environments have a limit on open connections, affecting connectivity when exceeded.
   potentialBenefits: Optimizes connections and efficiency
@@ -127,7 +127,7 @@
   recommendationControl: High Availability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.DocumentDB/databaseAccounts
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Cosmos DB SDKs automatically manage many transient errors through retries. Despite this, it's crucial for applications to implement additional retry policies targeting specific cases that the SDKs can't generically address, ensuring more robust error handling.
   potentialBenefits: Enhances error handling resilience

@@ -129,7 +129,7 @@
   recommendationControl: Other Best Practices
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Enabling automatic VM guest patching eases update management by safely, automatically patching virtual machines to maintain security compliance, while limiting blast radius of VMs. Note, the KQL will not return sets using Uniform orchestration.
   potentialBenefits: Eases patch management, enhances security

@@ -4,7 +4,7 @@
   recommendationControl: Security
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/privateDnsZones
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Assign the built-in Private DNS Zone Contributor role to specific authorized users, groups, and entities to protect against unauthorized or accidental changes to Private DNS Zones and records. Restrict access by granting Private DNS Zone Contributor permission to all zones.
   potentialBenefits: Prevents DNS outages

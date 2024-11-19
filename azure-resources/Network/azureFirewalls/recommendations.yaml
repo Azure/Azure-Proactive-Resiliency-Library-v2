@@ -42,7 +42,7 @@
   recommendationControl: Security
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/azureFirewalls
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Associate a DDoS protection plan with the virtual network hosting Azure Firewall to provide enhanced mitigation against DDoS attacks. Azure Firewall Manager integrates the creation of firewall infrastructure and DDoS protection plans.
   potentialBenefits: Enhanced DDoS attack defense
@@ -59,7 +59,7 @@
   recommendationControl: Governance
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/azureFirewalls
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Azure Firewall policy supports rule hierarchies for compliance enforcement, using a central base policy with higher priority over child policies, and employs Azure custom roles to safeguard base policy and manage access within subscriptions or groups.
   potentialBenefits: Enhanced compliance and rule hierarchy

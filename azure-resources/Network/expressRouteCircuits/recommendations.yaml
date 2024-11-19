@@ -91,7 +91,7 @@
   recommendationControl: Monitoring and Alerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/expressRouteCircuits
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     ExpressRoute leverages service health for notifications on both planned and unplanned maintenance, ensuring users are informed about any changes to their ExpressRoute circuits.
   potentialBenefits: Stay informed on circuit updates

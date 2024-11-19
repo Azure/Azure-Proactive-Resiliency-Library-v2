@@ -63,7 +63,7 @@
   recommendationControl: Security
   recommendationImpact: High
   recommendationResourceType: Microsoft.Cdn/profiles
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Front Door terminates TCP and TLS connections from clients and establishes new connections from each PoP to the origin. Securing these connections with TLS, even for Azure-hosted origins, ensures data is always encrypted during transit.
   potentialBenefits: Ensures data encryption in transit
@@ -80,7 +80,7 @@
   recommendationControl: Security
   recommendationImpact: High
   recommendationResourceType: Microsoft.Cdn/profiles
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Using HTTPS is ideal for secure connections. However, for compatibility with older clients, HTTP requests may be necessary. Azure Front Door enables auto redirection of HTTP to HTTPS, enhancing security without sacrificing accessibility.
   potentialBenefits: Enhances security and compliance
@@ -97,7 +97,7 @@
   recommendationControl: Security
   recommendationImpact: High
   recommendationResourceType: Microsoft.Cdn/profiles
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     When Front Door manages your TLS certificates, it reduces your operational costs and helps you to avoid costly outages caused by forgetting to renew a certificate. Front Door automatically issues and rotates the managed TLS certificates.
   potentialBenefits: Lowers costs, avoids outages
@@ -114,7 +114,7 @@
   recommendationControl: High Availability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Cdn/profiles
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     If you use your own TLS certificates, set the Key Vault certificate version to 'Latest' to avoid reconfiguring Azure Front Door for new certificate versions and waiting for deployment across Front Door's environments.
   potentialBenefits: Saves time and automates TLS updates
@@ -131,7 +131,7 @@
   recommendationControl: Governance
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Cdn/profiles
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Front Door can rewrite Host headers for custom domain names routing to a single origin, useful for avoiding custom domain configuration at both Front Door and the origin.
   potentialBenefits: Improves session/auth handling
@@ -148,7 +148,7 @@
   recommendationControl: Security
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Cdn/profiles
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     For internet-facing applications, enabling the Front Door web application firewall (WAF) and configuring it to use managed rules is recommended for protection against a wide range of attacks using Microsoft-managed rules.
   potentialBenefits: Enhances web app security
@@ -216,7 +216,7 @@
   recommendationControl: Security
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Cdn/profiles
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Azure Front Door's geo-filtering through WAF enables defining custom access rules by country/region to restrict or allow web app access.
   potentialBenefits: Enhanced regional access control
@@ -233,7 +233,7 @@
   recommendationControl: Security
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Cdn/profiles
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Azure Private Link enables secure access to Azure PaaS and services over a private endpoint in your virtual network, ensuring traffic goes over the Microsoft backbone network, not the public internet.
   potentialBenefits: Enhanced security and private connectivity
