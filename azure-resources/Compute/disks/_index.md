@@ -1,5 +1,5 @@
 ---
-title: subscriptions
+title: "disks"
 geekdocCollapseSection: true
 geekdocHidden: false
 ---
