@@ -35,3 +35,6 @@ azure-resources/DBforPostgreSQL @Azure/aprl-maintainers @Azure/aprl-postgres
 ## The aprl-sql team is responsible for all SQL-related PRs
 azure-resources/SQL @Azure/aprl-maintainers @Azure/aprl-sql
 azure-resources/SQLVirtualMachines @Azure/aprl-maintainers @Azure/aprl-sql
+
+## Remove owners from the following paths
+tools/data/recommendations.json
