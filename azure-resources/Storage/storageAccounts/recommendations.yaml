@@ -17,25 +17,6 @@
     - name: Change the redundancy configuration for a storage account
       url: "https://learn.microsoft.com/azure/storage/common/redundancy-migration"
 
-- description: Classic Storage Accounts must be migrated to new Azure Resource Manager resources
-  aprlGuid: 63ad027e-611c-294b-acc5-8e3234db9a40
-  recommendationTypeId: 47bb383c-8e25-95f0-c2aa-437add1d87d3
-  recommendationControl: Service Upgrade and Retirement
-  recommendationImpact: High
-  recommendationResourceType: Microsoft.Storage/storageAccounts
-  recommendationMetadataState: Disabled
-  longDescription: |
-    Classic storage accounts will be fully retired on August 31, 2024. If you have classic storage accounts, start planning your migration now.
-  potentialBenefits: Avoids service retirement issues
-  pgVerified: true
-  automationAvailable: true
-  tags: null
-  learnMoreLink:
-    - name: Azure classic storage accounts retirement announcement
-      url: "https://azure.microsoft.com/updates/classic-azure-storage-accounts-will-be-retired-on-31-august-2024/"
-    - name: Migrate your classic storage accounts to Azure Resource Manager
-      url: "https://learn.microsoft.com/azure/storage/common/classic-account-migration-overview"
-
 - description: Use premium performance block blob storage for high performance workloads
   aprlGuid: 5587ef77-7a05-a74d-9c6e-449547a12f27
   recommendationTypeId: c6b94711-f1f5-4e7e-9c89-c17ed4190969
