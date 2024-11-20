@@ -3,7 +3,7 @@
   recommendationTypeId: null
   recommendationControl: DisasterRecovery
   recommendationImpact: High
-  recommendationResourceType: Microsoft.Resources/resourceGroups
+  recommendationResourceType: Microsoft.Resources/subscriptions
   recommendationMetadataState: Active
   longDescription: |
     Ensure resource locations align with their resource group to manage resources during regional outages. ARM stores resource data, which if in an unavailable region, could halt updates, rendering resources read-only.

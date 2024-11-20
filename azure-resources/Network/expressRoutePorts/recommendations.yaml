@@ -48,3 +48,56 @@
   learnMoreLink:
     - name: Azure Monitor Baseline Alerts - expressRoutePorts
       url: "https://azure.github.io/azure-monitor-baseline-alerts/services/Network/expressRoutePorts/"
+
+- description: Connect on-prem networks to Azure critical workloads via multiple ExpressRoutes peering locations
+  aprlGuid: cce3353a-f409-4559-9959-0ca0e3717114
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/expressRoutePorts
+  recommendationMetadataState: Active
+  longDescription: |
+    Ensure resilient connectivity by connecting on-premises networks to Azure through multiple ExpressRoutes, each originating from distinct peering locations, to provide alternate data paths in case of a peering location failure.
+  potentialBenefits: Enhanced reliability and redundancy
+  pgVerified: true
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: Designing for disaster recovery with ExpressRoute private peering
+      url: "https://learn.microsoft.com/azure/expressroute/designing-for-disaster-recovery-with-expressroute-privatepeering"
+
+- description: Ensure ExpressRoute's physical links connect to distinct network edge devices
+  aprlGuid: 222fbb78-be76-4855-a14f-a5e17ef1ccf5
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/expressRoutePorts
+  recommendationMetadataState: Active
+  longDescription: |
+    Microsoft or the ExpressRoute provider always ensures physical redundancy in their services. It's essential to maintain this level of physical redundancy (two devices, two links) from the ExpressRoute peering location to your network for optimal performance and reliability.
+  potentialBenefits: Enhanced reliability and fault tolerance
+  pgVerified: true
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: Designing for high availability with ExpressRoute
+      url: "https://learn.microsoft.com/en-us/azure/expressroute/designing-for-high-availability-with-expressroute"
+    - name: Azure Well-Architected Framework review - Azure ExpressRoute - Design Checklist
+      url: "https://learn.microsoft.com/azure/well-architected/services/networking/azure-expressroute#recommendations"
+
+- description: Ensure both connections of an ExpressRoute are configured in active-active mode
+  aprlGuid: 859886df-3996-4eab-8439-c1a38c416e0e
+  recommendationTypeId: null
+  recommendationControl: High Availability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/expressRoutePorts
+  recommendationMetadataState: Active
+  longDescription: |
+    Operating both connections of an ExpressRoute circuit in active-active mode enhances high availability as the Microsoft network will load balance the traffic across the connections on a per-flow basis.
+  potentialBenefits: Improved high availability and load balancing
+  pgVerified: true
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: Designing for high availability with ExpressRoute - Active-active connections
+      url: "https://learn.microsoft.com/azure/expressroute/designing-for-high-availability-with-expressroute#active-active-connections"

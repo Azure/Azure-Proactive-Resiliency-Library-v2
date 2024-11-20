@@ -3041,7 +3041,7 @@
     "recommendationControl": "HighAvailability",
     "longDescription": "Connecting each ExpressRoute Gateway to a minimum of two circuits in different peering locations enhances redundancy and reliability by ensuring alternate pathways for data in case one circuit fails.\n",
     "pgVerified": true,
-    "description": "Connect on-prem networks to Azure critical workloads via multiple ExpressRoutes",
+    "description": "Connect on-prem networks to Azure critical workloads via multiple ExpressRoutes peering locations",
     "potentialBenefits": "Enhanced reliability and redundancy",
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/expressRouteCircuits",
@@ -3087,7 +3087,7 @@
     "recommendationControl": "HighAvailability",
     "longDescription": "Operating both connections of an ExpressRoute circuit in active-active mode enhances high availability as the Microsoft network will load balance the traffic across the connections on a per-flow basis.\n",
     "pgVerified": true,
-    "description": "Ensure both connections of an ExpressRoute circuit are configured in active-active mode",
+    "description": "Ensure both connections of an ExpressRoute are configured in active-active mode",
     "potentialBenefits": "Improved high availability and load balancing",
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/expressRouteCircuits",
@@ -3241,6 +3241,73 @@
     "recommendationImpact": "High",
     "automationAvailable": false,
     "query": "// under-development\n"
+  },
+  {
+    "aprlGuid": "cce3353a-f409-4559-9959-0ca0e3717114",
+    "recommendationTypeId": null,
+    "recommendationMetadataState": "Active",
+    "learnMoreLink": [
+      {
+        "url": "https://learn.microsoft.com/azure/expressroute/designing-for-disaster-recovery-with-expressroute-privatepeering",
+        "name": "Designing for disaster recovery with ExpressRoute private peering"
+      }
+    ],
+    "recommendationControl": "High Availability",
+    "longDescription": "Ensure resilient connectivity by connecting on-premises networks to Azure through multiple ExpressRoutes, each originating from distinct peering locations, to provide alternate data paths in case of a peering location failure.\n",
+    "pgVerified": true,
+    "description": "Connect on-prem networks to Azure critical workloads via multiple ExpressRoutes peering locations",
+    "potentialBenefits": "Enhanced reliability and redundancy",
+    "tags": null,
+    "recommendationResourceType": "Microsoft.Network/expressRoutePorts",
+    "recommendationImpact": "High",
+    "automationAvailable": false,
+    "query": "// cannot-be-validated-with-arg\n"
+  },
+  {
+    "aprlGuid": "222fbb78-be76-4855-a14f-a5e17ef1ccf5",
+    "recommendationTypeId": null,
+    "recommendationMetadataState": "Active",
+    "learnMoreLink": [
+      {
+        "url": "https://learn.microsoft.com/en-us/azure/expressroute/designing-for-high-availability-with-expressroute",
+        "name": "Designing for high availability with ExpressRoute"
+      },
+      {
+        "url": "https://learn.microsoft.com/azure/well-architected/services/networking/azure-expressroute#recommendations",
+        "name": "Azure Well-Architected Framework review - Azure ExpressRoute - Design Checklist"
+      }
+    ],
+    "recommendationControl": "High Availability",
+    "longDescription": "Microsoft or the ExpressRoute provider always ensures physical redundancy in their services. It's essential to maintain this level of physical redundancy (two devices, two links) from the ExpressRoute peering location to your network for optimal performance and reliability.\n",
+    "pgVerified": true,
+    "description": "Ensure ExpressRoute's physical links connect to distinct network edge devices",
+    "potentialBenefits": "Enhanced reliability and fault tolerance",
+    "tags": null,
+    "recommendationResourceType": "Microsoft.Network/expressRoutePorts",
+    "recommendationImpact": "High",
+    "automationAvailable": false,
+    "query": "// cannot-be-validated-with-arg\n"
+  },
+  {
+    "aprlGuid": "859886df-3996-4eab-8439-c1a38c416e0e",
+    "recommendationTypeId": null,
+    "recommendationMetadataState": "Active",
+    "learnMoreLink": [
+      {
+        "url": "https://learn.microsoft.com/azure/expressroute/designing-for-high-availability-with-expressroute#active-active-connections",
+        "name": "Designing for high availability with ExpressRoute - Active-active connections"
+      }
+    ],
+    "recommendationControl": "High Availability",
+    "longDescription": "Operating both connections of an ExpressRoute circuit in active-active mode enhances high availability as the Microsoft network will load balance the traffic across the connections on a per-flow basis.\n",
+    "pgVerified": true,
+    "description": "Ensure both connections of an ExpressRoute are configured in active-active mode",
+    "potentialBenefits": "Improved high availability and load balancing",
+    "tags": null,
+    "recommendationResourceType": "Microsoft.Network/expressRoutePorts",
+    "recommendationImpact": "High",
+    "automationAvailable": false,
+    "query": "// cannot-be-validated-with-arg\n"
   },
   {
     "aprlGuid": "4281631c-3d19-4994-8d96-084c2a51a534",
@@ -3440,27 +3507,6 @@
     "query": "// under-development\n\n"
   },
   {
-    "aprlGuid": "da1a3c06-d1d5-a940-9a99-fcc05966fe7c",
-    "recommendationTypeId": null,
-    "recommendationMetadataState": "Disabled",
-    "learnMoreLink": [
-      {
-        "url": "https://learn.microsoft.com/azure/network-watcher/network-watcher-nsg-flow-logging-overview",
-        "name": "Flow logging for network security groups"
-      }
-    ],
-    "recommendationControl": "MonitoringAndAlerting",
-    "longDescription": "Monitoring, managing, and understanding your network is crucial for protection and optimization. Knowing the current state, who and from where connections are made, open internet ports, expected and irregular behavior, and traffic spikes is essential.\n",
-    "pgVerified": true,
-    "description": "Configure NSG Flow Logs",
-    "potentialBenefits": "Enhances security and optimizes network",
-    "tags": null,
-    "recommendationResourceType": "Microsoft.Network/networkSecurityGroups",
-    "recommendationImpact": "Medium",
-    "automationAvailable": true,
-    "query": "// Azure Resource Graph Query\n// Find all Network Security Groups without NSG Flow logs configured or disabled.\nresources\n| where type =~ \"Microsoft.Network/networkSecurityGroups\"\n| project name, id, tags, lowerCaseNsgId = tolower(id)\n| join kind = leftouter (\n    resources\n    | where type == \"microsoft.network/networkwatchers/flowlogs\" and properties.enabled == true\n    | project flowLogName = name, lowerCaseTargetNsgId = tolower(properties.targetResourceId)\n    )\n    on $left.lowerCaseNsgId == $right.lowerCaseTargetNsgId\n| where isempty(lowerCaseTargetNsgId)\n| project recommendationId = \"da1a3c06-d1d5-a940-9a99-fcc05966fe7c\", name, id, tags, param1 = \"NSGFlowLog: Not configured/Disabled\"\n"
-  },
-  {
     "aprlGuid": "8291c1fa-650c-b44b-b008-4deb7465919d",
     "recommendationTypeId": null,
     "recommendationMetadataState": "Active",
@@ -3491,11 +3537,11 @@
         "name": "Designing for disaster recovery with ExpressRoute private peering"
       }
     ],
-    "recommendationControl": "HighAvailability",
-    "longDescription": "To increase reliability, it's advised that each v-Hub's ExpressRoute gateway connects to at least two circuits, with each circuit originating from a different peering location than the other, ensuring diverse connectivity paths for enhanced resilience.",
-    "pgVerified": false,
-    "description": "Connect v-Hub's ExpressRoute gateway to circuits from diverse peering locations for resilience",
-    "potentialBenefits": "Enhance resiliency for Azure Service",
+    "recommendationControl": "High Availability",
+    "longDescription": "For improved reliability, each ExpressRoute gateway should connect to at least two circuits, with each circuit sourced from a different peering location. This setup ensures diverse connectivity paths, enhancing resilience and minimizing service disruption risks.\n",
+    "pgVerified": true,
+    "description": "Connect ExpressRoute gateway with circuits from diverse peering locations",
+    "potentialBenefits": "Enhanced resilience through diverse connectivity paths",
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/expressRouteGateways",
     "recommendationImpact": "High",
@@ -3512,10 +3558,10 @@
         "name": "Virtual WAN Monitoring Best Practices"
       }
     ],
-    "recommendationControl": "MonitoringAndAlerting",
-    "longDescription": "Set up monitoring and alerts for Virtual WAN ExpressRoute Gateway. Create alert rule for ensuring promptly response to critical events such as exceeding packets per second, exceeding BGP routes prefixes, Gateway overutilization and high frequency in route changes.",
-    "pgVerified": false,
-    "description": "Monitor health for v-Hub's ExpressRoute gateway",
+    "recommendationControl": "Monitoring and Alerting",
+    "longDescription": "Set up monitoring and alerts for ExpressRoute Gateway. Create alert rule for ensuring promptly response to critical events such as exceeding packets per second, exceeding BGP routes prefixes, Gateway overutilization and high frequency in route changes.",
+    "pgVerified": true,
+    "description": "Monitor health for ExpressRoute gateway",
     "potentialBenefits": "Detection and mitigation to avoid disruptions.",
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/expressRouteGateways",
@@ -3617,11 +3663,11 @@
         "name": "Designing for disaster recovery with ExpressRoute private peering"
       }
     ],
-    "recommendationControl": "HighAvailability",
-    "longDescription": "To increase reliability, it's advised that each ExpressRoute gateway connects to at least two circuits, with each circuit originating from a different peering location than the other, ensuring diverse connectivity paths for enhanced resilience.\n",
+    "recommendationControl": "High Availability",
+    "longDescription": "For improved reliability, each ExpressRoute gateway should connect to at least two circuits, with each circuit sourced from a different peering location. This setup ensures diverse connectivity paths, enhancing resilience and minimizing service disruption risks.\n",
     "pgVerified": true,
-    "description": "Connect ExpressRoute gateway with circuits from diverse peering locations for resilience",
-    "potentialBenefits": "Enhanced resiliency for Azure service",
+    "description": "Connect ExpressRoute gateway with circuits from diverse peering locations",
+    "potentialBenefits": "Enhanced resilience through diverse connectivity paths",
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/virtualNetworkGateways",
     "recommendationImpact": "High",
@@ -3695,7 +3741,7 @@
     "recommendationControl": "MonitoringAndAlerting",
     "longDescription": "Use Network Insights for monitoring ExpressRoute Gateway's health, including availability, performance, and scalability.\n",
     "pgVerified": true,
-    "description": "Monitor gateway health for ExpressRoute gateways",
+    "description": "Monitor health for ExpressRoute gateway",
     "potentialBenefits": "Enhanced monitoring and alerting",
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/virtualNetworkGateways",
@@ -4088,6 +4134,39 @@
     "query": "// Azure Resource Graph Query\n// Provides a list of Traffic Manager resources that are not confirgured for all-World access\nResources\n| where type == 'microsoft.network/trafficmanagerprofiles'\n| where properties.trafficRoutingMethod =~ \"Geographic\"\n| extend endpoints = properties.endpoints\n| mv-expand endpoint = endpoints\n| where endpoint.properties.geoMapping !contains \"WORLD\"\n| extend endpointName = endpoint.name\n| project recommendationId=\"c31f76a0-48cd-9f44-aa43-99ee904db9bc\", name, id, tags, param1=strcat(\"endpointName:\",endpointName), param2=strcat(\"GeoMapping:\", tostring(endpoint.properties.geoMapping))\n"
   },
   {
+    "aprlGuid": "9437634c-d69e-2747-b13e-631c13182150",
+    "recommendationTypeId": null,
+    "recommendationMetadataState": "Active",
+    "learnMoreLink": [
+      {
+        "url": "https://learn.microsoft.com/azure/architecture/guide/technology-choices/load-balancing-overview",
+        "name": "Azure Load Balancing Options"
+      },
+      {
+        "url": "https://learn.microsoft.com/azure/traffic-manager/traffic-manager-overview",
+        "name": "Azure Traffic Manager"
+      },
+      {
+        "url": "https://learn.microsoft.com/azure/frontdoor/front-door-overview",
+        "name": "Azure Front Door"
+      },
+      {
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/guide/networking/global-web-applications/mission-critical-content-delivery",
+        "name": "Mission-critical global content delivery"
+      }
+    ],
+    "recommendationControl": "Business Continuity",
+    "longDescription": "For most solutions, choose either Azure Front Door for content caching, CDN, TLS termination, and WAF, or Traffic Manager for simple global load balancing.\n",
+    "pgVerified": true,
+    "description": "Avoid combining Traffic Manager and Front Door",
+    "potentialBenefits": "Optimized network routing and security",
+    "tags": null,
+    "recommendationResourceType": "Microsoft.Network/trafficManagerProfiles",
+    "recommendationImpact": "High",
+    "automationAvailable": true,
+    "query": "// Azure Resource Graph Query\n// Avoid combining Traffic Manager and Front Door\nresources\n| where type == \"microsoft.network/trafficmanagerprofiles\"\n| mvexpand(properties.endpoints)\n| extend endpoint=tostring(properties_endpoints.properties.target)\n| project name, trafficmanager=id, matchname=endpoint, tags\n| join (\n    resources\n    | where type =~ \"microsoft.cdn/profiles/afdendpoints\"\n    | extend matchname= tostring(properties.hostName)\n    | extend splitid=split(id, \"/\")\n    | extend frontdoorid=tolower(strcat_array(array_slice(splitid, 0, 8), \"/\"))\n    | project name, id, matchname, frontdoorid, type\n    | union\n        (cdnresources\n        | where type =~ \"Microsoft.Cdn/Profiles/CustomDomains\"\n        | extend matchname= tostring(properties.hostName)\n        | extend splitid=split(id, \"/\")\n        | extend frontdoorid=tolower(strcat_array(array_slice(splitid, 0, 8), \"/\"))\n        | project name, id, matchname, frontdoorid, type)\n    )\n    on matchname\n| project\n    recommendationId = \"9437634c-d69e-2747-b13e-631c13182150\",\n    name=split(trafficmanager, \"/\")[-1],\n    id=trafficmanager,\n    tags,\n    param1=strcat(\"hostname:\", matchname),\n    param2=strcat(\"frontdoorid:\", frontdoorid)\n\n"
+  },
+  {
     "aprlGuid": "4e133bd0-8762-bc40-a95b-b29142427d73",
     "recommendationTypeId": null,
     "recommendationMetadataState": "Active",
@@ -4105,8 +4184,8 @@
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/networkWatchers",
     "recommendationImpact": "Low",
-    "automationAvailable": true,
-    "query": "// Azure Resource Graph Query\n// This query will return all locations that do not have a Network Watcher deployed\nresources\n| where location != \"global\"\n| union (Resources\n    | where type =~ \"microsoft.network/networkwatchers\")\n| summarize NetworkWatcherCount = countif(type =~ 'Microsoft.Network/networkWatchers') by location\n| where NetworkWatcherCount == 0\n| project recommendationId = \"4e133bd0-8762-bc40-a95b-b29142427d73\", name=location, id=\"n/a\", param1 = strcat(\"LocationMisingNetworkWatcher:\", location)\n\n"
+    "automationAvailable": false,
+    "query": "// under-development\n"
   },
   {
     "aprlGuid": "22a769ed-0ecb-8b49-bafe-8f52e6373d9c",
@@ -5917,39 +5996,6 @@
     "recommendationImpact": "High",
     "automationAvailable": false,
     "query": "//cannot-be-validated-with-arg\n\n"
-  },
-  {
-    "aprlGuid": "9437634c-d69e-2747-b13e-631c13182150",
-    "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
-    "learnMoreLink": [
-      {
-        "url": "https://learn.microsoft.com/azure/architecture/guide/technology-choices/load-balancing-overview",
-        "name": "Azure Load Balancing Options"
-      },
-      {
-        "url": "https://learn.microsoft.com/azure/traffic-manager/traffic-manager-overview",
-        "name": "Azure Traffic Manager"
-      },
-      {
-        "url": "https://learn.microsoft.com/azure/frontdoor/front-door-overview",
-        "name": "Azure Front Door"
-      },
-      {
-        "url": "https://learn.microsoft.com/en-us/azure/architecture/guide/networking/global-web-applications/mission-critical-content-delivery",
-        "name": "Mission-critical global content delivery"
-      }
-    ],
-    "recommendationControl": "BusinessContinuity",
-    "longDescription": "For most solutions, choose either Azure Front Door for content caching, CDN, TLS termination, and WAF, or Traffic Manager for simple global load balancing.\n",
-    "pgVerified": true,
-    "description": "Avoid combining Traffic Manager and Front Door",
-    "potentialBenefits": "Optimized network routing and security",
-    "tags": null,
-    "recommendationResourceType": "Microsoft.Cdn/profiles",
-    "recommendationImpact": "High",
-    "automationAvailable": true,
-    "query": "// Azure Resource Graph Query\n// Avoid combining Traffic Manager and Front Door\nresources\n| where type == \"microsoft.network/trafficmanagerprofiles\"\n| mvexpand(properties.endpoints)\n| extend endpoint=tostring(properties_endpoints.properties.target)\n| project name, trafficmanager=id, matchname=endpoint, tags\n| join (\n    resources\n    | where type =~ \"microsoft.cdn/profiles/afdendpoints\"\n    | extend matchname= tostring(properties.hostName)\n    | extend splitid=split(id, \"/\")\n    | extend frontdoorid=tolower(strcat_array(array_slice(splitid, 0, 8), \"/\"))\n    | project name, id, matchname, frontdoorid, type\n    | union\n        (cdnresources\n        | where type =~ \"Microsoft.Cdn/Profiles/CustomDomains\"\n        | extend matchname= tostring(properties.hostName)\n        | extend splitid=split(id, \"/\")\n        | extend frontdoorid=tolower(strcat_array(array_slice(splitid, 0, 8), \"/\"))\n        | project name, id, matchname, frontdoorid, type)\n    )\n    on matchname\n| project\n    recommendationId = \"9437634c-d69e-2747-b13e-631c13182150\",\n    name=split(trafficmanager, \"/\")[-1],\n    id=trafficmanager,\n    tags,\n    param1=strcat(\"hostname:\", matchname),\n    param2=strcat(\"frontdoorid:\", frontdoorid)\n\n"
   },
   {
     "aprlGuid": "6c40b7ae-2bea-5748-be1a-9e9e3b834649",
