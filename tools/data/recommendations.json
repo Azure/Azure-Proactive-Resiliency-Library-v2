@@ -299,7 +299,7 @@
   {
     "aprlGuid": "5587ef77-7a05-a74d-9c6e-449547a12f27",
     "recommendationTypeId": "c6b94711-f1f5-4e7e-9c89-c17ed4190969",
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Types of storage accounts",
@@ -453,7 +453,7 @@
   {
     "aprlGuid": "dc55be60-6f8c-461e-a9d5-a3c7686ed94e",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Learn More",
@@ -553,7 +553,7 @@
   {
     "aprlGuid": "af426a99-62a6-6b4c-9662-42d220b413b8",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Service levels for Azure NetApp Files | Microsoft Learn",
@@ -742,7 +742,7 @@
   {
     "aprlGuid": "687ae58f-517f-ca43-90fe-922497e61283",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Azure Policy definitions for Azure NetApp Files | Microsoft Learn",
@@ -767,7 +767,7 @@
   {
     "aprlGuid": "cfa2244b-5436-47de-8287-b217875d3b0a",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Configure network features for an Azure NetApp Files volume",
@@ -1018,7 +1018,7 @@
   {
     "aprlGuid": "cbb17a29-64fb-c943-95d0-8df814a37c40",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "How to Implement Retry Logic",
@@ -1672,7 +1672,7 @@
   {
     "aprlGuid": "00c3d2b0-ea6e-4c4b-89be-b78a35caeb51",
     "recommendationTypeId": "2e96bc2f-1972-e471-9e70-ae58d41e9d2a",
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Azure Key Vault Private Link Service overview",
@@ -1693,7 +1693,7 @@
   {
     "aprlGuid": "e7091145-3642-bd41-bb58-66502e64d2cd",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Azure Key Vault best practices overview",
@@ -3140,7 +3140,7 @@
   {
     "aprlGuid": "26cb547f-aabc-dc40-be02-d0a9b6b04b1a",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "How to view and configure alerts for Azure ExpressRoute circuit maintenance",
@@ -3911,7 +3911,7 @@
   {
     "aprlGuid": "d0cfe47f-686b-5043-bf83-5a3868acb80a",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Azure Web Application Firewall monitoring and logging - Access Log",
@@ -3944,7 +3944,7 @@
   {
     "aprlGuid": "537b4d94-edd1-4041-b13d-8217dfa485f0",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Azure Web Application Firewall Monitoring and Logging",
@@ -4044,7 +4044,7 @@
   {
     "aprlGuid": "1ad9d7b7-9692-1441-a8f4-93792efbe97a",
     "recommendationTypeId": "0db76759-6d22-4262-93f0-2f989ba2b58e",
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Reliability recommendations",
@@ -4265,7 +4265,7 @@
   {
     "aprlGuid": "69ea1185-19b7-de40-9da1-9e8493547a5c",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Reliability and Azure Virtual Network - Microsoft Azure Well-Architected Framework | Microsoft Learn",
@@ -4357,7 +4357,7 @@
   {
     "aprlGuid": "233a7008-71e9-e745-923e-1a1c7a0b92f3",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Application Gateway Security",
@@ -4394,7 +4394,7 @@
   {
     "aprlGuid": "8d9223c4-730d-ca47-af88-a9a024c37270",
     "recommendationTypeId": "efe75f01-6fff-5d9d-08e6-092b98d3fb3f",
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Well-Architected Framework Application Gateway Overview",
@@ -4619,7 +4619,7 @@
   {
     "aprlGuid": "1b2dbf4a-8a0b-5e4b-8f4e-3f758188910d",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Azure DDoS Protection overview",
@@ -4640,7 +4640,7 @@
   {
     "aprlGuid": "3a63560a-1ed3-6140-acd1-d1d23f9a2e12",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Azure Firewall Policy hierarchy",
@@ -4728,7 +4728,7 @@
   {
     "aprlGuid": "2820f6d6-a23c-7a40-aec5-506f3bd1aeb6",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Protecting private DNS Zones and Records - Azure DNS",
@@ -4929,7 +4929,7 @@
   {
     "aprlGuid": "5ada5ffa-7149-4e49-9fbf-e67be7c2594c",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Management group recommendations",
@@ -5146,7 +5146,7 @@
   {
     "aprlGuid": "4ea2878f-0d69-8d4a-b715-afc10d1e538e",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Introduction to Azure managed disks - Data disks",
@@ -5192,7 +5192,7 @@
   {
     "aprlGuid": "98b334c0-8578-6046-9e43-b6e8fce6318e",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "States and billing status of Azure Virtual Machines",
@@ -5255,7 +5255,7 @@
   {
     "aprlGuid": "1f629a30-c9d0-d241-82ee-6f2eb9d42cb4",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Use Source Network Address Translation (SNAT) for outbound connections",
@@ -5276,7 +5276,7 @@
   {
     "aprlGuid": "82b3cf6b-9ae2-2e44-b193-10793213f676",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "How network security groups filter network traffic",
@@ -5318,7 +5318,7 @@
   {
     "aprlGuid": "1cf8fe21-9593-1e4e-966b-779a294c0d30",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Name resolution for resources in Azure virtual networks",
@@ -5339,7 +5339,7 @@
   {
     "aprlGuid": "70b1d2be-e6c4-b54e-9959-b1b690f9e485",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Restrict import/export access for managed disks using Azure Private Link",
@@ -5360,7 +5360,7 @@
   {
     "aprlGuid": "c42343ae-2712-2843-a285-3437eb0b28a1",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Policy-driven governance",
@@ -5385,7 +5385,7 @@
   {
     "aprlGuid": "f0a97179-133a-6e4f-8a49-8a44da73ffce",
     "recommendationTypeId": "a40cc620-e72c-fdf4-c554-c6ca2cd705c0",
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Overview of managed disk encryption options",
@@ -5590,7 +5590,7 @@
   {
     "aprlGuid": "5f7e8a12-3c4f-456b-919c-2e9adff98c38",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "How to update the Azure Linux Agent on a VM",
@@ -5678,7 +5678,7 @@
   {
     "aprlGuid": "1c5e1e58-4e56-491c-8529-10f37af9d4ed",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Compute Gallery best practices",
@@ -5908,7 +5908,7 @@
   {
     "aprlGuid": "e4ffd7b0-ba24-c84e-9352-ba4819f908c0",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Automatic VM Guest Patching for Azure VMs",
@@ -6033,7 +6033,7 @@
   {
     "aprlGuid": "d9bd6780-0d6f-cd4c-bc66-8ddcab12f3d1",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "End-to-end TLS with Azure Front Door",
@@ -6054,7 +6054,7 @@
   {
     "aprlGuid": "24ab9f11-a3e4-3043-a985-22cf94c4933a",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Create HTTP to HTTPS redirect rule",
@@ -6075,7 +6075,7 @@
   {
     "aprlGuid": "29d65c41-2fad-d142-95eb-9eab95f6c0a5",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Configure HTTPS on an Azure Front Door custom domain using the Azure portal",
@@ -6096,7 +6096,7 @@
   {
     "aprlGuid": "4638c2c0-03de-6d42-9e09-82ee4478cbf3",
     "recommendationTypeId": "2c057605-4707-4d3e-bbb0-a7fe9b6a626b",
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Select the certificate for Azure Front Door to deploy",
@@ -6117,7 +6117,7 @@
   {
     "aprlGuid": "cd6a32af-747a-e649-82a7-a98f528ca842",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Preserve the original HTTP host name between a reverse proxy and its back-end web application",
@@ -6138,7 +6138,7 @@
   {
     "aprlGuid": "1bd2b7e8-400f-e64a-99a2-c572f7b08a62",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Web Application Firewall on Azure Front Door",
@@ -6222,7 +6222,7 @@
   {
     "aprlGuid": "b515690d-3bf9-3a49-8d38-188e0fd45896",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Geo filter WAF policy - GeoMatch",
@@ -6243,7 +6243,7 @@
   {
     "aprlGuid": "1cfe7834-56ec-ff41-b11d-993734705dba",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Private link for Azure Front Door",
@@ -7085,7 +7085,7 @@
   {
     "aprlGuid": "c006604a-0d29-684c-99f0-9729cb40dac5",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Pagination in Azure Cosmos DB",
@@ -7106,7 +7106,7 @@
   {
     "aprlGuid": "7eb32cf9-9a42-1540-acf8-597cbba8a418",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Designing resilient applications with Azure Cosmos DB SDKs",
@@ -7127,7 +7127,7 @@
   {
     "aprlGuid": "fa6ac22f-0584-bb4b-80e4-80f4755d1a97",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Designing resilient applications with Azure Cosmos DB SDKs",
