@@ -246,25 +246,6 @@
     - name: Name resolution for resources in Azure virtual networks
       url: "https://learn.microsoft.com/azure/virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances"
 
-- description: Shared disks should only be enabled in clustered servers
-  aprlGuid: 3263a64a-c256-de48-9818-afd3cbc55c2a
-  recommendationTypeId: null
-  recommendationControl: Other Best Practices
-  recommendationImpact: Medium
-  recommendationResourceType: Microsoft.Compute/virtualMachines
-  recommendationMetadataState: Active
-  longDescription: |
-    Azure shared disks let you attach a disk to multiple VMs at once for deploying or migrating clustered applications, suitable only when a disk is shared among VM cluster members.
-  potentialBenefits: Enhances clustered server performance
-  pgVerified: true
-  automationAvailable: true
-  tags: null
-  learnMoreLink:
-    - name: Azure Shared Disk Introduction
-      url: "https://learn.microsoft.com/azure/virtual-machines/disks-shared"
-    - name: Enable Shared Disks
-      url: "https://learn.microsoft.com/azure/virtual-machines/disks-shared-enable?tabs=azure-portal"
-
 - description: Network access to the VM disk should be set to Disable public access and enable private access
   aprlGuid: 70b1d2be-e6c4-b54e-9959-b1b690f9e485
   recommendationTypeId: null
@@ -445,23 +426,6 @@
     - name: Azure Metadata Service Scheduled Events for Windows VMs
       url: "https://learn.microsoft.com/azure/virtual-machines/windows/scheduled-events"
 
-- description: Use Azure Disks with Zone Redundant Storage for higher resiliency and availability
-  aprlGuid: fa0cf4f5-0b21-47b7-89a9-ee936f193ce1
-  recommendationTypeId: d4102c0f-ebe3-4b22-8fe0-e488866a87af
-  recommendationControl: High Availability
-  recommendationImpact: Medium
-  recommendationResourceType: Microsoft.Compute/virtualMachines
-  recommendationMetadataState: Active
-  longDescription: |
-    Azure disks offers a zone-redundant storage (ZRS) option for workloads that need to be resilient to an entire zone being down. Due to the cross-zone data replication, ZRS disks have higher write latency when compared to the locally-redundant option (LRS), so make sure to benchmark your disks.
-  potentialBenefits: Enhanced Disk resilience to failures
-  pgVerified: true
-  automationAvailable: true
-  tags: null
-  learnMoreLink:
-    - name: Redundancy options for managed disks
-      url: "https://aka.ms/zrsdisksdoc"
-
 - description: Reserve Compute Capacity for critical workloads
   aprlGuid: 302fda08-ee65-4fbe-a916-6dc0b33169c4
   recommendationTypeId: null
@@ -472,7 +436,7 @@
   longDescription: |
     Azure Capacity Reservations ensure high availability for virtual machines by reserving compute capacity in advance within a specific region or availability zone. This guarantees that VMs will have the necessary resources during peak demand or maintenance events, enhancing reliability and uptime.
   potentialBenefits: Guaranteed capacity in constrained regions/zones
-  pgVerified: false
+  pgVerified: true
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -483,13 +447,13 @@
   aprlGuid: 5f7e8a12-3c4f-456b-919c-2e9adff98c38
   recommendationTypeId: null
   recommendationControl: High Availability
-  recommendationImpact: Low
+  recommendationImpact: Medium
   recommendationResourceType: Microsoft.Compute/virtualMachines
   recommendationMetadataState: Active
   longDescription: |
     If you've installed the Azure Linux Agent or are using an endorsed distribution image, ensure your agent version is up-to-date. Some Linux distributions may disable auto-update or use older agent versions.
   potentialBenefits: Reduces complications with VM provisioning
-  pgVerified: false
+  pgVerified: true
   automationAvailable: false
   tags: null
   learnMoreLink:
