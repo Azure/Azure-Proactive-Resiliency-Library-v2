@@ -15,7 +15,7 @@
     "description": "Ensure Resource Group and its Resources are located in the same Region",
     "potentialBenefits": "Improves outage management",
     "tags": null,
-    "recommendationResourceType": "Microsoft.Resources/resourceGroups",
+    "recommendationResourceType": "Microsoft.Resources/subscriptions",
     "recommendationImpact": "High",
     "automationAvailable": true,
     "query": "// Azure Resource Graph Query\n// Provides a list of Azure Resource Groups that have resources deployed in a region different than the Resource Group region\nresourcecontainers\n| where type =~ \"Microsoft.Resources/subscriptions/resourceGroups\"\n| project resourceGroupId = tolower(id), resourceGroupLocation = location\n| join kind = inner (\n    resources\n    | where location !~ \"Global\" and             // Exclude global resources\n        resourceGroup !~ \"NetworkWatcherRG\" and  // Exclude resources in the NetworkWatcherRG\n        id has \"/resourceGroups/\"                // Exclude resources not in a resource group\n    | project id, name, tags, resourceGroup, location, resourceGroupId = tolower(strcat_array(array_slice(split(id, \"/\"), 0, 4), \"/\"))\n    )\n    on resourceGroupId\n| where resourceGroupLocation !~ location\n| project\n    recommendationId = \"98bd7098-49d6-491b-86f1-b143d6b1a0ff\",\n    name,\n    id,\n    tags,\n    param1 = strcat(\"resourceLocation: \", location),\n    param2 = strcat(\"resourceGroupLocation: \", resourceGroupLocation),\n    param3 = strcat(\"resourceGroup: \", resourceGroup)\n"
@@ -3310,31 +3310,6 @@
     "query": "// cannot-be-validated-with-arg\n"
   },
   {
-    "aprlGuid": "4281631c-3d19-4994-8d96-084c2a51a534",
-    "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
-    "learnMoreLink": [
-      {
-        "url": "https://learn.microsoft.com/en-us/azure/nat-gateway/nat-gateway-design#scale-a-nat-gateway-to-meet-the-demand-of-a-dynamic-workload",
-        "name": "Scale a NAT gateway to meet the demand of a dynamic workload"
-      },
-      {
-        "url": "https://learn.microsoft.com/en-us/azure/nat-gateway/nat-metrics#total-snat-connection-count",
-        "name": "Total SNAT Connection Count"
-      }
-    ],
-    "recommendationControl": "Scalability",
-    "longDescription": "NAT Gateway provides 64,512 SNAT ports per public IP address and supports up to 16 public IP addresses. Monitor \"Total SNAT connection count\" metric to determine if you're nearing the connection limit of NAT gateway. You can scale the NAT gateway by adding more public IP addresses.\n",
-    "pgVerified": false,
-    "description": "Scale a NAT gateway to meet the demand of a dynamic workload",
-    "potentialBenefits": "Enhances reliability and scalability",
-    "tags": null,
-    "recommendationResourceType": "Microsoft.Network/natGateways",
-    "recommendationImpact": "Medium",
-    "automationAvailable": false,
-    "query": "// under-development\n\n"
-  },
-  {
     "aprlGuid": "babf75d6-6407-4d90-b01e-5a1768e621f5",
     "recommendationTypeId": null,
     "recommendationMetadataState": "Active",
@@ -3356,27 +3331,6 @@
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/natGateways",
     "recommendationImpact": "High",
-    "automationAvailable": false,
-    "query": "// under-development\n\n"
-  },
-  {
-    "aprlGuid": "419df1ea-336b-460a-b6b2-fefe2588fcef",
-    "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
-    "learnMoreLink": [
-      {
-        "url": "https://learn.microsoft.com/en-us/azure/nat-gateway/nat-availability-zones#zonal-nat-gateway-resource-for-each-zone-in-a-region-to-create-zone-resiliency",
-        "name": "Zonal NAT gateway resource for each zone in a region to create zone-resiliency"
-      }
-    ],
-    "recommendationControl": "High Availability",
-    "longDescription": "A zonal promise for zone isolation scenarios exists when a virtual machine instance using a NAT gateway resource is in the same zone as the NAT gateway resource and its public IP addresses. The pattern you want to use for zone isolation is creating a \"zonal stack\" per availability zone.\n",
-    "pgVerified": false,
-    "description": "Consider zonal NAT gateway deployment for zone isolation scenarios",
-    "potentialBenefits": "Enhances reliability and scalability",
-    "tags": null,
-    "recommendationResourceType": "Microsoft.Network/natGateways",
-    "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// under-development\n\n"
   },
@@ -5023,6 +4977,52 @@
     "query": "// Azure Resource Graph Query\n// This resource graph query will return all subscriptions without Service Health alerts configured.\n\nresourcecontainers\n| where type == 'microsoft.resources/subscriptions'\n| project subscriptionAlerts=tostring(id),name,tags\n| join kind=leftouter (\n  resources\n  | where type == 'microsoft.insights/activitylogalerts' and properties.condition contains \"ServiceHealth\"\n  | extend subscriptions = properties.scopes\n  | project subscriptions\n  | mv-expand subscriptions\n  | project subscriptionAlerts = tostring(subscriptions)\n) on subscriptionAlerts\n| where isempty(subscriptionAlerts1)\n| project-away subscriptionAlerts1\n| project recommendationId = \"9729c89d-8118-41b4-a39b-e12468fa872b\",name,id=subscriptionAlerts,tags\n\n"
   },
   {
+    "aprlGuid": "3263a64a-c256-de48-9818-afd3cbc55c2a",
+    "recommendationTypeId": null,
+    "recommendationMetadataState": "Active",
+    "learnMoreLink": [
+      {
+        "url": "https://learn.microsoft.com/azure/virtual-machines/disks-shared",
+        "name": "Azure Shared Disk Introduction"
+      },
+      {
+        "url": "https://learn.microsoft.com/azure/virtual-machines/disks-shared-enable?tabs=azure-portal",
+        "name": "Enable Shared Disks"
+      }
+    ],
+    "recommendationControl": "Other Best Practices",
+    "longDescription": "Azure shared disks let you attach a disk to multiple VMs at once for deploying or migrating clustered applications, suitable only when a disk is shared among VM cluster members.\n",
+    "pgVerified": true,
+    "description": "Shared disks should only be enabled in clustered servers",
+    "potentialBenefits": "Enhances clustered server performance",
+    "tags": null,
+    "recommendationResourceType": "Microsoft.Compute/disks",
+    "recommendationImpact": "Medium",
+    "automationAvailable": true,
+    "query": "// Azure Resource Graph Query\n// Find all Disks configured to be Shared. This is not an indication of an issue, but if a disk with this configuration is assigned to two or more VMs without a proper disk control mechanism (like a WSFC) it can lead to data loss\nresources\n| where type =~ 'Microsoft.Compute/disks'\n| where isnotnull(properties.maxShares) and properties.maxShares >= 2\n| project id, name, tags, lowerCaseDiskId = tolower(id), diskState = tostring(properties.diskState)\n| join kind = leftouter (\n    resources\n    | where type =~ 'Microsoft.Compute/virtualMachines'\n    | project osDiskVmName = name, lowerCaseOsDiskId = tolower(properties.storageProfile.osDisk.managedDisk.id)\n    | join kind = fullouter (\n        resources\n        | where type =~ 'Microsoft.Compute/virtualMachines'\n        | mv-expand dataDisks = properties.storageProfile.dataDisks\n        | project dataDiskVmName = name, lowerCaseDataDiskId = tolower(dataDisks.managedDisk.id)\n        )\n        on $left.lowerCaseOsDiskId == $right.lowerCaseDataDiskId\n    | project lowerCaseDiskId = coalesce(lowerCaseOsDiskId, lowerCaseDataDiskId), vmName = coalesce(osDiskVmName, dataDiskVmName)\n    )\n    on lowerCaseDiskId\n| summarize vmNames = make_set(vmName) by name, id, tostring(tags), diskState\n| extend param1 = strcat(\"DiskState: \", diskState), param2 = iif(isempty(vmNames[0]), \"VMName: n/a\", strcat(\"VMName: \", strcat_array(vmNames, \", \")))\n| project recommendationId = \"3263a64a-c256-de48-9818-afd3cbc55c2a\", name, id, tags, param1, param2\n| order by id asc\n\n"
+  },
+  {
+    "aprlGuid": "fa0cf4f5-0b21-47b7-89a9-ee936f193ce1",
+    "recommendationTypeId": "d4102c0f-ebe3-4b22-8fe0-e488866a87af",
+    "recommendationMetadataState": "Active",
+    "learnMoreLink": [
+      {
+        "url": "https://aka.ms/zrsdisksdoc",
+        "name": "Redundancy options for managed disks"
+      }
+    ],
+    "recommendationControl": "High Availability",
+    "longDescription": "Azure disks offers a zone-redundant storage (ZRS) option for workloads that need to be resilient to an entire zone being down. Due to the cross-zone data replication, ZRS disks have higher write latency when compared to the locally-redundant option (LRS), so make sure to benchmark your disks.\n",
+    "pgVerified": true,
+    "description": "Use Azure Disks with Zone Redundant Storage for higher resiliency and availability",
+    "potentialBenefits": "Enhanced Disk resilience to failures",
+    "tags": null,
+    "recommendationResourceType": "Microsoft.Compute/disks",
+    "recommendationImpact": "Medium",
+    "automationAvailable": true,
+    "query": "// Azure Resource Graph Query\n// Find eligible Disks that are not zonal nor zone redundant\nresources\n| where type == 'microsoft.compute/disks'\n| where location in~ (\"australiaeast\", \"brazilsouth\", \"canadacentral\", \"centralindia\", \"centralus\", \"eastasia\", \"eastus\", \"eastus2\", \"francecentral\", \"germanywestcentral\", \"israelcentral\", \"italynorth\", \"japaneast\", \"japanwest\", \"koreacentral\", \"mexicocentral\", \"newzealandnorth\", \"northeurope\", \"norwayeast\", \"polandcentral\", \"qatarcentral\", \"southafricanorth\", \"southcentralus\", \"southeastasia\", \"spaincentral\", \"swedencentral\", \"switzerlandnorth\", \"uaenorth\", \"uksouth\", \"westeurope\", \"westus2\", \"westus3\", \"usgovvirginia\", \"chinanorth3\")\n| where sku has \"Premium_LRS\" or sku has \"StandardSSD_LRS\"\n| where sku.name has_cs 'ZRS' or array_length(zones) > 0\n| project recommendationId=\"fa0cf4f5-0b21-47b7-89a9-ee936f193ce1\", name, id, tags, param1 = sku, param2 = sku.name\n"
+  },
+  {
     "aprlGuid": "273f6b30-68e0-4241-85ea-acf15ffb60bf",
     "recommendationTypeId": null,
     "recommendationMetadataState": "Active",
@@ -5337,31 +5337,6 @@
     "query": "// Azure Resource Graph Query\n// Find all VM NICs that have DNS Server settings configured in any of the NICs\nResources\n| where type =~ 'Microsoft.Compute/virtualMachines'\n| where isnotnull(properties.networkProfile.networkInterfaces)\n| mv-expand nic=properties.networkProfile.networkInterfaces\n| project name, id, tags, nicId = nic.id\n| extend nicId = tostring(nicId)\n| join kind=inner (\n    Resources\n    | where type =~ 'Microsoft.Network/networkInterfaces'\n    | project name, id, dnsServers = properties.dnsSettings.dnsServers\n    | extend hasDns = array_length(dnsServers) >= 1\n    | where hasDns != 0\n    | project name, nicId = tostring(id)\n) on nicId\n| project recommendationId = \"1cf8fe21-9593-1e4e-966b-779a294c0d30\", name, id, tags\n| order by id asc\n\n"
   },
   {
-    "aprlGuid": "3263a64a-c256-de48-9818-afd3cbc55c2a",
-    "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
-    "learnMoreLink": [
-      {
-        "url": "https://learn.microsoft.com/azure/virtual-machines/disks-shared",
-        "name": "Azure Shared Disk Introduction"
-      },
-      {
-        "url": "https://learn.microsoft.com/azure/virtual-machines/disks-shared-enable?tabs=azure-portal",
-        "name": "Enable Shared Disks"
-      }
-    ],
-    "recommendationControl": "Other Best Practices",
-    "longDescription": "Azure shared disks let you attach a disk to multiple VMs at once for deploying or migrating clustered applications, suitable only when a disk is shared among VM cluster members.\n",
-    "pgVerified": true,
-    "description": "Shared disks should only be enabled in clustered servers",
-    "potentialBenefits": "Enhances clustered server performance",
-    "tags": null,
-    "recommendationResourceType": "Microsoft.Compute/virtualMachines",
-    "recommendationImpact": "Medium",
-    "automationAvailable": true,
-    "query": "// Azure Resource Graph Query\n// Find all Disks configured to be Shared. This is not an indication of an issue, but if a disk with this configuration is assigned to two or more VMs without a proper disk control mechanism (like a WSFC) it can lead to data loss\nresources\n| where type =~ 'Microsoft.Compute/disks'\n| where isnotnull(properties.maxShares) and properties.maxShares >= 2\n| project id, name, tags, lowerCaseDiskId = tolower(id), diskState = tostring(properties.diskState)\n| join kind = leftouter (\n    resources\n    | where type =~ 'Microsoft.Compute/virtualMachines'\n    | project osDiskVmName = name, lowerCaseOsDiskId = tolower(properties.storageProfile.osDisk.managedDisk.id)\n    | join kind = fullouter (\n        resources\n        | where type =~ 'Microsoft.Compute/virtualMachines'\n        | mv-expand dataDisks = properties.storageProfile.dataDisks\n        | project dataDiskVmName = name, lowerCaseDataDiskId = tolower(dataDisks.managedDisk.id)\n        )\n        on $left.lowerCaseOsDiskId == $right.lowerCaseDataDiskId\n    | project lowerCaseDiskId = coalesce(lowerCaseOsDiskId, lowerCaseDataDiskId), vmName = coalesce(osDiskVmName, dataDiskVmName)\n    )\n    on lowerCaseDiskId\n| summarize vmNames = make_set(vmName) by name, id, tostring(tags), diskState\n| extend param1 = strcat(\"DiskState: \", diskState), param2 = iif(isempty(vmNames[0]), \"VMName: n/a\", strcat(\"VMName: \", strcat_array(vmNames, \", \")))\n| project recommendationId = \"3263a64a-c256-de48-9818-afd3cbc55c2a\", name, id, tags, param1, param2\n| order by id asc\n\n"
-  },
-  {
     "aprlGuid": "70b1d2be-e6c4-b54e-9959-b1b690f9e485",
     "recommendationTypeId": null,
     "recommendationMetadataState": "Active",
@@ -5590,27 +5565,6 @@
     "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// under-development\n\n"
-  },
-  {
-    "aprlGuid": "fa0cf4f5-0b21-47b7-89a9-ee936f193ce1",
-    "recommendationTypeId": "d4102c0f-ebe3-4b22-8fe0-e488866a87af",
-    "recommendationMetadataState": "Active",
-    "learnMoreLink": [
-      {
-        "url": "https://aka.ms/zrsdisksdoc",
-        "name": "Redundancy options for managed disks"
-      }
-    ],
-    "recommendationControl": "High Availability",
-    "longDescription": "Azure disks offers a zone-redundant storage (ZRS) option for workloads that need to be resilient to an entire zone being down. Due to the cross-zone data replication, ZRS disks have higher write latency when compared to the locally-redundant option (LRS), so make sure to benchmark your disks.\n",
-    "pgVerified": true,
-    "description": "Use Azure Disks with Zone Redundant Storage for higher resiliency and availability",
-    "potentialBenefits": "Enhanced Disk resilience to failures",
-    "tags": null,
-    "recommendationResourceType": "Microsoft.Compute/virtualMachines",
-    "recommendationImpact": "Medium",
-    "automationAvailable": true,
-    "query": "// Azure Resource Graph Query\n// Find eligible Disks that are not zonal nor zone redundant\nresources\n| where type == 'microsoft.compute/disks'\n| where location in~ (\"australiaeast\", \"brazilsouth\", \"canadacentral\", \"centralindia\", \"centralus\", \"eastasia\", \"eastus\", \"eastus2\", \"francecentral\", \"germanywestcentral\", \"israelcentral\", \"italynorth\", \"japaneast\", \"japanwest\", \"koreacentral\", \"mexicocentral\", \"newzealandnorth\", \"northeurope\", \"norwayeast\", \"polandcentral\", \"qatarcentral\", \"southafricanorth\", \"southcentralus\", \"southeastasia\", \"spaincentral\", \"swedencentral\", \"switzerlandnorth\", \"uaenorth\", \"uksouth\", \"westeurope\", \"westus2\", \"westus3\", \"usgovvirginia\", \"chinanorth3\")\n| where sku has \"Premium_LRS\" or sku has \"StandardSSD_LRS\"\n| where sku.name has_cs 'ZRS' or array_length(zones) > 0\n| project recommendationId=\"fa0cf4f5-0b21-47b7-89a9-ee936f193ce1\", name, id, tags, param1 = sku, param2 = sku.name\n"
   },
   {
     "aprlGuid": "302fda08-ee65-4fbe-a916-6dc0b33169c4",
