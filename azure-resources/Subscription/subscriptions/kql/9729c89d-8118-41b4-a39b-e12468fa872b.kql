@@ -1,18 +1,24 @@
 // Azure Resource Graph Query
-// This resource graph query will return all subscriptions without Service Health alerts configured.
-
+// This resource graph query will return all subscriptions without Service Health alerts configured AND subscriptions with Service Health alerts configured with specific configuration (which requires manual verification regarding the workload being covered by this rule)
 resourcecontainers
 | where type == 'microsoft.resources/subscriptions'
-| project subscriptionAlerts=tostring(id),name,tags
+| project subscriptionId = id, subscriptionName = name, tags
 | join kind=leftouter (
   resources
   | where type == 'microsoft.insights/activitylogalerts' and properties.condition contains "ServiceHealth"
-  | extend subscriptions = properties.scopes
-  | project subscriptions
-  | mv-expand subscriptions
-  | project subscriptionAlerts = tostring(subscriptions)
-) on subscriptionAlerts
-| where isempty(subscriptionAlerts1)
-| project-away subscriptionAlerts1
-| project recommendationId = "9729c89d-8118-41b4-a39b-e12468fa872b",name,id=subscriptionAlerts,tags
-
+  | mv-expand scopes = properties.scopes
+  | project subscriptionId = tostring(scopes)
+) on subscriptionId
+| where isempty(subscriptionId1)
+| project recommendationId = "9729c89d-8118-41b4-a39b-e12468fa872b", name = subscriptionName, id= subscriptionId, tags, param1='Service Health alert rules not configured on subscription'
+| union (
+    resourcecontainers
+    | where type == 'microsoft.resources/subscriptions'
+    | project subscriptionId, subscriptionName = name, tags
+    | join kind=leftouter (
+        resources
+        | where type == 'microsoft.insights/activitylogalerts' and properties.condition contains "ServiceHealth" and array_length(properties.condition.allOf) > 1
+    ) on subscriptionId
+    | where isnotempty(id)
+    | project recommendationId = "9729c89d-8118-41b4-a39b-e12468fa872b", name = subscriptionName, id= strcat('/subscriptions/',subscriptionId), tags, param1=strcat('Service Health alert rule "',name,'" with a restricted configuration (please verify manually)')
+)
