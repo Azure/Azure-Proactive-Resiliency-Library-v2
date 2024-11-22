@@ -4,7 +4,7 @@
   recommendationControl: Scalability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.NetApp/netAppAccounts
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Service levels, part of capacity pool attributes, determine the maximum throughput per volume quota in Azure NetApp Files. It combines read and write speed, offering three levels: Standard (16 MiB/s per 1TiB), Premium (64 MiB/s per 1TiB), and Ultra (128 MiB/s per 1TiB) throughput.
   potentialBenefits: Optimized performance and cost efficiency
@@ -157,7 +157,7 @@
   recommendationControl: Governance
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.NetApp/netAppAccounts
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Azure NetApp Files supports Azure policy integration using either built-in policy definitions or by creating custom ones to maintain organizational standards and compliance.
   potentialBenefits: Enforce standards and assess compliance
@@ -176,7 +176,7 @@
   recommendationControl: Security
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.NetApp/netAppAccounts
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Access to the delegated subnet should be limited to specific Azure Virtual Networks. SMB-enabled volumes' share permissions should move away from 'Everyone/Full control'. NFS-enabled volumes' access needs to be controlled via export policies and/or NFSv4.1 ACLs.
   potentialBenefits: Enhanced security, Reduced data breach risk

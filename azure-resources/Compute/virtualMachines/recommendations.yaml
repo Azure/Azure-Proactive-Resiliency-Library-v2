@@ -97,7 +97,7 @@
   recommendationControl: Scalability
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Compute/virtualMachines
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     A data disk is a managed disk attached to a virtual machine for storing database or other essential data. These disks are SCSI drives labeled as per choice.
   potentialBenefits: Enhances performance, recovery, migration flexibility
@@ -133,7 +133,7 @@
   recommendationControl: Governance
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Compute/virtualMachines
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Azure Virtual Machines (VM) instances have various states, like provisioning and power states. A non-running VM may indicate issues or it being unnecessary, suggesting removal could help cut costs.
   potentialBenefits: Reduce costs by removing unused VMs
@@ -184,7 +184,7 @@
   recommendationControl: Security
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Compute/virtualMachines
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     For outbound internet connectivity of Virtual Machines, using NAT Gateway or Azure Firewall is recommended to enhance security and service resilience, thanks to their higher availability and SNAT ports.
   potentialBenefits: Enhanced security and service resiliency
@@ -201,7 +201,7 @@
   recommendationControl: Security
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Compute/virtualMachines
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Unless you have a specific reason, it's advised to associate a network security group to a subnet or a network interface, but not both, to avoid unexpected communication issues and troubleshooting due to potential rule conflicts between the two associations.
   potentialBenefits: Reduces communication problems
@@ -235,7 +235,7 @@
   recommendationControl: Other Best Practices
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Compute/virtualMachines
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Configure the DNS Server at the Virtual Network level to prevent any inconsistency across the environment.
   potentialBenefits: Ensures DNS consistency
@@ -252,7 +252,7 @@
   recommendationControl: Security
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Compute/virtualMachines
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Recommended changing to "Disable public access and enable private access" and creating a Private Endpoint to improve security by restricting direct public access and ensuring connections are made privately, enhancing data protection and minimizing potential external threats.
   potentialBenefits: Enhances VM security and privacy
@@ -269,7 +269,7 @@
   recommendationControl: Governance
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Compute/virtualMachines
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Keeping your virtual machine (VM) secure is crucial for the applications you run. This involves using various Azure services and features to ensure secure access to your VMs and the secure storage of your data, aiming for overall security of your VM and applications.
   potentialBenefits: Secure VMs and applications
@@ -288,7 +288,7 @@
   recommendationControl: Security
   recommendationImpact: High
   recommendationResourceType: Microsoft.Compute/virtualMachines
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Consider enabling Azure Disk Encryption (ADE) for encrypting Azure VM disks using DM-Crypt (Linux) or BitLocker (Windows). Additionally, consider Encryption at host and Confidential disk encryption for enhanced data security.
   potentialBenefits: Enhances data security and integrity
@@ -449,7 +449,7 @@
   recommendationControl: High Availability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Compute/virtualMachines
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     If you've installed the Azure Linux Agent or are using an endorsed distribution image, ensure your agent version is up-to-date. Some Linux distributions may disable auto-update or use older agent versions.
   potentialBenefits: Reduces complications with VM provisioning
