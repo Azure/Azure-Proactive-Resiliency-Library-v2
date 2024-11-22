@@ -738,7 +738,7 @@ $Script:Runtime = Measure-Command -Expression {
     function Add-Recommendation {
       ####################    Starts to process the main sheet
       foreach ($item in $WAFYAML.recommendationControl) {
-        $item.category = Replace-Category -category $item.category
+        $item.category = Set-RecommendationControl -category $item.category
       }
 
       foreach ($customRec in $Script:CustomYAMLContent) {
