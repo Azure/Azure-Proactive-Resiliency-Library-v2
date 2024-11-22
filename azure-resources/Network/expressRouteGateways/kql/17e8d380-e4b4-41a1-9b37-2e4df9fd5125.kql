@@ -1,1 +1,28 @@
-// cannot-be-validated-with-arg
+// Azure Resource Graph Query
+// Find what Express Route Gateways do not have Monitoring Enabled on a Virtual Hub
+
+resources
+| where type =~ "Microsoft.Network/expressRouteGateways"
+| extend ergwId = tolower(tostring(id)), ergwName = name, ergwTags = tags, ergwLocation = location, vhubId = tolower(tostring(properties.virtualHub.id))
+| join kind=leftouter (
+    resources
+    | where type =~ "microsoft.insights/metricalerts"
+    | mv-expand scope = properties.scopes
+    | where scope has "Microsoft.Network/expressRouteGateways"
+    | extend scope = tolower(tostring(scope))
+    | project scope
+) on $left.ergwId == $right.scope
+| where strlen(scope) == 0
+| join kind=leftouter (
+    resources
+    | where type =~ "Microsoft.Network/virtualHubs"
+    | where ['kind'] != 'RouteServer'
+    | extend vhubId = tolower(tostring(id)), vhubName = name, vwanId = tolower(tostring(properties.virtualWan.id))
+) on $left.vhubId == $right.vhubId
+| join kind=leftouter (
+    resources
+    | where type =~ "Microsoft.Network/virtualWans"
+    | extend vwanId = tolower(tostring(id)), vwanName = name
+) on $left.vwanId == $right.vwanId
+| project recommendationId = "30ec8a5e-46de-4323-87e9-a7c56b72813b", ergwName, ergwId, ergwTags, param1=strcat("vHub Name: ", vhubName), param2=strcat("vWAN Name: ", vwanName)
+

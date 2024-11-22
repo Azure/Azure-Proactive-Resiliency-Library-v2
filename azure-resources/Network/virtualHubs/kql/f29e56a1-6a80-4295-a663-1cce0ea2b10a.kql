@@ -10,4 +10,4 @@ resources
     | where type == "microsoft.network/virtualwans"
     | project id, name, tags
 ) on $left.virtualWanId == $right.id
-| project name, id = virtualWanId, recommendationId = "f29e56a1-6a80-4295-a663-1cce0ea2b10a", sku
+| project recommendationId = "f29e56a1-6a80-4295-a663-1cce0ea2b10a", name, id = virtualWanId, sku
