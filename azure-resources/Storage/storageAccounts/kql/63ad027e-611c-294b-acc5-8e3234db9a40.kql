@@ -1,6 +1,0 @@
-// Azure Resource Graph Query
-// Find all Azure classic Storage Account
-resources
-| where type =~ 'microsoft.classicstorage/storageaccounts'
-| project recommendationId = '63ad027e-611c-294b-acc5-8e3234db9a40', name, id, tags, param1=type
-
