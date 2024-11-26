@@ -21,7 +21,7 @@
   recommendationControl: Security
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/applicationGateways
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Secure all incoming connections using HTTPS for production services with end-to-end SSL/TLS or SSL/TLS termination at the Application Gateway to protect against attacks and ensure data remains private and encrypted between the web server and browsers.
   potentialBenefits: Enhanced security and privacy
@@ -46,7 +46,7 @@
   recommendationControl: Security
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Network/applicationGateways
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Use Application Gateway with Web Application Firewall (WAF) in an application virtual network to safeguard inbound HTTP/S internet traffic. WAF offers centralized defense against potential exploits through OWASP core rule sets-based rules.
   potentialBenefits: Enhanced security for HTTP/S traffic

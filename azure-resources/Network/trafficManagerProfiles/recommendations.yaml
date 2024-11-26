@@ -42,7 +42,7 @@
   recommendationControl: DisasterRecovery
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/trafficManagerProfiles
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Profiles should have multiple endpoints to ensure availability in case an endpoint fails. It's also advised to distribute these endpoints across different regions for enhanced reliability.
   potentialBenefits: Enhances availability across regions

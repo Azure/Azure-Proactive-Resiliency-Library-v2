@@ -40,7 +40,7 @@
   recommendationControl: HighAvailability
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Compute/galleries
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     We recommend creating Trusted Launch Supported Images for benefits like Secure Boot, vTPM, trusted launch VMs, large boot volume. These are Gen 2 Images by default and you cannot change a VM's generation after creation, so review the considerations first.
   potentialBenefits: Enhances VM security and features

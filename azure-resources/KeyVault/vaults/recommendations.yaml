@@ -38,7 +38,7 @@
   recommendationControl: Security
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.KeyVault/vaults
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Azure Private Link Service lets you securely and privately connect to Azure Key Vault via a Private Endpoint in your VNet, using a private IP and eliminating public Internet exposure.
   potentialBenefits: Secure Key Vault with Private Link
@@ -55,7 +55,7 @@
   recommendationControl: Governance
   recommendationImpact: High
   recommendationResourceType: Microsoft.KeyVault/vaults
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Key vaults are security boundaries for secret storage. Grouping secrets together increases risk during a security event, as attacks could access multiple secrets.
   potentialBenefits: Enhanced security, Reduced risk
