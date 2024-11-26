@@ -1,7 +1,7 @@
 - description: Ensure that storage accounts are zone or region redundant
   aprlGuid: e6c7e1cc-2f47-264d-aa50-1da421314472
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Storage/storageAccounts
   recommendationMetadataState: Active
@@ -45,7 +45,7 @@
 - description: Enable Soft Delete to protect your data
   aprlGuid: 03263c57-c869-3841-9e0a-3dbb9ef3e28d
   recommendationTypeId: 42dbf883-9e4b-4f84-9da4-232b87c4b5e9
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Storage/storageAccounts
   recommendationMetadataState: Active
@@ -62,7 +62,7 @@
 - description: Enable versioning for accidental modification and keep the number of versions below 1000
   aprlGuid: 8ebda7c0-e0e1-ed45-af59-2d7ea9a1c05d
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Storage/storageAccounts
   recommendationMetadataState: Active
@@ -79,7 +79,7 @@
 - description: Enable point-in-time restore for GPv2 accounts to safeguard against data loss
   aprlGuid: 1b965cb9-7629-214e-b682-6bf6e450a100
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Storage/storageAccounts
   recommendationMetadataState: Active
@@ -98,7 +98,7 @@
 - description: Monitor all blob storage accounts
   aprlGuid: 96cb8331-6b06-8242-8ce8-4e2f665dc679
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Storage/storageAccounts
   recommendationMetadataState: Active

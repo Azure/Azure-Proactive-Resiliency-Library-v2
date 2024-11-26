@@ -1,7 +1,7 @@
 - description: Migrate App Service to availability Zone Support
   aprlGuid: 88cb90c2-3b99-814b-9820-821a63f600dd
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Web/serverFarms
   recommendationMetadataState: Active
@@ -20,7 +20,7 @@
 - description: Use Standard or Premium tier
   aprlGuid: b2113023-a553-2e41-9789-597e2fb54c31
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Web/serverFarms
   recommendationMetadataState: Active

@@ -20,7 +20,7 @@
 - description: Create a health status alert rule for your Log Analytics workspace
   aprlGuid: 4b77191c-cc3c-8c4e-844b-0f56d0927890
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: Low
   recommendationResourceType: Microsoft.OperationalInsights/workspaces
   recommendationMetadataState: Active

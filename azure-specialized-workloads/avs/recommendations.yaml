@@ -1,7 +1,7 @@
 - description: Use the AVS Interconnect feature to connect private clouds in different availability zones
   aprlGuid: 726abfe3-adae-4a6d-8eb8-4b27a7214ca1
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/AVS
   recommendationMetadataState: Active
@@ -37,7 +37,7 @@
 - description: Use HCX Network Extension High Availability
   aprlGuid: bce16eee-0933-4baa-ab4d-8d1bb5653fc2
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/AVS
   recommendationMetadataState: Active
@@ -56,7 +56,7 @@
 - description: Verify Management Networks are not extended with HCX Network Extension
   aprlGuid: 6be9a543-cf82-4926-82ea-7e1f1ffaad80
   recommendationTypeId: null
-  recommendationControl: Other Best Practices
+  recommendationControl: OtherBestPractices
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/AVS
   recommendationMetadataState: Active
@@ -73,7 +73,7 @@
 - description: Verify vSAN FTT configuration aligns with the cluster size
   aprlGuid: 0943aa90-e3db-4c61-aef1-782b6a6a3881
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/AVS
   recommendationMetadataState: Active
@@ -92,7 +92,7 @@
 - description: Align ExpressRoute configuration with best practices for circuit resilience
   aprlGuid: 6f573d60-be93-4f18-8016-42e923e3c05e
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/AVS
   recommendationMetadataState: Active
@@ -111,7 +111,7 @@
 - description: Deploy two or more circuits in different peering locations when using stretched clusters
   aprlGuid: 91c84596-1c41-48fe-8d5e-3f817e6a273b
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/AVS
   recommendationMetadataState: Active
@@ -128,7 +128,7 @@
 - description: Deploy dual Azure VMware Solution clouds in different regions for disaster recovery
   aprlGuid: bdac462a-2eda-4a67-887d-46d58f141afe
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/AVS
   recommendationMetadataState: Active

@@ -39,7 +39,7 @@
 - description: Configure logs
   aprlGuid: 1ad74c3c-e3d7-0046-b83f-a2199974ef15
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Cdn/profiles
   recommendationMetadataState: Active
@@ -111,7 +111,7 @@
 - description: Use latest version for customer-managed certificates
   aprlGuid: 4638c2c0-03de-6d42-9e09-82ee4478cbf3
   recommendationTypeId: 2c057605-4707-4d3e-bbb0-a7fe9b6a626b
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Cdn/profiles
   recommendationMetadataState: Disabled
@@ -162,7 +162,7 @@
 - description: Disable health probes when there is only one origin in an origin group
   aprlGuid: 38f3d542-6de6-a44b-86c6-97e3be690281
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Cdn/profiles
   recommendationMetadataState: Active
@@ -179,7 +179,7 @@
 - description: Select good health probe endpoints
   aprlGuid: 5225bba3-28ec-1e43-8986-7eedfd466d65
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Cdn/profiles
   recommendationMetadataState: Active
@@ -247,7 +247,7 @@
 - description: Avoid using Classic Azure Front Door
   aprlGuid: 82fa3cff-74bd-4063-b726-834f160592fa
   recommendationTypeId: null
-  recommendationControl: Service Upgrade and Retirement
+  recommendationControl: ServiceUpgradeAndRetirement
   recommendationImpact: High
   recommendationResourceType: Microsoft.Cdn/profiles
   recommendationMetadataState: Active

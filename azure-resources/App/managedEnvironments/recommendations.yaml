@@ -1,7 +1,7 @@
 - description: Deploy zone redundant Container app environments
   aprlGuid: f4201965-a88d-449d-b3b4-021394719eb2
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.App/managedenvironments
   recommendationMetadataState: Active

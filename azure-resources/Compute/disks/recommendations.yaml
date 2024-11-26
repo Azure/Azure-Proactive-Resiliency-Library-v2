@@ -1,7 +1,7 @@
 - description: Shared disks should only be enabled in clustered servers
   aprlGuid: 3263a64a-c256-de48-9818-afd3cbc55c2a
   recommendationTypeId: null
-  recommendationControl: Other Best Practices
+  recommendationControl: OtherBestPractices
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Compute/disks
   recommendationMetadataState: Active
@@ -20,7 +20,7 @@
 - description: Use Azure Disks with Zone Redundant Storage for higher resiliency and availability
   aprlGuid: fa0cf4f5-0b21-47b7-89a9-ee936f193ce1
   recommendationTypeId: d4102c0f-ebe3-4b22-8fe0-e488866a87af
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Compute/disks
   recommendationMetadataState: Active

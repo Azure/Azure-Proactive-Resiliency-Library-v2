@@ -5,7 +5,7 @@ recommendation:
   description: str(max=100)
   aprlGuid: regex('^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$')
   recommendationTypeId: any(regex('^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'), null())
-  recommendationControl: enum('High Availability', 'Business Continuity', 'Disaster Recovery', 'Scalability', 'Monitoring and Alerting', 'Service Upgrade and Retirement', 'Other Best Practices', 'Personalized', 'Governance', 'Security')
+  recommendationControl: enum('HighAvailability', 'BusinessContinuity', 'DisasterRecovery', 'Scalability', 'MonitoringAndAlerting', 'ServiceUpgradeAndRetirement', 'OtherBestPractices', 'Personalized', 'Governance', 'Security')
   recommendationImpact: enum('Low', 'Medium', 'High')
   recommendationResourceType: any(
     regex('^Microsoft\\.[a-zA-Z0-9.]+/[a-zA-Z0-9]+$'),

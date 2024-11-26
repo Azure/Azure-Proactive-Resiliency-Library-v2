@@ -25,11 +25,12 @@ Azure Specialized Workloads Recommendation List
         <a href="#{{ anchorize .description }}">{{ .description }}</a>
       </td>
       <td>{{ .recommendationImpact }}</td>
-      <td>{{ .recommendationControl }}</td>
+      <td>{{ replace (replace (replace (replace (replace (replace (replace (replace (replace (replace .recommendationControl "HighAvailability" "High Availability") "BusinessContinuity" "Business Continuity") "DisasterRecovery" "Disaster Recovery") "Scalability" "Scalability") "MonitoringAndAlerting" "Monitoring and Alerting") "ServiceUpgradeAndRetirement" "Service Upgrade and Retirement") "OtherBestPractices" "Other Best Practices") "Personalized" "Personalized") "Governance" "Governance") "Security" "Security" }}</td>
       <td>{{ if eq .automationAvailable true }}Yes{{ else }}No{{ end }}</td>
       <td>{{ if .recommendationTypeId }}Yes{{ else }}No{{ end }}</td>
     </tr>
-    {{ end }} {{ end }}
+    {{ end }}
+    {{ end }}
   </table>
 </div>
 
@@ -60,7 +61,7 @@ Azure Specialized Workloads Recommendation List
       <span style="font-weight: normal">{{ .recommendationImpact }}</span>
       <span style="margin-right: 40px"></span>
       <span style="font-weight: bold">Category:</span>&nbsp;
-      <span style="font-weight: normal">{{ .recommendationControl }}</span>
+      <span style="font-weight: normal">{{ replace (replace (replace (replace (replace (replace (replace (replace (replace (replace .recommendationControl "HighAvailability" "High Availability") "BusinessContinuity" "Business Continuity") "DisasterRecovery" "Disaster Recovery") "Scalability" "Scalability") "MonitoringAndAlerting" "Monitoring and Alerting") "ServiceUpgradeAndRetirement" "Service Upgrade and Retirement") "OtherBestPractices" "Other Best Practices") "Personalized" "Personalized") "Governance" "Governance") "Security" "Security" }}</span>
       <span style="margin-right: 40px"></span>
     </h4>
     <div style="margin-top: 10px;">
@@ -88,10 +89,9 @@ Azure Specialized Workloads Recommendation List
       {{ end }}
     </table>
     <h4>ARG Query:</h4>
-    {{ partial "queries-scripts/azure-specialized-workloads-scripts-tabs" (dict "category" $category "recommendation" .
-    "aprlGuid"
-    .aprlGuid)
-    }}
+    {{ partial "queries-scripts/azure-specialized-workloads-scripts-tabs" (dict "category" $category "recommendation" . "aprlGuid" .aprlGuid) }}
     <br>
   </div>
-  {{ end }} {{ end }} {{ end }}
+  {{ end }}
+  {{ end }}
+  {{ end }}

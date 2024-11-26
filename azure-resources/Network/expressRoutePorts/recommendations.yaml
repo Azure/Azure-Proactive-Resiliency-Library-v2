@@ -1,7 +1,7 @@
 - description: The Admin State of both Links of an ExpressRoute Direct should be in Enabled state
   aprlGuid: 60077378-7cb1-4b35-89bb-393884d9921d
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/ExpressRoutePorts
   recommendationMetadataState: Active
@@ -35,7 +35,7 @@
 - description: Configure monitoring and alerting for ExpressRoute Ports
   aprlGuid: 55815823-d588-4cb7-a5b8-ae581837356e
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/expressRoutePorts
   recommendationMetadataState: Active
@@ -52,7 +52,7 @@
 - description: Connect on-prem networks to Azure critical workloads via multiple ExpressRoutes peering locations
   aprlGuid: cce3353a-f409-4559-9959-0ca0e3717114
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/expressRoutePorts
   recommendationMetadataState: Active
@@ -69,7 +69,7 @@
 - description: Ensure ExpressRoute's physical links connect to distinct network edge devices
   aprlGuid: 222fbb78-be76-4855-a14f-a5e17ef1ccf5
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/expressRoutePorts
   recommendationMetadataState: Active
@@ -88,7 +88,7 @@
 - description: Ensure both connections of an ExpressRoute are configured in active-active mode
   aprlGuid: 859886df-3996-4eab-8439-c1a38c416e0e
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/expressRoutePorts
   recommendationMetadataState: Active

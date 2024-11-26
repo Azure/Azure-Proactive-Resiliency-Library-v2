@@ -1,7 +1,7 @@
 - description: Device Identities are exported to a secondary region
   aprlGuid: 783c6c18-760b-4867-9ced-3010a0bc5aa3
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.Devices/IotHubs
   recommendationMetadataState: Active
@@ -20,7 +20,7 @@
 - description: Do not use free tier
   aprlGuid: eeba3a49-fef0-481f-a471-7ff01139b474
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Devices/IotHubs
   recommendationMetadataState: Active
@@ -37,7 +37,7 @@
 - description: Use Availability Zones
   aprlGuid: 214cbc46-747e-4354-af6e-6bf0054196a5
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Devices/IotHubs
   recommendationMetadataState: Active
@@ -75,7 +75,7 @@
 - description: Define Failover Guidelines
   aprlGuid: 02568a5d-335e-4e51-9f7c-fe2ada977300
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Devices/IotHubs
   recommendationMetadataState: Active
@@ -92,7 +92,7 @@
 - description: Disabled Fallback Route
   aprlGuid: e7dbd21f-b27a-4b8c-a901-cedb1e6d8e1e
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Devices/IotHubs
   recommendationMetadataState: Active

@@ -1,7 +1,7 @@
 - description: Connect on-prem networks to Azure critical workloads via multiple ExpressRoutes peering locations
   aprlGuid: 4d703025-dafc-f840-a183-5dc440456134
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/expressRouteCircuits
   recommendationMetadataState: Active
@@ -18,7 +18,7 @@
 - description: Ensure ExpressRoute's physical links connect to distinct network edge devices
   aprlGuid: 0e19cc41-8274-1342-b0db-0e4146eacef8
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/expressRouteCircuits
   recommendationMetadataState: Active
@@ -37,7 +37,7 @@
 - description: Ensure both connections of an ExpressRoute are configured in active-active mode
   aprlGuid: f06a2bbe-5839-d447-9f39-fc3d20562d88
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/expressRouteCircuits
   recommendationMetadataState: Active
@@ -54,7 +54,7 @@
 - description: Activate Bidirectional Forwarding Detection on edge devices for faster failover
   aprlGuid: 2a5bf650-586d-db4c-a292-d922be7d3e0e
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/expressRouteCircuits
   recommendationMetadataState: Active
@@ -71,7 +71,7 @@
 - description: Configure monitoring and alerting for ExpressRoute circuits
   aprlGuid: 9771a435-d031-814e-9827-9b5fdafc0f87
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/expressRouteCircuits
   recommendationMetadataState: Active
@@ -88,7 +88,7 @@
 - description: Configure service health to receive ExpressRoute circuit maintenance notification
   aprlGuid: 26cb547f-aabc-dc40-be02-d0a9b6b04b1a
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/expressRouteCircuits
   recommendationMetadataState: Disabled

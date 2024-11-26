@@ -112,6 +112,22 @@ $Script:Runtime = Measure-Command -Expression {
     return Get-Content -Path "$ClonePath\tools\Version.json" -ErrorAction SilentlyContinue | ConvertFrom-Json
   }
 
+  function Set-RecommendationControl {
+    param (
+        [string]$category
+    )
+
+    switch ($category) {
+        'BusinessContinuity' { return 'Business Continuity' }
+        'DisasterRecovery' { return 'Disaster Recovery' }
+        'MonitoringAndAlerting' { return 'Monitoring And Alerting' }
+        'ServiceUpgradeAndRetirement' { return 'Service Upgrade And Retirement' }
+        'OtherBestPractices' { return 'Other Best Practices' }
+        default { return $category }
+    }
+  }
+
+
   function Set-LocalFile {
     [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'Low')]
     param()
@@ -721,6 +737,9 @@ $Script:Runtime = Measure-Command -Expression {
 
     function Add-Recommendation {
       ####################    Starts to process the main sheet
+      foreach ($item in $WAFYAML.recommendationControl) {
+        $item.category = Set-RecommendationControl -category $item.category
+      }
 
       foreach ($customRec in $Script:CustomYAMLContent) {
         $countFormula = 'COUNTIFS(ImpactedResources!D:D,"' + $customRec.aprlGuid + '",ImpactedResources!S:S,"' + $customRec.checkName + '")'

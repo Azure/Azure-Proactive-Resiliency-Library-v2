@@ -1,7 +1,7 @@
 - description: Deploy AKS cluster across availability zones
   aprlGuid: 4f63619f-5001-439c-bacb-8de891287727
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.ContainerService/managedClusters
   recommendationMetadataState: Active
@@ -20,7 +20,7 @@
 - description: Isolate system and application pods
   aprlGuid: 5ee083cd-6ac3-4a83-8913-9549dd36cf56
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.ContainerService/managedClusters
   recommendationMetadataState: Active
@@ -100,7 +100,7 @@
 - description: Back up Azure Kubernetes Service
   aprlGuid: 269a9f1a-6675-460a-831e-b05a887a8c4b
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: Low
   recommendationResourceType: Microsoft.ContainerService/managedClusters
   recommendationMetadataState: Active
@@ -119,7 +119,7 @@
 - description: Use zone-redundant storage for persistent volumes when running multi-zone AKS
   aprlGuid: d3111036-355d-431b-ab49-8ddad042800b
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.ContainerService/managedClusters
   recommendationMetadataState: Active
@@ -199,7 +199,7 @@
 - description: Update AKS tier to Standard or Premium
   aprlGuid: 0611251f-e70f-4243-8ddd-cfe894bec2e7
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.ContainerService/managedClusters
   recommendationMetadataState: Active
@@ -218,7 +218,7 @@
 - description: Enable AKS Monitoring
   aprlGuid: dcaf8128-94bd-4d53-9235-3a0371df6b74
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.ContainerService/managedClusters
   recommendationMetadataState: Active
@@ -275,7 +275,7 @@
 - description: Enable GitOps when using DevOps frameworks
   aprlGuid: 5f3cbd68-692a-4121-988c-9770914859a9
   recommendationTypeId: null
-  recommendationControl: Other Best Practices
+  recommendationControl: OtherBestPractices
   recommendationImpact: Low
   recommendationResourceType: Microsoft.ContainerService/managedClusters
   recommendationMetadataState: Active
@@ -294,7 +294,7 @@
 - description: Use pod topology spread constraints to ensure that pods are spread across different nodes or zones
   aprlGuid: 928fcc6f-5e9a-42d9-9bd4-260af42de2e5
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.ContainerService/managedClusters
   recommendationMetadataState: Active
@@ -313,7 +313,7 @@
 - description: Configures Pods Liveness, Readiness, and Startup Probes
   aprlGuid: cd6791b1-c60e-4b37-ac98-9897b1e6f4b8
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.ContainerService/managedClusters
   recommendationMetadataState: Active
@@ -332,7 +332,7 @@
 - description: Use deployments with multiple replicas in production applications to guarantee availability
   aprlGuid: bcfe71f1-ebed-49e5-a84a-193b81ad5d27
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.ContainerService/managedClusters
   recommendationMetadataState: Active
@@ -349,7 +349,7 @@
 - description: Configure system nodepool count
   aprlGuid: 7f7ae535-a5ba-4665-b7e0-c451dbdda01f
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.ContainerService/managedClusters
   recommendationMetadataState: Active
@@ -366,7 +366,7 @@
 - description: Configure user nodepool count
   aprlGuid: 005ccbbd-aeab-46ef-80bd-9bd4479412ec
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.ContainerService/managedClusters
   recommendationMetadataState: Active
@@ -383,7 +383,7 @@
 - description: Configure pod disruption budgets (PDBs)
   aprlGuid: a08a06a0-e41a-4b99-83bb-69ce8bca54cb
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.ContainerService/managedClusters
   recommendationMetadataState: Active
@@ -402,7 +402,7 @@
 - description: Nodepool subnet size needs to accommodate maximum auto-scale settings
   aprlGuid: e620fa98-7a40-41a0-bfc9-b4407297fb58
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.ContainerService/managedClusters
   recommendationMetadataState: Active
@@ -419,7 +419,7 @@
 - description: Node pool auto-scale settings should not exceed subscription core quota
   aprlGuid: a01afc4c-7439-4919-b2da-3565992ea2a7
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.ContainerService/managedClusters
   recommendationMetadataState: Active
@@ -436,7 +436,7 @@
 - description: Use Azure Linux for Linux nodepools
   aprlGuid: f46b0d1d-56ef-4795-b98a-f6ee00cb341a
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.ContainerService/managedClusters
   recommendationMetadataState: Active
@@ -453,7 +453,7 @@
 - description: Deploy at least two replicas of your application
   aprlGuid: 9200aca6-0e83-4749-a5eb-e3939367bdc2
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.ContainerService/managedClusters
   recommendationMetadataState: Active

@@ -1,7 +1,7 @@
 - description: Connect ExpressRoute gateway with circuits from diverse peering locations
   aprlGuid: 9987c813-d687-4163-a511-95f31bc5e536
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/expressRouteGateways
   recommendationMetadataState: Active
@@ -18,7 +18,7 @@
 - description: Monitor health for ExpressRoute gateway
   aprlGuid: 17e8d380-e4b4-41a1-9b37-2e4df9fd5125
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/expressRouteGateways
   recommendationMetadataState: Active

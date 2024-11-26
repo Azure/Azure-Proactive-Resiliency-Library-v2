@@ -1,7 +1,7 @@
 - description: Configure monitoring and alerting for NAT gateway
   aprlGuid: babf75d6-6407-4d90-b01e-5a1768e621f5
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/natGateways
   recommendationMetadataState: Active

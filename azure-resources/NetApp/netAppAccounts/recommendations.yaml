@@ -35,7 +35,7 @@
 - description: Use availability zones for high availability in Azure NetApp Files
   aprlGuid: 47d100a5-7f85-5742-967a-67eb5081240a
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.NetApp/netAppAccounts
   recommendationMetadataState: Active
@@ -52,7 +52,7 @@
 - description: Deploy ANF volumes in the same availability zone with Azure compute and other services
   aprlGuid: 8bb690e8-64d5-4838-8703-9ee3dbac688f
   recommendationTypeId: null
-  recommendationControl: Other Best Practices
+  recommendationControl: OtherBestPractices
   recommendationImpact: High
   recommendationResourceType: Microsoft.NetApp/netAppAccounts
   recommendationMetadataState: Active
@@ -69,7 +69,7 @@
 - description: Use snapshots for data protection in Azure NetApp Files
   aprlGuid: 72827434-c773-4345-9493-34848ddf5803
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.NetApp/netAppAccounts
   recommendationMetadataState: Active
@@ -86,7 +86,7 @@
 - description: Enable backup for data protection in Azure NetApp Files
   aprlGuid: b2fb3e60-97ec-e34d-af29-b16a0d61c2ac
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.NetApp/netAppAccounts
   recommendationMetadataState: Active
@@ -103,7 +103,7 @@
 - description: Enable Cross-region replication of Azure NetApp Files volumes
   aprlGuid: e30317d2-c502-4dfe-a2d3-0a737cc79545
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.NetApp/netAppAccounts
   recommendationMetadataState: Active
@@ -120,7 +120,7 @@
 - description: Enable Cross-zone replication of Azure NetApp Files volumes
   aprlGuid: e3d742e1-dacd-9b48-b6b1-510ec9f87c96
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.NetApp/netAppAccounts
   recommendationMetadataState: Active
@@ -137,7 +137,7 @@
 - description: Monitor Azure NetApp Files metrics to better understand usage pattern and performance
   aprlGuid: 2f579fc9-e599-0d44-8b97-254f50ae04d8
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.NetApp/netAppAccounts
   recommendationMetadataState: Active
@@ -198,7 +198,7 @@
 - description: Make use of SMB continuous availability for supported applications
   aprlGuid: d1e7ccc3-e6c1-40e9-a36e-fd134711c808
   recommendationTypeId: e4bebd74-387a-4a74-b757-475d2d1b4e3e
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.NetApp/netAppAccounts
   recommendationMetadataState: Active
@@ -215,7 +215,7 @@
 - description: Ensure application resilience for service maintenance events
   aprlGuid: 60f36f9b-fac9-4160-bbf5-57af04da4f53
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.NetApp/netAppAccounts
   recommendationMetadataState: Active

@@ -1,7 +1,7 @@
 - description: Monitor health for v-Hub's Point-to-Site VPN gateways
   aprlGuid: fd43ea32-2ccf-49a8-ada4-9a78794e3ff1
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/p2sVpnGateways
   recommendationMetadataState: Active

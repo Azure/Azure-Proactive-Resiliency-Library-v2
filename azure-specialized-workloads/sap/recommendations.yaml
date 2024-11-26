@@ -1,7 +1,7 @@
 - description: Ensure that each SAP production system is designed for high availability across availability zones
   aprlGuid: a9b649a5-2bfe-40ca-9b8f-34f9c71dfa12
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
@@ -26,7 +26,7 @@
 - description: Run SAP application servers on two or more VMs using VMSS Flex
   aprlGuid: 49bd34ab-d117-4b0e-99f8-34cc8a5394bc
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
@@ -49,7 +49,7 @@
 - description: If using single-instance VMs all OS and data disks must be Premium SSD or Ultra Disk
   aprlGuid: b60ae773-9917-4bca-8a42-7cb45365a917
   recommendationTypeId: 58d6648d-32e8-4346-827c-4f288dd8ca24
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
@@ -74,7 +74,7 @@
 - description: Ensure synchronous data replication (SYNC mode) between primary and secondary VM nodes
   aprlGuid: 094400a5-f112-408d-a334-afd68873ff0f
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
@@ -93,7 +93,7 @@
 - description: Design SAP shared file systems for high availability, utilizing availability zones when possible
   aprlGuid: e09ca960-20b7-4831-b85b-83ec84c1390e
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
@@ -111,7 +111,7 @@
 - description: Test high availability solutions thoroughly to ensure fail overs work as expected
   aprlGuid: 5663a808-56be-49ea-8d5c-c5dfc6925f76
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
@@ -128,7 +128,7 @@
 - description: Remove unwanted location constraints from Linux Pacemaker clusters
   aprlGuid: 1b8a3051-dfd4-4780-bfb7-446296774029
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
@@ -145,7 +145,7 @@
 - description: Secure compute resource capacity for critical VM roles in DR region
   aprlGuid: 820b4c0c-8a74-442a-8ba7-b0cb840cd983
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: Medium
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
@@ -162,7 +162,7 @@
 - description: Replicate production databases to DR location (ASYNC) using the vendor's replication technology
   aprlGuid: fb8bdcee-d88f-408d-8572-a76a4aaa733b
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
@@ -179,7 +179,7 @@
 - description: SAP components are backed up to DR location using an appropriate backup tool or ASR
   aprlGuid: 41f0d88e-7866-4444-aac4-ef5fee3e6874
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
@@ -198,7 +198,7 @@
 - description: SAP shared files systems are replicated or backed up to DR location
   aprlGuid: ee4dc309-00a1-49fe-92fa-1724baf5f103
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
@@ -215,7 +215,7 @@
 - description: Automate DR infrastructure build or pre-deploy DR resources
   aprlGuid: 0fabc52e-cdbb-4acd-8626-c4c637061e2d
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: Medium
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
@@ -232,7 +232,7 @@
 - description: Document and test DR procedure ensure it meets RPO and RTO targets
   aprlGuid: c300e949-528d-4ac9-889b-cacf8b4a6e90
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: Medium
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
@@ -249,7 +249,7 @@
 - description: Ensure there is a robust monitoring and alerting solution in place for the entire DR solution
   aprlGuid: c27134b7-6917-4852-8276-3dbef5c71578
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: Medium
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
@@ -266,7 +266,7 @@
 - description: Configure scheduled events notification
   aprlGuid: 6b589ce6-c847-4cee-af35-f6e8eb1cf983
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
@@ -285,7 +285,7 @@
 - description: Configure a Pacemaker cluster for SAP ASCS high availability
   aprlGuid: 9d8f6678-694c-4da4-8384-415201f65194
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
@@ -306,7 +306,7 @@
 - description: Ensure the load balancer is configured correctly for SAP ASCS High availability
   aprlGuid: 5c2e52d0-25be-4b1c-833c-b98b5ef1a26b
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
@@ -327,7 +327,7 @@
 - description: Ensure the Pacemaker cluster has been setup for SAP HANA DB high availability
   aprlGuid: 6648fe61-880d-4a96-8d2d-190a23d5580b
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
@@ -348,7 +348,7 @@
 - description: Ensure the load balancer is configured correctly for SAP HANA DB High availability
   aprlGuid: 2e4c2171-a83f-4238-a8e3-b51c90d86a99
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
@@ -369,7 +369,7 @@
 - description: Review SAP configuration for timeout values used with Azure NetApp Files
   aprlGuid: 4884cada-b9c7-42d5-8153-3853e4a6f6c4
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active

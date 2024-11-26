@@ -1,7 +1,7 @@
 - description: Migrate API Management services to Premium SKU to support Availability Zones
   aprlGuid: baf3bfc0-32a2-4c0c-926d-c9bf0b49808e
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.ApiManagement/service
   recommendationMetadataState: Active
@@ -20,7 +20,7 @@
 - description: Enable Availability Zones on Premium API Management instances
   aprlGuid: 740f2c1c-8857-4648-80eb-47d2c56d5a50
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.ApiManagement/service
   recommendationMetadataState: Active
@@ -39,7 +39,7 @@
 - description: Azure API Management platform version should be stv2
   aprlGuid: e35cf148-8eee-49d1-a1c9-956160f99e0b
   recommendationTypeId: e5f60ef8-3fcc-4fb5-bee7-7aaeb44c1509
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.ApiManagement/service
   recommendationMetadataState: Active
@@ -58,7 +58,7 @@
 - description: Enable auto-scale for production workloads on API Management services
   aprlGuid: c79680ea-de85-44fa-a596-f31fa17a952f
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Low
   recommendationResourceType: Microsoft.ApiManagement/service
   recommendationMetadataState: Active
