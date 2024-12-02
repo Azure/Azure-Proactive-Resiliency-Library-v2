@@ -40,7 +40,7 @@
   recommendationControl: Scalability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Web/serverFarms
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Avoid frequent scaling up/down of Azure App Service instances to prevent service disruptions. Choose the right tier and size for the workload and scale out for traffic changes, as scaling adjustments can trigger application restarts.
   potentialBenefits: Minimizes restarts, enhances stability
