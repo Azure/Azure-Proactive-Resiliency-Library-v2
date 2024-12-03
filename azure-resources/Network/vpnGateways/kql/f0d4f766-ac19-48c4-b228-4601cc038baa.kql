@@ -1,5 +1,5 @@
 // Azure Resource Graph Query
-// Find what virtual Hubs do not have Monitoring Enabled.
+// Find what VPN Gateways on Virtual WAN do not have Monitoring Enabled.
 
 resources
 | where type =~ "microsoft.network/vpngateways"
@@ -12,7 +12,7 @@ resources
     | extend scope = tolower(tostring(scope))
     | project scope
 ) on $left.vpngwId == $right.scope
-| where strlen(scope) == 0
+| where isnull(scope) or strlen(scope) == 0
 | join kind=leftouter (
     resources
     | where type =~ "Microsoft.Network/virtualHubs"
@@ -25,4 +25,3 @@ resources
     | extend vwanId = tolower(tostring(id)), vwanName = name
 ) on $left.vwanId == $right.vwanId
 | project recommendationId = "f0d4f766-ac19-48c4-b228-4601cc038baa", vpngwName, vpngwId, vpngwTags, param1=strcat("vHub Name: ", vhubName), param2=strcat("vWAN Name: ", vwanName)
-
