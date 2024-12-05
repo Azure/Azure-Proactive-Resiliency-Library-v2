@@ -32,7 +32,7 @@
     - name: Registry best practices - Enable zone redundancy
       url: "https://learn.microsoft.com/en-us/azure/container-registry/zone-redundancy?toc=%2Fazure%2Freliability%2Ftoc.json&bc=%2Fazure%2Freliability%2Fbreadcrumb%2Ftoc.json&branch=main"
 
-- description: Create container registries with geo replication enabled
+- description: Create container registries with geo-replication enabled
   aprlGuid: 36ea6c09-ef6e-d743-9cfb-bd0c928a430b
   recommendationTypeId: null
   recommendationControl: DisasterRecovery
