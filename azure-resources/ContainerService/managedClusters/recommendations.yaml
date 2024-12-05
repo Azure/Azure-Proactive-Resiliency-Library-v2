@@ -40,7 +40,7 @@
   recommendationControl: Security
   recommendationImpact: High
   recommendationResourceType: Microsoft.ContainerService/managedClusters
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Local Kubernetes accounts in AKS, being non-auditable and legacy, are discouraged. Microsoft Entra's integration offers centralized management, multi-factor authentication, RBAC for detailed access, and a secure, scalable authentication system compatible with Azure and external identity providers.
   potentialBenefits: Enhanced security and access control
@@ -55,7 +55,7 @@
     - name: Manage AKS local accounts
       url: "https://learn.microsoft.com/en-us/azure/aks/manage-local-accounts-managed-azure-ad?source=recommendations"
 
-- description: Configure Azure CNI networking for dynamic allocation of IPs
+- description: Configure Azure CNI networking for dynamic allocation of IPs or use CNI overlay
   aprlGuid: c22db132-399b-4e7c-995d-577a60881be8
   recommendationTypeId: null
   recommendationControl: Scalability
@@ -166,7 +166,7 @@
   recommendationControl: Scalability
   recommendationImpact: Low
   recommendationResourceType: Microsoft.ContainerService/managedClusters
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     A ResourceQuota object sets limits on resource use per namespace, controlling the number and type of objects created, and the total compute resources available.
   potentialBenefits: Limits AKS resource usage per namespace
@@ -183,7 +183,7 @@
   recommendationControl: Scalability
   recommendationImpact: Low
   recommendationResourceType: Microsoft.ContainerService/managedClusters
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     To rapidly scale AKS workloads, utilize virtual nodes for quick pod provisioning, unlike Kubernetes auto-scaler. For clusters with availability zones, ensure one nodepool per AZ due to persistent volumes not working across AZs, preventing auto-scaler pod creation failures if lacking access.
   potentialBenefits: Faster scaling with virtual nodes
@@ -278,7 +278,7 @@
   recommendationControl: OtherBestPractices
   recommendationImpact: Low
   recommendationResourceType: Microsoft.ContainerService/managedClusters
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     GitOps, an operating model for cloud-native apps, uses Git for storing application and infrastructure code as a source of truth for continuous delivery.
   potentialBenefits: Ensures AKS config consistency
@@ -416,7 +416,7 @@
     - name: Azure CNI Dynamic IP Allocation
       url: "https://learn.microsoft.com/azure/aks/configure-azure-cni-dynamic-ip-allocation"
 
-- description: Node pool auto-scale settings should not exceed subscription core quota
+- description: Subscription core quota should be increased if Node pool auto-scale settings exceed the quota
   aprlGuid: a01afc4c-7439-4919-b2da-3565992ea2a7
   recommendationTypeId: null
   recommendationControl: HighAvailability
@@ -456,7 +456,7 @@
   recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.ContainerService/managedClusters
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Deploying at least two replicas of your application ensures that your application is highly available and can tolerate node failures.
   potentialBenefits: Ensures high app availability
