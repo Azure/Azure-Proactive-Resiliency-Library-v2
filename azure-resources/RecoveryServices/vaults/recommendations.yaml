@@ -43,7 +43,7 @@
     Classic alerts for Recovery Services vaults in Azure Backup will be retired on 31 March 2026.
   potentialBenefits: Enhanced, scalable, and consistent alerting.
   pgVerified: true
-  automationAvailable: true
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Move to Azure monitor Alerts
