@@ -1,18 +1,15 @@
 // Azure Resource Graph Query
-// This resource graph query will return all subscriptions without Service Health alerts configured.
-
+// This resource graph query will return all subscriptions without Service Health alerts configured AND subscriptions with Service Health alerts only configured with specific configuration (which requires manual verification regarding the scope being covered by this rule)
 resourcecontainers
 | where type == 'microsoft.resources/subscriptions'
-| project subscriptionAlerts=tostring(id),name,tags
+| project subscriptionId = id, subscriptionName = name, tags
 | join kind=leftouter (
-  resources
-  | where type == 'microsoft.insights/activitylogalerts' and properties.condition contains "ServiceHealth"
-  | extend subscriptions = properties.scopes
-  | project subscriptions
-  | mv-expand subscriptions
-  | project subscriptionAlerts = tostring(subscriptions)
-) on subscriptionAlerts
-| where isempty(subscriptionAlerts1)
-| project-away subscriptionAlerts1
-| project recommendationId = "9729c89d-8118-41b4-a39b-e12468fa872b",name,id=subscriptionAlerts,tags
-
+    resources
+    | where type == "microsoft.insights/activitylogalerts" and properties.condition contains "ServiceHealth"
+    | extend shaRuleType = iff(array_length(properties.condition.allOf) > 1, 'Explicit','All')
+    | project subscriptionId = strcat('/subscriptions/',subscriptionId), name, shaRuleType
+    | summarize shaAllRuleCount = countif(shaRuleType == 'All'), shaExplicitRuleCount = countif(shaRuleType == 'Explicit') by subscriptionId
+) on subscriptionId
+| extend shaStatus = iff(isnull(shaAllRuleCount) and isnull(shaExplicitRuleCount), 'Not configured',iff(shaAllRuleCount >= 1, 'Configured', 'Explicit'))
+| where shaStatus != 'Configured'
+| project recommendationId = "9729c89d-8118-41b4-a39b-e12468fa872b", name = subscriptionName, id= subscriptionId, tags, param1 = iff(shaStatus == 'Explicit', 'Explicit only Service Health Alert Rule(s) found. Please verify that the expected scope is covered by these rule(s).','No Service Health Alert Rule found.')

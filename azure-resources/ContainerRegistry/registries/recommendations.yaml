@@ -19,7 +19,7 @@
   aprlGuid: 63491f70-22e4-3b4a-8b0c-845450e46fac
   recommendationTypeId: null
   recommendationControl: HighAvailability
-  recommendationImpact: High
+  recommendationImpact: Medium
   recommendationResourceType: Microsoft.ContainerRegistry/registries
   recommendationMetadataState: Active
   longDescription: |
@@ -32,7 +32,7 @@
     - name: Registry best practices - Enable zone redundancy
       url: "https://learn.microsoft.com/en-us/azure/container-registry/zone-redundancy?toc=%2Fazure%2Freliability%2Ftoc.json&bc=%2Fazure%2Freliability%2Fbreadcrumb%2Ftoc.json&branch=main"
 
-- description: Enable geo-replication
+- description: Create container registries with geo-replication enabled
   aprlGuid: 36ea6c09-ef6e-d743-9cfb-bd0c928a430b
   recommendationTypeId: null
   recommendationControl: DisasterRecovery
@@ -55,7 +55,7 @@
   aprlGuid: a5a0101a-a240-8742-90ba-81dbde9a0c0c
   recommendationTypeId: null
   recommendationControl: Security
-  recommendationImpact: Low
+  recommendationImpact: Medium
   recommendationResourceType: Microsoft.ContainerRegistry/registries
   recommendationMetadataState: Active
   longDescription: |
@@ -74,7 +74,7 @@
   recommendationControl: Governance
   recommendationImpact: Low
   recommendationResourceType: Microsoft.ContainerRegistry/registries
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Container registries, used across multiple hosts, should be in their own resource group to prevent accidental deletion of images when container instances are deleted, preserving the image collection while experimenting with hosts.
   potentialBenefits: Safeguards image collection
@@ -91,7 +91,7 @@
   recommendationControl: Scalability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.ContainerRegistry/registries
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     The storage constraints of Azure Container Registry's service tiers align with usage scenarios: Basic for starters, Standard for production, and Premium for high-scale performance and geo-replication.
   potentialBenefits: Reduce costs, optimize storage
@@ -163,11 +163,11 @@
   aprlGuid: e7f0fd54-fba0-054e-9ab8-e676f2851f88
   recommendationTypeId: null
   recommendationControl: DisasterRecovery
-  recommendationImpact: Medium
+  recommendationImpact: Low
   recommendationResourceType: Microsoft.ContainerRegistry/registries
   recommendationMetadataState: Active
   longDescription: |
-    Enabling soft delete in Azure Container Registry (ACR) allows for the management of deleted artifacts with a specified retention period. Users can list, filter, and restore these artifacts until automatically purged post-retention.
+    Enabling soft delete preview feature in Azure Container Registry (ACR) allows for the management of deleted artifacts with a specified retention period. Users can list, filter, and restore these artifacts until automatically purged post-retention.
   potentialBenefits: Recovery of deleted artifacts
   pgVerified: false
   automationAvailable: true

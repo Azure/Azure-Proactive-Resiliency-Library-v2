@@ -1,10 +1,1 @@
-// Azure Resource Graph Query
-// This Resource Graph query will return all Recovery services vault with Classic alerts enabled.
-resources
-| where type in~ ('microsoft.recoveryservices/vaults')
-| extend monitoringSettings = parse_json(properties).monitoringSettings
-| extend isUsingClassicAlerts = case(isnull(monitoringSettings),'Enabled',monitoringSettings.classicAlertSettings.alertsForCriticalOperations)
-| extend isUsingJobsAlerts = case(isnull(monitoringSettings), 'Enabled', monitoringSettings.azureMonitorAlertSettings.alertsForAllJobFailures)
-| where isUsingClassicAlerts == 'Enabled'
-| project recommendationId = "2912472d-0198-4bdc-aa90-37f145790edc", name, id, tags, param1=strcat("isUsingClassicAlerts: ", isUsingClassicAlerts), param2=strcat("isUsingJobsAlerts: ", isUsingJobsAlerts)
-
+// under-development
