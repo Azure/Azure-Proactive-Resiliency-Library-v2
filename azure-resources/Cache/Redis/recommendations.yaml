@@ -14,6 +14,7 @@
   learnMoreLink:
     - name: Enable zone redundancy for Azure Cache for Redis
       url: "https://learn.microsoft.com/azure/azure-cache-for-redis/cache-how-to-zone-redundancy"
+
 - description: Schedule updates by setting a maintenance window
   aprlGuid: cabc1f98-c8a7-44f7-ab24-977982ef3f70
   recommendationTypeId: null
@@ -37,7 +38,7 @@
   recommendationControl: Security
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Cache/redis
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Use private endpoints for secure connection to cache via a private link, avoiding the public internet.
   potentialBenefits: Secure, private VNet ingress, efficient data transfer
