@@ -125,7 +125,7 @@
   recommendationControl: Governance
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Web/sites
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Use network access restrictions to define a priority-ordered allow/deny list that controls network access to your app. Web application firewalls, such as the one available in Application Gateway, are recommended for protection of public-facing web applications.
   potentialBenefits: Enhanced security
