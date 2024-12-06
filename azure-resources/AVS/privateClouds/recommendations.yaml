@@ -4,7 +4,7 @@
   recommendationControl: MonitoringAndAlerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.AVS/privateClouds
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Ensure Azure Service Health notifications are set for Azure VMware Solution across all used regions and subscriptions. This communicates service/security issues and maintenance activities like host replacements and upgrades, reducing service request submissions.
   potentialBenefits: Prompt mitigation of issues.
@@ -142,7 +142,7 @@
   recommendationControl: Governance
   recommendationImpact: High
   recommendationResourceType: Microsoft.AVS/privateClouds
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Applying a resource delete lock to the Azure VMware Solution Private Cloud resource group prevents unauthorized or accidental deletion by anyone with contributor access, ensuring the protection and reliability of the Azure VMware Solution Private Cloud.
   potentialBenefits: Prevents accidental deletion
