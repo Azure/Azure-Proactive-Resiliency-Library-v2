@@ -145,7 +145,7 @@
   recommendationMetadataState: Active
   longDescription: |
     App Service should be configured with a minimum of two instances for production workloads. If apps have a longer warmup time a minimum of three instances should be used.
-  potentialBenefits: Improves app performace
+  potentialBenefits: Improves app performance
   pgVerified: true
   automationAvailable: true
   tags: null
