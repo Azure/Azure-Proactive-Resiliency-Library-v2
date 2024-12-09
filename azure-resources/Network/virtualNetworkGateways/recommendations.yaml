@@ -42,7 +42,7 @@
   recommendationControl: HighAvailability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Configuring an Azure Resource lock for ExpressRoute gateway prevents accidental deletion by enabling administrators to lock an Azure subscription, resource group, or resource, thereby protecting them from unintended user deletions and modifications, with the lock overriding all user permissions.
   potentialBenefits: Prevents accidental deletions
