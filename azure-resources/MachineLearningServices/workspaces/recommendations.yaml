@@ -32,7 +32,7 @@
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/machine-learning/how-to-high-availability-machine-learning?view=azureml-api-2"
 
-description: Ensure to create Azure Machine Learning Compute resources in secondary region
+- description: Ensure to create Azure Machine Learning Compute resources in secondary region
   aprlGuid: 13794a63-8d95-47ce-acbd-5925ede5b208
   recommendationTypeId: null
   recommendationControl: DisasterRecovery
