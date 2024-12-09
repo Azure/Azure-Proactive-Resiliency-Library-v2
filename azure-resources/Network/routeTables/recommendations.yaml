@@ -21,7 +21,7 @@
   recommendationControl: Governance
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Network/routeTables
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     As an administrator, you can protect Azure subscriptions, resource groups, or resources from accidental deletions and modifications by setting locks.
   potentialBenefits: Prevents accidental edits/deletions

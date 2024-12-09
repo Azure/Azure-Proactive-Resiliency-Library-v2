@@ -21,7 +21,7 @@
   recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/connections
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Configure an Azure Resource lock for Gateway Connection resources to prevent accidental deletion and maintain connectivity between on-premises networks and Azure workloads.
   potentialBenefits: Prevents accidental deletion of connections
