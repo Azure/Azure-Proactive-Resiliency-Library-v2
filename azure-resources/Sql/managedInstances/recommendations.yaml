@@ -71,7 +71,7 @@
   recommendationTypeId: null
   recommendationControl: MonitoringAndAlerting
   recommendationImpact: Medium
-  recommendationResourceType: Microsoft.Sql/servers
+  recommendationResourceType: Microsoft.Sql/managedInstances
   recommendationMetadataState: Active
   longDescription: |
     Monitoring and alerting are an important part of database operations. When working with Azure SQL Managed Instance, make use of Azure Monitor and Database watcher to ensure that you capture relevant database metrics.
@@ -88,7 +88,7 @@
   recommendationTypeId: null
   recommendationControl: DisasterRecovery
   recommendationImpact: Medium
-  recommendationResourceType: Microsoft.Sql/servers
+  recommendationResourceType: Microsoft.Sql/managedInstances
   recommendationMetadataState: Active
   longDescription: |
     It is highly recommended to use Azure Key Vault (AKV) to store encryption keys related to Always Encrypted configurations, however it is not required. If you are not using AKV, then ensure that your keys are properly backed up and stored in a secure manner.
