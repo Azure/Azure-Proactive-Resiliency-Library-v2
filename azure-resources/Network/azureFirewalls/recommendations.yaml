@@ -1,7 +1,7 @@
 - description: Deploy Azure Firewall across multiple availability zones
   aprlGuid: c72b7fee-1fa0-5b4b-98e5-54bcae95bb74
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/azureFirewalls
   recommendationMetadataState: Active
@@ -20,7 +20,7 @@
 - description: Monitor Azure Firewall metrics
   aprlGuid: 3c8fa7c6-6b78-a24a-a63f-348a7c71acb9
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/azureFirewalls
   recommendationMetadataState: Active
@@ -42,7 +42,7 @@
   recommendationControl: Security
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/azureFirewalls
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Associate a DDoS protection plan with the virtual network hosting Azure Firewall to provide enhanced mitigation against DDoS attacks. Azure Firewall Manager integrates the creation of firewall infrastructure and DDoS protection plans.
   potentialBenefits: Enhanced DDoS attack defense
@@ -59,7 +59,7 @@
   recommendationControl: Governance
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/azureFirewalls
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Azure Firewall policy supports rule hierarchies for compliance enforcement, using a central base policy with higher priority over child policies, and employs Azure custom roles to safeguard base policy and manage access within subscriptions or groups.
   potentialBenefits: Enhanced compliance and rule hierarchy
@@ -73,7 +73,7 @@
 - description: Configure 2-4 PIPs for SNAT Port utilization
   aprlGuid: d2e4a38e-2307-4299-a217-4c0cebc9a7f6
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/azureFirewalls
   recommendationMetadataState: Active
@@ -90,14 +90,14 @@
 - description: Monitor "AZFW Latency Probe" metric
   aprlGuid: 8faace2d-a36e-425c-aa58-2ad99e3e0b7a
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/azureFirewalls
   recommendationMetadataState: Active
   longDescription: |
-    Creating a metric to monitor latency probes over 20ms for periods longer than 30ms helps identify when firewall instance CPUs are stressed, potentially indicating issues.
+    Using the Azure Firewall latency probe metric to monitor sustained latency over 30ms (accounting for normal spikes) can help identify when firewall instance CPU utilization is under stress, potentially indicating performance issues
   potentialBenefits: Improved CPU stress detection
-  pgVerified: false
+  pgVerified: true
   automationAvailable: false
   tags: null
   learnMoreLink:

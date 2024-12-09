@@ -20,7 +20,7 @@ To contribute a new recommendation for an Azure resource, follow these steps:
     - description: Your Recommendation Title Here (less than 100 characters)
       aprlGuid: Generate a Unique GUID using https://guidgenerator.com/online-guid-generator.aspx
       recommendationTypeId: null
-      recommendationControl: High Availability/Business Continuity/Disaster Recovery/Scalability/Monitoring and Alerting/Service Upgrade and Retirement/Other Best Practices/Personalized/Governance
+      recommendationControl: HighAvailability/Business Continuity/Disaster Recovery/Scalability/Monitoring and Alerting/Service Upgrade and Retirement/Other Best Practices/Personalized/Governance
       recommendationImpact: Low/Medium/High
       recommendationResourceType: Friendly name to identity resource type
       recommendationMetadataState: Active
@@ -69,7 +69,7 @@ The YAML structure for adding new recommendations consists of several key-value 
 | description | Monitor Batch Account quota | String | Less than 100 characters | Summarization of your recommendation |
 | aprlGuid | 3464854d-6f75-4922-95e4-a2a308b53ce6 | String | 32-character hexadecimal string | The unique identifier for the recommendation in the context of APRL and CXObserve. Generate a [GUID](https://guidgenerator.com/online-guid-generator.aspx) for each new recommendation |
 | recommendationTypeId | 3464854d-6f75-4922-95e4-a2a308b53ce6 | String | `null` until updated by the Azure Advisor team | The unique identifier for the recommendation in the context of Advisor. |
-| recommendationControl | Monitoring and Alerting | String | [High Availability, Business Continuity, Disaster Recovery, Scalability, Monitoring and Alerting, Service Upgrade and Retirement, Other Best Practices, Personalized, Governance, Security](#recommendation-categories) | Resiliency category associated with the recommendation |
+| recommendationControl | Monitoring and Alerting | String | [HighAvailability, BusinessContinuity, DisasterRecovery, Scalability, MonitoringAndAlerting, ServiceUpgradeAnd Retirement, OtherBestPractices, Personalized, Governance, Security](#recommendation-categories) | Resiliency category associated with the recommendation |
 | recommendationImpact | Medium | String | Low, Medium, High | Importance of adopting the recommendation and/or the risk of choosing not to adopt |
 | recommendationResourceType | Microsoft.Storage/storageAccounts | String | Align with the resource type | Friendly name to identity resource type |
 | recommendationMetadataState | Active | String | Active, Disabled | Indicates whether the recommendation is visible |
@@ -86,13 +86,13 @@ Each recommendation should have _**one and only one**_ associated recommendation
 
 |    Recommendation Category     | Summary                                                                                                                                                                                                                            |
 | :----------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|       High Availability        | Focuses on ensuring services remain accessible and operational with minimal downtime.                                                                                                                                              |
-|      Business Continuity       | Involves strategies to maintain essential functions during and after a disaster, ensuring business operations continue.                                                                                                            |
-|       Disaster Recovery        | Focuses on restoring systems and data after catastrophic failures, ensuring quick recovery post-disaster.                                                                                                                          |
+|       HighAvailability        | Focuses on ensuring services remain accessible and operational with minimal downtime.                                                                                                                                              |
+|      BusinessContinuity       | Involves strategies to maintain essential functions during and after a disaster, ensuring business operations continue.                                                                                                            |
+|       DisasterRecovery        | Focuses on restoring systems and data after catastrophic failures, ensuring quick recovery post-disaster.                                                                                                                          |
 |          Scalability           | Involves techniques to handle changes in load and maintain system performance under varying conditions.                                                                                                                            |
-|    Monitoring and Alerting     | Constant surveillance of system health, performance, and security, aiding in quick issue identification and resolution.                                                                                                            |
-| Service Upgrade and Retirement | Addresses the planning and execution of system upgrades and the retirement of outdated services.                                                                                                                                   |
-|      Other Best Practices      | Encompasses miscellaneous best practices that improve system resilience, efficiency, and security.                                                                                                                                 |
+|    MonitoringAndAlerting     | Constant surveillance of system health, performance, and security, aiding in quick issue identification and resolution.                                                                                                            |
+| ServiceUpgradAndRetirement | Addresses the planning and execution of system upgrades and the retirement of outdated services.                                                                                                                                   |
+|      OtherBestPractices      | Encompasses miscellaneous best practices that improve system resilience, efficiency, and security.                                                                                                                                 |
 |          Personalized          | Customized recommendations tailored to specific system requirements, configurations, or preferences.                                                                                                                               |
 |           Governance           | Involves policies, procedures, and oversight for IT resource utilization. Ensures adherence to legal, regulatory, and compatibility requirements, while guiding overall system management. (Includes Compliance and Compatibility) |
 

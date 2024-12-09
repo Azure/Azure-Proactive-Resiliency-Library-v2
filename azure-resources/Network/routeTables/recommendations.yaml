@@ -1,7 +1,7 @@
 - description: Monitor changes in Route Tables with Azure Monitor
   aprlGuid: 23b2dfc7-7e5d-9443-9f62-980ca621b561
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/routeTables
   recommendationMetadataState: Active

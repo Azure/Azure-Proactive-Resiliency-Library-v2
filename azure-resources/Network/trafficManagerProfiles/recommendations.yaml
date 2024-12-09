@@ -1,7 +1,7 @@
 - description: Traffic Manager Monitor Status Should be Online
   aprlGuid: f05a3e6d-49db-2740-88e2-2b13706c1f67
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/trafficManagerProfiles
   recommendationMetadataState: Active
@@ -22,7 +22,7 @@
 - description: Traffic manager profiles should have more than one endpoint
   aprlGuid: 5b422a7f-8caa-3d48-becb-511599e5bba9
   recommendationTypeId: 6cd70072-c45c-4716-bf7b-b35c18e46e72
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/trafficManagerProfiles
   recommendationMetadataState: Active
@@ -39,15 +39,15 @@
 - description: Configure at least one endpoint within a another region
   aprlGuid: 1ad9d7b7-9692-1441-a8f4-93792efbe97a
   recommendationTypeId: 0db76759-6d22-4262-93f0-2f989ba2b58e
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/trafficManagerProfiles
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Profiles should have multiple endpoints to ensure availability in case an endpoint fails. It's also advised to distribute these endpoints across different regions for enhanced reliability.
   potentialBenefits: Enhances availability across regions
   pgVerified: true
-  automationAvailable: false
+  automationAvailable: true
   tags: null
   learnMoreLink:
     - name: Reliability recommendations
@@ -56,7 +56,7 @@
 - description: Ensure endpoint configured to (All World) for geographic profiles
   aprlGuid: c31f76a0-48cd-9f44-aa43-99ee904db9bc
   recommendationTypeId: 0bbe0a49-3c63-49d3-ab4a-aa24198f03f7
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/trafficManagerProfiles
   recommendationMetadataState: Active
@@ -71,3 +71,26 @@
       url: "https://learn.microsoft.com/azure/advisor/advisor-reference-reliability-recommendations#add-an-endpoint-configured-to-all-world"
     - name: Traffic Manager profile - GeographicProfile (Add an endpoint configured to ""All (World)"").
       url: "https://aka.ms/Rf7vc5"
+
+- description: Avoid combining Traffic Manager and Front Door
+  aprlGuid: 9437634c-d69e-2747-b13e-631c13182150
+  recommendationTypeId: null
+  recommendationControl: BusinessContinuity
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/trafficManagerProfiles
+  recommendationMetadataState: Active
+  longDescription: |
+    For most solutions, choose either Azure Front Door for content caching, CDN, TLS termination, and WAF, or Traffic Manager for simple global load balancing.
+  potentialBenefits: Optimized network routing and security
+  pgVerified: true
+  automationAvailable: true
+  tags: null
+  learnMoreLink:
+    - name: Azure Load Balancing Options
+      url: "https://learn.microsoft.com/azure/architecture/guide/technology-choices/load-balancing-overview"
+    - name: Azure Traffic Manager
+      url: "https://learn.microsoft.com/azure/traffic-manager/traffic-manager-overview"
+    - name: Azure Front Door
+      url: "https://learn.microsoft.com/azure/frontdoor/front-door-overview"
+    - name: Mission-critical global content delivery
+      url: "https://learn.microsoft.com/en-us/azure/architecture/guide/networking/global-web-applications/mission-critical-content-delivery"

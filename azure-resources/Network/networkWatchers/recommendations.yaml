@@ -1,7 +1,7 @@
 - description: Deploy Network Watcher in all regions where you have networking services
   aprlGuid: 4e133bd0-8762-bc40-a95b-b29142427d73
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Network/networkWatchers
   recommendationMetadataState: Active
@@ -9,7 +9,7 @@
     Azure Network Watcher offers tools for monitoring, diagnosing, viewing metrics, and managing logs for IaaS resources. It helps maintain the health of VMs, VNets, application gateways, load balancers, but not for PaaS or Web analytics.
   potentialBenefits: Enhanced monitoring and diagnostics for Azure IaaS
   pgVerified: true
-  automationAvailable: true
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: What is Azure Network Watcher?
@@ -18,7 +18,7 @@
 - description: Fix Flow Log configurations in Failed state or Disabled Status
   aprlGuid: 22a769ed-0ecb-8b49-bafe-8f52e6373d9c
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Network/networkWatchers
   recommendationMetadataState: Active
@@ -35,7 +35,7 @@
 - description: Configure Network Watcher Connection monitor
   aprlGuid: 1e28bbc1-1eb7-486f-8d7f-93943f40219c
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/networkWatchers
   recommendationMetadataState: Active
@@ -43,7 +43,7 @@
     Improves monitoring for Azure and Hybrid connectivity
   potentialBenefits: Improves monitoring for Azure and Hybrid connectivity
   pgVerified: true
-  automationAvailable: true
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Connection monitor overview
@@ -52,7 +52,7 @@
 - description: Enable Network Security Group and Virtual Network Flow Logs
   aprlGuid: a1317a0b-402d-4604-be40-a25a004ba171
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/networkWatchers
   recommendationMetadataState: Active
@@ -71,7 +71,7 @@
 - description: Enable traffic analytics in Network Security Group and Virtual Network Flow Logs configuration.
   aprlGuid: bf0b7dbd-016d-458c-af99-70fcb03ad451
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/networkWatchers
   recommendationMetadataState: Active

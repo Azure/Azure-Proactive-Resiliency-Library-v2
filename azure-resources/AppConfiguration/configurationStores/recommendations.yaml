@@ -18,7 +18,7 @@
 - description: Upgrade to App Configuration Standard tier
   aprlGuid: 2102a57a-a056-4d5e-afe5-9df9f92177ca
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.AppConfiguration/configurationStores
   recommendationMetadataState: Active

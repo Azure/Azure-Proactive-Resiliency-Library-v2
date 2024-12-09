@@ -1,7 +1,7 @@
 - description: Ensure static IP addresses in Site Recovery VM failover settings are available in failover subnet
   aprlGuid: e93bb813-b356-48f3-9bdf-a06a0a6ba039
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.RecoveryServices/vaults
   recommendationMetadataState: Active
@@ -18,7 +18,7 @@
 - description: Validate VM functionality with a Site Recovery test failover to check performance at target
   aprlGuid: 17e877f7-3a89-4205-8a24-0670de54ddcd
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.RecoveryServices/vaults
   recommendationMetadataState: Active
@@ -35,7 +35,7 @@
 - description: Migrate from classic alerts to built-in Azure Monitor alerts for Azure Recovery Services Vaults
   aprlGuid: 2912472d-0198-4bdc-aa90-37f145790edc
   recommendationTypeId: 06578866-1877-41e6-9d22-3ea5122e8048
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.RecoveryServices/vaults
   recommendationMetadataState: Active
@@ -43,7 +43,7 @@
     Classic alerts for Recovery Services vaults in Azure Backup will be retired on 31 March 2026.
   potentialBenefits: Enhanced, scalable, and consistent alerting.
   pgVerified: true
-  automationAvailable: true
+  automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Move to Azure monitor Alerts
@@ -54,7 +54,7 @@
 - description: Enable Cross Region Restore for your GRS Recovery Services Vault
   aprlGuid: 1549b91f-2ea0-4d4f-ba2a-4596becbe3de
   recommendationTypeId: 9b1308f1-4c25-4347-a061-7cc5cd6a44ab
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.RecoveryServices/vaults
   recommendationMetadataState: Active
@@ -77,7 +77,7 @@
 - description: Enable Soft Delete for Recovery Services Vaults in Azure Backup
   aprlGuid: 9e39919b-78af-4a0b-b70f-c548dae97c25
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.RecoveryServices/vaults
   recommendationMetadataState: Active

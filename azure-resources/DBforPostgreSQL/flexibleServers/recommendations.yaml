@@ -1,7 +1,7 @@
 - description: Enable HA with zone redundancy
   aprlGuid: ca87914f-aac4-4783-ab67-82a6f936f194
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.DBforPostgreSQL/flexibleServers
   recommendationMetadataState: Active
@@ -35,7 +35,7 @@
 - description: Configure geo redundant backup storage
   aprlGuid: 31f4ac4b-29cb-4588-8de2-d8fe6f13ceb3
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.DBforPostgreSQL/flexibleServers
   recommendationMetadataState: Active
@@ -52,7 +52,7 @@
 - description: Configure one or more read replicas
   aprlGuid: 2ab85a67-26be-4ed2-a0bb-101b2513ec63
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.DBforPostgreSQL/flexibleServers
   recommendationMetadataState: Active

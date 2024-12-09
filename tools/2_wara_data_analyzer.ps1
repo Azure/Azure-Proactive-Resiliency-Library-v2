@@ -112,6 +112,23 @@ $Script:Runtime = Measure-Command -Expression {
     return Get-Content -Path "$ClonePath\tools\Version.json" -ErrorAction SilentlyContinue | ConvertFrom-Json
   }
 
+  function Set-RecommendationControl {
+    param (
+        [string]$category
+    )
+
+    switch ($category) {
+        'BusinessContinuity' { return 'Business Continuity' }
+        'DisasterRecovery' { return 'Disaster Recovery' }
+        'MonitoringAndAlerting' { return 'Monitoring And Alerting' }
+        'ServiceUpgradeAndRetirement' { return 'Service Upgrade And Retirement' }
+        'OtherBestPractices' { return 'Other Best Practices' }
+        'HighAvailability' { return 'High Availability' }
+        default { return $category }
+    }
+  }
+
+
   function Set-LocalFile {
     [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'Low')]
     param()
@@ -298,6 +315,7 @@ $Script:Runtime = Measure-Command -Expression {
               'WAF Pillar'                                                                      = 'Reliability';
               tagged                                                                            = $Recom.tagged
             }
+            $Script:MergedRecommendation += $tmp
           } elseif ($Recom.validationAction -eq 'IMPORTANT - Resource Type is not available in either APRL or Advisor - Validate Resources manually if Applicable, if not Delete this line' ) {
             $tmp = @{
               'How was the resource/recommendation validated or what actions need to be taken?' = $Recom.validationAction;
@@ -321,15 +339,15 @@ $Script:Runtime = Measure-Command -Expression {
               'WAF Pillar'                                                                      = 'Reliability';
               tagged                                                                            = $Recom.tagged
             }
+            $Script:MergedRecommendation += $tmp
           }
-          $Script:MergedRecommendation += $tmp
         }
       }
     }
 
     $Script:RecommendedAdv = @()
     foreach ($adv in $CoreAdvisories) {
-      #if (![string]::IsNullOrEmpty($adv.recommendationId)) {
+      if (![string]::IsNullOrEmpty($adv.recommendationId)) {
         #$APRLADV = $Script:ServicesYAMLContent | Where-Object { $_.recommendationTypeId -eq $adv.recommendationId }
 
         #if ($APRLADV.recommendationTypeId -eq $adv.recommendationId ) {
@@ -363,16 +381,16 @@ $Script:Runtime = Measure-Command -Expression {
           $Script:MergedRecommendation += $tmp
           $Script:RecommendedAdv += $adv.recommendationId
         #}
-      #}
+      }
     }
 
     foreach ($WAF in $Script:WAFYAMLContent) {
       $tmp = @{
-        'How was the resource/recommendation validated or what actions need to be taken?' = 'Update this item based on Discovery Workshop Questionnaire';
+        'How was the resource/recommendation validated or what actions need to be taken?' = "IMPORTANT - Update this item based on Discovery Workshop Questionnaire";
         recommendationId                                                                  = [string]$WAF.aprlGuid;
         recommendationTitle                                                               = [string]$WAF.description;
         resourceType                                                                      = [string]$WAF.recommendationResourceType;
-        impact                                                                            = '';
+        impact                                                                            = [string]$WAF.recommendationImpact;
         subscriptionId                                                                    = '';
         resourceGroup                                                                     = '';
         name                                                                              = 'Entire Workload';
@@ -421,7 +439,7 @@ $Script:Runtime = Measure-Command -Expression {
       )
 
       $cond = @()
-      $cond += New-ConditionalText 'Update this item based on Discovery Workshop Questionnaire' -Range A:A
+      $cond += New-ConditionalText "IMPORTANT - Update this item based on Discovery Workshop Questionnaire" -Range A:A
       $cond += New-ConditionalText 'IMPORTANT' -Range A:A
 
       $cond2 = @()
@@ -491,10 +509,25 @@ $Script:Runtime = Measure-Command -Expression {
       $RealOutages = $Script:Outages | Where-Object { $_.properties.description -like '*How can customers make incidents like this less impactful?*' -and $_.properties.impactStartTime -gt ((Get-Date).AddMonths(-3)) }
       foreach ($Outage in  $RealOutages) {
         if (![string]::IsNullOrEmpty($Outage.name)) {
-          $HTML = New-Object -Com 'HTMLFile'
-          $HTML.write([ref]$Outage.properties.description)
-          $OutageDescription = $Html.body.innerText
-          $SplitDescription = $OutageDescription.split('How can we make our incident communications more useful?').split('How can customers make incidents like this less impactful?').split('How are we making incidents like this less likely or less impactful?').split('How did we respond?').split('What went wrong and why?').split('What happened?')
+
+          try {
+            $HTML = New-Object -Com 'HTMLFile'
+            $HTML.write([ref]$Outage.properties.description)
+            $OutageDescription = $Html.body.innerText
+            $SplitDescription = $OutageDescription.split('How can we make our incident communications more useful?').split('How can customers make incidents like this less impactful?').split('How are we making incidents like this less likely or less impactful?').split('How did we respond?').split('What went wrong and why?').split('What happened?')
+            $whathap = ($SplitDescription[1]).Split([Environment]::NewLine)[1]
+            $whatwent = ($SplitDescription[2]).Split([Environment]::NewLine)[1]
+            $howdid = ($SplitDescription[3]).Split([Environment]::NewLine)[1]
+            $howarewe = ($SplitDescription[4]).Split([Environment]::NewLine)[1]
+            $howcan = ($SplitDescription[5]).Split([Environment]::NewLine)[1]
+          }
+          catch {
+            $whathap = ""
+            $whatwent = ""
+            $howdid = ""
+            $howarewe = ""
+            $howcan = ""
+          }
 
           $OutProps = $Outage.properties
           $tmp = @{
@@ -508,11 +541,11 @@ $Script:Runtime = Measure-Command -Expression {
             'Start Time'                                                          = [string]$OutProps.impactStartTime;
             'Mitigation Time'                                                     = [string]$OutProps.impactMitigationTime;
             'Impacted Service'                                                    = [string]$OutProps.impact.impactedService;
-            'What happened'                                                       = ($SplitDescription[1]).Split([Environment]::NewLine)[1];
-            'What went wrong and why'                                             = ($SplitDescription[2]).Split([Environment]::NewLine)[1];
-            'How did we respond'                                                  = ($SplitDescription[3]).Split([Environment]::NewLine)[1];
-            'How are we making incidents like this less likely or less impactful' = ($SplitDescription[4]).Split([Environment]::NewLine)[1];
-            'How can customers make incidents like this less impactful'           = ($SplitDescription[5]).Split([Environment]::NewLine)[1];
+            'What happened'                                                       = $whathap;
+            'What went wrong and why'                                             = $whatwent;
+            'How did we respond'                                                  = $howdid;
+            'How are we making incidents like this less likely or less impactful' = $howarewe;
+            'How can customers make incidents like this less impactful'           = $howcan;
           }
           $Script:OutagesSheet += $tmp
         }
@@ -725,12 +758,14 @@ $Script:Runtime = Measure-Command -Expression {
         $countFormula = 'COUNTIFS(ImpactedResources!D:D,"' + $customRec.aprlGuid + '",ImpactedResources!S:S,"' + $customRec.checkName + '")'
         $compliantFormula = 'IF((' + $countFormula + ')>0,"No","Yes")'
 
+        $ExcelCat = Set-RecommendationControl -category $customRec.recommendationControl
+
         $Script:Recommendations += @{
           'Implemented?Yes/No' = "=$compliantFormula"
           'Number of Impacted Resources?' = "=$countFormula"
           'Azure Service / Well-Architected' = 'Custom'
           'Recommendation Source' = 'Custom'
-          'Resiliency Category' = [string]$customRec.recommendationControl
+          'Resiliency Category' = $ExcelCat
           'Azure Service Category / Well-Architected Area' = 'Custom'
           'Azure Service / Well-Architected Topic' = 'Custom'
           'Recommendation Title' = [string]$customRec.description
@@ -750,12 +785,14 @@ $Script:Runtime = Measure-Command -Expression {
           $ID = $Service.aprlGuid
           $resourceType = $Service.recommendationResourceType
 
+          $ExcelCat = Set-RecommendationControl -category $Service.recommendationControl
+
           $tmp = @{
             'Implemented?Yes/No'                                                                             = ('=IF((COUNTIF(ImpactedResources!D:D,"' + $ID + '")=0),"Yes","No")');
             'Number of Impacted Resources?'                                                                  = ('=COUNTIF(ImpactedResources!D:D,"' + $ID + '")');
             'Azure Service / Well-Architected'                                                               = 'Azure Service';
             'Recommendation Source'                                                                          = 'APRL';
-            'Resiliency Category'                                                                            = $Service.recommendationControl;
+            'Resiliency Category'                                                                            = $ExcelCat;
             'Azure Service Category / Well-Architected Area'                                                 = if ($resourceType -like 'Specialized.Workload/*') { $resourceType }else { ($resourceType.split('/')[0]) };
             'Azure Service / Well-Architected Topic'                                                         = if ($resourceType -like 'Specialized.Workload/*') { $resourceType }else { ($resourceType.split('/')[1]) };
             'Recommendation Title'                                                                           = $Service.description;
@@ -776,19 +813,19 @@ $Script:Runtime = Measure-Command -Expression {
         if ($advisor.recommendationId -in $Script:RecommendedAdv) {
           $ID = $advisor.recommendationId
           $resourceType = $advisor.type.ToLower()
-          $Category = if($advisor.category -eq 'HighAvailability'){'High Availability'}else{$advisor.category}
+          $ExcelCat = Set-RecommendationControl -category $advisor.category
 
           $tmp = @{
             'Implemented?Yes/No'                                                                             = ('=IF((COUNTIF(ImpactedResources!D:D,"' + $ID + '")=0),"Yes","No")');
             'Number of Impacted Resources?'                                                                  = ('=COUNTIF(ImpactedResources!D:D,"' + $ID + '")');
             'Azure Service / Well-Architected'                                                               = 'Azure Service';
             'Recommendation Source'                                                                          = 'ADVISOR';
-            'Resiliency Category'                                                                            = $Category;
+            'Resiliency Category'                                                                            = $ExcelCat;
             'Azure Service Category / Well-Architected Area'                                                 = ($resourceType.split('/')[0]);
             'Azure Service / Well-Architected Topic'                                                         = ($resourceType.split('/')[1]);
             'Recommendation Title'                                                                           = $advisor.description;
             'Impact'                                                                                         = $advisor.impact;
-            'Best Practices Guidance'                                                                        = '';
+            'Best Practices Guidance'                                                                        = $advisor.description;
             'Read More'                                                                                      = '';
             'Potential Benefits'                                                                             = '';
             'Add associated Outage TrackingID and/or Support Request # and/or Service Retirement TrackingID' = '';
@@ -804,12 +841,14 @@ $Script:Runtime = Measure-Command -Expression {
         $resourceType = $WAFYAML.recommendationResourceType
         $ID = $WAFYAML.aprlGuid
 
+        $ExcelCat = Set-RecommendationControl -category $WAFYAML.recommendationControl
+
         $tmp = @{
           'Implemented?Yes/No'                                                                             = ('=IF((COUNTIF(ImpactedResources!D:D,"' + $ID + '")=0),"Yes","No")');
           'Number of Impacted Resources?'                                                                  = ('=COUNTIF(ImpactedResources!D:D,"' + $ID + '")');
           'Azure Service / Well-Architected'                                                               = 'Well Architected';
           'Recommendation Source'                                                                          = 'APRL';
-          'Resiliency Category'                                                                            = $WAFYAML.recommendationControl;
+          'Resiliency Category'                                                                            = $ExcelCat;
           'Azure Service Category / Well-Architected Area'                                                 = ($resourceType.split('/')[0]);
           'Azure Service / Well-Architected Topic'                                                         = ($resourceType.split('/')[1]);
           'Recommendation Title'                                                                           = $WAFYAML.description;
@@ -1017,7 +1056,7 @@ $Script:Runtime = Measure-Command -Expression {
   }
 
   #Call the functions
-  $Script:Version = '2.1.12'
+  $Script:Version = '2.1.16'
   Write-Host 'Version: ' -NoNewline
   Write-Host $Script:Version -ForegroundColor DarkBlue
 

@@ -1,7 +1,7 @@
 - description: Enable zone redundancy in Managed Grafana
   aprlGuid: 6cd57b65-ef84-4088-9ada-c0d8de74c2f7
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Dashboard/grafana
   recommendationMetadataState: Active

@@ -23,7 +23,7 @@ configuration:
       actions:
       - closeIssue
 
-    - description: 'If open issue and label is Needs: Author Feedback :ear: is applied with no update after 3 days, then apply label "Status: No Recent Activity :desert:'
+    - description: 'If open issue and label is Needs: Author Feedback :ear: is applied with no update after 4 days, then apply label "Status: No Recent Activity :desert:'
       frequencies:
       - hourly:
           hour: 3
@@ -33,7 +33,7 @@ configuration:
       - hasLabel:
           label: 'Needs: Author Feedback :ear:'
       - noActivitySince:
-          days: 3
+          days: 4
       - isNotLabeledWith:
           label: 'Status: No Recent Activity :desert:'
       actions:
@@ -58,7 +58,7 @@ configuration:
           reply: This issue has been marked as duplicate and has not had any activity for **1 day**. It will be closed for housekeeping purposes.
       - closeIssue
 
-    - description: 'If open pr and label includes Needs: Author Feedback :ear: and Status: No Recent Activity :desert: with no update after 7 days, then close the issue.'
+    - description: 'If open pr and label includes Needs: Author Feedback :ear: and Status: No Recent Activity :desert: with no update after 3 days, then close the issue.'
       frequencies:
       - hourly:
           hour: 3
@@ -70,11 +70,11 @@ configuration:
       - hasLabel:
           label: 'Status: No Recent Activity :desert:'
       - noActivitySince:
-          days: 7
+          days: 3
       actions:
       - closePullRequest
 
-    - description: 'If open pull request and label includes Needs: Author Feedback :ear: and has not been updated in 7 days, then add label and request update.'
+    - description: 'If open pull request and label includes Needs: Author Feedback :ear: and has not been updated in 4 days, then add label and request update.'
       frequencies:
       - hourly:
           hour: 3
@@ -84,14 +84,14 @@ configuration:
       - hasLabel:
           label: 'Needs: Author Feedback :ear:'
       - noActivitySince:
-          days: 7
+          days: 4
       - isNotLabeledWith:
           label: 'Status: No Recent Activity :desert:'
       actions:
       - addLabel:
           label: 'Status: No Recent Activity :desert:'
       - addReply:
-          reply: This pull request has been automatically marked as stale because it has been marked as requiring author feedback but has not had any activity for **7 days**. It will be closed if no further activity occurs **within 7 days of this comment**.
+          reply: This pull request has been automatically marked as stale because it has been marked as requiring author feedback but has not had any activity for **4 days**. It will be closed if no further activity occurs **within 3 days of this comment**.
 
     eventResponderTasks:
     - if:

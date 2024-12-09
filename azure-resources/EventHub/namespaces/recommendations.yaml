@@ -1,7 +1,7 @@
 - description: Ensure zone redundancy is enabled in supported regions
   aprlGuid: 84636c6c-b317-4722-b603-7b1ffc16384b
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.EventHub/namespaces
   recommendationMetadataState: Active

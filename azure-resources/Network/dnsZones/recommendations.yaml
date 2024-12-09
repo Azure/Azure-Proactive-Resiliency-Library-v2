@@ -1,7 +1,7 @@
 - description: Ensure Time-To-Live (TTL) is set appropriately to ensure RPOs can be met
   aprlGuid: 7d09523b-b3c0-403e-b104-d5d46240d683
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/dnsZones
   recommendationMetadataState: Active
