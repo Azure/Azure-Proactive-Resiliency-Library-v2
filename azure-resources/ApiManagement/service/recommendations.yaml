@@ -72,7 +72,7 @@
     - name: Setting up auto-scale for Azure API Management
       url: "https://learn.microsoft.com/azure/api-management/api-management-howto-autoscale"
 
-- description: Enable caching to improve performance in Azure API Managment
+- description: Enable caching to improve performance in Azure API Management
   aprlGuid: badd9a1f-222a-498d-ab84-1f14892b1c1b
   recommendationTypeId: null
   recommendationControl: HighAvailability
