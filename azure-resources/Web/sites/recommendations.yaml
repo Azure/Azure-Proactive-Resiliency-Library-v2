@@ -136,23 +136,6 @@
     - name: Set up Azure App Service access restrictions
       url: "https://learn.microsoft.com/en-us/azure/app-service/app-service-ip-restrictions?tabs=azurecli"
 
-- description: Set minimum instance count to 2 for app service
-  aprlGuid: 9e6682ac-31bc-4635-9959-ab74b52454e6
-  recommendationTypeId: null
-  recommendationControl: Scalability
-  recommendationImpact: High
-  recommendationResourceType: Microsoft.Web/sites
-  recommendationMetadataState: Active
-  longDescription: |
-    App Service should be configured with a minimum of two instances for production workloads. If apps have a longer warmup time a minimum of three instances should be used.
-  potentialBenefits: Improves app performance
-  pgVerified: true
-  automationAvailable: true
-  tags: null
-  learnMoreLink:
-    - name: Ultimate guide to running healthy apps in the cloud
-      url: "https://azure.github.io/AppService/2020/05/15/Robust-Apps-for-the-cloud.html"
-
 - description: Enable auto heal for Functions App
   aprlGuid: c6c4b962-5af4-447a-9d74-7b9c53a5dff5
   recommendationTypeId: null
