@@ -124,3 +124,20 @@
   learnMoreLink:
     - name: Failover Group endpoint redirection
       url: "https://learn.microsoft.com/azure/azure-sql/database/failover-group-sql-db?view=azuresql#endpoint-redirection"
+
+- description: Use Failover Group customer managed policy
+  aprlGuid: 0f838324-ffe3-4b8a-b7a2-d983be8f9fa9
+  recommendationTypeId: null
+  recommendationControl: Disaster Recovery
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Sql/servers
+  recommendationMetadataState: Active
+  longDescription: |
+    When using Failover Groups, setting your failover policy to customer managed is highly recommended as it keeps you in control of when to initiate a failover.
+  potentialBenefits: Enhanced disaster recovery
+  pgVerified: false
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: Learn More
+      url: "https://aka.ms/SQLDBFGPolicy"
