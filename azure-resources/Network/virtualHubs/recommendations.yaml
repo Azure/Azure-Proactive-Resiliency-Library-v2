@@ -1,7 +1,7 @@
 - description: Migrate from Basic to Standard Virtual WAN
   aprlGuid: f29e56a1-6a80-4295-a663-1cce0ea2b10a
   recommendationTypeId: null
-  recommendationControl: Service Upgrade and Retirement
+  recommendationControl: ServiceUpgradeAndRetirement
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/virtualHubs
   recommendationMetadataState: Active

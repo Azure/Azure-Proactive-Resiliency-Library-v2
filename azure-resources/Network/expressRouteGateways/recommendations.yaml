@@ -34,7 +34,7 @@
 - description: Avoid using ExpressRoute circuits for VNet to VNet communication
   aprlGuid: 560a76a7-8f64-4ce3-ad27-d174468861a1
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/expressRouteGateways
   recommendationMetadataState: Active
