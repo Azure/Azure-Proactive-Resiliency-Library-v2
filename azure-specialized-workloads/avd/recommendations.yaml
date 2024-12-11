@@ -4,7 +4,7 @@
   recommendationControl: Governance
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/AVD
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Set up Service Health alerts so that you stay aware of service issues, planned maintenance, or other changes that might affect your Azure Virtual Desktop resources. Use Resource Health to monitor your VMs and storage solutions.
   potentialBenefits: Enhanced AVD error tracking and resolution
