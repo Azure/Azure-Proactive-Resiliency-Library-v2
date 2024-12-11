@@ -41,7 +41,6 @@
   longDescription: Avoid using ExpressRoute circuits for VNet to VNet communication. Use Virtual WAN to connect VNets in different regions. This feature is enabled at the ExpressRoute circuit level but reflected in the Virtual Wan resource.
   potentialBenefits: Shortest path between VNETs. Disables hairpinning at MSEE
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
