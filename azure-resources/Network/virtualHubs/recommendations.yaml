@@ -17,7 +17,7 @@
 - description: Monitor health for v-Hubs
   aprlGuid: 30ec8a5e-46de-4323-87e9-a7c56b72813b
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/virtualHubs
   recommendationMetadataState: Active

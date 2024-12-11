@@ -1,7 +1,7 @@
 - description: Enable diagnostics logging
   aprlGuid: 493f6079-3bb6-4a56-96ba-ab3248474cb1
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Web/sites
   recommendationMetadataState: Active
@@ -18,7 +18,7 @@
 - description: Monitor Performance
   aprlGuid: a7e8bb3d-8ceb-442d-b26f-007cd63f9ffc
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.Web/sites
   recommendationMetadataState: Active
@@ -88,7 +88,7 @@
 - description: Store configuration as app settings
   aprlGuid: 0b80b67c-afbe-4988-ad58-a85a146b681e
   recommendationTypeId: null
-  recommendationControl: Other Best Practices
+  recommendationControl: OtherBestPractices
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Web/sites
   recommendationMetadataState: Active
@@ -105,7 +105,7 @@
 - description: Enable Health check for App Services
   aprlGuid: fd049c28-ae6d-48f0-a641-cc3ba1a3fe1d
   recommendationTypeId: null
-  recommendationControl: Other Best Practices
+  recommendationControl: OtherBestPractices
   recommendationImpact: High
   recommendationResourceType: Microsoft.Web/sites
   recommendationMetadataState: Active
@@ -125,7 +125,7 @@
   recommendationControl: Governance
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Web/sites
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Use network access restrictions to define a priority-ordered allow/deny list that controls network access to your app. Web application firewalls, such as the one available in Application Gateway, are recommended for protection of public-facing web applications.
   potentialBenefits: Enhanced security
@@ -156,7 +156,7 @@
 - description: Enable auto heal for Functions App
   aprlGuid: c6c4b962-5af4-447a-9d74-7b9c53a5dff5
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Web/sites
   recommendationMetadataState: Active
@@ -173,7 +173,7 @@
 - description: No warmup trigger added to Function App
   aprlGuid: 52f368ee-1d77-4b34-92db-64be269642d0
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Web/sites
   recommendationMetadataState: Active

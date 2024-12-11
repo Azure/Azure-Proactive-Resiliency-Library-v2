@@ -18,10 +18,10 @@
 - description: Configure an Azure Resource Lock on connections to prevent accidental deletion
   aprlGuid: a5f3a4bd-4cf1-4196-a3cb-f5a0876198b2
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/connections
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Configure an Azure Resource lock for Gateway Connection resources to prevent accidental deletion and maintain connectivity between on-premises networks and Azure workloads.
   potentialBenefits: Prevents accidental deletion of connections

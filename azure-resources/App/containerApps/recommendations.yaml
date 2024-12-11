@@ -1,8 +1,8 @@
 - description: Enable container health probes
   aprlGuid: 8dbcd94b-0948-4df3-b608-1946726c3abf
   recommendationTypeId: null
-  recommendationControl: High Availability
-  recommendationImpact: High
+  recommendationControl: HighAvailability
+  recommendationImpact: Low
   recommendationResourceType: Microsoft.App/containerApps
   recommendationMetadataState: Active
   longDescription: |

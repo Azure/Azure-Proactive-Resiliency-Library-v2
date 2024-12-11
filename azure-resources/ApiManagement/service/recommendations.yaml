@@ -1,14 +1,14 @@
 - description: Migrate API Management services to Premium SKU to support Availability Zones
   aprlGuid: baf3bfc0-32a2-4c0c-926d-c9bf0b49808e
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.ApiManagement/service
   recommendationMetadataState: Active
   longDescription: |
     Upgrading the API Management instance to the Premium SKU adds support for Availability Zones, enhancing availability and resilience by distributing services across physically separate locations within Azure regions.
   potentialBenefits: Enhanced availability and resilience
-  pgVerified: false
+  pgVerified: true
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -20,14 +20,14 @@
 - description: Enable Availability Zones on Premium API Management instances
   aprlGuid: 740f2c1c-8857-4648-80eb-47d2c56d5a50
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.ApiManagement/service
   recommendationMetadataState: Active
   longDescription: |
     Zone redundancy for APIM instances ensures the gateway and control plane (Management API, developer portal, Git configuration) are replicated across datacenters in physically separated zones, boosting resilience to zone failures.
   potentialBenefits: Improved resilience to zone failures
-  pgVerified: false
+  pgVerified: true
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -39,14 +39,14 @@
 - description: Azure API Management platform version should be stv2
   aprlGuid: e35cf148-8eee-49d1-a1c9-956160f99e0b
   recommendationTypeId: e5f60ef8-3fcc-4fb5-bee7-7aaeb44c1509
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.ApiManagement/service
   recommendationMetadataState: Active
   longDescription: |
-    Upgrading to API Management stv2 is required as stv1 retires on 31 Aug 2024, offering enhanced capabilities with the new platform version.
+    stv1 instances were deprecated on August 31, 2024. If not migrated to stv2 by then, auto-migration will occur. In some cases, due to technical limitations, services may be shut down in March 2025.
   potentialBenefits: Ensures service continuity
-  pgVerified: false
+  pgVerified: true
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -58,14 +58,14 @@
 - description: Enable auto-scale for production workloads on API Management services
   aprlGuid: c79680ea-de85-44fa-a596-f31fa17a952f
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Low
   recommendationResourceType: Microsoft.ApiManagement/service
   recommendationMetadataState: Active
   longDescription: |
     Use API Management with auto-scale for high availability in workloads that experience variable traffic patterns. There are several limitations with auto-scale, so review the documentation to ensure it meets your requirements.
   potentialBenefits: Enhanced availability and resilience
-  pgVerified: false
+  pgVerified: true
   automationAvailable: false
   tags: null
   learnMoreLink:

@@ -1,7 +1,7 @@
 - description: Monitor Batch Account quota
   aprlGuid: 3464854d-6f75-4922-95e4-a2a308b53ce6
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Batch/batchAccounts
   recommendationMetadataState: Active
@@ -18,7 +18,7 @@
 - description: Create an Azure Batch pool across Availability Zones
   aprlGuid: 71cfab8f-d588-4742-b175-b6e07ae48dbd
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Batch/batchAccounts
   recommendationMetadataState: Active

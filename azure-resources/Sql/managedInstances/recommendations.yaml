@@ -1,7 +1,7 @@
 - description: Enable zone redundancy for Azure SQL Managed Instance to improve high availability and resiliency
   aprlGuid: f8f834a9-c761-4e84-b2cb-ac55494d0c37
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Sql/managedInstances
   recommendationMetadataState: Active
@@ -18,7 +18,7 @@
 - description: Use Zone-redundant or Geo-zone-redundant Backup storage redundancy
   aprlGuid: 15e2712c-f3ea-4a8d-9081-11e822b1ccfb
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.Sql/managedInstances
   recommendationMetadataState: Active
@@ -52,7 +52,7 @@
 - description: Configure a secondary instance and a Failover group to enable failover to another region
   aprlGuid: 257cd903-700f-4a79-bd37-7dce2b511df4
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.Sql/managedInstances
   recommendationMetadataState: Active
@@ -69,9 +69,9 @@
 - description: Monitor your Azure SQL MI Managed Instance in near-real time to detect reliability incidents
   aprlGuid: c9afeb1e-e706-4809-be4e-75d9fac708f2
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: Medium
-  recommendationResourceType: Microsoft.Sql/servers
+  recommendationResourceType: Microsoft.Sql/managedInstances
   recommendationMetadataState: Active
   longDescription: |
     Monitoring and alerting are an important part of database operations. When working with Azure SQL Managed Instance, make use of Azure Monitor and Database watcher to ensure that you capture relevant database metrics.
@@ -86,9 +86,9 @@
 - description: Back Up Your Keys
   aprlGuid: 9fad5392-b852-4807-9b6d-3f700ff9771a
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: Medium
-  recommendationResourceType: Microsoft.Sql/servers
+  recommendationResourceType: Microsoft.Sql/managedInstances
   recommendationMetadataState: Active
   longDescription: |
     It is highly recommended to use Azure Key Vault (AKV) to store encryption keys related to Always Encrypted configurations, however it is not required. If you are not using AKV, then ensure that your keys are properly backed up and stored in a secure manner.

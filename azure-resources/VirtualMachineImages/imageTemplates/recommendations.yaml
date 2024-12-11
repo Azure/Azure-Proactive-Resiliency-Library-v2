@@ -1,7 +1,7 @@
 - description: Use Generation 2 virtual machine source image
   aprlGuid: 19b6df57-f6b5-3e4f-843a-273daa087cb0
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Low
   recommendationResourceType: Microsoft.VirtualMachineImages/imageTemplates
   recommendationMetadataState: Active
@@ -18,7 +18,7 @@
 - description: Replicate your Image Templates to a secondary region
   aprlGuid: 21fb841b-ba70-1f4e-a460-1f72fb41aa51
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: Low
   recommendationResourceType: Microsoft.VirtualMachineImages/imageTemplates
   recommendationMetadataState: Active

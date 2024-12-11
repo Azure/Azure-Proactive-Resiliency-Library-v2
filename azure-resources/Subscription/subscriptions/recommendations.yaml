@@ -21,7 +21,7 @@
   recommendationControl: Governance
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Subscription/Subscriptions
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     The root management group in Azure is designed for organizational hierarchy, allowing for all management groups and subscriptions to fold into it.
   potentialBenefits: Enhanced security, compliance, and management
@@ -33,3 +33,22 @@
       url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org-management-groups#management-group-recommendations"
     - name: Root management group for each directory
       url: "https://learn.microsoft.com/en-us/azure/governance/management-groups/overview#root-management-group-for-each-directory"
+
+- description: Configure Service Health Alerts
+  aprlGuid: 9729c89d-8118-41b4-a39b-e12468fa872b
+  recommendationTypeId: null
+  recommendationControl: MonitoringAndAlerting
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Subscription/Subscriptions
+  recommendationMetadataState: Active
+  longDescription: |
+    Service health gives a personalized health view of Azure services and regions used, offering the best place for notifications on outages, planned maintenance, and health advisories by knowing the services used.
+  potentialBenefits: Proactive outage and maintenance alerts
+  pgVerified: true
+  automationAvailable: true
+  tags: null
+  learnMoreLink:
+    - name: What is Azure Service Health?
+      url: "https://learn.microsoft.com/azure/service-health/overview"
+    - name: Configure alerts for service health events
+      url: "https://learn.microsoft.com/azure/service-health/alerts-activity-log-service-notifications-portal"

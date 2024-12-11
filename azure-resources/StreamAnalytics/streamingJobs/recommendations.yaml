@@ -18,7 +18,7 @@
 - description: Migrate Stream Analytics jobs to StandardV2 SKU
   aprlGuid: 5d40d3d4-179d-4cf5-ac24-901210f512e7
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.StreamAnalytics/streamingjobs
   recommendationMetadataState: Active

@@ -1,7 +1,7 @@
 - description: Enable zone redundancy for SignalR
   aprlGuid: 6a8b3db9-5773-413a-a127-4f7032f34bbd
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.SignalRService/SignalR
   recommendationMetadataState: Active

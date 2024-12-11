@@ -1,10 +1,10 @@
 - description: Configure Azure Service Health notifications and alerts for Azure VMware Solution
   aprlGuid: 74fcb9f2-9a25-49a6-8c42-d32851c4afb7
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.AVS/privateClouds
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Ensure Azure Service Health notifications are set for Azure VMware Solution across all used regions and subscriptions. This communicates service/security issues and maintenance activities like host replacements and upgrades, reducing service request submissions.
   potentialBenefits: Prompt mitigation of issues.
@@ -18,7 +18,7 @@
 - description: Monitor when Azure VMware Solution Private Cloud is reaching the capacity limit
   aprlGuid: 29d7a115-dfb6-4df1-9205-04824109548f
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.AVS/privateClouds
   recommendationMetadataState: Active
@@ -35,7 +35,7 @@
 - description: Monitor when Azure VMware Solution Cluster Size is approaching the host limit
   aprlGuid: f86355e3-de7c-4dad-8080-1b0b411e66c8
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.AVS/privateClouds
   recommendationMetadataState: Active
@@ -52,7 +52,7 @@
 - description: Enable Stretched Clusters for Multi-AZ Availability of the vSAN Datastore
   aprlGuid: 9ec5b4c8-3dd8-473a-86ee-3273290331b9
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Low
   recommendationResourceType: Microsoft.AVS/privateClouds
   recommendationMetadataState: Active
@@ -71,7 +71,7 @@
 - description: Configure Azure Monitor Alert warning thresholds for vSAN datastore utilization
   aprlGuid: 4232eb32-3241-4049-9e14-9b8005817b56
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.AVS/privateClouds
   recommendationMetadataState: Active
@@ -88,7 +88,7 @@
 - description: Configure Syslog in Diagnostic Settings for Azure VMware Solution
   aprlGuid: fa4ab927-bced-429a-971a-53350de7f14b
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.AVS/privateClouds
   recommendationMetadataState: Active
@@ -105,7 +105,7 @@
 - description: Monitor CPU Utilization to ensure sufficient resources for workloads
   aprlGuid: 4ee5d535-c47b-470a-9557-4a3dd297d62f
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.AVS/privateClouds
   recommendationMetadataState: Active
@@ -122,7 +122,7 @@
 - description: Monitor Memory Utilization to ensure sufficient resources for workloads
   aprlGuid: 029208c8-5186-4a76-8ee8-6e3445fef4dd
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.AVS/privateClouds
   recommendationMetadataState: Active
@@ -142,7 +142,7 @@
   recommendationControl: Governance
   recommendationImpact: High
   recommendationResourceType: Microsoft.AVS/privateClouds
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Applying a resource delete lock to the Azure VMware Solution Private Cloud resource group prevents unauthorized or accidental deletion by anyone with contributor access, ensuring the protection and reliability of the Azure VMware Solution Private Cloud.
   potentialBenefits: Prevents accidental deletion
@@ -173,7 +173,7 @@
 - description: Use multiple DNS servers per private FQDN zone
   aprlGuid: fcc2e257-23af-4c68-aac8-9cc03033c939
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.AVS/privateClouds
   recommendationMetadataState: Active

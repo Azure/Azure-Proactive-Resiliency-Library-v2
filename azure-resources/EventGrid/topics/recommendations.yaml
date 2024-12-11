@@ -1,7 +1,7 @@
 - description: Configure Diagnostic Settings for all Azure Event Grid resources
   aprlGuid: 54c3191b-b535-1946-bba9-b754f44060f6
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: Low
   recommendationResourceType: Microsoft.EventGrid/topics
   recommendationMetadataState: Active
@@ -38,7 +38,7 @@
   recommendationControl: Security
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.EventGrid/topics
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Use private endpoints for secure event ingress to custom topics/domains via a private link, avoiding the public internet. It employs an IP from the VNet space for your topic/domain.
   potentialBenefits: Secure, private VNet ingress

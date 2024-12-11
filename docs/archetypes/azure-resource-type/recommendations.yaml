@@ -1,7 +1,7 @@
 - description: Your Recommendation Title Here (less than 100 characters)
   aprlGuid: Generate a Unique GUID for Your Recommendation
   recommendationTypeId: null
-  recommendationControl: High Availability/Business Continuity/Disaster Recovery/Scalability/Monitoring and Alerting/Service Upgrade and Retirement/Other Best Practices/Personalized/Governance/Security
+  recommendationControl: HighAvailability/Business Continuity/Disaster Recovery/Scalability/Monitoring and Alerting/Service Upgrade and Retirement/Other Best Practices/Personalized/Governance/Security
   recommendationImpact: Low/Medium/High
   recommendationResourceType: Friendly name to identity resource type
   recommendationMetadataState: Active
@@ -19,7 +19,7 @@
 - description: Your Recommendation Title Here (less than 100 characters)
   aprlGuid: Generate a Unique GUID for Your Recommendation
   recommendationTypeId: null
-  recommendationControl: High Availability/Business Continuity/Disaster Recovery/Scalability/Monitoring and Alerting/Service Upgrade and Retirement/Other Best Practices/Personalized/Governance/Security
+  recommendationControl: HighAvailability/BusinessContinuity/DisasterRecovery/Scalability/MonitoringAndAlerting/ServiceUpgradeAndRetirement/OtherBestPractices/Personalized/Governance/Security
   recommendationResourceType: Friendly name to identity resource type
   recommendationMetadataState: Active
   longDescription: |

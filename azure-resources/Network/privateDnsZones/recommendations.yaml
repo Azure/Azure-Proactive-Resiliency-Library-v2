@@ -4,7 +4,7 @@
   recommendationControl: Security
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/privateDnsZones
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Assign the built-in Private DNS Zone Contributor role to specific authorized users, groups, and entities to protect against unauthorized or accidental changes to Private DNS Zones and records. Restrict access by granting Private DNS Zone Contributor permission to all zones.
   potentialBenefits: Prevents DNS outages
@@ -18,7 +18,7 @@
 - description: Monitor Private DNS Zones health and set up alerts
   aprlGuid: ab896e8c-49b9-2c44-adec-98339aff7821
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/privateDnsZones
   recommendationMetadataState: Active
@@ -35,7 +35,7 @@
 - description: Use regional Private DNS Zones when there is a low recovery time objective (RTO) requirement
   aprlGuid: 1e02335c-1f90-fd4e-a5a5-d359c7b22d70
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/privateDnsZones
   recommendationMetadataState: Active
@@ -52,7 +52,7 @@
 - description: Ensure Time-To-Live (TTL) is set appropriately to ensure RPOs can be met
   aprlGuid: 3538aa48-c40b-455b-a93b-269fe6e65be2
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/privateDnsZones
   recommendationMetadataState: Active

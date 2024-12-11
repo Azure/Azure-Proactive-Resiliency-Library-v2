@@ -31,11 +31,14 @@ if missing_packages:
 import os
 import yamale
 
+# Path to the schema file
+schema_path = '.github/scripts/schemas/aprl-schema.yaml'
+
 # Directories containing YAML files to validate
 directories = {
-    './azure-resources': './.github/scripts/schemas/azure-resources-and-waf-schema.yaml',
-    './azure-specialized-workloads': './.github/scripts/schemas/azure-specialized-workloads-schema.yaml',
-    './azure-waf': './.github/scripts/schemas/azure-resources-and-waf-schema.yaml'
+    './azure-resources': schema_path,
+    './azure-specialized-workloads': schema_path,
+    './azure-waf': schema_path
 }
 
 # Function to validate a YAML file against the schema

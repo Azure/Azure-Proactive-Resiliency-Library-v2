@@ -1,12 +1,12 @@
 - description: Ensure that each SAP production system is designed for high availability across availability zones
   aprlGuid: a9b649a5-2bfe-40ca-9b8f-34f9c71dfa12
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
   longDescription: |
-    Azure Availability Zones are physically separate locations within each Azure region that are tolerant to local failures. Use availability zones to protect your applications and data against unlikely data center failures. Ensure each single point of failure of each SAP production system is protected with high availability using multiple availability zones. If you cannot deploy across different zones in a region, then  refer to Microsoft guidance for High availability deployment options for SAP workload.
+    Use Azure Availability Zones to protect SAP systems against data center failures. Ensure high availability by deploying across multiple zones. If deployment across zones isn't possible, refer to Microsoft's guidance for high availability options for SAP workloads.
   potentialBenefits: High availability for SAP systems
   pgVerified: true
   automationAvailable: false
@@ -26,12 +26,12 @@
 - description: Run SAP application servers on two or more VMs using VMSS Flex
   aprlGuid: 49bd34ab-d117-4b0e-99f8-34cc8a5394bc
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
   longDescription: |
-    Use Virtual Machines Scale Set (VMSS) with flexible orchestration to distribute the virtual machines across specified zones and within each zone to also distribute VMs across different fault domains within the zone on a best effort basis. Configure VMSS Flex following Microsoft recommendation for SAP workload using the right mode and correct settings. If you aren't currently using VMSS Flex for SAP application servers and also not using Availability Sets with Fault domain and Update domain distribution, then you should consider moving to VMSS Flex architecture to improve the resiliency posture of your SAP deployment. The following blog post in links below outlines the details on the process of migrating existing SAP workloads that are deployed in an availability set or availability zone to a flexible scale set with FD=1 deployment option.
+    Use VMSS Flex to distribute VMs across zones and fault domains. Follow Microsoft's SAP workload recommendations for settings. If not using VMSS Flex or Availability Sets, consider migrating to VMSS Flex for improved resiliency. Refer to the provided blog post for migration details.
   potentialBenefits: Enhanced resiliency for SAP on Azure
   pgVerified: true
   automationAvailable: false
@@ -49,7 +49,7 @@
 - description: If using single-instance VMs all OS and data disks must be Premium SSD or Ultra Disk
   aprlGuid: b60ae773-9917-4bca-8a42-7cb45365a917
   recommendationTypeId: 58d6648d-32e8-4346-827c-4f288dd8ca24
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
@@ -74,7 +74,7 @@
 - description: Ensure synchronous data replication (SYNC mode) between primary and secondary VM nodes
   aprlGuid: 094400a5-f112-408d-a334-afd68873ff0f
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
@@ -93,7 +93,7 @@
 - description: Design SAP shared file systems for high availability, utilizing availability zones when possible
   aprlGuid: e09ca960-20b7-4831-b85b-83ec84c1390e
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
@@ -111,13 +111,12 @@
 - description: Test high availability solutions thoroughly to ensure fail overs work as expected
   aprlGuid: 5663a808-56be-49ea-8d5c-c5dfc6925f76
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
   longDescription: |
-    Test all high availability solutions thoroughly (including kernel panic in Linux VMs and also fail-back). Include zonal failure scenarios in your testing, the testing should confirm that each layer of your SAP solution including database, central services, application servers and shared file systems is configured correctly for zone redundancy, the solution meets RPO = 0 and the application fails over automatically meeting your RTO.
-    The fail back can be either automatic or manual.
+    Test high availability solutions thoroughly, including kernel panic in Linux VMs and fail-back. Ensure zonal failure scenarios for each SAP layer (database, central services, application servers, shared file systems) are zone redundant, meet RPO = 0, and fail over automatically within your RTO.
   potentialBenefits: Ensures SAP Azure's failover reliability
   pgVerified: true
   automationAvailable: false
@@ -129,15 +128,12 @@
 - description: Remove unwanted location constraints from Linux Pacemaker clusters
   aprlGuid: 1b8a3051-dfd4-4780-bfb7-446296774029
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
   longDescription: |
-    When executing a migrate command in a Linux Pacemaker cluster, the system generates a temporary "prefer" location constraint, aiming to move a resource to a specified node. This constraint prioritizes the target node for the resource temporarily without permanently altering the cluster's configuration.
-    During planned maintenances and fail over testing, you can leverage the migrate command for temporary resource relocation during maintenance or administrative tasks to ensure minimal disruption. This constraint is not permanent and does not survive reboots or cluster resets. It's designed for short-term adjustments.
-    Once the planned task necessitating the resource migration is complete, manually remove the temporary constraint to revert to the cluster's original resource management policies.
-    This approach allows for controlled resource movement within the cluster, facilitating maintenance while preserving the integrity and efficiency of the cluster's configuration.
+    Use the migrate command in a Linux Pacemaker cluster to create a temporary "prefer" location constraint, moving a resource to a specified node for maintenance or testing. This constraint is temporary and should be removed after the task to revert to the original cluster configuration.
   potentialBenefits: Enhanced maintenance and failover handling
   pgVerified: true
   automationAvailable: false
@@ -149,14 +145,12 @@
 - description: Secure compute resource capacity for critical VM roles in DR region
   aprlGuid: 820b4c0c-8a74-442a-8ba7-b0cb840cd983
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: Medium
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
   longDescription: |
-    To ensure the availability of compute resources for critical VM roles in a DR region, consider securing capacity either through a warm standby approach or by utilizing Azure's On-demand Capacity Reservation.
-
-    Warm standby involves keeping VMs in the DR region running. On-demand Capacity Reservation, on the other hand, reserves compute capacity without having to run the VMs, allowing you to start them when needed. When DR VMs are not needed, the reserved capacity may safely be used to run other workloads without the risk of losing the capacity to other customers. This strategy guarantees resource availability for your critical workloads in the event of a disaster, balancing cost and readiness.
+    Ensure compute resource availability for critical VM roles in a DR region using a warm standby approach or Azure's On-demand Capacity Reservation. Warm standby keeps VMs running in the DR region, while On-demand Capacity Reservation reserves compute capacity without running VMs.
   potentialBenefits: Guarantees DR region availability
   pgVerified: true
   automationAvailable: false
@@ -168,7 +162,7 @@
 - description: Replicate production databases to DR location (ASYNC) using the vendor's replication technology
   aprlGuid: fb8bdcee-d88f-408d-8572-a76a4aaa733b
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
@@ -185,7 +179,7 @@
 - description: SAP components are backed up to DR location using an appropriate backup tool or ASR
   aprlGuid: 41f0d88e-7866-4444-aac4-ef5fee3e6874
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
@@ -204,12 +198,12 @@
 - description: SAP shared files systems are replicated or backed up to DR location
   aprlGuid: ee4dc309-00a1-49fe-92fa-1724baf5f103
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
   longDescription: |
-    Implementing robust monitoring and alerting for DR in SAP on Azure ensures coverage across its complex, multi-layer architecture. This strategy is crucial for databases, services, applications, and shared systems.
+    Implement robust monitoring and alerting for DR in SAP on Azure to cover its complex, multi-layer architecture. This is crucial for databases, services, applications, and shared systems.
   potentialBenefits: Enhances SAP DR oversight
   pgVerified: true
   automationAvailable: false
@@ -221,7 +215,7 @@
 - description: Automate DR infrastructure build or pre-deploy DR resources
   aprlGuid: 0fabc52e-cdbb-4acd-8626-c4c637061e2d
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: Medium
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
@@ -238,14 +232,12 @@
 - description: Document and test DR procedure ensure it meets RPO and RTO targets
   aprlGuid: c300e949-528d-4ac9-889b-cacf8b4a6e90
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: Medium
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
   longDescription: |
-    Create detailed documentation of your DR procedures for each layer of the SAP architecture-database, central services, application servers, and shared file systems. This documentation should include configuration details, failover mechanisms, and step-by-step recovery procedures.
-
-    Test a wide range of failure scenarios, including regional outages. Testing should confirm that your DR strategy is robust, meets your RPO and RTO targets, and provides seamless failover across all layers of the SAP architecture. This will ensure a comprehensive and resilient DR strategy capable of withstanding regional failures and ensuring business continuity.
+    Document DR procedures for each SAP layer: database, central services, application servers, and shared file systems. Include configuration, failover mechanisms, and recovery steps. Test various failure scenarios to ensure the DR strategy meets RPO/RTO targets and provides seamless failover.
   potentialBenefits: Ensures robust DR, meets RPO/RTO
   pgVerified: true
   automationAvailable: false
@@ -257,12 +249,12 @@
 - description: Ensure there is a robust monitoring and alerting solution in place for the entire DR solution
   aprlGuid: c27134b7-6917-4852-8276-3dbef5c71578
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: Medium
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
   longDescription: |
-    For an SAP solution hosted on Azure it is imperative to implement a robust monitoring and alerting solution that comprehensively covers DR of each layer of the SAP architecture. Given the complexity of SAP systems, which span multiple layers using diverse technologies and Azure resources, each with potentially distinct DR replication mechanisms, an appropriate monitoring strategy is crucial. The different layers include database, central services, application, and shared file systems.
+    Implement robust monitoring and alerting for SAP on Azure, covering DR for databases, central services, applications, and shared file systems. Given SAP's complexity, a comprehensive monitoring strategy is crucial for effective DR replication and rapid issue response.
   potentialBenefits: Improved DR oversight and rapid issue response
   pgVerified: true
   automationAvailable: false
@@ -274,18 +266,12 @@
 - description: Configure scheduled events notification
   aprlGuid: 6b589ce6-c847-4cee-af35-f6e8eb1cf983
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
   longDescription: |
-    Scheduled events is an Azure Metadata Services that provides proactive notifications about upcoming maintenance events (for example, reboot) so that your application can prepare for them and limit disruption. You should configure scheduled events for all your critical Azure VMs.
-
-    Resource agent azure-events-az can also integrate with Pacemaker clusters.
-
-    To ensure high availability and service continuity in your Azure VMs, you should configure the azure-events-az resource agent within your Pacemaker clusters. This agent monitors for scheduled Azure maintenance events and can proactively relocate resources for a graceful node shutdown. Configure the agent to monitor specific event types such as Reboot and Redeploy, and enable verbose logging for detailed diagnostics.
-
-    In addition, it is also important that you define a procedure on how to react to scheduled events.
+    Scheduled events notify about upcoming maintenance (e.g., reboot) to limit disruption. Configure for all critical Azure VMs. Use the azure-events-az resource agent in Pacemaker clusters to monitor and react to events like Reboot and Redeploy, ensuring high availability.
   potentialBenefits: Proactive maintenance awareness
   pgVerified: true
   automationAvailable: false
@@ -299,7 +285,7 @@
 - description: Configure a Pacemaker cluster for SAP ASCS high availability
   aprlGuid: 9d8f6678-694c-4da4-8384-415201f65194
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
@@ -320,7 +306,7 @@
 - description: Ensure the load balancer is configured correctly for SAP ASCS High availability
   aprlGuid: 5c2e52d0-25be-4b1c-833c-b98b5ef1a26b
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
@@ -341,7 +327,7 @@
 - description: Ensure the Pacemaker cluster has been setup for SAP HANA DB high availability
   aprlGuid: 6648fe61-880d-4a96-8d2d-190a23d5580b
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
@@ -362,7 +348,7 @@
 - description: Ensure the load balancer is configured correctly for SAP HANA DB High availability
   aprlGuid: 2e4c2171-a83f-4238-a8e3-b51c90d86a99
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
@@ -383,12 +369,12 @@
 - description: Review SAP configuration for timeout values used with Azure NetApp Files
   aprlGuid: 4884cada-b9c7-42d5-8153-3853e4a6f6c4
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
   longDescription: |
-    High availability of SAP while used with Azure NetApp Files relies on setting proper timeout values to prevent disruption to your application. Review the documentation to ensure your configuration meets the timeout values as noted in the documentation.
+    Ensure high availability of SAP with Azure NetApp Files by setting proper timeout values to prevent disruptions. Review the documentation to confirm your configuration meets the recommended timeout values.
   potentialBenefits: Improve resiliency and performance of SAP on Azure
   pgVerified: true
   automationAvailable: false
@@ -405,9 +391,7 @@
   recommendationResourceType: Specialized.Workload/SAP
   recommendationMetadataState: Active
   longDescription: |
-    It is strongly recommended to review database storage configuration to ensure the right type and number of disks are used to provision the data and log volumes. This is to ensure that the database VMs meets performance requirements for IOPS and throughput for the given database.
-    You should also use Microsoft recommended settings such as disk caching, WriteAccelerator, stripe size and Linux I/O Scheduler mode for all database VMs.
-    SAP on Azure QualityCheck tool can help you identify any deviations from Microsoft recommendations quickly and at scale.
+    Ensure optimal disk types and configurations for data and log volumes, meeting IOPS and throughput requirements. Follow Microsoft's recommendations for disk caching, WriteAccelerator, stripe size, and Linux I/O Scheduler. Use SAP on Azure QualityCheck tool to identify deviations.
   potentialBenefits: Improve reliability, performance and optimize costs
   pgVerified: true
   automationAvailable: false

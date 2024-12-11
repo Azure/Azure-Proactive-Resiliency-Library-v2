@@ -1,13 +1,13 @@
-- description: Connect ExpressRoute gateway with circuits from diverse peering locations for resilience
+- description: Connect ExpressRoute gateway with circuits from diverse peering locations
   aprlGuid: d37db635-157f-584d-9bce-4f6fc8c65ce5
   recommendationTypeId: 8d61a7d4-5405-4f43-81e3-8c6239b844a6
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
   recommendationMetadataState: Active
   longDescription: |
-    To increase reliability, it's advised that each ExpressRoute gateway connects to at least two circuits, with each circuit originating from a different peering location than the other, ensuring diverse connectivity paths for enhanced resilience.
-  potentialBenefits: Enhanced resiliency for Azure service
+    For improved reliability, each ExpressRoute gateway should connect to at least two circuits, with each circuit sourced from a different peering location. This setup ensures diverse connectivity paths, enhancing resilience and minimizing service disruption risks.
+  potentialBenefits: Enhanced resilience through diverse connectivity paths
   pgVerified: true
   automationAvailable: true
   tags: null
@@ -18,7 +18,7 @@
 - description: Use Zone-redundant ExpressRoute gateway SKUs
   aprlGuid: bbe668b7-eb5c-c746-8b82-70afdedf0cae
   recommendationTypeId: c9af1ef6-55bc-48af-bfe4-2c80490159f8
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
   recommendationMetadataState: Active
@@ -39,10 +39,10 @@
 - description: Configure an Azure Resource lock for ExpressRoute gateway to prevent accidental deletion
   aprlGuid: c0f23a92-d322-4d4d-97e9-a238b5e3bbb8
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Configuring an Azure Resource lock for ExpressRoute gateway prevents accidental deletion by enabling administrators to lock an Azure subscription, resource group, or resource, thereby protecting them from unintended user deletions and modifications, with the lock overriding all user permissions.
   potentialBenefits: Prevents accidental deletions
@@ -53,10 +53,10 @@
     - name: Protect your Azure resources with a lock - Azure Resource Manager | Microsoft Learn
       url: "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources?tabs=json"
 
-- description: Monitor gateway health for ExpressRoute gateways
+- description: Monitor health for ExpressRoute gateway
   aprlGuid: 1c34faa8-8b99-974c-adbf-71922eae943c
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
   recommendationMetadataState: Active
@@ -75,7 +75,7 @@
 - description: Avoid using ExpressRoute circuits for VNet to VNet communication
   aprlGuid: 194c14ac-0d7a-5a48-ae32-75fa450ee564
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
   recommendationMetadataState: Active
@@ -92,7 +92,7 @@
 - description: Configure customer-controlled ExpressRoute gateway maintenance
   aprlGuid: 3e115044-a3aa-433e-be01-ce17d67e50da
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
   recommendationMetadataState: Active
@@ -109,7 +109,7 @@
 - description: Choose a Zone-redundant VPN gateway
   aprlGuid: 5b1933a6-90e4-f642-a01f-e58594e5aab2
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
   recommendationMetadataState: Active
@@ -130,7 +130,7 @@
 - description: Enable Active-Active VPN Gateways for redundancy
   aprlGuid: 281a2713-c0e0-3c48-b596-19f590c46671
   recommendationTypeId: c249dc0e-9a17-423e-838a-d72719e8c5dd
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
   recommendationMetadataState: Active
@@ -149,7 +149,7 @@
 - description: Deploy active-active VPN concentrators on your premises for maximum resiliency with VPN gateways
   aprlGuid: af11fc4c-c06c-4f4c-b98d-6eee6d5c4c70
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
   recommendationMetadataState: Active
@@ -166,7 +166,7 @@
 - description: Monitor VPN gateway connections and health
   aprlGuid: 9eab120e-f6d3-ee49-ba0d-766562ce7df1
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
   recommendationMetadataState: Active
@@ -183,7 +183,7 @@
 - description: Enable VPN gateway service health
   aprlGuid: 9186dae0-7ddc-8f4b-bea5-55538cea4893
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
   recommendationMetadataState: Active
@@ -202,7 +202,7 @@
 - description: Deploy zone-redundant VPN gateways with zone-redundant Public IP(s)
   aprlGuid: 4bae5a28-5cf4-40d9-bcf1-623d28f6d917
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
   recommendationMetadataState: Active

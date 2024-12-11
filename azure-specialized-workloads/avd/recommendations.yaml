@@ -18,7 +18,7 @@
 - description: Configure AVD Insights workbook
   aprlGuid: 0cf72d91-644d-4591-9bb7-84ba3f705a41
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/AVD
   recommendationMetadataState: Active
@@ -35,7 +35,7 @@
 - description: Ensure separate log analytics workspaces for Prod and DR
   aprlGuid: 89b4d8f6-6345-4d66-9012-c3fc2aef94e8
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: Low
   recommendationResourceType: Specialized.Workload/AVD
   recommendationMetadataState: Active
@@ -69,7 +69,7 @@
 - description: Monitor and plan capacity for AVD resources
   aprlGuid: ef4b3561-c85f-47cf-8cb0-51fae9ddf929
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: Low
   recommendationResourceType: Specialized.Workload/AVD
   recommendationMetadataState: Active
@@ -89,7 +89,7 @@
 - description: Ensure DNS regions are replicated to avoid single point of failure
   aprlGuid: e1a34ac6-8761-4020-b537-d60c0be7514e
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/AVD
   recommendationMetadataState: Active
@@ -106,7 +106,7 @@
 - description: Implement a multi-region BCDR Plan
   aprlGuid: 0714d039-535e-468d-9732-e32b5c094faa
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/AVD
   recommendationMetadataState: Active
@@ -159,7 +159,7 @@
 - description: Enable Azure backup for FSLogix storage account file shares
   aprlGuid: 0025ed2e-41f4-4ada-93c1-12484cef8b0c
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Medium
   recommendationResourceType: Specialized.Workload/AVD
   recommendationMetadataState: Active
@@ -178,12 +178,12 @@
 - description: Implement RDP shortpath for public or managed networks
   aprlGuid: 3835b4b3-0479-4be8-9ffd-34ae29fa33b9
   recommendationTypeId: null
-  recommendationControl: Other Best Practices
+  recommendationControl: OtherBestPractices
   recommendationImpact: Medium
   recommendationResourceType: Specialized.Workload/AVD
   recommendationMetadataState: Active
   longDescription: |
-    RDP Shortpath establishes a direct UDP-based connection between a client and the session host. By default, Remote Desktop Protocol (RDP) tries to establish connection using UDP and uses a TCP-based reverse connect transport as a fallback connection mechanism. UDP-based transport offers better connection reliability and more consistent latency.
+    RDP Shortpath establishes a direct UDP-based connection between a client and the session host. By default, RDP tries to use UDP and falls back to TCP if needed. UDP transport offers better connection reliability and consistent latency.
   potentialBenefits: Better reliability and consistent latency
   pgVerified: true
   automationAvailable: false
@@ -200,7 +200,7 @@
   recommendationResourceType: Specialized.Workload/AVD
   recommendationMetadataState: Active
   longDescription: |
-    Ensure that AVD session hosts can effectively communicate with the AVD control plane and that UDP ports are open if UDP is utilized. Validate the connectivity of VMs to the AVD Control Plane and confirm the accessibility of UDP TURN ports. Whitelist global URLs and ensure that UDP/TURN ports are open and accessible to facilitate smooth user connections.
+    Ensure AVD session hosts can communicate with the AVD control plane and that UDP ports are open if used. Validate VM connectivity to the AVD Control Plane and confirm UDP TURN port accessibility. Whitelist global URLs and ensure UDP/TURN ports are open for smooth user connections.
   potentialBenefits: Enhanced performance & user experience
   pgVerified: true
   automationAvailable: false
@@ -232,7 +232,7 @@
 - description: Ensure virtual networks have route tables/route server configured for all regions
   aprlGuid: db1727d1-5c8e-4a01-a31e-f0d58cfd95b1
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Medium
   recommendationResourceType: Specialized.Workload/AVD
   recommendationMetadataState: Active
@@ -249,13 +249,12 @@
 - description: Ensure virtual networks isolation with separate IP space and NSGs for Prod and DR
   aprlGuid: 37d1091b-e599-4548-a067-a9286be16e45
   recommendationTypeId: null
-  recommendationControl: Business Continuity
+  recommendationControl: BusinessContinuity
   recommendationImpact: Medium
   recommendationResourceType: Specialized.Workload/AVD
   recommendationMetadataState: Active
   longDescription: |
-    NSG and ASG per AVD persona and IP space per Prod/DR regions.
-    It's important your organization plans for IP addressing in Azure. Planning ensures the IP address space doesn't overlap across on-premises locations and Azure regions. Overlapping IP address spaces across on-premises and Azure regions create major contention challenges.
+    NSG and ASG per AVD persona and IP space per Prod/DR regions. Plan IP addressing to avoid overlaps between on-premises and Azure regions, preventing major contention challenges.
   potentialBenefits: Enhances security and prevents IP conflicts
   pgVerified: true
   automationAvailable: false
@@ -267,12 +266,12 @@
 - description: Configure static routes for session hosts to directly access the AVD control plane subnet
   aprlGuid: 1c6c97d7-4d03-4f53-985d-fa239f715173
   recommendationTypeId: null
-  recommendationControl: Other Best Practices
+  recommendationControl: OtherBestPractices
   recommendationImpact: Medium
   recommendationResourceType: Specialized.Workload/AVD
   recommendationMetadataState: Active
   longDescription: |
-    Ensure that Route Tables have static routes to allow session host traffic that targets AVD control plane to go outbound directly out of the subnet to the internet (next hop), this will avoid any delays of inspecting or adding additional hops in the communication of trusted traffic.
+    Ensure Route Tables have static routes for session host traffic targeting the AVD control plane to go directly to the internet (next hop). This avoids delays from additional hops or inspections in trusted traffic communication.
   potentialBenefits: Enhanced performance and Disaster Recovery
   pgVerified: true
   automationAvailable: false
@@ -291,7 +290,7 @@
   recommendationResourceType: Specialized.Workload/AVD
   recommendationMetadataState: Active
   longDescription: |
-    Establish a systematic process for handling image updates within your Azure Virtual Desktop environment. Instead of directly updating individual session hosts, create a new version of the updated image. This process involves creating and configuring a golden image with the necessary updates and configurations.
+    Establish a process for handling image updates in your AVD environment. Instead of updating session hosts directly, create a new version of the updated image. This involves creating and configuring a golden image with the necessary updates and configurations.
   potentialBenefits: Ensures consistency; minimizes drift
   pgVerified: true
   automationAvailable: false
@@ -337,12 +336,12 @@
 - description: Configure Diagnostic Settings on FSLogix storage and capture session hosts FSLogix events
   aprlGuid: 483f5a00-84a0-49f7-903b-ef6f1fc0c389
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: Medium
   recommendationResourceType: Specialized.Workload/AVD
   recommendationMetadataState: Active
   longDescription: |
-    Configure diagnostic settings on FSLogix storage resources and regularly its metrics and FSLogix logs for errors. Events can be reviewed by looking locally inside the Session Host, but it is recommended to configure AVD insights workbook to consolidate this information to a Log Analytics workspace.
+    Configure diagnostic settings on FSLogix storage and regularly monitor its metrics and logs for errors. While events can be reviewed locally on the Session Host, it is recommended to use AVD insights workbook to consolidate this information into a Log Analytics workspace.
   potentialBenefits: Enhanced AVD error tracking and resolution
   pgVerified: true
   automationAvailable: false
@@ -361,7 +360,7 @@
   recommendationResourceType: Specialized.Workload/AVD
   recommendationMetadataState: Active
   longDescription: |
-    Ensure a process is in place to regularly check for FSLogix agent upgrades and maintain FSLogix up to date. We recommend customers upgrade to the latest version of FSLogix as quickly as their deployment process can allow. FSLogix will provide hotfix releases which address current and potential bugs that impact customer deployments. Additionally, it is the first requirement when opening any support case.
+    Ensure a process to regularly check and update FSLogix agent. Upgrade to the latest version promptly to address bugs and meet support requirements. FSLogix releases hotfixes to resolve issues impacting deployments. Keeping FSLogix updated is crucial for support and reliability.
   potentialBenefits: Enhanced reliability & support
   pgVerified: true
   automationAvailable: false
@@ -373,7 +372,7 @@
 - description: Turn on continuous availability for ANF when using it for app attach
   aprlGuid: 9b2301af-9cac-4f1a-871a-f17475d01812
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: Medium
   recommendationResourceType: Specialized.Workload/AVD
   recommendationMetadataState: Active
@@ -391,13 +390,12 @@
 - description: Use dedicated file share for App attach and include the storage in the disaster recovery plan
   aprlGuid: 7d9c96a6-1ce5-4cf0-ad1b-638a37f753cb
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: Medium
   recommendationResourceType: Specialized.Workload/AVD
   recommendationMetadataState: Active
   longDescription: |
-    App Attach packages should be on a separate share from profiles. And App Attach files should be backed up. Requirements can vary greatly depending on how many packaged applications are stored in an image, and you need to test your applications to understand your requirements.
-    Your file share should be in the same Azure region as your session hosts.
+    App Attach packages should be on a separate share from profiles and backed up. Requirements vary based on the number of packaged applications. Test your applications to understand your needs. Ensure the file share is in the same Azure region as your session hosts.
   potentialBenefits: Enhances performance and scalability
   pgVerified: true
   automationAvailable: false
@@ -409,12 +407,12 @@
 - description: Ensure resilient deployment of key vaults for AVD Host Pools
   aprlGuid: 1f57434f-f884-41f3-b818-129bbe3c5d3b
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/AVD
   recommendationMetadataState: Active
   longDescription: |
-    To ensure continuous availability and disaster recovery readiness, it is recommended to provision a secondary Key Vault in a secondary region. In the event of a primary region failure, this secondary Key Vault will ensure that critical secrets are accessible for use in deployments in the secondary region.
+    To ensure continuous availability and disaster recovery readiness, provision a secondary Key Vault in a secondary region. In case of a primary region failure, the secondary Key Vault will ensure critical secrets remain accessible for deployments in the secondary region.
   potentialBenefits: Ensures DR readiness and access
   pgVerified: true
   automationAvailable: false
@@ -426,13 +424,12 @@
 - description: Deploy multiple domain controllers across availability zones in each region with AVD session hosts.
   aprlGuid: d61f6ee8-de1b-4fd9-9ce3-316cfe11ee05
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/AVD
   recommendationMetadataState: Active
   longDescription: |
-    When using an AD DS identity solution with AVD, it is recommended to deploy two or more domain controllers on Azure virtual machines across availability zones. This improves the environment's reliability by removing a dependency on an on-premises service and improves performance by creating a shorter path for user authentication.
-    This recommendation doesn't apply when using Microsoft Entra ID or Entra Domain Services joined session hosts.
+    Deploy multiple domain controllers on Azure VMs across availability zones with AVD session hosts. This removes on-premises dependencies and improves performance with a shorter authentication path. This doesn't apply to Microsoft Entra ID or Entra Domain Services joined session hosts.
   potentialBenefits: Enhanced identity resilience
   pgVerified: true
   automationAvailable: false
@@ -444,12 +441,12 @@
 - description: Deploy two or more DNS servers across availability zones in each region with AVD session hosts.
   aprlGuid: 99bf5c94-aa68-4bb3-8b7f-45d1c5f09b5d
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/AVD
   recommendationMetadataState: Active
   longDescription: |
-    When using custom DNS servers, deploy DNS servers on Azure virtual machines across availability zones in the same region as the session hosts. This improves the environment's reliability by removing a dependency on an on-premises service and improves performance by creating a shorter path for name resolution.
+    Deploy custom DNS servers on Azure VMs across availability zones in the same region as session hosts. This removes on-premises dependencies and improves performance by shortening the name resolution path.
   potentialBenefits: Enhanced reliability and performance
   pgVerified: true
   automationAvailable: false
