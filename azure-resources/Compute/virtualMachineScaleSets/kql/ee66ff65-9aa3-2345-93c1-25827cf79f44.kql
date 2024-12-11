@@ -2,6 +2,7 @@
 // Find VMSS instances associated with autoscale settings when autoscale is disabled
 resources
 | where type == "microsoft.compute/virtualmachinescalesets"
+| where isempty(tostring(tags['aks-managed-poolName']))
 | project name, id, tags
 | join kind=leftouter  (
     resources
