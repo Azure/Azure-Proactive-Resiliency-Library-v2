@@ -8,7 +8,6 @@
   longDescription: Deploying active-active VPN concentrators leverages the High Availability capabilities of the VPN Gateway on Virtual Hubs using a fully-meshed topology with four IPSec tunnels.
   potentialBenefits: Fault tolerance and high availability.
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: false
   tags: null
   learnMoreLink:
