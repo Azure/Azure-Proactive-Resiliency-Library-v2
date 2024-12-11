@@ -3,7 +3,7 @@
   recommendationTypeId: null
   recommendationControl: Resiliency
   recommendationImpact: High
-  recommendationResourceType: Specialized.Workload/AI
+  recommendationResourceType: Microsoft.CognitiveServices/Accounts
   recommendationMetadataState: Active
   longDescription: |
     Provisioned Throughput offers a pre-allocated processing capacity that you pay for regularly, making it suitable for workloads with consistent and predictable usage patterns. In contrast, the Pay-as-You-Go Instance is a flexible billing model where you only pay for the resources you use, ideal for variable or unpredictable workloads. When handling overflow, where demand exceeds the provisioned throughput, the pay-as-you-go instance manages the excess load, ensuring the service remains responsive and efficient during peak times.
@@ -20,7 +20,7 @@
   recommendationTypeId: null
   recommendationControl: Scalability
   recommendationImpact: High
-  recommendationResourceType: Specialized.Workload/AI
+  recommendationResourceType: Microsoft.CognitiveServices/Accounts
   recommendationMetadataState: Active
   longDescription: |
     Global batch effectively handles large-scale processing tasks. It processes asynchronous request groups within 24 hours and is cost effective. Requests are submitted in a single file, with a separate quota to ensure that online workloads remain unaffected. Key use cases include Large-Scale Data Processing, Content Generation, Document Review and Summarization, Customer Support Automation, Data Extraction and Analysis, Natural Language Processing (NLP) Tasks, and Marketing and Personalization.
@@ -37,7 +37,7 @@
   recommendationTypeId: null
   recommendationControl: Governance
   recommendationImpact: High
-  recommendationResourceType: Specialized.Workload/AI
+  recommendationResourceType: Microsoft.CognitiveServices/Accounts
   recommendationMetadataState: Active
   longDescription: |
     Data zone deployments utilize Azure's global infrastructure to efficiently route customer traffic to the data center with the highest availability for their inference requests within the defined data zone. This approach ensures that data stored at rest remains within the geography of the Azure OpenAI resource, offering increased quota limits and ensuring data processing occurs within the specified data zone.
