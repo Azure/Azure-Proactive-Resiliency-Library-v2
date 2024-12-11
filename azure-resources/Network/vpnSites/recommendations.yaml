@@ -1,7 +1,7 @@
 - description: Configure diverse VPN Site links to different VPN concentrators on-premises.
   aprlGuid: 02bdbdb8-d138-4090-951c-23e45b8700f7
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/vpnSites
   recommendationMetadataState: Active
