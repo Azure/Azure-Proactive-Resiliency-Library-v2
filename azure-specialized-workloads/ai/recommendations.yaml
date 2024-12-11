@@ -1,20 +1,3 @@
-- description: Enable diagnostic logging for Azure AI services and send the data to Log Analytics
-  aprlGuid: d6d9e18a-9ad2-491e-878d-86d621785453
-  recommendationTypeId: null
-  recommendationControl: MonitoringAndAlerting
-  recommendationImpact: Low
-  recommendationResourceType: Microsoft.CognitiveServices/Accounts
-  recommendationMetadataState: Active
-  longDescription: |
-    All Logs and Metrics should be configured. These logs provide rich, frequent data about the operation of a resource that are used for issue identification and debugging.
-  potentialBenefits: Enhanced monitoring and troubleshooting capabilities
-  pgVerified: false
-  automationAvailable: false
-  tags: null
-  learnMoreLink:
-    - name: Enable diagnostic logging for Azure AI services
-      url: "https://learn.microsoft.com/en-us/azure/ai-services/diagnostic-logging"
-
 - description: Ensure to deploy a pay as you go instance of the model when using provisioned throughput to manage overflow effectively
   aprlGuid: 0c193899-da60-4a52-b4a0-77d75ac8c5c5
   recommendationTypeId: null
