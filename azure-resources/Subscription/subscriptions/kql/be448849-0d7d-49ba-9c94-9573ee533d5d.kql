@@ -1,0 +1,13 @@
+// Azure Resource Graph Query
+// Find all Subs without Resource Health Alerts configured at subscription level
+resourcecontainers
+| where type =~ 'microsoft.resources/subscriptions'
+    | join kind=leftouter (resources
+    | where type == 'microsoft.insights/activitylogalerts'
+    | where properties.enabled =~ 'true'
+    | mv-expand condition =  properties.condition
+    | mv-expand scopes = properties.scopes
+    | where condition.allOf contains "ResourceHealth"
+    | project tostring(scopes)) on $left.id == $right.scopes
+| where scopes =~ ''
+| project recommendationId="be448849-0d7d-49ba-9c94-9573ee533d5d", name, id, tags, param1="No Resource Health Alerts"
