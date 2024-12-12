@@ -1,30 +1,13 @@
-- description: Enable diagnostic logging for Azure AI services and send the data to Log Analytics
-  aprlGuid: d6d9e18a-9ad2-491e-878d-86d621785453
-  recommendationTypeId: null
-  recommendationControl: MonitoringAndAlerting
-  recommendationImpact: Low
-  recommendationResourceType: Microsoft.CognitiveServices/Accounts
-  recommendationMetadataState: Active
-  longDescription: |
-    All Logs and Metrics should be configured. These logs provide rich, frequent data about the operation of a resource that are used for issue identification and debugging.
-  potentialBenefits: Enhanced monitoring and troubleshooting capabilities
-  pgVerified: false
-  automationAvailable: false
-  tags: null
-  learnMoreLink:
-    - name: Enable diagnostic logging for Azure AI services
-      url: "https://learn.microsoft.com/en-us/azure/ai-services/diagnostic-logging"
-
-- description: Ensure to deploy a pay as you go instance of the model when using provisioned throughput to manage overflow effectively
+- description: Deploy a PAYG instance of the model with provisioned throughput to manage overflow effectively
   aprlGuid: 0c193899-da60-4a52-b4a0-77d75ac8c5c5
   recommendationTypeId: null
-  recommendationControl: Resiliency
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.CognitiveServices/Accounts
   recommendationMetadataState: Active
   longDescription: |
-    Provisioned Throughput offers a pre-allocated processing capacity that you pay for regularly, making it suitable for workloads with consistent and predictable usage patterns. In contrast, the Pay-as-You-Go Instance is a flexible billing model where you only pay for the resources you use, ideal for variable or unpredictable workloads. When handling overflow, where demand exceeds the provisioned throughput, the pay-as-you-go instance manages the excess load, ensuring the service remains responsive and efficient during peak times.
-  potentialBenefits: PAYG with provisioned throughput balances cost and performance, enabling scalable AI.
+    Provisioned Throughput offers pre-allocated capacity for consistent workloads, while Pay-as-You-Go charges for actual usage, ideal for variable workloads. During overflow, the Pay-as-You-Go instance manages excess load, ensuring service efficiency
+  potentialBenefits: PAYG model balances cost and performance and helps scale
   pgVerified: true
   automationAvailable: false
   tags: null
@@ -40,7 +23,7 @@
   recommendationResourceType: Microsoft.CognitiveServices/Accounts
   recommendationMetadataState: Active
   longDescription: |
-    Global batch effectively handles large-scale processing tasks. It processes asynchronous request groups within 24 hours and is cost effective. Requests are submitted in a single file, with a separate quota to ensure that online workloads remain unaffected. Key use cases include Large-Scale Data Processing, Content Generation, Document Review and Summarization, Customer Support Automation, Data Extraction and Analysis, Natural Language Processing (NLP) Tasks, and Marketing and Personalization.
+    Global batch efficiently handles large-scale tasks within 24 hours. Submit requests in a single file, with a separate quota to protect online workloads. Key uses: data processing, content generation, document review, customer support automation, data extraction, NLP tasks, and marketing
   potentialBenefits: Cost effective faster turnaround for large-scale processing.
   pgVerified: true
   automationAvailable: false
@@ -57,8 +40,8 @@
   recommendationResourceType: Microsoft.CognitiveServices/Accounts
   recommendationMetadataState: Active
   longDescription: |
-    Data zone deployments utilize Azure's global infrastructure to efficiently route customer traffic to the data center with the highest availability for their inference requests within the defined data zone. This approach ensures that data stored at rest remains within the geography of the Azure OpenAI resource, offering increased quota limits and ensuring data processing occurs within the specified data zone.
-  potentialBenefits:  Enforce geographic and regional data restrictions, meeting compliance standards related to data processing and storage.
+    Data zone deployments route customer traffic to the highest availability data center within the defined data zone, ensuring data at rest remains within the Azure OpenAI resource geography. This approach offers increased quota limits and ensures data processing occurs within the specified data zone
+  potentialBenefits: Enforce data residency and compliance standards
   pgVerified: true
   automationAvailable: false
   tags: null
