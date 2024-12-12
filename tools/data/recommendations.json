@@ -7042,7 +7042,7 @@
     "description": "Monitor your Azure SQL MI Managed Instance in near-real time to detect reliability incidents",
     "potentialBenefits": "Quick incident detection and response",
     "tags": null,
-    "recommendationResourceType": "Microsoft.Sql/servers",
+    "recommendationResourceType": "Microsoft.Sql/managedInstances",
     "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// cannot-be-validated-with-arg\r\n"
@@ -7063,7 +7063,7 @@
     "description": "Back Up Your Keys",
     "potentialBenefits": "Enhanced security and data recovery",
     "tags": null,
-    "recommendationResourceType": "Microsoft.Sql/servers",
+    "recommendationResourceType": "Microsoft.Sql/managedInstances",
     "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// cannot-be-validated-with-arg\r\n"
