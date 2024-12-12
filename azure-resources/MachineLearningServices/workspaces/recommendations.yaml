@@ -40,7 +40,7 @@
   recommendationResourceType: Microsoft.MachineLearningServices/workspaces
   recommendationMetadataState: Active
   longDescription: |
-    Create compute resources for training a Machine Learning model in selected regions. Ensure both regions have sufficient compute quota for dynamically scaling resources. Customers must configure high availability across zones for attached compute resources like AKS, Azure Databricks, Container Instances, and HDInsight.
+    Create compute resources for training a Machine Learning model in selected regions. Ensure both regions have sufficient compute quota for dynamic scaling. Customers must configure HA across zones for attached compute resources like AKS, Azure Databricks, Container Instances.
   potentialBenefits: High availability and disaster recovery
   pgVerified: false
   automationAvailable: false
