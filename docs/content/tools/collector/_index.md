@@ -232,7 +232,7 @@ Provide parameters in command line:
 Provide parameters via ConfigFile:
 
 ```powershell
-.\Wara_Collector.ps1 -configFile config.txt
+.\1_Wara_Collector.ps1 -configFile config.txt
 ```
 
 config.txt
