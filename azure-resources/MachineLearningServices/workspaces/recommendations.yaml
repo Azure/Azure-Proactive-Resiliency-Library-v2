@@ -7,7 +7,7 @@
   recommendationMetadataState: Active
   longDescription: |
    Ensure you have a recovery strategy defined. Check regional availability and paired regions. Machine Learning doesn't have auto failover. Therefore, you must design a strategy that encompasses the workspace and all its dependencies, such as Key Vault, Azure Storage, and Container Registry.
-  potentialBenefits: Provides multi-region disaster recovery strategy and enhanced reliability
+  potentialBenefits: Provides multi-region disaster recovery strategy
   pgVerified: false
   automationAvailable: false
   tags: null
@@ -32,7 +32,7 @@
     - name: Failover for business continuity and disaster recovery
       url: "https://learn.microsoft.com/en-us/azure/machine-learning/how-to-high-availability-machine-learning?view=azureml-api-2"
 
-- description: Ensure to create Azure Machine Learning Compute resources in secondary region
+- description: Ensure to create Machine Learning Compute resources in secondary region
   aprlGuid: 13794a63-8d95-47ce-acbd-5925ede5b208
   recommendationTypeId: null
   recommendationControl: DisasterRecovery
