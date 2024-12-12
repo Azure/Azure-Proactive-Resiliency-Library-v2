@@ -6,7 +6,7 @@
   recommendationResourceType: Microsoft.MachineLearningServices/workspaces
   recommendationMetadataState: Active
   longDescription: |
-   Ensure you have a recovery strategy defined. Check regional availability and paired regions. Machine Learning doesn't have auto failover. Therefore, you must design a strategy that encompasses the workspace and all its dependencies, such as Key Vault, Azure Storage, and Container Registry.
+    Ensure you have a recovery strategy defined. Check regional availability and paired regions. Machine Learning doesn't have auto failover. Therefore, you must design a strategy that encompasses the workspace and all its dependencies, such as Key Vault, Azure Storage, and Container Registry.
   potentialBenefits: Provides multi-region disaster recovery strategy
   pgVerified: false
   automationAvailable: false
