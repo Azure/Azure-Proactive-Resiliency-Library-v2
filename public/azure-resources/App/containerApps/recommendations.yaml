@@ -1,0 +1,16 @@
+- description: Enable container health probes
+  aprlGuid: 8dbcd94b-0948-4df3-b608-1946726c3abf
+  recommendationTypeId: null
+  recommendationControl: HighAvailability
+  recommendationImpact: Low
+  recommendationResourceType: Microsoft.App/containerApps
+  recommendationMetadataState: Active
+  longDescription: |
+    Enable container health probes to monitor the health of your container apps and ensure that unhealthy containers are restarted automatically.
+  potentialBenefits: Enhanced availability and resilience
+  pgVerified: false
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: Health probes for Azure Container Apps
+      url: "https://learn.microsoft.com/azure/container-apps/health-probes?tabs=arm-template"

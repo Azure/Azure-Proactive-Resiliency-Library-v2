@@ -1,0 +1,10 @@
+// Azure Resource Graph Query
+// Query to list all image versions,its associated image name and version replica configurations per region in a compute gallery whose version replicas is less than 3
+resources
+| where type =~ "microsoft.compute/galleries/images/versions"
+| extend GalleryName = tostring(split(tostring(id), "/")[8]), ImageName = tostring(split(tostring(id), "/")[10])
+| mv-expand VersionReplicas = properties.publishingProfile.targetRegions
+| project RecommendationId="b49a39fd-f431-4b61-9062-f2157849d845",name,id,tags,param1=strcat("GalleryName: ",GalleryName),param2=strcat("ImageName: ",ImageName),param3=strcat("VersionReplicaRegionName: ",VersionReplicas.name),param4=strcat("VersionReplicationCount: ",VersionReplicas.regionalReplicaCount),rc=toint(VersionReplicas.regionalReplicaCount)
+| where rc < 3
+| project-away rc
+

@@ -1,0 +1,35 @@
+- description: Peer two NVA instances with both Azure Route Server instances
+  aprlGuid: 2226d069-de5b-4ec1-ad26-3249f4ab1741
+  recommendationTypeId: null
+  recommendationControl: HighAvailability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/virtualRouters
+  recommendationMetadataState: Active
+  longDescription: |
+    To ensure that routes are successfully advertised to Route Server and to configure high availability, peer two NVA instances with both instances of Route Server. Advertise the same routes to both Route Server instances.
+  potentialBenefits: Connectivity will remain active during maintenance events
+  pgVerified: false
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: Azure Route Server frequently asked questions (FAQ)
+      url: "https://learn.microsoft.com/azure/route-server/route-server-faq#do-i-need-to-peer-each-nva-with-both-azure-route-server-instances"
+
+- description: Monitor and create alerting for Azure Route Server
+  aprlGuid: b8ff662a-ab74-4b6a-8301-d4dae002bc14
+  recommendationTypeId: null
+  recommendationControl: MonitoringAndAlerting
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/virtualRouters
+  recommendationMetadataState: Active
+  longDescription: |
+    Monitor Azure Route Server for BGP Peer Status, Count of Routes Advertised to Peer, and Count of Routes Learned from Peer. Create alerts for these metrics to ensure that you are notified of any issues.
+  potentialBenefits: Be alerted to connectivity issues with Azure Route Server
+  pgVerified: false
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: Monitor Azure Route Server
+      url: "https://learn.microsoft.com/azure/route-server/monitor-route-server"
+
+

@@ -1,0 +1,84 @@
+- description: Enable HA with zone redundancy
+  aprlGuid: ca87914f-aac4-4783-ab67-82a6f936f194
+  recommendationTypeId: null
+  recommendationControl: HighAvailability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.DBforPostgreSQL/flexibleServers
+  recommendationMetadataState: Active
+  longDescription: |
+    Enable HA with zone redundancy on flexible server instances to deploy a standby replica in a different zone, offering automatic failover capability for improved reliability and disaster recovery.
+  potentialBenefits: Enhanced uptime and data protection
+  pgVerified: true
+  automationAvailable: true
+  tags: null
+  learnMoreLink:
+    - name: Overview of high availability with Azure Database for PostgreSQL
+      url: "https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-high-availability"
+
+- description: Enable custom maintenance schedule
+  aprlGuid: b2bad57d-7e03-4c0f-9024-597c9eb295bb
+  recommendationTypeId: null
+  recommendationControl: Scalability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.DBforPostgreSQL/flexibleServers
+  recommendationMetadataState: Active
+  longDescription: |
+    Use custom maintenance schedule on flexible server instances to select a preferred time for service updates to be applied.
+  potentialBenefits: Control update timings
+  pgVerified: true
+  automationAvailable: true
+  tags: null
+  learnMoreLink:
+    - name: Scheduled maintenance in Azure Database for PostgreSQL - Flexible Server
+      url: "https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-maintenance"
+
+- description: Configure geo redundant backup storage
+  aprlGuid: 31f4ac4b-29cb-4588-8de2-d8fe6f13ceb3
+  recommendationTypeId: null
+  recommendationControl: DisasterRecovery
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.DBforPostgreSQL/flexibleServers
+  recommendationMetadataState: Active
+  longDescription: |
+    Configure GRS to ensure that your database meets its availability and durability targets even in the face of failures or disasters.
+  potentialBenefits: Recover from regional failure and/or disaster
+  pgVerified: true
+  automationAvailable: true
+  tags: null
+  learnMoreLink:
+    - name: Backup and restore in Azure Database for PostgreSQL - Flexible Server
+      url: "https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/concepts-backup-restore"
+
+- description: Configure one or more read replicas
+  aprlGuid: 2ab85a67-26be-4ed2-a0bb-101b2513ec63
+  recommendationTypeId: null
+  recommendationControl: DisasterRecovery
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.DBforPostgreSQL/flexibleServers
+  recommendationMetadataState: Active
+  longDescription: |
+    Configure one or more read replicas to ensure that your database meets its availability and durability targets even in the face of failures or disasters.
+  potentialBenefits: Recover from regional failure and/or disaster
+  pgVerified: true
+  automationAvailable: true
+  tags: null
+  learnMoreLink:
+    - name: Read replicas in Azure Database for PostgreSQL - Flexible Server
+      url: "https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/concepts-read-replicas"
+
+- description: Configure storage auto-grow
+  aprlGuid: 6293a3cc-6b4a-4c0f-9ea7-b8ae8d7dd3d5
+  recommendationTypeId: null
+  recommendationControl: Scalability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.DBforPostgreSQL/flexibleServers
+  recommendationMetadataState: Active
+  longDescription: |
+    Configure storage auto-grow to prevent the server from running out of storage and becoming read-only.
+  potentialBenefits: Scale storage automatically to meet increasing demand
+  pgVerified: false
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: Storage autogrow using Azure portal in Azure Database for PostgreSQL - Flexible Server
+      url: "https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/how-to-auto-grow-storage-portal"

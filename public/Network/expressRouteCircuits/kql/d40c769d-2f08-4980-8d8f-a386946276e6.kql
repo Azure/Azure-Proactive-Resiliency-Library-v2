@@ -1,0 +1,7 @@
+// Azure Resource Graph Query
+// This query will return all the ExpressRoute circuits (Direct Based) that have Direct Port Rate Limiting disabled
+resources
+| where type =~ "microsoft.network/expressroutecircuits"
+| where properties.expressRoutePort != "" or isnotnull(properties.expressRoutePort)
+| where properties.enableDirectPortRateLimit == false
+| project recommendationId = "d40c769d-2f08-4980-8d8f-a386946276e6", name, id, tags, param1=strcat("enableDirectPortRateLimit: ",properties.enableDirectPortRateLimit)

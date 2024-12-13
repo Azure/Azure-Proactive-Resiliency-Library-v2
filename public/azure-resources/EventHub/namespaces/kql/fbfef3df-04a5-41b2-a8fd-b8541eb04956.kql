@@ -1,0 +1,8 @@
+// Azure Resource Graph Query
+// Find Event Hub namespace instances that are Standard tier and do not have Auto Inflate enabled
+resources
+| where type == "microsoft.eventhub/namespaces"
+| where sku.tier == "Standard"
+| where properties.isAutoInflateEnabled == "false"
+| project recommendationId = "fbfef3df-04a5-41b2-a8fd-b8541eb04956", name, id, tags, param1 = "AutoInflateEnabled: False"
+

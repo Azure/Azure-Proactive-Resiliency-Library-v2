@@ -1,0 +1,11 @@
+// Azure Resource Graph Query
+// Provides a list of Service Bus Namespace resources that have the lower minimum TLS version.
+resources
+| where type =~ "Microsoft.ServiceBus/namespaces"
+| where properties.minimumTlsVersion in ("1.0", "1.1")
+| project
+    recommendationId = "f075a1bd-de9e-4819-9a1d-1ac41037a74f",
+    name,
+    id,
+    tags,
+    param1 = strcat("minimumTlsVersion: ", properties.minimumTlsVersion)

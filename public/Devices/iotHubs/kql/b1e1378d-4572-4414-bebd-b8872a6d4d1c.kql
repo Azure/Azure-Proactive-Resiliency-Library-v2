@@ -1,0 +1,14 @@
+// Azure Resource Graph Query
+// list all IoT Hubs that do not have a linked IoT Hub Device Provisioning Service (DPS)
+resources
+| where type =~ "microsoft.devices/iothubs"
+| project id, iotHubName=tostring(properties.hostName), tags, resourceGroup
+| join kind=fullouter (
+    resources
+    | where type == "microsoft.devices/provisioningservices"
+    | mv-expand iotHubs=properties.iotHubs
+    | project iotHubName = tostring(iotHubs.name), dpsName = name, name=iotHubs.name
+) on iotHubName
+| where dpsName == ''
+| project recommendationId="b1e1378d-4572-4414-bebd-b8872a6d4d1c", name=iotHubName, id, tags, param1='DPS:none'
+

@@ -1,0 +1,222 @@
+- description: Enable diagnostics logging
+  aprlGuid: 493f6079-3bb6-4a56-96ba-ab3248474cb1
+  recommendationTypeId: null
+  recommendationControl: MonitoringAndAlerting
+  recommendationImpact: Low
+  recommendationResourceType: Microsoft.Web/sites
+  recommendationMetadataState: Active
+  longDescription: |
+    Enabling diagnostics logging for your Azure App Service is crucial for monitoring and diagnostics, including both application logging and web server logging.
+  potentialBenefits: Monitoring and Alerting
+  pgVerified: false
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: Enable diagnostics logging for apps in Azure App Service
+      url: "https://learn.microsoft.com/azure/app-service/troubleshoot-diagnostic-logs"
+
+- description: Monitor Performance
+  aprlGuid: a7e8bb3d-8ceb-442d-b26f-007cd63f9ffc
+  recommendationTypeId: null
+  recommendationControl: MonitoringAndAlerting
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Web/sites
+  recommendationMetadataState: Active
+  longDescription: |
+    Use Application Insights to monitor app performance and load behavior, offering real-time insights, issue diagnosis, and root-cause analysis. It supports ASP.NET, ASP.NET Core, Java, and Node.js on Azure App Service, now with built-in monitoring.
+  potentialBenefits: Real-time insights and issue diagnosis
+  pgVerified: true
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: Application Insights
+      url: "https://learn.microsoft.com/azure/application-insights/app-insights-overview"
+    - name: Application monitoring for Azure App Service
+      url: "https://learn.microsoft.com/azure/azure-monitor/app/azure-web-apps"
+
+- description: Separate web apps from web APIs
+  aprlGuid: 78a5c033-ff51-4332-8a71-83464c34494b
+  recommendationTypeId: null
+  recommendationControl: Scalability
+  recommendationImpact: Low
+  recommendationResourceType: Microsoft.Web/sites
+  recommendationMetadataState: Active
+  longDescription: |
+    If your solution includes both a web front end and a web API, decomposing them into separate App Service apps facilitates solution decomposition by workload, allowing for independent scaling. Initially, you can deploy both in the same plan and separate them for independent scaling when necessary.
+  potentialBenefits: Independent scaling, easier management
+  pgVerified: false
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: Resiliency checklist for specific Azure services
+      url: "https://learn.microsoft.com/azure/architecture/checklist/resiliency-per-service#app-service"
+
+- description: Create a separate storage account for logs
+  aprlGuid: 3f9ddb59-0bb3-4acb-9c9b-99aa1776f0ab
+  recommendationTypeId: null
+  recommendationControl: Scalability
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Web/sites
+  recommendationMetadataState: Active
+  longDescription: |
+    Creating a separate storage account for logs and not using the same one for application data prevents logging activities from reducing application performance by ensuring that the resources dedicated to handling application data are not burdened by logging processes.
+  potentialBenefits: Improves app performance
+  pgVerified: true
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: Resiliency checklist
+      url: "https://learn.microsoft.com/azure/architecture/checklist/resiliency-per-service#app-service"
+
+- description: Deploy to a staging slot
+  aprlGuid: a1d91661-32d4-430b-b3b6-5adeb0975df7
+  recommendationTypeId: 1d3b5a51-62d4-4b77-96f6-40ed0a3aa21f
+  recommendationControl: Governance
+  recommendationImpact: Low
+  recommendationResourceType: Microsoft.Web/sites
+  recommendationMetadataState: Active
+  longDescription: |
+    Create a deployment slot for staging to deploy updates, verify them, and ensure all instances are warmed up before production swap, reducing bad update chances. An LKG slot allows easy rollback to a previous good deployment if issues arise later, enhancing reliability.
+  potentialBenefits: Safer updates and easy rollback
+  pgVerified: false
+  automationAvailable: true
+  tags: null
+  learnMoreLink:
+    - name: Set up staging environments in Azure App Service
+      url: "https://learn.microsoft.com/azure/app-service-web/web-sites-staged-publishing"
+
+- description: Store configuration as app settings
+  aprlGuid: 0b80b67c-afbe-4988-ad58-a85a146b681e
+  recommendationTypeId: null
+  recommendationControl: OtherBestPractices
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Web/sites
+  recommendationMetadataState: Active
+  longDescription: |
+    Use app settings for configuration and define them in Resource Manager templates or via PowerShell to facilitate part of an automated deployment/update process for improved reliability.
+  potentialBenefits: Enhanced reliability via automation
+  pgVerified: true
+  automationAvailable: true
+  tags: null
+  learnMoreLink:
+    - name: Configure web apps in Azure App Service
+      url: "https://learn.microsoft.com/azure/app-service-web/web-sites-configure"
+
+- description: Enable Health check for App Services
+  aprlGuid: fd049c28-ae6d-48f0-a641-cc3ba1a3fe1d
+  recommendationTypeId: null
+  recommendationControl: OtherBestPractices
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Web/sites
+  recommendationMetadataState: Active
+  longDescription: |
+    Use Health Check for production workloads. Health check increases your application's availability by rerouting requests away from unhealthy instances, and replacing instances if they remain unhealthy. The Health check path should check critical components of your application.
+  potentialBenefits: Enhanced reliability via automation
+  pgVerified: true
+  automationAvailable: true
+  tags: null
+  learnMoreLink:
+    - name: Monitor the health of App Service instances
+      url: "https://learn.microsoft.com/en-us/azure/app-service/monitor-instances-health-check?tabs=dotnet#enable-health-check"
+
+- description: Configure network access restrictions
+  aprlGuid: aab6b4a4-9981-43a4-8728-35c7ecbb746d
+  recommendationTypeId: null
+  recommendationControl: Governance
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Web/sites
+  recommendationMetadataState: Disabled
+  longDescription: |
+    Use network access restrictions to define a priority-ordered allow/deny list that controls network access to your app. Web application firewalls, such as the one available in Application Gateway, are recommended for protection of public-facing web applications.
+  potentialBenefits: Enhanced security
+  pgVerified: true
+  automationAvailable: true
+  tags: null
+  learnMoreLink:
+    - name: Set up Azure App Service access restrictions
+      url: "https://learn.microsoft.com/en-us/azure/app-service/app-service-ip-restrictions?tabs=azurecli"
+
+- description: Enable auto heal for Functions App
+  aprlGuid: c6c4b962-5af4-447a-9d74-7b9c53a5dff5
+  recommendationTypeId: null
+  recommendationControl: HighAvailability
+  recommendationImpact: Low
+  recommendationResourceType: Microsoft.Web/sites
+  recommendationMetadataState: Active
+  longDescription: |
+    Auto Heal allows you to mitigate your apps when it runs into unexpected situations like HTTP server errors, resource exhaustion, etc. You can configure different triggers based on your need and choose to recycle the app to recover it from a bad state.
+  potentialBenefits: Improved app availability
+  pgVerified: false
+  automationAvailable: true
+  tags: null
+  learnMoreLink:
+    - name: Announcing the New Auto Healing Experience in App Service Diagnostics - Azure App Service
+      url: "https://azure.github.io/AppService/2018/09/10/Announcing-the-New-Auto-Healing-Experience-in-App-Service-Diagnostics.html"
+
+- description: No warmup trigger added to Function App
+  aprlGuid: 52f368ee-1d77-4b34-92db-64be269642d0
+  recommendationTypeId: null
+  recommendationControl: MonitoringAndAlerting
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Web/sites
+  recommendationMetadataState: Active
+  longDescription: |
+    Add a warmup trigger to pre-load custom dependencies during the pre-warming process so that your functions are ready to start processing requests immediately.
+  potentialBenefits: Improved app availability
+  pgVerified: false
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: Azure Functions Warmup Trigger
+      url: "https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-warmup?tabs=in-process%2Cnodejs-v4&pivots=programming-language-csharp#trigger"
+
+- description: Ensure unique hostid set for Function App
+  aprlGuid: 0b06a688-0dd6-4d73-9f72-6666ff853ca9
+  recommendationTypeId: null
+  recommendationControl: Governance
+  recommendationImpact: Low
+  recommendationResourceType: Microsoft.Web/sites
+  recommendationMetadataState: Active
+  longDescription: |
+    A host ID must be between 1 and 32 characters, contain only lowercase letters, numbers, and dashes, not start or end with a dash, and not contain consecutive dashes. The host ID value should be unique for all apps/slots you're running.
+  potentialBenefits: Easier management
+  pgVerified: false
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: Resource naming restrictions - Azure Resource Manager
+      url: "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-name-rules"
+
+- description: Ensure Function App runs a supported version
+  aprlGuid: c9a278b7-024b-454b-bd54-41587c512b74
+  recommendationTypeId: null
+  recommendationControl: Governance
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Web/sites
+  recommendationMetadataState: Active
+  longDescription: |
+    Beginning on December 13, 2022, function apps running on versions 2.x and 3.x of the Azure Functions runtime have reached the end of life (EOL) of extended support. We highly recommend you migrating your function apps to version 4.x of the Functions runtime.
+  potentialBenefits: Better governance
+  pgVerified: false
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: Migrate version 3.x to 4.x
+      url: "https://learn.microsoft.com/en-us/azure/azure-functions/migrate-version-3-version-4?tabs=net6-in-proc%2Cazure-cli%2Cwindows&pivots=programming-language-csharp"
+
+- description: Ensure FUNCTIONS_WORKER_RUNTIME is set properly
+  aprlGuid: 7c608f46-46b2-4cc0-bbd6-1d457c16671c
+  recommendationTypeId: null
+  recommendationControl: Governance
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Web/sites
+  recommendationMetadataState: Active
+  longDescription: |
+    The FUNCTIONS_WORKER_RUNTIME setting in the Function App configuration should be set to the appropriate value based on the language you are using. This setting is used to determine the language worker that will be used to execute your functions.
+  potentialBenefits: Better governance
+  pgVerified: false
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: FUNCTIONS_WORKER_RUNTIME
+      url: "https://learn.microsoft.com/en-us/azure/azure-functions/functions-app-settings#functions_worker_runtime"

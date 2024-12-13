@@ -1,0 +1,8 @@
+// Azure Resource Graph Query
+// Find all Container Registries that have their retention policy disabled
+resources
+| where type =~ "microsoft.containerregistry/registries"
+| where properties.policies.retentionPolicy.status == "disabled"
+| project recommendationId = "3ef86f16-f65b-c645-9901-7830d6dc3a1b", name, id, tags, param1='retentionPolicy:disabled'
+| order by id asc
+

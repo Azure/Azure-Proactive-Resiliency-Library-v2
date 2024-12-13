@@ -1,0 +1,8 @@
+// Azure Resource Graph Query
+// Check AKS Clusters using kubenet network profile
+resources
+| where type == "microsoft.containerservice/managedclusters"
+| extend networkProfile = tostring (parse_json(properties.networkProfile.networkPlugin))
+| where networkProfile =="kubenet"
+| project recommendationId="c22db132-399b-4e7c-995d-577a60881be8", name, id, tags, param1=strcat("networkProfile :",networkProfile)
+

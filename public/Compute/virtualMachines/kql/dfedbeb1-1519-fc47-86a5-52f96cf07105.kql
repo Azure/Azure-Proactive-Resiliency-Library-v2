@@ -1,0 +1,18 @@
+// Azure Resource Graph Query
+// Find all VM NICs that do not have Accelerated Networking enabled
+resources
+| where type =~ 'Microsoft.Compute/virtualMachines'
+| mv-expand nic = properties.networkProfile.networkInterfaces
+| project name, id, tags, lowerCaseNicId = tolower(nic.id), vmSize = tostring(properties.hardwareProfile.vmSize)
+| join kind = inner (
+    resources
+    | where type =~ 'Microsoft.Network/networkInterfaces'
+    | where properties.enableAcceleratedNetworking == false
+    | project nicName = split(id, "/")[8], lowerCaseNicId = tolower(id)
+    )
+    on lowerCaseNicId
+| summarize nicNames = make_set(nicName) by name, id, tostring(tags), vmSize
+| extend param1 = strcat("NicName: ", strcat_array(nicNames, ", ")), param2 = strcat("VMSize: ", vmSize)
+| project recommendationId = "dfedbeb1-1519-fc47-86a5-52f96cf07105", name, id, tags, param1, param2
+| order by id asc
+

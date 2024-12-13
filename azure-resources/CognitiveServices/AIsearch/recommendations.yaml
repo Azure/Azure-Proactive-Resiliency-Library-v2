@@ -1,0 +1,36 @@
+- description: Enable AZ support in AI Search by configuring multiple replicas to your search service
+  aprlGuid: b376281d-bfec-4695-8f90-9a44544fdfa4
+  recommendationTypeId: null
+  recommendationControl: BusinessContinuity
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Search/searchServices
+  recommendationMetadataState: Active
+  longDescription: |
+    Availability zones are utilized when you add two or more replicas to your search service. Each replica is assigned to a different availability zone within the region. If the number of replicas exceeds the available zones in the region, the replicas are distributed across the zones as evenly as possible.
+  potentialBenefits: High availability
+  pgVerified: false
+  automationAvailable: true
+  tags: null
+  learnMoreLink:
+    - name: Reliability in Azure AI Search
+      url: "https://learn.microsoft.com/en-us/azure/search/search-reliability#availability-zone-support"
+
+
+- description: Enable Multi Region deployments for AI Search
+  aprlGuid: dff62efe-c3a3-4621-98b3-c877c65cb195
+  recommendationTypeId: null
+  recommendationControl: DisasterRecovery
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Search/searchServices
+  recommendationMetadataState: Active
+  longDescription: |
+    Azure AI Search does not offer automatic failover in the event of an outage. To ensure application continuity, recovery, and improved response times for a global audience, you can deploy multiple search services across different regions. This can be achieved by creating several services and developing a data synchronization strategy, such as using indexers to update content across multiple services or leveraging REST APIs to push content updates to them. Additionally, you can use a resource like Azure Traffic Manager to manage request routing.
+  potentialBenefits: High availability
+  pgVerified: false
+  automationAvailable: true
+  tags: null
+  learnMoreLink:
+    - name: Reliability in Azure AI Search
+      url: "https://learn.microsoft.com/en-us/azure/search/search-reliability#multiple-services-in-separate-geographic-regions"
+
+

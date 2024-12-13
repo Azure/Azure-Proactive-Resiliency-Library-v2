@@ -1,0 +1,10 @@
+// Azure Resource Graph Query
+// Provides a list of AI search deployments
+
+
+
+
+resources
+| where type == "microsoft.search/searchservices"
+| summarize count() by name,location, resourceGroup, subscriptionId
+| project name, location, resourceGroup, subscriptionId

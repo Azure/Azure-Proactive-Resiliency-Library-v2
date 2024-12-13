@@ -1,0 +1,18 @@
+- description: Configure monitoring and alerting for NAT gateway
+  aprlGuid: babf75d6-6407-4d90-b01e-5a1768e621f5
+  recommendationTypeId: null
+  recommendationControl: MonitoringAndAlerting
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/natGateways
+  recommendationMetadataState: Active
+  longDescription: |
+    Use Network Insights for monitoring and alerting on your NAT gateway.Use Total SNAT connection count metric to determine if you're nearing the connection limit of NAT gateway. Set alerts based on Azure Monitor Baseline Alerts (AMBA) thresholds for NAT Gateway
+  potentialBenefits: Enhanced network performance and health
+  pgVerified: true
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: What is Azure NAT Gateway metrics and alerts?
+      url: "https://learn.microsoft.com/en-us/azure/nat-gateway/nat-metrics"
+    - name: AMBA - NAT Gateway
+      url: "https://azure.github.io/azure-monitor-baseline-alerts/services/Network/natGateways/"
