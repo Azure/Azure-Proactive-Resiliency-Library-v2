@@ -24,5 +24,5 @@ resources
     | where type =~ "Microsoft.Network/virtualWans"
     | extend vwanId = tolower(tostring(id)), vwanName = name
 ) on $left.vwanId == $right.vwanId
-| project recommendationId = "17e8d380-e4b4-41a1-9b37-2e4df9fd5125", ergwName, ergwId, ergwTags, param1=strcat("vHub Name: ", vhubName), param2=strcat("vWAN Name: ", vwanName)
+| project recommendationId = "17e8d380-e4b4-41a1-9b37-2e4df9fd5125", name, id, tags, param1=strcat("vHub Name: ", vhubName), param2=strcat("vWAN Name: ", vwanName)
 

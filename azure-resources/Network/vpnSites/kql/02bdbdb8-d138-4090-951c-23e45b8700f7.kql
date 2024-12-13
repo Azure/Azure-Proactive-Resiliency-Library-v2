@@ -13,4 +13,4 @@ resources
     | where type == "microsoft.network/virtualwans"
     | project id, name, tags
 ) on $left.virtualWanId == $right.id
-| project recommendationId = "02bdbdb8-d138-4090-951c-23e45b8700f7", name, id = virtualWanId, tags, param1 = vpnSiteLinksCount
+| project recommendationId = "02bdbdb8-d138-4090-951c-23e45b8700f7", name, id, tags, param1 = vpnSiteLinksCount
