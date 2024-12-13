@@ -4,7 +4,7 @@
   recommendationControl: Governance
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/AVD
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Set up Service Health alerts so that you stay aware of service issues, planned maintenance, or other changes that might affect your Azure Virtual Desktop resources. Use Resource Health to monitor your VMs and storage solutions.
   potentialBenefits: Enhanced AVD error tracking and resolution
@@ -369,7 +369,7 @@
     - name: Learn More
       url: "https://learn.microsoft.com/fslogix/how-to-install-fslogix"
 
-- description: Turn on continuous availability for ANF when using it for app attach
+- description: Turn on continuous availability for ANF
   aprlGuid: 9b2301af-9cac-4f1a-871a-f17475d01812
   recommendationTypeId: null
   recommendationControl: HighAvailability
@@ -378,7 +378,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Turn on Continuous Availability if using Azure Netapp Files.
-    Verify the number of users connecting to each file share to make sure the SMB path can handle the number of file connections. Currently, Azure Files supports up to 10k handles per root directory.
+    Verify the number of users connecting to each file share to make sure the SMB path can handle the number of file connections.
   potentialBenefits: Enhanced stability & user limit checks
   pgVerified: true
   automationAvailable: false

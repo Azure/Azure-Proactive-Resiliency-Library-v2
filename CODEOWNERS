@@ -9,6 +9,10 @@ azure-resources/NetworkFunction @Azure/aprl-maintainers @Azure/aprl-networking
 azure-resources/Peerings @Azure/aprl-maintainers @Azure/aprl-networking
 azure-resources/Relay @Azure/aprl-maintainers @Azure/aprl-networking
 
+## The aprl-ai team is partially responsible for all AI-related PRs
+azure-resources/cognitiveServices @Azure/aprl-maintainers @Azure/aprl-ai
+azure-specialized-workloads/ai @Azure/aprl-maintainers @Azure/aprl-ai
+
 ## The aprl-sap team is partially responsible for all SAP-related PRs
 azure-specialized-workloads/sap @Azure/aprl-maintainers @Azure/aprl-sap
 
