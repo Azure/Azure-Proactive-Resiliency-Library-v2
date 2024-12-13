@@ -1278,7 +1278,7 @@
   {
     "aprlGuid": "74fcb9f2-9a25-49a6-8c42-d32851c4afb7",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Configure Azure Service Health alerts",
@@ -1450,7 +1450,7 @@
   {
     "aprlGuid": "a5ef7c05-c611-4842-9af5-11efdc99123a",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Lock your resources to protect your infrastructure",
@@ -1821,6 +1821,27 @@
     "query": "// under-development\n\n"
   },
   {
+    "aprlGuid": "855ca19a-6518-4f2e-9e5a-01796fbca9f8",
+    "recommendationTypeId": null,
+    "recommendationMetadataState": "Active",
+    "learnMoreLink": [
+      {
+        "name": "Ultimate guide to running healthy apps in the cloud",
+        "url": "https://azure.github.io/AppService/2020/05/15/Robust-Apps-for-the-cloud.html"
+      }
+    ],
+    "recommendationControl": "Scalability",
+    "longDescription": "App Service should be configured with a minimum of two instances for production workloads. If apps have a longer warmup time a minimum of three instances should be used.\n",
+    "pgVerified": true,
+    "description": "Set minimum instance count to 2 for app service",
+    "potentialBenefits": "Improves app performance",
+    "tags": null,
+    "recommendationResourceType": "Microsoft.Web/sites",
+    "recommendationImpact": "High",
+    "automationAvailable": true,
+    "query": "// Azure Resource Graph Query\n// Provides a list of App services that do not have minimum instance count of 2\n\nresources\n| where type == \"microsoft.web/serverfarms\"\n| where sku.capacity < 2\n| project recommendationId = \"855ca19a-6518-4f2e-9e5a-01796fbca9f8\", name, id, tags, param1 = \"Instance count is less than 2\"\n\n"
+  },
+  {
     "aprlGuid": "493f6079-3bb6-4a56-96ba-ab3248474cb1",
     "recommendationTypeId": null,
     "recommendationMetadataState": "Active",
@@ -1991,27 +2012,6 @@
     "recommendationImpact": "Medium",
     "automationAvailable": true,
     "query": "// Azure Resource Graph Query\n// Check if Network access restrictions defined for App service\n\nresources\n| where type =~ 'microsoft.web/sites'\n| where properties.kind has 'app'\n| join kind = inner\n    (\n    appserviceresources\n    | mv-expand IpSecurityRestrictions = properties.IpSecurityRestrictions\n    | where isnotnull(IpSecurityRestrictions) == true\n    | project name\n    ) on name\n| project recommendationId = \"aab6b4a4-9981-43a4-8728-35c7ecbb746d\", name, id, tags, param1 = \"No network restrictions set\"\n"
-  },
-  {
-    "aprlGuid": "9e6682ac-31bc-4635-9959-ab74b52454e6",
-    "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
-    "learnMoreLink": [
-      {
-        "name": "Ultimate guide to running healthy apps in the cloud",
-        "url": "https://azure.github.io/AppService/2020/05/15/Robust-Apps-for-the-cloud.html"
-      }
-    ],
-    "recommendationControl": "Scalability",
-    "longDescription": "App Service should be configured with a minimum of two instances for production workloads. If apps have a longer warmup time a minimum of three instances should be used.\n",
-    "pgVerified": true,
-    "description": "Set minimum instance count to 2 for app service",
-    "potentialBenefits": "Improves app performace",
-    "tags": null,
-    "recommendationResourceType": "Microsoft.Web/sites",
-    "recommendationImpact": "High",
-    "automationAvailable": true,
-    "query": "// Azure Resource Graph Query\n// Provides a list of App services that do not have minimum instance count of 2\n\nresources\n| where type =~ 'microsoft.web/sites'\n| where properties.kind has 'app'\n| join kind = inner\n    (\n    appserviceresources\n    | where properties.PreWarmedInstanceCount < 2\n    | project name\n    ) on name\n| project recommendationId = \"9e6682ac-31bc-4635-9959-ab74b52454e6\", name, id, tags, param1 = \"PreWarmedInstanceCount is less than 2\"\n"
   },
   {
     "aprlGuid": "c6c4b962-5af4-447a-9d74-7b9c53a5dff5",
@@ -3354,7 +3354,7 @@
   {
     "aprlGuid": "a5f3a4bd-4cf1-4196-a3cb-f5a0876198b2",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Protect your Azure resources with a lock - Azure Resource Manager | Microsoft Learn",
@@ -3417,7 +3417,7 @@
   {
     "aprlGuid": "52ac35e8-9c3e-f84d-8ce8-2fab955333d3",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Lock your resources to protect your infrastructure",
@@ -3438,7 +3438,7 @@
   {
     "aprlGuid": "8291c1fa-650c-b44b-b008-4deb7465919d",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Security rules",
@@ -3522,7 +3522,7 @@
   {
     "aprlGuid": "89d1166a-1a20-0f46-acc8-3194387bf127",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Protect your Azure resources with a lock - Azure Resource Manager | Microsoft Learn",
@@ -3635,7 +3635,7 @@
   {
     "aprlGuid": "c0f23a92-d322-4d4d-97e9-a238b5e3bbb8",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Protect your Azure resources with a lock - Azure Resource Manager | Microsoft Learn",
@@ -4249,7 +4249,7 @@
   {
     "aprlGuid": "f0bf9ae6-25a5-974d-87d5-025abec73539",
     "recommendationTypeId": "eade5b56-eefd-444f-95c8-23f29e5d93cb",
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Azure Virtual Network - Concepts and best practices | Microsoft Learn",
@@ -4303,7 +4303,7 @@
   {
     "aprlGuid": "24ae3773-cc2c-3649-88de-c9788e25b463",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Azure Virtual Network FAQ | Microsoft Learn",
@@ -6409,25 +6409,67 @@
     "query": "// cannot-be-validated-with-arg\n\n"
   },
   {
-    "aprlGuid": "d6d9e18a-9ad2-491e-878d-86d621785453",
+    "aprlGuid": "0c193899-da60-4a52-b4a0-77d75ac8c5c5",
     "recommendationTypeId": null,
     "recommendationMetadataState": "Active",
     "learnMoreLink": [
       {
-        "name": "Enable diagnostic logging for Azure AI services",
-        "url": "https://learn.microsoft.com/en-us/azure/ai-services/diagnostic-logging"
+        "name": "Learn More",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/provisioned-throughput"
       }
     ],
-    "recommendationControl": "MonitoringAndAlerting",
-    "longDescription": "All Logs and Metrics should be configured. These logs provide rich, frequent data about the operation of a resource that are used for issue identification and debugging.\n",
-    "pgVerified": false,
-    "description": "Enable diagnostic logging for Azure AI services and send the data to Log Analytics",
-    "potentialBenefits": "Enhanced monitoring and troubleshooting capabilities",
+    "recommendationControl": "HighAvailability",
+    "longDescription": "Provisioned Throughput offers pre-allocated capacity for consistent workloads, while Pay-as-You-Go charges for actual usage, ideal for variable workloads. During overflow, the Pay-as-You-Go instance manages excess load, ensuring service efficiency\n",
+    "pgVerified": true,
+    "description": "Deploy a PAYG instance of the model with provisioned throughput to manage overflow effectively",
+    "potentialBenefits": "PAYG model balances cost and performance and helps scale",
     "tags": null,
     "recommendationResourceType": "Microsoft.CognitiveServices/Accounts",
-    "recommendationImpact": "Low",
+    "recommendationImpact": "High",
     "automationAvailable": false,
-    "query": null
+    "query": "// cannot-be-validated-with-arg\n"
+  },
+  {
+    "aprlGuid": "8aa9744b-f302-4b05-9776-51d6dd3d0c3a",
+    "recommendationTypeId": null,
+    "recommendationMetadataState": "Active",
+    "learnMoreLink": [
+      {
+        "name": "Learn More",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/deployment-types#global-batch"
+      }
+    ],
+    "recommendationControl": "Scalability",
+    "longDescription": "Global batch efficiently handles large-scale tasks within 24 hours. Submit requests in a single file, with a separate quota to protect online workloads. Key uses: data processing, content generation, document review, customer support automation, data extraction, NLP tasks, and marketing\n",
+    "pgVerified": true,
+    "description": "Ensure that models are deployed using Global batch for large scale processing",
+    "potentialBenefits": "Cost effective faster turnaround for large-scale processing.",
+    "tags": null,
+    "recommendationResourceType": "Microsoft.CognitiveServices/Accounts",
+    "recommendationImpact": "High",
+    "automationAvailable": false,
+    "query": "// cannot-be-validated-with-arg\n"
+  },
+  {
+    "aprlGuid": "ac3add17-013e-41a5-af91-9fefce794a00",
+    "recommendationTypeId": null,
+    "recommendationMetadataState": "Active",
+    "learnMoreLink": [
+      {
+        "name": "Learn More",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/deployment-types#data-zone-standard"
+      }
+    ],
+    "recommendationControl": "Governance",
+    "longDescription": "Data zone deployments route customer traffic to the highest availability data center within the defined data zone, ensuring data at rest remains within the Azure OpenAI resource geography. This approach offers increased quota limits and ensures data processing occurs within the specified data zone\n",
+    "pgVerified": true,
+    "description": "Ensure AOAI models are deployed using Data Zone Standard for data residency requirements",
+    "potentialBenefits": "Enforce data residency and compliance standards",
+    "tags": null,
+    "recommendationResourceType": "Microsoft.CognitiveServices/Accounts",
+    "recommendationImpact": "High",
+    "automationAvailable": false,
+    "query": "// cannot-be-validated-with-arg\n"
   },
   {
     "aprlGuid": "eb005943-40a8-194b-9db2-474d430046b7",
@@ -9302,9 +9344,9 @@
       }
     ],
     "recommendationControl": "HighAvailability",
-    "longDescription": "Turn on Continuous Availability if using Azure Netapp Files.\nVerify the number of users connecting to each file share to make sure the SMB path can handle the number of file connections. Currently, Azure Files supports up to 10k handles per root directory.\n",
+    "longDescription": "Turn on Continuous Availability if using Azure Netapp Files.\nVerify the number of users connecting to each file share to make sure the SMB path can handle the number of file connections.\n",
     "pgVerified": true,
-    "description": "Turn on continuous availability for ANF when using it for app attach",
+    "description": "Turn on continuous availability for ANF",
     "potentialBenefits": "Enhanced stability & user limit checks",
     "tags": null,
     "recommendationResourceType": "Specialized.Workload/AVD",
