@@ -13,6 +13,8 @@ geekdocHidden: false
 | [Deploy a PAYG instance of the model with provisioned throughput to manage overflow effectively](../../../Azure-Proactive-Resiliency-Library-v2/azure-resources/CognitiveServices/accounts/#deploy-a-PAYG-instance-of-the-model-with-provisioned-throughput-to-manage-overflow-effectively) | CognitiveServices  |   accounts    |
 | [Ensure that models are deployed using Global batch for large scale processing](../../../Azure-Proactive-Resiliency-Library-v2/azure-resources/CognitiveServices/accounts/#ensure-that-models-are-deployed-using-global-batch-for-large-scale-processing)                                   | CognitiveServices  |   accounts    |
 | [Ensure AOAI models are deployed using Data Zone Standard for data residency requirements](../../../Azure-Proactive-Resiliency-Library-v2/azure-resources/CognitiveServices/accounts/#ensure-aoai-models-are-deployed-using-data-zone-standard-for-data-residency-requirements)             | CognitiveServices  |   accounts    |
+| [Enable Application insights to monitor online endpoints for Machine learning](../../../Azure-Proactive-Resiliency-Library-v2/azure-resources/Insights/dataCollectionEndpoints/#enable-application-insights-to-monitor-online-endpoints-for-machine-learning)             | Insights  |   dataCollectionEndpoints    |
+| [Create Application insights for Machine learning workspace in both the regions](../../../Azure-Proactive-Resiliency-Library-v2/azure-resources/Insights/components/#create-application-insights-for-machine-learning-workspace-in-both-the-regions)             | Insights  |   components    |
 
 <br>
 
