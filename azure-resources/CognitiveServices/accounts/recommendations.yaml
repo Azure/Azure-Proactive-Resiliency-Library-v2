@@ -17,16 +17,51 @@
 - description: Enable diagnostic logging for Azure AI services and send the data to Log Analytics
   aprlGuid: d6d9e18a-9ad2-491e-878d-86d621785453
   recommendationTypeId: null
-  recommendationControl: MonitoringAndAlerting
-  recommendationImpact: Low
+  recommendationControl: HighAvailability
+  recommendationImpact: High
   recommendationResourceType: Microsoft.CognitiveServices/Accounts
   recommendationMetadataState: Active
   longDescription: |
-    All Logs and Metrics should be configured. These logs provide rich, frequent data about the operation of a resource that are used for issue identification and debugging.
-  potentialBenefits: Enhanced monitoring and troubleshooting capabilities
-  pgVerified: false
+    Provisioned Throughput offers pre-allocated capacity for consistent workloads, while Pay-as-You-Go charges for actual usage, ideal for variable workloads. During overflow, the Pay-as-You-Go instance manages excess load, ensuring service efficiency
+  potentialBenefits: PAYG model balances cost and performance and helps scale
+  pgVerified: true
   automationAvailable: false
   tags: null
   learnMoreLink:
-    - name: Enable diagnostic logging for Azure AI services
-      url: "https://learn.microsoft.com/en-us/azure/ai-services/diagnostic-logging"
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/provisioned-throughput"
+
+- description: Ensure that models are deployed using Global batch for large scale processing
+  aprlGuid: 8aa9744b-f302-4b05-9776-51d6dd3d0c3a
+  recommendationTypeId: null
+  recommendationControl: Scalability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.CognitiveServices/Accounts
+  recommendationMetadataState: Active
+  longDescription: |
+    Global batch efficiently handles large-scale tasks within 24 hours. Submit requests in a single file, with a separate quota to protect online workloads. Key uses: data processing, content generation, document review, customer support automation, data extraction, NLP tasks, and marketing
+  potentialBenefits: Cost effective faster turnaround for large-scale processing.
+  pgVerified: true
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/deployment-types#global-batch"
+
+- description: Ensure AOAI models are deployed using Data Zone Standard for data residency requirements
+  aprlGuid: ac3add17-013e-41a5-af91-9fefce794a00
+  recommendationTypeId: null
+  recommendationControl: Governance
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.CognitiveServices/Accounts
+  recommendationMetadataState: Active
+  longDescription: |
+    Data zone deployments route customer traffic to the highest availability data center within the defined data zone, ensuring data at rest remains within the Azure OpenAI resource geography. This approach offers increased quota limits and ensures data processing occurs within the specified data zone
+  potentialBenefits: Enforce data residency and compliance standards
+  pgVerified: true
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/deployment-types#data-zone-standard"
+

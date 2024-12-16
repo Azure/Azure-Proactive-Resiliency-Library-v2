@@ -2,6 +2,7 @@
 // Find all zonal VMs that are NOT deployed with Flex orchestration mode
 resources
 | where type == "microsoft.compute/virtualmachinescalesets"
+| where isempty(tostring(tags['aks-managed-poolName']))
 | where properties.orchestrationMode != "Flexible"
 | project recommendationId = "e7495e1c-0c75-0946-b266-b429b5c7f3bf", name, id, tags, param1 = strcat("orchestrationMode: ", tostring(properties.orchestrationMode))
 
