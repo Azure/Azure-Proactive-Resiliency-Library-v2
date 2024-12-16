@@ -14,3 +14,22 @@
   learnMoreLink:
     - name: Migrate an Application Insights classic resource to a workspace-based resource
       url: "https://learn.microsoft.com/en-us/azure/azure-monitor/app/convert-classic-resource"
+
+- description: Create Application insights for Machine learning workspace in both the regions
+  aprlGuid: 89928e61-bba8-4c25-99c5-a06a09849ecc
+  recommendationTypeId: null
+  recommendationControl: Disaster recovery
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Insights/components
+  recommendationMetadataState: Active
+  longDescription: |
+    Create Application Insights for machine learning workspace in both regions. To adjust the data-retention period, update and manage data retention in a Log Analytics workspace.
+  potentialBenefits: Provides monitoring and data retention in DR region
+  pgVerified: false
+  automationAvailable: true
+  tags: null
+  learnMoreLink:
+    - name: Data collection, retention, and storage in Application Insights
+      url: "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-retention-configure?tabs=portal-3%2Cportal-1%2Cportal-2"
+    - name: Failover for business continuity and disaster recovery
+      url: "https://learn.microsoft.com/en-us/azure/machine-learning/how-to-high-availability-machine-learning?view=azureml-api-2"

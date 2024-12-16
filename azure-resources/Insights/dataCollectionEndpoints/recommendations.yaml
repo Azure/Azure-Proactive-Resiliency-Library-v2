@@ -1,0 +1,16 @@
+- description: Enable Application insights to monitor online endpoints for Machine learning
+  aprlGuid: 47176883-2602-455b-97f0-6c6a371bf928
+  recommendationTypeId: null
+  recommendationControl: Monitoring and Alerting
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Insights/dataCollectionEndpoints
+  recommendationMetadataState: Active
+  longDescription: |
+    Azure Machine Learning uses integration with Azure Monitor to monitor metrics and logs for online endpoints. Use the built-in features of Application Insights (such as Live metrics, Transaction search, Failures, and Performance) for further analysis.
+  potentialBenefits: Monitoring endpoints gives visibility into metrics and logs
+  pgVerified: false
+  automationAvailable: true
+  tags: null
+  learnMoreLink:
+    - name: Monitor online endpoints using Application Insights
+      url: "https://learn.microsoft.com/en-us/azure/machine-learning/how-to-monitor-online-endpoints?view=azureml-api-2#using-application-insights"
