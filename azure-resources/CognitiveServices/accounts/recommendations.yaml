@@ -57,8 +57,8 @@
   recommendationResourceType: Microsoft.CognitiveServices/Accounts
   recommendationMetadataState: Active
   longDescription: |
-    If your service needs to always be available design AOAI Service to either failover into another region or split the workload between two or more regions. Applications requiring high degrees of resiliency and business continuity should consider this to further strengthen their model infrastructure.
-  potentialBenefits:  Ensures continuous service, improved reliability, and resilience against rare regional outages.
+    If your service needs to always be available, design AOAI Service to either failover into another region or split the workload between two or more regions. Applications requiring high degrees of resiliency and business continuity should consider this to further strengthen their model infrastructure.
+  potentialBenefits:  Ensures continuous service, improved reliability, and resilience against regional outages.
   pgVerified: false
   automationAvailable: false
   tags: null
