@@ -71,7 +71,7 @@
 - description: Choose SKUs with longer terms and avoid those nearing retirement
   aprlGuid: 6e2af91f-477d-46a5-b8ce-6cd1b8176550
   recommendationTypeId: null
-  recommendationControl: supportability
+  recommendationControl: ServiceUpgradeAndRetirement
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.MachineLearningServices/workspaces
   recommendationMetadataState: Active
@@ -88,7 +88,7 @@
 - description: Avoid NC and NC_Promo series Azure VMs for machine learning quotas; migrate to newer versions
   aprlGuid: cf2569bb-1cf2-46ce-8885-d742dc6f4a4c
   recommendationTypeId: null
-  recommendationControl: supportability
+  recommendationControl: ServiceUpgradeAndRetirement
   recommendationImpact: High
   recommendationResourceType: Microsoft.MachineLearningServices/workspaces
   recommendationMetadataState: Active
@@ -107,7 +107,7 @@
 - description: Make Azure Machine Learning quota requests through the Azure Machine Learning Studio
   aprlGuid: 48ea6480-6263-40ba-8937-326d790e63f6
   recommendationTypeId: null
-  recommendationControl: supportability
+  recommendationControl: OtherBestPractices
   recommendationImpact: High
   recommendationResourceType: Microsoft.MachineLearningServices/workspaces
   recommendationMetadataState: Active
