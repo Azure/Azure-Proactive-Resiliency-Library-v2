@@ -81,7 +81,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Response caching can significantly reduce latency for API callers and backend load for API providers.
-  potentialBenefits:  Ensures service continuity and high availability
+  potentialBenefits: Ensures service continuity and high availability
   pgVerified: false
   automationAvailable: false
   tags: null
