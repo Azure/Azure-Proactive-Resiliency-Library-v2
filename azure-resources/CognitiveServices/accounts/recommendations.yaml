@@ -52,12 +52,12 @@
 - description: Deploy AOAI Service in multiple regions using Standard and/or Provisioned deployments
   aprlGuid: 61187af4-7d36-4b48-b16e-de78bef143a0
   recommendationTypeId: null
-  recommendationControl: High availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.CognitiveServices/Accounts
   recommendationMetadataState: Active
   longDescription: |
-    If your service needs to always be available, design AOAI Service to either failover into another region or split the workload between two or more regions. Applications requiring high degrees of resiliency and business continuity should consider this to further strengthen their model infrastructure.
+    If your service needs to always be available, design AOAI Service to either failover into another region or split the workload between two or more regions. Applications requiring high degrees of resiliency should consider this to strengthen their model infrastructure.
   potentialBenefits: Ensures continuous service, improved reliability, and resilience against regional outages.
   pgVerified: false
   automationAvailable: false
