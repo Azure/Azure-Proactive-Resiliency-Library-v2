@@ -93,7 +93,7 @@
   recommendationResourceType: Microsoft.MachineLearningServices/workspaces
   recommendationMetadataState: Active
   longDescription: |
-    Avoid selecting NC and NC_Promo series Azure virtual machines for machine learning VM quotas and make sure to migrate to newer version.
+    Avoid selecting NC and NC_Promo series Azure virtual machines for machine learning VM quotas and make sure to migrate to newer versions.
   potentialBenefits: Avoid service disruption, longer term support
   pgVerified: false
   automationAvailable: false
