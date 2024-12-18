@@ -7,7 +7,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Azure Machine Learning registries enables to create and use assets (models, env, components, and datasets) in different workspaces. Registries support multi-region replication for low latency access to assets, allowing to use them in workspaces located in different Azure regions.
-  potentialBenefits: Enhance the performance and reliability of machine learning workflows
+  potentialBenefits: Improves performance and reliability
   pgVerified: false
   automationAvailable: false
   tags: null
