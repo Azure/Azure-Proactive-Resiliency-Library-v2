@@ -139,7 +139,7 @@ $Script:Runtime = Measure-Command -Expression {
       # Define script path as the default path to save files
       $workingFolderPath = $PSScriptRoot
       Set-Location -Path $workingFolderPath;
-      $Script:clonePath = "$workingFolderPath\Azure-Proactive-Resiliency-Library"
+      $Script:clonePath = "$workingFolderPath\Azure-Proactive-Resiliency-Library-v2"
       Write-Debug 'Checking default folder'
       if ((Get-ChildItem -Path $Script:clonePath -Force | Measure-Object).Count -gt 0) {
         Write-Debug 'APRL Folder does exist. Reseting it...'
@@ -309,7 +309,7 @@ $Script:Runtime = Measure-Command -Expression {
               param3                                                                            = $Recom.param3;
               param4                                                                            = $Recom.param4;
               param5                                                                            = $Recom.param5;
-              supportTicketId                                                                   = '';
+              supportTicketId                                                                   = $Tickets;
               source                                                                            = $Recom.selector;
               checkName                                                                         = $Recom.checkName;
               'WAF Pillar'                                                                      = 'Reliability';
@@ -781,7 +781,7 @@ $Script:Runtime = Measure-Command -Expression {
 
       # Build the APRL Recommendations
       foreach ($Service in $Script:ServicesYAMLContent) {
-        if (($Service.recommendationResourceType -like 'Specialized.Workload/*' -or $Service.recommendationResourceType -in $Script:AllResourceTypesOrdered.'Resource Type' -or $Script:FilterRecommendations -eq $false) -and ([string]::IsNullOrEmpty($Service.recommendationTypeId) -or (![string]::IsNullOrEmpty($Service.recommendationTypeId) -and $Service.recommendationTypeId -notin $Script:RecommendedAdv))) {
+        if (($Service.recommendationResourceType -like 'Specialized.Workload/*' -or $Service.recommendationResourceType -eq 'Microsoft.Resources/subscriptions' -or $Service.recommendationResourceType -in $Script:AllResourceTypesOrdered.'Resource Type' -or $Script:FilterRecommendations -eq $false) -and ([string]::IsNullOrEmpty($Service.recommendationTypeId) -or (![string]::IsNullOrEmpty($Service.recommendationTypeId) -and $Service.recommendationTypeId -notin $Script:RecommendedAdv))) {
           $ID = $Service.aprlGuid
           $resourceType = $Service.recommendationResourceType
 
@@ -1056,7 +1056,7 @@ $Script:Runtime = Measure-Command -Expression {
   }
 
   #Call the functions
-  $Script:Version = '2.1.16'
+  $Script:Version = '2.1.17'
   Write-Host 'Version: ' -NoNewline
   Write-Host $Script:Version -ForegroundColor DarkBlue
 
