@@ -76,7 +76,7 @@
   aprlGuid: badd9a1f-222a-498d-ab84-1f14892b1c1b
   recommendationTypeId: null
   recommendationControl: HighAvailability
-  recommendationImpact: High
+  recommendationImpact: Medium
   recommendationResourceType: Microsoft.ApiManagement/service
   recommendationMetadataState: Active
   longDescription: |
