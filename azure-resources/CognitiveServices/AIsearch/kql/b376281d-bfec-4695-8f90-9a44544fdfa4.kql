@@ -3,6 +3,6 @@
 
 resources
 | where type == "microsoft.search/searchservices"
-| extend properties['replicaCount']
+| extend replicaCount = properties['replicaCount']
 | where properties['replicaCount'] < 2
 | project name, location, resourceGroup, subscriptionId, properties_replicaCount
