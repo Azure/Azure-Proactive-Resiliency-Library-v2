@@ -62,7 +62,7 @@
 - description: Enable Virtual Network Flow Logs
   aprlGuid: 06b77be9-56a3-4d41-b362-8b295c5a283d
   recommendationTypeId: null
-  recommendationControl: Monitoring and Alerting
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/virtualNetworks
   recommendationMetadataState: Active
