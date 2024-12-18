@@ -154,7 +154,7 @@ no,Microsoft.ManagedIdentity/userAssignedIdentities,null,No
 no,Microsoft.ManagedIdentity/operations,null,No
 no,Microsoft.ManagedIdentity/userAssignedIdentities/federatedIdentityCredentials,null,No
 yes,Microsoft.Network/virtualNetworkGateways,Virtual Network Gateways,Yes
-yes,Microsoft.Network/localNetworkGateways,Local Network Gateways,No
+no,Microsoft.Network/localNetworkGateways,Local Network Gateways,No
 yes,Microsoft.Network/connections,Connections,Yes
 yes,Microsoft.Network/applicationGateways,Application Gateway,Yes
 yes,Microsoft.Network/expressRouteCircuits,Expressroute Circuits,Yes
@@ -168,10 +168,10 @@ no,Microsoft.Network/routeFilters,null,No
 no,Microsoft.Network/bgpServiceCommunities,null,No
 yes,Microsoft.Network/vpnSites,VPN Sites,No
 yes,Microsoft.Network/vpnServerConfigurations,VPN Server Configurations,No
-yes,Microsoft.Network/virtualHubs,Virtual Hubs,No
-yes,Microsoft.Network/vpnGateways,VPN Gateways,No
-yes,Microsoft.Network/p2sVpnGateways,P2S Gateways,No
-yes,Microsoft.Network/expressRouteGateways,ExpressRoute Gateways,No
+yes,Microsoft.Network/virtualHubs,Virtual Hubs,Yes
+yes,Microsoft.Network/vpnGateways,VPN Gateways,Yes
+yes,Microsoft.Network/p2sVpnGateways,P2S Gateways,Yes
+yes,Microsoft.Network/expressRouteGateways,ExpressRoute Gateways,Yes
 no,Microsoft.Network/expressRoutePortsLocations,null,No
 yes,Microsoft.Network/expressRoutePorts,Expressroute Direct,Yes
 no,Microsoft.Network/securityPartnerProviders,null,No
@@ -198,7 +198,7 @@ no,Microsoft.Network/ipGroups,null,No
 no,Microsoft.Network/azureWebCategories,null,No
 no,Microsoft.Network/locations/nfvOperations,null,No
 no,Microsoft.Network/locations/nfvOperationResults,null,No
-yes,Microsoft.Network/virtualRouters,Virtual Routers,No
+yes,Microsoft.Network/virtualRouters,Virtual Routers,Yes
 no,Microsoft.Network/networkVirtualAppliances,null,No
 no,Microsoft.Network/networkVirtualApplianceSkus,null,No
 no,Microsoft.Network/frontdoorOperationResults,null,No
@@ -221,7 +221,7 @@ no,Microsoft.Network/locations/dnsResolverOperationResults,null,No
 no,Microsoft.Network/locations/dnsResolverOperationStatuses,null,No
 no,Microsoft.Network/locations/dnsResolverPolicyOperationResults,null,No
 no,Microsoft.Network/locations/dnsResolverPolicyOperationStatuses,null,No
-yes,Microsoft.Network/networkManagers,Network Managers,No
+no,Microsoft.Network/networkManagers,Network Managers,No
 no,Microsoft.Network/networkManagerConnections,null,No
 no,Microsoft.Network/networkSecurityPerimeters,null,No
 no,Microsoft.Network/locations/perimeterAssociableResourceTypes,null,No
@@ -246,7 +246,7 @@ no,Microsoft.Network/privateDnsZones/SRV,null,No
 no,Microsoft.Network/privateDnsZones/SOA,null,No
 no,Microsoft.Network/privateDnsZones/all,null,No
 no,Microsoft.Network/virtualNetworks/privateDnsZoneLinks,null,No
-yes,Microsoft.Network/dnszones,DNS Zones,No
+yes,Microsoft.Network/dnszones,DNS Zones,Yes
 no,Microsoft.Network/dnsOperationResults,null,No
 no,Microsoft.Network/dnsOperationStatuses,null,No
 no,Microsoft.Network/getDnsResourceReference,null,No
@@ -280,11 +280,11 @@ no,Microsoft.Network/privateEndpoints/privateLinkServiceProxies,null,No
 no,Microsoft.Network/privateEndpointRedirectMaps,null,No
 yes,Microsoft.Network/loadBalancers,Load Balancer,Yes
 yes,Microsoft.Network/networkSecurityGroups,Network Security Group,Yes
-yes,Microsoft.Network/applicationSecurityGroups,Application Security Group,No
+no,Microsoft.Network/applicationSecurityGroups,Application Security Group,No
 no,Microsoft.Network/serviceEndpointPolicies,null,No
 no,Microsoft.Network/networkIntentPolicies,null,No
 yes,Microsoft.Network/routeTables,Route Table,Yes
-yes,Microsoft.Network/publicIPPrefixes,Public IP Prefixes,No
+no,Microsoft.Network/publicIPPrefixes,Public IP Prefixes,No
 yes,Microsoft.Network/networkWatchers,Network Watcher,Yes
 no,Microsoft.Network/networkWatchers/connectionMonitors,null,No
 yes,Microsoft.Network/networkWatchers/flowLogs,Flow Log,Yes
@@ -420,7 +420,7 @@ no,Microsoft.Sql/locations/serverOperationResults,null,No
 no,Microsoft.Sql/locations/usages,null,No
 no,Microsoft.Sql/checkNameAvailability,null,No
 yes,Microsoft.Sql/servers,Sqldb,Yes
-no,Microsoft.Sql/servers/databases,SQL database,No
+yes,Microsoft.Sql/servers/databases,SQL database,Yes
 no,Microsoft.Sql/servers/serviceObjectives,null,No
 no,Microsoft.Sql/servers/communicationLinks,null,No
 no,Microsoft.Sql/servers/administrators,null,No
@@ -634,7 +634,7 @@ no,Microsoft.Maintenance/configurationAssignments,Maintenance Configuration Assi
 no,Microsoft.Maintenance/applyUpdates,Maintenance Apply Updates,No
 no,Microsoft.Maintenance/publicMaintenanceConfigurations,Maintenance Oublic Maintenance Configurations,No
 no,Microsoft.Maintenance/operations,null,No
-yes,Microsoft.DataFactory/factories,Data Factory,No
+yes,Microsoft.DataFactory/factories,Data Factory,Yes
 no,Microsoft.DataFactory/factories/integrationRuntimes,null,No
 no,Microsoft.DataFactory/factories/privateEndpointConnectionProxies,null,No
 no,Microsoft.DataFactory/CheckNameAvailability,null,No
@@ -758,13 +758,13 @@ no,Microsoft.Cdn/operationresults/profileresults/endpointresults/origingroupresu
 no,Microsoft.Cdn/operationresults/profileresults/endpointresults/customdomainresults,null,No
 no,Microsoft.Cdn/checkNameAvailability,null,No
 no,Microsoft.Cdn/checkEndpointNameAvailability,null,No
-yes,Microsoft.Cdn/checkResourceUsage,CDN Resource Usage,No
+no,Microsoft.Cdn/checkResourceUsage,CDN Resource Usage,No
 no,Microsoft.Cdn/validateProbe,null,No
 no,Microsoft.Cdn/canMigrate,null,No
 no,Microsoft.Cdn/migrate,null,No
 no,Microsoft.Cdn/operations,null,No
 no,Microsoft.Cdn/edgenodes,null,No
-yes,Microsoft.Cdn/CdnWebApplicationFirewallPolicies,CDN WAF Policies,No
+no,Microsoft.Cdn/CdnWebApplicationFirewallPolicies,CDN WAF Policies,No
 no,Microsoft.Cdn/operationresults/cdnwebapplicationfirewallpolicyresults,null,No
 no,Microsoft.Cdn/CdnWebApplicationFirewallManagedRuleSets,null,No
 no,Microsoft.Cdn/profiles/afdendpoints,null,No
@@ -1118,7 +1118,7 @@ no,Informatica.DataManagement/organizations,null,No
 no,Informatica.DataManagement/organizations/singleSignOnConfigurations,null,No
 no,Informatica.DataManagement/operations,null,No
 no,Informatica.DataManagement/organizations/serverlessRuntimes,null,No
-yes,Microsoft.AAD/DomainServices,Azure Active Directory Domain Services,No
+yes,Microsoft.AAD/DomainServices,Azure Active Directory Domain Services,Yes
 no,Microsoft.AAD/DomainServices/oucontainer,null,No
 no,Microsoft.AAD/locations,null,No
 no,Microsoft.AAD/locations/operationresults,null,No
@@ -1289,7 +1289,7 @@ no,Microsoft.Authorization/permissions,null,No
 no,Microsoft.Authorization/denyAssignments,null,No
 no,Microsoft.Authorization/locks,Locks,No
 no,Microsoft.Authorization/operations,null,No
-yes,Microsoft.Authorization/policyDefinitions,Policy Definitions,No
+no,Microsoft.Authorization/policyDefinitions,Policy Definitions,No
 no,Microsoft.Authorization/policyDefinitions/versions,null,No
 no,Microsoft.Authorization/policySetDefinitions,null,No
 no,Microsoft.Authorization/policySetDefinitions/versions,null,No
@@ -1394,8 +1394,8 @@ no,Microsoft.AzureArcData/SqlManagedInstances/FailoverGroups,null,No
 no,Microsoft.AzureArcData/SqlServerInstances/AvailabilityGroups,null,No
 no,Microsoft.AzureArcData/SqlServerLicenses,null,No
 no,Microsoft.AzureFleet/locations,null,No
-yes,Microsoft.AzureLargeInstance/azureLargeInstances,Azure Large Instances,No
-yes,Microsoft.AzureLargeInstance/azureLargeStorageInstances,Azure Large Storage Instances,No
+no,Microsoft.AzureLargeInstance/azureLargeInstances,Azure Large Instances,No
+no,Microsoft.AzureLargeInstance/azureLargeStorageInstances,Azure Large Storage Instances,No
 no,Microsoft.AzureLargeInstance/locations,null,No
 no,Microsoft.AzureLargeInstance/locations/operationsStatus,null,No
 no,Microsoft.AzureLargeInstance/operations,null,No
@@ -1467,8 +1467,8 @@ no,Microsoft.BareMetal/operations,null,No
 no,Microsoft.BareMetal/locations,null,No
 no,Microsoft.BareMetal/locations/operationResults,null,No
 no,Microsoft.BareMetal/utilization,null,No
-yes,Microsoft.BareMetalInfrastructure/bareMetalInstances,Baremetal Instances,No
-yes,Microsoft.BareMetalInfrastructure/bareMetalStorageInstances,Baremetal Storage Instances,No
+no,Microsoft.BareMetalInfrastructure/bareMetalInstances,Baremetal Instances,No
+no,Microsoft.BareMetalInfrastructure/bareMetalStorageInstances,Baremetal Storage Instances,No
 no,Microsoft.BareMetalInfrastructure/locations,null,No
 no,Microsoft.BareMetalInfrastructure/locations/operationsStatus,null,No
 no,Microsoft.BareMetalInfrastructure/operations,null,No
@@ -1787,7 +1787,7 @@ no,Microsoft.ClassicNetwork/networkSecurityGroups,null,No
 no,Microsoft.ClassicNetwork/capabilities,null,No
 no,Microsoft.ClassicNetwork/expressRouteCrossConnections,null,No
 no,Microsoft.ClassicNetwork/expressRouteCrossConnections/peerings,null,No
-no,Microsoft.ClassicStorage/storageAccounts,null,No
+yes,Microsoft.ClassicStorage/storageAccounts,Classic Storage Accounts,Yes
 no,Microsoft.ClassicStorage/quotas,null,No
 no,Microsoft.ClassicStorage/checkStorageAccountAvailability,null,No
 no,Microsoft.ClassicStorage/storageAccounts/services,null,No
@@ -2576,7 +2576,7 @@ no,Microsoft.HardwareSecurityModules/locations,null,No
 no,Microsoft.HardwareSecurityModules/operations,null,No
 no,Microsoft.HDInsight/Locations,null,No
 no,Microsoft.HDInsight/Locations/OperationStatuses,null,No
-yes,Microsoft.HDInsight/clusterpools,HDInsight Cluster Pool,Yes
+yes,Microsoft.HDInsight/clusterpools,HDInsight Cluster Pool,No
 no,Microsoft.HDInsight/clusterpools/clusters,null,No
 no,Microsoft.HDInsight/Locations/clusterofferingversions,null,No
 no,Microsoft.HDInsight/locations/checkNameAvailability,null,No
@@ -2762,7 +2762,7 @@ no,Microsoft.Kubernetes/locations/operationStatuses,null,No
 no,Microsoft.Kubernetes/registeredSubscriptions,null,No
 no,Microsoft.Kubernetes/Operations,null,No
 no,Microsoft.KubernetesConfiguration/sourceControlConfigurations,null,No
-no,Microsoft.KubernetesConfiguration/extensions,null,No
+no,Microsoft.KubernetesConfiguration/extensions,Kubernetes Configuration Extensions,Yes
 no,Microsoft.KubernetesConfiguration/fluxConfigurations,null,No
 no,Microsoft.KubernetesConfiguration/operations,null,No
 no,Microsoft.KubernetesConfiguration/extensionTypes,null,No
@@ -3089,7 +3089,7 @@ no,Microsoft.NetworkCloud/kubernetesClusters,Network Cloud Kubernetes Clusters,N
 no,Microsoft.NetworkCloud/kubernetesClusters/agentPools,null,No
 yes,Microsoft.NetworkFunction/azureTrafficCollectors,Expressroute Traffic Collector,Yes
 no,Microsoft.NetworkFunction/azureTrafficCollectors/collectorPolicies,null,No
-yes,Microsoft.NetworkFunction/meshVpns,Network Function Mesh VPN,No
+no,Microsoft.NetworkFunction/meshVpns,Network Function Mesh VPN,No
 no,Microsoft.NetworkFunction/meshVpns/connectionPolicies,null,No
 no,Microsoft.NetworkFunction/meshVpns/privateEndpointConnections,null,No
 no,Microsoft.NetworkFunction/meshVpns/privateEndpointConnectionProxies,null,No
@@ -3147,12 +3147,12 @@ no,Microsoft.OracleDiscovery/oraclesites/errorSummaries,null,No
 no,Microsoft.OracleDiscovery/operations,null,No
 no,Microsoft.Orbital/availableGroundStations,null,No
 no,Microsoft.Orbital/contactProfiles,null,No
-yes,Microsoft.Orbital/spacecrafts,Orbital Spacecrafts,No
+no,Microsoft.Orbital/spacecrafts,Orbital Spacecrafts,No
 no,Microsoft.Orbital/spacecrafts/contacts,null,No
-yes,Microsoft.Orbital/groundStations,Orbital Ground Stations,No
-yes,Microsoft.Orbital/globalCommunicationsSites,Orbital Global Communication Sites,No
-yes,Microsoft.Orbital/l2Connections,Orbital L2 Connections,No
-yes,Microsoft.Orbital/edgeSites,Orbital Edge Sites,No
+no,Microsoft.Orbital/groundStations,Orbital Ground Stations,No
+no,Microsoft.Orbital/globalCommunicationsSites,Orbital Global Communication Sites,No
+no,Microsoft.Orbital/l2Connections,Orbital L2 Connections,No
+no,Microsoft.Orbital/edgeSites,Orbital Edge Sites,No
 no,Microsoft.Orbital/operations,null,No
 no,Microsoft.Orbital/locations,null,No
 no,Microsoft.Orbital/locations/operationResults,null,No
@@ -3161,7 +3161,7 @@ no,Microsoft.PartnerManagedConsumerRecurrence/recurrences,null,No
 no,Microsoft.PartnerManagedConsumerRecurrence/operations,null,No
 no,Microsoft.PartnerManagedConsumerRecurrence/checkEligibility,null,No
 no,Microsoft.PartnerManagedConsumerRecurrence/operationStatuses,null,No
-yes,Microsoft.Peering/peerings,Peerings,No
+no,Microsoft.Peering/peerings,Peerings,No
 no,Microsoft.Peering/peeringLocations,null,No
 no,Microsoft.Peering/legacyPeerings,null,No
 no,Microsoft.Peering/peerAsns,null,No
@@ -3325,12 +3325,12 @@ no,Microsoft.Resources/providers,null,No
 no,Microsoft.Resources/checkresourcename,null,No
 no,Microsoft.Resources/calculateTemplateHash,null,No
 no,Microsoft.Resources/resources,null,No
-no,Microsoft.Resources/subscriptions,null,No
+yes,Microsoft.Resources/subscriptions,Subscriptions,Yes
 no,Microsoft.Resources/subscriptions/resources,null,No
 no,Microsoft.Resources/subscriptions/providers,null,No
 no,Microsoft.Resources/subscriptions/operationresults,null,No
-yes,Microsoft.Resources/resourceGroups,Resource Group,Yes
-no,Microsoft.Resources/subscriptions/resourceGroups,null,No
+no,Microsoft.Resources/resourceGroups,Resource Groups,No
+no,Microsoft.Resources/subscriptions/resourceGroups,Resource Groups,No
 no,Microsoft.Resources/subscriptions/resourcegroups/resources,null,No
 no,Microsoft.Resources/subscriptions/locations,null,No
 no,Microsoft.Resources/subscriptions/tagnames,null,No
@@ -3489,7 +3489,7 @@ no,Microsoft.ServiceFabric/locations/managedUnsupportedVMSizes,null,No
 yes,Microsoft.ServiceFabricMesh/applications,Service Fabric Mesh Applications,No
 yes,Microsoft.ServiceFabricMesh/networks,Service Fabric Mesh Networks,No
 yes,Microsoft.ServiceFabricMesh/volumes,Service Fabric Mesh Volumes,No
-yes,Microsoft.ServiceFabricMesh/secrets,Service Fabric Mesh Secrets,No
+no,Microsoft.ServiceFabricMesh/secrets,Service Fabric Mesh Secrets,No
 yes,Microsoft.ServiceFabricMesh/gateways,Service Fabric Mesh Gateways,No
 no,Microsoft.ServiceFabricMesh/locations,null,No
 no,Microsoft.ServiceFabricMesh/locations/applicationOperations,null,No
@@ -3624,13 +3624,13 @@ no,Microsoft.Subscription/cancel,null,No
 no,Microsoft.Subscription/validateCancel,null,No
 no,Microsoft.Subscription/rename,null,No
 no,Microsoft.Subscription/enable,null,No
-yes,Microsoft.Subscription/subscriptions,Subscription,Yes
+yes,Microsoft.Subscription/subscriptions,Subscriptions,Yes
 no,Microsoft.Subscription/aliases,null,No
 no,Microsoft.Subscription/operationResults,null,No
 no,Microsoft.Subscription/acceptChangeTenant,null,No
 no,Microsoft.Subscription/changeTenantStatus,null,No
 no,Microsoft.Subscription/changeTenantRequest,null,No
-yes,Microsoft.Subscription/policies,Policies,No
+no,Microsoft.Subscription/policies,Policies,No
 no,Microsoft.Subscription/acceptOwnership,null,No
 no,Microsoft.Subscription/acceptOwnershipStatus,null,No
 no,microsoft.support/operations,null,No
@@ -3850,13 +3850,13 @@ yes,Specialized.Workload/AVD,Specialized-AVD,Yes
 yes,Specialized.Workload/AVS,Specialized-AVS,Yes
 yes,Specialized.Workload/HPC,Specialized-HPC,Yes
 yes,Specialized.Workload/SAP,Specialized-SAP,Yes
-no,WellArchitected/Define,WellArchitected/Define,Yes
-no,WellArchitected/Deploy,WellArchitected/Deploy,Yes
-no,WellArchitected/Design,WellArchitected/Design,Yes
-no,WellArchitected/Respond,WellArchitected/Respond,Yes
-no,WellArchitected/Test,WellArchitected/Test,Yes
-no,WellArchitected/Monitor,WellArchitected/Monitor,Yes
-yes,WellArchitected/Reliability,WellArchitected/Reliability,Yes
-yes,WellArchitected/OperationalExcellence,WellArchitected/OperationalExcellence,Yes
-yes,WellArchitected/Performance,WellArchitected/Performance,Yes
-yes,WellArchitected/Security,WellArchitected/Security,Yes
+no,WellArchitected/Define,WellArchitected/Define,No
+no,WellArchitected/Deploy,WellArchitected/Deploy,No
+no,WellArchitected/Design,WellArchitected/Design,No
+no,WellArchitected/Respond,WellArchitected/Respond,No
+no,WellArchitected/Test,WellArchitected/Test,No
+no,WellArchitected/Monitor,WellArchitected/Monitor,No
+no,WellArchitected/Reliability,WellArchitected/Reliability,No
+no,WellArchitected/OperationalExcellence,WellArchitected/OperationalExcellence,No
+no,WellArchitected/Performance,WellArchitected/Performance,No
+no,WellArchitected/Security,WellArchitected/Security,No

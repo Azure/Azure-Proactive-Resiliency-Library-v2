@@ -1,26 +1,5 @@
 [
   {
-    "aprlGuid": "98bd7098-49d6-491b-86f1-b143d6b1a0ff",
-    "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
-    "learnMoreLink": [
-      {
-        "name": "Azure Resource Manager Overview",
-        "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overview#resource-group-location-alignment"
-      }
-    ],
-    "recommendationControl": "DisasterRecovery",
-    "longDescription": "Ensure resource locations align with their resource group to manage resources during regional outages. ARM stores resource data, which if in an unavailable region, could halt updates, rendering resources read-only.\n",
-    "pgVerified": true,
-    "description": "Ensure Resource Group and its Resources are located in the same Region",
-    "potentialBenefits": "Improves outage management",
-    "tags": null,
-    "recommendationResourceType": "Microsoft.Resources/subscriptions",
-    "recommendationImpact": "High",
-    "automationAvailable": true,
-    "query": "// Azure Resource Graph Query\n// Provides a list of Azure Resource Groups that have resources deployed in a region different than the Resource Group region\nresourcecontainers\n| where type =~ \"Microsoft.Resources/subscriptions/resourceGroups\"\n| project resourceGroupId = tolower(id), resourceGroupLocation = location\n| join kind = inner (\n    resources\n    | where location !~ \"Global\" and             // Exclude global resources\n        resourceGroup !~ \"NetworkWatcherRG\" and  // Exclude resources in the NetworkWatcherRG\n        id has \"/resourceGroups/\"                // Exclude resources not in a resource group\n    | project id, name, tags, resourceGroup, location, resourceGroupId = tolower(strcat_array(array_slice(split(id, \"/\"), 0, 4), \"/\"))\n    )\n    on resourceGroupId\n| where resourceGroupLocation !~ location\n| project\n    recommendationId = \"98bd7098-49d6-491b-86f1-b143d6b1a0ff\",\n    name,\n    id,\n    tags,\n    param1 = strcat(\"resourceLocation: \", location),\n    param2 = strcat(\"resourceGroupLocation: \", resourceGroupLocation),\n    param3 = strcat(\"resourceGroup: \", resourceGroup)\n"
-  },
-  {
     "aprlGuid": "783c6c18-760b-4867-9ced-3010a0bc5aa3",
     "recommendationTypeId": null,
     "recommendationMetadataState": "Active",
@@ -926,7 +905,7 @@
   {
     "aprlGuid": "74c2491d-048b-0041-a140-935960220e20",
     "recommendationTypeId": "2ea11bcb-dfd0-48dc-96f0-beba578b989a",
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Active Geo Replication",
@@ -946,8 +925,8 @@
   },
   {
     "aprlGuid": "943c168a-2ec2-a94c-8015-85732a1b4859",
-    "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationTypeId": "2ea11bcb-dfd0-48dc-96f0-beba578b989a",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "AutoFailover Groups",
@@ -986,7 +965,7 @@
     "potentialBenefits": "Enhanced reliability, no extra cost",
     "tags": null,
     "recommendationResourceType": "Microsoft.Sql/servers",
-    "recommendationImpact": "Medium",
+    "recommendationImpact": "High",
     "automationAvailable": true,
     "query": "// Azure Resource Graph Query\n// Finds non-zone redundant SQL databases and lists them\nResources\n| where type =~ 'microsoft.sql/servers/databases'\n| where location in~ (\"australiaeast\", \"brazilsouth\", \"canadacentral\", \"centralindia\", \"centralus\", \"eastasia\", \"eastus\", \"eastus2\", \"francecentral\", \"germanywestcentral\", \"israelcentral\", \"italynorth\", \"japaneast\", \"japanwest\", \"koreacentral\", \"mexicocentral\", \"newzealandnorth\", \"northeurope\", \"norwayeast\", \"polandcentral\", \"qatarcentral\", \"southafricanorth\", \"southcentralus\", \"southeastasia\", \"spaincentral\", \"swedencentral\", \"switzerlandnorth\", \"uaenorth\", \"uksouth\", \"westeurope\", \"westus2\", \"westus3\", \"usgovvirginia\", \"chinanorth3\")\n| where tolower(tostring(properties.zoneRedundant))=~'false'\n|project recommendationId = \"c0085c32-84c0-c247-bfa9-e70977cbf108\", name, id, tags\n\n\n"
   },
@@ -1601,6 +1580,73 @@
     "recommendationImpact": "High",
     "automationAvailable": true,
     "query": "// Azure Resource Graph Query\n// Find all Azure Stream Analytics jobs that are not using the latest version of the service.\nresources\n| where type =~ \"Microsoft.StreamAnalytics/streamingjobs\"\n| where properties.sku.name !~ \"StandardV2\"\n| project recommendationId = \"5d40d3d4-179d-4cf5-ac24-901210f512e7\", name, id, tags\n"
+  },
+  {
+    "aprlGuid": "a86ed26a-59d9-47bd-b440-6bc71b843978",
+    "recommendationTypeId": null,
+    "recommendationMetadataState": "Active",
+    "learnMoreLink": [
+      {
+        "name": "Plan for multi-regional deployment",
+        "url": "https://learn.microsoft.com/en-us/azure/machine-learning/how-to-high-availability-machine-learning?view=azureml-api-2"
+      }
+    ],
+    "recommendationControl": "DisasterRecovery",
+    "longDescription": "Ensure you have a recovery strategy defined. Check regional availability and paired regions. Machine Learning doesn't have auto failover. Therefore, you must design a strategy that encompasses the workspace and all its dependencies, such as Key Vault, Azure Storage, and Container Registry.\n",
+    "pgVerified": false,
+    "description": "Plan for a multi-regional deployment of Azure Machine Learning and associated resources",
+    "potentialBenefits": "Provides multi-region disaster recovery strategy",
+    "tags": null,
+    "recommendationResourceType": "Microsoft.MachineLearningServices/workspaces",
+    "recommendationImpact": "High",
+    "automationAvailable": false,
+    "query": null
+  },
+  {
+    "aprlGuid": "675d249a-9486-45e3-8e89-863f5802782d",
+    "recommendationTypeId": null,
+    "recommendationMetadataState": "Active",
+    "learnMoreLink": [
+      {
+        "name": "Failover for business continuity and disaster recovery",
+        "url": "https://learn.microsoft.com/en-us/azure/machine-learning/how-to-high-availability-machine-learning?view=azureml-api-2"
+      }
+    ],
+    "recommendationControl": "DisasterRecovery",
+    "longDescription": "If your primary workspace is unavailable, switch to the secondary workspace to continue work. Azure Machine Learning doesn't auto-submit jobs to the secondary workspace during an outage. Update your code configuration to point to the new workspace resource.\n",
+    "pgVerified": false,
+    "description": "Deploy Azure Machine learning workspace in secondary region",
+    "potentialBenefits": "Provides recovery from regional outages",
+    "tags": null,
+    "recommendationResourceType": "Microsoft.MachineLearningServices/workspaces",
+    "recommendationImpact": "High",
+    "automationAvailable": false,
+    "query": null
+  },
+  {
+    "aprlGuid": "13794a63-8d95-47ce-acbd-5925ede5b208",
+    "recommendationTypeId": null,
+    "recommendationMetadataState": "Active",
+    "learnMoreLink": [
+      {
+        "name": "Failover for business continuity and disaster recovery",
+        "url": "https://learn.microsoft.com/en-us/azure/machine-learning/how-to-high-availability-machine-learning?view=azureml-api-2"
+      },
+      {
+        "name": "Compute targets in Azure Machine Learning",
+        "url": "https://learn.microsoft.com/en-us/azure/machine-learning/concept-compute-target?view=azureml-api-2"
+      }
+    ],
+    "recommendationControl": "DisasterRecovery",
+    "longDescription": "Create compute resources for training a Machine Learning model in selected regions. Ensure both regions have sufficient compute quota for dynamic scaling. Customers must configure HA across zones for attached compute resources like AKS, Azure Databricks, Container Instances.\n",
+    "pgVerified": false,
+    "description": "Ensure to create Machine Learning Compute resources in secondary region",
+    "potentialBenefits": "High availability and disaster recovery",
+    "tags": null,
+    "recommendationResourceType": "Microsoft.MachineLearningServices/workspaces",
+    "recommendationImpact": "High",
+    "automationAvailable": false,
+    "query": null
   },
   {
     "aprlGuid": "1cca00d2-d9ab-8e42-a788-5d40f49405cb",
@@ -2796,7 +2842,7 @@
     "recommendationResourceType": "Microsoft.RecoveryServices/vaults",
     "recommendationImpact": "Medium",
     "automationAvailable": false,
-    "query": "// under-development\n"
+    "query": "// Azure Resource Graph Query\n// This Resource Graph query will return all Recovery services vault with Classic alerts enabled.\nresources\n| where type in~ ('microsoft.recoveryservices/vaults')\n| extend monitoringSettings = parse_json(properties).monitoringSettings\n| extend isUsingClassicAlerts = case(isnull(monitoringSettings),'Enabled',monitoringSettings.classicAlertSettings.alertsForCriticalOperations)\n| extend isUsingJobsAlerts = case(isnull(monitoringSettings), 'Enabled', monitoringSettings.azureMonitorAlertSettings.alertsForAllJobFailures)\n| where isUsingClassicAlerts == 'Enabled'\n| project recommendationId = \"2912472d-0198-4bdc-aa90-37f145790edc\", name, id, tags, param1=strcat(\"isUsingClassicAlerts: \", isUsingClassicAlerts), param2=strcat(\"isUsingJobsAlerts: \", isUsingJobsAlerts)\n"
   },
   {
     "aprlGuid": "1549b91f-2ea0-4d4f-ba2a-4596becbe3de",
@@ -3187,12 +3233,12 @@
     ],
     "recommendationControl": "Scalability",
     "longDescription": "Provisioning ExpressRoute circuits on a 10-Gbps or 100-Gbps ExpressRoute Direct resource up to 20-Gbps or 200-Gbps is possible but not recommended for resiliency. If an ExpressRoute Direct port fails, and circuits are using full capacity, the remaining port won't handle the extra load.\n",
-    "pgVerified": true,
-    "description": "Ensure you do not over-subscribe an ExpressRoute Direct",
+    "pgVerified": false,
+    "description": "Ensure ExpressRoute Direct is not over-subscribed",
     "potentialBenefits": "Improves resilience during port failures",
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/ExpressRoutePorts",
-    "recommendationImpact": "High",
+    "recommendationImpact": "Medium",
     "automationAvailable": true,
     "query": "// Azure Resource Graph Query\n// Find all Express Route Directs that are over subscribed\nresources\n| where type == \"microsoft.network/expressrouteports\"\n| where toint(properties['provisionedBandwidthInGbps']) > toint(properties['bandwidthInGbps'])\n| project recommendationId = \"0bee356b-7348-4799-8cab-0c71ffe13018\", name, id, tags, param1 = strcat(\"provisionedBandwidthInGbps: \", properties['provisionedBandwidthInGbps']), param2 = strcat(\"bandwidthInGbps: \", properties['bandwidthInGbps'])\n\n"
   },
@@ -3213,7 +3259,7 @@
     "potentialBenefits": "Enhanced network performance and health",
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/expressRoutePorts",
-    "recommendationImpact": "High",
+    "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// under-development\n"
   },
@@ -3320,13 +3366,13 @@
       }
     ],
     "recommendationControl": "DisasterRecovery",
-    "longDescription": "Azure DNS allows the Time-To-Live (TTL) for record sets in the zone to be set to a value between 1 and 2147483647 seconds. You should ensure that the TTL for the DNS record sets in your DNS Zones are set appropriately to meet your RPO targets.\n",
+    "longDescription": "Azure DNS allows the Time-To-Live (TTL) for record sets in the zone to be set to a value between 1 and 2147483647 seconds. You should ensure that the TTL for the DNS record sets in your DNS Zones are set appropriately to meet your RTO targets.\n",
     "pgVerified": false,
-    "description": "Ensure Time-To-Live (TTL) is set appropriately to ensure RPOs can be met",
-    "potentialBenefits": "Ensures that no cached DNS records exist past RPO targets",
+    "description": "Ensure Time-To-Live (TTL) is set appropriately to ensure RTOs can be met",
+    "potentialBenefits": "Ensures that no cached DNS records exist past RTO targets",
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/dnsZones",
-    "recommendationImpact": "High",
+    "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// under-development\n\n"
   },
@@ -3368,7 +3414,7 @@
     "potentialBenefits": "Prevents accidental deletion of connections",
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/connections",
-    "recommendationImpact": "High",
+    "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// under-development\n\n"
   },
@@ -3515,7 +3561,7 @@
     "potentialBenefits": "Enhanced security and change detection",
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/routeTables",
-    "recommendationImpact": "High",
+    "recommendationImpact": "Medium",
     "automationAvailable": true,
     "query": "// Azure Resource Graph Query\n// Find all Route Tables without alerts for modification configured.\nresources\n| where type =~ \"Microsoft.Network/routeTables\"\n| project name, id, tags, lowerCaseRouteTableId = tolower(id)\n| join kind = leftouter (\n    resources\n    | where type =~ \"Microsoft.Insights/activityLogAlerts\" and properties.enabled == true\n    | mv-expand scope = properties.scopes\n    | where scope has \"Microsoft.Network/routeTables\"\n    | project alertName = name, conditionJson = dynamic_to_json(properties.condition.allOf), scope\n    | where conditionJson has '\"Administrative\"' and (\n        // Create or Update Route Table\n        (conditionJson has '\"Microsoft.Network/routeTables/write\"') or\n        // All Administrative operations\n        (conditionJson !has '\"Microsoft.Network/routeTables/write\"' and conditionJson !has '\"Microsoft.Network/routeTables/delete\"' and conditionJson !has '\"Microsoft.Network/routeTables/join/action\"')\n        )\n    | project lowerCaseRouteTableIdOfScope = tolower(scope)\n    )\n    on $left.lowerCaseRouteTableId == $right.lowerCaseRouteTableIdOfScope\n| where isempty(lowerCaseRouteTableIdOfScope)\n| project recommendationId = \"23b2dfc7-7e5d-9443-9f62-980ca621b561\", name, id, tags, param1 = \"ModificationAlert: Not configured/Disabled\"\n\n"
   },
@@ -3716,7 +3762,7 @@
     "potentialBenefits": "Minimizes update impact",
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/virtualNetworkGateways",
-    "recommendationImpact": "High",
+    "recommendationImpact": "Medium",
     "automationAvailable": true,
     "query": "// Azure Resource Graph Query\n// Find all Virtual Network Gateways without Maintenance Configurations\n\nresources\n| where type =~ \"Microsoft.Network/virtualNetworkGateways\"\n| extend resourceId = tolower(id)\n| join kind=leftouter  (\n    maintenanceresources\n    | where type =~ \"Microsoft.Maintenance/configurationAssignments\"\n    | project JsonData = parse_json(properties)\n    | extend maintenanceConfigurationId = tolower(tostring(JsonData.maintenanceConfigurationId))\n    | join kind=inner (\n        resources\n        | where type =~ \"Microsoft.Maintenance/maintenanceConfigurations\"\n        | project maintenanceConfigurationId=tolower(id)\n    ) on maintenanceConfigurationId\n    | project maintenanceConfigurationId, resourceId=tolower(tostring(JsonData.resourceId))\n) on resourceId\n| where isempty(maintenanceConfigurationId)\n| project recommendationId = \"3e115044-a3aa-433e-be01-ce17d67e50da\", name, id, tags, param1= strcat(\"sku-tier: \" , properties.sku.tier), param2=location\n\n"
   },
@@ -3741,7 +3787,7 @@
     "recommendationControl": "HighAvailability",
     "longDescription": "Azure VPN gateway offers variable SLAs based on deployment in one or two availability zones. Deploying zone-redundant virtual network gateways across availability zones ensures zone-resiliency, improving access to mission-critical, scalable services on Azure.\n",
     "pgVerified": true,
-    "description": "Choose a Zone-redundant VPN gateway",
+    "description": "Choose a Zone-redundant VPN gateway (Non Mission-Critical workloads only)",
     "potentialBenefits": "Enhanced reliability and scalability",
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/virtualNetworkGateways",
@@ -3766,7 +3812,7 @@
     "recommendationControl": "HighAvailability",
     "longDescription": "The active-active mode is available for all SKUs except Basic, allowing for two Gateway IP configurations and two public IP addresses, enhancing redundancy and traffic handling.\n",
     "pgVerified": true,
-    "description": "Enable Active-Active VPN Gateways for redundancy",
+    "description": "Enable Active-Active VPN Gateways for redundancy (Non Mission-Critical workloads only)",
     "potentialBenefits": "Enhanced reliability and network capacity",
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/virtualNetworkGateways",
@@ -3787,7 +3833,7 @@
     "recommendationControl": "DisasterRecovery",
     "longDescription": "Deploying active-active VPN concentrators and Azure VPN Gateways maximizes resilience and availability using a fully-meshed topology with four IPSec tunnels.\n",
     "pgVerified": true,
-    "description": "Deploy active-active VPN concentrators on your premises for maximum resiliency with VPN gateways",
+    "description": "Deploy active-active VPN concentrators on your premises (Non Mission-Critical workloads only)",
     "potentialBenefits": "Maximizes resilience and availability",
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/virtualNetworkGateways",
@@ -3808,7 +3854,7 @@
     "recommendationControl": "MonitoringAndAlerting",
     "longDescription": "Set up monitoring and alerts for Virtual Network Gateway health to utilize a variety of metrics for ensuring operational efficiency and prompt response to any disruptions.\n",
     "pgVerified": true,
-    "description": "Monitor VPN gateway connections and health",
+    "description": "Monitor VPN gateway connections and health (Non Mission-Critical workloads only)",
     "potentialBenefits": "Improved uptime and issue awareness",
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/virtualNetworkGateways",
@@ -3833,7 +3879,7 @@
     "recommendationControl": "MonitoringAndAlerting",
     "longDescription": "VPN gateway leverages service health to inform users about both planned and unplanned maintenance, ensuring they are notified about modifications to their VPN connectivity.\n",
     "pgVerified": true,
-    "description": "Enable VPN gateway service health",
+    "description": "Enable VPN gateway service health (Non Mission-Critical workloads only)",
     "potentialBenefits": "Improves VPN maintenance alerts",
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/virtualNetworkGateways",
@@ -3854,7 +3900,7 @@
     "recommendationControl": "HighAvailability",
     "longDescription": "For zone-redundant VPN gateways, always use zone-redundant Standard SKU public IPs to avoid deploying all instances in one zone. This ensures the gateway's reliability, applying to both active-passive (single IP) and active-active (dual IP) setups.\n",
     "pgVerified": true,
-    "description": "Deploy zone-redundant VPN gateways with zone-redundant Public IP(s)",
+    "description": "Deploy VPN gateways with zone-redundant Public IPs (Non Mission-Critical workloads only)",
     "potentialBenefits": "Enhanced reliability and disaster recovery",
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/virtualNetworkGateways",
@@ -4135,7 +4181,7 @@
     "recommendationResourceType": "Microsoft.Network/networkWatchers",
     "recommendationImpact": "Low",
     "automationAvailable": true,
-    "query": "// Azure Resource Graph Query\n// This query will return all Network Watcher Flow Logs that are not enabled or in a succeeded state\nresources\n| where type =~ \"microsoft.network/networkwatchers/flowlogs\" and isnotnull(properties)\n| extend targetResourceId = tostring(properties.targetResourceId)\n| extend status = iff(properties.enabled =~ 'true', \"Enabled\", \"Disabled\")\n| extend provisioningState = tostring(properties.provisioningState)\n| extend flowLogType = iff(properties.targetResourceId contains \"Microsoft.Network/virtualNetworks\", 'Virtual network', 'Network security group')\n| where provisioningState != \"Succeeded\" or status != \"Enabled\"\n| project recommendationId = \"22a769ed-0ecb-8b49-bafe-8f52e6373d9c\", name, id, tags, param1 = strcat(\"provisioningState:\", provisioningState), param2=strcat(\"Status:\", status), param3=strcat(\"targetResourceId:\",targetResourceId), param4=strcat(\"flowLogType:\",flowLogType)\n\n"
+    "query": "// Azure Resource Graph Query\n// This query will return all Network Watcher Flow Logs that are not enabled or not in a succeeded state\nresources\n| where type =~ \"microsoft.network/networkwatchers/flowlogs\" and isnotnull(properties)\n| extend targetResourceId = tostring(properties.targetResourceId)\n| extend status = iff(properties.enabled =~ 'true', \"Enabled\", \"Disabled\")\n| extend provisioningState = tostring(properties.provisioningState)\n| extend flowLogType = iff(properties.targetResourceId contains \"Microsoft.Network/virtualNetworks\", 'Virtual network', 'Network security group')\n| where provisioningState != \"Succeeded\" or status != \"Enabled\"\n| project recommendationId = \"22a769ed-0ecb-8b49-bafe-8f52e6373d9c\", name, id, tags, param1 = strcat(\"provisioningState:\", provisioningState), param2=strcat(\"Status:\", status), param3=strcat(\"targetResourceId:\",targetResourceId), param4=strcat(\"flowLogType:\",flowLogType)\n\n"
   },
   {
     "aprlGuid": "1e28bbc1-1eb7-486f-8d7f-93943f40219c",
@@ -4154,32 +4200,7 @@
     "potentialBenefits": "Improves monitoring for Azure and Hybrid connectivity",
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/networkWatchers",
-    "recommendationImpact": "High",
-    "automationAvailable": false,
-    "query": "// under-development\n"
-  },
-  {
-    "aprlGuid": "a1317a0b-402d-4604-be40-a25a004ba171",
-    "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
-    "learnMoreLink": [
-      {
-        "name": "Flow logging for network security groups",
-        "url": "https://learn.microsoft.com/en-us/azure/network-watcher/nsg-flow-logs-overview"
-      },
-      {
-        "name": "Virtual network flow logs",
-        "url": "https://learn.microsoft.com/en-us/azure/network-watcher/vnet-flow-logs-overview"
-      }
-    ],
-    "recommendationControl": "MonitoringAndAlerting",
-    "longDescription": "Improves monitoring and security for Azure and Hybrid connectivity\n",
-    "pgVerified": true,
-    "description": "Enable Network Security Group and Virtual Network Flow Logs",
-    "potentialBenefits": "Improves monitoring and security for Azure connectivity",
-    "tags": null,
-    "recommendationResourceType": "Microsoft.Network/networkWatchers",
-    "recommendationImpact": "High",
+    "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// under-development\n"
   },
@@ -4196,13 +4217,13 @@
     "recommendationControl": "MonitoringAndAlerting",
     "longDescription": "Improves monitoring, security and troubleshooting for Azure and Hybrid connectivity\n",
     "pgVerified": true,
-    "description": "Enable traffic analytics in Network Security Group and Virtual Network Flow Logs configuration.",
+    "description": "Enable traffic analytics in Virtual Network Flow Logs configuration",
     "potentialBenefits": "Improves monitoring, security and troubleshooting.",
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/networkWatchers",
-    "recommendationImpact": "High",
+    "recommendationImpact": "Medium",
     "automationAvailable": false,
-    "query": "// under-development\n"
+    "query": "// Azure Resource Graph Query\n// This query will return all Flow Logs where Flow Analytics Configuration is disabled\nresources\n| where type =~ \"microsoft.network/networkwatchers/flowlogs\"\n| where properties.targetResourceId contains \"microsoft.network/virtualNetworks\"\n| where not(properties.flowAnalyticsConfiguration.networkWatcherFlowAnalyticsConfiguration.enabled)\n| project recommendationId = \"bf0b7dbd-016d-458c-af99-70fcb03ad451\", name, id, tags, param1= \"Flow Analytics Configuration is disabled\",param2=strcat(\"Vnet Name : \", properties.targetResourceId)\n"
   },
   {
     "aprlGuid": "2226d069-de5b-4ec1-ad26-3249f4ab1741",
@@ -4328,6 +4349,27 @@
     "recommendationImpact": "Medium",
     "automationAvailable": true,
     "query": "// Azure Resource Graph Query\n// Find Subnets with Service Endpoint enabled for services that offer Private Link\nresources\n| where type =~ 'Microsoft.Network/virtualnetworks'\n| mv-expand subnets = properties.subnets\n| extend se = array_length(subnets.properties.serviceEndpoints)\n| where se >= 1\n| project name, id, tags, subnets, serviceEndpoints=todynamic(subnets.properties.serviceEndpoints)\n| mv-expand serviceEndpoints\n| project name, id, tags, subnetName=subnets.name, serviceName=tostring(serviceEndpoints.service)\n| where serviceName in (parse_json('[\"Microsoft.CognitiveServices\",\"Microsoft.AzureCosmosDB\",\"Microsoft.DBforMariaDB\",\"Microsoft.DBforMySQL\",\"Microsoft.DBforPostgreSQL\",\"Microsoft.EventHub\",\"Microsoft.KeyVault\",\"Microsoft.ServiceBus\",\"Microsoft.Sql\", \"Microsoft.Storage\",\"Microsoft.StorageSync\",\"Microsoft.Synapse\",\"Microsoft.Web\"]'))\n| project recommendationId = \"24ae3773-cc2c-3649-88de-c9788e25b463\", name, id, tags, param1 = strcat(\"subnet=\", subnetName), param2=strcat(\"serviceName=\",serviceName), param3=\"ServiceEndpoints=true\"\n\n"
+  },
+  {
+    "aprlGuid": "06b77be9-56a3-4d41-b362-8b295c5a283d",
+    "recommendationTypeId": null,
+    "recommendationMetadataState": "Active",
+    "learnMoreLink": [
+      {
+        "name": "Virtual network flow logs",
+        "url": "https://learn.microsoft.com/azure/network-watcher/vnet-flow-logs-overview"
+      }
+    ],
+    "recommendationControl": "MonitoringAndAlerting",
+    "longDescription": "Improves monitoring and security for Azure and Hybrid connectivity\n",
+    "pgVerified": true,
+    "description": "Enable Virtual Network Flow Logs",
+    "potentialBenefits": "Improves monitoring and security for Azure connectivity",
+    "tags": null,
+    "recommendationResourceType": "Microsoft.Network/virtualNetworks",
+    "recommendationImpact": "Medium",
+    "automationAvailable": true,
+    "query": "// Azure Resource Graph Query\n// This query will return all Vnets missing Flow Logs configuration\nresources\n| where type = ~ \"Microsoft.Network/virtualNetworks\"\n| extend vnetId = tolower(tostring(id)),vnetName = name,vnetTags = tags,vnetLocation = location\n| join kind = leftouter (\n    resources\n    | where type = ~ \"microsoft.network/networkwatchers/flowlogs\"\n    | extend flowLogType = iff(\n        properties.targetResourceId contains \"Microsoft.Network/virtualNetworks\",\n        'Virtual network',\n        'Virtual network'\n      )\n    | extend flowLogTargetVnet = tolower(properties.targetResourceId)\n) on $left.vnetId == $right.flowLogTargetVnet\n| where strlen(flowLogTargetVnet) == 0\n| project recommendationId = \"06b77be9-56a3-4d41-b362-8b295c5a283d\",vnetName,vnetId,tags,param1 = \"Missing Vnet Flow Log configuration\"\n"
   },
   {
     "aprlGuid": "ae054bf2-aefa-cf4a-8282-741194cef8da",
@@ -4738,7 +4780,7 @@
     "potentialBenefits": "Detection and mitigation to avoid disruptions.",
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/vpnGateways",
-    "recommendationImpact": "High",
+    "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// under-development\n"
   },
@@ -4780,7 +4822,7 @@
     "potentialBenefits": "Enhanced DNS reliability and alerting",
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/privateDnsZones",
-    "recommendationImpact": "High",
+    "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// under-development\n\n"
   },
@@ -4816,13 +4858,13 @@
       }
     ],
     "recommendationControl": "DisasterRecovery",
-    "longDescription": "Azure Private DNS allows the Time-To-Live (TTL) for record sets in the zone to be set to a value between 1 and 2147483647 seconds. You should ensure that the TTL for the DNS record sets in your DNS Zones are set appropriately to meet your RPO targets.\n",
+    "longDescription": "Azure Private DNS allows the Time-To-Live (TTL) for record sets in the zone to be set to a value between 1 and 2147483647 seconds. You should ensure that the TTL for the DNS record sets in your DNS Zones are set appropriately to meet your RTO targets.\n",
     "pgVerified": false,
-    "description": "Ensure Time-To-Live (TTL) is set appropriately to ensure RPOs can be met",
-    "potentialBenefits": "Ensures that no cached DNS records exist past RPO targets",
+    "description": "Ensure Time-To-Live (TTL) is set appropriately to ensure RTOs can be met",
+    "potentialBenefits": "Ensures that no cached DNS records exist past RTO targets",
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/privateDnsZones",
-    "recommendationImpact": "High",
+    "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// under-development\n\n"
   },
@@ -4992,6 +5034,27 @@
     "recommendationImpact": "High",
     "automationAvailable": true,
     "query": "// Azure Resource Graph Query\n// This resource graph query will return all subscriptions without Service Health alerts configured AND subscriptions with Service Health alerts only configured with specific configuration (which requires manual verification regarding the scope being covered by this rule)\nresourcecontainers\n| where type == 'microsoft.resources/subscriptions'\n| project subscriptionId = id, subscriptionName = name, tags\n| join kind=leftouter (\n    resources\n    | where type == \"microsoft.insights/activitylogalerts\" and properties.condition contains \"ServiceHealth\"\n    | extend shaRuleType = iff(array_length(properties.condition.allOf) > 1, 'Explicit','All')\n    | project subscriptionId = strcat('/subscriptions/',subscriptionId), name, shaRuleType\n    | summarize shaAllRuleCount = countif(shaRuleType == 'All'), shaExplicitRuleCount = countif(shaRuleType == 'Explicit') by subscriptionId\n) on subscriptionId\n| extend shaStatus = iff(isnull(shaAllRuleCount) and isnull(shaExplicitRuleCount), 'Not configured',iff(shaAllRuleCount >= 1, 'Configured', 'Explicit'))\n| where shaStatus != 'Configured'\n| project recommendationId = \"9729c89d-8118-41b4-a39b-e12468fa872b\", name = subscriptionName, id= subscriptionId, tags, param1 = iff(shaStatus == 'Explicit', 'Explicit only Service Health Alert Rule(s) found. Please verify that the expected scope is covered by these rule(s).','No Service Health Alert Rule found.')\n"
+  },
+  {
+    "aprlGuid": "98bd7098-49d6-491b-86f1-b143d6b1a0ff",
+    "recommendationTypeId": null,
+    "recommendationMetadataState": "Active",
+    "learnMoreLink": [
+      {
+        "name": "Azure Resource Manager Overview",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overview#resource-group-location-alignment"
+      }
+    ],
+    "recommendationControl": "DisasterRecovery",
+    "longDescription": "Ensure resource locations align with their resource group to manage resources during regional outages. ARM stores resource data, which if in an unavailable region, could halt updates, rendering resources read-only.\n",
+    "pgVerified": true,
+    "description": "Ensure Resource Group and its Resources are located in the same Region",
+    "potentialBenefits": "Improves outage management",
+    "tags": null,
+    "recommendationResourceType": "Microsoft.Subscription/Subscriptions",
+    "recommendationImpact": "High",
+    "automationAvailable": true,
+    "query": "// Azure Resource Graph Query\n// Provides a list of Azure Resource Groups that have resources deployed in a region different than the Resource Group region\nresourcecontainers\n| where type =~ \"Microsoft.Resources/subscriptions/resourceGroups\"\n| project resourceGroupId = tolower(id), resourceGroupLocation = location\n| join kind = inner (\n    resources\n    | where location !~ \"Global\" and             // Exclude global resources\n        resourceGroup !~ \"NetworkWatcherRG\" and  // Exclude resources in the NetworkWatcherRG\n        id has \"/resourceGroups/\"                // Exclude resources not in a resource group\n    | project id, name, tags, resourceGroup, location, resourceGroupId = tolower(strcat_array(array_slice(split(id, \"/\"), 0, 4), \"/\"))\n    )\n    on resourceGroupId\n| where resourceGroupLocation !~ location\n| project\n    recommendationId = \"98bd7098-49d6-491b-86f1-b143d6b1a0ff\",\n    name,\n    id,\n    tags,\n    param1 = strcat(\"resourceLocation: \", location),\n    param2 = strcat(\"resourceGroupLocation: \", resourceGroupLocation),\n    param3 = strcat(\"resourceGroup: \", resourceGroup)\n"
   },
   {
     "aprlGuid": "3263a64a-c256-de48-9818-afd3cbc55c2a",
@@ -5786,7 +5849,7 @@
     "recommendationResourceType": "Microsoft.Compute/virtualMachineScaleSets",
     "recommendationImpact": "Medium",
     "automationAvailable": true,
-    "query": "// Azure Resource Graph Query\n// Find all zonal VMs that are NOT deployed with Flex orchestration mode\nresources\n| where type == \"microsoft.compute/virtualmachinescalesets\"\n| where properties.orchestrationMode != \"Flexible\"\n| project recommendationId = \"e7495e1c-0c75-0946-b266-b429b5c7f3bf\", name, id, tags, param1 = strcat(\"orchestrationMode: \", tostring(properties.orchestrationMode))\n\n"
+    "query": "// Azure Resource Graph Query\n// Find all zonal VMs that are NOT deployed with Flex orchestration mode\nresources\n| where type == \"microsoft.compute/virtualmachinescalesets\"\n| where isempty(tostring(tags['aks-managed-poolName']))\n| where properties.orchestrationMode != \"Flexible\"\n| project recommendationId = \"e7495e1c-0c75-0946-b266-b429b5c7f3bf\", name, id, tags, param1 = strcat(\"orchestrationMode: \", tostring(properties.orchestrationMode))\n\n"
   },
   {
     "aprlGuid": "94794d2a-eff0-2345-9b67-6f9349d0a627",
@@ -5807,7 +5870,7 @@
     "recommendationResourceType": "Microsoft.Compute/virtualMachineScaleSets",
     "recommendationImpact": "Medium",
     "automationAvailable": true,
-    "query": "// Azure Resource Graph Query\n// Find all VMs that do NOT have health monitoring enabled\nresources\n| where type == \"microsoft.compute/virtualmachinescalesets\"\n| join kind=leftouter  (\n    resources\n    | where type == \"microsoft.compute/virtualmachinescalesets\"\n    | mv-expand extension=properties.virtualMachineProfile.extensionProfile.extensions\n    | where extension.properties.type in ( \"ApplicationHealthWindows\", \"ApplicationHealthLinux\" )\n    | project id\n) on id\n| where id1 == \"\"\n| project recommendationId = \"94794d2a-eff0-2345-9b67-6f9349d0a627\", name, id, tags, param1 = \"extension: null\"\n\n"
+    "query": "// Azure Resource Graph Query\n// Find all VMs that do NOT have health monitoring enabled\nresources\n| where type == \"microsoft.compute/virtualmachinescalesets\"\n| where isempty(tostring(tags['aks-managed-poolName']))\n| join kind=leftouter  (\n    resources\n    | where type == \"microsoft.compute/virtualmachinescalesets\"\n    | where isempty(tostring(tags['aks-managed-poolName']))\n    | mv-expand extension=properties.virtualMachineProfile.extensionProfile.extensions\n    | where extension.properties.type in ( \"ApplicationHealthWindows\", \"ApplicationHealthLinux\" )\n    | project id\n) on id\n| where id1 == \"\"\n| project recommendationId = \"94794d2a-eff0-2345-9b67-6f9349d0a627\", name, id, tags, param1 = \"extension: null\"\n\n"
   },
   {
     "aprlGuid": "820f4743-1f94-e946-ae0b-45efafd87962",
@@ -5828,7 +5891,7 @@
     "recommendationResourceType": "Microsoft.Compute/virtualMachineScaleSets",
     "recommendationImpact": "High",
     "automationAvailable": true,
-    "query": "// Azure Resource Graph Query\n// Find all VMs that do NOT have automatic repair policy enabled\nresources\n| where type == \"microsoft.compute/virtualmachinescalesets\"\n| where properties.automaticRepairsPolicy.enabled == false\n| project recommendationId = \"820f4743-1f94-e946-ae0b-45efafd87962\", name, id, tags, param1 = \"automaticRepairsPolicy: Disabled\"\n\n"
+    "query": "// Azure Resource Graph Query\n// Find all VMs that do NOT have automatic repair policy enabled\nresources\n| where type == \"microsoft.compute/virtualmachinescalesets\"\n| where isempty(tostring(tags['aks-managed-poolName']))\n| where properties.automaticRepairsPolicy.enabled == false\n| project recommendationId = \"820f4743-1f94-e946-ae0b-45efafd87962\", name, id, tags, param1 = \"automaticRepairsPolicy: Disabled\"\n\n"
   },
   {
     "aprlGuid": "ee66ff65-9aa3-2345-93c1-25827cf79f44",
@@ -5853,7 +5916,7 @@
     "recommendationResourceType": "Microsoft.Compute/virtualMachineScaleSets",
     "recommendationImpact": "High",
     "automationAvailable": true,
-    "query": "// Azure Resource Graph Query\n// Find VMSS instances associated with autoscale settings when autoscale is disabled\nresources\n| where type == \"microsoft.compute/virtualmachinescalesets\"\n| project name, id, tags\n| join kind=leftouter  (\n    resources\n    | where type == \"microsoft.insights/autoscalesettings\"\n    | where tostring(properties.targetResourceUri) contains \"Microsoft.Compute/virtualMachineScaleSets\"\n    | project id = tostring(properties.targetResourceUri), autoscalesettings = properties\n) on id\n| where isnull(autoscalesettings) or autoscalesettings.enabled == \"false\"\n| project recommendationId = \"ee66ff65-9aa3-2345-93c1-25827cf79f44\", name, id, tags, param1 = \"autoscalesettings: Disabled\"\n| order by id asc\n\n"
+    "query": "// Azure Resource Graph Query\n// Find VMSS instances associated with autoscale settings when autoscale is disabled\nresources\n| where type == \"microsoft.compute/virtualmachinescalesets\"\n| where isempty(tostring(tags['aks-managed-poolName']))\n| project name, id, tags\n| join kind=leftouter  (\n    resources\n    | where type == \"microsoft.insights/autoscalesettings\"\n    | where tostring(properties.targetResourceUri) contains \"Microsoft.Compute/virtualMachineScaleSets\"\n    | project id = tostring(properties.targetResourceUri), autoscalesettings = properties\n) on id\n| where isnull(autoscalesettings) or autoscalesettings.enabled == \"false\"\n| project recommendationId = \"ee66ff65-9aa3-2345-93c1-25827cf79f44\", name, id, tags, param1 = \"autoscalesettings: Disabled\"\n| order by id asc\n\n"
   },
   {
     "aprlGuid": "3f85a51c-e286-9f44-b4dc-51d00768696c",
@@ -5874,7 +5937,7 @@
     "recommendationResourceType": "Microsoft.Compute/virtualMachineScaleSets",
     "recommendationImpact": "Low",
     "automationAvailable": true,
-    "query": "// Azure Resource Graph Query\n// Find VMSS instances associated with autoscale settings when predictiveAutoscalePolicy_scaleMode is disabled\nresources\n| where type == \"microsoft.compute/virtualmachinescalesets\"\n| project name, id, tags\n| join kind=leftouter  (\n    resources\n    | where type == \"microsoft.insights/autoscalesettings\"\n    | where tostring(properties.targetResourceUri) contains \"Microsoft.Compute/virtualMachineScaleSets\"\n    | project id = tostring(properties.targetResourceUri), autoscalesettings = properties\n) on id\n| where autoscalesettings.enabled == \"true\" and autoscalesettings.predictiveAutoscalePolicy.scaleMode == \"Disabled\"\n| project recommendationId = \"3f85a51c-e286-9f44-b4dc-51d00768696c\", name, id, tags, param1 = \"predictiveAutoscalePolicy_scaleMode: Disabled\"\n| order by id asc\n\n"
+    "query": "// Azure Resource Graph Query\n// Find VMSS instances associated with autoscale settings when predictiveAutoscalePolicy_scaleMode is disabled\nresources\n| where type == \"microsoft.compute/virtualmachinescalesets\"\n| where isempty(tostring(tags['aks-managed-poolName']))\n| project name, id, tags\n| join kind=leftouter  (\n    resources\n    | where type == \"microsoft.insights/autoscalesettings\"\n    | where tostring(properties.targetResourceUri) contains \"Microsoft.Compute/virtualMachineScaleSets\"\n    | project id = tostring(properties.targetResourceUri), autoscalesettings = properties\n) on id\n| where autoscalesettings.enabled == \"true\" and autoscalesettings.predictiveAutoscalePolicy.scaleMode == \"Disabled\"\n| project recommendationId = \"3f85a51c-e286-9f44-b4dc-51d00768696c\", name, id, tags, param1 = \"predictiveAutoscalePolicy_scaleMode: Disabled\"\n| order by id asc\n\n"
   },
   {
     "aprlGuid": "b5a63aa0-c58e-244f-b8a6-cbba0560a6db",
@@ -5920,7 +5983,7 @@
     "recommendationResourceType": "Microsoft.Compute/virtualMachineScaleSets",
     "recommendationImpact": "High",
     "automationAvailable": true,
-    "query": "// Azure Resource Graph Query\n// Find VMSS instances with one or no Zones selected\nresources\n| where type == \"microsoft.compute/virtualmachinescalesets\"\n| where location in~ (\"australiaeast\", \"brazilsouth\", \"canadacentral\", \"centralindia\", \"centralus\", \"eastasia\", \"eastus\", \"eastus2\", \"francecentral\", \"germanywestcentral\", \"israelcentral\", \"italynorth\", \"japaneast\", \"japanwest\", \"koreacentral\", \"mexicocentral\", \"newzealandnorth\", \"northeurope\", \"norwayeast\", \"polandcentral\", \"qatarcentral\", \"southafricanorth\", \"southcentralus\", \"southeastasia\", \"spaincentral\", \"swedencentral\", \"switzerlandnorth\", \"uaenorth\", \"uksouth\", \"westeurope\", \"westus2\", \"westus3\", \"usgovvirginia\", \"chinanorth3\")\n| where array_length(zones) <= 1 or isnull(zones)\n| project recommendationId = \"1422c567-782c-7148-ac7c-5fc14cf45adc\", name, id, tags, param1 = \"AvailabilityZones: Single Zone\"\n| order by id asc\n\n"
+    "query": "// Azure Resource Graph Query\n// Find VMSS instances with one or no Zones selected\nresources\n| where type == \"microsoft.compute/virtualmachinescalesets\"\n| where isempty(tostring(tags['aks-managed-poolName']))\n| where location in~ (\"australiaeast\", \"brazilsouth\", \"canadacentral\", \"centralindia\", \"centralus\", \"eastasia\", \"eastus\", \"eastus2\", \"francecentral\", \"germanywestcentral\", \"israelcentral\", \"italynorth\", \"japaneast\", \"japanwest\", \"koreacentral\", \"mexicocentral\", \"newzealandnorth\", \"northeurope\", \"norwayeast\", \"polandcentral\", \"qatarcentral\", \"southafricanorth\", \"southcentralus\", \"southeastasia\", \"spaincentral\", \"swedencentral\", \"switzerlandnorth\", \"uaenorth\", \"uksouth\", \"westeurope\", \"westus2\", \"westus3\", \"usgovvirginia\", \"chinanorth3\")\n| where array_length(zones) <= 1 or isnull(zones)\n| project recommendationId = \"1422c567-782c-7148-ac7c-5fc14cf45adc\", name, id, tags, param1 = \"AvailabilityZones: Single Zone\"\n| order by id asc\n\n"
   },
   {
     "aprlGuid": "e4ffd7b0-ba24-c84e-9352-ba4819f908c0",
@@ -6407,6 +6470,27 @@
     "recommendationImpact": "High",
     "automationAvailable": false,
     "query": "// cannot-be-validated-with-arg\n\n"
+  },
+  {
+    "aprlGuid": "081fc8a4-b2d9-405b-b351-334e621016f5",
+    "recommendationTypeId": null,
+    "recommendationMetadataState": "Active",
+    "learnMoreLink": [
+      {
+        "name": "Learn More",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/deployment-types#global-provisioned"
+      }
+    ],
+    "recommendationControl": "HighAvailability",
+    "longDescription": "Global deployments leverage Azure's global infrastructure to route customer traffic to the best available data center for the customer’s inference requests. This ensures highest initial throughput limits and best model availability while still providing our uptime SLA and low latency.",
+    "pgVerified": false,
+    "description": "Ensure AOAI models are deployed using Global deployment",
+    "potentialBenefits": "Low latency, best model availability, business continuity",
+    "tags": null,
+    "recommendationResourceType": "Microsoft.CognitiveServices/Accounts",
+    "recommendationImpact": "High",
+    "automationAvailable": false,
+    "query": "// cannot-be-validated-with-arg\n"
   },
   {
     "aprlGuid": "0c193899-da60-4a52-b4a0-77d75ac8c5c5",
@@ -7249,7 +7333,7 @@
   {
     "aprlGuid": "82a9a0f2-24ee-496f-9ad2-25f81710942d",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Scheduled maintenance in Azure Database for MySQL - Flexible Server",

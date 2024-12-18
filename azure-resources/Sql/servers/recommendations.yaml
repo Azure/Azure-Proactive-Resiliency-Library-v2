@@ -4,7 +4,7 @@
   recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.Sql/servers
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Active Geo Replication ensures business continuity by utilizing readable secondary database replicas. In case of primary database failure, manually failover to secondary database. Secondaries, up to four, can be in same/different regions, used for read-only access.
   potentialBenefits: Enhanced disaster recovery and read scalability
@@ -17,11 +17,11 @@
 
 - description: Auto Failover Groups can encompass one or multiple databases, usually used by the same app.
   aprlGuid: 943c168a-2ec2-a94c-8015-85732a1b4859
-  recommendationTypeId: null
+  recommendationTypeId: 2ea11bcb-dfd0-48dc-96f0-beba578b989a
   recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.Sql/servers
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Failover Groups facilitate disaster recovery by configuring databases on one logical server to replicate to another region's logical server. This streamlines geo-replicated database management, offering a single endpoint for connection routing to replicated databases if the primary server fails.
   potentialBenefits: Improves load balancing and disaster recovery
@@ -38,7 +38,7 @@
   aprlGuid: c0085c32-84c0-c247-bfa9-e70977cbf108
   recommendationTypeId: 807e58d0-e385-41ad-987b-4a4b3e3fb563
   recommendationControl: HighAvailability
-  recommendationImpact: Medium
+  recommendationImpact: High
   recommendationResourceType: Microsoft.Sql/servers
   recommendationMetadataState: Active
   longDescription: |
