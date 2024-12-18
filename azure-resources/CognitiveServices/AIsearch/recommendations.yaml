@@ -6,8 +6,7 @@
   recommendationResourceType: Microsoft.Search/searchServices
   recommendationMetadataState: Active
   longDescription: |
-    Availability zones are utilized when you add two or more replicas to your search service. Each replica is assigned to a different availability zone within the region. If the number of replicas exceeds the available zones in the region, the replicas are distributed across the zones as evenly as possible.
-  potentialBenefits: High Availability
+    Availability zones are used when adding multiple replicas to your search service. Each replica is assigned to a different zone in the region. If there are more replicas than zones, they are distributed as evenly as possible across the available zones.  potentialBenefits: High Availability
   pgVerified: false
   automationAvailable: true
   tags: null
@@ -24,7 +23,7 @@
   recommendationResourceType: Microsoft.Search/searchServices
   recommendationMetadataState: Active
   longDescription: |
-    Azure AI Search does not offer automatic failover in the event of an outage. To ensure application continuity, recovery, and improved response times for a global audience, you can deploy multiple search services across different regions. This can be achieved by creating several services and developing a data synchronization strategy, such as using indexers to update content across multiple services or leveraging REST APIs to push content updates to them. Additionally, you can use a resource like Azure Traffic Manager to manage request routing.
+    Azure AI Search lacks automatic failover. For continuity and global reach, deploy multiple services in different regions. Sync data via indexers or REST APIs, and manage routing with Azure Traffic Manager.
   potentialBenefits: High availability
   pgVerified: false
   automationAvailable: true
