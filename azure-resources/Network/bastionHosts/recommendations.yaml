@@ -27,7 +27,7 @@
   longDescription: |
     Azure Bastion is a single-region service, if the primary region becomes unavailable, the Bastion resource will also be unavailable. To ensure disaster recovery, it is recommended to deploy Azure Bastion into separate virtual networks across different regions.
   potentialBenefits: Provides disaster recovery from regional outages
-  pgVerified: false
+  pgVerified: true
   automationAvailable: false
   tags: null
   learnMoreLink:
