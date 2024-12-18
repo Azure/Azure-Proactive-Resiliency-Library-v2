@@ -58,7 +58,7 @@
   recommendationMetadataState: Active
   longDescription: |
     If your service needs to always be available, design AOAI Service to either failover into another region or split the workload between two or more regions. Applications requiring high degrees of resiliency should consider this to strengthen their model infrastructure.
-  potentialBenefits: Ensures continuous service, improved reliability, and resilience against regional outages.
+  potentialBenefits: Ensures business continuity during regional outages.
   pgVerified: false
   automationAvailable: false
   tags: null
