@@ -73,7 +73,7 @@
   recommendationResourceType: Microsoft.CognitiveServices/Accounts
   recommendationMetadataState: Active
   longDescription: |
-    AOAI content filters can be tuned by configuring severity thresholds for categories like hate, sexual, violence, and self-harm, enabling optional classifiers, and testing to ensure effectiveness. Adjust thresholds to balance security and usability, and monitor filtering behavior for optimal results.
+    AOAI content filters can be tuned by configuring severity thresholds for categories like hate, sexual, violence, self-harm, enabling optional classifiers and testing to ensure effectiveness. Adjust thresholds to balance security, usability and monitor filtering behavior for optimal results.
   potentialBenefits: Enhanced security and filtering for optimal content control
   pgVerified: false
   automationAvailable: false
