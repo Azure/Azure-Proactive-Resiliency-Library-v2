@@ -38,7 +38,7 @@
 
 - description: Azure API Management platform version should be stv2
   aprlGuid: e35cf148-8eee-49d1-a1c9-956160f99e0b
-  recommendationTypeId: e5f60ef8-3fcc-4fb5-bee7-7aaeb44c1509
+  recommendationTypeId: null
   recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.ApiManagement/service
