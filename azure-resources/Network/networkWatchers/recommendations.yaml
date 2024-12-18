@@ -36,7 +36,7 @@
   aprlGuid: 1e28bbc1-1eb7-486f-8d7f-93943f40219c
   recommendationTypeId: null
   recommendationControl: MonitoringAndAlerting
-  recommendationImpact: High
+  recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/networkWatchers
   recommendationMetadataState: Active
   longDescription: |
@@ -49,7 +49,7 @@
     - name: Connection monitor overview
       url: "https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-overview"
 
-- description: Enable Network Security Group and Virtual Network Flow Logs
+- description: Enable Virtual Network Flow Logs
   aprlGuid: a1317a0b-402d-4604-be40-a25a004ba171
   recommendationTypeId: null
   recommendationControl: MonitoringAndAlerting
