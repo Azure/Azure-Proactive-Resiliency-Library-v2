@@ -81,7 +81,7 @@
   recommendationMetadataState: Active
   longDescription: |
     API Management multi-region deployment will help to reduce request latency perceived by geographically distributed API consumers and improves service availability if one region goes offline.
-  potentialBenefits: Improve latency, provides business continuity and disaster recovery
+  potentialBenefits: Improve latency and provides business continuity
   pgVerified: true
   automationAvailable: false
   tags: null
