@@ -71,3 +71,22 @@
   learnMoreLink:
     - name: Setting up auto-scale for Azure API Management
       url: "https://learn.microsoft.com/azure/api-management/api-management-howto-autoscale"
+
+- description: Enable caching to improve performance in Azure API Management
+  aprlGuid: badd9a1f-222a-498d-ab84-1f14892b1c1b
+  recommendationTypeId: null
+  recommendationControl: HighAvailability
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.ApiManagement/service
+  recommendationMetadataState: Active
+  longDescription: |
+    Response caching can significantly reduce latency for API callers and backend load for API providers.
+  potentialBenefits: Ensures service continuity and high availability
+  pgVerified: false
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: Add caching to improve performance in Azure API Management
+      url: "https://learn.microsoft.com/en-us/azure/api-management/api-management-howto-cache"
+    - name: Use an external cache in Azure API Management
+      url: "https://learn.microsoft.com/en-us/azure/api-management/api-management-howto-cache-external"
