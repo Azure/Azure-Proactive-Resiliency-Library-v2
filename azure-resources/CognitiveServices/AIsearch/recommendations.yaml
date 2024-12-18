@@ -7,6 +7,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Availability zones are used when adding multiple replicas to your search service. Each replica is assigned to a different zone in the region. If there are more replicas than zones, they are distributed as evenly as possible across the available zones.  potentialBenefits: High Availability
+  potentialBenefits: High availability
   pgVerified: false
   automationAvailable: true
   tags: null
