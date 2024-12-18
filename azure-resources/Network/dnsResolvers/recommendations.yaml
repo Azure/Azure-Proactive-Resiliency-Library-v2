@@ -1,14 +1,14 @@
-- description: Configure AZs and/or cross-region failover for Private DNS Resolver
+- description: Configure cross-region failover for Private DNS Resolver
   aprlGuid: bdd38c02-96bf-4d4e-a636-293729463f3d
   recommendationTypeId: null
-  recommendationControl: High Availability, Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/dnsResolvers
   recommendationMetadataState: Active
   longDescription: |
-    If your region supports AZs, no additional action is needed unless you require enhanced resiliency or cross-region failover. For regions without AZs, implement disaster recovery by deploying Private DNS Resolvers in multiple regions and configuring cross-region failover to ensure reliability.
-  potentialBenefits: Improved DR readiness, and support for multi-region failover during regional outages.
-  pgVerified: true
+    Deploy Private DNS Resolvers across multiple regions to establish cross-region failover.
+  potentialBenefits: Ensures BCDR during regional outages.
+  pgVerified: false
   automationAvailable: true
   tags: null
   learnMoreLink:

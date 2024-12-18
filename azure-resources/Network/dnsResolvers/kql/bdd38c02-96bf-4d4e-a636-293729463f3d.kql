@@ -1,7 +1,1 @@
-// Azure Resource Graph Query
-// Lists all DNS Resolvers and indicates whether their regions support Availability Zones.
-
-resources
-| where type == "microsoft.network/dnsresolvers"
-| extend supportsAZs = iif(location in ("brazilsouth", "francecentral", "qatarcentral", "southafricanorth", "australiaeast", "canadacentral", "italynorth", "uaenorth", "centralindia", "centralus", "germanywestcentral", "israelcentral", "japaneast", "eastus", "norwayeast", "japanwest", "eastus2", "northeurope", "southeastasia", "southcentralus", "uksouth", "eastasia", "usgovvirginia", "westeurope", "chinanorth3", "westus2", "swedencentral", "koreacentral", "westus3", "switzerlandnorth", "newzealandnorth", "mexicocentral", "polandcentral", "spaincentral"), "Yes", "No")
-| project name, location, supportsAZs, id
+// cannot-be-validated-with-arg
