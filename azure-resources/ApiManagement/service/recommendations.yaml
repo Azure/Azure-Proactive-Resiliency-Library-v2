@@ -71,3 +71,20 @@
   learnMoreLink:
     - name: Setting up auto-scale for Azure API Management
       url: "https://learn.microsoft.com/azure/api-management/api-management-howto-autoscale"
+
+- description: Configure API management service in multiple Azure regions
+  aprlGuid: af4f88cb-35e8-4371-b29e-3a32b1d2f40a
+  recommendationTypeId: null
+  recommendationControl: DisasterRecovery
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.ApiManagement/service
+  recommendationMetadataState: Active
+  longDescription: |
+    API Management multi-region deployment will help to reduce request latency perceived by geographically distributed API consumers and improves service availability if one region goes offline.
+  potentialBenefits: Improve latency, provides business continuity and disaster recovery
+  pgVerified: true
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: Deploy API Management instance to multiple Azure regions
+      url: "https://learn.microsoft.com/en-us/azure/api-management/api-management-howto-deploy-multi-region"
