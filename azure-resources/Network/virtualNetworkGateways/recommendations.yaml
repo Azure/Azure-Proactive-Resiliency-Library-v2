@@ -93,7 +93,7 @@
   aprlGuid: 3e115044-a3aa-433e-be01-ce17d67e50da
   recommendationTypeId: null
   recommendationControl: HighAvailability
-  recommendationImpact: High
+  recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
   recommendationMetadataState: Active
   longDescription: |
@@ -106,7 +106,7 @@
     - name: Configure customer-controlled maintenance for your virtual network gateway - ExpressRoute | Microsoft Learn
       url: "https://learn.microsoft.com/en-us/azure/expressroute/customer-controlled-gateway-maintenance#azure-portal-steps"
 
-- description: Choose a Zone-redundant VPN gateway
+- description: Choose a Zone-redundant VPN gateway (Non Mission-Critical workloads only)
   aprlGuid: 5b1933a6-90e4-f642-a01f-e58594e5aab2
   recommendationTypeId: null
   recommendationControl: HighAvailability
@@ -127,7 +127,7 @@
     - name: SLA summary for Azure services
       url: "https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services?lang=1"
 
-- description: Enable Active-Active VPN Gateways for redundancy
+- description: Enable Active-Active VPN Gateways for redundancy (Non Mission-Critical workloads only)
   aprlGuid: 281a2713-c0e0-3c48-b596-19f590c46671
   recommendationTypeId: c249dc0e-9a17-423e-838a-d72719e8c5dd
   recommendationControl: HighAvailability
@@ -146,7 +146,7 @@
     - name: Gateway SKU
       url: "https://learn.microsoft.com/azure/vpn-gateway/vpn-gateway-about-vpn-gateway-settings#gwsku"
 
-- description: Deploy active-active VPN concentrators on your premises for maximum resiliency with VPN gateways
+- description: Deploy active-active VPN concentrators on your premises (Non Mission-Critical workloads only)
   aprlGuid: af11fc4c-c06c-4f4c-b98d-6eee6d5c4c70
   recommendationTypeId: null
   recommendationControl: DisasterRecovery
@@ -163,7 +163,7 @@
     - name: Dual-redundancy active-active VPN gateways for both Azure and on-premises networks
       url: "https://learn.microsoft.com/azure/vpn-gateway/vpn-gateway-highlyavailable#dual-redundancy-active-active-vpn-gateways-for-both-azure-and-on-premises-networks"
 
-- description: Monitor VPN gateway connections and health
+- description: Monitor VPN gateway connections and health (Non Mission-Critical workloads only)
   aprlGuid: 9eab120e-f6d3-ee49-ba0d-766562ce7df1
   recommendationTypeId: null
   recommendationControl: MonitoringAndAlerting
@@ -180,7 +180,7 @@
     - name: VPN gateway data reference
       url: "https://learn.microsoft.com/azure/vpn-gateway/monitor-vpn-gateway-reference"
 
-- description: Enable VPN gateway service health
+- description: Enable VPN gateway service health (Non Mission-Critical workloads only)
   aprlGuid: 9186dae0-7ddc-8f4b-bea5-55538cea4893
   recommendationTypeId: null
   recommendationControl: MonitoringAndAlerting
@@ -199,7 +199,7 @@
     - name: Monitor VPN gateway
       url: "https://learn.microsoft.com/azure/vpn-gateway/monitor-vpn-gateway-reference#metrics"
 
-- description: Deploy zone-redundant VPN gateways with zone-redundant Public IP(s)
+- description: Deploy VPN gateways with zone-redundant Public IPs (Non Mission-Critical workloads only)
   aprlGuid: 4bae5a28-5cf4-40d9-bcf1-623d28f6d917
   recommendationTypeId: null
   recommendationControl: HighAvailability
