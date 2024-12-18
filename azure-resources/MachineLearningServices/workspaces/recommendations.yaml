@@ -59,7 +59,7 @@
   recommendationResourceType: Microsoft.MachineLearningServices/workspaces
   recommendationMetadataState: Active
   longDescription: |
-    When selecting regions for BCDR, ensure that both regions offer adequate compute quotas to meet your requirements in same SKU. This ensures that you can failover to the secondary region without any issues.
+    When selecting regions for BCDR, ensure that both regions offer adequate compute quotas to meet your requirements in the same SKU. This ensures that you can failover to the secondary region without any issues.
   potentialBenefits: Provide enough compute resources to the secondary region
   pgVerified: false
   automationAvailable: false
