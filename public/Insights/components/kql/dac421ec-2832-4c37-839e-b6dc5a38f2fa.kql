@@ -1,8 +1,0 @@
-// Azure Resource Graph query
-// Filters Application Insights resources with ‘Classic’ deployment type
-resources
-| where type =~ "microsoft.insights/components"
-| extend IngestionMode = properties.IngestionMode
-| where IngestionMode =~ 'ApplicationInsights'
-| project recommendationId= "dac421ec-2832-4c37-839e-b6dc5a38f2fa", name, id, tags, param1="ApplicationInsightsDeploymentType: Classic"
-

@@ -1,7 +1,0 @@
-// Azure Resource Graph Query
-// Find virtual networks without DDoS Protection
-resources
-| where type =~ 'Microsoft.Network/virtualNetworks'
-| where isnull(properties.enableDdosProtection) or properties.enableDdosProtection contains "false"
-| project recommendationId = "69ea1185-19b7-de40-9da1-9e8493547a5c", name, id, tags, param1 = strcat("EnableDdosProtection: ", properties.enableDdosProtection)
-

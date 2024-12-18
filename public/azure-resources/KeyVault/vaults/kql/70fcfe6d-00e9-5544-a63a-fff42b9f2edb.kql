@@ -1,7 +1,0 @@
-// Azure Resource Graph Query
-// This resource graph query will return all Key Vaults that do not have Purge Protection enabled.
-resources
-| where type == "microsoft.keyvault/vaults"
-| where isnull(properties.enablePurgeProtection) or properties.enablePurgeProtection != "true"
-| project recommendationId = "70fcfe6d-00e9-5544-a63a-fff42b9f2edb", name, id, tags, param1 = "EnablePurgeProtection: Disabled"
-

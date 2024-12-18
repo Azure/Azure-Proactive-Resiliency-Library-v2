@@ -1,7 +1,0 @@
-// Azure Resource Graph Query
-// Find all VMs that are not using Managed Disks
-Resources
-| where type =~ 'Microsoft.Compute/virtualMachines'
-| where isnull(properties.storageProfile.osDisk.managedDisk)
-| project recommendationId = "122d11d7-b91f-8747-a562-f56b79bcfbdc", name, id, tags
-

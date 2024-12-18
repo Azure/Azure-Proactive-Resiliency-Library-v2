@@ -1,7 +1,0 @@
-// Azure Resource Graph Query
-// Find all VMs where replication has been enabled but Test Failover was never performed
-recoveryservicesresources
-| where type == "microsoft.recoveryservices/vaults/replicationfabrics/replicationprotectioncontainers/replicationprotecteditems"
-| where properties.providerSpecificDetails.dataSourceInfo.datasourceType == 'AzureVm' and isnull(properties.lastSuccessfulTestFailoverTime)
-| project recommendationId="17e877f7-3a89-4205-8a24-0670de54ddcd" , name = properties.providerSpecificDetails.recoveryAzureVMName, id=properties.providerSpecificDetails.dataSourceInfo.resourceId
-

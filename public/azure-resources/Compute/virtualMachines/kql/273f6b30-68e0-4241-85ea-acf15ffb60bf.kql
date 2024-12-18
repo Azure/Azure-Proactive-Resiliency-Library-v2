@@ -1,7 +1,0 @@
-// Azure Resource Graph Query
-// Find all VMs that are not associated with a VMSS Flex instance
-resources
-| where type =~ 'Microsoft.Compute/virtualMachines'
-| where isnull(properties.virtualMachineScaleSet.id)
-| project recommendationId="273f6b30-68e0-4241-85ea-acf15ffb60bf", name, id, tags
-

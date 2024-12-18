@@ -1,6 +1,0 @@
-// Azure Resource Graph Query
-// Find Database for MySQL instances that do not have a read replica configured
-resources
-| where type =~ "microsoft.dbformysql/flexibleservers"
-| where properties.replicationRole == "None"
-| project recommendationId = "b49a8653-cc43-48c9-8513-a2d2e3f14dd1", name, id, tags, param1 = strcat("replicationRole:", properties['replicationRole'])

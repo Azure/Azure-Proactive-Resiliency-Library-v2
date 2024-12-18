@@ -1,7 +1,0 @@
-// Azure Resource Graph Query
-// Gets Entry Domain Services that are using only one replicaSet
-resources
-| where type == "microsoft.aad/domainservices"
-| extend replicaSets = properties.replicaSets
-| where array_length(replicaSets) < 2
-| project recommendationId='a3058909-fcf8-4450-88b5-499f57449178', name=name, id=id, tags=tags, param1=strcat('replicaSetLocation:', replicaSets[0].location)

@@ -1,8 +1,0 @@
-// Azure Resource Graph Query
-// Find all LoadBalancers with Outbound rules configured
-resources
-| where type =~ 'Microsoft.Network/loadBalancers'
-| extend outboundRules = array_length(properties.outboundRules)
-| where outboundRules > 0
-| project recommendationId = "8d319a05-677b-944f-b9b4-ca0fb42e883c", name, id, tags, Param1 = "outboundRules: >=1"
-

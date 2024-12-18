@@ -1,8 +1,0 @@
-// Azure Resource Graph Query
-// Find all Container Registries that have anonymous pull access enabled
-resources
-| where type =~ "microsoft.containerregistry/registries"
-| where properties.anonymousPullEnabled == "true"
-| project recommendationId = "03f4a7d8-c5b4-7842-8e6e-14997a34842b", name, id, tags
-| order by id asc
-

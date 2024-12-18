@@ -1,8 +1,0 @@
-// Azure Resource Graph Query
-// List all Image Templates that are not replicated to another region
-resources
-| where type =~ "microsoft.virtualmachineimages/imagetemplates"
-| mv-expand distribution=properties.distribute
-| where array_length(parse_json(distribution).replicationRegions) == 1
-| project recommendationId = "21fb841b-ba70-1f4e-a460-1f72fb41aa51", name, id, param1=strcat("replicationRegions:",parse_json(distribution).replicationRegions)
-

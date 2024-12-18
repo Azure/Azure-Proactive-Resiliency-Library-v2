@@ -1,7 +1,0 @@
-// Azure Resource Graph Query
-// This Resource Graph query will return all Azure NetApp Files volumes without a snapshot policy defined.
-resources
-| where type == "microsoft.netapp/netappaccounts/capacitypools/volumes"
-| where properties.dataProtection.snapshot.snapshotPolicyId == ""
-| project recommendationId = "72827434-c773-4345-9493-34848ddf5803", name, id, tags
-

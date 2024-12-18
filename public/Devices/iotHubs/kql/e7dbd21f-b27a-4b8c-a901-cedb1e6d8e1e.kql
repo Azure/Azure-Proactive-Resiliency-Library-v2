@@ -1,8 +1,0 @@
-// Azure Resource Graph Query
-// list all IoT Hubs that have the fallback route disabled
-resources
-| where type == "microsoft.devices/iothubs"
-| extend fallbackEnabled=properties.routing.fallbackRoute.isEnabled
-| where fallbackEnabled == false
-| project recommendationId="e7dbd21f-b27a-4b8c-a901-cedb1e6d8e1e", name, id, tags, param1='FallbackRouteEnabled:false'
-

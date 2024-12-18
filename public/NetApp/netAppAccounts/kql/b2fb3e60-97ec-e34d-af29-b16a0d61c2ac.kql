@@ -1,6 +1,0 @@
-// Azure Resource Graph Query
-// This Resource Graph query will return all Azure NetApp Files volumes without a backup policy defined.
-resources
-| where type == "microsoft.netapp/netappaccounts/capacitypools/volumes"
-| where properties.dataProtection.backup.backupPolicyId == ""
-| project recommendationId = "b2fb3e60-97ec-e34d-af29-b16a0d61c2ac", name, id, tags

@@ -1,7 +1,0 @@
-// Azure Resource Graph Query
-// Find all Virtual Machines not associated with a Capacity Reservation, and provide details for Capacity Reservation like vmSize, location, and zone.
-resources
-| where type =~ 'Microsoft.Compute/virtualMachines'
-| where isnull(properties.capacityReservation)
-| extend zoneValue = iff(isnull(zones), "null", zones)
-| project recommendationId = "302fda08-ee65-4fbe-a916-6dc0b33169c4", name, id, tags, param1 = strcat("VmSize: ", properties.hardwareProfile.vmSize), param2 = strcat("Location: ", location), param3 = strcat("Zone: ", zoneValue)

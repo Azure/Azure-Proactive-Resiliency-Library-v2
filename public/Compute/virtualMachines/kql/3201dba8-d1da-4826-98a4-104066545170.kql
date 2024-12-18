@@ -1,7 +1,0 @@
-// Azure Resource Graph Query
-// Find all VMs using A or B series families
-resources
-| where type == 'microsoft.compute/virtualmachines'
-| where properties.hardwareProfile.vmSize contains "Standard_B" or properties.hardwareProfile.vmSize contains "Standard_A"
-| project recommendationId = "3201dba8-d1da-4826-98a4-104066545170", name, id, tags, param1=strcat("vmSku: " , properties.hardwareProfile.vmSize)
-

@@ -1,7 +1,0 @@
-// Azure Resource Graph Query
-// This Resource Graph query will return all Azure NetApp Files volumes without standard network features.
-resources
-| where type =~ "microsoft.netapp/netappaccounts/capacitypools/volumes"
-| where properties.networkFeatures != "Standard"
-| project recommendationId = "ab984130-c57b-6c4a-8d04-6723b4e1bdb6", name, id, tags
-
