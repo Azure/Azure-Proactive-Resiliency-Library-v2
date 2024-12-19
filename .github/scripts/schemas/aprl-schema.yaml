@@ -16,7 +16,7 @@ recommendation:
   potentialBenefits: str(max=60)
   pgVerified: bool()
   automationAvailable: bool()
-  tags: null()
+  tags: enum('AI','AVD', 'AVS', 'HPC', 'SAP')
   learnMoreLink: list(include('linkItem'), required=False, min=1)
 
 linkItem:
