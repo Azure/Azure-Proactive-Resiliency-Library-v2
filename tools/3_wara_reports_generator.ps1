@@ -161,7 +161,7 @@ https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2
         {
             $workingFolderPath = $PSScriptRoot
             Set-Location -path $workingFolderPath;
-            $Global:clonePath = "$workingFolderPath\Azure-Proactive-Resiliency-Library"
+            $Global:clonePath = "$workingFolderPath\Azure-Proactive-Resiliency-Library-v2"
             Write-Debug "Checking the version of the script"
             $RepoVersion = Get-Content -Path "$clonePath\tools\Version.json" -ErrorAction SilentlyContinue | ConvertFrom-Json
             if ($Version -ne $RepoVersion.Generator)
