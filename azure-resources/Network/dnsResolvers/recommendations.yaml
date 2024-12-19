@@ -1,4 +1,4 @@
-- description: Configure cross-region failover for Private DNS Resolver
+- description: Setup DNS cross-region failover using Azure DNS private resolvers
   aprlGuid: bdd38c02-96bf-4d4e-a636-293729463f3d
   recommendationTypeId: null
   recommendationControl: DisasterRecovery
