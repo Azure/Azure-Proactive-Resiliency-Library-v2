@@ -2164,7 +2164,7 @@ https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2
 
     #Call the functions
     $Global:LogFile = ($PSScriptRoot + '\wara_reports_generator.log')
-    $Global:Version = "2.1.6"
+    $Global:Version = "2.1.7"
     Write-Host "Version: " -NoNewline
     Write-Host $Global:Version -ForegroundColor DarkBlue -NoNewline
     Write-Host " "
