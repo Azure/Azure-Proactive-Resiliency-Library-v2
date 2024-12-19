@@ -61,7 +61,7 @@
 
 - description: Migrate to Application Gateway v2
   aprlGuid: 7893f0b3-8622-1d47-beed-4b50a19f7895
-  recommendationTypeId: 0e19257e-dcef-4d00-8de1-5fe1ae0fd948
+  recommendationTypeId: null
   recommendationControl: Scalability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/applicationGateways
@@ -158,7 +158,7 @@
 
 - description: Ensure Application Gateway Subnet is using a /24 subnet mask
   aprlGuid: 8364fd0a-7c0e-e240-9d95-4bf965aec243
-  recommendationTypeId: ef4da732-f541-4109-bc0e-465c68b6c7eb
+  recommendationTypeId: null
   recommendationControl: OtherBestPractices
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/applicationGateways

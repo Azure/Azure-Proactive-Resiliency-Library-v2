@@ -1,0 +1,8 @@
+// Azure Resource Graph Query
+// Provides a list of App services that do not have minimum instance count of 2
+
+resources
+| where type == "microsoft.web/serverfarms"
+| where sku.capacity < 2
+| project recommendationId = "855ca19a-6518-4f2e-9e5a-01796fbca9f8", name, id, tags, param1 = "Instance count is less than 2"
+
