@@ -2,7 +2,7 @@
   aprlGuid: c9b0c6f6-1f64-4b4b-8165-00770b295dd7
   recommendationTypeId: null
   recommendationControl: HighAvailability
-  recommendationImpact: High
+  recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/bastionHosts
   recommendationMetadataState: Active
   longDescription: |
