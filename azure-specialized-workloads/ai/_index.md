@@ -17,7 +17,7 @@ geekdocHidden: false
 | [Plan for a multi-regional deployment of Azure Machine Learning and associated resources](../../../Azure-Proactive-Resiliency-Library-v2/azure-resources/MachineLearningServices/workspaces/#plan-for-a-multi-regional-deployment-of-azure-machine-learning-and-associated-resources)             | MachineLearningServices  |   workspaces    |
 | [Deploy Azure Machine learning workspace in secondary region](../../../Azure-Proactive-Resiliency-Library-v2/azure-resources/MachineLearningServices/workspaces/#deploy-azure-machine-learning-workspace-in-secondary-region)             | MachineLearningServices  |   workspaces    |
 | [Ensure to create Machine Learning Compute resources in secondary region](../../../Azure-Proactive-Resiliency-Library-v2/azure-resources/MachineLearningServices/workspaces/#ensure-to-create-machine-learning-compute-resources-in-secondary-region)             | MachineLearningServices  |   workspaces    |
-
+| [Configure API management service in multiple Azure regions](../../../Azure-Proactive-Resiliency-Library-v2/azure-resources/ApiManagement/service/#configure-api-management-service-in-multiple-azure-regions)             | ApiManagement  |   service    |
 <br>
 
 ## General Workload Guidance
