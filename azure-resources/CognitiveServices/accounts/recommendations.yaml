@@ -6,7 +6,7 @@
   recommendationResourceType: Microsoft.CognitiveServices/Accounts
   recommendationMetadataState: Active
   longDescription: Global provisioned deployments provide reserved model processing capacity for high and predictable throughput using Azure global infrastructure. Suitable for applications requiring lower latency variance at large workload usage. Provides cost savings
-  potentialBenefits: Low latency variance, high throughput, business continuity
+  potentialBenefits: Low latency variance, high throughputs, business continuity
   pgVerified: true
   automationAvailable: false
   tags: null
