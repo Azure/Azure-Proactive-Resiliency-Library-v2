@@ -1,6 +1,5 @@
 // Azure Resource Graph Query
 // Provides a list of AI search deployments
-
 resources
 | where type == "microsoft.search/searchservices"
   | project name, location, resourceGroup, subscriptionId
