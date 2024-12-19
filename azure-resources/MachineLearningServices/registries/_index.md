@@ -1,5 +1,5 @@
 ---
-title: workspaces
+title: registries
 geekdocCollapseSection: true
 geekdocHidden: false
 ---
