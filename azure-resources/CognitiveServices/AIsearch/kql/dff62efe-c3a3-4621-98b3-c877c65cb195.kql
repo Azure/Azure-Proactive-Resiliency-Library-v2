@@ -1,10 +1,8 @@
 // Azure Resource Graph Query
 // Provides a list of AI search deployments
 
-
-
-
 resources
 | where type == "microsoft.search/searchservices"
   | project name, location, resourceGroup, subscriptionId
-| project name, location, resourceGroup, subscriptionId
+| project recommendationId = "dff62efe-c3a3-4621-98b3-c877c65cb195", name, param1 = strcat(location) 
+| order by id asc
