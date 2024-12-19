@@ -1,0 +1,24 @@
+// Azure Resource Graph Query
+// Find what virtual Hubs do not have Monitoring Enabled.
+
+resources
+| where type =~ "Microsoft.Network/virtualHubs"
+| where ['kind'] != 'RouteServer'
+| extend hubId = tolower(tostring(id)), hubName = name, hubTags = tags, hubLocation = location, vwanId = tolower(tostring(properties.virtualWan.id))
+| join kind=leftouter (
+    resources
+    | where type =~ "microsoft.insights/metricalerts"
+    | mv-expand scope = properties.scopes
+    | where scope has "Microsoft.Network/virtualHubs"
+    | where ['kind'] != 'RouteServer'
+    | extend scope = tolower(tostring(scope))
+    | project scope
+) on $left.hubId == $right.scope
+| where strlen(scope) == 0
+| join kind=leftouter (
+    resources
+    | where type =~ "Microsoft.Network/virtualWans"
+    | extend vwanId = tolower(tostring(id)), vwanName = name
+    | project vwanId, vwanName
+) on $left.vwanId == $right.vwanId
+| project recommendationId = "30ec8a5e-46de-4323-87e9-a7c56b72813b", name, id, tags, param1=strcat("vWAN Name : ",vwanName)

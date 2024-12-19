@@ -1,0 +1,13 @@
+// Azure Resource Graph Query
+// Find all Virtual WANs with Basic SKU. This is done at the Virtual Hub Resource Provider
+
+resources
+| where type == "microsoft.network/virtualhubs"
+| extend sku = tostring(properties.sku), virtualWanId = tostring(properties.virtualWan.id)
+| where sku == "Basic"
+| join (
+    resources
+    | where type == "microsoft.network/virtualwans"
+    | project id, name, tags
+) on $left.virtualWanId == $right.id
+| project recommendationId = "f29e56a1-6a80-4295-a663-1cce0ea2b10a", name, id, tags, param1=strcat("SKU: ", sku)
