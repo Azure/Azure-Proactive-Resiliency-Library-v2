@@ -65,23 +65,6 @@
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/deployment-types#data-zone-standard"
 
-- description: Tune AOAI content filters to ensure requests are properly filtered
-  aprlGuid: 06c2668f-115f-443f-ba74-140595eb269a
-  recommendationTypeId: null
-  recommendationControl: Governance
-  recommendationImpact: High
-  recommendationResourceType: Microsoft.CognitiveServices/Accounts
-  recommendationMetadataState: Active
-  longDescription: |
-    AOAI content filters can be tuned by configuring severity thresholds for categories like hate, sexual, violence, self-harm, enabling optional classifiers and testing to ensure effectiveness. Adjust thresholds to balance security, usability and monitor filtering behavior for optimal results.
-  potentialBenefits: Enhanced security and filtering for optimal content control
-  pgVerified: false
-  automationAvailable: false
-  tags: null
-  learnMoreLink:
-    - name: AOAI Content filtering
-      url: "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/content-filter"
-
 - description: Use comprehensive monitoring solution for AOAI service
   aprlGuid: 72b1b4ad-a14b-4430-9799-91bda782973d
   recommendationTypeId: null
