@@ -1,3 +1,19 @@
+- description: Ensure AOAI models are deployed using Global deployment
+  aprlGuid: 081fc8a4-b2d9-405b-b351-334e621016f5
+  recommendationTypeId: null
+  recommendationControl: HighAvailability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.CognitiveServices/Accounts
+  recommendationMetadataState: Active
+  longDescription: Global deployments leverage Azure's global infrastructure to route customer traffic to the best available data center for the customer’s inference requests. This ensures highest initial throughput limits and best model availability while still providing our uptime SLA and low latency.
+  potentialBenefits: Low latency, best model availability, business continuity
+  pgVerified: false
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/deployment-types#global-provisioned"
+
 - description: Deploy a PAYG instance of the model with provisioned throughput to manage overflow effectively
   aprlGuid: 0c193899-da60-4a52-b4a0-77d75ac8c5c5
   recommendationTypeId: null
@@ -49,3 +65,19 @@
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/deployment-types#data-zone-standard"
 
+- description: Deploy AOAI Service in multiple regions using Standard and/or Provisioned deployments
+  aprlGuid: 61187af4-7d36-4b48-b16e-de78bef143a0
+  recommendationTypeId: null
+  recommendationControl: HighAvailability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.CognitiveServices/Accounts
+  recommendationMetadataState: Active
+  longDescription: |
+    If your service needs to always be available, design AOAI Service to either failover into another region or split the workload between two or more regions. Applications requiring high degrees of resiliency should consider this to strengthen their model infrastructure.
+  potentialBenefits: Ensures business continuity during regional outages.
+  pgVerified: false
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/business-continuity-disaster-recovery"
