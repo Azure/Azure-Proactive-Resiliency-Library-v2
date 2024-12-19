@@ -86,7 +86,7 @@
   aprlGuid: 72b1b4ad-a14b-4430-9799-91bda782973d
   recommendationTypeId: null
   recommendationControl: MonitoringAndAlerting
-  recommendationImpact: High
+  recommendationImpact: Medium
   recommendationResourceType: Microsoft.CognitiveServices/Accounts
   recommendationMetadataState: Active
   longDescription: |
