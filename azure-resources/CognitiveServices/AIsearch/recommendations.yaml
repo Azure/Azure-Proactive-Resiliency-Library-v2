@@ -1,7 +1,7 @@
 - description: Enable AZ support in AI Search by configuring multiple replicas to your search service
   aprlGuid: b376281d-bfec-4695-8f90-9a44544fdfa4
   recommendationTypeId: null
-  recommendationControl: BusinessContinuity
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Search/searchServices
   recommendationMetadataState: Active
@@ -19,7 +19,7 @@
 - description: Enable Multi Region deployments for AI Search
   aprlGuid: dff62efe-c3a3-4621-98b3-c877c65cb195
   recommendationTypeId: null
-  recommendationControl: DisasterRecovery
+  recommendationControl: HighAvailability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Search/searchServices
   recommendationMetadataState: Active
