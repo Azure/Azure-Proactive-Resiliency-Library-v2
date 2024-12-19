@@ -1,7 +1,7 @@
 ---
 title: dataCollectionEndpoints
 geekdocCollapseSection: true
-geekdocHidden: false
+geekdocHidden: true
 ---
 
 {{< azure-resources-recommendationlist name="azure-resources-recommendationlist" >}}
