@@ -10,7 +10,7 @@
   potentialBenefits: Monitoring endpoints gives visibility into metrics and logs
   pgVerified: false
   automationAvailable: false
-  tags: AI
+  tags: ai
   learnMoreLink:
     - name: Monitor online endpoints using Application Insights
       url: "https://learn.microsoft.com/en-us/azure/machine-learning/how-to-monitor-online-endpoints?view=azureml-api-2#using-application-insights"
@@ -27,7 +27,7 @@
   potentialBenefits: Provides monitoring and data retention in DR region
   pgVerified: false
   automationAvailable: false
-  tags: AI
+  tags: ai
   learnMoreLink:
     - name: Data collection, retention, and storage in Application Insights
       url: "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-retention-configure?tabs=portal-3%2Cportal-1%2Cportal-2"
