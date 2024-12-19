@@ -2,7 +2,7 @@
   aprlGuid: 23b2dfc7-7e5d-9443-9f62-980ca621b561
   recommendationTypeId: null
   recommendationControl: MonitoringAndAlerting
-  recommendationImpact: High
+  recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/routeTables
   recommendationMetadataState: Active
   longDescription: |

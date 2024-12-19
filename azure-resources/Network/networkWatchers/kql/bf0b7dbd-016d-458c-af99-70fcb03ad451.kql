@@ -1,1 +1,7 @@
-// under-development
+// Azure Resource Graph Query
+// This query will return all Flow Logs where Flow Analytics Configuration is disabled
+resources
+| where type =~ "microsoft.network/networkwatchers/flowlogs"
+| where properties.targetResourceId contains "microsoft.network/virtualNetworks"
+| where not(properties.flowAnalyticsConfiguration.networkWatcherFlowAnalyticsConfiguration.enabled)
+| project recommendationId = "bf0b7dbd-016d-458c-af99-70fcb03ad451", name, id, tags, param1= "Flow Analytics Configuration is disabled",param2=strcat("Vnet Name : ", properties.targetResourceId)

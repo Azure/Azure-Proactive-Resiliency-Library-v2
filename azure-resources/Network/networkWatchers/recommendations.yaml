@@ -36,7 +36,7 @@
   aprlGuid: 1e28bbc1-1eb7-486f-8d7f-93943f40219c
   recommendationTypeId: null
   recommendationControl: MonitoringAndAlerting
-  recommendationImpact: High
+  recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/networkWatchers
   recommendationMetadataState: Active
   longDescription: |
@@ -49,30 +49,11 @@
     - name: Connection monitor overview
       url: "https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-overview"
 
-- description: Enable Network Security Group and Virtual Network Flow Logs
-  aprlGuid: a1317a0b-402d-4604-be40-a25a004ba171
-  recommendationTypeId: null
-  recommendationControl: MonitoringAndAlerting
-  recommendationImpact: High
-  recommendationResourceType: Microsoft.Network/networkWatchers
-  recommendationMetadataState: Active
-  longDescription: |
-    Improves monitoring and security for Azure and Hybrid connectivity
-  potentialBenefits: Improves monitoring and security for Azure connectivity
-  pgVerified: true
-  automationAvailable: false
-  tags: null
-  learnMoreLink:
-    - name: Flow logging for network security groups
-      url: "https://learn.microsoft.com/en-us/azure/network-watcher/nsg-flow-logs-overview"
-    - name: Virtual network flow logs
-      url: "https://learn.microsoft.com/en-us/azure/network-watcher/vnet-flow-logs-overview"
-
-- description: Enable traffic analytics in Network Security Group and Virtual Network Flow Logs configuration.
+- description: Enable traffic analytics in Virtual Network Flow Logs configuration
   aprlGuid: bf0b7dbd-016d-458c-af99-70fcb03ad451
   recommendationTypeId: null
   recommendationControl: MonitoringAndAlerting
-  recommendationImpact: High
+  recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/networkWatchers
   recommendationMetadataState: Active
   longDescription: |

@@ -19,7 +19,7 @@
   aprlGuid: ab896e8c-49b9-2c44-adec-98339aff7821
   recommendationTypeId: null
   recommendationControl: MonitoringAndAlerting
-  recommendationImpact: High
+  recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/privateDnsZones
   recommendationMetadataState: Active
   longDescription: |
@@ -49,16 +49,16 @@
     - name: Private Link and DNS integration at scale
       url: "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/private-link-and-dns-integration-at-scale"
 
-- description: Ensure Time-To-Live (TTL) is set appropriately to ensure RPOs can be met
+- description: Ensure Time-To-Live (TTL) is set appropriately to ensure RTOs can be met
   aprlGuid: 3538aa48-c40b-455b-a93b-269fe6e65be2
   recommendationTypeId: null
   recommendationControl: DisasterRecovery
-  recommendationImpact: High
+  recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/privateDnsZones
   recommendationMetadataState: Active
   longDescription: |
-    Azure Private DNS allows the Time-To-Live (TTL) for record sets in the zone to be set to a value between 1 and 2147483647 seconds. You should ensure that the TTL for the DNS record sets in your DNS Zones are set appropriately to meet your RPO targets.
-  potentialBenefits: Ensures that no cached DNS records exist past RPO targets
+    Azure Private DNS allows the Time-To-Live (TTL) for record sets in the zone to be set to a value between 1 and 2147483647 seconds. You should ensure that the TTL for the DNS record sets in your DNS Zones are set appropriately to meet your RTO targets.
+  potentialBenefits: Ensures that no cached DNS records exist past RTO targets
   pgVerified: false
   automationAvailable: false
   tags: null
