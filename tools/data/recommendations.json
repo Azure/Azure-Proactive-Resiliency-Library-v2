@@ -1582,6 +1582,27 @@
     "query": "// Azure Resource Graph Query\n// Find all Azure Stream Analytics jobs that are not using the latest version of the service.\nresources\n| where type =~ \"Microsoft.StreamAnalytics/streamingjobs\"\n| where properties.sku.name !~ \"StandardV2\"\n| project recommendationId = \"5d40d3d4-179d-4cf5-ac24-901210f512e7\", name, id, tags\n"
   },
   {
+    "aprlGuid": "611c7c96-ac55-4ddf-909e-9eb70fd048b7",
+    "recommendationTypeId": null,
+    "recommendationMetadataState": "Active",
+    "learnMoreLink": [
+      {
+        "url": "https://learn.microsoft.com/en-us/azure/machine-learning/how-to-manage-registries?view=azureml-api-2&tabs=cli",
+        "name": "Manage Azure Machine Learning registries"
+      }
+    ],
+    "recommendationControl": "DisasterRecovery",
+    "longDescription": "Azure Machine Learning registries enables to create and use assets (models, env, components, and datasets) in different workspaces. Registries support multi-region replication for low latency access to assets, allowing to use them in workspaces located in different Azure regions.\n",
+    "pgVerified": false,
+    "description": "Create the Azure machine learning registry in multiple regions",
+    "potentialBenefits": "Improves performance and reliability",
+    "tags": null,
+    "recommendationResourceType": "Microsoft.MachineLearningServices/registries",
+    "recommendationImpact": "High",
+    "automationAvailable": false,
+    "query": "// cannot-be-validated-with-arg\n"
+  },
+  {
     "aprlGuid": "a86ed26a-59d9-47bd-b440-6bc71b843978",
     "recommendationTypeId": null,
     "recommendationMetadataState": "Active",
@@ -1610,7 +1631,6 @@
       {
         "url": "https://learn.microsoft.com/en-us/azure/machine-learning/how-to-high-availability-machine-learning?view=azureml-api-2",
         "name": "Failover for business continuity and disaster recovery"
-
       }
     ],
     "recommendationControl": "DisasterRecovery",
@@ -4289,32 +4309,7 @@
     "potentialBenefits": "Improves monitoring for Azure and Hybrid connectivity",
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/networkWatchers",
-    "recommendationImpact": "High",
-    "automationAvailable": false,
-    "query": "// under-development\n"
-  },
-  {
-    "aprlGuid": "a1317a0b-402d-4604-be40-a25a004ba171",
-    "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
-    "learnMoreLink": [
-      {
-        "url": "https://learn.microsoft.com/en-us/azure/network-watcher/nsg-flow-logs-overview",
-        "name": "Flow logging for network security groups"
-      },
-      {
-        "url": "https://learn.microsoft.com/en-us/azure/network-watcher/vnet-flow-logs-overview",
-        "name": "Virtual network flow logs"
-      }
-    ],
-    "recommendationControl": "MonitoringAndAlerting",
-    "longDescription": "Improves monitoring and security for Azure and Hybrid connectivity\n",
-    "pgVerified": true,
-    "description": "Enable Network Security Group and Virtual Network Flow Logs",
-    "potentialBenefits": "Improves monitoring and security for Azure connectivity",
-    "tags": null,
-    "recommendationResourceType": "Microsoft.Network/networkWatchers",
-    "recommendationImpact": "High",
+    "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// under-development\n"
   },
@@ -4470,8 +4465,8 @@
     "recommendationMetadataState": "Active",
     "learnMoreLink": [
       {
-        "name": "Virtual network flow logs",
-        "url": "https://learn.microsoft.com/azure/network-watcher/vnet-flow-logs-overview"
+        "url": "https://learn.microsoft.com/azure/network-watcher/vnet-flow-logs-overview",
+        "name": "Virtual network flow logs"
       }
     ],
     "recommendationControl": "MonitoringAndAlerting",
@@ -5155,8 +5150,8 @@
     "recommendationMetadataState": "Active",
     "learnMoreLink": [
       {
-        "name": "Azure Resource Manager Overview",
-        "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overview#resource-group-location-alignment"
+        "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overview#resource-group-location-alignment",
+        "name": "Azure Resource Manager Overview"
       }
     ],
     "recommendationControl": "DisasterRecovery",
