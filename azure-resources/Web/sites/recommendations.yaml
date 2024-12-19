@@ -70,7 +70,7 @@
 
 - description: Deploy to a staging slot
   aprlGuid: a1d91661-32d4-430b-b3b6-5adeb0975df7
-  recommendationTypeId: 1d3b5a51-62d4-4b77-96f6-40ed0a3aa21f
+  recommendationTypeId: null
   recommendationControl: Governance
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Web/sites

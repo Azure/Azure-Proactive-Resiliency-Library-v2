@@ -72,7 +72,7 @@
 
 - description: Configure continuous backup mode
   aprlGuid: e544520b-8505-7841-9e77-1f1974ee86ec
-  recommendationTypeId: 52fef986-5897-4359-8b92-0f22749f0d73
+  recommendationTypeId: null
   recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.DocumentDB/databaseAccounts

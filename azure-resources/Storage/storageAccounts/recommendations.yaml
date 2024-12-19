@@ -19,7 +19,7 @@
 
 - description: Use premium performance block blob storage for high performance workloads
   aprlGuid: 5587ef77-7a05-a74d-9c6e-449547a12f27
-  recommendationTypeId: c6b94711-f1f5-4e7e-9c89-c17ed4190969
+  recommendationTypeId: null
   recommendationControl: Scalability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Storage/storageAccounts
