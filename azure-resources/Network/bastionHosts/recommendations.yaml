@@ -1,0 +1,35 @@
+- description: Deploy Azure Bastion across Availability Zones
+  aprlGuid: c9b0c6f6-1f64-4b4b-8165-00770b295dd7
+  recommendationTypeId: null
+  recommendationControl: HighAvailability
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Network/bastionHosts
+  recommendationMetadataState: Active
+  longDescription: |
+    Azure Bastion provides secure operational access to workload components. By distributing your Bastion resource across multiple availability zones, you can enhance the resiliency and reliability of your production workloads.
+  potentialBenefits: Provide high availability and resilience to failures
+  pgVerified: true
+  automationAvailable: true
+  tags: null
+  learnMoreLink:
+    - name: Reliability in Azure Bastion
+      url: "https://learn.microsoft.com/en-us/azure/reliability/reliability-bastion"
+    - name: Deploy Azure Bastion by using specified settings
+      url: "https://learn.microsoft.com/en-us/azure/bastion/tutorial-create-host-portal"
+
+- description: Deploy Azure Bastion into the virtual network in secondary Azure region
+  aprlGuid: 0e57956d-71d9-4a35-bdcf-d7cfd7cd71f4
+  recommendationTypeId: null
+  recommendationControl: DisasterRecovery
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Network/bastionHosts
+  recommendationMetadataState: Active
+  longDescription: |
+    Azure Bastion is a single-region service, if the primary region becomes unavailable, the Bastion resource will also be unavailable. To ensure disaster recovery, it is recommended to deploy Azure Bastion into separate virtual networks across different regions.
+  potentialBenefits: Provides disaster recovery from regional outages
+  pgVerified: true
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: Multi-region support in Azure bastion
+      url: "https://learn.microsoft.com/en-us/azure/reliability/reliability-bastion#multi-region-support"
