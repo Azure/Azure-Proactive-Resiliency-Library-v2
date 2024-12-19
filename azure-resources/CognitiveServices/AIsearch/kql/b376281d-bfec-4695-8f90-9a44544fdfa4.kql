@@ -7,4 +7,3 @@ resources
 | where properties['replicaCount'] < 2
 | project recommendationId = "b376281d-bfec-4695-8f90-9a44544fdfa4", name, id, param1 = strcat(properties['replicaCount']) , param2 = strcat(location) 
 | order by id asc
-
