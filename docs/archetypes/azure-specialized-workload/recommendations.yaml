@@ -11,7 +11,7 @@
   potentialBenefits: Potential Benefits of Implementing the Recommendation (less than 60 characters)
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: null/AI/AVD/AVS/HPC/SAP
   learnMoreLink:
     - name: Learn More
       url: "Link URL"
@@ -29,7 +29,7 @@
   potentialBenefits: Potential Benefits of Implementing the Recommendation (less than 60 characters)
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: null/AI/AVD/AVS/HPC/SAP
   learnMoreLink:
     - name: Learn More
       url: "Link URL"
