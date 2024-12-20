@@ -14,6 +14,7 @@ on:
       - 'azure-specialized-workloads/**/*.kql'
       - 'azure-waf/**/*.yaml'
       - 'azure-waf/**/*.kql'
+    branches: [update-recommendation-object]
   workflow_dispatch:
 
 env:
