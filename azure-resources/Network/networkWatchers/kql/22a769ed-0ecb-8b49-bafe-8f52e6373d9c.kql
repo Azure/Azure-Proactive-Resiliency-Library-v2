@@ -1,5 +1,5 @@
 // Azure Resource Graph Query
-// This query will return all Network Watcher Flow Logs that are not enabled or in a succeeded state
+// This query will return all Network Watcher Flow Logs that are not enabled or not in a succeeded state
 resources
 | where type =~ "microsoft.network/networkwatchers/flowlogs" and isnotnull(properties)
 | extend targetResourceId = tostring(properties.targetResourceId)

@@ -2,10 +2,10 @@
   aprlGuid: f0d4f766-ac19-48c4-b228-4601cc038baa
   recommendationTypeId: null
   recommendationControl: MonitoringAndAlerting
-  recommendationImpact: High
+  recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/vpnGateways
   recommendationMetadataState: Active
-  longDescription: Set up monitoring and alerts for v-Hub's VPN Gateway. Create alert rule for ensuring promptly response to critical events such as packet drop counts, BGP status, Gateway overutilization.
+  longDescription: Set up monitoring and alerts for v-Hub's VPN Gateway. Create alert rule for ensuring promptly response to critical events such as packet drop counts, BGP status, Gateway over utilization. Mission Critical workloads should use dual ExpressRoutes instead of VPN.
   potentialBenefits: Detection and mitigation to avoid disruptions.
   pgVerified: false
   automationAvailable: false
