@@ -1,0 +1,16 @@
+- description: Setup DNS cross-region failover using Azure DNS private resolvers
+  aprlGuid: bdd38c02-96bf-4d4e-a636-293729463f3d
+  recommendationTypeId: null
+  recommendationControl: DisasterRecovery
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/dnsResolvers
+  recommendationMetadataState: Active
+  longDescription: |
+    Deploy Private DNS Resolvers across multiple regions to establish cross-region failover.
+  potentialBenefits: Ensures BCDR during regional outages.
+  pgVerified: false
+  automationAvailable: true
+  tags: null
+  learnMoreLink:
+    - name: Resiliency in Azure DNS Private Resolver
+      url: "https://learn.microsoft.com/en-us/azure/dns/private-resolver-reliability"
