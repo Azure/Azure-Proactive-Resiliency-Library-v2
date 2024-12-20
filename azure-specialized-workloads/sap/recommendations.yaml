@@ -3,14 +3,14 @@
   recommendationTypeId: null
   recommendationControl: HighAvailability
   recommendationImpact: High
-  recommendationResourceType: Specialized.Workload/SAP
+  recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription: |
     Use Azure Availability Zones to protect SAP systems against data center failures. Ensure high availability by deploying across multiple zones. If deployment across zones isn't possible, refer to Microsoft's guidance for high availability options for SAP workloads.
   potentialBenefits: High availability for SAP systems
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: SAP
   learnMoreLink:
     - name: SAP ACSS Quality Insights
       url: "https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/get-quality-checks-insights"
@@ -28,14 +28,14 @@
   recommendationTypeId: null
   recommendationControl: HighAvailability
   recommendationImpact: High
-  recommendationResourceType: Specialized.Workload/SAP
+  recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription: |
     Use VMSS Flex to distribute VMs across zones and fault domains. Follow Microsoft's SAP workload recommendations for settings. If not using VMSS Flex or Availability Sets, consider migrating to VMSS Flex for improved resiliency. Refer to the provided blog post for migration details.
   potentialBenefits: Enhanced resiliency for SAP on Azure
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: SAP
   learnMoreLink:
     - name: OpenSource Inventory Checks
       url: "https://aka.ms/ACESInventoryCheckSAP"
@@ -51,14 +51,14 @@
   recommendationTypeId: 58d6648d-32e8-4346-827c-4f288dd8ca24
   recommendationControl: HighAvailability
   recommendationImpact: High
-  recommendationResourceType: Specialized.Workload/SAP
+  recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription: |
     For single-instance VMs, both OS and data disks must be either Premium SSD or Ultra Disk to achieve the single-instance SLA of 99.9% availability.
   potentialBenefits: Higher SLA of 99.9% with SSDs
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: SAP
   learnMoreLink:
     - name: SAP ACSS Insights
       url: "https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/get-quality-checks-insights"
@@ -76,14 +76,14 @@
   recommendationTypeId: null
   recommendationControl: HighAvailability
   recommendationImpact: High
-  recommendationResourceType: Specialized.Workload/SAP
+  recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription: |
     High availability for databases should be implemented using database native replication technologies and the data should be replicated synchronously that is in SYNC mode from primary database to a stand-by node.
   potentialBenefits: Ensures high availability for SAP data
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: SAP
   learnMoreLink:
     - name: SAP ACSS Insights
       url: "https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/get-quality-checks-insights"
@@ -95,7 +95,7 @@
   recommendationTypeId: null
   recommendationControl: HighAvailability
   recommendationImpact: High
-  recommendationResourceType: Specialized.Workload/SAP
+  recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription: |
     SAP shared file systems such as /sapmnt, /usr/trans, interfaces should be made highly available.
@@ -103,7 +103,7 @@
   potentialBenefits: Enhanced data availability for SAP
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: SAP
   learnMoreLink:
     - name: OpenSource Inventory Checks
       url: "https://aka.ms/ACESInventoryCheckSAP"
@@ -113,14 +113,14 @@
   recommendationTypeId: null
   recommendationControl: HighAvailability
   recommendationImpact: High
-  recommendationResourceType: Specialized.Workload/SAP
+  recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription: |
     Test high availability solutions thoroughly, including kernel panic in Linux VMs and fail-back. Ensure zonal failure scenarios for each SAP layer (database, central services, application servers, shared file systems) are zone redundant, meet RPO = 0, and fail over automatically within your RTO.
   potentialBenefits: Ensures SAP Azure's failover reliability
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: SAP
   learnMoreLink:
     - name: Test Cases
       url: "https://learn.microsoft.com/en-us/azure/sap/workloads/sap-hana-high-availability?tabs=lb-portal#test-the-cluster-setup"
@@ -130,14 +130,14 @@
   recommendationTypeId: null
   recommendationControl: HighAvailability
   recommendationImpact: High
-  recommendationResourceType: Specialized.Workload/SAP
+  recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription: |
     Use the migrate command in a Linux Pacemaker cluster to create a temporary "prefer" location constraint, moving a resource to a specified node for maintenance or testing. This constraint is temporary and should be removed after the task to revert to the original cluster configuration.
   potentialBenefits: Enhanced maintenance and failover handling
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: SAP
   learnMoreLink:
     - name: OpenSource Inventory Checks
       url: "https://aka.ms/ACESInventoryCheckSAP"
@@ -147,14 +147,14 @@
   recommendationTypeId: null
   recommendationControl: DisasterRecovery
   recommendationImpact: Medium
-  recommendationResourceType: Specialized.Workload/SAP
+  recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription: |
     Ensure compute resource availability for critical VM roles in a DR region using a warm standby approach or Azure's On-demand Capacity Reservation. Warm standby keeps VMs running in the DR region, while On-demand Capacity Reservation reserves compute capacity without running VMs.
   potentialBenefits: Guarantees DR region availability
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: SAP
   learnMoreLink:
     - name: Capacity Reservation
       url: "https://learn.microsoft.com/en-us/azure/virtual-machines/capacity-reservation-overview"
@@ -164,14 +164,14 @@
   recommendationTypeId: null
   recommendationControl: DisasterRecovery
   recommendationImpact: High
-  recommendationResourceType: Specialized.Workload/SAP
+  recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription: |
     Replicate production databases (ASYNC) to the DR location using the database vendor's replication technology.
   potentialBenefits: Enhanced DR resilience
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: SAP
   learnMoreLink:
     - name: SAP Disaster Recovery Guide
       url: "https://learn.microsoft.com/en-us/azure/sap/workloads/disaster-recovery-sap-guide?tabs=windows"
@@ -181,14 +181,14 @@
   recommendationTypeId: null
   recommendationControl: DisasterRecovery
   recommendationImpact: High
-  recommendationResourceType: Specialized.Workload/SAP
+  recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription: |
     SAP components such as (A)SCS, application servers, WebDispatchers, etc are backed up to DR location using an appropriate backup tool or ASR.
   potentialBenefits: Ensures SAP data safety and recovery
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: SAP
   learnMoreLink:
     - name: SAP ACSS Insights
       url: "https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/get-quality-checks-insights"
@@ -200,14 +200,14 @@
   recommendationTypeId: null
   recommendationControl: DisasterRecovery
   recommendationImpact: High
-  recommendationResourceType: Specialized.Workload/SAP
+  recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription: |
     Implement robust monitoring and alerting for DR in SAP on Azure to cover its complex, multi-layer architecture. This is crucial for databases, services, applications, and shared systems.
   potentialBenefits: Enhances SAP DR oversight
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: SAP
   learnMoreLink:
     - name: DR Guidance
       url: "https://learn.microsoft.com/en-us/azure/sap/workloads/disaster-recovery-sap-guide?tabs=windows"
@@ -217,14 +217,14 @@
   recommendationTypeId: null
   recommendationControl: DisasterRecovery
   recommendationImpact: Medium
-  recommendationResourceType: Specialized.Workload/SAP
+  recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription: |
     Automate the build of disaster recovery (DR) infrastructure (or pre-deploy DR resources) and streamline SAP service recovery as much as possible.
   potentialBenefits: Faster SAP recovery, reduced downtime
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: SAP
   learnMoreLink:
     - name: DR Guidance
       url: "https://learn.microsoft.com/en-us/azure/sap/workloads/disaster-recovery-sap-guide?tabs=windows"
@@ -234,14 +234,14 @@
   recommendationTypeId: null
   recommendationControl: DisasterRecovery
   recommendationImpact: Medium
-  recommendationResourceType: Specialized.Workload/SAP
+  recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription: |
     Document DR procedures for each SAP layer: database, central services, application servers, and shared file systems. Include configuration, failover mechanisms, and recovery steps. Test various failure scenarios to ensure the DR strategy meets RPO/RTO targets and provides seamless failover.
   potentialBenefits: Ensures robust DR, meets RPO/RTO
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: SAP
   learnMoreLink:
     - name: DR Guidance
       url: "https://learn.microsoft.com/en-us/azure/sap/workloads/disaster-recovery-sap-guide?tabs=windows"
@@ -251,14 +251,14 @@
   recommendationTypeId: null
   recommendationControl: DisasterRecovery
   recommendationImpact: Medium
-  recommendationResourceType: Specialized.Workload/SAP
+  recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription: |
     Implement robust monitoring and alerting for SAP on Azure, covering DR for databases, central services, applications, and shared file systems. Given SAP's complexity, a comprehensive monitoring strategy is crucial for effective DR replication and rapid issue response.
   potentialBenefits: Improved DR oversight and rapid issue response
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: SAP
   learnMoreLink:
     - name: DR Guidance
       url: "https://learn.microsoft.com/en-us/azure/sap/workloads/disaster-recovery-sap-guide?tabs=windows"
@@ -268,14 +268,14 @@
   recommendationTypeId: null
   recommendationControl: MonitoringAndAlerting
   recommendationImpact: High
-  recommendationResourceType: Specialized.Workload/SAP
+  recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription: |
     Scheduled events notify about upcoming maintenance (e.g., reboot) to limit disruption. Configure for all critical Azure VMs. Use the azure-events-az resource agent in Pacemaker clusters to monitor and react to events like Reboot and Redeploy, ensuring high availability.
   potentialBenefits: Proactive maintenance awareness
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: SAP
   learnMoreLink:
     - name: VM Scheduled Events
       url: "https://learn.microsoft.com/en-us/azure/virtual-machines/linux/scheduled-events"
@@ -287,14 +287,14 @@
   recommendationTypeId: null
   recommendationControl: HighAvailability
   recommendationImpact: High
-  recommendationResourceType: Specialized.Workload/SAP
+  recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription: |
     For the ASCS-Pacemaker (Central Server Instance), ensure that the Pacemaker cluster configuration parameters are correctly set up for SAP ASCS high availability.
   potentialBenefits: Enhances SAP ASCS uptime
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: SAP
   learnMoreLink:
     - name: SAP ACSS Insights
       url: "https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/get-quality-checks-insights"
@@ -308,14 +308,14 @@
   recommendationTypeId: null
   recommendationControl: HighAvailability
   recommendationImpact: High
-  recommendationResourceType: Specialized.Workload/SAP
+  recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription: |
     For the ASCS-LB (Central Server Instance), ensure that the load balancer is configured correctly for SAP ASCS high availability.
   potentialBenefits: Enhanced HA for SAP ASCS
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: SAP
   learnMoreLink:
     - name: SAP ACSS Insights
       url: "https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/get-quality-checks-insights"
@@ -329,14 +329,14 @@
   recommendationTypeId: null
   recommendationControl: HighAvailability
   recommendationImpact: High
-  recommendationResourceType: Specialized.Workload/SAP
+  recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription: |
     For the DBHANA-Pacemaker (Database Instance), ensure that the Pacemaker cluster configuration parameters are correctly set up for SAP HANA database high availability.
   potentialBenefits: Enhances SAP HANA DB uptime
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: SAP
   learnMoreLink:
     - name: SAP ACSS Insights
       url: "https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/get-quality-checks-insights"
@@ -350,14 +350,14 @@
   recommendationTypeId: null
   recommendationControl: HighAvailability
   recommendationImpact: High
-  recommendationResourceType: Specialized.Workload/SAP
+  recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription: |
     For the DBHANA-LB (Database Instance), make sure the load balancer is configured correctly for SAP HANA database high availability.
   potentialBenefits: Enhanced DB availability
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: SAP
   learnMoreLink:
     - name: SAP ACSS Insights
       url: "https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/get-quality-checks-insights"
@@ -371,14 +371,14 @@
   recommendationTypeId: null
   recommendationControl: HighAvailability
   recommendationImpact: High
-  recommendationResourceType: Specialized.Workload/SAP
+  recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription: |
     Ensure high availability of SAP with Azure NetApp Files by setting proper timeout values to prevent disruptions. Review the documentation to confirm your configuration meets the recommended timeout values.
   potentialBenefits: Improve resiliency and performance of SAP on Azure
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: SAP
   learnMoreLink:
     - name: SAP on Azure NetApp Planning Guide
       url: "https://learn.microsoft.com/en-us/azure/sap/workloads/planning-guide-storage#azure-netapp-files"
@@ -388,14 +388,14 @@
   recommendationTypeId: null
   recommendationControl: Scalability
   recommendationImpact: High
-  recommendationResourceType: Specialized.Workload/SAP
+  recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription: |
     Ensure optimal disk types and configurations for data and log volumes, meeting IOPS and throughput requirements. Follow Microsoft's recommendations for disk caching, WriteAccelerator, stripe size, and Linux I/O Scheduler. Use SAP on Azure QualityCheck tool to identify deviations.
   potentialBenefits: Improve reliability, performance and optimize costs
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: SAP
   learnMoreLink:
     - name: High-availability SAP NetWeaver with simple mount and NFS on SLES for SAP Applications VMs
       url: "https://learn.microsoft.com/en-us/azure/sap/workloads/high-availability-guide-suse-nfs-simple-mount?tabs=lb-portal%2Censa1"
