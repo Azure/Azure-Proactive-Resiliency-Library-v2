@@ -11,7 +11,7 @@
   potentialBenefits: Potential Benefits of Implementing the Recommendation (less than 60 characters)
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: null/AI/AVD/AVS/HPC/SAP
   learnMoreLink:
     - name: Learn More
       url: "Link URL"
@@ -20,6 +20,7 @@
   aprlGuid: Generate a Unique GUID for Your Recommendation
   recommendationTypeId: null
   recommendationControl: HighAvailability/BusinessContinuity/DisasterRecovery/Scalability/MonitoringAndAlerting/ServiceUpgradeAndRetirement/OtherBestPractices/Personalized/Governance/Security
+  recommendationImpact: Low/Medium/High
   recommendationResourceType: Friendly name to identity resource type
   recommendationMetadataState: Active
   longDescription: |
@@ -28,7 +29,7 @@
   potentialBenefits: Potential Benefits of Implementing the Recommendation (less than 60 characters)
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: null/AI/AVD/AVS/HPC/SAP
   learnMoreLink:
     - name: Learn More
       url: "Link URL"
