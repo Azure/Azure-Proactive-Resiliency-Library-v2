@@ -15,17 +15,17 @@
     - name: How to configure ExpressRoute Direct Change Admin State of links
       url: "https://learn.microsoft.com/en-us/azure/expressroute/expressroute-howto-erdirect#state"
 
-- description: Ensure you do not over-subscribe an ExpressRoute Direct
+- description: Ensure ExpressRoute Direct is not over-subscribed
   aprlGuid: 0bee356b-7348-4799-8cab-0c71ffe13018
   recommendationTypeId: null
   recommendationControl: Scalability
-  recommendationImpact: High
+  recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/ExpressRoutePorts
   recommendationMetadataState: Active
   longDescription: |
     Provisioning ExpressRoute circuits on a 10-Gbps or 100-Gbps ExpressRoute Direct resource up to 20-Gbps or 200-Gbps is possible but not recommended for resiliency. If an ExpressRoute Direct port fails, and circuits are using full capacity, the remaining port won't handle the extra load.
   potentialBenefits: Improves resilience during port failures
-  pgVerified: true
+  pgVerified: false
   automationAvailable: true
   tags: null
   learnMoreLink:
@@ -36,7 +36,7 @@
   aprlGuid: 55815823-d588-4cb7-a5b8-ae581837356e
   recommendationTypeId: null
   recommendationControl: MonitoringAndAlerting
-  recommendationImpact: High
+  recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/expressRoutePorts
   recommendationMetadataState: Active
   longDescription: |
