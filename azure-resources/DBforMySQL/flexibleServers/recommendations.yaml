@@ -21,7 +21,7 @@
   recommendationControl: Scalability
   recommendationImpact: High
   recommendationResourceType: Microsoft.DBforMySQL/flexibleServers
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Use custom maintenance schedule on flexible server instances to select a preferred time for service updates to be applied.
   potentialBenefits: Control update timings

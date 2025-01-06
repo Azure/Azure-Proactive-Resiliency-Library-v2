@@ -88,6 +88,7 @@
   learnMoreLink:
     - name: Deploy API Management instance to multiple Azure regions
       url: "https://learn.microsoft.com/en-us/azure/api-management/api-management-howto-deploy-multi-region"
+
 - description: Enable caching to improve performance in Azure API Management
   aprlGuid: badd9a1f-222a-498d-ab84-1f14892b1c1b
   recommendationTypeId: null

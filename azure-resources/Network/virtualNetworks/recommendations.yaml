@@ -58,3 +58,20 @@
       url: "https://learn.microsoft.com/azure/architecture/framework/services/networking/network-connectivity/reliability"
     - name: Azure Private Link availability
       url: "https://learn.microsoft.com/en-us/azure/private-link/availability"
+
+- description: Enable Virtual Network Flow Logs
+  aprlGuid: 06b77be9-56a3-4d41-b362-8b295c5a283d
+  recommendationTypeId: null
+  recommendationControl: MonitoringAndAlerting
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Network/virtualNetworks
+  recommendationMetadataState: Active
+  longDescription: |
+    Improves monitoring and security for Azure and Hybrid connectivity
+  potentialBenefits: Improves monitoring and security for Azure connectivity
+  pgVerified: true
+  automationAvailable: true
+  tags: null
+  learnMoreLink:
+    - name: Virtual network flow logs
+      url: "https://learn.microsoft.com/azure/network-watcher/vnet-flow-logs-overview"
