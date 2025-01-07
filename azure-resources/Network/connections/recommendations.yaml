@@ -19,7 +19,7 @@
   aprlGuid: a5f3a4bd-4cf1-4196-a3cb-f5a0876198b2
   recommendationTypeId: null
   recommendationControl: HighAvailability
-  recommendationImpact: High
+  recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/connections
   recommendationMetadataState: Disabled
   longDescription: |

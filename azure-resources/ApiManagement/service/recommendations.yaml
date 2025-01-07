@@ -38,7 +38,7 @@
 
 - description: Azure API Management platform version should be stv2
   aprlGuid: e35cf148-8eee-49d1-a1c9-956160f99e0b
-  recommendationTypeId: e5f60ef8-3fcc-4fb5-bee7-7aaeb44c1509
+  recommendationTypeId: null
   recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.ApiManagement/service
@@ -71,3 +71,39 @@
   learnMoreLink:
     - name: Setting up auto-scale for Azure API Management
       url: "https://learn.microsoft.com/azure/api-management/api-management-howto-autoscale"
+
+- description: Configure API management service in multiple Azure regions
+  aprlGuid: af4f88cb-35e8-4371-b29e-3a32b1d2f40a
+  recommendationTypeId: null
+  recommendationControl: DisasterRecovery
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.ApiManagement/service
+  recommendationMetadataState: Active
+  longDescription: |
+    API Management multi-region deployment will help to reduce request latency perceived by geographically distributed API consumers and improves service availability if one region goes offline.
+  potentialBenefits: Improve latency and provides business continuity
+  pgVerified: true
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: Deploy API Management instance to multiple Azure regions
+      url: "https://learn.microsoft.com/en-us/azure/api-management/api-management-howto-deploy-multi-region"
+
+- description: Enable caching to improve performance in Azure API Management
+  aprlGuid: badd9a1f-222a-498d-ab84-1f14892b1c1b
+  recommendationTypeId: null
+  recommendationControl: HighAvailability
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.ApiManagement/service
+  recommendationMetadataState: Active
+  longDescription: |
+    Response caching can significantly reduce latency for API callers and backend load for API providers.
+  potentialBenefits: Ensures service continuity and high availability
+  pgVerified: false
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: Add caching to improve performance in Azure API Management
+      url: "https://learn.microsoft.com/en-us/azure/api-management/api-management-howto-cache"
+    - name: Use an external cache in Azure API Management
+      url: "https://learn.microsoft.com/en-us/azure/api-management/api-management-howto-cache-external"

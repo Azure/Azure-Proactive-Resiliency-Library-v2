@@ -146,7 +146,7 @@
 
 - description: Enable Accelerated Networking (AccelNet)
   aprlGuid: dfedbeb1-1519-fc47-86a5-52f96cf07105
-  recommendationTypeId: 3a3c1a2a-8597-4d3a-981a-0a24a0ee9de4
+  recommendationTypeId: null
   recommendationControl: Scalability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Compute/virtualMachines
@@ -214,7 +214,7 @@
 
 - description: IP Forwarding should only be enabled for Network Virtual Appliances
   aprlGuid: 41a22a5e-5e08-9647-92d0-2ffe9ef1bdad
-  recommendationTypeId: c3b51c94-588b-426b-a892-24696f9e54cc
+  recommendationTypeId: null
   recommendationControl: Security
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Compute/virtualMachines
