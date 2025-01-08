@@ -389,6 +389,7 @@ $Script:Runtime = Measure-Command -Expression {
     $Script:SupportedResTypes = @()
     $Script:AllResourceTypesOrdered = @()
     $Script:AllAdvisories = @()
+    $Script:Advisories = @()
     $Script:AllRetirements = @()
     $Script:AllServiceHealth = @()
     $Script:results = @()
@@ -1330,7 +1331,7 @@ $Script:Runtime = Measure-Command -Expression {
     $Script:ImpactedResources = $Script:ImpactedResources | Sort-Object -Unique -Property validationAction, recommendationId, name, Type, id, param1, param2, param3, param4, param5, checkName, selector
 
     Write-Host 'Filtering Advisor Resources..' -ForegroundColor Cyan
-    $Script:Advisories = foreach ($adv in $Script:AllAdvisories) {
+    $Script:Advisories += foreach ($adv in $Script:AllAdvisories) {
       if ($adv.id -in $Script:InScope.id) {
         $adv
       }
@@ -1674,7 +1675,7 @@ $Script:Runtime = Measure-Command -Expression {
 
 
   #Call the functions
-  $Script:Version = '2.1.18'
+  $Script:Version = '2.1.19'
   Write-Host 'Version: ' -NoNewline
   Write-Host $Script:Version -ForegroundColor DarkBlue
 

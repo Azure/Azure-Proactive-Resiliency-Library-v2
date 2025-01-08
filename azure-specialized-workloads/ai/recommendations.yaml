@@ -1,0 +1,35 @@
+- description: Enable Application insights to monitor online endpoints for Azure Machine learning
+  aprlGuid: 47176883-2602-455b-97f0-6c6a371bf928
+  recommendationTypeId: null
+  recommendationControl: MonitoringAndAlerting
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Subscription/subscriptions
+  recommendationMetadataState: Active
+  longDescription: |
+    Azure Machine Learning uses integration with Azure Monitor to monitor metrics and logs for online endpoints. Use the built-in features of Application Insights (such as Live metrics, Transaction search, Failures, and Performance) for further analysis.
+  potentialBenefits: Monitoring endpoints gives visibility into metrics and logs
+  pgVerified: false
+  automationAvailable: false
+  tags: AI
+  learnMoreLink:
+    - name: Monitor online endpoints using Application Insights
+      url: "https://learn.microsoft.com/en-us/azure/machine-learning/how-to-monitor-online-endpoints?view=azureml-api-2#using-application-insights"
+
+- description: Create Application insights for Machine learning workspace in both the regions
+  aprlGuid: 89928e61-bba8-4c25-99c5-a06a09849ecc
+  recommendationTypeId: null
+  recommendationControl: DisasterRecovery
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Subscription/subscriptions
+  recommendationMetadataState: Active
+  longDescription: |
+    Create Application Insights for machine learning workspace in both regions. To adjust the data-retention period, update and manage data retention in a Log Analytics workspace.
+  potentialBenefits: Provides monitoring and data retention in DR region
+  pgVerified: false
+  automationAvailable: false
+  tags: AI
+  learnMoreLink:
+    - name: Data collection, retention, and storage in Application Insights
+      url: "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-retention-configure?tabs=portal-3%2Cportal-1%2Cportal-2"
+    - name: Failover for business continuity and disaster recovery
+      url: "https://learn.microsoft.com/en-us/azure/machine-learning/how-to-high-availability-machine-learning?view=azureml-api-2"
