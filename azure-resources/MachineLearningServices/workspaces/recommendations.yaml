@@ -51,6 +51,24 @@
     - name: Compute targets in Azure Machine Learning
       url: "https://learn.microsoft.com/en-us/azure/machine-learning/concept-compute-target?view=azureml-api-2"
 
+- description: Ensure checkpoints are used for AI training models
+  aprlGuid: 98f15850-f31e-4fb2-8874-74f5aabbcf91
+  recommendationTypeId: null
+  recommendationControl: DisasterRecovery
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.MachineLearningServices/workspaces
+  recommendationMetadataState: Active
+  longDescription: |
+    Checkpoint optimization for large model training is crucial for disaster recovery. It reduces training time, increases reliability, improves cost efficiency, enhances resource utilization, and supports scalability by saving model states periodically to resume training from the last saved point.
+  potentialBenefits: Reduces costs, training time and increases reliability.
+  pgVerified: false
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: Importance of checkpoint optimization
+      url: "https://learn.microsoft.com/en-us/azure/machine-learning/reference-checkpoint-performance-for-large-models?view=azureml-api-2&tabs=PYTORCH#why-checkpoint-optimization-for-large-model-training-matters"
+
+
 - description: Selecting regions for BCDR, ensure that both regions offer adequate compute quotas
   aprlGuid: 6e4f0fd1-1853-4b94-9736-6d6d239d2694
   recommendationTypeId: null

@@ -81,6 +81,23 @@
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/deployment-types#data-zone-standard"
 
+- description: Use comprehensive monitoring solution for AOAI service
+  aprlGuid: 72b1b4ad-a14b-4430-9799-91bda782973d
+  recommendationTypeId: null
+  recommendationControl: MonitoringAndAlerting
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.CognitiveServices/Accounts
+  recommendationMetadataState: Active
+  longDescription: |
+    Implementing a comprehensive monitoring solution for AOAI involves using Azure Monitor to track API usage, performance metrics, and security events. This setup helps optimize performance, manage costs, and ensure compliance by providing detailed insights into model usage and potential issues.
+  potentialBenefits: Optimize performance and compliance with detailed insights
+  pgVerified: false
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: Learn more
+      url: "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/openai/architecture/log-monitor-azure-openai"
+
 - description: Deploy AOAI Service in multiple regions using Standard and/or Provisioned deployments
   aprlGuid: 61187af4-7d36-4b48-b16e-de78bef143a0
   recommendationTypeId: null
@@ -97,3 +114,4 @@
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/business-continuity-disaster-recovery"
+
