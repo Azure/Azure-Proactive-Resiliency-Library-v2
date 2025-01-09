@@ -5,7 +5,8 @@
   recommendationImpact: High
   recommendationResourceType: Microsoft.CognitiveServices/Accounts
   recommendationMetadataState: Active
-  longDescription: Global provisioned deployments provide reserved model processing capacity for high and predictable throughput using Azure global infrastructure. Suitable for applications requiring lower latency variance at large workload usage. Provides cost savings
+  longDescription: |
+    Global provisioned deployments provide reserved model processing capacity for high and predictable throughput using Azure global infrastructure. Suitable for applications requiring lower latency variance at large workload usage. Provides cost savings.
   potentialBenefits: Low latency variance, high throughputs, business continuity
   pgVerified: true
   automationAvailable: false
@@ -21,7 +22,8 @@
   recommendationImpact: High
   recommendationResourceType: Microsoft.CognitiveServices/Accounts
   recommendationMetadataState: Active
-  longDescription: Global Standard leverages Azure's global infrastructure to route traffic to the best available data center for customer's real-time inference requests. It provides the highest default quota and eliminates the need to load balance across multiple resources. Optimized for low to medium volume usage
+  longDescription: |
+    Global Standard leverages Azure's global infrastructure to route traffic to the best available data center for customer's real-time inference requests. It provides the highest default quota and eliminates the need to load balance across multiple resources. Optimized for low to medium volume usage.
   potentialBenefits: Best model availability, business continuity
   pgVerified: true
   automationAvailable: false
@@ -38,7 +40,7 @@
   recommendationResourceType: Microsoft.CognitiveServices/Accounts
   recommendationMetadataState: Active
   longDescription: |
-    Provisioned Throughput offers pre-allocated capacity for consistent workloads, while Pay-as-You-Go charges for actual usage, ideal for variable workloads. During overflow, the Pay-as-You-Go instance manages excess load, ensuring service efficiency
+    Provisioned Throughput offers pre-allocated capacity for consistent workloads, while Pay-as-You-Go charges for actual usage, ideal for variable workloads. During overflow, the Pay-as-You-Go instance manages excess load, ensuring service efficiency.
   potentialBenefits: PAYG model balances cost and performance and helps scale
   pgVerified: true
   automationAvailable: false
@@ -55,7 +57,7 @@
   recommendationResourceType: Microsoft.CognitiveServices/Accounts
   recommendationMetadataState: Active
   longDescription: |
-    Global batch efficiently handles large-scale tasks within 24 hours. Submit requests in a single file, with a separate quota to protect online workloads. Key uses: data processing, content generation, document review, customer support automation, data extraction, NLP tasks, and marketing
+    Global batch efficiently handles large-scale tasks within 24 hours. Submit requests in a single file, with a separate quota to protect online workloads. Key uses: data processing, content generation, document review, customer support automation, data extraction, NLP tasks, and marketing.
   potentialBenefits: Cost effective faster turnaround for large-scale processing.
   pgVerified: true
   automationAvailable: false
@@ -72,7 +74,7 @@
   recommendationResourceType: Microsoft.CognitiveServices/Accounts
   recommendationMetadataState: Active
   longDescription: |
-    Data zone deployments route customer traffic to the highest availability data center within the defined data zone, ensuring data at rest remains within the Azure OpenAI resource geography. This approach offers increased quota limits and ensures data processing occurs within the specified data zone
+    Data zone deployments route customer traffic to the highest availability data center within the defined data zone, ensuring data at rest remains within the Azure OpenAI resource geography. This approach offers increased quota limits and ensures data processing occurs within the specified data zone.
   potentialBenefits: Enforce data residency and compliance standards
   pgVerified: true
   automationAvailable: false
