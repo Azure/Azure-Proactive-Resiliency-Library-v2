@@ -5,7 +5,8 @@
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/p2sVpnGateways
   recommendationMetadataState: Active
-  longDescription: Set up monitoring and alerts for Point-to-Site VPN gateways. Create alert rule for ensuring promptly response to critical events such as Gateway overutilization, connection count limits and User VPN route limits.
+  longDescription: |
+    Set up monitoring and alerts for Point-to-Site VPN gateways. Create alert rule for ensuring promptly response to critical events such as Gateway over utilization, connection count limits and User VPN route limits. Mission Critical workloads should use dual ExpressRoutes instead of VPN.
   potentialBenefits: Detection and mitigation to avoid disruptions.
   pgVerified: false
   automationAvailable: false

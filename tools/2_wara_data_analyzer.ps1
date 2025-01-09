@@ -139,7 +139,7 @@ $Script:Runtime = Measure-Command -Expression {
       # Define script path as the default path to save files
       $workingFolderPath = $PSScriptRoot
       Set-Location -Path $workingFolderPath;
-      $Script:clonePath = "$workingFolderPath\Azure-Proactive-Resiliency-Library"
+      $Script:clonePath = "$workingFolderPath\Azure-Proactive-Resiliency-Library-v2"
       Write-Debug 'Checking default folder'
       if ((Get-ChildItem -Path $Script:clonePath -Force | Measure-Object).Count -gt 0) {
         Write-Debug 'APRL Folder does exist. Reseting it...'
@@ -309,7 +309,7 @@ $Script:Runtime = Measure-Command -Expression {
               param3                                                                            = $Recom.param3;
               param4                                                                            = $Recom.param4;
               param5                                                                            = $Recom.param5;
-              supportTicketId                                                                   = '';
+              supportTicketId                                                                   = $Tickets;
               source                                                                            = $Recom.selector;
               checkName                                                                         = $Recom.checkName;
               'WAF Pillar'                                                                      = 'Reliability';
@@ -781,31 +781,34 @@ $Script:Runtime = Measure-Command -Expression {
 
       # Build the APRL Recommendations
       foreach ($Service in $Script:ServicesYAMLContent) {
-        if (($Service.recommendationResourceType -like 'Specialized.Workload/*' -or $Service.recommendationResourceType -in $Script:AllResourceTypesOrdered.'Resource Type' -or $Script:FilterRecommendations -eq $false) -and ([string]::IsNullOrEmpty($Service.recommendationTypeId) -or (![string]::IsNullOrEmpty($Service.recommendationTypeId) -and $Service.recommendationTypeId -notin $Script:RecommendedAdv))) {
-          $ID = $Service.aprlGuid
-          $resourceType = $Service.recommendationResourceType
+        if ($Service.recommendationMetadataState -eq 'Active')
+          {
+            if (($Service.recommendationResourceType -like 'Specialized.Workload/*' -or $Service.recommendationResourceType -eq 'Microsoft.Subscription/Subscriptions' -or $Service.recommendationResourceType -in $Script:AllResourceTypesOrdered.'Resource Type' -or $Script:FilterRecommendations -eq $false) -and ([string]::IsNullOrEmpty($Service.recommendationTypeId) -or (![string]::IsNullOrEmpty($Service.recommendationTypeId) -and $Service.recommendationTypeId -notin $Script:RecommendedAdv))) {
+              $ID = $Service.aprlGuid
+              $resourceType = $Service.recommendationResourceType
 
-          $ExcelCat = Set-RecommendationControl -category $Service.recommendationControl
+              $ExcelCat = Set-RecommendationControl -category $Service.recommendationControl
 
-          $tmp = @{
-            'Implemented?Yes/No'                                                                             = ('=IF((COUNTIF(ImpactedResources!D:D,"' + $ID + '")=0),"Yes","No")');
-            'Number of Impacted Resources?'                                                                  = ('=COUNTIF(ImpactedResources!D:D,"' + $ID + '")');
-            'Azure Service / Well-Architected'                                                               = 'Azure Service';
-            'Recommendation Source'                                                                          = 'APRL';
-            'Resiliency Category'                                                                            = $ExcelCat;
-            'Azure Service Category / Well-Architected Area'                                                 = if ($resourceType -like 'Specialized.Workload/*') { $resourceType }else { ($resourceType.split('/')[0]) };
-            'Azure Service / Well-Architected Topic'                                                         = if ($resourceType -like 'Specialized.Workload/*') { $resourceType }else { ($resourceType.split('/')[1]) };
-            'Recommendation Title'                                                                           = $Service.description;
-            'Impact'                                                                                         = $Service.recommendationImpact;
-            'Best Practices Guidance'                                                                        = [string]$Service.longDescription;
-            'Read More'                                                                                      = [string]($Service.learnMoreLink.url -join "`n");
-            'Potential Benefits'                                                                             = [string]$Service.potentialBenefits;
-            'Add associated Outage TrackingID and/or Support Request # and/or Service Retirement TrackingID' = '';
-            'Observation / Annotation'                                                                       = '';
-            'Recommendation Id'                                                                              = [string]$Service.aprlGuid
+              $tmp = @{
+                'Implemented?Yes/No'                                                                             = ('=IF((COUNTIF(ImpactedResources!D:D,"' + $ID + '")=0),"Yes","No")');
+                'Number of Impacted Resources?'                                                                  = ('=COUNTIF(ImpactedResources!D:D,"' + $ID + '")');
+                'Azure Service / Well-Architected'                                                               = 'Azure Service';
+                'Recommendation Source'                                                                          = 'APRL';
+                'Resiliency Category'                                                                            = $ExcelCat;
+                'Azure Service Category / Well-Architected Area'                                                 = if ($resourceType -like 'Specialized.Workload/*') { $resourceType }else { ($resourceType.split('/')[0]) };
+                'Azure Service / Well-Architected Topic'                                                         = if ($resourceType -like 'Specialized.Workload/*') { $resourceType }else { ($resourceType.split('/')[1]) };
+                'Recommendation Title'                                                                           = $Service.description;
+                'Impact'                                                                                         = $Service.recommendationImpact;
+                'Best Practices Guidance'                                                                        = [string]$Service.longDescription;
+                'Read More'                                                                                      = [string]($Service.learnMoreLink.url -join "`n");
+                'Potential Benefits'                                                                             = [string]$Service.potentialBenefits;
+                'Add associated Outage TrackingID and/or Support Request # and/or Service Retirement TrackingID' = '';
+                'Observation / Annotation'                                                                       = '';
+                'Recommendation Id'                                                                              = [string]$Service.aprlGuid
+              }
+              $Script:Recommendations += $tmp
+            }
           }
-          $Script:Recommendations += $tmp
-        }
       }
 
       # Builds the Advisor recommendations
@@ -1056,7 +1059,7 @@ $Script:Runtime = Measure-Command -Expression {
   }
 
   #Call the functions
-  $Script:Version = '2.1.16'
+  $Script:Version = '2.1.18'
   Write-Host 'Version: ' -NoNewline
   Write-Host $Script:Version -ForegroundColor DarkBlue
 
