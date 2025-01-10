@@ -322,7 +322,7 @@ $Script:Runtime = Measure-Command -Expression {
                 tagged                                                                            = $Recom.tagged
               }
               $Script:MergedRecommendation += $tmp
-            } 
+            }
             # Populating resource types without recommendations
             else {
               $tmp = @{
