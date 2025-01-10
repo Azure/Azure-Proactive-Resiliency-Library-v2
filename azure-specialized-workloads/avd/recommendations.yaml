@@ -192,24 +192,22 @@
     - name: Learn More
       url: "https://learn.microsoft.com/azure/virtual-desktop/rdp-shortpath?tabs=managed-networks"
 
-- description: Ensure AVD session hosts connect to control plane & allow UDP ports for RDP shortpath
+- description: Ensure AVD session hosts can connect to AVD control plane
   aprlGuid: e718ac1a-ebab-4f75-9e4a-1a5ccef20d1f
   recommendationTypeId: null
   recommendationControl: Governance
-  recommendationImpact: Medium
+  recommendationImpact: High
   recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription: |
-    Ensure AVD session hosts can communicate with the AVD control plane and that UDP ports are open if used. Validate VM connectivity to the AVD Control Plane and confirm UDP TURN port accessibility. Whitelist global URLs and ensure UDP/TURN ports are open for smooth user connections.
+    Ensure AVD session hosts can communicate with the AVD control plane. Validate VM connectivity to the AVD Control Plane. Whitelist global URLs.
   potentialBenefits: Enhanced performance & user experience
   pgVerified: true
   automationAvailable: false
   tags: AVD
   learnMoreLink:
     - name: Learn More
-      url: "https://learn.microsoft.com/azure/virtual-desktop/troubleshoot-rdp-shortpath"
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/virtual-desktop/check-access-validate-required-fqdn-endpoint"
+      url: "https://learn.microsoft.com/en-us/azure/virtual-desktop/check-access-validate-required-fqdn-endpoint"
 
 - description: Ensure secondary Entra ID connect synchronization server
   aprlGuid: d984eaf9-0fa1-4f8d-a326-bda751993c6f
@@ -263,7 +261,7 @@
     - name: Learn More
       url: "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/plan-for-ip-addressing"
 
-- description: Configure static routes for session hosts to directly access the AVD control plane subnet
+- description: Allow AVD control plane outbound connection from the session host subnet or configure Azure firewall to allow outbound traffic
   aprlGuid: 1c6c97d7-4d03-4f53-985d-fa239f715173
   recommendationTypeId: null
   recommendationControl: OtherBestPractices
@@ -271,16 +269,16 @@
   recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription: |
-    Ensure Route Tables have static routes for session host traffic targeting the AVD control plane to go directly to the internet (next hop). This avoids delays from additional hops or inspections in trusted traffic communication.
+    Ensure Route Tables have static routes for session host traffic targeting the AVD control plane (WindowsVirtualDesktop service tag) to go directly to the internet (next hop). This avoids delays from additional hops or inspections in trusted traffic communication. If sending all traffic through a firewall is required ensure the firewall is configured to allow AVD control plane traffic.
   potentialBenefits: Enhanced performance and Disaster Recovery
   pgVerified: true
   automationAvailable: false
   tags: AVD
   learnMoreLink:
     - name: Learn More
-      url: "https://learn.microsoft.com/azure/virtual-network/service-tags-overview"
+      url: "https://learn.microsoft.com/en-us/azure/firewall/protect-azure-virtual-desktop"
     - name: Learn More
-      url: "https://learn.microsoft.com/azure/virtual-network/virtual-networks-udr-overview"
+      url: "https://learn.microsoft.com/en-us/azure/virtual-network/service-tags-overview"
 
 - description: Create updated image version and replace session hosts rather than updating host directly
   aprlGuid: 2831dab9-6a43-44a1-8aec-90a8e84894bc
@@ -408,7 +406,7 @@
   aprlGuid: 1f57434f-f884-41f3-b818-129bbe3c5d3b
   recommendationTypeId: null
   recommendationControl: DisasterRecovery
-  recommendationImpact: High
+  recommendationImpact: Low
   recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription: |
