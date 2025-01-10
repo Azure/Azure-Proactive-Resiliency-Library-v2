@@ -389,6 +389,7 @@ $Script:Runtime = Measure-Command -Expression {
     $Script:SupportedResTypes = @()
     $Script:AllResourceTypesOrdered = @()
     $Script:AllAdvisories = @()
+    $Script:Advisories = @()
     $Script:AllRetirements = @()
     $Script:AllServiceHealth = @()
     $Script:results = @()
@@ -464,9 +465,9 @@ $Script:Runtime = Measure-Command -Expression {
         $workingFolderPath = $PSScriptRoot
         Set-Location -Path $workingFolderPath;
         if ($Script:ShellPlatform -eq 'Win32NT') {
-          $Script:clonePath = "$workingFolderPath\Azure-Proactive-Resiliency-Library"
+          $Script:clonePath = "$workingFolderPath\Azure-Proactive-Resiliency-Library-v2"
         } else {
-          $Script:clonePath = "$workingFolderPath/Azure-Proactive-Resiliency-Library"
+          $Script:clonePath = "$workingFolderPath/Azure-Proactive-Resiliency-Library-v2"
         }
         Write-Debug 'Checking default folder'
         if ((Get-ChildItem -Path $Script:clonePath -Force -ErrorAction SilentlyContinue | Measure-Object).Count -gt 0) {
@@ -636,10 +637,18 @@ $Script:Runtime = Measure-Command -Expression {
         Select-AzSubscription -Subscription $Subscription -WarningAction SilentlyContinue -InformationAction SilentlyContinue | Out-Null
 
         if ($SubId -notin $LoopedSub) {
-          $Token = Get-AzAccessToken
+          try{
+            $Token = Get-AzAccessToken -AsSecureString -WarningAction SilentlyContinue
+          }
+          catch {
+            Write-Host 'Failed to get token for subscription: ' -NoNewline
+            Write-Host $SubId.Name -ForegroundColor Red
+            Connect-ToAzure -TenantID $TenantID -AzureEnvironment $AzureEnvironment
+          }
+
 
           $header = @{
-            'Authorization' = 'Bearer ' + $Token.Token
+            'Authorization' = 'Bearer ' + ($Token.Token | ConvertFrom-SecureString -AsPlainText)
           }
 
           try {
@@ -648,7 +657,7 @@ $Script:Runtime = Measure-Command -Expression {
             Write-Host 'Outages' -ForegroundColor Magenta
             $url = ('https://' + $BaseURL + '/subscriptions/' + $Subid + '/providers/Microsoft.ResourceHealth/events?api-version=2022-10-01&queryStartTime=' + $Date)
             $Outages = Invoke-RestMethod -Uri $url -Headers $header -Method GET
-            $Script:Outageslist += $Outages.value | Where-Object { $_.properties.impactStartTime -gt $DateOutages } | Sort-Object @{Expression = 'properties.eventlevel'; Descending = $false }, @{Expression = 'properties.status'; Descending = $false } | Select-Object -Property name, properties -First 15
+            $Script:Outageslist += $Outages.value | Where-Object { $_.properties.impactStartTime -gt $DateOutages } | Sort-Object @{Expression = 'properties.eventlevel'; Descending = $false }, @{Expression = 'properties.status'; Descending = $false } | Select-Object -Property name, properties
             $Script:RetiredOutages += $Outages.value | Sort-Object @{Expression = 'properties.eventlevel'; Descending = $false }, @{Expression = 'properties.status'; Descending = $false } | Select-Object -Property name, properties
           } catch { $null }
 
@@ -852,6 +861,8 @@ $Script:Runtime = Measure-Command -Expression {
   function Invoke-QueryExecution {
     param($type, $Subscription, $query, $checkId, $checkName, $selector, $validationAction)
 
+    $TempResult = @()
+
     if ($Debugging.IsPresent) {
       Write-Host $query -ForegroundColor Yellow
     }
@@ -866,41 +877,44 @@ $Script:Runtime = Measure-Command -Expression {
         $queryResults = $queryResults | Sort-Object -Property name, id, param1, param2, param3, param4, param5 -Unique
 
         foreach ($row in $queryResults) {
-          $result = [PSCustomObject]@{
-            validationAction = [string]$validationAction
-            recommendationId = [string]$checkId
-            name             = [string]$row.name
-            Type             = [string]$type
-            id               = [string]$row.id
-            param1           = [string]$row.param1
-            param2           = [string]$row.param2
-            param3           = [string]$row.param3
-            param4           = [string]$row.param4
-            param5           = [string]$row.param5
-            checkName        = [string]$checkName
+          $result = @{
+            validationAction = [string]$validationAction;
+            recommendationId = [string]$checkId;
+            name             = [string]$row.name;
+            Type             = [string]$type;
+            id               = [string]$row.id;
+            param1           = [string]$row.param1;
+            param2           = [string]$row.param2;
+            param3           = [string]$row.param3;
+            param4           = [string]$row.param4;
+            param5           = [string]$row.param5;
+            checkName        = [string]$checkName;
             selector         = [string]$selector
           }
-          $result
+          $TempResult += $result
         }
       }
 
       if ($type -like '*azure-specialized-workloads/*') {
-        $result = [PSCustomObject]@{
-          validationAction = [string]$validationAction
-          recommendationId = [string]$checkId
-          name             = [string]''
-          Type             = [string]$type
-          id               = [string]''
-          param1           = [string]''
-          param2           = [string]''
-          param3           = [string]''
-          param4           = [string]''
-          param5           = [string]''
-          checkName        = [string]$checkName
+        $result = @{
+          validationAction = [string]$validationAction;
+          recommendationId = [string]$checkId;
+          name             = [string]'';
+          Type             = [string]$type;
+          id               = [string]'';
+          param1           = [string]$type;
+          param2           = [string]'';
+          param3           = [string]'';
+          param4           = [string]'';
+          param5           = [string]'';
+          checkName        = [string]$checkName;
           selector         = [string]$selector
         }
-        $result
+        $TempResult += $result
       }
+
+    return $TempResult
+
     } catch {
       # Report Error
       $errorMessage = $_.Exception.Message
@@ -1243,6 +1257,8 @@ $Script:Runtime = Measure-Command -Expression {
       $Script:InScope = $Script:InScope | Where-Object { $_.id -notin $Script:ExcludeList.id }
     }
 
+    $Script:AllGroupedResourceTypes = $Script:InScope | Group-Object -Property type
+
     Write-Host 'Ordering Impacted Resources..' -ForegroundColor Cyan
     $Script:results = $Script:results | Sort-Object -Unique -Property validationAction, recommendationId, name, Type, id, param1, param2, param3, param4, param5, checkName, selector
 
@@ -1290,13 +1306,32 @@ $Script:Runtime = Measure-Command -Expression {
           selector         = $Temp.selector
         }
         $result
+      } elseif ($Temp.Type -like '*azure-specialized-workloads/*') {
+        $result = [PSCustomObject]@{
+          validationAction = $Temp.validationAction
+          recommendationId = $Temp.recommendationId
+          name             = ''
+          id               = ''
+          type             = 'Microsoft.Subscription/Subscriptions'
+          location         = ''
+          subscriptionId   = ''
+          resourceGroup    = ''
+          param1           = $Temp.param1
+          param2           = ''
+          param3           = ''
+          param4           = ''
+          param5           = ''
+          checkName        = $Temp.checkName
+          selector         = $Temp.selector
+        }
+        $result
       }
     }
 
     $Script:ImpactedResources = $Script:ImpactedResources | Sort-Object -Unique -Property validationAction, recommendationId, name, Type, id, param1, param2, param3, param4, param5, checkName, selector
 
     Write-Host 'Filtering Advisor Resources..' -ForegroundColor Cyan
-    $Script:Advisories = foreach ($adv in $Script:AllAdvisories) {
+    $Script:Advisories += foreach ($adv in $Script:AllAdvisories) {
       if ($adv.id -in $Script:InScope.id) {
         $adv
       }
@@ -1334,25 +1369,22 @@ $Script:Runtime = Measure-Command -Expression {
 
   function Resolve-ResourceType {
     $TempTypes = $Script:ImpactedResources | Where-Object { $_.validationAction -eq 'IMPORTANT - Resource Type is not available in either APRL or Advisor - Validate Resources manually if Applicable, if not Delete this line' }
-    $Script:AllResourceTypes = $Script:AllResourceTypes | Sort-Object -Property Count -Descending
-    $Looper = $Script:AllResourceTypes | Sort-Object -Property Name -Unique
-    foreach ($result in $Looper.Name) {
-      $ResourceTypeCount = (($Script:AllResourceTypes | Where-Object { $_.Name -eq $result }) | Select-Object -ExpandProperty Count | Measure-Object -Sum).Sum
-      $ResultType = $result
-      if ($ResultType -in $TempTypes.recommendationId) {
+    $Script:AllGroupedResourceTypes = $Script:AllGroupedResourceTypes | Sort-Object -Property Count -Descending
+    foreach ($EnvType in $Script:AllGroupedResourceTypes) {
+      if ($EnvType.Name -in $TempTypes.recommendationId) {
         $tmp = [PSCustomObject]@{
-          'Resource Type'              = [string]$ResultType
-          'Number of Resources'        = [string]$ResourceTypeCount
+          'Resource Type'              = [string]$EnvType.Name
+          'Number of Resources'        = [string]$EnvType.Count
           'Available in APRL/ADVISOR?' = 'No'
           'Assessment Owner'           = ''
           'Status'                     = ''
           'Notes'                      = ''
         }
         $Script:AllResourceTypesOrdered += $tmp
-      } elseif ($ResultType -notin $TempTypes.recommendationId) {
+      } elseif ($EnvType.Name -notin $TempTypes.recommendationId) {
         $tmp = [PSCustomObject]@{
-          'Resource Type'              = [string]$ResultType
-          'Number of Resources'        = [string]$ResourceTypeCount
+          'Resource Type'              = [string]$EnvType.Name
+          'Number of Resources'        = [string]$EnvType.Count
           'Available in APRL/ADVISOR?' = 'Yes'
           'Assessment Owner'           = ''
           'Status'                     = ''
@@ -1549,6 +1581,7 @@ $Script:Runtime = Measure-Command -Expression {
       $ExporterArray | ConvertTo-Json -Depth 15 | Out-File $Script:JsonFile
     }
   }
+
   function Get-WAFObjectByList {
     param (
       [Parameter(Mandatory = $true)]
@@ -1568,9 +1601,12 @@ $Script:Runtime = Measure-Command -Expression {
 
     return $matchingObjects
   }
+
   function Get-OtherRecommendations() {
 
-    $token = 'Bearer ' + (Get-AzAccessToken).Token
+    $Token = Get-AzAccessToken -AsSecureString -WarningAction SilentlyContinue
+
+    $token = 'Bearer ' + ($Token.Token | ConvertFrom-SecureString -AsPlainText)
     $authHeaders = @{
       'Authorization' = $token
     }
@@ -1639,7 +1675,7 @@ $Script:Runtime = Measure-Command -Expression {
 
 
   #Call the functions
-  $Script:Version = '2.1.17'
+  $Script:Version = '2.1.19'
   Write-Host 'Version: ' -NoNewline
   Write-Host $Script:Version -ForegroundColor DarkBlue
 

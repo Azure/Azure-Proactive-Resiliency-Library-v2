@@ -93,7 +93,7 @@
   },
   {
     "aprlGuid": "e35cf148-8eee-49d1-a1c9-956160f99e0b",
-    "recommendationTypeId": "e5f60ef8-3fcc-4fb5-bee7-7aaeb44c1509",
+    "recommendationTypeId": null,
     "recommendationMetadataState": "Active",
     "learnMoreLink": [
       {
@@ -136,6 +136,52 @@
     "recommendationImpact": "Low",
     "automationAvailable": false,
     "query": "// cannot-be-validated-with-arg\r\n"
+  },
+  {
+    "aprlGuid": "af4f88cb-35e8-4371-b29e-3a32b1d2f40a",
+    "recommendationTypeId": null,
+    "recommendationMetadataState": "Active",
+    "learnMoreLink": [
+      {
+        "name": "Deploy API Management instance to multiple Azure regions",
+        "url": "https://learn.microsoft.com/en-us/azure/api-management/api-management-howto-deploy-multi-region"
+      }
+    ],
+    "recommendationControl": "DisasterRecovery",
+    "longDescription": "API Management multi-region deployment will help to reduce request latency perceived by geographically distributed API consumers and improves service availability if one region goes offline.\n",
+    "pgVerified": true,
+    "description": "Configure API management service in multiple Azure regions",
+    "potentialBenefits": "Improve latency and provides business continuity",
+    "tags": null,
+    "recommendationResourceType": "Microsoft.ApiManagement/service",
+    "recommendationImpact": "High",
+    "automationAvailable": false,
+    "query": "// cannot-be-validated-with-arg\r\n"
+  },
+  {
+    "aprlGuid": "badd9a1f-222a-498d-ab84-1f14892b1c1b",
+    "recommendationTypeId": null,
+    "recommendationMetadataState": "Active",
+    "learnMoreLink": [
+      {
+        "name": "Add caching to improve performance in Azure API Management",
+        "url": "https://learn.microsoft.com/en-us/azure/api-management/api-management-howto-cache"
+      },
+      {
+        "name": "Use an external cache in Azure API Management",
+        "url": "https://learn.microsoft.com/en-us/azure/api-management/api-management-howto-cache-external"
+      }
+    ],
+    "recommendationControl": "HighAvailability",
+    "longDescription": "Response caching can significantly reduce latency for API callers and backend load for API providers.\n",
+    "pgVerified": false,
+    "description": "Enable caching to improve performance in Azure API Management",
+    "potentialBenefits": "Ensures service continuity and high availability",
+    "tags": null,
+    "recommendationResourceType": "Microsoft.ApiManagement/service",
+    "recommendationImpact": "Medium",
+    "automationAvailable": false,
+    "query": "// under-development\r\n"
   },
   {
     "aprlGuid": "8dbcd94b-0948-4df3-b608-1946726c3abf",
@@ -249,7 +295,7 @@
   {
     "aprlGuid": "74fcb9f2-9a25-49a6-8c42-d32851c4afb7",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Configure Azure Service Health alerts",
@@ -421,7 +467,7 @@
   {
     "aprlGuid": "a5ef7c05-c611-4842-9af5-11efdc99123a",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Lock your resources to protect your infrastructure",
@@ -609,7 +655,7 @@
   },
   {
     "aprlGuid": "52bc9a7b-23c8-bc4c-9d2a-7bc43b50104a",
-    "recommendationTypeId": "e607041e-3194-42ad-9994-b6ea5ec12f5e",
+    "recommendationTypeId": null,
     "recommendationMetadataState": "Active",
     "learnMoreLink": [
       {
@@ -918,25 +964,109 @@
     "query": "//under-development\r\n"
   },
   {
-    "aprlGuid": "d6d9e18a-9ad2-491e-878d-86d621785453",
+    "aprlGuid": "081fc8a4-b2d9-405b-b351-334e621016f5",
     "recommendationTypeId": null,
     "recommendationMetadataState": "Active",
     "learnMoreLink": [
       {
-        "name": "Enable diagnostic logging for Azure AI services",
-        "url": "https://learn.microsoft.com/en-us/azure/ai-services/diagnostic-logging"
+        "name": "Learn More",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/deployment-types#global-provisioned"
       }
     ],
-    "recommendationControl": "MonitoringAndAlerting",
-    "longDescription": "All Logs and Metrics should be configured. These logs provide rich, frequent data about the operation of a resource that are used for issue identification and debugging.\n",
+    "recommendationControl": "HighAvailability",
+    "longDescription": "Global deployments leverage Azure's global infrastructure to route customer traffic to the best available data center for the customer’s inference requests. This ensures highest initial throughput limits and best model availability while still providing our uptime SLA and low latency.",
     "pgVerified": false,
-    "description": "Enable diagnostic logging for Azure AI services and send the data to Log Analytics",
-    "potentialBenefits": "Enhanced monitoring and troubleshooting capabilities",
+    "description": "Ensure AOAI models are deployed using Global deployment",
+    "potentialBenefits": "Low latency, best model availability, business continuity",
     "tags": null,
     "recommendationResourceType": "Microsoft.CognitiveServices/Accounts",
-    "recommendationImpact": "Low",
+    "recommendationImpact": "High",
     "automationAvailable": false,
-    "query": null
+    "query": "// cannot-be-validated-with-arg\r\n"
+  },
+  {
+    "aprlGuid": "0c193899-da60-4a52-b4a0-77d75ac8c5c5",
+    "recommendationTypeId": null,
+    "recommendationMetadataState": "Active",
+    "learnMoreLink": [
+      {
+        "name": "Learn More",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/provisioned-throughput"
+      }
+    ],
+    "recommendationControl": "HighAvailability",
+    "longDescription": "Provisioned Throughput offers pre-allocated capacity for consistent workloads, while Pay-as-You-Go charges for actual usage, ideal for variable workloads. During overflow, the Pay-as-You-Go instance manages excess load, ensuring service efficiency\n",
+    "pgVerified": true,
+    "description": "Deploy a PAYG instance of the model with provisioned throughput to manage overflow effectively",
+    "potentialBenefits": "PAYG model balances cost and performance and helps scale",
+    "tags": null,
+    "recommendationResourceType": "Microsoft.CognitiveServices/Accounts",
+    "recommendationImpact": "High",
+    "automationAvailable": false,
+    "query": "// cannot-be-validated-with-arg\r\n"
+  },
+  {
+    "aprlGuid": "8aa9744b-f302-4b05-9776-51d6dd3d0c3a",
+    "recommendationTypeId": null,
+    "recommendationMetadataState": "Active",
+    "learnMoreLink": [
+      {
+        "name": "Learn More",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/deployment-types#global-batch"
+      }
+    ],
+    "recommendationControl": "Scalability",
+    "longDescription": "Global batch efficiently handles large-scale tasks within 24 hours. Submit requests in a single file, with a separate quota to protect online workloads. Key uses: data processing, content generation, document review, customer support automation, data extraction, NLP tasks, and marketing\n",
+    "pgVerified": true,
+    "description": "Ensure that models are deployed using Global batch for large scale processing",
+    "potentialBenefits": "Cost effective faster turnaround for large-scale processing.",
+    "tags": null,
+    "recommendationResourceType": "Microsoft.CognitiveServices/Accounts",
+    "recommendationImpact": "High",
+    "automationAvailable": false,
+    "query": "// cannot-be-validated-with-arg\r\n"
+  },
+  {
+    "aprlGuid": "ac3add17-013e-41a5-af91-9fefce794a00",
+    "recommendationTypeId": null,
+    "recommendationMetadataState": "Active",
+    "learnMoreLink": [
+      {
+        "name": "Learn More",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/deployment-types#data-zone-standard"
+      }
+    ],
+    "recommendationControl": "Governance",
+    "longDescription": "Data zone deployments route customer traffic to the highest availability data center within the defined data zone, ensuring data at rest remains within the Azure OpenAI resource geography. This approach offers increased quota limits and ensures data processing occurs within the specified data zone\n",
+    "pgVerified": true,
+    "description": "Ensure AOAI models are deployed using Data Zone Standard for data residency requirements",
+    "potentialBenefits": "Enforce data residency and compliance standards",
+    "tags": null,
+    "recommendationResourceType": "Microsoft.CognitiveServices/Accounts",
+    "recommendationImpact": "High",
+    "automationAvailable": false,
+    "query": "// cannot-be-validated-with-arg\r\n"
+  },
+  {
+    "aprlGuid": "61187af4-7d36-4b48-b16e-de78bef143a0",
+    "recommendationTypeId": null,
+    "recommendationMetadataState": "Active",
+    "learnMoreLink": [
+      {
+        "name": "Learn More",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/business-continuity-disaster-recovery"
+      }
+    ],
+    "recommendationControl": "HighAvailability",
+    "longDescription": "If your service needs to always be available, design AOAI Service to either failover into another region or split the workload between two or more regions. Applications requiring high degrees of resiliency should consider this to strengthen their model infrastructure.\n",
+    "pgVerified": false,
+    "description": "Deploy AOAI Service in multiple regions using Standard and/or Provisioned deployments",
+    "potentialBenefits": "Ensures business continuity during regional outages.",
+    "tags": null,
+    "recommendationResourceType": "Microsoft.CognitiveServices/Accounts",
+    "recommendationImpact": "High",
+    "automationAvailable": false,
+    "query": "// cannot-be-validated-with-arg\r\n"
   },
   {
     "aprlGuid": "3263a64a-c256-de48-9818-afd3cbc55c2a",
@@ -1291,7 +1421,7 @@
   },
   {
     "aprlGuid": "dfedbeb1-1519-fc47-86a5-52f96cf07105",
-    "recommendationTypeId": "3a3c1a2a-8597-4d3a-981a-0a24a0ee9de4",
+    "recommendationTypeId": null,
     "recommendationMetadataState": "Active",
     "learnMoreLink": [
       {
@@ -1375,7 +1505,7 @@
   },
   {
     "aprlGuid": "41a22a5e-5e08-9647-92d0-2ffe9ef1bdad",
-    "recommendationTypeId": "c3b51c94-588b-426b-a892-24696f9e54cc",
+    "recommendationTypeId": null,
     "recommendationMetadataState": "Active",
     "learnMoreLink": [
       {
@@ -1731,7 +1861,7 @@
     "recommendationResourceType": "Microsoft.Compute/virtualMachineScaleSets",
     "recommendationImpact": "Medium",
     "automationAvailable": true,
-    "query": "// Azure Resource Graph Query\r\n// Find all zonal VMs that are NOT deployed with Flex orchestration mode\r\nresources\r\n| where type == \"microsoft.compute/virtualmachinescalesets\"\r\n| where properties.orchestrationMode != \"Flexible\"\r\n| project recommendationId = \"e7495e1c-0c75-0946-b266-b429b5c7f3bf\", name, id, tags, param1 = strcat(\"orchestrationMode: \", tostring(properties.orchestrationMode))\r\n\r\n"
+    "query": "// Azure Resource Graph Query\r\n// Find all zonal VMs that are NOT deployed with Flex orchestration mode\r\nresources\r\n| where type == \"microsoft.compute/virtualmachinescalesets\"\r\n| where isempty(tostring(tags['aks-managed-poolName']))\r\n| where properties.orchestrationMode != \"Flexible\"\r\n| project recommendationId = \"e7495e1c-0c75-0946-b266-b429b5c7f3bf\", name, id, tags, param1 = strcat(\"orchestrationMode: \", tostring(properties.orchestrationMode))\r\n\r\n"
   },
   {
     "aprlGuid": "94794d2a-eff0-2345-9b67-6f9349d0a627",
@@ -1752,7 +1882,7 @@
     "recommendationResourceType": "Microsoft.Compute/virtualMachineScaleSets",
     "recommendationImpact": "Medium",
     "automationAvailable": true,
-    "query": "// Azure Resource Graph Query\r\n// Find all VMs that do NOT have health monitoring enabled\r\nresources\r\n| where type == \"microsoft.compute/virtualmachinescalesets\"\r\n| join kind=leftouter  (\r\n    resources\r\n    | where type == \"microsoft.compute/virtualmachinescalesets\"\r\n    | mv-expand extension=properties.virtualMachineProfile.extensionProfile.extensions\r\n    | where extension.properties.type in ( \"ApplicationHealthWindows\", \"ApplicationHealthLinux\" )\r\n    | project id\r\n) on id\r\n| where id1 == \"\"\r\n| project recommendationId = \"94794d2a-eff0-2345-9b67-6f9349d0a627\", name, id, tags, param1 = \"extension: null\"\r\n\r\n"
+    "query": "// Azure Resource Graph Query\r\n// Find all VMs that do NOT have health monitoring enabled\r\nresources\r\n| where type == \"microsoft.compute/virtualmachinescalesets\"\r\n| where isempty(tostring(tags['aks-managed-poolName']))\r\n| join kind=leftouter  (\r\n    resources\r\n    | where type == \"microsoft.compute/virtualmachinescalesets\"\r\n    | where isempty(tostring(tags['aks-managed-poolName']))\r\n    | mv-expand extension=properties.virtualMachineProfile.extensionProfile.extensions\r\n    | where extension.properties.type in ( \"ApplicationHealthWindows\", \"ApplicationHealthLinux\" )\r\n    | project id\r\n) on id\r\n| where id1 == \"\"\r\n| project recommendationId = \"94794d2a-eff0-2345-9b67-6f9349d0a627\", name, id, tags, param1 = \"extension: null\"\r\n\r\n"
   },
   {
     "aprlGuid": "820f4743-1f94-e946-ae0b-45efafd87962",
@@ -1773,7 +1903,7 @@
     "recommendationResourceType": "Microsoft.Compute/virtualMachineScaleSets",
     "recommendationImpact": "High",
     "automationAvailable": true,
-    "query": "// Azure Resource Graph Query\r\n// Find all VMs that do NOT have automatic repair policy enabled\r\nresources\r\n| where type == \"microsoft.compute/virtualmachinescalesets\"\r\n| where properties.automaticRepairsPolicy.enabled == false\r\n| project recommendationId = \"820f4743-1f94-e946-ae0b-45efafd87962\", name, id, tags, param1 = \"automaticRepairsPolicy: Disabled\"\r\n\r\n"
+    "query": "// Azure Resource Graph Query\r\n// Find all VMs that do NOT have automatic repair policy enabled\r\nresources\r\n| where type == \"microsoft.compute/virtualmachinescalesets\"\r\n| where isempty(tostring(tags['aks-managed-poolName']))\r\n| where properties.automaticRepairsPolicy.enabled == false\r\n| project recommendationId = \"820f4743-1f94-e946-ae0b-45efafd87962\", name, id, tags, param1 = \"automaticRepairsPolicy: Disabled\"\r\n\r\n"
   },
   {
     "aprlGuid": "ee66ff65-9aa3-2345-93c1-25827cf79f44",
@@ -1798,7 +1928,7 @@
     "recommendationResourceType": "Microsoft.Compute/virtualMachineScaleSets",
     "recommendationImpact": "High",
     "automationAvailable": true,
-    "query": "// Azure Resource Graph Query\r\n// Find VMSS instances associated with autoscale settings when autoscale is disabled\r\nresources\r\n| where type == \"microsoft.compute/virtualmachinescalesets\"\r\n| project name, id, tags\r\n| join kind=leftouter  (\r\n    resources\r\n    | where type == \"microsoft.insights/autoscalesettings\"\r\n    | where tostring(properties.targetResourceUri) contains \"Microsoft.Compute/virtualMachineScaleSets\"\r\n    | project id = tostring(properties.targetResourceUri), autoscalesettings = properties\r\n) on id\r\n| where isnull(autoscalesettings) or autoscalesettings.enabled == \"false\"\r\n| project recommendationId = \"ee66ff65-9aa3-2345-93c1-25827cf79f44\", name, id, tags, param1 = \"autoscalesettings: Disabled\"\r\n| order by id asc\r\n\r\n"
+    "query": "// Azure Resource Graph Query\r\n// Find VMSS instances associated with autoscale settings when autoscale is disabled\r\nresources\r\n| where type == \"microsoft.compute/virtualmachinescalesets\"\r\n| where isempty(tostring(tags['aks-managed-poolName']))\r\n| project name, id, tags\r\n| join kind=leftouter  (\r\n    resources\r\n    | where type == \"microsoft.insights/autoscalesettings\"\r\n    | where tostring(properties.targetResourceUri) contains \"Microsoft.Compute/virtualMachineScaleSets\"\r\n    | project id = tostring(properties.targetResourceUri), autoscalesettings = properties\r\n) on id\r\n| where isnull(autoscalesettings) or autoscalesettings.enabled == \"false\"\r\n| project recommendationId = \"ee66ff65-9aa3-2345-93c1-25827cf79f44\", name, id, tags, param1 = \"autoscalesettings: Disabled\"\r\n| order by id asc\r\n\r\n"
   },
   {
     "aprlGuid": "3f85a51c-e286-9f44-b4dc-51d00768696c",
@@ -1819,7 +1949,7 @@
     "recommendationResourceType": "Microsoft.Compute/virtualMachineScaleSets",
     "recommendationImpact": "Low",
     "automationAvailable": true,
-    "query": "// Azure Resource Graph Query\r\n// Find VMSS instances associated with autoscale settings when predictiveAutoscalePolicy_scaleMode is disabled\r\nresources\r\n| where type == \"microsoft.compute/virtualmachinescalesets\"\r\n| project name, id, tags\r\n| join kind=leftouter  (\r\n    resources\r\n    | where type == \"microsoft.insights/autoscalesettings\"\r\n    | where tostring(properties.targetResourceUri) contains \"Microsoft.Compute/virtualMachineScaleSets\"\r\n    | project id = tostring(properties.targetResourceUri), autoscalesettings = properties\r\n) on id\r\n| where autoscalesettings.enabled == \"true\" and autoscalesettings.predictiveAutoscalePolicy.scaleMode == \"Disabled\"\r\n| project recommendationId = \"3f85a51c-e286-9f44-b4dc-51d00768696c\", name, id, tags, param1 = \"predictiveAutoscalePolicy_scaleMode: Disabled\"\r\n| order by id asc\r\n\r\n"
+    "query": "// Azure Resource Graph Query\r\n// Find VMSS instances associated with autoscale settings when predictiveAutoscalePolicy_scaleMode is disabled\r\nresources\r\n| where type == \"microsoft.compute/virtualmachinescalesets\"\r\n| where isempty(tostring(tags['aks-managed-poolName']))\r\n| project name, id, tags\r\n| join kind=leftouter  (\r\n    resources\r\n    | where type == \"microsoft.insights/autoscalesettings\"\r\n    | where tostring(properties.targetResourceUri) contains \"Microsoft.Compute/virtualMachineScaleSets\"\r\n    | project id = tostring(properties.targetResourceUri), autoscalesettings = properties\r\n) on id\r\n| where autoscalesettings.enabled == \"true\" and autoscalesettings.predictiveAutoscalePolicy.scaleMode == \"Disabled\"\r\n| project recommendationId = \"3f85a51c-e286-9f44-b4dc-51d00768696c\", name, id, tags, param1 = \"predictiveAutoscalePolicy_scaleMode: Disabled\"\r\n| order by id asc\r\n\r\n"
   },
   {
     "aprlGuid": "b5a63aa0-c58e-244f-b8a6-cbba0560a6db",
@@ -1865,7 +1995,7 @@
     "recommendationResourceType": "Microsoft.Compute/virtualMachineScaleSets",
     "recommendationImpact": "High",
     "automationAvailable": true,
-    "query": "// Azure Resource Graph Query\r\n// Find VMSS instances with one or no Zones selected\r\nresources\r\n| where type == \"microsoft.compute/virtualmachinescalesets\"\r\n| where location in~ (\"australiaeast\", \"brazilsouth\", \"canadacentral\", \"centralindia\", \"centralus\", \"eastasia\", \"eastus\", \"eastus2\", \"francecentral\", \"germanywestcentral\", \"israelcentral\", \"italynorth\", \"japaneast\", \"japanwest\", \"koreacentral\", \"mexicocentral\", \"newzealandnorth\", \"northeurope\", \"norwayeast\", \"polandcentral\", \"qatarcentral\", \"southafricanorth\", \"southcentralus\", \"southeastasia\", \"spaincentral\", \"swedencentral\", \"switzerlandnorth\", \"uaenorth\", \"uksouth\", \"westeurope\", \"westus2\", \"westus3\", \"usgovvirginia\", \"chinanorth3\")\r\n| where array_length(zones) <= 1 or isnull(zones)\r\n| project recommendationId = \"1422c567-782c-7148-ac7c-5fc14cf45adc\", name, id, tags, param1 = \"AvailabilityZones: Single Zone\"\r\n| order by id asc\r\n\r\n"
+    "query": "// Azure Resource Graph Query\r\n// Find VMSS instances with one or no Zones selected\r\nresources\r\n| where type == \"microsoft.compute/virtualmachinescalesets\"\r\n| where isempty(tostring(tags['aks-managed-poolName']))\r\n| where location in~ (\"australiaeast\", \"brazilsouth\", \"canadacentral\", \"centralindia\", \"centralus\", \"eastasia\", \"eastus\", \"eastus2\", \"francecentral\", \"germanywestcentral\", \"israelcentral\", \"italynorth\", \"japaneast\", \"japanwest\", \"koreacentral\", \"mexicocentral\", \"newzealandnorth\", \"northeurope\", \"norwayeast\", \"polandcentral\", \"qatarcentral\", \"southafricanorth\", \"southcentralus\", \"southeastasia\", \"spaincentral\", \"swedencentral\", \"switzerlandnorth\", \"uaenorth\", \"uksouth\", \"westeurope\", \"westus2\", \"westus3\", \"usgovvirginia\", \"chinanorth3\")\r\n| where array_length(zones) <= 1 or isnull(zones)\r\n| project recommendationId = \"1422c567-782c-7148-ac7c-5fc14cf45adc\", name, id, tags, param1 = \"AvailabilityZones: Single Zone\"\r\n| order by id asc\r\n\r\n"
   },
   {
     "aprlGuid": "e4ffd7b0-ba24-c84e-9352-ba4819f908c0",
@@ -3426,7 +3556,7 @@
   {
     "aprlGuid": "82a9a0f2-24ee-496f-9ad2-25f81710942d",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Scheduled maintenance in Azure Database for MySQL - Flexible Server",
@@ -3678,7 +3808,7 @@
   {
     "aprlGuid": "38721758-2cc2-4d6b-b7b7-8b47dadbf7df",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "About Site Recovery",
@@ -3949,7 +4079,7 @@
   },
   {
     "aprlGuid": "e544520b-8505-7841-9e77-1f1974ee86ec",
-    "recommendationTypeId": "52fef986-5897-4359-8b92-0f22749f0d73",
+    "recommendationTypeId": null,
     "recommendationMetadataState": "Active",
     "learnMoreLink": [
       {
@@ -4209,7 +4339,7 @@
   },
   {
     "aprlGuid": "1cca00d2-d9ab-8e42-a788-5d40f49405cb",
-    "recommendationTypeId": "78211c00-15a9-336e-17c4-0b48613dadf4",
+    "recommendationTypeId": null,
     "recommendationMetadataState": "Active",
     "learnMoreLink": [
       {
@@ -4230,7 +4360,7 @@
   },
   {
     "aprlGuid": "70fcfe6d-00e9-5544-a63a-fff42b9f2edb",
-    "recommendationTypeId": "4ed62ae4-5072-f9e7-8d94-51c76c48159a",
+    "recommendationTypeId": null,
     "recommendationMetadataState": "Active",
     "learnMoreLink": [
       {
@@ -4293,7 +4423,7 @@
   },
   {
     "aprlGuid": "1dc0821d-4f14-7644-bab4-ba208ff5f7fa",
-    "recommendationTypeId": "88bbc99c-e5af-ddd7-6105-6150b2bfa519",
+    "recommendationTypeId": null,
     "recommendationMetadataState": "Active",
     "learnMoreLink": [
       {
@@ -4311,6 +4441,182 @@
     "recommendationImpact": "Low",
     "automationAvailable": false,
     "query": "// cannot-be-validated-with-arg\r\n"
+  },
+  {
+    "aprlGuid": "611c7c96-ac55-4ddf-909e-9eb70fd048b7",
+    "recommendationTypeId": null,
+    "recommendationMetadataState": "Active",
+    "learnMoreLink": [
+      {
+        "name": "Manage Azure Machine Learning registries",
+        "url": "https://learn.microsoft.com/en-us/azure/machine-learning/how-to-manage-registries?view=azureml-api-2&tabs=cli"
+      }
+    ],
+    "recommendationControl": "DisasterRecovery",
+    "longDescription": "Azure Machine Learning registries enables to create and use assets (models, env, components, and datasets) in different workspaces. Registries support multi-region replication for low latency access to assets, allowing to use them in workspaces located in different Azure regions.\n",
+    "pgVerified": false,
+    "description": "Create the Azure machine learning registry in multiple regions",
+    "potentialBenefits": "Improves performance and reliability",
+    "tags": null,
+    "recommendationResourceType": "Microsoft.MachineLearningServices/registries",
+    "recommendationImpact": "High",
+    "automationAvailable": false,
+    "query": "// cannot-be-validated-with-arg\r\n"
+  },
+  {
+    "aprlGuid": "a86ed26a-59d9-47bd-b440-6bc71b843978",
+    "recommendationTypeId": null,
+    "recommendationMetadataState": "Active",
+    "learnMoreLink": [
+      {
+        "name": "Plan for multi-regional deployment",
+        "url": "https://learn.microsoft.com/en-us/azure/machine-learning/how-to-high-availability-machine-learning?view=azureml-api-2"
+      }
+    ],
+    "recommendationControl": "DisasterRecovery",
+    "longDescription": "Ensure you have a recovery strategy defined. Check regional availability and paired regions. Machine Learning doesn't have auto failover. Therefore, you must design a strategy that encompasses the workspace and all its dependencies, such as Key Vault, Azure Storage, and Container Registry.\n",
+    "pgVerified": false,
+    "description": "Plan for a multi-regional deployment of Azure Machine Learning and associated resources",
+    "potentialBenefits": "Provides multi-region disaster recovery strategy",
+    "tags": null,
+    "recommendationResourceType": "Microsoft.MachineLearningServices/workspaces",
+    "recommendationImpact": "High",
+    "automationAvailable": false,
+    "query": null
+  },
+  {
+    "aprlGuid": "675d249a-9486-45e3-8e89-863f5802782d",
+    "recommendationTypeId": null,
+    "recommendationMetadataState": "Active",
+    "learnMoreLink": [
+      {
+        "name": "Failover for business continuity and disaster recovery",
+        "url": "https://learn.microsoft.com/en-us/azure/machine-learning/how-to-high-availability-machine-learning?view=azureml-api-2"
+      }
+    ],
+    "recommendationControl": "DisasterRecovery",
+    "longDescription": "If your primary workspace is unavailable, switch to the secondary workspace to continue work. Azure Machine Learning doesn't auto-submit jobs to the secondary workspace during an outage. Update your code configuration to point to the new workspace resource.\n",
+    "pgVerified": false,
+    "description": "Deploy Azure Machine learning workspace in secondary region",
+    "potentialBenefits": "Provides recovery from regional outages",
+    "tags": null,
+    "recommendationResourceType": "Microsoft.MachineLearningServices/workspaces",
+    "recommendationImpact": "High",
+    "automationAvailable": false,
+    "query": null
+  },
+  {
+    "aprlGuid": "13794a63-8d95-47ce-acbd-5925ede5b208",
+    "recommendationTypeId": null,
+    "recommendationMetadataState": "Active",
+    "learnMoreLink": [
+      {
+        "name": "Failover for business continuity and disaster recovery",
+        "url": "https://learn.microsoft.com/en-us/azure/machine-learning/how-to-high-availability-machine-learning?view=azureml-api-2"
+      },
+      {
+        "name": "Compute targets in Azure Machine Learning",
+        "url": "https://learn.microsoft.com/en-us/azure/machine-learning/concept-compute-target?view=azureml-api-2"
+      }
+    ],
+    "recommendationControl": "DisasterRecovery",
+    "longDescription": "Create compute resources for training a Machine Learning model in selected regions. Ensure both regions have sufficient compute quota for dynamic scaling. Customers must configure HA across zones for attached compute resources like AKS, Azure Databricks, Container Instances.\n",
+    "pgVerified": false,
+    "description": "Ensure to create Machine Learning Compute resources in secondary region",
+    "potentialBenefits": "High availability and disaster recovery",
+    "tags": null,
+    "recommendationResourceType": "Microsoft.MachineLearningServices/workspaces",
+    "recommendationImpact": "High",
+    "automationAvailable": false,
+    "query": null
+  },
+  {
+    "aprlGuid": "6e4f0fd1-1853-4b94-9736-6d6d239d2694",
+    "recommendationTypeId": null,
+    "recommendationMetadataState": "Active",
+    "learnMoreLink": [
+      {
+        "name": "Manage resource quotas",
+        "url": "https://learn.microsoft.com/en-us/azure/machine-learning/how-to-manage-quotas?view=azureml-api-2"
+      }
+    ],
+    "recommendationControl": "DisasterRecovery",
+    "longDescription": "When selecting regions for BCDR, ensure that both regions offer adequate compute quotas to meet your requirements in the same SKU. This ensures that you can failover to the secondary region without any issues.\n",
+    "pgVerified": false,
+    "description": "Selecting regions for BCDR, ensure that both regions offer adequate compute quotas",
+    "potentialBenefits": "Provide enough compute resources to the secondary region",
+    "tags": null,
+    "recommendationResourceType": "Microsoft.MachineLearningServices/workspaces",
+    "recommendationImpact": "High",
+    "automationAvailable": false,
+    "query": null
+  },
+  {
+    "aprlGuid": "6e2af91f-477d-46a5-b8ce-6cd1b8176550",
+    "recommendationTypeId": null,
+    "recommendationMetadataState": "Active",
+    "learnMoreLink": [
+      {
+        "name": "What are compute targets in Azure Machine Learning",
+        "url": "https://learn.microsoft.com/en-us/azure/machine-learning/concept-compute-target?view=azureml-api-2#supported-vm-series-and-sizes"
+      }
+    ],
+    "recommendationControl": "ServiceUpgradeAndRetirement",
+    "longDescription": "When choosing SKUs, opt for those that support longer terms and steer clear of any SKUs that are nearing retirement. This ensures that you can continue to use the SKU for a longer period of time.\n",
+    "pgVerified": false,
+    "description": "Choose SKUs with longer terms and avoid those nearing retirement",
+    "potentialBenefits": "supportability, longer term support",
+    "tags": null,
+    "recommendationResourceType": "Microsoft.MachineLearningServices/workspaces",
+    "recommendationImpact": "Medium",
+    "automationAvailable": false,
+    "query": null
+  },
+  {
+    "aprlGuid": "cf2569bb-1cf2-46ce-8885-d742dc6f4a4c",
+    "recommendationTypeId": null,
+    "recommendationMetadataState": "Active",
+    "learnMoreLink": [
+      {
+        "name": "NC sizes series",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/gpu-accelerated/nc-series?tabs=sizebasic"
+      },
+      {
+        "name": "Migration Guide for GPU Compute Workloads in Azure",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/n-series-migration"
+      }
+    ],
+    "recommendationControl": "ServiceUpgradeAndRetirement",
+    "longDescription": "Avoid selecting NC and NC_Promo series Azure virtual machines for machine learning VM quotas and make sure to migrate to newer versions.\n",
+    "pgVerified": false,
+    "description": "Avoid NC and NC_Promo series Azure VMs for machine learning quotas; migrate to newer versions",
+    "potentialBenefits": "Avoid service disruption, longer term support",
+    "tags": null,
+    "recommendationResourceType": "Microsoft.MachineLearningServices/workspaces",
+    "recommendationImpact": "High",
+    "automationAvailable": false,
+    "query": null
+  },
+  {
+    "aprlGuid": "48ea6480-6263-40ba-8937-326d790e63f6",
+    "recommendationTypeId": null,
+    "recommendationMetadataState": "Active",
+    "learnMoreLink": [
+      {
+        "name": "Manage and increase quotas and limits for resources with Azure Machine Learning",
+        "url": "https://learn.microsoft.com/en-us/azure/machine-learning/how-to-manage-quotas?view=azureml-api-2"
+      }
+    ],
+    "recommendationControl": "OtherBestPractices",
+    "longDescription": "Requests for additional Azure Machine Learning quota should be made through the Azure Machine Learning Studio instead of the subscription level in the Azure portal.\n",
+    "pgVerified": false,
+    "description": "Make Azure Machine Learning quota requests through the Azure Machine Learning Studio",
+    "potentialBenefits": "Scalability,capacity planning",
+    "tags": null,
+    "recommendationResourceType": "Microsoft.MachineLearningServices/workspaces",
+    "recommendationImpact": "High",
+    "automationAvailable": false,
+    "query": null
   },
   {
     "aprlGuid": "af426a99-62a6-6b4c-9662-42d220b413b8",
@@ -4690,7 +4996,7 @@
   },
   {
     "aprlGuid": "7893f0b3-8622-1d47-beed-4b50a19f7895",
-    "recommendationTypeId": "0e19257e-dcef-4d00-8de1-5fe1ae0fd948",
+    "recommendationTypeId": null,
     "recommendationMetadataState": "Active",
     "learnMoreLink": [
       {
@@ -4819,7 +5125,7 @@
   },
   {
     "aprlGuid": "8364fd0a-7c0e-e240-9d95-4bf965aec243",
-    "recommendationTypeId": "ef4da732-f541-4109-bc0e-465c68b6c7eb",
+    "recommendationTypeId": null,
     "recommendationMetadataState": "Active",
     "learnMoreLink": [
       {
@@ -5000,7 +5306,7 @@
   {
     "aprlGuid": "a5f3a4bd-4cf1-4196-a3cb-f5a0876198b2",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Protect your Azure resources with a lock - Azure Resource Manager | Microsoft Learn",
@@ -5014,7 +5320,7 @@
     "potentialBenefits": "Prevents accidental deletion of connections",
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/connections",
-    "recommendationImpact": "High",
+    "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
   },
@@ -5050,13 +5356,13 @@
       }
     ],
     "recommendationControl": "DisasterRecovery",
-    "longDescription": "Azure DNS allows the Time-To-Live (TTL) for record sets in the zone to be set to a value between 1 and 2147483647 seconds. You should ensure that the TTL for the DNS record sets in your DNS Zones are set appropriately to meet your RPO targets.\n",
+    "longDescription": "Azure DNS allows the Time-To-Live (TTL) for record sets in the zone to be set to a value between 1 and 2147483647 seconds. You should ensure that the TTL for the DNS record sets in your DNS Zones are set appropriately to meet your RTO targets.\n",
     "pgVerified": false,
-    "description": "Ensure Time-To-Live (TTL) is set appropriately to ensure RPOs can be met",
-    "potentialBenefits": "Ensures that no cached DNS records exist past RPO targets",
+    "description": "Ensure Time-To-Live (TTL) is set appropriately to ensure RTOs can be met",
+    "potentialBenefits": "Ensures that no cached DNS records exist past RTO targets",
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/dnsZones",
-    "recommendationImpact": "High",
+    "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
   },
@@ -5286,12 +5592,12 @@
     ],
     "recommendationControl": "Scalability",
     "longDescription": "Provisioning ExpressRoute circuits on a 10-Gbps or 100-Gbps ExpressRoute Direct resource up to 20-Gbps or 200-Gbps is possible but not recommended for resiliency. If an ExpressRoute Direct port fails, and circuits are using full capacity, the remaining port won't handle the extra load.\n",
-    "pgVerified": true,
-    "description": "Ensure you do not over-subscribe an ExpressRoute Direct",
+    "pgVerified": false,
+    "description": "Ensure ExpressRoute Direct is not over-subscribed",
     "potentialBenefits": "Improves resilience during port failures",
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/ExpressRoutePorts",
-    "recommendationImpact": "High",
+    "recommendationImpact": "Medium",
     "automationAvailable": true,
     "query": "// Azure Resource Graph Query\r\n// Find all Express Route Directs that are over subscribed\r\nresources\r\n| where type == \"microsoft.network/expressrouteports\"\r\n| where toint(properties['provisionedBandwidthInGbps']) > toint(properties['bandwidthInGbps'])\r\n| project recommendationId = \"0bee356b-7348-4799-8cab-0c71ffe13018\", name, id, tags, param1 = strcat(\"provisionedBandwidthInGbps: \", properties['provisionedBandwidthInGbps']), param2 = strcat(\"bandwidthInGbps: \", properties['bandwidthInGbps'])\r\n\r\n"
   },
@@ -5312,7 +5618,7 @@
     "potentialBenefits": "Enhanced network performance and health",
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/expressRoutePorts",
-    "recommendationImpact": "High",
+    "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// under-development\r\n"
   },
@@ -5645,7 +5951,7 @@
   {
     "aprlGuid": "52ac35e8-9c3e-f84d-8ce8-2fab955333d3",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Lock your resources to protect your infrastructure",
@@ -5666,7 +5972,7 @@
   {
     "aprlGuid": "8291c1fa-650c-b44b-b008-4deb7465919d",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Security rules",
@@ -5724,7 +6030,7 @@
     "recommendationResourceType": "Microsoft.Network/networkWatchers",
     "recommendationImpact": "Low",
     "automationAvailable": true,
-    "query": "// Azure Resource Graph Query\r\n// This query will return all Network Watcher Flow Logs that are not enabled or in a succeeded state\r\nresources\r\n| where type =~ \"microsoft.network/networkwatchers/flowlogs\" and isnotnull(properties)\r\n| extend targetResourceId = tostring(properties.targetResourceId)\r\n| extend status = iff(properties.enabled =~ 'true', \"Enabled\", \"Disabled\")\r\n| extend provisioningState = tostring(properties.provisioningState)\r\n| extend flowLogType = iff(properties.targetResourceId contains \"Microsoft.Network/virtualNetworks\", 'Virtual network', 'Network security group')\r\n| where provisioningState != \"Succeeded\" or status != \"Enabled\"\r\n| project recommendationId = \"22a769ed-0ecb-8b49-bafe-8f52e6373d9c\", name, id, tags, param1 = strcat(\"provisioningState:\", provisioningState), param2=strcat(\"Status:\", status), param3=strcat(\"targetResourceId:\",targetResourceId), param4=strcat(\"flowLogType:\",flowLogType)\r\n\r\n"
+    "query": "// Azure Resource Graph Query\r\n// This query will return all Network Watcher Flow Logs that are not enabled or not in a succeeded state\r\nresources\r\n| where type =~ \"microsoft.network/networkwatchers/flowlogs\" and isnotnull(properties)\r\n| extend targetResourceId = tostring(properties.targetResourceId)\r\n| extend status = iff(properties.enabled =~ 'true', \"Enabled\", \"Disabled\")\r\n| extend provisioningState = tostring(properties.provisioningState)\r\n| extend flowLogType = iff(properties.targetResourceId contains \"Microsoft.Network/virtualNetworks\", 'Virtual network', 'Network security group')\r\n| where provisioningState != \"Succeeded\" or status != \"Enabled\"\r\n| project recommendationId = \"22a769ed-0ecb-8b49-bafe-8f52e6373d9c\", name, id, tags, param1 = strcat(\"provisioningState:\", provisioningState), param2=strcat(\"Status:\", status), param3=strcat(\"targetResourceId:\",targetResourceId), param4=strcat(\"flowLogType:\",flowLogType)\r\n\r\n"
   },
   {
     "aprlGuid": "1e28bbc1-1eb7-486f-8d7f-93943f40219c",
@@ -5743,32 +6049,7 @@
     "potentialBenefits": "Improves monitoring for Azure and Hybrid connectivity",
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/networkWatchers",
-    "recommendationImpact": "High",
-    "automationAvailable": false,
-    "query": "// under-development\r\n"
-  },
-  {
-    "aprlGuid": "a1317a0b-402d-4604-be40-a25a004ba171",
-    "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
-    "learnMoreLink": [
-      {
-        "name": "Flow logging for network security groups",
-        "url": "https://learn.microsoft.com/en-us/azure/network-watcher/nsg-flow-logs-overview"
-      },
-      {
-        "name": "Virtual network flow logs",
-        "url": "https://learn.microsoft.com/en-us/azure/network-watcher/vnet-flow-logs-overview"
-      }
-    ],
-    "recommendationControl": "MonitoringAndAlerting",
-    "longDescription": "Improves monitoring and security for Azure and Hybrid connectivity\n",
-    "pgVerified": true,
-    "description": "Enable Network Security Group and Virtual Network Flow Logs",
-    "potentialBenefits": "Improves monitoring and security for Azure connectivity",
-    "tags": null,
-    "recommendationResourceType": "Microsoft.Network/networkWatchers",
-    "recommendationImpact": "High",
+    "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// under-development\r\n"
   },
@@ -5785,13 +6066,13 @@
     "recommendationControl": "MonitoringAndAlerting",
     "longDescription": "Improves monitoring, security and troubleshooting for Azure and Hybrid connectivity\n",
     "pgVerified": true,
-    "description": "Enable traffic analytics in Network Security Group and Virtual Network Flow Logs configuration.",
+    "description": "Enable traffic analytics in Virtual Network Flow Logs configuration",
     "potentialBenefits": "Improves monitoring, security and troubleshooting.",
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/networkWatchers",
-    "recommendationImpact": "High",
+    "recommendationImpact": "Medium",
     "automationAvailable": false,
-    "query": "// under-development\r\n"
+    "query": "// Azure Resource Graph Query\r\n// This query will return all Flow Logs where Flow Analytics Configuration is disabled\r\nresources\r\n| where type =~ \"microsoft.network/networkwatchers/flowlogs\"\r\n| where properties.targetResourceId contains \"microsoft.network/virtualNetworks\"\r\n| where not(properties.flowAnalyticsConfiguration.networkWatcherFlowAnalyticsConfiguration.enabled)\r\n| project recommendationId = \"bf0b7dbd-016d-458c-af99-70fcb03ad451\", name, id, tags, param1= \"Flow Analytics Configuration is disabled\",param2=strcat(\"Vnet Name : \", properties.targetResourceId)\r\n"
   },
   {
     "aprlGuid": "fd43ea32-2ccf-49a8-ada4-9a78794e3ff1",
@@ -5804,7 +6085,7 @@
       }
     ],
     "recommendationControl": "MonitoringAndAlerting",
-    "longDescription": "Set up monitoring and alerts for Point-to-Site VPN gateways. Create alert rule for ensuring promptly response to critical events such as Gateway overutilization, connection count limits and User VPN route limits.",
+    "longDescription": "Set up monitoring and alerts for Point-to-Site VPN gateways. Create alert rule for ensuring promptly response to critical events such as Gateway over utilization, connection count limits and User VPN route limits. Mission Critical workloads should use dual ExpressRoutes instead of VPN.",
     "pgVerified": false,
     "description": "Monitor health for v-Hub's Point-to-Site VPN gateways",
     "potentialBenefits": "Detection and mitigation to avoid disruptions.",
@@ -5852,7 +6133,7 @@
     "potentialBenefits": "Enhanced DNS reliability and alerting",
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/privateDnsZones",
-    "recommendationImpact": "High",
+    "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
   },
@@ -5888,13 +6169,13 @@
       }
     ],
     "recommendationControl": "DisasterRecovery",
-    "longDescription": "Azure Private DNS allows the Time-To-Live (TTL) for record sets in the zone to be set to a value between 1 and 2147483647 seconds. You should ensure that the TTL for the DNS record sets in your DNS Zones are set appropriately to meet your RPO targets.\n",
+    "longDescription": "Azure Private DNS allows the Time-To-Live (TTL) for record sets in the zone to be set to a value between 1 and 2147483647 seconds. You should ensure that the TTL for the DNS record sets in your DNS Zones are set appropriately to meet your RTO targets.\n",
     "pgVerified": false,
-    "description": "Ensure Time-To-Live (TTL) is set appropriately to ensure RPOs can be met",
-    "potentialBenefits": "Ensures that no cached DNS records exist past RPO targets",
+    "description": "Ensure Time-To-Live (TTL) is set appropriately to ensure RTOs can be met",
+    "potentialBenefits": "Ensures that no cached DNS records exist past RTO targets",
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/privateDnsZones",
-    "recommendationImpact": "High",
+    "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
   },
@@ -6032,14 +6313,14 @@
     "potentialBenefits": "Enhanced security and change detection",
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/routeTables",
-    "recommendationImpact": "High",
+    "recommendationImpact": "Medium",
     "automationAvailable": true,
     "query": "// Azure Resource Graph Query\r\n// Find all Route Tables without alerts for modification configured.\r\nresources\r\n| where type =~ \"Microsoft.Network/routeTables\"\r\n| project name, id, tags, lowerCaseRouteTableId = tolower(id)\r\n| join kind = leftouter (\r\n    resources\r\n    | where type =~ \"Microsoft.Insights/activityLogAlerts\" and properties.enabled == true\r\n    | mv-expand scope = properties.scopes\r\n    | where scope has \"Microsoft.Network/routeTables\"\r\n    | project alertName = name, conditionJson = dynamic_to_json(properties.condition.allOf), scope\r\n    | where conditionJson has '\"Administrative\"' and (\r\n        // Create or Update Route Table\r\n        (conditionJson has '\"Microsoft.Network/routeTables/write\"') or\r\n        // All Administrative operations\r\n        (conditionJson !has '\"Microsoft.Network/routeTables/write\"' and conditionJson !has '\"Microsoft.Network/routeTables/delete\"' and conditionJson !has '\"Microsoft.Network/routeTables/join/action\"')\r\n        )\r\n    | project lowerCaseRouteTableIdOfScope = tolower(scope)\r\n    )\r\n    on $left.lowerCaseRouteTableId == $right.lowerCaseRouteTableIdOfScope\r\n| where isempty(lowerCaseRouteTableIdOfScope)\r\n| project recommendationId = \"23b2dfc7-7e5d-9443-9f62-980ca621b561\", name, id, tags, param1 = \"ModificationAlert: Not configured/Disabled\"\r\n\r\n"
   },
   {
     "aprlGuid": "89d1166a-1a20-0f46-acc8-3194387bf127",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Protect your Azure resources with a lock - Azure Resource Manager | Microsoft Learn",
@@ -6260,7 +6541,7 @@
   {
     "aprlGuid": "c0f23a92-d322-4d4d-97e9-a238b5e3bbb8",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Protect your Azure resources with a lock - Azure Resource Manager | Microsoft Learn",
@@ -6341,7 +6622,7 @@
     "potentialBenefits": "Minimizes update impact",
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/virtualNetworkGateways",
-    "recommendationImpact": "High",
+    "recommendationImpact": "Medium",
     "automationAvailable": true,
     "query": "// Azure Resource Graph Query\r\n// Find all Virtual Network Gateways without Maintenance Configurations\r\n\r\nresources\r\n| where type =~ \"Microsoft.Network/virtualNetworkGateways\"\r\n| extend resourceId = tolower(id)\r\n| join kind=leftouter  (\r\n    maintenanceresources\r\n    | where type =~ \"Microsoft.Maintenance/configurationAssignments\"\r\n    | project JsonData = parse_json(properties)\r\n    | extend maintenanceConfigurationId = tolower(tostring(JsonData.maintenanceConfigurationId))\r\n    | join kind=inner (\r\n        resources\r\n        | where type =~ \"Microsoft.Maintenance/maintenanceConfigurations\"\r\n        | project maintenanceConfigurationId=tolower(id)\r\n    ) on maintenanceConfigurationId\r\n    | project maintenanceConfigurationId, resourceId=tolower(tostring(JsonData.resourceId))\r\n) on resourceId\r\n| where isempty(maintenanceConfigurationId)\r\n| project recommendationId = \"3e115044-a3aa-433e-be01-ce17d67e50da\", name, id, tags, param1= strcat(\"sku-tier: \" , properties.sku.tier), param2=location\r\n\r\n"
   },
@@ -6364,7 +6645,7 @@
       }
     ],
     "recommendationControl": "HighAvailability",
-    "longDescription": "Azure VPN gateway offers variable SLAs based on deployment in one or two availability zones. Deploying zone-redundant virtual network gateways across availability zones ensures zone-resiliency, improving access to mission-critical, scalable services on Azure.\n",
+    "longDescription": "Deploying zone-redundant virtual network gateways across availability zones ensures zone-resiliency, improving access to mission-critical, scalable services on Azure. Mission Critical workloads should use dual ExpressRoutes instead of VPN.\n",
     "pgVerified": true,
     "description": "Choose a Zone-redundant VPN gateway",
     "potentialBenefits": "Enhanced reliability and scalability",
@@ -6389,7 +6670,7 @@
       }
     ],
     "recommendationControl": "HighAvailability",
-    "longDescription": "The active-active mode is available for all SKUs except Basic, allowing for two Gateway IP configurations and two public IP addresses, enhancing redundancy and traffic handling.\n",
+    "longDescription": "The active-active mode is available for all SKUs except Basic, allowing for two Gateway IP configurations and two public IP addresses, enhancing redundancy and traffic handling. Mission Critical workloads should use dual ExpressRoutes instead of VPN.\n",
     "pgVerified": true,
     "description": "Enable Active-Active VPN Gateways for redundancy",
     "potentialBenefits": "Enhanced reliability and network capacity",
@@ -6410,9 +6691,9 @@
       }
     ],
     "recommendationControl": "DisasterRecovery",
-    "longDescription": "Deploying active-active VPN concentrators and Azure VPN Gateways maximizes resilience and availability using a fully-meshed topology with four IPSec tunnels.\n",
+    "longDescription": "Deploying active-active VPN concentrators and Azure VPN Gateways maximizes resilience and availability using a fully-meshed topology with four IPSec tunnels. Mission Critical workloads should use dual ExpressRoutes instead of VPN.\n",
     "pgVerified": true,
-    "description": "Deploy active-active VPN concentrators on your premises for maximum resiliency with VPN gateways",
+    "description": "Deploy active-active VPN concentrators on your premises",
     "potentialBenefits": "Maximizes resilience and availability",
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/virtualNetworkGateways",
@@ -6431,7 +6712,7 @@
       }
     ],
     "recommendationControl": "MonitoringAndAlerting",
-    "longDescription": "Set up monitoring and alerts for Virtual Network Gateway health to utilize a variety of metrics for ensuring operational efficiency and prompt response to any disruptions.\n",
+    "longDescription": "Set up monitoring and alerts for Virtual Network Gateway health to utilize a variety of metrics for ensuring operational efficiency and prompt response to any disruptions. Mission Critical workloads should use dual ExpressRoutes instead of VPN.\n",
     "pgVerified": true,
     "description": "Monitor VPN gateway connections and health",
     "potentialBenefits": "Improved uptime and issue awareness",
@@ -6456,7 +6737,7 @@
       }
     ],
     "recommendationControl": "MonitoringAndAlerting",
-    "longDescription": "VPN gateway leverages service health to inform users about both planned and unplanned maintenance, ensuring they are notified about modifications to their VPN connectivity.\n",
+    "longDescription": "VPN gateway leverages service health to inform users about both planned and unplanned maintenance, ensuring they are notified about modifications to their VPN connectivity. Mission Critical workloads should use dual ExpressRoutes instead of VPN.\n",
     "pgVerified": true,
     "description": "Enable VPN gateway service health",
     "potentialBenefits": "Improves VPN maintenance alerts",
@@ -6477,9 +6758,9 @@
       }
     ],
     "recommendationControl": "HighAvailability",
-    "longDescription": "For zone-redundant VPN gateways, always use zone-redundant Standard SKU public IPs to avoid deploying all instances in one zone. This ensures the gateway's reliability, applying to both active-passive (single IP) and active-active (dual IP) setups.\n",
+    "longDescription": "For zone-redundant VPN gateways, always use zone-redundant Standard SKU public IPs to avoid deploying all instances in one zone. This ensures the gateway's reliability. Mission Critical workloads should use dual ExpressRoutes instead of VPN.\n",
     "pgVerified": true,
-    "description": "Deploy zone-redundant VPN gateways with zone-redundant Public IP(s)",
+    "description": "Deploy VPN gateways with zone-redundant Public IPs",
     "potentialBenefits": "Enhanced reliability and disaster recovery",
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/virtualNetworkGateways",
@@ -6490,7 +6771,7 @@
   {
     "aprlGuid": "f0bf9ae6-25a5-974d-87d5-025abec73539",
     "recommendationTypeId": "eade5b56-eefd-444f-95c8-23f29e5d93cb",
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Azure Virtual Network - Concepts and best practices | Microsoft Learn",
@@ -6544,7 +6825,7 @@
   {
     "aprlGuid": "24ae3773-cc2c-3649-88de-c9788e25b463",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Azure Virtual Network FAQ | Microsoft Learn",
@@ -6569,6 +6850,27 @@
     "recommendationImpact": "Medium",
     "automationAvailable": true,
     "query": "// Azure Resource Graph Query\r\n// Find Subnets with Service Endpoint enabled for services that offer Private Link\r\nresources\r\n| where type =~ 'Microsoft.Network/virtualnetworks'\r\n| mv-expand subnets = properties.subnets\r\n| extend se = array_length(subnets.properties.serviceEndpoints)\r\n| where se >= 1\r\n| project name, id, tags, subnets, serviceEndpoints=todynamic(subnets.properties.serviceEndpoints)\r\n| mv-expand serviceEndpoints\r\n| project name, id, tags, subnetName=subnets.name, serviceName=tostring(serviceEndpoints.service)\r\n| where serviceName in (parse_json('[\"Microsoft.CognitiveServices\",\"Microsoft.AzureCosmosDB\",\"Microsoft.DBforMariaDB\",\"Microsoft.DBforMySQL\",\"Microsoft.DBforPostgreSQL\",\"Microsoft.EventHub\",\"Microsoft.KeyVault\",\"Microsoft.ServiceBus\",\"Microsoft.Sql\", \"Microsoft.Storage\",\"Microsoft.StorageSync\",\"Microsoft.Synapse\",\"Microsoft.Web\"]'))\r\n| project recommendationId = \"24ae3773-cc2c-3649-88de-c9788e25b463\", name, id, tags, param1 = strcat(\"subnet=\", subnetName), param2=strcat(\"serviceName=\",serviceName), param3=\"ServiceEndpoints=true\"\r\n\r\n"
+  },
+  {
+    "aprlGuid": "06b77be9-56a3-4d41-b362-8b295c5a283d",
+    "recommendationTypeId": null,
+    "recommendationMetadataState": "Active",
+    "learnMoreLink": [
+      {
+        "name": "Virtual network flow logs",
+        "url": "https://learn.microsoft.com/azure/network-watcher/vnet-flow-logs-overview"
+      }
+    ],
+    "recommendationControl": "MonitoringAndAlerting",
+    "longDescription": "Improves monitoring and security for Azure and Hybrid connectivity\n",
+    "pgVerified": true,
+    "description": "Enable Virtual Network Flow Logs",
+    "potentialBenefits": "Improves monitoring and security for Azure connectivity",
+    "tags": null,
+    "recommendationResourceType": "Microsoft.Network/virtualNetworks",
+    "recommendationImpact": "Medium",
+    "automationAvailable": true,
+    "query": "// Azure Resource Graph Query\r\n// This query will return all Vnets missing Flow Logs configuration\r\nresources\r\n| where type =~ \"Microsoft.Network/virtualNetworks\"\r\n| extend vnetId = tolower(tostring(id)),vnetName = name,vnetTags = tags,vnetLocation = location\r\n| join kind = leftouter (\r\n    resources\r\n    | where type =~ \"microsoft.network/networkwatchers/flowlogs\"\r\n    | extend flowLogType = iff(\r\n        properties.targetResourceId contains \"Microsoft.Network/virtualNetworks\",\r\n        'Virtual network',\r\n        'Virtual network'\r\n      )\r\n    | extend flowLogTargetVnet = tolower(properties.targetResourceId)\r\n) on $left.vnetId == $right.flowLogTargetVnet\r\n| where strlen(flowLogTargetVnet) == 0\r\n| project recommendationId = \"06b77be9-56a3-4d41-b362-8b295c5a283d\",name=vnetName,id=vnetId,tags,param1 = \"Missing Vnet Flow Log configuration\"\r\n"
   },
   {
     "aprlGuid": "2226d069-de5b-4ec1-ad26-3249f4ab1741",
@@ -6623,13 +6925,13 @@
       }
     ],
     "recommendationControl": "MonitoringAndAlerting",
-    "longDescription": "Set up monitoring and alerts for v-Hub's VPN Gateway. Create alert rule for ensuring promptly response to critical events such as packet drop counts, BGP status, Gateway overutilization.",
+    "longDescription": "Set up monitoring and alerts for v-Hub's VPN Gateway. Create alert rule for ensuring promptly response to critical events such as packet drop counts, BGP status, Gateway over utilization. Mission Critical workloads should use dual ExpressRoutes instead of VPN.",
     "pgVerified": false,
     "description": "Monitor gateway for Site-to-site v-Hub's VPN gateway",
     "potentialBenefits": "Detection and mitigation to avoid disruptions.",
     "tags": null,
     "recommendationResourceType": "Microsoft.Network/vpnGateways",
-    "recommendationImpact": "High",
+    "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// under-development\r\n"
   },
@@ -6748,7 +7050,7 @@
   },
   {
     "aprlGuid": "2912472d-0198-4bdc-aa90-37f145790edc",
-    "recommendationTypeId": "06578866-1877-41e6-9d22-3ea5122e8048",
+    "recommendationTypeId": null,
     "recommendationMetadataState": "Active",
     "learnMoreLink": [
       {
@@ -6769,7 +7071,7 @@
     "recommendationResourceType": "Microsoft.RecoveryServices/vaults",
     "recommendationImpact": "Medium",
     "automationAvailable": false,
-    "query": "// under-development\r\n"
+    "query": "// Azure Resource Graph Query\r\n// This Resource Graph query will return all Recovery services vault with Classic alerts enabled.\r\nresources\r\n| where type in~ ('microsoft.recoveryservices/vaults')\r\n| extend monitoringSettings = parse_json(properties).monitoringSettings\r\n| extend isUsingClassicAlerts = case(isnull(monitoringSettings),'Enabled',monitoringSettings.classicAlertSettings.alertsForCriticalOperations)\r\n| extend isUsingJobsAlerts = case(isnull(monitoringSettings), 'Enabled', monitoringSettings.azureMonitorAlertSettings.alertsForAllJobFailures)\r\n| where isUsingClassicAlerts == 'Enabled'\r\n| project recommendationId = \"2912472d-0198-4bdc-aa90-37f145790edc\", name, id, tags, param1=strcat(\"isUsingClassicAlerts: \", isUsingClassicAlerts), param2=strcat(\"isUsingJobsAlerts: \", isUsingJobsAlerts)\r\n"
   },
   {
     "aprlGuid": "1549b91f-2ea0-4d4f-ba2a-4596becbe3de",
@@ -6824,27 +7126,6 @@
     "recommendationImpact": "Medium",
     "automationAvailable": true,
     "query": "// Azure Resource Graph Query\r\n// Find all Azure Recovery Services vaults that do not have soft delete  enabled\r\nresources\r\n| where type == \"microsoft.recoveryservices/vaults\"\r\n| mv-expand issoftDelete=properties.securitySettings.softDeleteSettings.softDeleteState\r\n| where issoftDelete == 'Disabled'\r\n| project recommendationId = \"9e39919b-78af-4a0b-b70f-c548dae97c25\", name, id, tags, param1=strcat(\"Soft Delete: \",issoftDelete)\r\n"
-  },
-  {
-    "aprlGuid": "98bd7098-49d6-491b-86f1-b143d6b1a0ff",
-    "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
-    "learnMoreLink": [
-      {
-        "name": "Azure Resource Manager Overview",
-        "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overview#resource-group-location-alignment"
-      }
-    ],
-    "recommendationControl": "DisasterRecovery",
-    "longDescription": "Ensure resource locations align with their resource group to manage resources during regional outages. ARM stores resource data, which if in an unavailable region, could halt updates, rendering resources read-only.\n",
-    "pgVerified": true,
-    "description": "Ensure Resource Group and its Resources are located in the same Region",
-    "potentialBenefits": "Improves outage management",
-    "tags": null,
-    "recommendationResourceType": "Microsoft.Resources/subscriptions",
-    "recommendationImpact": "High",
-    "automationAvailable": true,
-    "query": "// Azure Resource Graph Query\r\n// Provides a list of Azure Resource Groups that have resources deployed in a region different than the Resource Group region\r\nresourcecontainers\r\n| where type =~ \"Microsoft.Resources/subscriptions/resourceGroups\"\r\n| project resourceGroupId = tolower(id), resourceGroupLocation = location\r\n| join kind = inner (\r\n    resources\r\n    | where location !~ \"Global\" and             // Exclude global resources\r\n        resourceGroup !~ \"NetworkWatcherRG\" and  // Exclude resources in the NetworkWatcherRG\r\n        id has \"/resourceGroups/\"                // Exclude resources not in a resource group\r\n    | project id, name, tags, resourceGroup, location, resourceGroupId = tolower(strcat_array(array_slice(split(id, \"/\"), 0, 4), \"/\"))\r\n    )\r\n    on resourceGroupId\r\n| where resourceGroupLocation !~ location\r\n| project\r\n    recommendationId = \"98bd7098-49d6-491b-86f1-b143d6b1a0ff\",\r\n    name,\r\n    id,\r\n    tags,\r\n    param1 = strcat(\"resourceLocation: \", location),\r\n    param2 = strcat(\"resourceGroupLocation: \", resourceGroupLocation),\r\n    param3 = strcat(\"resourceGroup: \", resourceGroup)\r\n"
   },
   {
     "aprlGuid": "20057905-262c-49fe-a9be-49f423afb359",
@@ -7071,7 +7352,7 @@
   {
     "aprlGuid": "74c2491d-048b-0041-a140-935960220e20",
     "recommendationTypeId": "2ea11bcb-dfd0-48dc-96f0-beba578b989a",
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Active Geo Replication",
@@ -7091,8 +7372,8 @@
   },
   {
     "aprlGuid": "943c168a-2ec2-a94c-8015-85732a1b4859",
-    "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationTypeId": "2ea11bcb-dfd0-48dc-96f0-beba578b989a",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "AutoFailover Groups",
@@ -7131,7 +7412,7 @@
     "potentialBenefits": "Enhanced reliability, no extra cost",
     "tags": null,
     "recommendationResourceType": "Microsoft.Sql/servers",
-    "recommendationImpact": "Medium",
+    "recommendationImpact": "High",
     "automationAvailable": true,
     "query": "// Azure Resource Graph Query\r\n// Finds non-zone redundant SQL databases and lists them\r\nResources\r\n| where type =~ 'microsoft.sql/servers/databases'\r\n| where location in~ (\"australiaeast\", \"brazilsouth\", \"canadacentral\", \"centralindia\", \"centralus\", \"eastasia\", \"eastus\", \"eastus2\", \"francecentral\", \"germanywestcentral\", \"israelcentral\", \"italynorth\", \"japaneast\", \"japanwest\", \"koreacentral\", \"mexicocentral\", \"newzealandnorth\", \"northeurope\", \"norwayeast\", \"polandcentral\", \"qatarcentral\", \"southafricanorth\", \"southcentralus\", \"southeastasia\", \"spaincentral\", \"swedencentral\", \"switzerlandnorth\", \"uaenorth\", \"uksouth\", \"westeurope\", \"westus2\", \"westus3\", \"usgovvirginia\", \"chinanorth3\")\r\n| where tolower(tostring(properties.zoneRedundant))=~'false'\r\n|project recommendationId = \"c0085c32-84c0-c247-bfa9-e70977cbf108\", name, id, tags\r\n\r\n\r\n"
   },
@@ -7258,7 +7539,7 @@
   },
   {
     "aprlGuid": "5587ef77-7a05-a74d-9c6e-449547a12f27",
-    "recommendationTypeId": "c6b94711-f1f5-4e7e-9c89-c17ed4190969",
+    "recommendationTypeId": null,
     "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
@@ -7549,6 +7830,27 @@
     "query": "// Azure Resource Graph Query\r\n// This resource graph query will return all subscriptions without Service Health alerts configured AND subscriptions with Service Health alerts only configured with specific configuration (which requires manual verification regarding the scope being covered by this rule)\r\nresourcecontainers\r\n| where type == 'microsoft.resources/subscriptions'\r\n| project subscriptionId = id, subscriptionName = name, tags\r\n| join kind=leftouter (\r\n    resources\r\n    | where type == \"microsoft.insights/activitylogalerts\" and properties.condition contains \"ServiceHealth\"\r\n    | extend shaRuleType = iff(array_length(properties.condition.allOf) > 1, 'Explicit','All')\r\n    | project subscriptionId = strcat('/subscriptions/',subscriptionId), name, shaRuleType\r\n    | summarize shaAllRuleCount = countif(shaRuleType == 'All'), shaExplicitRuleCount = countif(shaRuleType == 'Explicit') by subscriptionId\r\n) on subscriptionId\r\n| extend shaStatus = iff(isnull(shaAllRuleCount) and isnull(shaExplicitRuleCount), 'Not configured',iff(shaAllRuleCount >= 1, 'Configured', 'Explicit'))\r\n| where shaStatus != 'Configured'\r\n| project recommendationId = \"9729c89d-8118-41b4-a39b-e12468fa872b\", name = subscriptionName, id= subscriptionId, tags, param1 = iff(shaStatus == 'Explicit', 'Explicit only Service Health Alert Rule(s) found. Please verify that the expected scope is covered by these rule(s).','No Service Health Alert Rule found.')\r\n"
   },
   {
+    "aprlGuid": "98bd7098-49d6-491b-86f1-b143d6b1a0ff",
+    "recommendationTypeId": null,
+    "recommendationMetadataState": "Active",
+    "learnMoreLink": [
+      {
+        "name": "Azure Resource Manager Overview",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overview#resource-group-location-alignment"
+      }
+    ],
+    "recommendationControl": "DisasterRecovery",
+    "longDescription": "Ensure resource locations align with their resource group to manage resources during regional outages. ARM stores resource data, which if in an unavailable region, could halt updates, rendering resources read-only.\n",
+    "pgVerified": true,
+    "description": "Ensure Resource Group and its Resources are located in the same Region",
+    "potentialBenefits": "Improves outage management",
+    "tags": null,
+    "recommendationResourceType": "Microsoft.Subscription/Subscriptions",
+    "recommendationImpact": "High",
+    "automationAvailable": true,
+    "query": "// Azure Resource Graph Query\r\n// Provides a list of Azure Resource Groups that have resources deployed in a region different than the Resource Group region\r\nresourcecontainers\r\n| where type =~ \"Microsoft.Resources/subscriptions/resourceGroups\"\r\n| project resourceGroupId = tolower(id), resourceGroupLocation = location\r\n| join kind = inner (\r\n    resources\r\n    | where location !~ \"Global\" and             // Exclude global resources\r\n        resourceGroup !~ \"NetworkWatcherRG\" and  // Exclude resources in the NetworkWatcherRG\r\n        id has \"/resourceGroups/\"                // Exclude resources not in a resource group\r\n    | project id, name, tags, resourceGroup, location, resourceGroupId = tolower(strcat_array(array_slice(split(id, \"/\"), 0, 4), \"/\"))\r\n    )\r\n    on resourceGroupId\r\n| where resourceGroupLocation !~ location\r\n| project\r\n    recommendationId = \"98bd7098-49d6-491b-86f1-b143d6b1a0ff\",\r\n    name,\r\n    id,\r\n    tags,\r\n    param1 = strcat(\"resourceLocation: \", location),\r\n    param2 = strcat(\"resourceGroupLocation: \", resourceGroupLocation),\r\n    param3 = strcat(\"resourceGroup: \", resourceGroup)\r\n"
+  },
+  {
     "aprlGuid": "19b6df57-f6b5-3e4f-843a-273daa087cb0",
     "recommendationTypeId": null,
     "recommendationMetadataState": "Active",
@@ -7708,6 +8010,27 @@
     "query": "// under-development\r\n\r\n"
   },
   {
+    "aprlGuid": "855ca19a-6518-4f2e-9e5a-01796fbca9f8",
+    "recommendationTypeId": null,
+    "recommendationMetadataState": "Active",
+    "learnMoreLink": [
+      {
+        "name": "Ultimate guide to running healthy apps in the cloud",
+        "url": "https://azure.github.io/AppService/2020/05/15/Robust-Apps-for-the-cloud.html"
+      }
+    ],
+    "recommendationControl": "Scalability",
+    "longDescription": "App Service should be configured with a minimum of two instances for production workloads. If apps have a longer warmup time a minimum of three instances should be used.\n",
+    "pgVerified": true,
+    "description": "Set minimum instance count to 2 for app service",
+    "potentialBenefits": "Improves app performance",
+    "tags": null,
+    "recommendationResourceType": "Microsoft.Web/sites",
+    "recommendationImpact": "High",
+    "automationAvailable": true,
+    "query": "// Azure Resource Graph Query\r\n// Provides a list of App services that do not have minimum instance count of 2\r\n\r\nresources\r\n| where type == \"microsoft.web/serverfarms\"\r\n| where sku.capacity < 2\r\n| project recommendationId = \"855ca19a-6518-4f2e-9e5a-01796fbca9f8\", name, id, tags, param1 = \"Instance count is less than 2\"\r\n\r\n"
+  },
+  {
     "aprlGuid": "493f6079-3bb6-4a56-96ba-ab3248474cb1",
     "recommendationTypeId": null,
     "recommendationMetadataState": "Active",
@@ -7797,7 +8120,7 @@
   },
   {
     "aprlGuid": "a1d91661-32d4-430b-b3b6-5adeb0975df7",
-    "recommendationTypeId": "1d3b5a51-62d4-4b77-96f6-40ed0a3aa21f",
+    "recommendationTypeId": null,
     "recommendationMetadataState": "Active",
     "learnMoreLink": [
       {
@@ -7878,27 +8201,6 @@
     "recommendationImpact": "Medium",
     "automationAvailable": true,
     "query": "// Azure Resource Graph Query\r\n// Check if Network access restrictions defined for App service\r\n\r\nresources\r\n| where type =~ 'microsoft.web/sites'\r\n| where properties.kind has 'app'\r\n| join kind = inner\r\n    (\r\n    appserviceresources\r\n    | mv-expand IpSecurityRestrictions = properties.IpSecurityRestrictions\r\n    | where isnotnull(IpSecurityRestrictions) == true\r\n    | project name\r\n    ) on name\r\n| project recommendationId = \"aab6b4a4-9981-43a4-8728-35c7ecbb746d\", name, id, tags, param1 = \"No network restrictions set\"\r\n"
-  },
-  {
-    "aprlGuid": "9e6682ac-31bc-4635-9959-ab74b52454e6",
-    "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
-    "learnMoreLink": [
-      {
-        "name": "Ultimate guide to running healthy apps in the cloud",
-        "url": "https://azure.github.io/AppService/2020/05/15/Robust-Apps-for-the-cloud.html"
-      }
-    ],
-    "recommendationControl": "Scalability",
-    "longDescription": "App Service should be configured with a minimum of two instances for production workloads. If apps have a longer warmup time a minimum of three instances should be used.\n",
-    "pgVerified": true,
-    "description": "Set minimum instance count to 2 for app service",
-    "potentialBenefits": "Improves app performace",
-    "tags": null,
-    "recommendationResourceType": "Microsoft.Web/sites",
-    "recommendationImpact": "High",
-    "automationAvailable": true,
-    "query": "// Azure Resource Graph Query\r\n// Provides a list of App services that do not have minimum instance count of 2\r\n\r\nresources\r\n| where type =~ 'microsoft.web/sites'\r\n| where properties.kind has 'app'\r\n| join kind = inner\r\n    (\r\n    appserviceresources\r\n    | where properties.PreWarmedInstanceCount < 2\r\n    | project name\r\n    ) on name\r\n| project recommendationId = \"9e6682ac-31bc-4635-9959-ab74b52454e6\", name, id, tags, param1 = \"PreWarmedInstanceCount is less than 2\"\r\n"
   },
   {
     "aprlGuid": "c6c4b962-5af4-447a-9d74-7b9c53a5dff5",
@@ -8008,7 +8310,7 @@
   {
     "aprlGuid": "0bf1a2bb-7617-4ab2-a784-e7ea40c5f01b",
     "recommendationTypeId": null,
-    "recommendationMetadataState": "Active",
+    "recommendationMetadataState": "Disabled",
     "learnMoreLink": [
       {
         "name": "Learn More",
@@ -8020,8 +8322,8 @@
     "pgVerified": true,
     "description": "Monitor service health and resource health for AVD",
     "potentialBenefits": "Enhanced AVD error tracking and resolution",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/AVD",
+    "tags": "AVD",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "High",
     "automationAvailable": true,
     "query": "// Azure Resource Graph Query\r\n// This resource graph query, will return rows if service health alerts haven't been configured for AVD service\r\nresourcecontainers\r\n| where type == 'microsoft.resources/subscriptions'\r\n| project subscriptionAlerts=tostring(id),name,tags\r\n| join kind=leftouter (\r\n  resources\r\n  | where type == 'microsoft.insights/activitylogalerts' and properties.condition contains \"ServiceHealth\"\r\n  | extend subscriptions = properties.scopes\r\n  | project subscriptions\r\n  | mv-expand subscriptions\r\n  | project subscriptionAlerts = tostring(subscriptions)\r\n) on subscriptionAlerts\r\n| where isempty(subscriptionAlerts1)\r\n| project-away subscriptionAlerts1\r\n| project recommendationId = \"0bf1a2bb-7617-4ab2-a784-e7ea40c5f01b\",id=subscriptionAlerts,name,tags, param1 = \"AVDServiceHealthAlertsConfigured: False\"\r\n"
@@ -8041,8 +8343,8 @@
     "pgVerified": true,
     "description": "Configure AVD Insights workbook",
     "potentialBenefits": "Enhanced AVD monitoring and troubleshooting",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/AVD",
+    "tags": "AVD",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "High",
     "automationAvailable": false,
     "query": "// cannot-be-validated-with-arg\r\n\r\n"
@@ -8062,8 +8364,8 @@
     "pgVerified": true,
     "description": "Ensure separate log analytics workspaces for Prod and DR",
     "potentialBenefits": "Improved DR visibility and operation",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/AVD",
+    "tags": "AVD",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "Low",
     "automationAvailable": false,
     "query": "// under-development\r\n"
@@ -8083,8 +8385,8 @@
     "pgVerified": true,
     "description": "Organize AVD resources using the AVD scale unit model described by the AVD landing zone methodology",
     "potentialBenefits": "Enhanced organization and scalability",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/AVD",
+    "tags": "AVD",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "Low",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
@@ -8108,8 +8410,8 @@
     "pgVerified": true,
     "description": "Monitor and plan capacity for AVD resources",
     "potentialBenefits": "Avoids limits, ensures smooth scaling",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/AVD",
+    "tags": "AVD",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "Low",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
@@ -8129,8 +8431,8 @@
     "pgVerified": true,
     "description": "Ensure DNS regions are replicated to avoid single point of failure",
     "potentialBenefits": "Improves uptime & resilience",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/AVD",
+    "tags": "AVD",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "High",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
@@ -8154,8 +8456,8 @@
     "pgVerified": true,
     "description": "Implement a multi-region BCDR Plan",
     "potentialBenefits": "Enhanced resilience and uptime",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/AVD",
+    "tags": "AVD",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "High",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
@@ -8175,8 +8477,8 @@
     "pgVerified": true,
     "description": "Create only one FSLogix file share per Storage Account",
     "potentialBenefits": "Enhanced scaling and performance",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/AVD",
+    "tags": "AVD",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// cannot-be-validated-with-arg\r\n\r\n"
@@ -8196,8 +8498,8 @@
     "pgVerified": true,
     "description": "Create a dedicated FSLogix file share and setup per host pool",
     "potentialBenefits": "Enhanced performance",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/AVD",
+    "tags": "AVD",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// under-development\r\n"
@@ -8221,8 +8523,8 @@
     "pgVerified": true,
     "description": "Enable Azure backup for FSLogix storage account file shares",
     "potentialBenefits": "Ensures data resilience and consistency",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/AVD",
+    "tags": "AVD",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
@@ -8242,8 +8544,8 @@
     "pgVerified": true,
     "description": "Implement RDP shortpath for public or managed networks",
     "potentialBenefits": "Better reliability and consistent latency",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/AVD",
+    "tags": "AVD",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
@@ -8267,8 +8569,8 @@
     "pgVerified": true,
     "description": "Ensure AVD session hosts connect to control plane & allow UDP ports for RDP shortpath",
     "potentialBenefits": "Enhanced performance & user experience",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/AVD",
+    "tags": "AVD",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// cannot-be-validated-with-arg\r\n"
@@ -8288,8 +8590,8 @@
     "pgVerified": true,
     "description": "Ensure secondary Entra ID connect synchronization server",
     "potentialBenefits": "Improved failover reliability",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/AVD",
+    "tags": "AVD",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "Low",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
@@ -8309,8 +8611,8 @@
     "pgVerified": true,
     "description": "Ensure virtual networks have route tables/route server configured for all regions",
     "potentialBenefits": "Enhanced availability & routing",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/AVD",
+    "tags": "AVD",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
@@ -8330,8 +8632,8 @@
     "pgVerified": true,
     "description": "Ensure virtual networks isolation with separate IP space and NSGs for Prod and DR",
     "potentialBenefits": "Enhances security and prevents IP conflicts",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/AVD",
+    "tags": "AVD",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
@@ -8355,8 +8657,8 @@
     "pgVerified": true,
     "description": "Configure static routes for session hosts to directly access the AVD control plane subnet",
     "potentialBenefits": "Enhanced performance and Disaster Recovery",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/AVD",
+    "tags": "AVD",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// under-development\r\n"
@@ -8376,8 +8678,8 @@
     "pgVerified": true,
     "description": "Create updated image version and replace session hosts rather than updating host directly",
     "potentialBenefits": "Ensures consistency; minimizes drift",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/AVD",
+    "tags": "AVD",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "Low",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
@@ -8397,8 +8699,8 @@
     "pgVerified": true,
     "description": "Ensure the standard FSLogix configuration is deployed",
     "potentialBenefits": "Optimized session reliability and performance",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/AVD",
+    "tags": "AVD",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// cannot-be-validated-with-arg\r\n\r\n"
@@ -8419,7 +8721,7 @@
     "description": "Ensure user permissions are set correctly on FSLogix SMB shares",
     "potentialBenefits": "Enhanced security & disaster recovery",
     "tags": null,
-    "recommendationResourceType": "Specialized.Workload/AVD",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// cannot-be-validated-with-arg\r\n\r\n"
@@ -8443,8 +8745,8 @@
     "pgVerified": true,
     "description": "Configure Diagnostic Settings on FSLogix storage and capture session hosts FSLogix events",
     "potentialBenefits": "Enhanced AVD error tracking and resolution",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/AVD",
+    "tags": "AVD",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
@@ -8464,8 +8766,8 @@
     "pgVerified": true,
     "description": "Manually install FSLogix updates",
     "potentialBenefits": "Enhanced reliability & support",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/AVD",
+    "tags": "AVD",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "Low",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
@@ -8481,12 +8783,12 @@
       }
     ],
     "recommendationControl": "HighAvailability",
-    "longDescription": "Turn on Continuous Availability if using Azure Netapp Files.\nVerify the number of users connecting to each file share to make sure the SMB path can handle the number of file connections. Currently, Azure Files supports up to 10k handles per root directory.\n",
+    "longDescription": "Turn on Continuous Availability if using Azure Netapp Files.\nVerify the number of users connecting to each file share to make sure the SMB path can handle the number of file connections.\n",
     "pgVerified": true,
-    "description": "Turn on continuous availability for ANF when using it for app attach",
+    "description": "Turn on continuous availability for ANF",
     "potentialBenefits": "Enhanced stability & user limit checks",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/AVD",
+    "tags": "AVD",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
@@ -8506,8 +8808,8 @@
     "pgVerified": true,
     "description": "Use dedicated file share for App attach and include the storage in the disaster recovery plan",
     "potentialBenefits": "Enhances performance and scalability",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/AVD",
+    "tags": "AVD",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
@@ -8527,8 +8829,8 @@
     "pgVerified": true,
     "description": "Ensure resilient deployment of key vaults for AVD Host Pools",
     "potentialBenefits": "Ensures DR readiness and access",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/AVD",
+    "tags": "AVD",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "High",
     "automationAvailable": false,
     "query": "// under-development\r\n"
@@ -8548,8 +8850,8 @@
     "pgVerified": true,
     "description": "Deploy multiple domain controllers across availability zones in each region with AVD session hosts.",
     "potentialBenefits": "Enhanced identity resilience",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/AVD",
+    "tags": "AVD",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "High",
     "automationAvailable": false,
     "query": "// under-development\r\n"
@@ -8569,8 +8871,8 @@
     "pgVerified": true,
     "description": "Deploy two or more DNS servers across availability zones in each region with AVD session hosts.",
     "potentialBenefits": "Enhanced reliability and performance",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/AVD",
+    "tags": "AVD",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "High",
     "automationAvailable": false,
     "query": "// under-development\r\n"
@@ -8590,8 +8892,8 @@
     "pgVerified": true,
     "description": "Use the AVS Interconnect feature to connect private clouds in different availability zones",
     "potentialBenefits": "Enhanced private cloud connectivity",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/AVS",
+    "tags": "AVS",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "High",
     "automationAvailable": false,
     "query": "// cannot-be-validated-with-arg\r\n"
@@ -8615,8 +8917,8 @@
     "pgVerified": true,
     "description": "Integrate LDAPS Identity with dual sources for enhanced NSX and vCenter security",
     "potentialBenefits": "Continuous login access during maintenances",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/AVS",
+    "tags": "AVS",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "High",
     "automationAvailable": false,
     "query": "// cannot-be-validated-with-arg\r\n"
@@ -8640,8 +8942,8 @@
     "pgVerified": true,
     "description": "Use HCX Network Extension High Availability",
     "potentialBenefits": "Improves HCX service continuity",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/AVS",
+    "tags": "AVS",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "High",
     "automationAvailable": false,
     "query": "// cannot-be-validated-with-arg\r\n"
@@ -8661,8 +8963,8 @@
     "pgVerified": true,
     "description": "Verify Management Networks are not extended with HCX Network Extension",
     "potentialBenefits": "Enhanced network safety and performance",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/AVS",
+    "tags": "AVS",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "High",
     "automationAvailable": false,
     "query": "// cannot-be-validated-with-arg\r\n"
@@ -8686,8 +8988,8 @@
     "pgVerified": true,
     "description": "Verify vSAN FTT configuration aligns with the cluster size",
     "potentialBenefits": "Enhanced cluster reliability",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/AVS",
+    "tags": "AVS",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "High",
     "automationAvailable": false,
     "query": "// cannot-be-validated-with-arg\r\n"
@@ -8711,8 +9013,8 @@
     "pgVerified": true,
     "description": "Align ExpressRoute configuration with best practices for circuit resilience",
     "potentialBenefits": "Enhanced circuit resilience for Azure VMware",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/AVS",
+    "tags": "AVS",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "High",
     "automationAvailable": false,
     "query": "// cannot-be-validated-with-arg\r\n"
@@ -8732,8 +9034,8 @@
     "pgVerified": true,
     "description": "Deploy two or more circuits in different peering locations when using stretched clusters",
     "potentialBenefits": "Enhanced resilience and connectivity",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/AVS",
+    "tags": "AVS",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "High",
     "automationAvailable": false,
     "query": "// cannot-be-validated-with-arg\r\n"
@@ -8757,8 +9059,8 @@
     "pgVerified": true,
     "description": "Deploy dual Azure VMware Solution clouds in different regions for disaster recovery",
     "potentialBenefits": "Enhanced disaster recovery",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/AVS",
+    "tags": "AVS",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "High",
     "automationAvailable": false,
     "query": "// cannot-be-validated-with-arg\r\n"
@@ -8778,8 +9080,8 @@
     "pgVerified": false,
     "description": "Ensure File shares that stores jobs metadata are accessible from all head nodes",
     "potentialBenefits": "Enhances job metadata availability",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/HPC",
+    "tags": "HPC",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "High",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
@@ -8799,8 +9101,8 @@
     "pgVerified": false,
     "description": "Automatically grow and shrink HPC Pack cluster resources",
     "potentialBenefits": "Efficient, uninterrupted execution",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/HPC",
+    "tags": "HPC",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
@@ -8820,8 +9122,8 @@
     "pgVerified": false,
     "description": "Use multiple head nodes for HPC Pack",
     "potentialBenefits": "Enhanced reliability for HPC",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/HPC",
+    "tags": "HPC",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
@@ -8841,8 +9143,8 @@
     "pgVerified": false,
     "description": "Use HPC Pack Azure AD Integration or other highly available AD configuration",
     "potentialBenefits": "Enhanced reliability and job management",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/HPC",
+    "tags": "HPC",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "High",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
@@ -8878,8 +9180,8 @@
     "pgVerified": true,
     "description": "Ensure that each SAP production system is designed for high availability across availability zones",
     "potentialBenefits": "High availability for SAP systems",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/SAP",
+    "tags": "SAP",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "High",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
@@ -8911,8 +9213,8 @@
     "pgVerified": true,
     "description": "Run SAP application servers on two or more VMs using VMSS Flex",
     "potentialBenefits": "Enhanced resiliency for SAP on Azure",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/SAP",
+    "tags": "SAP",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "High",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
@@ -8948,8 +9250,8 @@
     "pgVerified": true,
     "description": "If using single-instance VMs all OS and data disks must be Premium SSD or Ultra Disk",
     "potentialBenefits": "Higher SLA of 99.9% with SSDs",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/SAP",
+    "tags": "SAP",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "High",
     "automationAvailable": true,
     "query": "// Azure Resource Graph Query\r\n// Find all single instance VMs that have an attached disk that is not in the Premium or Ultra sku tier.\r\n\r\nresources\r\n| where type =~ 'Microsoft.Compute/virtualMachines'\r\n| where isnull(properties.virtualMachineScaleSet.id)\r\n| where isnotnull(properties.availabilitySet)\r\n| extend lname = tolower(name)\r\n| join kind=leftouter(resources\r\n    | where type =~ 'Microsoft.Compute/disks'\r\n    | where not(sku.tier =~ 'Premium') and not(sku.tier =~ 'Ultra')\r\n    | extend lname = tolower(tostring(split(managedBy, '/')[8]))\r\n    | project lname, name\r\n    | summarize disks = make_list(name) by lname) on lname\r\n| where isnotnull(disks)\r\n| project recommendationId = \"b60ae773-9917-4bca-8a42-7cb45365a917\", name, id, tags, param1=strcat(\"AffectedDisks: \", disks)\r\n"
@@ -8973,8 +9275,8 @@
     "pgVerified": true,
     "description": "Ensure synchronous data replication (SYNC mode) between primary and secondary VM nodes",
     "potentialBenefits": "Ensures high availability for SAP data",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/SAP",
+    "tags": "SAP",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "High",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
@@ -8994,8 +9296,8 @@
     "pgVerified": true,
     "description": "Design SAP shared file systems for high availability, utilizing availability zones when possible",
     "potentialBenefits": "Enhanced data availability for SAP",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/SAP",
+    "tags": "SAP",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "High",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
@@ -9015,8 +9317,8 @@
     "pgVerified": true,
     "description": "Test high availability solutions thoroughly to ensure fail overs work as expected",
     "potentialBenefits": "Ensures SAP Azure's failover reliability",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/SAP",
+    "tags": "SAP",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "High",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
@@ -9036,8 +9338,8 @@
     "pgVerified": true,
     "description": "Remove unwanted location constraints from Linux Pacemaker clusters",
     "potentialBenefits": "Enhanced maintenance and failover handling",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/SAP",
+    "tags": "SAP",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "High",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
@@ -9057,8 +9359,8 @@
     "pgVerified": true,
     "description": "Secure compute resource capacity for critical VM roles in DR region",
     "potentialBenefits": "Guarantees DR region availability",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/SAP",
+    "tags": "SAP",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n\r\n"
@@ -9078,8 +9380,8 @@
     "pgVerified": true,
     "description": "Replicate production databases to DR location (ASYNC) using the vendor's replication technology",
     "potentialBenefits": "Enhanced DR resilience",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/SAP",
+    "tags": "SAP",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "High",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
@@ -9103,8 +9405,8 @@
     "pgVerified": true,
     "description": "SAP components are backed up to DR location using an appropriate backup tool or ASR",
     "potentialBenefits": "Ensures SAP data safety and recovery",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/SAP",
+    "tags": "SAP",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "High",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
@@ -9124,8 +9426,8 @@
     "pgVerified": true,
     "description": "SAP shared files systems are replicated or backed up to DR location",
     "potentialBenefits": "Enhances SAP DR oversight",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/SAP",
+    "tags": "SAP",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "High",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
@@ -9145,8 +9447,8 @@
     "pgVerified": true,
     "description": "Automate DR infrastructure build or pre-deploy DR resources",
     "potentialBenefits": "Faster SAP recovery, reduced downtime",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/SAP",
+    "tags": "SAP",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
@@ -9166,8 +9468,8 @@
     "pgVerified": true,
     "description": "Document and test DR procedure ensure it meets RPO and RTO targets",
     "potentialBenefits": "Ensures robust DR, meets RPO/RTO",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/SAP",
+    "tags": "SAP",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
@@ -9187,8 +9489,8 @@
     "pgVerified": true,
     "description": "Ensure there is a robust monitoring and alerting solution in place for the entire DR solution",
     "potentialBenefits": "Improved DR oversight and rapid issue response",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/SAP",
+    "tags": "SAP",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "Medium",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
@@ -9212,8 +9514,8 @@
     "pgVerified": true,
     "description": "Configure scheduled events notification",
     "potentialBenefits": "Proactive maintenance awareness",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/SAP",
+    "tags": "SAP",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "High",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
@@ -9241,8 +9543,8 @@
     "pgVerified": true,
     "description": "Configure a Pacemaker cluster for SAP ASCS high availability",
     "potentialBenefits": "Enhances SAP ASCS uptime",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/SAP",
+    "tags": "SAP",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "High",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
@@ -9270,8 +9572,8 @@
     "pgVerified": true,
     "description": "Ensure the load balancer is configured correctly for SAP ASCS High availability",
     "potentialBenefits": "Enhanced HA for SAP ASCS",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/SAP",
+    "tags": "SAP",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "High",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
@@ -9299,8 +9601,8 @@
     "pgVerified": true,
     "description": "Ensure the Pacemaker cluster has been setup for SAP HANA DB high availability",
     "potentialBenefits": "Enhances SAP HANA DB uptime",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/SAP",
+    "tags": "SAP",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "High",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
@@ -9328,8 +9630,8 @@
     "pgVerified": true,
     "description": "Ensure the load balancer is configured correctly for SAP HANA DB High availability",
     "potentialBenefits": "Enhanced DB availability",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/SAP",
+    "tags": "SAP",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "High",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
@@ -9349,8 +9651,8 @@
     "pgVerified": true,
     "description": "Review SAP configuration for timeout values used with Azure NetApp Files",
     "potentialBenefits": "Improve resiliency and performance of SAP on Azure",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/SAP",
+    "tags": "SAP",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "High",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"
@@ -9390,8 +9692,8 @@
     "pgVerified": true,
     "description": "Provision recommended storage configuration on database VMs",
     "potentialBenefits": "Improve reliability, performance and optimize costs",
-    "tags": null,
-    "recommendationResourceType": "Specialized.Workload/SAP",
+    "tags": "SAP",
+    "recommendationResourceType": "Microsoft.Subscription/subscriptions",
     "recommendationImpact": "High",
     "automationAvailable": false,
     "query": "// under-development\r\n\r\n"

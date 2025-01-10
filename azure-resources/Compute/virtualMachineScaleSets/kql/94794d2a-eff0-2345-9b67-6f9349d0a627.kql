@@ -2,9 +2,11 @@
 // Find all VMs that do NOT have health monitoring enabled
 resources
 | where type == "microsoft.compute/virtualmachinescalesets"
+| where isempty(tostring(tags['aks-managed-poolName']))
 | join kind=leftouter  (
     resources
     | where type == "microsoft.compute/virtualmachinescalesets"
+    | where isempty(tostring(tags['aks-managed-poolName']))
     | mv-expand extension=properties.virtualMachineProfile.extensionProfile.extensions
     | where extension.properties.type in ( "ApplicationHealthWindows", "ApplicationHealthLinux" )
     | project id
