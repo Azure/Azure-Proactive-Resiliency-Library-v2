@@ -1,18 +1,36 @@
-- description: Ensure AOAI models are deployed using Global deployment
+- description: Leverage Global provisioned deployment to ensure high and predictable throughput
+  aprlGuid: 042c034e-2b85-4c1d-bf9a-65c75a6b43e9
+  recommendationTypeId: null
+  recommendationControl: HighAvailability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.CognitiveServices/Accounts
+  recommendationMetadataState: Active
+  longDescription: |
+    Global provisioned deployments provide reserved model processing capacity for high and predictable throughput using Azure global infrastructure. Suitable for applications requiring lower latency variance at large workload usage. Provides cost savings.
+  potentialBenefits: Low latency variance, high throughputs, business continuity
+  pgVerified: true
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: Learn More
+      url: "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/deployment-types#global-provisioned"
+
+- description: Ensure PAYG AOAI models leverage Global Standard deployment
   aprlGuid: 081fc8a4-b2d9-405b-b351-334e621016f5
   recommendationTypeId: null
   recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.CognitiveServices/Accounts
   recommendationMetadataState: Active
-  longDescription: Global deployments leverage Azure's global infrastructure to route customer traffic to the best available data center for the customer’s inference requests. This ensures highest initial throughput limits and best model availability while still providing our uptime SLA and low latency.
-  potentialBenefits: Low latency, best model availability, business continuity
-  pgVerified: false
+  longDescription: |
+    Global Standard leverages Azure's global infrastructure to route traffic to the best available data center for customer's real-time inference requests. It provides the highest default quota and eliminates the need to load balance across multiple resources. Optimized for low to medium volume usage.
+  potentialBenefits: Best model availability, business continuity
+  pgVerified: true
   automationAvailable: false
   tags: null
   learnMoreLink:
     - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/deployment-types#global-provisioned"
+      url: "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/deployment-types#global-standard"
 
 - description: Deploy a PAYG instance of the model with provisioned throughput to manage overflow effectively
   aprlGuid: 0c193899-da60-4a52-b4a0-77d75ac8c5c5
@@ -22,7 +40,7 @@
   recommendationResourceType: Microsoft.CognitiveServices/Accounts
   recommendationMetadataState: Active
   longDescription: |
-    Provisioned Throughput offers pre-allocated capacity for consistent workloads, while Pay-as-You-Go charges for actual usage, ideal for variable workloads. During overflow, the Pay-as-You-Go instance manages excess load, ensuring service efficiency
+    Provisioned Throughput offers pre-allocated capacity for consistent workloads, while Pay-as-You-Go charges for actual usage, ideal for variable workloads. During overflow, the Pay-as-You-Go instance manages excess load, ensuring service efficiency.
   potentialBenefits: PAYG model balances cost and performance and helps scale
   pgVerified: true
   automationAvailable: false
@@ -39,7 +57,7 @@
   recommendationResourceType: Microsoft.CognitiveServices/Accounts
   recommendationMetadataState: Active
   longDescription: |
-    Global batch efficiently handles large-scale tasks within 24 hours. Submit requests in a single file, with a separate quota to protect online workloads. Key uses: data processing, content generation, document review, customer support automation, data extraction, NLP tasks, and marketing
+    Global batch efficiently handles large-scale tasks within 24 hours. Submit requests in a single file, with a separate quota to protect online workloads. Key uses: data processing, content generation, document review, customer support automation, data extraction, NLP tasks, and marketing.
   potentialBenefits: Cost effective faster turnaround for large-scale processing.
   pgVerified: true
   automationAvailable: false
@@ -56,7 +74,7 @@
   recommendationResourceType: Microsoft.CognitiveServices/Accounts
   recommendationMetadataState: Active
   longDescription: |
-    Data zone deployments route customer traffic to the highest availability data center within the defined data zone, ensuring data at rest remains within the Azure OpenAI resource geography. This approach offers increased quota limits and ensures data processing occurs within the specified data zone
+    Data zone deployments route customer traffic to the highest availability data center within the defined data zone, ensuring data at rest remains within the Azure OpenAI resource geography. This approach offers increased quota limits and ensures data processing occurs within the specified data zone.
   potentialBenefits: Enforce data residency and compliance standards
   pgVerified: true
   automationAvailable: false
@@ -64,6 +82,23 @@
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/deployment-types#data-zone-standard"
+
+- description: Use comprehensive monitoring solution for AOAI service
+  aprlGuid: 72b1b4ad-a14b-4430-9799-91bda782973d
+  recommendationTypeId: null
+  recommendationControl: MonitoringAndAlerting
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.CognitiveServices/Accounts
+  recommendationMetadataState: Active
+  longDescription: |
+    Implementing a comprehensive monitoring solution for AOAI involves using Azure Monitor to track API usage, performance metrics, and security events. This setup helps optimize performance, manage costs, and ensure compliance by providing detailed insights into model usage and potential issues.
+  potentialBenefits: Optimize performance and compliance with detailed insights
+  pgVerified: false
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: Learn more
+      url: "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/openai/architecture/log-monitor-azure-openai"
 
 - description: Deploy AOAI Service in multiple regions using Standard and/or Provisioned deployments
   aprlGuid: 61187af4-7d36-4b48-b16e-de78bef143a0
@@ -81,3 +116,4 @@
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/business-continuity-disaster-recovery"
+

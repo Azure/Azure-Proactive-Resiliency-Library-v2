@@ -10,4 +10,4 @@ advisorresources
     | extend id = tostring(id)
     | project id, name, tags, location, properties
 ) on $left.resId == $right.id
-| project recommendationId = "bbe668b7-eb5c-c746-8b82-70afdedf0cae", name , resId, tags, param1 = strcat("sku-tier: ", properties.sku.tier), param2 = location,param3 = "Non Zone-Redundant GW"
+| project recommendationId = "bbe668b7-eb5c-c746-8b82-70afdedf0cae", name , id = resId, tags, param1 = strcat("sku-tier: ", properties.sku.tier), param2 = location,param3 = "Non Zone-Redundant GW"
