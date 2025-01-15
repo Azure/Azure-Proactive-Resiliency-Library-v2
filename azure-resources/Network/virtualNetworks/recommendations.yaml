@@ -14,12 +14,6 @@
   learnMoreLink:
     - name: Azure Virtual Network - Concepts and best practices | Microsoft Learn
       url: "https://learn.microsoft.com/azure/virtual-network/concepts-and-best-practices"
-    - name: GatewaySUbnet
-      url: "https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpn-gateway-settings#gwsub"
-    - name: Can I associate a network security group (NSG) to the RouteServerSubnet?
-      url: "https://learn.microsoft.com/en-us/azure/route-server/route-server-faq#can-i-associate-a-network-security-group-nsg-to-the-routeserversubnet"
-    - name: Are Network Security Groups (NSGs) supported on the AzureFirewallSubnet?
-      url: "https://learn.microsoft.com/en-us/azure/firewall/firewall-faq#are-network-security-groups--nsgs--supported-on-the-azurefirewallsubnet"
 
 - description: Shield public endpoints in Azure VNets with Azure DDoS Standard Protection Plans
   aprlGuid: 69ea1185-19b7-de40-9da1-9e8493547a5c
@@ -54,10 +48,6 @@
   learnMoreLink:
     - name: Azure Virtual Network FAQ | Microsoft Learn
       url: "https://learn.microsoft.com/azure/virtual-network/virtual-networks-faq"
-    - name: Reliability and Network connectivity - Microsoft Azure Well-Architected Framework | Microsoft LearnNetworking Reliability
-      url: "https://learn.microsoft.com/azure/architecture/framework/services/networking/network-connectivity/reliability"
-    - name: Azure Private Link availability
-      url: "https://learn.microsoft.com/en-us/azure/private-link/availability"
 
 - description: Enable Virtual Network Flow Logs
   aprlGuid: 06b77be9-56a3-4d41-b362-8b295c5a283d

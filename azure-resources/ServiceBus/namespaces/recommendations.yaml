@@ -14,10 +14,6 @@
   learnMoreLink:
     - name: Service Bus and reliability
       url: "https://learn.microsoft.com/en-us/azure/well-architected/services/messaging/service-bus/reliability"
-    - name: Azure Service Bus Geo-disaster recovery
-      url: "https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-geo-dr#availability-zones"
-    - name: Insulate Azure Service Bus applications against outages and disasters
-      url: "https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-outages-disasters"
 
 - description: Enable auto-scale for production workloads on Service Bus namespaces
   aprlGuid: d810e3a8-600f-4be1-895b-1a93e61d37fd
@@ -50,7 +46,5 @@
   automationAvailable: true
   tags: null
   learnMoreLink:
-    - name: Azure support for TLS 1.0 and TLS 1.1 will end by 31 October 2024
-      url: "https://azure.microsoft.com/updates/azure-support-tls-will-end-by-31-october-2024-2/"
     - name: Configure the minimum TLS version for a Service Bus namespace
       url: "https://learn.microsoft.com/azure/service-bus-messaging/transport-layer-security-configure-minimum-version"

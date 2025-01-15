@@ -31,8 +31,6 @@
   learnMoreLink:
     - name: Set an external identity source for vCenter
       url: "https://learn.microsoft.com/en-us/azure/azure-vmware/configure-identity-source-vcenter"
-    - name: Set an external identity for NSX-T
-      url: "https://learn.microsoft.com/en-us/azure/azure-vmware/configure-external-identity-source-nsx-t"
 
 - description: Use HCX Network Extension High Availability
   aprlGuid: bce16eee-0933-4baa-ab4d-8d1bb5653fc2
@@ -50,8 +48,6 @@
   learnMoreLink:
     - name: HCX Network extension high availability
       url: "https://learn.microsoft.com/en-us/azure/azure-vmware/configure-hcx-network-extension-high-availability"
-    - name: Understanding Network Extension High Availability
-      url: "https://docs.vmware.com/en/VMware-HCX/4.8/hcx-user-guide/GUID-E1353511-697A-44B0-82A0-852DB55F97D7.html"
 
 - description: Verify Management Networks are not extended with HCX Network Extension
   aprlGuid: 6be9a543-cf82-4926-82ea-7e1f1ffaad80
@@ -86,8 +82,6 @@
   learnMoreLink:
     - name: Use fault domains
       url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-vmware/application-platform#use-fault-domains"
-    - name: Configure storage policy
-      url: "https://learn.microsoft.com/en-us/azure/azure-vmware/configure-storage-policy"
 
 - description: Align ExpressRoute configuration with best practices for circuit resilience
   aprlGuid: 6f573d60-be93-4f18-8016-42e923e3c05e
@@ -105,8 +99,6 @@
   learnMoreLink:
     - name: APRL guidance for ExpressRoute circuits
       url: "https://azure.github.io/Azure-Proactive-Resiliency-Library/services/networking/expressroute-circuits"
-    - name: Create a new ExpressRoute circuit
-      url: "https://learn.microsoft.com/azure/expressroute/expressroute-howto-circuit-portal-resource-manager?pivots=expressroute-preview#create-a-new-expressroute-circuit-preview"
 
 - description: Deploy two or more circuits in different peering locations when using stretched clusters
   aprlGuid: 91c84596-1c41-48fe-8d5e-3f817e6a273b
@@ -141,5 +133,3 @@
   learnMoreLink:
     - name: Private Clouds in two regions
       url: "https://learn.microsoft.com/en-us/azure/azure-vmware/move-azure-vmware-solution-across-regions"
-    - name: Dual Region Network Topology
-      url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/azure-vmware/eslz-dual-region-network-topology"

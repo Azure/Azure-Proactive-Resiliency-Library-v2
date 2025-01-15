@@ -31,8 +31,6 @@
   learnMoreLink:
     - name: Application Insights
       url: "https://learn.microsoft.com/azure/application-insights/app-insights-overview"
-    - name: Application monitoring for Azure App Service
-      url: "https://learn.microsoft.com/azure/azure-monitor/app/azure-web-apps"
 
 - description: Separate web apps from web APIs
   aprlGuid: 78a5c033-ff51-4332-8a71-83464c34494b

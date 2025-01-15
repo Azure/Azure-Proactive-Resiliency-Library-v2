@@ -167,8 +167,6 @@
   learnMoreLink:
     - name: Azure Policy definitions for Azure NetApp Files | Microsoft Learn
       url: "https://learn.microsoft.com/azure/azure-netapp-files/azure-policy-definitions"
-    - name: Creating custom policy definitions | Microsoft Learn
-      url: "https://learn.microsoft.com/azure/governance/policy/tutorials/create-custom-policy-definition"
 
 - description: Restrict default access to Azure NetApp Files volumes
   aprlGuid: cfa2244b-5436-47de-8287-b217875d3b0a
@@ -186,14 +184,6 @@
   learnMoreLink:
     - name: Configure network features for an Azure NetApp Files volume
       url: "https://learn.microsoft.com/azure/azure-netapp-files/configure-network-features"
-    - name: Manage SMB share ACLs in Azure NetApp Files
-      url: "https://learn.microsoft.com/azure/azure-netapp-files/manage-smb-share-access-control-lists"
-    - name: Configure export policy for NFS or dual-protocol volumes
-      url: "https://learn.microsoft.com/azure/azure-netapp-files/azure-netapp-files-configure-export-policy"
-    - name: Configure access control lists on NFSv4.1 volumes for Azure NetApp Files
-      url: "https://learn.microsoft.com/azure/azure-netapp-files/configure-access-control-lists"
-    - name: Configure Unix permissions and change ownership mode for NFS and dual-protocol volumes
-      url: "https://learn.microsoft.com/azure/azure-netapp-files/configure-unix-permissions-change-ownership-mode"
 
 - description: Make use of SMB continuous availability for supported applications
   aprlGuid: d1e7ccc3-e6c1-40e9-a36e-fd134711c808

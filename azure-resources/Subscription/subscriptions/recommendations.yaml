@@ -31,8 +31,6 @@
   learnMoreLink:
     - name: Management group recommendations
       url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org-management-groups#management-group-recommendations"
-    - name: Root management group for each directory
-      url: "https://learn.microsoft.com/en-us/azure/governance/management-groups/overview#root-management-group-for-each-directory"
 
 - description: Configure Service Health Alerts
   aprlGuid: 9729c89d-8118-41b4-a39b-e12468fa872b
@@ -48,8 +46,6 @@
   automationAvailable: true
   tags: null
   learnMoreLink:
-    - name: What is Azure Service Health?
-      url: "https://learn.microsoft.com/azure/service-health/overview"
     - name: Configure alerts for service health events
       url: "https://learn.microsoft.com/azure/service-health/alerts-activity-log-service-notifications-portal"
 

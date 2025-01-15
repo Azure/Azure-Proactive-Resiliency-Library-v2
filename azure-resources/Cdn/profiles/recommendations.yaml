@@ -31,10 +31,6 @@
   learnMoreLink:
     - name: REST API Reference
       url: "https://learn.microsoft.com/rest/api/frontdoor/"
-    - name: Client library for Java
-      url: "https://learn.microsoft.com/java/api/overview/azure/resourcemanager-frontdoor-readme?view=azure-java-preview"
-    - name: SDK for Python
-      url: "https://learn.microsoft.com/python/api/overview/azure/front-door?view=azure-python"
 
 - description: Configure logs
   aprlGuid: 1ad74c3c-e3d7-0046-b83f-a2199974ef15
@@ -52,10 +48,6 @@
   learnMoreLink:
     - name: Monitor metrics and logs in Azure Front Door
       url: "https://learn.microsoft.com/azure/frontdoor/front-door-diagnostics?pivots=front-door-standard-premium"
-    - name: WAF logs
-      url: "https://learn.microsoft.com/azure/web-application-firewall/afds/waf-front-door-monitor?pivots=front-door-standard-premium#waf-logs"
-    - name: Configure Azure Front Door logs
-      url: "https://learn.microsoft.com/azure/frontdoor/standard-premium/how-to-logs"
 
 - description: Use end-to-end TLS
   aprlGuid: d9bd6780-0d6f-cd4c-bc66-8ddcab12f3d1
@@ -259,4 +251,4 @@
   tags: null
   learnMoreLink:
     - name: Compare pricing between Azure Front Door tiers
-      url: https://learn.microsoft.com/en-us/azure/frontdoor/understanding-pricing
+      url: "https://learn.microsoft.com/en-us/azure/frontdoor/understanding-pricing"
