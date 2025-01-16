@@ -20,6 +20,9 @@ geekdocHidden: false
 | [Ensure to create Machine Learning Compute resources in secondary region](../../../Azure-Proactive-Resiliency-Library-v2/azure-resources/MachineLearningServices/workspaces/#ensure-to-create-machine-learning-compute-resources-in-secondary-region)             | MachineLearningServices  |   workspaces    |
 | [Configure API management service in multiple Azure regions](../../../Azure-Proactive-Resiliency-Library-v2/azure-resources/ApiManagement/service/#configure-api-management-service-in-multiple-azure-regions)             | ApiManagement  |   service    |
 | [Migrate App Service to Availability Zone Support](../../../Azure-Proactive-Resiliency-Library-v2/azure-resources/Web/serverFarms/#migrate-app-service-to-availability-zone-support)             | Web            | serverFarms  |
+| [Deploy Azure Bastion across Availability Zones](../../../Azure-Proactive-Resiliency-Library-v2/azure-resources/Network/bastionHosts/#deploy-azure-bastion-across-availability-zones)             | Network  |   bastionHosts    |
+| [Deploy Azure Bastion into the virtual network in secondary Azure region](../../../Azure-Proactive-Resiliency-Library-v2/azure-resources/Network/bastionHosts/#deploy-azure-bastion-into-the-virtual-network-in-secondary-azure-region)             | Network  |   bastionHosts    |
+
 <br>
 
 ## General Workload Guidance
