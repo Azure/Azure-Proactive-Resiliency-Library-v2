@@ -82,8 +82,6 @@
   learnMoreLink:
     - name: Designing for high availability with ExpressRoute
       url: "https://learn.microsoft.com/en-us/azure/expressroute/designing-for-high-availability-with-expressroute"
-    - name: Azure Well-Architected Framework review - Azure ExpressRoute - Design Checklist
-      url: "https://learn.microsoft.com/azure/well-architected/services/networking/azure-expressroute#recommendations"
 
 - description: Ensure both connections of an ExpressRoute are configured in active-active mode
   aprlGuid: 859886df-3996-4eab-8439-c1a38c416e0e

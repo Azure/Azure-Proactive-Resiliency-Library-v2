@@ -14,8 +14,6 @@
   learnMoreLink:
     - name: Public IP addresses - Availability Zones
       url: "https://learn.microsoft.com/azure/virtual-network/ip-services/public-ip-addresses#availability-zone"
-    - name: Upgrading a basic public IP address to Standard SKU
-      url: "https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/public-ip-basic-upgrade-guidance#steps-to-complete-the-upgrade"
 
 - description: Use NAT gateway for outbound connectivity to avoid SNAT Exhaustion
   aprlGuid: 1adba190-5c4c-e646-8527-dd1b2a6d8b15
@@ -33,8 +31,6 @@
   learnMoreLink:
     - name: Use NAT GW for outbound connectivity
       url: "https://learn.microsoft.com/azure/advisor/advisor-reference-reliability-recommendations#use-nat-gateway-for-outbound-connectivity"
-    - name: TCP and SNAT Ports
-      url: "https://learn.microsoft.com/azure/architecture/framework/services/compute/azure-app-service/reliability#tcp-and-snat-ports"
 
 - description: Upgrade Basic SKU public IP addresses to Standard SKU
   aprlGuid: 5cea1501-6fe4-4ec4-ac8f-f72320eb18d3
@@ -52,8 +48,6 @@
   learnMoreLink:
     - name: Upgrading a basic public IP address to Standard SKU - Guidance
       url: "https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/public-ip-basic-upgrade-guidance"
-    - name: Upgrade to Standard SKU public IP addresses in Azure by 30 September 2025 as Basic SKU will be retired
-      url: "https://azure.microsoft.com/en-us/updates/upgrade-to-standard-sku-public-ip-addresses-in-azure-by-30-september-2025-basic-sku-will-be-retired/"
 
 - description: Public IP addresses should have DDoS protection enabled
   aprlGuid: c4254c66-b8a5-47aa-82f6-e7d7fb418f47

@@ -63,8 +63,6 @@
   automationAvailable: true
   tags: null
   learnMoreLink:
-    - name: Implement high availability
-      url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-vmware/infrastructure#implement-high-availability"
     - name: Stretched Clusters
       url: "https://learn.microsoft.com/en-us/azure/azure-vmware/deploy-vsan-stretched-clusters"
 

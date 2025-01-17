@@ -31,8 +31,6 @@
   learnMoreLink:
     - name: Compute Gallery best practices
       url: "https://learn.microsoft.com/en-us/azure/virtual-machines/azure-compute-gallery#best-practices"
-    - name: Zone-redundant storage
-      url: "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy#zone-redundant-storage"
 
 - description: Consider creating TrustedLaunchSupported images where possible
   aprlGuid: 1c5e1e58-4e56-491c-8529-10f37af9d4ed
@@ -50,10 +48,6 @@
   learnMoreLink:
     - name: Compute Gallery best practices
       url: "https://learn.microsoft.com/en-us/azure/virtual-machines/azure-compute-gallery#best-practices"
-    - name: Generation 1 vs Generation 2 in Hyper-V
-      url: "https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/plan/should-i-create-a-generation-1-or-2-virtual-machine-in-hyper-v"
-    - name: Images in Compute gallery
-      url: "https://learn.microsoft.com/en-us/azure/virtual-machines/shared-image-galleries?tabs=azure-cli"
 
 - description: Create Image Versions replicas in secondary region
   aprlGuid: b14ee8ed-7d27-447b-b6fb-6472cb5f4b75

@@ -14,7 +14,3 @@
   learnMoreLink:
     - name: Resource Health
       url: "https://learn.microsoft.com/en-us/azure/service-health/resource-health-overview"
-    - name: Configure Resource Health alerts in the Azure portal
-      url: "https://learn.microsoft.com/en-us/azure/service-health/resource-health-alert-monitor-guide#create-a-resource-health-alert-rule-in-the-azure-portal"
-    - name: Alerts Health
-      url: "https://learn.microsoft.com/en-us/azure/service-health/alerts-activity-log-service-notifications-portal"

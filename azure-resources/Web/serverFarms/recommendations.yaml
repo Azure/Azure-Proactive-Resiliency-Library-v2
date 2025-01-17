@@ -14,8 +14,6 @@
   learnMoreLink:
     - name: Migrate App Service to availability zone support
       url: "https://learn.microsoft.com/en-us/azure/reliability/migrate-app-service"
-    - name: High availability enterprise deployment using App Service Environment
-      url: "https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/enterprise-integration/ase-high-availability-deployment"
 
 - description: Use Standard or Premium tier
   aprlGuid: b2113023-a553-2e41-9789-597e2fb54c31
@@ -101,5 +99,3 @@
   learnMoreLink:
     - name: Ultimate guide to running healthy apps in the cloud
       url: "https://azure.github.io/AppService/2020/05/15/Robust-Apps-for-the-cloud.html"
-    - name: Auto Scale Web Apps
-      url: "https://learn.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-get-started"

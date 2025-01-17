@@ -83,8 +83,6 @@
   learnMoreLink:
     - name: Capacity Planning
       url: "https://learn.microsoft.com/azure/well-architected/azure-virtual-desktop/business-continuity#capacity-planning"
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/architecture/example-scenario/wvd/windows-virtual-desktop#azure-virtual-desktop-limitations"
 
 - description: Ensure DNS regions are replicated to avoid single point of failure
   aprlGuid: e1a34ac6-8761-4020-b537-d60c0be7514e
@@ -119,8 +117,6 @@
   learnMoreLink:
     - name: Multi-region BCDR
       url: "https://learn.microsoft.com/azure/architecture/example-scenario/wvd/azure-virtual-desktop-multi-region-bcdr"
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/well-architected/azure-virtual-desktop/business-continuity#active-active-scenarios"
 
 - description: Create only one FSLogix file share per Storage Account
   aprlGuid: ed1f0327-0914-49e8-9518-16acb0d6b8d6
@@ -172,8 +168,6 @@
   learnMoreLink:
     - name: FSLogix
       url: "https://learn.microsoft.com/fslogix/overview-what-is-fslogix"
-    - name: Backup Storage Account
-      url: https://learn.microsoft.com/azure/backup/blob-backup-configure-manage?tabs=operational-backup
 
 - description: Implement RDP shortpath for public or managed networks
   aprlGuid: 3835b4b3-0479-4be8-9ffd-34ae29fa33b9
@@ -208,8 +202,6 @@
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/virtual-desktop/troubleshoot-rdp-shortpath"
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/virtual-desktop/check-access-validate-required-fqdn-endpoint"
 
 - description: Ensure secondary Entra ID connect synchronization server
   aprlGuid: d984eaf9-0fa1-4f8d-a326-bda751993c6f
@@ -279,8 +271,6 @@
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/virtual-network/service-tags-overview"
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/virtual-network/virtual-networks-udr-overview"
 
 - description: Create updated image version and replace session hosts rather than updating host directly
   aprlGuid: 2831dab9-6a43-44a1-8aec-90a8e84894bc
@@ -328,7 +318,7 @@
   potentialBenefits: Enhanced security & disaster recovery
   pgVerified: true
   automationAvailable: false
-  tags:
+  tags: AVD
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/fslogix/how-to-configure-storage-permissions"
@@ -349,8 +339,6 @@
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/fslogix/troubleshooting-events-logs-diagnostics"
-    - name: Learn More
-      url: "https://learn.microsoft.com/azure/storage/files/storage-files-monitoring"
 
 - description: Manually install FSLogix updates
   aprlGuid: d51e0a70-8b50-4be3-af8a-7c9065e47360

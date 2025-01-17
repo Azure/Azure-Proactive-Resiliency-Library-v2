@@ -14,5 +14,3 @@
   learnMoreLink:
     - name: What is Azure NAT Gateway metrics and alerts?
       url: "https://learn.microsoft.com/en-us/azure/nat-gateway/nat-metrics"
-    - name: AMBA - NAT Gateway
-      url: "https://azure.github.io/azure-monitor-baseline-alerts/services/Network/natGateways/"

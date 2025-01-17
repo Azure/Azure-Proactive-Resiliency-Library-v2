@@ -14,8 +14,6 @@
   learnMoreLink:
     - name: Distribute data globally with Azure Cosmos DB
       url: "https://learn.microsoft.com/azure/cosmos-db/distribute-data-globally"
-    - name: Tips for building highly available applications
-      url: "https://learn.microsoft.com/azure/cosmos-db/high-availability#tips-for-building-highly-available-applications"
 
 - description: Enable service-managed failover for multi-region accounts with single write region
   aprlGuid: 9cabded7-a1fc-6e4a-944b-d7dd98ea31a2
@@ -67,8 +65,6 @@
   learnMoreLink:
     - name: Distribute data globally with Azure Cosmos DB
       url: "https://learn.microsoft.com/azure/cosmos-db/distribute-data-globally"
-    - name: Conflict resolution types and resolution policies in Azure Cosmos DB
-      url: "https://learn.microsoft.com/azure/cosmos-db/conflict-resolution-policies"
 
 - description: Configure continuous backup mode
   aprlGuid: e544520b-8505-7841-9e77-1f1974ee86ec

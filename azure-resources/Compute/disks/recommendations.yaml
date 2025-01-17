@@ -14,8 +14,6 @@
   learnMoreLink:
     - name: Azure Shared Disk Introduction
       url: "https://learn.microsoft.com/azure/virtual-machines/disks-shared"
-    - name: Enable Shared Disks
-      url: "https://learn.microsoft.com/azure/virtual-machines/disks-shared-enable?tabs=azure-portal"
 
 - description: Use Azure Disks with Zone Redundant Storage for higher resiliency and availability
   aprlGuid: fa0cf4f5-0b21-47b7-89a9-ee936f193ce1

@@ -14,8 +14,6 @@
   learnMoreLink:
     - name: Azure Well Architected Framework - Azure Firewall
       url: "https://learn.microsoft.com/azure/architecture/framework/services/networking/azure-firewall"
-    - name: Deploy Azure Firewall across multiple availability zones
-      url: "https://learn.microsoft.com/azure/firewall/deploy-availability-zone-powershell"
 
 - description: Monitor Azure Firewall metrics
   aprlGuid: 3c8fa7c6-6b78-a24a-a63f-348a7c71acb9
@@ -33,8 +31,6 @@
   learnMoreLink:
     - name: Azure Firewall metrics supported in Azure Monitor
       url: "https://learn.microsoft.com/azure/azure-monitor/essentials/metrics-supported#microsoftnetworkazurefirewalls"
-    - name: Azure Firewall performance
-      url: "https://learn.microsoft.com/azure/firewall/firewall-performance"
 
 - description: Configure DDoS Protection on the Azure Firewall VNet
   aprlGuid: 1b2dbf4a-8a0b-5e4b-8f4e-3f758188910d
@@ -103,5 +99,3 @@
   learnMoreLink:
     - name: Azure Well-Architected Framework review - Azure Firewall
       url: "https://learn.microsoft.com/azure/well-architected/service-guides/azure-firewall#recommendations"
-    - name: Azure Firewall metrics overview
-      url: "https://learn.microsoft.com/azure/firewall/metrics"

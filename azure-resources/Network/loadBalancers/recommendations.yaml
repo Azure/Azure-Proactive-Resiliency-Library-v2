@@ -14,8 +14,6 @@
   learnMoreLink:
     - name: Reliability and Azure Load Balancer
       url: "https://learn.microsoft.com/azure/architecture/framework/services/networking/azure-load-balancer/reliability"
-    - name: Resiliency checklist for specific Azure services- Azure Load Balancer
-      url: "https://learn.microsoft.com/azure/architecture/checklist/resiliency-per-service#azure-load-balancer"
 
 - description: Ensure the Backend Pool contains at least two instances
   aprlGuid: 6d82d042-6d61-ad49-86f0-6a5455398081
