@@ -47,7 +47,7 @@
   tags: null
   learnMoreLink:
     - name: Soft delete detail docs
-      url: "https://learn.microsoft.com//azure/storage/blobs/soft-delete-blob-enable?tabs=azure-portal"
+      url: "https://learn.microsoft.com/azure/storage/blobs/soft-delete-blob-enable?tabs=azure-portal"
 
 - description: Enable versioning for accidental modification and keep the number of versions below 1000
   aprlGuid: 8ebda7c0-e0e1-ed45-af59-2d7ea9a1c05d

@@ -7166,7 +7166,7 @@
     "recommendationMetadataState": "Active",
     "learnMoreLink": [
       {
-        "url": "https://learn.microsoft.com//azure/storage/blobs/soft-delete-blob-enable?tabs=azure-portal",
+        "url": "https://learn.microsoft.com/azure/storage/blobs/soft-delete-blob-enable?tabs=azure-portal",
         "name": "Soft delete detail docs"
       }
     ],
