@@ -5005,10 +5005,6 @@
       {
         "url": "https://learn.microsoft.com/en-us/azure/reliability/reliability-bastion",
         "name": "Reliability in Azure Bastion"
-      },
-      {
-        "url": "https://learn.microsoft.com/en-us/azure/bastion/tutorial-create-host-portal",
-        "name": "Deploy Azure Bastion by using specified settings"
       }
     ],
     "recommendationControl": "HighAvailability",

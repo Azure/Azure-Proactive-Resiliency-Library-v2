@@ -14,8 +14,6 @@
   learnMoreLink:
     - name: Reliability in Azure Bastion
       url: "https://learn.microsoft.com/en-us/azure/reliability/reliability-bastion"
-    - name: Deploy Azure Bastion by using specified settings
-      url: "https://learn.microsoft.com/en-us/azure/bastion/tutorial-create-host-portal"
 
 - description: Deploy Azure Bastion into the virtual network in secondary Azure region
   aprlGuid: 0e57956d-71d9-4a35-bdcf-d7cfd7cd71f4
