@@ -1,0 +1,8 @@
+// Azure Resource Graph Query
+// Provides a list of all deployments for AI search with less than two replicas
+resources
+| where type == "microsoft.search/searchservices"
+| extend replicaCount = properties['replicaCount']
+| where properties['replicaCount'] < 2
+| project recommendationId = "b376281d-bfec-4695-8f90-9a44544fdfa4", name, id, param1 = strcat(properties['replicaCount']) , param2 = strcat(location)
+| order by id asc
