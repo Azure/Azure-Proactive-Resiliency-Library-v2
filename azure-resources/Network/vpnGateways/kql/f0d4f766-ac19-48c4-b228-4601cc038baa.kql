@@ -1,1 +1,27 @@
-// under-development
+// Azure Resource Graph Query
+// Find what VPN Gateways on Virtual WAN do not have Monitoring Enabled.
+
+resources
+| where type =~ "microsoft.network/vpngateways"
+| extend vpngwId = tolower(tostring(id)), vpngwName = name, vpngwTags = tags, vpngwLocation = location, vhubId = tolower(tostring(properties.virtualHub.id))
+| join kind=leftouter (
+    resources
+    | where type =~ "microsoft.insights/metricalerts"
+    | mv-expand scope = properties.scopes
+    | where scope has "Microsoft.Network/vpnGateways"
+    | extend scope = tolower(tostring(scope))
+    | project scope
+) on $left.vpngwId == $right.scope
+| where isnull(scope) or strlen(scope) == 0
+| join kind=leftouter (
+    resources
+    | where type =~ "Microsoft.Network/virtualHubs"
+    | where ['kind'] != 'RouteServer'
+    | extend vhubId = tolower(tostring(id)), vhubName = name, vwanId = tolower(tostring(properties.virtualWan.id))
+) on $left.vhubId == $right.vhubId
+| join kind=leftouter (
+    resources
+    | where type =~ "Microsoft.Network/virtualWans"
+    | extend vwanId = tolower(tostring(id)), vwanName = name
+) on $left.vwanId == $right.vwanId
+| project recommendationId = "f0d4f766-ac19-48c4-b228-4601cc038baa", name, id, tags, param1=strcat("vHub Name: ", vhubName), param2=strcat("vWAN Name: ", vwanName)

@@ -1,0 +1,16 @@
+- description: Configure diverse VPN Site links to different VPN concentrators on-premises.
+  aprlGuid: 02bdbdb8-d138-4090-951c-23e45b8700f7
+  recommendationTypeId: null
+  recommendationControl: DisasterRecovery
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Network/vpnSites
+  recommendationMetadataState: Active
+  longDescription: Deploying active-active VPN concentrators leverages the High Availability capabilities of the VPN Gateway on Virtual Hubs using a fully-meshed topology with four IPSec tunnels.
+  potentialBenefits: Fault tolerance and high availability.
+  pgVerified: false
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: vWAN VPN Gateway Disaster Recovery
+      url: "https://learn.microsoft.com/en-us/azure/virtual-wan/disaster-recovery-design#multi-link-topology"
+

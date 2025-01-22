@@ -1,3 +1,19 @@
+- description: Migrate from Basic to Standard Virtual WAN
+  aprlGuid: f29e56a1-6a80-4295-a663-1cce0ea2b10a
+  recommendationTypeId: null
+  recommendationControl: ServiceUpgradeAndRetirement
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/virtualHubs
+  recommendationMetadataState: Active
+  longDescription: Basic SKU is not recommended for critical workloads. Standard SKU provides important features Inter-hub and VNet-to-VNet transiting through the virtual hub, ExpressRoute, VPN and Point to Site Gateways, ability to deploy Azure Firewalls and NVAs.
+  potentialBenefits: Full Mesh communication and resiliency
+  pgVerified: false
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: Upgrade a virtual WAN from Basic to Standard
+      url: "https://learn.microsoft.com/en-us/azure/virtual-wan/upgrade-virtual-wan"
+
 - description: Monitor health for v-Hubs
   aprlGuid: 30ec8a5e-46de-4323-87e9-a7c56b72813b
   recommendationTypeId: null

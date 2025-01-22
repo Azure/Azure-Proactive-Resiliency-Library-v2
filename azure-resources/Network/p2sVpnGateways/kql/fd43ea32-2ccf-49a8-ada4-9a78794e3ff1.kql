@@ -1,1 +1,26 @@
-// under-development
+// Azure Resource Graph Query
+// Find what Point to Site Gateways do not have Monitoring Enabled on a Virtual Hub
+resources
+| where type =~ "microsoft.network/p2svpngateways"
+| extend p2sgwId = tolower(tostring(id)), p2sgwName = name, p2sgwTags = tags, p2sgwLocation = location, vhubId = tolower(tostring(properties.virtualHub.id))
+| join kind=leftouter (
+    resources
+    | where type =~ "microsoft.insights/metricalerts"
+    | mv-expand scope = properties.scopes
+    | where scope has "microsoft.network/p2svpngateways"
+    | extend scope = tolower(tostring(scope))
+    | project scope
+) on $left.p2sgwId == $right.scope
+| where isnull(scope) or strlen(scope) == 0
+| join kind=leftouter (
+    resources
+    | where type =~ "Microsoft.Network/virtualHubs"
+    | where ['kind'] != 'RouteServer'
+    | extend vhubId = tolower(tostring(id)), vhubName = name, vwanId = tolower(tostring(properties.virtualWan.id))
+) on $left.vhubId == $right.vhubId
+| join kind=leftouter (
+    resources
+    | where type =~ "Microsoft.Network/virtualWans"
+    | extend vwanId = tolower(tostring(id)), vwanName = name
+) on $left.vwanId == $right.vwanId
+| project recommendationId = "fd43ea32-2ccf-49a8-ada4-9a78794e3ff1", name, id, tags, param1=strcat("vHub Name: ", vhubName), param2=strcat("vWAN Name: ", vwanName)

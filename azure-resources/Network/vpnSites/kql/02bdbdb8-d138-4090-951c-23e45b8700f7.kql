@@ -1,0 +1,16 @@
+// Azure Resource Graph Query
+// Find if Virtual Hub has less than one VPN Site Link
+
+resources
+| where type == "microsoft.network/vpnsites"
+| extend vpnSiteLinks = properties.vpnSiteLinks
+| mv-expand vpnSiteLink = vpnSiteLinks
+| extend virtualWanId = tostring(properties.virtualWan.id)
+| summarize vpnSiteLinksCount = count() by virtualWanId
+| where vpnSiteLinksCount < 2
+| join (
+    resources
+    | where type == "microsoft.network/virtualwans"
+    | project id, name, tags
+) on $left.virtualWanId == $right.id
+| project recommendationId = "02bdbdb8-d138-4090-951c-23e45b8700f7", name, id, tags, param1 = vpnSiteLinksCount

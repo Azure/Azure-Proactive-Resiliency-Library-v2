@@ -31,3 +31,23 @@
   learnMoreLink:
     - name: Virtual WAN Monitoring Best Practices
       url: "https://learn.microsoft.com/en-us/azure/virtual-wan/monitoring-best-practices#expressroute-gateway"
+
+- description: Avoid using ExpressRoute circuits for VNet to VNet communication
+  aprlGuid: 560a76a7-8f64-4ce3-ad27-d174468861a1
+  recommendationTypeId: null
+  recommendationControl: HighAvailability
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Network/expressRouteGateways
+  recommendationMetadataState: Active
+  longDescription: Avoid using ExpressRoute circuits for VNet to VNet communication. Use Virtual WAN to connect VNets in different regions. This feature is enabled at the ExpressRoute circuit level but reflected in the Virtual Wan resource.
+  potentialBenefits: Shortest path between VNETs. Disables hairpinning at MSEE
+  pgVerified: false
+  automationAvailable: false
+  tags: null
+  learnMoreLink:
+    - name: Enable or disable VNet to Virtual WAN traffic over ExpressRoute
+      url: "https://learn.microsoft.com/en-us/azure/virtual-wan/virtual-wan-expressroute-portal#enable-or-disable-vnet-to-virtual-wan-traffic-over-expressroute"
+
+    - name: Customization controls for connectivity between Virtual Networks over ExpressRoute
+      url: "https://techcommunity.microsoft.com/t5/azure-networking-blog/customisation-controls-for-connectivity-between-virtual-networks/ba-p/4147722"
+
