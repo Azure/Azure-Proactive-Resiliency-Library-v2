@@ -323,32 +323,32 @@ $Script:Runtime = Measure-Command -Expression {
               }
               $Script:MergedRecommendation += $tmp
             }
-            # Populating resource types without recommendations
-            else {
-              $tmp = @{
-                'How was the resource/recommendation validated or what actions need to be taken?' = $Recom.validationAction;
-                recommendationId                                                                  = '';
-                recommendationTitle                                                               = $RecomTitle.description;
-                resourceType                                                                      = $Recom.recommendationId;
-                impact                                                                            = '';
-                subscriptionId                                                                    = $Recom.subscriptionId;
-                resourceGroup                                                                     = $Recom.resourceGroup;
-                name                                                                              = $Recom.name;
-                id                                                                                = $Recom.id;
-                location                                                                          = $Recom.location;
-                param1                                                                            = $Recom.param1;
-                param2                                                                            = $Recom.param2;
-                param3                                                                            = $Recom.param3;
-                param4                                                                            = $Recom.param4;
-                param5                                                                            = $Recom.param5;
-                supportTicketId                                                                   = $Tickets;
-                source                                                                            = $Recom.selector;
-                checkName                                                                         = $Recom.checkName;
-                'WAF Pillar'                                                                      = 'Reliability';
-                tagged                                                                            = $Recom.tagged
-              }
-              $Script:MergedRecommendation += $tmp
+          }
+          # Populating resource types without recommendations
+          if ( $Recom.validationAction -eq 'IMPORTANT - Resource Type is not available in either APRL or Advisor - Validate Resources manually if Applicable, if not Delete this line') {
+            $tmp = @{
+              'How was the resource/recommendation validated or what actions need to be taken?' = $Recom.validationAction;
+              recommendationId                                                                  = '';
+              recommendationTitle                                                               = $RecomTitle.description;
+              resourceType                                                                      = $Recom.recommendationId;
+              impact                                                                            = '';
+              subscriptionId                                                                    = $Recom.subscriptionId;
+              resourceGroup                                                                     = $Recom.resourceGroup;
+              name                                                                              = $Recom.name;
+              id                                                                                = $Recom.id;
+              location                                                                          = $Recom.location;
+              param1                                                                            = $Recom.param1;
+              param2                                                                            = $Recom.param2;
+              param3                                                                            = $Recom.param3;
+              param4                                                                            = $Recom.param4;
+              param5                                                                            = $Recom.param5;
+              supportTicketId                                                                   = $Tickets;
+              source                                                                            = $Recom.selector;
+              checkName                                                                         = $Recom.checkName;
+              'WAF Pillar'                                                                      = 'Reliability';
+              tagged                                                                            = $Recom.tagged
             }
+            $Script:MergedRecommendation += $tmp
           }
         }
       }
@@ -1068,7 +1068,7 @@ $Script:Runtime = Measure-Command -Expression {
   }
 
   #Call the functions
-  $Script:Version = '2.1.19'
+  $Script:Version = '2.1.20'
   Write-Host 'Version: ' -NoNewline
   Write-Host $Script:Version -ForegroundColor DarkBlue
 
