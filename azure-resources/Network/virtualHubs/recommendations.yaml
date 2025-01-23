@@ -5,7 +5,8 @@
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/virtualHubs
   recommendationMetadataState: Active
-  longDescription: Basic SKU is not recommended for critical workloads. Standard SKU provides important features Inter-hub and VNet-to-VNet transiting through the virtual hub, ExpressRoute, VPN and Point to Site Gateways, ability to deploy Azure Firewalls and NVAs.
+  longDescription: |
+    Basic SKU is not recommended for critical workloads. Standard SKU provides important features Inter-hub and VNet-to-VNet transiting through the virtual hub, ExpressRoute, VPN and Point to Site Gateways, ability to deploy Azure Firewalls and NVAs.
   potentialBenefits: Full Mesh communication and resiliency
   pgVerified: false
   automationAvailable: false
