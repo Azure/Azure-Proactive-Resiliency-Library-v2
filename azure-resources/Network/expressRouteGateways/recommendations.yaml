@@ -46,9 +46,6 @@
   automationAvailable: false
   tags: null
   learnMoreLink:
-    - name: Enable or disable VNet to Virtual WAN traffic over ExpressRoute
-      url: "https://learn.microsoft.com/en-us/azure/virtual-wan/virtual-wan-expressroute-portal#enable-or-disable-vnet-to-virtual-wan-traffic-over-expressroute"
-
     - name: Customization controls for connectivity between Virtual Networks over ExpressRoute
       url: "https://techcommunity.microsoft.com/t5/azure-networking-blog/customisation-controls-for-connectivity-between-virtual-networks/ba-p/4147722"
 
