@@ -11,7 +11,7 @@
   potentialBenefits: Potential Benefits of Implementing the Recommendation (less than 60 characters)
   pgVerified: false
   automationAvailable: false
-  tags: [AI-GTP-RAG, AVD, AVS, HPC, SAP]
+  tags: [AI-GPT-RAG, AVD, AVS, HPC, SAP]
   learnMoreLink:
     - name: Learn More
       url: "Link URL"
