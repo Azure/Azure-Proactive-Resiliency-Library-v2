@@ -10,7 +10,7 @@
   potentialBenefits: Enhances job metadata availability
   pgVerified: false
   automationAvailable: false
-  tags: HPC
+  tags: [HPC]
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/powershell/high-performance-computing/hpcpack-ha-cloud?view=hpc19-ps#hpc-pack-cluster-shares"
@@ -27,7 +27,7 @@
   potentialBenefits: Efficient, uninterrupted execution
   pgVerified: false
   automationAvailable: false
-  tags: HPC
+  tags: [HPC]
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/powershell/high-performance-computing/hpcpack-auto-grow-shrink?view=hpc19-ps"
@@ -44,7 +44,7 @@
   potentialBenefits: Enhanced reliability for HPC
   pgVerified: false
   automationAvailable: false
-  tags: HPC
+  tags: [HPC]
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/powershell/high-performance-computing/hpcpack-ha-cloud?view=hpc19-ps#dealing-with-head-node-failure"
@@ -61,7 +61,7 @@
   potentialBenefits: Enhanced reliability and job management
   pgVerified: false
   automationAvailable: false
-  tags: HPC
+  tags: [HPC]
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/powershell/high-performance-computing/hpcpack-ha-cloud?view=hpc19-ps#dealing-with-ad-failure"

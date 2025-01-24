@@ -10,7 +10,7 @@
   potentialBenefits: Enhanced private cloud connectivity
   pgVerified: true
   automationAvailable: false
-  tags: AVS
+  tags: [AVS]
   learnMoreLink:
     - name: Connect Private Clouds in the same region
       url: "https://learn.microsoft.com/en-us/azure/azure-vmware/connect-multiple-private-clouds-same-region"
@@ -27,7 +27,7 @@
   potentialBenefits: Continuous login access during maintenances
   pgVerified: true
   automationAvailable: false
-  tags: AVS
+  tags: [AVS]
   learnMoreLink:
     - name: Set an external identity source for vCenter
       url: "https://learn.microsoft.com/en-us/azure/azure-vmware/configure-identity-source-vcenter"
@@ -44,7 +44,7 @@
   potentialBenefits: Improves HCX service continuity
   pgVerified: true
   automationAvailable: false
-  tags: AVS
+  tags: [AVS]
   learnMoreLink:
     - name: HCX Network extension high availability
       url: "https://learn.microsoft.com/en-us/azure/azure-vmware/configure-hcx-network-extension-high-availability"
@@ -61,7 +61,7 @@
   potentialBenefits: Enhanced network safety and performance
   pgVerified: true
   automationAvailable: false
-  tags: AVS
+  tags: [AVS]
   learnMoreLink:
     - name: Requirements for Network Extension
       url: "https://docs.vmware.com/en/VMware-HCX/4.8/hcx-user-guide/GUID-0C746416-850E-46F7-85DD-4D4326A23785.html"
@@ -78,7 +78,7 @@
   potentialBenefits: Enhanced cluster reliability
   pgVerified: true
   automationAvailable: false
-  tags: AVS
+  tags: [AVS]
   learnMoreLink:
     - name: Use fault domains
       url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-vmware/application-platform#use-fault-domains"
@@ -95,7 +95,7 @@
   potentialBenefits: Enhanced circuit resilience for Azure VMware
   pgVerified: true
   automationAvailable: false
-  tags: AVS
+  tags: [AVS]
   learnMoreLink:
     - name: APRL guidance for ExpressRoute circuits
       url: "https://azure.github.io/Azure-Proactive-Resiliency-Library/services/networking/expressroute-circuits"
@@ -112,7 +112,7 @@
   potentialBenefits: Enhanced resilience and connectivity
   pgVerified: true
   automationAvailable: false
-  tags: AVS
+  tags: [AVS]
   learnMoreLink:
     - name: Deploy vSAN streched cluster
       url: "https://learn.microsoft.com/en-us/azure/azure-vmware/deploy-vsan-stretched-clusters#deploy-a-stretched-cluster-private-cloud"
@@ -129,7 +129,7 @@
   potentialBenefits: Enhanced disaster recovery
   pgVerified: true
   automationAvailable: false
-  tags: AVS
+  tags: [AVS]
   learnMoreLink:
     - name: Private Clouds in two regions
       url: "https://learn.microsoft.com/en-us/azure/azure-vmware/move-azure-vmware-solution-across-regions"
