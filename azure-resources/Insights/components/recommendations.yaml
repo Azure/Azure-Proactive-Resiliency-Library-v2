@@ -10,7 +10,7 @@
   potentialBenefits: Avoid service disruption post-Feb 2024
   pgVerified: false
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Migrate an Application Insights classic resource to a workspace-based resource
       url: "https://learn.microsoft.com/en-us/azure/azure-monitor/app/convert-classic-resource"

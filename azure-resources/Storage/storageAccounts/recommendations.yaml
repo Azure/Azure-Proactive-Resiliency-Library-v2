@@ -10,7 +10,7 @@
   potentialBenefits: High availability and durability for storage
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Azure Storage redundancy
       url: "https://learn.microsoft.com/azure/storage/common/storage-redundancy"
@@ -27,7 +27,7 @@
   potentialBenefits: Optimized cost and performance
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Premium block blob storage accounts
       url: "https://learn.microsoft.com/azure/storage/blobs/storage-blob-block-blob-premium"
@@ -44,7 +44,7 @@
   potentialBenefits: Prevents accidental data/account loss
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Soft delete detail docs
       url: "https://learn.microsoft.com/azure/storage/blobs/soft-delete-blob-enable?tabs=azure-portal"
@@ -61,7 +61,7 @@
   potentialBenefits: Recover data, manage latency
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Blob versioning
       url: "https://learn.microsoft.com/azure/storage/blobs/versioning-overview"
@@ -78,7 +78,7 @@
   potentialBenefits: Protects data from loss/corruption
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Point-in-time restore for block blobs
       url: "https://learn.microsoft.com/azure/storage/blobs/point-in-time-restore-overview"
@@ -95,7 +95,7 @@
   potentialBenefits: Enhanced alerting and log analysis
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Monitor Azure Blob Storage
       url: "https://learn.microsoft.com/azure/storage/blobs/monitor-blob-storage"
@@ -112,7 +112,7 @@
   potentialBenefits: Latest features, lowest cost
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Upgrade to a general-purpose v2 storage account
       url: "https://learn.microsoft.com/azure/storage/common/storage-account-upgrade"
@@ -129,7 +129,7 @@
   potentialBenefits: Secure, private access to storage with no public IPs
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Private Link
       url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-virtual-desktop/networking#private-endpoints-private-link"

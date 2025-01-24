@@ -10,7 +10,7 @@
   potentialBenefits: Prompt mitigation of issues.
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Configure Azure Service Health alerts
       url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/azure-vmware/eslz-management-and-monitoring#design-recommendations"
@@ -27,7 +27,7 @@
   potentialBenefits: Proactive capacity planning
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Configure and streamline alerts
       url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-vmware/monitoring#configure-and-streamline-alerts"
@@ -44,7 +44,7 @@
   potentialBenefits: Proactive resource management
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Configure and streamline alerts
       url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-vmware/monitoring#configure-and-streamline-alerts"
@@ -61,7 +61,7 @@
   potentialBenefits: 99.99% SLA, 0 RPO, Multi-AZ
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Stretched Clusters
       url: "https://learn.microsoft.com/en-us/azure/azure-vmware/deploy-vsan-stretched-clusters"
@@ -78,7 +78,7 @@
   potentialBenefits: Optimized capacity planning for vSAN
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Supported metrics and activities
       url: "https://learn.microsoft.com/en-us/azure/azure-vmware/configure-alerts-for-azure-vmware-solution#supported-metrics-and-activities"
@@ -95,7 +95,7 @@
   potentialBenefits: Faster issue resolution, early detection
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Manage logs and archives
       url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-vmware/monitoring#manage-logs-and-archives"
@@ -112,7 +112,7 @@
   potentialBenefits: Avoids resource exhaustion, optimizes performance
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Configure and streamline alerts
       url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-vmware/monitoring#configure-and-streamline-alerts"
@@ -129,7 +129,7 @@
   potentialBenefits: Avoids host exhaustion and swapping
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Configure and streamline alerts
       url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-vmware/monitoring#configure-and-streamline-alerts"
@@ -146,7 +146,7 @@
   potentialBenefits: Prevents accidental deletion
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Lock your resources to protect your infrastructure
       url: "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources"
@@ -163,7 +163,7 @@
   potentialBenefits: Avoid outages with key auto-rotation
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Configure Customer Managed Keys
       url: "https://learn.microsoft.com/en-us/azure/azure-vmware/configure-customer-managed-keys?tabs=azure-portal"
@@ -180,7 +180,7 @@
   potentialBenefits: Enhances reliability and avoids failure
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Configure DNS forwarder
       url: "https://learn.microsoft.com/en-us/azure/azure-vmware/configure-dns-azure-vmware-solution#configure-dns-forwarder"

@@ -10,7 +10,7 @@
   potentialBenefits: Connectivity will remain active during maintenance events
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Azure Route Server frequently asked questions (FAQ)
       url: "https://learn.microsoft.com/azure/route-server/route-server-faq#do-i-need-to-peer-each-nva-with-both-azure-route-server-instances"
@@ -27,7 +27,7 @@
   potentialBenefits: Be alerted to connectivity issues with Azure Route Server
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Monitor Azure Route Server
       url: "https://learn.microsoft.com/azure/route-server/monitor-route-server"

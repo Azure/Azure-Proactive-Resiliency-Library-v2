@@ -10,7 +10,7 @@
   potentialBenefits: Enhanced reliability and SLA support
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Reliability and Azure Load Balancer
       url: "https://learn.microsoft.com/azure/architecture/framework/services/networking/azure-load-balancer/reliability"
@@ -27,7 +27,7 @@
   potentialBenefits: Enhances reliability and scalability
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Resiliency checklist for specific Azure services- Azure Load Balancer
       url: "https://learn.microsoft.com/azure/architecture/checklist/resiliency-per-service#azure-load-balancer"
@@ -44,7 +44,7 @@
   potentialBenefits: Enhanced scalability and reliability
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Resiliency checklist for specific Azure services- Azure Load Balancer
       url: "https://learn.microsoft.com/azure/architecture/checklist/resiliency-per-service#azure-load-balancer"
@@ -61,7 +61,7 @@
   potentialBenefits: Enhances uptime and resilience
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Load Balancer and Availability Zones
       url: "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-standard-availability-zones#zone-redundant"
@@ -78,7 +78,7 @@
   potentialBenefits: Ensures backend uptime monitoring.
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Load Balancer Health Probe Overview
       url: "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-custom-probe-overview"

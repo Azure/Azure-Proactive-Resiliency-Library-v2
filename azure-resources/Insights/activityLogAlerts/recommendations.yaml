@@ -10,7 +10,7 @@
   potentialBenefits: Stay informed on resource status
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Resource Health
       url: "https://learn.microsoft.com/en-us/azure/service-health/resource-health-overview"

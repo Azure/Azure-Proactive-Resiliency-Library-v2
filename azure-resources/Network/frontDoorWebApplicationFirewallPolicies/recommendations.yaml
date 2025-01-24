@@ -10,7 +10,7 @@
   potentialBenefits: Reduces false positives, improves access
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Azure Web Application Firewall monitoring and logging - Access Log
       url: "https://learn.microsoft.com/azure/web-application-firewall/afds/waf-front-door-monitor?pivots=front-door-standard-premium#access-logs"
@@ -27,7 +27,7 @@
   potentialBenefits: Improve false positive identification
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Azure Web Application Firewall Monitoring and Logging
       url: "https://learn.microsoft.com/azure/web-application-firewall/ag/application-gateway-waf-metrics#logs-and-diagnostics"
@@ -44,7 +44,7 @@
   potentialBenefits: Enhanced security and health insight
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: WAF monitoring
       url: "https://learn.microsoft.com/azure/web-application-firewall/ag/ag-overview#waf-monitoring"

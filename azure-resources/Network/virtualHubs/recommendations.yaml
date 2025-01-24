@@ -10,7 +10,7 @@
   potentialBenefits: Full Mesh communication and resiliency
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Upgrade a virtual WAN from Basic to Standard
       url: "https://learn.microsoft.com/en-us/azure/virtual-wan/upgrade-virtual-wan"
@@ -27,7 +27,7 @@
   potentialBenefits: Detection and mitigation to avoid disruptions.
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Virtual WAN Monitoring Best Practices
       url: "https://learn.microsoft.com/en-us/azure/virtual-wan/monitoring-best-practices#virtual-hub"

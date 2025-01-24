@@ -10,7 +10,7 @@
   potentialBenefits: Enhances compliance and regional fault tolerance
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Log Analytics workspace data export in Azure Monitor
       url: "https://learn.microsoft.com/azure/azure-monitor/logs/logs-data-export"
@@ -27,7 +27,7 @@
   potentialBenefits: Early alert for workspace failure
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Monitor Log Analytics workspace health
       url: "https://learn.microsoft.com/azure/azure-monitor/logs/log-analytics-workspace-health"

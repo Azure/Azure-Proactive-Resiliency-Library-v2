@@ -10,7 +10,7 @@
   potentialBenefits: Ensures BCDR during regional outages.
   pgVerified: false
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Resiliency in Azure DNS Private Resolver
       url: "https://learn.microsoft.com/azure/dns/private-resolver-reliability"

@@ -10,7 +10,7 @@
   potentialBenefits: Higher scalability and availability
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: When to use VMSS instead of VMs
       url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-design-overview#when-to-use-scale-sets-instead-of-virtual-machines"
@@ -27,7 +27,7 @@
   potentialBenefits: Enhances deployment management and upgrades
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Using Application Health extension with Virtual Machine Scale Sets
       url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-health-extension?tabs=rest-api"
@@ -44,7 +44,7 @@
   potentialBenefits: Boosts app availability by auto-repair
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Automatic instance repairs for Azure Virtual Machine Scale Sets
       url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-automatic-instance-repairs#requirements-for-using-automatic-instance-repairs"
@@ -61,7 +61,7 @@
   potentialBenefits: Enhances performance and cost-efficiency
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Get started with autoscale in Azure
       url: "https://learn.microsoft.com/azure/azure-monitor/autoscale/autoscale-get-started?WT.mc_id=Portal-Microsoft_Azure_Monitoring"
@@ -78,7 +78,7 @@
   potentialBenefits: Optimizes scaling with ML predictions
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Use predictive autoscale to scale out before load demands in virtual machine scale sets
       url: "https://learn.microsoft.com/azure/azure-monitor/autoscale/autoscale-predictive"
@@ -95,7 +95,7 @@
   potentialBenefits: Improves scaling, reduces fail attempts
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Use scale-in policies with Azure Virtual Machine Scale Sets
       url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-scale-in-policy"
@@ -112,7 +112,7 @@
   potentialBenefits: Enhances disaster resilience
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Create a Virtual Machine Scale Set that uses Availability Zones
       url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-use-availability-zones"
@@ -129,7 +129,7 @@
   potentialBenefits: Eases patch management, enhances security
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Automatic VM Guest Patching for Azure VMs
       url: "https://learn.microsoft.com/azure/virtual-machines/automatic-vm-guest-patching"
@@ -146,7 +146,7 @@
   potentialBenefits: Avoid disruptions by updating VMSS images.
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Deprecated Azure Marketplace images
       url: "https://learn.microsoft.com/en-us/azure/virtual-machines/deprecated-images"

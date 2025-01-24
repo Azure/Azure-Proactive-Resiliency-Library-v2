@@ -10,7 +10,7 @@
   potentialBenefits: Enhanced security and traffic insight
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Monitoring Azure DDoS Protection
       url: "https://learn.microsoft.com/en-us/azure/ddos-protection/monitor-ddos-protection-reference"

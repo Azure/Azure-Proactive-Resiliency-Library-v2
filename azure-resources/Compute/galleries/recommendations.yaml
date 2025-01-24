@@ -10,7 +10,7 @@
   potentialBenefits: Enhances scalability and avoids throttling
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Compute Gallery best practices
       url: "https://learn.microsoft.com/en-us/azure/virtual-machines/azure-compute-gallery#best-practices"
@@ -27,7 +27,7 @@
   potentialBenefits: Enhances image version availability
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Compute Gallery best practices
       url: "https://learn.microsoft.com/en-us/azure/virtual-machines/azure-compute-gallery#best-practices"
@@ -44,7 +44,7 @@
   potentialBenefits: Enhances VM security and features
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Compute Gallery best practices
       url: "https://learn.microsoft.com/en-us/azure/virtual-machines/azure-compute-gallery#best-practices"
@@ -61,7 +61,7 @@
   potentialBenefits: Enhances disaster recovery capability
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Compute Gallery Replication
       url: "https://learn.microsoft.com/azure/virtual-machines/azure-compute-gallery#replication"
@@ -78,7 +78,7 @@
   potentialBenefits: Enhances disaster recovery capability
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Compute Gallery Scaling
       url: "https://learn.microsoft.com/en-us/azure/virtual-machines/azure-compute-gallery#scaling"

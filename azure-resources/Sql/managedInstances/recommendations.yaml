@@ -10,7 +10,7 @@
   potentialBenefits: Enhanced availability and reliability
   pgVerified: false
   automationAvailable: True
-  tags: null
+  tags: []
   learnMoreLink:
     - name: High availability through zone-redundancy
       url: "https://learn.microsoft.com/azure/azure-sql/managed-instance/high-availability-sla-local-zone-redundancy?view=azuresql-mi#zone-redundant-availability"
@@ -27,7 +27,7 @@
   potentialBenefits: Enhanced availability and reliability
   pgVerified: false
   automationAvailable: True
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Backup storage redundancy
       url: "https://learn.microsoft.com/azure/azure-sql/managed-instance/automated-backups-overview?view=azuresql-mi&preserve-view=true#backup-storage-redundancy"
@@ -44,7 +44,7 @@
   potentialBenefits: Improved latency and throughput
   pgVerified: false
   automationAvailable: True
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Connection types
       url: "https://learn.microsoft.com/azure/azure-sql/managed-instance/connection-types-overview?view=azuresql#connection-types"
@@ -61,7 +61,7 @@
   potentialBenefits: Ensure seamless service with cross-region failover
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Failover groups overview and best practices
       url: "https://learn.microsoft.com/azure/azure-sql/managed-instance/failover-group-sql-mi?view=azuresql"
@@ -78,7 +78,7 @@
   potentialBenefits: Quick incident detection and response
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name:  Azure SQL Managed Instance monitoring options
       url: "https://learn.microsoft.com/azure/azure-sql/managed-instance/monitoring-sql-managed-instance-azure-monitor?view=azuresql-mi"
@@ -95,7 +95,7 @@
   potentialBenefits: Enhanced security and data recovery
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Overview of Always Encrypted
       url: "https://learn.microsoft.com/azure/azure-sql/database/always-encrypted-landing?view=azuresql"

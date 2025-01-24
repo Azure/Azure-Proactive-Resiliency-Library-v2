@@ -10,7 +10,7 @@
   potentialBenefits: Enhanced resilience through diverse connectivity paths
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Designing for disaster recovery with ExpressRoute private peering
       url: "https://learn.microsoft.com/azure/expressroute/designing-for-disaster-recovery-with-expressroute-privatepeering"
@@ -27,7 +27,7 @@
   potentialBenefits: Detection and mitigation to avoid disruptions.
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Virtual WAN Monitoring Best Practices
       url: "https://learn.microsoft.com/en-us/azure/virtual-wan/monitoring-best-practices#expressroute-gateway"
@@ -44,7 +44,7 @@
   potentialBenefits: Shortest path between VNETs. Disables hairpinning at MSEE
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Customization controls for connectivity between Virtual Networks over ExpressRoute
       url: "https://techcommunity.microsoft.com/t5/azure-networking-blog/customisation-controls-for-connectivity-between-virtual-networks/ba-p/4147722"

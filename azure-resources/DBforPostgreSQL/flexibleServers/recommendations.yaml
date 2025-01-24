@@ -10,7 +10,7 @@
   potentialBenefits: Enhanced uptime and data protection
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Overview of high availability with Azure Database for PostgreSQL
       url: "https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-high-availability"
@@ -27,7 +27,7 @@
   potentialBenefits: Control update timings
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Scheduled maintenance in Azure Database for PostgreSQL - Flexible Server
       url: "https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-maintenance"
@@ -44,7 +44,7 @@
   potentialBenefits: Recover from regional failure and/or disaster
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Backup and restore in Azure Database for PostgreSQL - Flexible Server
       url: "https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/concepts-backup-restore"
@@ -61,7 +61,7 @@
   potentialBenefits: Recover from regional failure and/or disaster
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Read replicas in Azure Database for PostgreSQL - Flexible Server
       url: "https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/concepts-read-replicas"
@@ -78,7 +78,7 @@
   potentialBenefits: Scale storage automatically to meet increasing demand
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Storage autogrow using Azure portal in Azure Database for PostgreSQL - Flexible Server
       url: "https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/how-to-auto-grow-storage-portal"

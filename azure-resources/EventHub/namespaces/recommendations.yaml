@@ -10,7 +10,7 @@
   potentialBenefits: Enhanced fault tolerance for Event Hub
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Azure Event Hubs - Geo-disaster recovery
       url: "https://learn.microsoft.com/azure/event-hubs/event-hubs-geo-dr?tabs=portal#availability-zones"
@@ -27,7 +27,7 @@
   potentialBenefits: Prevents throttling by autoscaling TUs
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Azure Event Hubs - Automatically scale throughput units
       url: "https://learn.microsoft.com/azure/event-hubs/event-hubs-auto-inflate"

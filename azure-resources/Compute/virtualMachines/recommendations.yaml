@@ -10,7 +10,7 @@
   potentialBenefits: Enhanced fault/update resilience
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: What has changed with Flexible orchestration mode
       url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes#what-has-changed-with-flexible-orchestration-mode"
@@ -27,7 +27,7 @@
   potentialBenefits: Enhanced VM resilience to failures
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Create virtual machines in an availability zone using the Azure portal
       url: "https://learn.microsoft.com/azure/virtual-machines/create-portal-availability-zone?tabs=standard"
@@ -44,7 +44,7 @@
   potentialBenefits: Enhances reliability and future-proofs VMs
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Migrate deployments and resources to Virtual Machine Scale Sets in Flexible orchestration
       url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/flexible-virtual-machine-scale-sets-migration-resources"
@@ -61,7 +61,7 @@
   potentialBenefits: Minimize downtime in disasters
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Resiliency checklist for Virtual Machines
       url: "https://learn.microsoft.com/azure/architecture/checklist/resiliency-per-service#virtual-machines"
@@ -78,7 +78,7 @@
   potentialBenefits: Avoid retirement disruption, enhance reliability
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Migrate your Azure unmanaged disks by Sep 30, 2025
       url: "https://learn.microsoft.com/azure/virtual-machines/unmanaged-disks-deprecation"
@@ -95,7 +95,7 @@
   potentialBenefits: Enhances performance, recovery, migration flexibility
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Introduction to Azure managed disks - Data disks
       url: "https://learn.microsoft.com/azure/virtual-machines/managed-disks-overview#data-disk"
@@ -112,7 +112,7 @@
   potentialBenefits: Secure data recovery and backup
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: What is the Azure Backup service?
       url: "https://learn.microsoft.com/azure/backup/backup-overview"
@@ -129,7 +129,7 @@
   potentialBenefits: Reduce costs by removing unused VMs
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: States and billing status of Azure Virtual Machines
       url: "https://learn.microsoft.com/azure/virtual-machines/states-billing?context=%2Ftroubleshoot%2Fazure%2Fvirtual-machines%2Fcontext%2Fcontext#power-states-and-billing"
@@ -146,7 +146,7 @@
   potentialBenefits: Reduces latency, jitter and CPU use
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Accelerated Networking (AccelNet) overview
       url: "https://learn.microsoft.com/azure/virtual-network/accelerated-networking-overview"
@@ -163,7 +163,7 @@
   potentialBenefits: Enhanced VM network efficiency
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Accelerated Networking (AccelNet) overview
       url: "https://learn.microsoft.com/azure/virtual-network/accelerated-networking-overview"
@@ -180,7 +180,7 @@
   potentialBenefits: Enhanced security and service resiliency
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Use Source Network Address Translation (SNAT) for outbound connections
       url: "https://learn.microsoft.com/azure/load-balancer/load-balancer-outbound-connections"
@@ -197,7 +197,7 @@
   potentialBenefits: Reduces communication problems
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: How network security groups filter network traffic
       url: "https://learn.microsoft.com/azure/virtual-network/network-security-group-how-it-works#intra-subnet-traffic"
@@ -214,7 +214,7 @@
   potentialBenefits: Enhances network appliance function
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Enable or disable IP forwarding
       url: "https://learn.microsoft.com/azure/virtual-network/virtual-network-network-interface?tabs=network-interface-portal#enable-or-disable-ip-forwarding"
@@ -231,7 +231,7 @@
   potentialBenefits: Ensures DNS consistency
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Name resolution for resources in Azure virtual networks
       url: "https://learn.microsoft.com/azure/virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances"
@@ -248,7 +248,7 @@
   potentialBenefits: Enhances VM security and privacy
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Restrict import/export access for managed disks using Azure Private Link
       url: "https://learn.microsoft.com/azure/virtual-machines/disks-enable-private-links-for-import-export-portal"
@@ -265,7 +265,7 @@
   potentialBenefits: Secure VMs and applications
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Policy-driven governance
       url: "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-principles#policy-driven-governance"
@@ -282,7 +282,7 @@
   potentialBenefits: Enhances data security and integrity
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Overview of managed disk encryption options
       url: "https://learn.microsoft.com/azure/virtual-machines/disk-encryption-overview"
@@ -299,7 +299,7 @@
   potentialBenefits: Improves VM performance and health
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Overview of VM insights
       url: "https://learn.microsoft.com/azure/azure-monitor/vm/vminsights-overview"
@@ -316,7 +316,7 @@
   potentialBenefits: Enhanced diagnostics and auditing capability
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Azure Monitor Agent overview
       url: "https://learn.microsoft.com/en-us/azure/azure-monitor/agents/agents-overview"
@@ -333,7 +333,7 @@
   potentialBenefits: Scheduled updates for VMs
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Use maintenance configurations to control and manage the VM updates
       url: "https://learn.microsoft.com/azure/virtual-machines/maintenance-configurations"
@@ -350,7 +350,7 @@
   potentialBenefits: Ensures full CPU usage for heavy tasks
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: B-series burstable virtual machine sizes
       url: "https://learn.microsoft.com/en-us/azure/virtual-machines/sizes-b-series-burstable"
@@ -367,7 +367,7 @@
   potentialBenefits: Enhanced performance, cost efficiency, and uptime SLA
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Disk type comparison and decision tree
       url: "https://learn.microsoft.com/en-us/azure/virtual-machines/disks-types#disk-type-comparison"
@@ -384,7 +384,7 @@
   potentialBenefits: Less maintenance impact
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Microsoft Azure Boost
       url: "https://learn.microsoft.com/azure/azure-boost/overview"
@@ -401,7 +401,7 @@
   potentialBenefits: Minimize downtime for VMs
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Monitor scheduled events for your Azure VMs
       url: "https://learn.microsoft.com/azure/virtual-machines/windows/scheduled-event-service"
@@ -418,7 +418,7 @@
   potentialBenefits: Guaranteed capacity in constrained regions/zones
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: On-demand Capacity Reservation
       url: "https://aka.ms/on-demand-capacity-reservations-docs"
@@ -435,7 +435,7 @@
   potentialBenefits: Reduces complications with VM provisioning
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: How to update the Azure Linux Agent on a VM
       url: "https://learn.microsoft.com/en-us/azure/virtual-machines/extensions/update-linux-agent?tabs=ubuntu"
@@ -452,7 +452,7 @@
   potentialBenefits: Guaranteed capacity in disaster recovery regions
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: On-demand Capacity Reservation
       url: "https://aka.ms/on-demand-capacity-reservations-docs"

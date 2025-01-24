@@ -10,7 +10,7 @@
   potentialBenefits: Enhances app resiliency and reliability
   pgVerified: false
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Migrate App Service to availability zone support
       url: "https://learn.microsoft.com/en-us/azure/reliability/migrate-app-service"
@@ -27,7 +27,7 @@
   potentialBenefits: Enhanced scaling and reliability
   pgVerified: false
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Resiliency checklist for specific Azure services
       url: "https://learn.microsoft.com/en-us/azure/architecture/checklist/resiliency-per-service#app-service"
@@ -44,7 +44,7 @@
   potentialBenefits: Minimizes restarts, enhances stability
   pgVerified: false
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Resiliency checklist for specific Azure services
       url: "https://learn.microsoft.com/en-us/azure/architecture/checklist/resiliency-per-service#app-service"
@@ -61,7 +61,7 @@
   potentialBenefits: Protects prod performance; avoids test impact
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Resiliency checklist for specific Azure services
       url: "https://learn.microsoft.com/en-us/azure/architecture/checklist/resiliency-per-service#app-service"
@@ -78,7 +78,7 @@
   potentialBenefits: Optimizes resources for traffic
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Automatic scaling in Azure App Service
       url: "https://learn.microsoft.com/en-us/azure/app-service/manage-automatic-scaling?tabs=azure-portal"
@@ -95,7 +95,7 @@
   potentialBenefits: Improves app performance
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Ultimate guide to running healthy apps in the cloud
       url: "https://azure.github.io/AppService/2020/05/15/Robust-Apps-for-the-cloud.html"

@@ -10,7 +10,7 @@
   potentialBenefits: Faster failover; Ensures device connectivity
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Import and export IoT Hub device identities in bulk
       url: "https://learn.microsoft.com/en-us/azure/iot-hub/iot-hub-bulk-identity-mgmt"
@@ -27,7 +27,7 @@
   potentialBenefits: Ensures SLA for production
   pgVerified: false
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Choose the right IoT Hub tier and size for your solution
       url: "https://learn.microsoft.com/en-us/azure/iot-hub/iot-hub-scaling"
@@ -44,7 +44,7 @@
   potentialBenefits: Boosts IoT Hub availability
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Azure IoT Hub high availability and disaster recovery
       url: "https://learn.microsoft.com/en-us/azure/iot-hub/iot-hub-ha-dr#availability-zones"
@@ -61,7 +61,7 @@
   potentialBenefits: Enhances scalability and availability
   pgVerified: false
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: IoT Hub Device Provisioning Service (DPS) terminology
       url: "https://learn.microsoft.com/en-us/azure/iot-dps/concepts-service"
@@ -78,7 +78,7 @@
   potentialBenefits: Ensures business continuity
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: IoT Hub high availability and disaster recovery
       url: "https://learn.microsoft.com/en-us/azure/iot-hub/iot-hub-ha-dr"
@@ -95,7 +95,7 @@
   potentialBenefits: Prevents undelivered messages
   pgVerified: false
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Use message routing - Fallback route
       url: "https://learn.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-messages-d2c#fallback-route"

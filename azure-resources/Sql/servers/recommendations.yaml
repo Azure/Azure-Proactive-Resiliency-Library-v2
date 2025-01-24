@@ -10,7 +10,7 @@
   potentialBenefits: Enhanced disaster recovery and read scalability
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Active Geo Replication
       url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/active-geo-replication-overview"
@@ -27,7 +27,7 @@
   potentialBenefits: Improves load balancing and disaster recovery
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: AutoFailover Groups
       url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/auto-failover-group-overview?tabs=azure-powershell"
@@ -44,7 +44,7 @@
   potentialBenefits: Enhanced reliability, no extra cost
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Zone Redundant Databases
       url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/high-availability-sla"
@@ -61,7 +61,7 @@
   potentialBenefits: Enhanced connectivity stability
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: How to Implement Retry Logic
       url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/troubleshoot-common-connectivity-issues"
@@ -78,7 +78,7 @@
   potentialBenefits: Quick incident detection and response
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Azure Monitor
       url: "https://learn.microsoft.com/en-us/azure/azure-monitor/insights/azure-sql#analyze-data-and-create-alerts"
@@ -95,7 +95,7 @@
   potentialBenefits: Enhanced security and data recovery
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Azure Key Vault
       url: "https://learn.microsoft.com/en-us/azure/key-vault/general/overview"
@@ -112,7 +112,7 @@
   potentialBenefits: Enhanced disaster recovery
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Failover Group endpoint redirection
       url: "https://learn.microsoft.com/azure/azure-sql/database/failover-group-sql-db?view=azuresql#endpoint-redirection"
