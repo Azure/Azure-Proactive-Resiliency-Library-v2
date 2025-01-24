@@ -48,8 +48,6 @@
   learnMoreLink:
     - name: Registry best practices - Enable geo-replication
       url: "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices#geo-replicate-multi-region-deployments"
-    - name: Geo-Replicate Container Registry
-      url: "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-geo-replication"
 
 - description: Use Repository namespaces
   aprlGuid: a5a0101a-a240-8742-90ba-81dbde9a0c0c
@@ -101,8 +99,6 @@
   learnMoreLink:
     - name: Registry best practices - Manage registry size
       url: "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices#manage-registry-size"
-    - name: Retention Policy
-      url: "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-retention-policy#about-the-retention-policy"
 
 - description: Disable anonymous pull access
   aprlGuid: 03f4a7d8-c5b4-7842-8e6e-14997a34842b
@@ -135,8 +131,6 @@
   automationAvailable: false
   tags: null
   learnMoreLink:
-    - name: Monitoring Azure Container Registry data reference - Resource Logs
-      url: "https://learn.microsoft.com/en-us/azure/container-registry/monitor-service-reference#resource-logs"
     - name: Monitor Azure Container Registry - Enable diagnostic logs
       url: "https://learn.microsoft.com/en-us/azure/container-registry/monitor-service#collection-and-routing"
 
@@ -154,8 +148,6 @@
   automationAvailable: false
   tags: null
   learnMoreLink:
-    - name: Monitoring Azure Container Registry data reference
-      url: "https://learn.microsoft.com/en-us/azure/container-registry/monitor-service-reference#metrics"
     - name: Monitor Azure Container Registry
       url: "https://learn.microsoft.com/en-us/azure/container-registry/monitor-service"
 

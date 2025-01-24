@@ -31,10 +31,6 @@
   learnMoreLink:
     - name: About ExpressRoute virtual network gateways - Zone-redundant gateway SKUs
       url: "https://learn.microsoft.com/azure/expressroute/expressroute-about-virtual-network-gateways#zrgw"
-    - name: About zone-redundant virtual network gateway in Azure availability zones
-      url: "https://learn.microsoft.com/azure/vpn-gateway/about-zone-redundant-vnet-gateways"
-    - name: Create a zone-redundant virtual network gateway in Azure Availability Zones
-      url: "https://learn.microsoft.com/azure/vpn-gateway/create-zone-redundant-vnet-gateway"
 
 - description: Configure an Azure Resource lock for ExpressRoute gateway to prevent accidental deletion
   aprlGuid: c0f23a92-d322-4d4d-97e9-a238b5e3bbb8
@@ -69,8 +65,6 @@
   learnMoreLink:
     - name: ExpressRoute monitoring, metrics, and alerts | ExpressRoute gateways
       url: "https://learn.microsoft.com/azure/expressroute/expressroute-monitoring-metrics-alerts#expressroute-gateways"
-    - name: Azure ExpressRoute Insights using Network Insights
-      url: "https://learn.microsoft.com/en-us/azure/expressroute/expressroute-network-insights"
 
 - description: Avoid using ExpressRoute circuits for VNet to VNet communication
   aprlGuid: 194c14ac-0d7a-5a48-ae32-75fa450ee564
@@ -122,10 +116,6 @@
   learnMoreLink:
     - name: Zone redundant Virtual network gateway in availability zone
       url: "https://learn.microsoft.com/azure/vpn-gateway/about-zone-redundant-vnet-gateways"
-    - name: Gateway SKU
-      url: "https://learn.microsoft.com/azure/vpn-gateway/about-zone-redundant-vnet-gateways#gwskus"
-    - name: SLA summary for Azure services
-      url: "https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services?lang=1"
 
 - description: Enable Active-Active VPN Gateways for redundancy
   aprlGuid: 281a2713-c0e0-3c48-b596-19f590c46671
@@ -143,8 +133,6 @@
   learnMoreLink:
     - name: Active-active VPN gateway
       url: "https://learn.microsoft.com/azure/vpn-gateway/active-active-portal#gateway"
-    - name: Gateway SKU
-      url: "https://learn.microsoft.com/azure/vpn-gateway/vpn-gateway-about-vpn-gateway-settings#gwsku"
 
 - description: Deploy active-active VPN concentrators on your premises
   aprlGuid: af11fc4c-c06c-4f4c-b98d-6eee6d5c4c70
@@ -194,8 +182,6 @@
   automationAvailable: false
   tags: null
   learnMoreLink:
-    - name: Getting started with Azure Metrics Explorer
-      url: "https://learn.microsoft.com/azure/azure-monitor/essentials/metrics-getting-started"
     - name: Monitor VPN gateway
       url: "https://learn.microsoft.com/azure/vpn-gateway/monitor-vpn-gateway-reference#metrics"
 

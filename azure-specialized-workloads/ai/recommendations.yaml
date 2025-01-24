@@ -31,5 +31,3 @@
   learnMoreLink:
     - name: Data collection, retention, and storage in Application Insights
       url: "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-retention-configure?tabs=portal-3%2Cportal-1%2Cportal-2"
-    - name: Failover for business continuity and disaster recovery
-      url: "https://learn.microsoft.com/en-us/azure/machine-learning/how-to-high-availability-machine-learning?view=azureml-api-2"

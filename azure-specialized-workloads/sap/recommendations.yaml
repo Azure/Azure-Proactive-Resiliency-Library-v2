@@ -12,14 +12,6 @@
   automationAvailable: false
   tags: SAP
   learnMoreLink:
-    - name: SAP ACSS Quality Insights
-      url: "https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/get-quality-checks-insights"
-    - name: OpenSource Inventory Checks
-      url: "https://aka.ms/ACESInventoryCheckSAP"
-    - name: OpenSource Quality Checks
-      url: "https://github.com/Azure/SAP-on-Azure-Scripts-and-Utilities/tree/main/QualityCheck"
-    - name: Move Regional SAP HA to Zonal
-      url: "https://github.com/Azure/SAP-on-Azure-Scripts-and-Utilities/tree/main/Move-VM-from-AvSet-to-AvZone/Move-Regional-SAP-HA-To-Zonal-SAP-HA-WhitePaper"
     - name: High Availability Deployment Options for SAP
       url: "https://learn.microsoft.com/en-us/azure/sap/workloads/sap-high-availability-architecture-scenarios#high-availability-deployment-options-for-sap-workload"
 
@@ -37,14 +29,8 @@
   automationAvailable: false
   tags: SAP
   learnMoreLink:
-    - name: OpenSource Inventory Checks
-      url: "https://aka.ms/ACESInventoryCheckSAP"
     - name: Virtual machine Scale Set SAP Deployment Guide
       url: "https://learn.microsoft.com/en-us/azure/sap/workloads/virtual-machine-scale-set-sap-deployment-guide"
-    - name: Considerations for Flexible VM Scale Sets for SAP
-      url: "https://learn.microsoft.com/en-us/azure/sap/workloads/virtual-machine-scale-set-sap-deployment-guide?tabs=scaleset-cli#important-consideration-of-flexible-virtual-machine-scale-sets-for-sap-workload"
-    - name: Migrate existing SAP system VMs to VMSS Flex
-      url: "https://techcommunity.microsoft.com/t5/running-sap-applications-on-the/how-to-easily-migrate-an-existing-sap-system-vms-to-flexible/ba-p/3833548"
 
 - description: If using single-instance VMs all OS and data disks must be Premium SSD or Ultra Disk
   aprlGuid: b60ae773-9917-4bca-8a42-7cb45365a917
@@ -60,14 +46,6 @@
   automationAvailable: true
   tags: SAP
   learnMoreLink:
-    - name: SAP ACSS Insights
-      url: "https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/get-quality-checks-insights"
-    - name: OpenSource Inventory Checks
-      url: "https://aka.ms/ACESInventoryCheckSAP"
-    - name: OpenSource Quality Checks
-      url: "https://github.com/Azure/SAP-on-Azure-Scripts-and-Utilities/tree/main/QualityCheck"
-    - name: VM SLA
-      url: "https://www.azure.cn/en-us/support/sla/virtual-machines/"
     - name: SAP Storage Planning Guide
       url: "https://learn.microsoft.com/en-us/azure/sap/workloads/planning-guide-storage"
 
@@ -85,8 +63,6 @@
   automationAvailable: false
   tags: SAP
   learnMoreLink:
-    - name: SAP ACSS Insights
-      url: "https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/get-quality-checks-insights"
     - name: OpenSource Quality Checks
       url: "https://github.com/Azure/SAP-on-Azure-Scripts-and-Utilities/tree/main/QualityCheck"
 
@@ -192,8 +168,6 @@
   learnMoreLink:
     - name: SAP ACSS Insights
       url: "https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/get-quality-checks-insights"
-    - name: OpenSource Inventory Checks
-      url: "https://aka.ms/ACESInventoryCheckSAP"
 
 - description: SAP shared files systems are replicated or backed up to DR location
   aprlGuid: ee4dc309-00a1-49fe-92fa-1724baf5f103
@@ -279,8 +253,6 @@
   learnMoreLink:
     - name: VM Scheduled Events
       url: "https://learn.microsoft.com/en-us/azure/virtual-machines/linux/scheduled-events"
-    - name: Configure Pacemaker for Azure Scheduled Events
-      url: "https://learn.microsoft.com/en-us/azure/sap/workloads/high-availability-guide-suse-pacemaker?tabs=msi#configure-pacemaker-for-azure-scheduled-events"
 
 - description: Configure a Pacemaker cluster for SAP ASCS high availability
   aprlGuid: 9d8f6678-694c-4da4-8384-415201f65194
@@ -296,10 +268,6 @@
   automationAvailable: false
   tags: SAP
   learnMoreLink:
-    - name: SAP ACSS Insights
-      url: "https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/get-quality-checks-insights"
-    - name: OpenSource Quality Checks
-      url: "https://github.com/Azure/SAP-on-Azure-Scripts-and-Utilities/tree/main/QualityCheck"
     - name: ASCS-Pacemaker - Central Server Instance
       url: "https://docs.microsoft.com/en-us/azure/advisor/advisor-reference-reliability-recommendations"
 
@@ -317,10 +285,6 @@
   automationAvailable: false
   tags: SAP
   learnMoreLink:
-    - name: SAP ACSS Insights
-      url: "https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/get-quality-checks-insights"
-    - name: OpenSource Quality Checks
-      url: "https://github.com/Azure/SAP-on-Azure-Scripts-and-Utilities/tree/main/QualityCheck"
     - name: ASCS-LB - Central Server Instance
       url: "https://docs.microsoft.com/en-us/azure/advisor/advisor-reference-reliability-recommendations"
 
@@ -338,10 +302,6 @@
   automationAvailable: false
   tags: SAP
   learnMoreLink:
-    - name: SAP ACSS Insights
-      url: "https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/get-quality-checks-insights"
-    - name: OpenSource Quality Checks
-      url: "https://github.com/Azure/SAP-on-Azure-Scripts-and-Utilities/tree/main/QualityCheck"
     - name: DBHANA-Pacemaker - Database Instance
       url: "https://docs.microsoft.com/en-us/azure/advisor/advisor-reference-reliability-recommendations"
 
@@ -359,10 +319,6 @@
   automationAvailable: false
   tags: SAP
   learnMoreLink:
-    - name: SAP ACSS Insights
-      url: "https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/get-quality-checks-insights"
-    - name: OpenSource Quality Checks
-      url: "https://github.com/Azure/SAP-on-Azure-Scripts-and-Utilities/tree/main/QualityCheck"
     - name: DBHANA-LB- Database Instance
       url: "https://docs.microsoft.com/en-us/azure/advisor/advisor-reference-reliability-recommendations"
 
@@ -399,13 +355,3 @@
   learnMoreLink:
     - name: High-availability SAP NetWeaver with simple mount and NFS on SLES for SAP Applications VMs
       url: "https://learn.microsoft.com/en-us/azure/sap/workloads/high-availability-guide-suse-nfs-simple-mount?tabs=lb-portal%2Censa1"
-    - name: High availability for SAP NetWeaver on Azure VMs on SUSE Linux Enterprise Server with Azure NetApp Files for SAP applications
-      url: "https://learn.microsoft.com/en-us/azure/sap/workloads/high-availability-guide-suse-netapp-files?tabs=lb-portal%2Censa1"
-    - name: High availability of SAP HANA scale-up with Azure NetApp Files on SUSE Enterprise Linux
-      url: "https://learn.microsoft.com/en-us/azure/sap/workloads/sap-hana-high-availability-netapp-files-suse?tabs=lb-portal"
-    - name: Azure Virtual Machines HA for SAP NetWeaver on RHEL with Azure NetApp Files for SAP applications
-      url: "https://learn.microsoft.com/en-us/azure/sap/workloads/high-availability-guide-rhel-netapp-files?tabs=lb-portal%2Censa1"
-    - name: High availability of SAP HANA scale-up with Azure NetApp Files on RHEL
-      url: "https://learn.microsoft.com/en-us/azure/sap/workloads/sap-hana-high-availability-netapp-files-red-hat?tabs=lb-portal"
-    - name: OpenSource Quality Checks
-      url: "https://github.com/Azure/SAP-on-Azure-Scripts-and-Utilities/blob/main/QualityCheck/"

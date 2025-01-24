@@ -14,12 +14,10 @@
   learnMoreLink:
     - name: What has changed with Flexible orchestration mode
       url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes#what-has-changed-with-flexible-orchestration-mode"
-    - name: Attach or detach a Virtual Machine to or from a Virtual Machine Scale Set
-      url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-attach-detach-vm?branch=main&tabs=portal-1%2Cportal-2%2Cportal-3"
 
 - description: Deploy VMs across Availability Zones
   aprlGuid: 2bd0be95-a825-6f47-a8c6-3db1fb5eb387
-  recommendationTypeId: 066a047a-9ace-45f4-ac50-6325840a6b00
+  recommendationTypeId: null
   recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Compute/virtualMachines
@@ -67,8 +65,6 @@
   learnMoreLink:
     - name: Resiliency checklist for Virtual Machines
       url: "https://learn.microsoft.com/azure/architecture/checklist/resiliency-per-service#virtual-machines"
-    - name: Run a test failover (disaster recovery drill) to Azure
-      url: "https://learn.microsoft.com/azure/site-recovery/site-recovery-test-failover-to-azure"
 
 - description: Use Managed Disks for VM disks
   aprlGuid: 122d11d7-b91f-8747-a562-f56b79bcfbdc
@@ -86,10 +82,6 @@
   learnMoreLink:
     - name: Migrate your Azure unmanaged disks by Sep 30, 2025
       url: "https://learn.microsoft.com/azure/virtual-machines/unmanaged-disks-deprecation"
-    - name: Migrate Windows VM from unmanaged disks to managed disks
-      url: "https://learn.microsoft.com/azure/virtual-machines/windows/convert-unmanaged-to-managed-disks"
-    - name: Migrate Linux VM from unmanaged disks to managed disks
-      url: "https://learn.microsoft.com/azure/virtual-machines/linux/convert-unmanaged-to-managed-disks"
 
 - description: Host database data on a data disk
   aprlGuid: 4ea2878f-0d69-8d4a-b715-afc10d1e538e
@@ -107,8 +99,6 @@
   learnMoreLink:
     - name: Introduction to Azure managed disks - Data disks
       url: "https://learn.microsoft.com/azure/virtual-machines/managed-disks-overview#data-disk"
-    - name: Azure managed disk types
-      url: "https://learn.microsoft.com/azure/virtual-machines/disks-types"
 
 - description: Backup VMs with Azure Backup service
   aprlGuid: 1981f704-97b9-b645-9c57-33f8ded9261a
@@ -279,8 +269,6 @@
   learnMoreLink:
     - name: Policy-driven governance
       url: "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-principles#policy-driven-governance"
-    - name: Azure Policy Regulatory Compliance controls for Azure Virtual Machines
-      url: "https://learn.microsoft.com/azure/virtual-machines/security-policy"
 
 - description: Virtual Machines should have Azure Disk Encryption or EncryptionAtHost enabled
   aprlGuid: f0a97179-133a-6e4f-8a49-8a44da73ffce
@@ -315,8 +303,6 @@
   learnMoreLink:
     - name: Overview of VM insights
       url: "https://learn.microsoft.com/azure/azure-monitor/vm/vminsights-overview"
-    - name: Did the extension install properly?
-      url: "https://learn.microsoft.com/azure/azure-monitor/vm/vminsights-troubleshoot#did-the-extension-install-properly"
 
 - description: Configure monitoring for all Azure Virtual Machines
   aprlGuid: 4a9d8973-6dba-0042-b3aa-07924877ebd5
@@ -402,8 +388,6 @@
   learnMoreLink:
     - name: Microsoft Azure Boost
       url: "https://learn.microsoft.com/azure/azure-boost/overview"
-    - name: Announcing the general availability of Azure Boost
-      url: "https://aka.ms/AzureBoostGABlog"
 
 - description: Enable Scheduled Events for Maintenance sensitive workload VMs
   aprlGuid: 2de8fa5e-14f4-4c4c-857f-1520f87a629f
@@ -421,10 +405,6 @@
   learnMoreLink:
     - name: Monitor scheduled events for your Azure VMs
       url: "https://learn.microsoft.com/azure/virtual-machines/windows/scheduled-event-service"
-    - name: Azure Metadata Service Scheduled Events for Linux VMs
-      url: "https://learn.microsoft.com/azure/virtual-machines/linux/scheduled-events"
-    - name: Azure Metadata Service Scheduled Events for Windows VMs
-      url: "https://learn.microsoft.com/azure/virtual-machines/windows/scheduled-events"
 
 - description: Reserve Compute Capacity for critical workloads
   aprlGuid: 302fda08-ee65-4fbe-a916-6dc0b33169c4

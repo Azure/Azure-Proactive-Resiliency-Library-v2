@@ -14,8 +14,6 @@
   learnMoreLink:
     - name: Change your API Management service tier
       url: "https://learn.microsoft.com/en-us/azure/api-management/upgrade-and-scale#change-your-api-management-service-tier"
-    - name: Migrate Azure API Management to availability zone support
-      url: "https://learn.microsoft.com/en-us/azure/reliability/migrate-api-mgt"
 
 - description: Enable Availability Zones on Premium API Management instances
   aprlGuid: 740f2c1c-8857-4648-80eb-47d2c56d5a50
@@ -33,8 +31,6 @@
   learnMoreLink:
     - name: Ensure API Management availability and reliability
       url: "https://learn.microsoft.com/en-us/azure/api-management/high-availability#availability-zones"
-    - name: Migrate Azure API Management to availability zone support
-      url: "https://learn.microsoft.com/en-us/azure/reliability/migrate-api-mgt"
 
 - description: Azure API Management platform version should be stv2
   aprlGuid: e35cf148-8eee-49d1-a1c9-956160f99e0b
@@ -52,8 +48,6 @@
   learnMoreLink:
     - name: Azure API Management - stv1 platform retirement (August 2024)
       url: "https://learn.microsoft.com/en-us/azure/api-management/breaking-changes/stv1-platform-retirement-august-2024"
-    - name: Azure API Management compute platform
-      url: "https://learn.microsoft.com/en-us/azure/api-management/compute-infrastructure"
 
 - description: Enable auto-scale for production workloads on API Management services
   aprlGuid: c79680ea-de85-44fa-a596-f31fa17a952f
@@ -105,5 +99,3 @@
   learnMoreLink:
     - name: Add caching to improve performance in Azure API Management
       url: "https://learn.microsoft.com/en-us/azure/api-management/api-management-howto-cache"
-    - name: Use an external cache in Azure API Management
-      url: "https://learn.microsoft.com/en-us/azure/api-management/api-management-howto-cache-external"

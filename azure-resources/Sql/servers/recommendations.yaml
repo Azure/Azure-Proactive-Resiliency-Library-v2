@@ -31,8 +31,6 @@
   learnMoreLink:
     - name: AutoFailover Groups
       url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/auto-failover-group-overview?tabs=azure-powershell"
-    - name: DR Design
-      url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/designing-cloud-solutions-for-disaster-recovery"
 
 - description: Enable zone redundancy for Azure SQL Database to achieve high availability and resiliency
   aprlGuid: c0085c32-84c0-c247-bfa9-e70977cbf108
@@ -84,10 +82,6 @@
   learnMoreLink:
     - name: Azure Monitor
       url: "https://learn.microsoft.com/en-us/azure/azure-monitor/insights/azure-sql#analyze-data-and-create-alerts"
-    - name: Azure SQL Database Monitoring
-      url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/monitoring-sql-database-azure-monitor"
-    - name: Monitoring SQL Database Reference
-      url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/monitoring-sql-database-azure-monitor-reference"
 
 - description: Back Up Your Keys
   aprlGuid: d6ef87aa-574e-584e-a955-3e6bb8b5425b
@@ -105,8 +99,6 @@
   learnMoreLink:
     - name: Azure Key Vault
       url: "https://learn.microsoft.com/en-us/azure/key-vault/general/overview"
-    - name: Getting Started with Always Encrypted
-      url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/always-encrypted-landing?view=azuresql"
 
 - description: Use Failover Group endpoints for database connections
   aprlGuid: de266d8a-a9f3-4cb9-be95-9306001fceea

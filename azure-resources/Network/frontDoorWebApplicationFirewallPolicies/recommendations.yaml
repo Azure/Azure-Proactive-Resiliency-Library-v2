@@ -14,12 +14,6 @@
   learnMoreLink:
     - name: Azure Web Application Firewall monitoring and logging - Access Log
       url: "https://learn.microsoft.com/azure/web-application-firewall/afds/waf-front-door-monitor?pivots=front-door-standard-premium#access-logs"
-    - name: Understanding WAF logs
-      url: "https://learn.microsoft.com/azure/web-application-firewall/afds/waf-front-door-tuning?pivots=front-door-standard-premium#understanding-waf-logs"
-    - name: Web Application Firewall exclusion lists
-      url: "https://learn.microsoft.com/azure/web-application-firewall/ag/application-gateway-waf-configuration?tabs=portal"
-    - name: Fixing a false positive
-      url: "https://learn.microsoft.com/azure/web-application-firewall/ag/web-application-firewall-troubleshoot#fixing-false-positives"
 
 - description: Check Azure Application Gateway WAF logs for mistakenly blocked valid requests
   aprlGuid: 537b4d94-edd1-4041-b13d-8217dfa485f0
@@ -37,8 +31,6 @@
   learnMoreLink:
     - name: Azure Web Application Firewall Monitoring and Logging
       url: "https://learn.microsoft.com/azure/web-application-firewall/ag/application-gateway-waf-metrics#logs-and-diagnostics"
-    - name: Diagnostic logs
-      url: "https://learn.microsoft.com/azure/web-application-firewall/ag/web-application-firewall-logs#diagnostic-logs"
 
 - description: Monitor Web Application Firewall
   aprlGuid: 5357ae22-0f52-1a49-9fd4-1f00ace6add0
@@ -56,5 +48,3 @@
   learnMoreLink:
     - name: WAF monitoring
       url: "https://learn.microsoft.com/azure/web-application-firewall/ag/ag-overview#waf-monitoring"
-    - name: Azure Monitor Workbook for WAF
-      url: "https://github.com/Azure/Azure-Network-Security/tree/master/Azure%20WAF/Workbook%20-%20WAF%20Monitor%20Workbook"

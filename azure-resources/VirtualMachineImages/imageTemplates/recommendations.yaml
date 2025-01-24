@@ -31,5 +31,3 @@
   learnMoreLink:
     - name: Image Template resiliency
       url: "https://learn.microsoft.com/en-us/azure/reliability/reliability-image-builder?toc=%2Fazure%2Fvirtual-machines%2Ftoc.json&bc=%2Fazure%2Fvirtual-machines%2Fbreadcrumb%2Ftoc.json&tabs=graph#disaster-recovery"
-    - name: Azure Image Builder Supported Regions
-      url: "https://learn.microsoft.com/en-us/azure/virtual-machines/image-builder-overview?tabs=azure-powershell#regions"

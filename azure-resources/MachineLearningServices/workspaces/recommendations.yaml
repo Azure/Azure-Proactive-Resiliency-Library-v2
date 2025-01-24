@@ -48,8 +48,6 @@
   learnMoreLink:
     - name: Failover for business continuity and disaster recovery
       url: "https://learn.microsoft.com/en-us/azure/machine-learning/how-to-high-availability-machine-learning?view=azureml-api-2"
-    - name: Compute targets in Azure Machine Learning
-      url: "https://learn.microsoft.com/en-us/azure/machine-learning/concept-compute-target?view=azureml-api-2"
 
 - description: Ensure checkpoints are used for AI training models
   aprlGuid: 98f15850-f31e-4fb2-8874-74f5aabbcf91
@@ -116,8 +114,6 @@
   automationAvailable: false
   tags: null
   learnMoreLink:
-    - name: NC sizes series
-      url: "https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/gpu-accelerated/nc-series?tabs=sizebasic"
     - name: Migration Guide for GPU Compute Workloads in Azure
       url: "https://learn.microsoft.com/en-us/azure/virtual-machines/n-series-migration"
 

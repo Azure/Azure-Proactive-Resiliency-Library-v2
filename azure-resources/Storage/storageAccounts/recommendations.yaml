@@ -14,8 +14,6 @@
   learnMoreLink:
     - name: Azure Storage redundancy
       url: "https://learn.microsoft.com/azure/storage/common/storage-redundancy"
-    - name: Change the redundancy configuration for a storage account
-      url: "https://learn.microsoft.com/azure/storage/common/redundancy-migration"
 
 - description: Use premium performance block blob storage for high performance workloads
   aprlGuid: 5587ef77-7a05-a74d-9c6e-449547a12f27
@@ -31,14 +29,6 @@
   automationAvailable: false
   tags: null
   learnMoreLink:
-    - name: Types of storage accounts
-      url: "https://learn.microsoft.com/azure/storage/common/storage-account-overview#types-of-storage-accounts"
-    - name: Scalability and performance targets for standard storage accounts
-      url: "https://learn.microsoft.com/azure/storage/common/scalability-targets-standard-account"
-    - name: Performance and scalability checklist for Blob storage
-      url: "https://learn.microsoft.com/azure/storage/blobs/storage-performance-checklist"
-    - name: Scalability and performance targets for Blob storage
-      url: "https://learn.microsoft.com/azure/storage/blobs/scalability-targets"
     - name: Premium block blob storage accounts
       url: "https://learn.microsoft.com/azure/storage/blobs/storage-blob-block-blob-premium"
 
@@ -57,7 +47,7 @@
   tags: null
   learnMoreLink:
     - name: Soft delete detail docs
-      url: "https://learn.microsoft.com//azure/storage/blobs/soft-delete-blob-enable?tabs=azure-portal "
+      url: "https://learn.microsoft.com/azure/storage/blobs/soft-delete-blob-enable?tabs=azure-portal"
 
 - description: Enable versioning for accidental modification and keep the number of versions below 1000
   aprlGuid: 8ebda7c0-e0e1-ed45-af59-2d7ea9a1c05d
@@ -74,7 +64,7 @@
   tags: null
   learnMoreLink:
     - name: Blob versioning
-      url: "https://learn.microsoft.com/azure/storage/blobs/versioning-overview "
+      url: "https://learn.microsoft.com/azure/storage/blobs/versioning-overview"
 
 - description: Enable point-in-time restore for GPv2 accounts to safeguard against data loss
   aprlGuid: 1b965cb9-7629-214e-b682-6bf6e450a100
@@ -92,8 +82,6 @@
   learnMoreLink:
     - name: Point-in-time restore for block blobs
       url: "https://learn.microsoft.com/azure/storage/blobs/point-in-time-restore-overview"
-    - name: Perform a point-in-time restore on block blob data
-      url: "https://learn.microsoft.com/azure/storage/blobs/point-in-time-restore-manage?tabs=portal"
 
 - description: Monitor all blob storage accounts
   aprlGuid: 96cb8331-6b06-8242-8ce8-4e2f665dc679
@@ -111,8 +99,6 @@
   learnMoreLink:
     - name: Monitor Azure Blob Storage
       url: "https://learn.microsoft.com/azure/storage/blobs/monitor-blob-storage"
-    - name: Best practices for monitoring Azure Blob Storage
-      url: "https://learn.microsoft.com/azure/storage/blobs/blob-storage-monitoring-scenarios"
 
 - description: Consider upgrading legacy storage accounts to v2 storage accounts
   aprlGuid: 2ad78dec-5a4d-4a30-8fd1-8584335ad781
@@ -128,8 +114,6 @@
   automationAvailable: true
   tags: null
   learnMoreLink:
-    - name: Legacy storage account types
-      url: "https://learn.microsoft.com/azure/storage/common/storage-account-overview#legacy-storage-account-types"
     - name: Upgrade to a general-purpose v2 storage account
       url: "https://learn.microsoft.com/azure/storage/common/storage-account-upgrade"
 
@@ -147,7 +131,5 @@
   automationAvailable: true
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/architecture/example-scenario/wvd/windows-virtual-desktop#azure-virtual-desktop-limitations"
     - name: Private Link
       url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-virtual-desktop/networking#private-endpoints-private-link"
