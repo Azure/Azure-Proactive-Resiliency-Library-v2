@@ -1136,6 +1136,7 @@ $Runtime = Measure-Command -Expression {
     $Style += New-ExcelStyle -HorizontalAlignment Left -Range I:I
     $Style += New-ExcelStyle -HorizontalAlignment Center -Range I11:I11
     $Style += New-ExcelStyle -HorizontalAlignment Center -Range J:K
+    $Style += New-ExcelStyle -Range A11:K11 -FontColor White
 
     $RecommendationSheet = New-Object System.Collections.Generic.List[System.Object]
     $RecommendationSheet.Add('Impact')
@@ -1198,7 +1199,7 @@ $Runtime = Measure-Command -Expression {
       PivotRows         = @('Resource Type')
       PivotColumns      = @('Impact')
       PivotData         = @{'Resource Type' = 'Count' }
-      PivotTableStyle   = 'Medium8'
+      PivotTableStyle   = 'Medium9'
       Activate          = $true
       PivotFilter       = 'Category'
       ShowPercent       = $false
@@ -1214,7 +1215,7 @@ $Runtime = Measure-Command -Expression {
       PivotRows         = @('Recommendation Control')
       PivotColumns      = @('Impact')
       PivotData         = @{'Resource Type' = 'Count' }
-      PivotTableStyle   = 'Medium8'
+      PivotTableStyle   = 'Medium9'
       Activate          = $true
       PivotFilter       = 'Resource Type'
       ShowPercent       = $false
@@ -1228,8 +1229,22 @@ $Runtime = Measure-Command -Expression {
       SourceWorkSheet   = $Excel."2.Recommendations"
       SourceRange       = $Address
       PivotRows         = @('Impact')
-      PivotData         = @{'Impacted Resources' = 'Count' }
-      PivotTableStyle   = 'Medium8'
+      PivotData         = @{'Impacted Resources' = 'Sum' }
+      PivotTableStyle   = 'Medium9'
+      Activate          = $true
+      ShowPercent       = $false
+      IncludePivotChart = $false
+    }
+    Add-PivotTable @PTParams
+
+    $PTParams = @{
+      PivotTableName    = 'P3'
+      Address           = $Excel.'7.PivotTable'.cells['S3']
+      SourceWorkSheet   = $Excel."2.Recommendations"
+      SourceRange       = $Address
+      PivotRows         = @('Impact')
+      PivotData         = @{'Guid' = 'Count' }
+      PivotTableStyle   = 'Medium10'
       Activate          = $true
       ShowPercent       = $false
       IncludePivotChart = $false
@@ -1241,7 +1256,7 @@ $Runtime = Measure-Command -Expression {
   }
 
   #Call the functions
-  $Version = "2.2.0"
+  $Version = "2.1.5"
   Write-Host "Version: " -NoNewline
   Write-Host $Version -ForegroundColor DarkBlue -NoNewline
   Write-Host " "

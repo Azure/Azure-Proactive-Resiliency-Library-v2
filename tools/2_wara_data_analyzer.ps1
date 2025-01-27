@@ -32,11 +32,29 @@ Param(
 [string] $CustomRecommendationsYAMLPath,
 [Parameter(mandatory = $true)]
 [string] $JSONFile,
-[Parameter(mandatory = $true)]
 [string] $ExpertAnalysisFile
 )
 
 # Check if the Expert-Analysis file exists
+$CurrentPath = Get-Location
+$CurrentPath = $CurrentPath.Path
+if (!$ExpertAnalysisFile)
+	{
+		Write-Debug ((get-date -Format 'yyyy-MM-dd HH:mm:ss') + (' - Testing: ' + $CurrentPath + '\Expert-Analysis-v1.xlsx'))
+		if ((Test-Path -Path ($CurrentPath + '\Expert-Analysis-v1.xlsx') -PathType Leaf) -eq $true) {
+			$ExpertAnalysisFile = ($CurrentPath + '\Expert-Analysis-v1.xlsx')
+		}
+	}
+else
+{
+	Write-Host ""
+	Write-Host "This script requires specific Microsoft Excel templates, which are available in the Azure Proactive Resiliency Library. You can download the templates from this GitHub repository:"
+	Write-Host "https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2/tree/main/tools" -ForegroundColor Yellow
+	Write-Host ""
+	Throw "The Expert-Analysis file does not exist. Please provide a valid path to the Expert-Analysis file."
+	Exit
+}
+
 if ((Test-Path -Path $ExpertAnalysisFile -PathType Leaf) -eq $true) {
 	$ExpertAnalysisFile = (Resolve-Path -Path $ExpertAnalysisFile).Path
 }
@@ -49,6 +67,7 @@ else
 	Throw "The Expert-Analysis file does not exist. Please provide a valid path to the Expert-Analysis file."
 	Exit
 }
+
 
 # Check if the JSON file exists 
 if ((Test-Path -Path $JSONFile -PathType Leaf) -eq $true) {
