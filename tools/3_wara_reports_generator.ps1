@@ -34,7 +34,7 @@ https://github.com/Azure/Azure-Proactive-Resiliency-Library-v2
 
 Param(
   [switch] $Help,
-  [switch] $csvExport,
+  #[switch] $csvExport,
   [switch] $includeLow,
   [string] $CustomerName,
   [string] $WorkloadName,
