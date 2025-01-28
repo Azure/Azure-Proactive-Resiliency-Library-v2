@@ -1,18 +1,10 @@
 // Azure Resource Graph Query
-// Find what Express Route Gateways do not have Monitoring Enabled on a Virtual Hub
+// Find what Express Route Gateways have allow Non Virtual Wan Traffic enabled
 
 resources
 | where type =~ "Microsoft.Network/expressRouteGateways"
+| where properties.allowNonVirtualWanTraffic == "true"
 | extend ergwId = tolower(tostring(id)), ergwName = name, ergwTags = tags, ergwLocation = location, vhubId = tolower(tostring(properties.virtualHub.id))
-| join kind=leftouter (
-    resources
-    | where type =~ "microsoft.insights/metricalerts"
-    | mv-expand scope = properties.scopes
-    | where scope has "Microsoft.Network/expressRouteGateways"
-    | extend scope = tolower(tostring(scope))
-    | project scope
-) on $left.ergwId == $right.scope
-| where strlen(scope) == 0
 | join kind=leftouter (
     resources
     | where type =~ "Microsoft.Network/virtualHubs"
@@ -24,5 +16,4 @@ resources
     | where type =~ "Microsoft.Network/virtualWans"
     | extend vwanId = tolower(tostring(id)), vwanName = name
 ) on $left.vwanId == $right.vwanId
-| project recommendationId = "17e8d380-e4b4-41a1-9b37-2e4df9fd5125", name, id, tags, param1=strcat("vHub Name: ", vhubName), param2=strcat("vWAN Name: ", vwanName)
-
+| project recommendationId = "560a76a7-8f64-4ce3-ad27-d174468861a1", name, id, tags, param1=strcat("vHub Name: ", vhubName), param2=strcat("vWAN Name: ", vwanName)
