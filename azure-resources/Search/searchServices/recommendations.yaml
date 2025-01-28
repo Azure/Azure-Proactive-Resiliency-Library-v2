@@ -1,0 +1,33 @@
+- description: Enable AZ support in AI Search by configuring multiple replicas to your search service
+  aprlGuid: b376281d-bfec-4695-8f90-9a44544fdfa4
+  recommendationTypeId: null
+  recommendationControl: HighAvailability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Search/searchServices
+  recommendationMetadataState: Active
+  longDescription: |
+    Availability zones are used when adding multiple replicas to your search service. Each replica is assigned to a different zone in the region. If there are more replicas than zones, they are distributed as evenly as possible across the available zones.
+  potentialBenefits: High availability
+  pgVerified: false
+  automationAvailable: true
+  tags: null
+  learnMoreLink:
+    - name: Reliability in Azure AI Search
+      url: "https://learn.microsoft.com/en-us/azure/search/search-reliability#availability-zone-support"
+
+- description: Enable Multi Region deployments for AI Search
+  aprlGuid: dff62efe-c3a3-4621-98b3-c877c65cb195
+  recommendationTypeId: null
+  recommendationControl: HighAvailability
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Search/searchServices
+  recommendationMetadataState: Active
+  longDescription: |
+    Azure AI Search lacks automatic failover. For continuity and global reach, deploy multiple services in different regions. Sync data via indexers or REST APIs, and manage routing with Azure Traffic Manager.
+  potentialBenefits: High availability
+  pgVerified: false
+  automationAvailable: true
+  tags: null
+  learnMoreLink:
+    - name: Reliability in Azure AI Search
+      url: "https://learn.microsoft.com/en-us/azure/search/search-reliability#multiple-services-in-separate-geographic-regions"
