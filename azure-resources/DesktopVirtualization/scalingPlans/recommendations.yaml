@@ -10,7 +10,7 @@
   potentialBenefits: Enhanced scaling
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Create and assign an autoscale scaling plan
       url: "https://learn.microsoft.com/azure/virtual-desktop/autoscale-scaling-plan?tabs=portal"

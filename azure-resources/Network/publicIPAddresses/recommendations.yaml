@@ -10,7 +10,7 @@
   potentialBenefits: Enhanced resilience with zone redundancy
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Public IP addresses - Availability Zones
       url: "https://learn.microsoft.com/azure/virtual-network/ip-services/public-ip-addresses#availability-zone"
@@ -27,7 +27,7 @@
   potentialBenefits: Avoids SNAT port exhaustion risks
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Use NAT GW for outbound connectivity
       url: "https://learn.microsoft.com/azure/advisor/advisor-reference-reliability-recommendations#use-nat-gateway-for-outbound-connectivity"
@@ -44,7 +44,7 @@
   potentialBenefits: Avoids service disruption
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Upgrading a basic public IP address to Standard SKU - Guidance
       url: "https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/public-ip-basic-upgrade-guidance"
@@ -61,7 +61,7 @@
   potentialBenefits: Avoids service disruption
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Azure DDoS Protection
       url: "https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-protection-overview"

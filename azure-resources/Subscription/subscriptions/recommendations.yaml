@@ -10,7 +10,7 @@
   potentialBenefits: Avoids hitting limit, ensures reliability
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Citrix Limits
       url: "https://docs.citrix.com/en-us/citrix-daas-azure/limits"
@@ -27,7 +27,7 @@
   potentialBenefits: Enhanced security, compliance, and management
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Management group recommendations
       url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org-management-groups#management-group-recommendations"
@@ -44,7 +44,7 @@
   potentialBenefits: Proactive outage and maintenance alerts
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Configure alerts for service health events
       url: "https://learn.microsoft.com/azure/service-health/alerts-activity-log-service-notifications-portal"
@@ -61,7 +61,7 @@
   potentialBenefits: Improves outage management
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Azure Resource Manager Overview
       url: "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overview#resource-group-location-alignment"

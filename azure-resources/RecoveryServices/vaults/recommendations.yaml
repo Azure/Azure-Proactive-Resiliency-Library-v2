@@ -10,7 +10,7 @@
   potentialBenefits: Smooth failover IP management
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Setup network mapping for site recovery
       url: "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-network-mapping#set-up-ip-addressing-for-target-vms"
@@ -27,7 +27,7 @@
   potentialBenefits: Ensures BCDR plan accuracy and VM performance
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Run a test failover
       url: "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-dr-drill#run-a-test-failover"
@@ -44,7 +44,7 @@
   potentialBenefits: Enhanced, scalable, and consistent alerting.
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Move to Azure monitor Alerts
       url: "https://learn.microsoft.com/azure/backup/move-to-azure-monitor-alerts"
@@ -61,7 +61,7 @@
   potentialBenefits: Enhances disaster recovery capabilities
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Set Cross Region Restore
       url: "https://learn.microsoft.com/azure/backup/backup-create-recovery-services-vault#set-cross-region-restore"
@@ -78,7 +78,7 @@
   potentialBenefits: Enhances disaster recovery capabilities
   pgVerified: false
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Soft Delete for Azure Backup
       url: "https://learn.microsoft.com/azure/backup/backup-azure-security-feature-cloud?tabs=azure-portal"

@@ -10,7 +10,7 @@
   potentialBenefits: Enhanced fault tolerance for AKS
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: AKS Availability Zones
       url: "https://learn.microsoft.com/en-us/azure/aks/availability-zones"
@@ -27,7 +27,7 @@
   potentialBenefits: Enhanced reliability via pod isolation
   pgVerified: false
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: System and user node pools
       url: "https://learn.microsoft.com/en-us/azure/aks/use-system-pools?tabs=azure-cli#system-and-user-node-pools"
@@ -44,7 +44,7 @@
   potentialBenefits: Enhanced security and access control
   pgVerified: false
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Entra integration
       url: "https://learn.microsoft.com/en-us/azure/aks/concepts-identity#azure-ad-integration"
@@ -61,7 +61,7 @@
   potentialBenefits: Dynamic IP allocation, scalable subnets, direct VNET access
   pgVerified: false
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Configure Azure CNI networking
       url: "https://learn.microsoft.com/en-us/azure/aks/configure-azure-cni-dynamic-ip-allocation"
@@ -78,7 +78,7 @@
   potentialBenefits: Optimizes scaling and prevents outages
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Use the Cluster Autoscaler on AKS
       url: "https://learn.microsoft.com/azure/aks/cluster-autoscaler?tabs=azure-cli"
@@ -95,7 +95,7 @@
   potentialBenefits: Ensures data safety for AKS
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: AKS Backups
       url: "https://learn.microsoft.com/en-us/azure/backup/azure-kubernetes-service-cluster-backup"
@@ -112,7 +112,7 @@
   potentialBenefits: Increases data durability and availability
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Availability zones overview
       url: "https://learn.microsoft.com/azure/reliability/availability-zones-overview?tabs=azure-cli"
@@ -129,7 +129,7 @@
   potentialBenefits: Ensures future compatibility
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: CSI Storage Drivers
       url: "https://learn.microsoft.com/azure/aks/csi-storage-drivers"
@@ -146,7 +146,7 @@
   potentialBenefits: Limits AKS resource usage per namespace
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Resource Quotas
       url: "https://kubernetes.io/docs/concepts/policy/resource-quotas/"
@@ -163,7 +163,7 @@
   potentialBenefits: Faster scaling with virtual nodes
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Virtual Nodes
       url: "https://learn.microsoft.com/azure/aks/virtual-nodes"
@@ -180,7 +180,7 @@
   potentialBenefits: SLA guarantee and better scalability
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Pricing Tiers
       url: "https://learn.microsoft.com/en-us/azure/aks/free-standard-pricing-tiers"
@@ -197,7 +197,7 @@
   potentialBenefits: Real-time AKS health/performance insights
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Monitor AKS
       url: "https://learn.microsoft.com/azure/aks/monitor-aks"
@@ -214,7 +214,7 @@
   potentialBenefits: Lower latency, faster re-imaging and booting
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Ephemeral OS disk
       url: "https://learn.microsoft.com/azure/aks/concepts-storage#ephemeral-os-disk"
@@ -231,7 +231,7 @@
   potentialBenefits: Enhanced AKS governance and security
   pgVerified: false
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: AKS Baseline - Policy Management
       url: "https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/baseline-aks?toc=https%3A%2F%2Flearn.microsoft.com%2Fen-us%2Fazure%2Faks%2Ftoc.json&bc=https%3A%2F%2Flearn.microsoft.com%2Fen-us%2Fazure%2Fbread%2Ftoc.json#policy-management"
@@ -248,7 +248,7 @@
   potentialBenefits: Ensures AKS config consistency
   pgVerified: false
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: GitOps with AKS
       url: "https://learn.microsoft.com/en-us/azure/architecture/guide/aks/aks-cicd-github-actions-and-gitops"
@@ -265,7 +265,7 @@
   potentialBenefits: Ensures high availability and efficient use
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Topology Spread Constraints
       url: "https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/"
@@ -282,7 +282,7 @@
   potentialBenefits: Enhances container health monitoring
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Configure probes
       url: "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/"
@@ -299,7 +299,7 @@
   potentialBenefits: Ensures stable pod availability
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Replica Sets
       url: "https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/"
@@ -316,7 +316,7 @@
   potentialBenefits: Ensures pod resilience
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: System nodepools
       url: "https://learn.microsoft.com/azure/aks/use-system-pools?tabs=azure-cli"
@@ -333,7 +333,7 @@
   potentialBenefits: Ensures high app availability
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Azure Well-Architected Framework review for Azure Kubernetes Service (AKS)
       url: "https://learn.microsoft.com/azure/well-architected/service-guides/azure-kubernetes-service#design-checklist"
@@ -350,7 +350,7 @@
   potentialBenefits: Ensures cluster resiliency during disruptions
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Configure PDBs
       url: "https://kubernetes.io/docs/tasks/run-application/configure-pdb/"
@@ -367,7 +367,7 @@
   potentialBenefits: Efficient scaling, reduced disruptions
   pgVerified: false
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Azure CNI Dynamic IP Allocation
       url: "https://learn.microsoft.com/azure/aks/configure-azure-cni-dynamic-ip-allocation"
@@ -384,7 +384,7 @@
   potentialBenefits: Reduced disruptions
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Azure Quotas
       url: "https://learn.microsoft.com/azure/quotas/quotas-overview"
@@ -401,7 +401,7 @@
   potentialBenefits: Reduced disruptions
   pgVerified: false
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Azure Linux
       url: "https://learn.microsoft.com/azure/aks/use-azure-linux"
@@ -418,7 +418,7 @@
   potentialBenefits: Ensures high app availability
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Multi-replica apps
       url: "https://learn.microsoft.com/azure/aks/best-practices-app-cluster-reliability#multi-replica-applications"

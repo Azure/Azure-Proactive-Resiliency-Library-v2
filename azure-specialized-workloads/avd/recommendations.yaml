@@ -10,7 +10,7 @@
   potentialBenefits: Enhanced AVD error tracking and resolution
   pgVerified: true
   automationAvailable: true
-  tags: AVD
+  tags: [AVD]
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/well-architected/azure-virtual-desktop/monitoring#resource-health"
@@ -27,7 +27,7 @@
   potentialBenefits: Enhanced AVD monitoring and troubleshooting
   pgVerified: true
   automationAvailable: false
-  tags: AVD
+  tags: [AVD]
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/virtual-desktop/insights?tabs=monitor"
@@ -44,7 +44,7 @@
   potentialBenefits: Improved DR visibility and operation
   pgVerified: true
   automationAvailable: false
-  tags: AVD
+  tags: [AVD]
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/virtual-desktop/diagnostics-log-analytics"
@@ -61,7 +61,7 @@
   potentialBenefits: Enhanced organization and scalability
   pgVerified: true
   automationAvailable: false
-  tags: AVD
+  tags: [AVD]
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/cloud-adoption-framework/scenarios/azure-virtual-desktop/enterprise-scale-landing-zone"
@@ -79,7 +79,7 @@
   potentialBenefits: Avoids limits, ensures smooth scaling
   pgVerified: true
   automationAvailable: false
-  tags: AVD
+  tags: [AVD]
   learnMoreLink:
     - name: Capacity Planning
       url: "https://learn.microsoft.com/azure/well-architected/azure-virtual-desktop/business-continuity#capacity-planning"
@@ -96,7 +96,7 @@
   potentialBenefits: Improves uptime & resilience
   pgVerified: true
   automationAvailable: false
-  tags: AVD
+  tags: [AVD]
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/architecture/example-scenario/azure-virtual-desktop/azure-virtual-desktop-multi-region-bcdr"
@@ -113,7 +113,7 @@
   potentialBenefits: Enhanced resilience and uptime
   pgVerified: true
   automationAvailable: false
-  tags: AVD
+  tags: [AVD]
   learnMoreLink:
     - name: Multi-region BCDR
       url: "https://learn.microsoft.com/azure/architecture/example-scenario/wvd/azure-virtual-desktop-multi-region-bcdr"
@@ -130,7 +130,7 @@
   potentialBenefits: Enhanced scaling and performance
   pgVerified: true
   automationAvailable: false
-  tags: AVD
+  tags: [AVD]
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/storage/files/storage-files-scale-targets"
@@ -147,7 +147,7 @@
   potentialBenefits: Enhanced performance
   pgVerified: true
   automationAvailable: false
-  tags: AVD
+  tags: [AVD]
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/virtual-desktop/create-host-pools-user-profile"
@@ -164,7 +164,7 @@
   potentialBenefits: Ensures data resilience and consistency
   pgVerified: true
   automationAvailable: false
-  tags: AVD
+  tags: [AVD]
   learnMoreLink:
     - name: FSLogix
       url: "https://learn.microsoft.com/fslogix/overview-what-is-fslogix"
@@ -181,7 +181,7 @@
   potentialBenefits: Better reliability and consistent latency
   pgVerified: true
   automationAvailable: false
-  tags: AVD
+  tags: [AVD]
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/virtual-desktop/rdp-shortpath?tabs=managed-networks"
@@ -198,7 +198,7 @@
   potentialBenefits: Enhanced performance & user experience
   pgVerified: true
   automationAvailable: false
-  tags: AVD
+  tags: [AVD]
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/virtual-desktop/troubleshoot-rdp-shortpath"
@@ -216,7 +216,7 @@
   potentialBenefits: Improved failover reliability
   pgVerified: true
   automationAvailable: false
-  tags: AVD
+  tags: [AVD]
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-install-multiple-domains"
@@ -233,7 +233,7 @@
   potentialBenefits: Enhanced availability & routing
   pgVerified: true
   automationAvailable: false
-  tags: AVD
+  tags: [AVD]
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/expressroute/designing-for-disaster-recovery-with-expressroute-privatepeering#need-for-redundant-connectivity-solution"
@@ -250,7 +250,7 @@
   potentialBenefits: Enhances security and prevents IP conflicts
   pgVerified: true
   automationAvailable: false
-  tags: AVD
+  tags: [AVD]
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/plan-for-ip-addressing"
@@ -267,7 +267,7 @@
   potentialBenefits: Enhanced performance and Disaster Recovery
   pgVerified: true
   automationAvailable: false
-  tags: AVD
+  tags: [AVD]
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/virtual-network/service-tags-overview"
@@ -284,7 +284,7 @@
   potentialBenefits: Ensures consistency; minimizes drift
   pgVerified: true
   automationAvailable: false
-  tags: AVD
+  tags: [AVD]
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/training/modules/create-manage-session-host-image/"
@@ -301,7 +301,7 @@
   potentialBenefits: Optimized session reliability and performance
   pgVerified: true
   automationAvailable: false
-  tags: AVD
+  tags: [AVD]
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/fslogix/reference-configuration-settings?tabs=profiles"
@@ -318,7 +318,7 @@
   potentialBenefits: Enhanced security & disaster recovery
   pgVerified: true
   automationAvailable: false
-  tags: AVD
+  tags: [AVD]
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/fslogix/how-to-configure-storage-permissions"
@@ -335,7 +335,7 @@
   potentialBenefits: Enhanced AVD error tracking and resolution
   pgVerified: true
   automationAvailable: false
-  tags: AVD
+  tags: [AVD]
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/fslogix/troubleshooting-events-logs-diagnostics"
@@ -352,7 +352,7 @@
   potentialBenefits: Enhanced reliability & support
   pgVerified: true
   automationAvailable: false
-  tags: AVD
+  tags: [AVD]
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/fslogix/how-to-install-fslogix"
@@ -370,7 +370,7 @@
   potentialBenefits: Enhanced stability & user limit checks
   pgVerified: true
   automationAvailable: false
-  tags: AVD
+  tags: [AVD]
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/virtual-desktop/app-attach-overview?pivots=msix-app-attach"
@@ -387,7 +387,7 @@
   potentialBenefits: Enhances performance and scalability
   pgVerified: true
   automationAvailable: false
-  tags: AVD
+  tags: [AVD]
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/virtual-desktop/app-attach-overview?pivots=msix-app-attach"
@@ -404,7 +404,7 @@
   potentialBenefits: Ensures DR readiness and access
   pgVerified: true
   automationAvailable: false
-  tags: AVD
+  tags: [AVD]
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/key-vault/general/disaster-recovery-guidance"
@@ -421,7 +421,7 @@
   potentialBenefits: Enhanced identity resilience
   pgVerified: true
   automationAvailable: false
-  tags: AVD
+  tags: [AVD]
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/architecture/example-scenario/azure-virtual-desktop/azure-virtual-desktop-multi-region-bcdr"
@@ -438,7 +438,7 @@
   potentialBenefits: Enhanced reliability and performance
   pgVerified: true
   automationAvailable: false
-  tags: AVD
+  tags: [AVD]
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/architecture/example-scenario/identity/adds-extend-domain#reliability"

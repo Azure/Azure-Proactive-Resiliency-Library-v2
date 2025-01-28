@@ -10,7 +10,7 @@
   potentialBenefits: Enhanced environment stability
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Configure a host pool as a validation environment
       url: "https://learn.microsoft.com/azure/virtual-desktop/configure-validation-environment?tabs=azure-portal"
@@ -27,7 +27,7 @@
   potentialBenefits: Enhanced environment stability
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Scheduled Agent Updates for Azure Virtual Desktop host pools
       url: "https://learn.microsoft.com/azure/virtual-desktop/scheduled-agent-updates"
@@ -44,7 +44,7 @@
   potentialBenefits: Improved AVD hostpool config & segmentation
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Configure the VMs and install Active Directory Domain Services
       url: "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/deploy/virtual-dc/adds-on-azure-vm#configure-the-vms-and-install-active-directory-domain-services"
@@ -61,7 +61,7 @@
   potentialBenefits: Ensures VM recovery & failover
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: About Site Recovery
       url: "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-overview"

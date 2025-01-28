@@ -10,7 +10,7 @@
   potentialBenefits: Enhanced reliability and redundancy
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Designing for disaster recovery with ExpressRoute private peering
       url: "https://learn.microsoft.com/azure/expressroute/designing-for-disaster-recovery-with-expressroute-privatepeering"
@@ -27,7 +27,7 @@
   potentialBenefits: Enhanced reliability and fault tolerance
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Designing for high availability with ExpressRoute
       url: "https://learn.microsoft.com/en-us/azure/expressroute/designing-for-high-availability-with-expressroute"
@@ -44,7 +44,7 @@
   potentialBenefits: Improved high availability and load balancing
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Designing for high availability with ExpressRoute - Active-active connections
       url: "https://learn.microsoft.com/azure/expressroute/designing-for-high-availability-with-expressroute#active-active-connections"
@@ -61,7 +61,7 @@
   potentialBenefits: Faster link failure detection
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Configure BFD over ExpressRoute
       url: "https://learn.microsoft.com/azure/expressroute/expressroute-bfd"
@@ -78,7 +78,7 @@
   potentialBenefits: Enhanced network performance and health
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Azure Monitor Baseline Alerts - expressRouteCircuits
       url: "https://azure.github.io/azure-monitor-baseline-alerts/services/Network/expressRouteCircuits/"
@@ -95,7 +95,7 @@
   potentialBenefits: Stay informed on circuit updates
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: How to view and configure alerts for Azure ExpressRoute circuit maintenance
       url: "https://learn.microsoft.com/azure/expressroute/maintenance-alerts"
@@ -112,7 +112,7 @@
   potentialBenefits: Optimizes network, prevents congestion
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Rate limiting for ExpressRoute Direct circuits (Preview)
       url: "https://learn.microsoft.com/en-us/azure/expressroute/rate-limit"

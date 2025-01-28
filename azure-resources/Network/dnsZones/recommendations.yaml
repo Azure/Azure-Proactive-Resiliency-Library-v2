@@ -10,7 +10,7 @@
   potentialBenefits: Ensures that no cached DNS records exist past RTO targets
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Reliability in Azure DNS
       url: "https://learn.microsoft.com/azure/reliability/reliability-dns"

@@ -10,7 +10,7 @@
   potentialBenefits: Enhances SLA and resilience
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Distribute data globally with Azure Cosmos DB
       url: "https://learn.microsoft.com/azure/cosmos-db/distribute-data-globally"
@@ -27,7 +27,7 @@
   potentialBenefits: Auto failover for high uptime
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Manage an Azure Cosmos DB account by using the Azure portal
       url: "https://learn.microsoft.com/azure/cosmos-db/how-to-manage-database-account#automatic-failover"
@@ -44,7 +44,7 @@
   potentialBenefits: Enhances high availability
   pgVerified: false
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: High availability in Azure Cosmos DB
       url: "https://learn.microsoft.com/en-us/azure/reliability/reliability-cosmos-db-nosql"
@@ -61,7 +61,7 @@
   potentialBenefits: Enhances high availability
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Distribute data globally with Azure Cosmos DB
       url: "https://learn.microsoft.com/azure/cosmos-db/distribute-data-globally"
@@ -78,7 +78,7 @@
   potentialBenefits: Faster self-serve data restore
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Continuous backup with point in time restore feature in Azure Cosmos DB
       url: "https://learn.microsoft.com/azure/cosmos-db/continuous-backup-restore-introduction"
@@ -95,7 +95,7 @@
   potentialBenefits: Maximizes data retrieval efficiency
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Pagination in Azure Cosmos DB
       url: "https://learn.microsoft.com/azure/cosmos-db/nosql/query/pagination#handling-multiple-pages-of-results"
@@ -112,7 +112,7 @@
   potentialBenefits: Optimizes connections and efficiency
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Designing resilient applications with Azure Cosmos DB SDKs
       url: "https://learn.microsoft.com/azure/cosmos-db/nosql/conceptual-resilient-sdk-applications"
@@ -129,7 +129,7 @@
   potentialBenefits: Enhances error handling resilience
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Designing resilient applications with Azure Cosmos DB SDKs
       url: "https://learn.microsoft.com/azure/cosmos-db/nosql/conceptual-resilient-sdk-applications"
@@ -146,7 +146,7 @@
   potentialBenefits: Proactive issue management
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Create alerts for Azure Cosmos DB using Azure Monitor
       url: "https://learn.microsoft.com/azure/cosmos-db/create-alerts"

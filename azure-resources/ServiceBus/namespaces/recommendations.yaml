@@ -10,7 +10,7 @@
   potentialBenefits: Enhances fault tolerance and uptime
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Service Bus and reliability
       url: "https://learn.microsoft.com/en-us/azure/well-architected/services/messaging/service-bus/reliability"
@@ -27,7 +27,7 @@
   potentialBenefits: Ensures high availability and performance
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Service Bus auto-scaling
       url: "https://learn.microsoft.com/azure/service-bus-messaging/automate-update-messaging-units"
@@ -44,7 +44,7 @@
   potentialBenefits: Avoids service disruption
   pgVerified: false
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Configure the minimum TLS version for a Service Bus namespace
       url: "https://learn.microsoft.com/azure/service-bus-messaging/transport-layer-security-configure-minimum-version"

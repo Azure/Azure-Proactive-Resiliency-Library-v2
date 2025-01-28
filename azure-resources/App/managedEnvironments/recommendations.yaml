@@ -10,7 +10,7 @@
   potentialBenefits: Enhances app resiliency and reliability
   pgVerified: false
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Reliability in Azure Container Apps
       url: "https://learn.microsoft.com/en-us/azure/reliability/reliability-azure-container-apps"

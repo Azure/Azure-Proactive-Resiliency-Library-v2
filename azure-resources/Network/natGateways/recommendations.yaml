@@ -10,7 +10,7 @@
   potentialBenefits: Enhanced network performance and health
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: What is Azure NAT Gateway metrics and alerts?
       url: "https://learn.microsoft.com/en-us/azure/nat-gateway/nat-metrics"

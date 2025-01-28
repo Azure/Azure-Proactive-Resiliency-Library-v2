@@ -10,7 +10,7 @@
   potentialBenefits: Low latency variance, high throughputs, business continuity
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/deployment-types#global-provisioned"
@@ -27,7 +27,7 @@
   potentialBenefits: Best model availability, business continuity
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/deployment-types#global-standard"
@@ -44,7 +44,7 @@
   potentialBenefits: PAYG model balances cost and performance and helps scale
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/provisioned-throughput"
@@ -61,7 +61,7 @@
   potentialBenefits: Cost effective faster turnaround for large-scale processing.
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/deployment-types#global-batch"
@@ -78,7 +78,7 @@
   potentialBenefits: Enforce data residency and compliance standards
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/deployment-types#data-zone-standard"
@@ -95,7 +95,7 @@
   potentialBenefits: Optimize performance and compliance with detailed insights
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Learn more
       url: "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/openai/architecture/log-monitor-azure-openai"
@@ -112,7 +112,7 @@
   potentialBenefits: Ensures business continuity during regional outages.
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/business-continuity-disaster-recovery"

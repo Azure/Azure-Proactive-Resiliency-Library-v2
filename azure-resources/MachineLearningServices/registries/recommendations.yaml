@@ -10,7 +10,7 @@
   potentialBenefits: Improves performance and reliability
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Manage Azure Machine Learning registries
       url: "https://learn.microsoft.com/en-us/azure/machine-learning/how-to-manage-registries?view=azureml-api-2&tabs=cli"

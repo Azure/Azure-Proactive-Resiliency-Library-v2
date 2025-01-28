@@ -10,7 +10,7 @@
   potentialBenefits: Provide high availability and resilience to failures
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Reliability in Azure Bastion
       url: "https://learn.microsoft.com/en-us/azure/reliability/reliability-bastion"
@@ -27,7 +27,7 @@
   potentialBenefits: Provides disaster recovery from regional outages
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Multi-region support in Azure bastion
       url: "https://learn.microsoft.com/en-us/azure/reliability/reliability-bastion#multi-region-support"

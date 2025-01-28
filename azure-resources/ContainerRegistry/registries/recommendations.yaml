@@ -10,7 +10,7 @@
   potentialBenefits: High-volume support and geo-replication
   pgVerified: false
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Container Registry Best Practices
       url: "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices"
@@ -27,7 +27,7 @@
   potentialBenefits: Enhances resiliency and high availability
   pgVerified: false
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Registry best practices - Enable zone redundancy
       url: "https://learn.microsoft.com/en-us/azure/container-registry/zone-redundancy?toc=%2Fazure%2Freliability%2Ftoc.json&bc=%2Fazure%2Freliability%2Fbreadcrumb%2Ftoc.json&branch=main"
@@ -44,7 +44,7 @@
   potentialBenefits: Simplifies management, reduces latency
   pgVerified: false
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Registry best practices - Enable geo-replication
       url: "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices#geo-replicate-multi-region-deployments"
@@ -61,7 +61,7 @@
   potentialBenefits: Enables sharing and group isolation
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Registry best practices - use repository namespaces
       url: "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices#repository-namespaces"
@@ -78,7 +78,7 @@
   potentialBenefits: Safeguards image collection
   pgVerified: false
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Registry best practices - Use dedicated resource group
       url: "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices#dedicated-resource-group"
@@ -95,7 +95,7 @@
   potentialBenefits: Reduce costs, optimize storage
   pgVerified: false
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Registry best practices - Manage registry size
       url: "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices#manage-registry-size"
@@ -112,7 +112,7 @@
   potentialBenefits: Enhanced security and controlled access
   pgVerified: false
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Enable anonymous pull access
       url: "https://learn.microsoft.com/en-us/azure/container-registry/anonymous-pull-access#about-anonymous-pull-access"
@@ -129,7 +129,7 @@
   potentialBenefits: Enhanced tracking and debugging
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Monitor Azure Container Registry - Enable diagnostic logs
       url: "https://learn.microsoft.com/en-us/azure/container-registry/monitor-service#collection-and-routing"
@@ -146,7 +146,7 @@
   potentialBenefits: Enhanced monitoring and operation
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Monitor Azure Container Registry
       url: "https://learn.microsoft.com/en-us/azure/container-registry/monitor-service"
@@ -163,7 +163,7 @@
   potentialBenefits: Recovery of deleted artifacts
   pgVerified: false
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Enable soft delete policy
       url: "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-soft-delete-policy"

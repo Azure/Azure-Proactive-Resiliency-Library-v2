@@ -10,7 +10,7 @@
   potentialBenefits: More memory, supports >2TB disks, faster boot
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Generation 1 vs generation 2 virtual machines
       url: "https://learn.microsoft.com/en-us/azure/virtual-machines/generation-2#features-and-capabilities"
@@ -27,7 +27,7 @@
   potentialBenefits: Enhances disaster recovery capability
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Image Template resiliency
       url: "https://learn.microsoft.com/en-us/azure/reliability/reliability-image-builder?toc=%2Fazure%2Fvirtual-machines%2Ftoc.json&bc=%2Fazure%2Fvirtual-machines%2Fbreadcrumb%2Ftoc.json&tabs=graph#disaster-recovery"

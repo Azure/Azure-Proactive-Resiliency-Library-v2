@@ -10,7 +10,7 @@
   potentialBenefits: Enhanced resilience through diverse connectivity paths
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Designing for disaster recovery with ExpressRoute private peering
       url: "https://learn.microsoft.com/azure/expressroute/designing-for-disaster-recovery-with-expressroute-privatepeering"
@@ -27,7 +27,7 @@
   potentialBenefits: Enhanced SLA and resilience
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: About ExpressRoute virtual network gateways - Zone-redundant gateway SKUs
       url: "https://learn.microsoft.com/azure/expressroute/expressroute-about-virtual-network-gateways#zrgw"
@@ -44,7 +44,7 @@
   potentialBenefits: Prevents accidental deletions
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Protect your Azure resources with a lock - Azure Resource Manager | Microsoft Learn
       url: "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources?tabs=json"
@@ -61,7 +61,7 @@
   potentialBenefits: Enhanced monitoring and alerting
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: ExpressRoute monitoring, metrics, and alerts | ExpressRoute gateways
       url: "https://learn.microsoft.com/azure/expressroute/expressroute-monitoring-metrics-alerts#expressroute-gateways"
@@ -78,7 +78,7 @@
   potentialBenefits: Enhanced VNet integration efficiency
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: About ExpressRoute virtual network gateways - VNet-to-VNet connectivity
       url: "https://learn.microsoft.com/azure/expressroute/expressroute-about-virtual-network-gateways#vnet-to-vnet-connectivity"
@@ -95,7 +95,7 @@
   potentialBenefits: Minimizes update impact
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Configure customer-controlled maintenance for your virtual network gateway - ExpressRoute | Microsoft Learn
       url: "https://learn.microsoft.com/en-us/azure/expressroute/customer-controlled-gateway-maintenance#azure-portal-steps"
@@ -112,7 +112,7 @@
   potentialBenefits: Enhanced reliability and scalability
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Zone redundant Virtual network gateway in availability zone
       url: "https://learn.microsoft.com/azure/vpn-gateway/about-zone-redundant-vnet-gateways"
@@ -129,7 +129,7 @@
   potentialBenefits: Enhanced reliability and network capacity
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Active-active VPN gateway
       url: "https://learn.microsoft.com/azure/vpn-gateway/active-active-portal#gateway"
@@ -146,7 +146,7 @@
   potentialBenefits: Maximizes resilience and availability
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Dual-redundancy active-active VPN gateways for both Azure and on-premises networks
       url: "https://learn.microsoft.com/azure/vpn-gateway/vpn-gateway-highlyavailable#dual-redundancy-active-active-vpn-gateways-for-both-azure-and-on-premises-networks"
@@ -163,7 +163,7 @@
   potentialBenefits: Improved uptime and issue awareness
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: VPN gateway data reference
       url: "https://learn.microsoft.com/azure/vpn-gateway/monitor-vpn-gateway-reference"
@@ -180,7 +180,7 @@
   potentialBenefits: Improves VPN maintenance alerts
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Monitor VPN gateway
       url: "https://learn.microsoft.com/azure/vpn-gateway/monitor-vpn-gateway-reference#metrics"
@@ -197,7 +197,7 @@
   potentialBenefits: Enhanced reliability and disaster recovery
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: About zone-redundant virtual network gateway in Azure availability zones
       url: "https://learn.microsoft.com/azure/vpn-gateway/about-zone-redundant-vnet-gateways"

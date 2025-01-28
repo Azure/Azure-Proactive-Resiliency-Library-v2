@@ -10,7 +10,7 @@
   potentialBenefits: High availability for SAP systems
   pgVerified: true
   automationAvailable: false
-  tags: SAP
+  tags: [SAP]
   learnMoreLink:
     - name: High Availability Deployment Options for SAP
       url: "https://learn.microsoft.com/en-us/azure/sap/workloads/sap-high-availability-architecture-scenarios#high-availability-deployment-options-for-sap-workload"
@@ -27,7 +27,7 @@
   potentialBenefits: Enhanced resiliency for SAP on Azure
   pgVerified: true
   automationAvailable: false
-  tags: SAP
+  tags: [SAP]
   learnMoreLink:
     - name: Virtual machine Scale Set SAP Deployment Guide
       url: "https://learn.microsoft.com/en-us/azure/sap/workloads/virtual-machine-scale-set-sap-deployment-guide"
@@ -44,7 +44,7 @@
   potentialBenefits: Higher SLA of 99.9% with SSDs
   pgVerified: true
   automationAvailable: true
-  tags: SAP
+  tags: [SAP]
   learnMoreLink:
     - name: SAP Storage Planning Guide
       url: "https://learn.microsoft.com/en-us/azure/sap/workloads/planning-guide-storage"
@@ -61,7 +61,7 @@
   potentialBenefits: Ensures high availability for SAP data
   pgVerified: true
   automationAvailable: false
-  tags: SAP
+  tags: [SAP]
   learnMoreLink:
     - name: OpenSource Quality Checks
       url: "https://github.com/Azure/SAP-on-Azure-Scripts-and-Utilities/tree/main/QualityCheck"
@@ -79,7 +79,7 @@
   potentialBenefits: Enhanced data availability for SAP
   pgVerified: true
   automationAvailable: false
-  tags: SAP
+  tags: [SAP]
   learnMoreLink:
     - name: OpenSource Inventory Checks
       url: "https://aka.ms/ACESInventoryCheckSAP"
@@ -96,7 +96,7 @@
   potentialBenefits: Ensures SAP Azure's failover reliability
   pgVerified: true
   automationAvailable: false
-  tags: SAP
+  tags: [SAP]
   learnMoreLink:
     - name: Test Cases
       url: "https://learn.microsoft.com/en-us/azure/sap/workloads/sap-hana-high-availability?tabs=lb-portal#test-the-cluster-setup"
@@ -113,7 +113,7 @@
   potentialBenefits: Enhanced maintenance and failover handling
   pgVerified: true
   automationAvailable: false
-  tags: SAP
+  tags: [SAP]
   learnMoreLink:
     - name: OpenSource Inventory Checks
       url: "https://aka.ms/ACESInventoryCheckSAP"
@@ -130,7 +130,7 @@
   potentialBenefits: Guarantees DR region availability
   pgVerified: true
   automationAvailable: false
-  tags: SAP
+  tags: [SAP]
   learnMoreLink:
     - name: Capacity Reservation
       url: "https://learn.microsoft.com/en-us/azure/virtual-machines/capacity-reservation-overview"
@@ -147,7 +147,7 @@
   potentialBenefits: Enhanced DR resilience
   pgVerified: true
   automationAvailable: false
-  tags: SAP
+  tags: [SAP]
   learnMoreLink:
     - name: SAP Disaster Recovery Guide
       url: "https://learn.microsoft.com/en-us/azure/sap/workloads/disaster-recovery-sap-guide?tabs=windows"
@@ -164,7 +164,7 @@
   potentialBenefits: Ensures SAP data safety and recovery
   pgVerified: true
   automationAvailable: false
-  tags: SAP
+  tags: [SAP]
   learnMoreLink:
     - name: SAP ACSS Insights
       url: "https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/get-quality-checks-insights"
@@ -181,7 +181,7 @@
   potentialBenefits: Enhances SAP DR oversight
   pgVerified: true
   automationAvailable: false
-  tags: SAP
+  tags: [SAP]
   learnMoreLink:
     - name: DR Guidance
       url: "https://learn.microsoft.com/en-us/azure/sap/workloads/disaster-recovery-sap-guide?tabs=windows"
@@ -198,7 +198,7 @@
   potentialBenefits: Faster SAP recovery, reduced downtime
   pgVerified: true
   automationAvailable: false
-  tags: SAP
+  tags: [SAP]
   learnMoreLink:
     - name: DR Guidance
       url: "https://learn.microsoft.com/en-us/azure/sap/workloads/disaster-recovery-sap-guide?tabs=windows"
@@ -215,7 +215,7 @@
   potentialBenefits: Ensures robust DR, meets RPO/RTO
   pgVerified: true
   automationAvailable: false
-  tags: SAP
+  tags: [SAP]
   learnMoreLink:
     - name: DR Guidance
       url: "https://learn.microsoft.com/en-us/azure/sap/workloads/disaster-recovery-sap-guide?tabs=windows"
@@ -232,7 +232,7 @@
   potentialBenefits: Improved DR oversight and rapid issue response
   pgVerified: true
   automationAvailable: false
-  tags: SAP
+  tags: [SAP]
   learnMoreLink:
     - name: DR Guidance
       url: "https://learn.microsoft.com/en-us/azure/sap/workloads/disaster-recovery-sap-guide?tabs=windows"
@@ -249,7 +249,7 @@
   potentialBenefits: Proactive maintenance awareness
   pgVerified: true
   automationAvailable: false
-  tags: SAP
+  tags: [SAP]
   learnMoreLink:
     - name: VM Scheduled Events
       url: "https://learn.microsoft.com/en-us/azure/virtual-machines/linux/scheduled-events"
@@ -266,7 +266,7 @@
   potentialBenefits: Enhances SAP ASCS uptime
   pgVerified: true
   automationAvailable: false
-  tags: SAP
+  tags: [SAP]
   learnMoreLink:
     - name: ASCS-Pacemaker - Central Server Instance
       url: "https://docs.microsoft.com/en-us/azure/advisor/advisor-reference-reliability-recommendations"
@@ -283,7 +283,7 @@
   potentialBenefits: Enhanced HA for SAP ASCS
   pgVerified: true
   automationAvailable: false
-  tags: SAP
+  tags: [SAP]
   learnMoreLink:
     - name: ASCS-LB - Central Server Instance
       url: "https://docs.microsoft.com/en-us/azure/advisor/advisor-reference-reliability-recommendations"
@@ -300,7 +300,7 @@
   potentialBenefits: Enhances SAP HANA DB uptime
   pgVerified: true
   automationAvailable: false
-  tags: SAP
+  tags: [SAP]
   learnMoreLink:
     - name: DBHANA-Pacemaker - Database Instance
       url: "https://docs.microsoft.com/en-us/azure/advisor/advisor-reference-reliability-recommendations"
@@ -317,7 +317,7 @@
   potentialBenefits: Enhanced DB availability
   pgVerified: true
   automationAvailable: false
-  tags: SAP
+  tags: [SAP]
   learnMoreLink:
     - name: DBHANA-LB- Database Instance
       url: "https://docs.microsoft.com/en-us/azure/advisor/advisor-reference-reliability-recommendations"
@@ -334,7 +334,7 @@
   potentialBenefits: Improve resiliency and performance of SAP on Azure
   pgVerified: true
   automationAvailable: false
-  tags: SAP
+  tags: [SAP]
   learnMoreLink:
     - name: SAP on Azure NetApp Planning Guide
       url: "https://learn.microsoft.com/en-us/azure/sap/workloads/planning-guide-storage#azure-netapp-files"
@@ -351,7 +351,7 @@
   potentialBenefits: Improve reliability, performance and optimize costs
   pgVerified: true
   automationAvailable: false
-  tags: SAP
+  tags: [SAP]
   learnMoreLink:
     - name: High-availability SAP NetWeaver with simple mount and NFS on SLES for SAP Applications VMs
       url: "https://learn.microsoft.com/en-us/azure/sap/workloads/high-availability-guide-suse-nfs-simple-mount?tabs=lb-portal%2Censa1"

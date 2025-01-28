@@ -10,7 +10,7 @@
   potentialBenefits: Enhanced SLA and reliability
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Azure Well Architected Framework - Azure Firewall
       url: "https://learn.microsoft.com/azure/architecture/framework/services/networking/azure-firewall"
@@ -27,7 +27,7 @@
   potentialBenefits: Improve health and performance monitoring
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Azure Firewall metrics supported in Azure Monitor
       url: "https://learn.microsoft.com/azure/azure-monitor/essentials/metrics-supported#microsoftnetworkazurefirewalls"
@@ -44,7 +44,7 @@
   potentialBenefits: Enhanced DDoS attack defense
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Azure DDoS Protection overview
       url: "https://learn.microsoft.com/azure/ddos-protection/ddos-protection-overview"
@@ -61,7 +61,7 @@
   potentialBenefits: Enhanced compliance and rule hierarchy
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Azure Firewall Policy hierarchy
       url: "https://learn.microsoft.com/azure/firewall-manager/rule-hierarchy"
@@ -78,7 +78,7 @@
   potentialBenefits: Avoids SNAT exhaustion.
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Azure Well-Architected Framework review - Azure Firewall
       url: "https://learn.microsoft.com/en-us/azure/well-architected/service-guides/azure-firewall#recommendations"
@@ -95,7 +95,7 @@
   potentialBenefits: Improved CPU stress detection
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Azure Well-Architected Framework review - Azure Firewall
       url: "https://learn.microsoft.com/azure/well-architected/service-guides/azure-firewall#recommendations"

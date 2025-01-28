@@ -10,7 +10,7 @@
   potentialBenefits: Enhances uptime and enables autoscaling
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Application Gateway Autoscaling Zone-Redundant
       url: "https://learn.microsoft.com/azure/application-gateway/application-gateway-autoscaling-zone-redundant#autoscaling-and-high-availability"
@@ -27,7 +27,7 @@
   potentialBenefits: Enhanced security and privacy
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Application Gateway Security
       url: "https://learn.microsoft.com/azure/well-architected/services/networking/azure-application-gateway#security"
@@ -44,7 +44,7 @@
   potentialBenefits: Enhanced security for HTTP/S traffic
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Application Gateway - Web Application Firewall
       url: "https://learn.microsoft.com/azure/application-gateway/features#web-application-firewall"
@@ -61,7 +61,7 @@
   potentialBenefits: Better performance, autoscaling, more features
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Application Gateway Overview V2
       url: "https://learn.microsoft.com/azure/application-gateway/overview-v2"
@@ -78,7 +78,7 @@
   potentialBenefits: Enhanced traffic insight and audit
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Application Gateway Metrics
       url: "https://learn.microsoft.com/azure/application-gateway/application-gateway-metrics"
@@ -95,7 +95,7 @@
   potentialBenefits: Ensures backend uptime monitoring.
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Application Gateway Probe Overview
       url: "https://learn.microsoft.com/azure/application-gateway/application-gateway-probe-overview"
@@ -112,7 +112,7 @@
   potentialBenefits: Enhanced uptime and customer access
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Well-Architected Framework Application Gateway Reliability
       url: "https://learn.microsoft.com/azure/well-architected/services/networking/azure-application-gateway#reliability"
@@ -129,7 +129,7 @@
   potentialBenefits: Smooth updates, no dropped users
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Application Gateway Connection Draining
       url: "https://learn.microsoft.com/azure/application-gateway/features#connection-draining"
@@ -146,7 +146,7 @@
   potentialBenefits: Allows autoscaling and maintenance
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Azure Application Gateway infrastructure configuration | Microsoft Learn
       url: "https://learn.microsoft.com/en-us/azure/application-gateway/configuration-infrastructure#size-of-the-subnet"

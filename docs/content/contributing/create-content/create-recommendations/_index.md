@@ -30,7 +30,7 @@ To contribute a new recommendation for an Azure resource, follow these steps:
       potentialBenefits: Potential Benefits of Implementing the Recommendation (less than 60 characters)
       pgVerified: false
       automationAvailable: false
-      tags: null
+      tags: []
       learnMoreLink:
         - name: Learn More
           url: "Link URL"
@@ -77,7 +77,7 @@ The YAML structure for adding new recommendations consists of several key-value 
 | potentialBenefits | Enhanced data redundancy and boosts availability | String | The length should be less than 60 characters | The potential benefits of implementing the recommendation |
 | pgVerified | false | Boolean | true, false | Indicates whether the recommendation is verified by the relevant product group |
 | automationAvailable | false| Boolean | true, false | Indicates whether automation is available for validating the recommendation |
-| tags | null | String | null, AI, AVD, AVS, HPC, SAP | Indicates which type of specialized workload the recommendation is associated to. |
+| tags | [AVD]| String | [AI-GTP-RAG, AVD, AVS, HPC, SAP] or [] | Indicates which type of specialized workload the recommendation is associated to if any |
 | learnMoreLink | - name: Learn More url: "<https://learn.microsoft.com/en-us/azure/reliability/reliability-batch#cross-region-disaster-recovery-and-business-continuity>" | Object | Only 1 link per recommendation | Links related to the recommendation, such as announcements or documentation |
 
 ### Recommendation Categories

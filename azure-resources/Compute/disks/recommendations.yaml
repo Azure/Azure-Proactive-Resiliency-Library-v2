@@ -10,7 +10,7 @@
   potentialBenefits: Enhances clustered server performance
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Azure Shared Disk Introduction
       url: "https://learn.microsoft.com/azure/virtual-machines/disks-shared"
@@ -27,7 +27,7 @@
   potentialBenefits: Enhanced Disk resilience to failures
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Redundancy options for managed disks
       url: "https://aka.ms/zrsdisksdoc"
