@@ -117,7 +117,7 @@
     - name: Failover Group endpoint redirection
       url: "https://learn.microsoft.com/azure/azure-sql/database/failover-group-sql-db?view=azuresql#endpoint-redirection"
 
-- description: Use Failover Group customer managed policy
+- description: Use failover group customer managed policy
   aprlGuid: 0f838324-ffe3-4b8a-b7a2-d983be8f9fa9
   recommendationTypeId: null
   recommendationControl: DisasterRecovery
