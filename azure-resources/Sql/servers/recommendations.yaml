@@ -125,7 +125,7 @@
   recommendationResourceType: Microsoft.Sql/servers
   recommendationMetadataState: Active
   longDescription: |
-    When using Failover Groups, setting your failover policy to customer managed is highly recommended as it keeps you in control of when to initiate a failover.
+    When using failover groups, setting your failover policy to customer managed is highly recommended as it keeps you in control of when to initiate a failover.
   potentialBenefits: Enhanced disaster recovery
   pgVerified: false
   automationAvailable: false
