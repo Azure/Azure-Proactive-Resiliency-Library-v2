@@ -151,20 +151,3 @@
     - name: Create alerts for Azure Cosmos DB using Azure Monitor
       url: "https://learn.microsoft.com/azure/cosmos-db/create-alerts"
 
-- description: Monitor Cosmos DB health and set up alerts
-  aprlGuid: deaea200-013c-414b-ac9f-bfa7a7fb13f0
-  recommendationTypeId: null
-  recommendationControl: MonitoringAndAlerting
-  recommendationImpact: Medium
-  recommendationResourceType: Microsoft.DocumentDB/databaseAccounts
-  recommendationMetadataState: Active
-  longDescription: |
-    Monitoring the availability and responsiveness of Azure Cosmos DB resources and having alerts set up for your workload is a good practice. This ensures you stay proactive in handling unforeseen events.
-  potentialBenefits: Proactive issue management
-  pgVerified: true
-  automationAvailable: false
-  tags: []
-  learnMoreLink:
-    - name: Create alerts for Azure Cosmos DB using Azure Monitor
-      url: "https://learn.microsoft.com/azure/cosmos-db/create-alerts"
-
