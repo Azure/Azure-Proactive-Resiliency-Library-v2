@@ -57,7 +57,7 @@
   recommendationResourceType: Microsoft.DocumentDB/databaseAccounts
   recommendationMetadataState: Active
   longDescription: |
-    Multi-region write capability allows for designing applications that are highly available across multiple regions, though it demands careful attention to consistency requirements and conflict resolution. Improper setup may decrease availability and cause data corruption due to unhandled conflicts.
+    Multi-region writes enable high availability but require careful consistency and conflict resolution. Using Bounded Staleness in a multi-write Cosmos DB account is an anti-pattern, as replication lag increases latency and coordination overhead. This setup undermines scalability, impacting performance and availability.
   potentialBenefits: Enhances high availability
   pgVerified: true
   automationAvailable: true
@@ -150,3 +150,21 @@
   learnMoreLink:
     - name: Create alerts for Azure Cosmos DB using Azure Monitor
       url: "https://learn.microsoft.com/azure/cosmos-db/create-alerts"
+
+- description: Monitor Cosmos DB health and set up alerts
+  aprlGuid: deaea200-013c-414b-ac9f-bfa7a7fb13f0
+  recommendationTypeId: null
+  recommendationControl: MonitoringAndAlerting
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.DocumentDB/databaseAccounts
+  recommendationMetadataState: Active
+  longDescription: |
+    Monitoring the availability and responsiveness of Azure Cosmos DB resources and having alerts set up for your workload is a good practice. This ensures you stay proactive in handling unforeseen events.
+  potentialBenefits: Proactive issue management
+  pgVerified: true
+  automationAvailable: false
+  tags: []
+  learnMoreLink:
+    - name: Create alerts for Azure Cosmos DB using Azure Monitor
+      url: "https://learn.microsoft.com/azure/cosmos-db/create-alerts"
+
