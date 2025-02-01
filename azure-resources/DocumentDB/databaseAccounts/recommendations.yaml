@@ -57,7 +57,7 @@
   recommendationResourceType: Microsoft.DocumentDB/databaseAccounts
   recommendationMetadataState: Active
   longDescription: |
-    Multi-region writes enable high availability but require careful consistency and conflict resolution. Using Bounded Staleness in a multi-write Cosmos DB account is an anti-pattern, as replication lag increases latency and coordination overhead. This setup undermines scalability, impacting performance and availability.
+    Multi-region writes enable high availability but require careful consistency and conflict resolution. Using Bounded Staleness is an anti-pattern, as replication lag increases latency and coordination overhead. This setup undermines scalability, impacting performance and availability.
   potentialBenefits: Enhances high availability
   pgVerified: true
   automationAvailable: true
