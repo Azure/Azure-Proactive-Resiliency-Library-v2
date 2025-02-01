@@ -83,6 +83,23 @@
     - name: Configure customer-controlled maintenance for your virtual network gateway - ExpressRoute | Microsoft Learn
       url: "https://learn.microsoft.com/en-us/azure/expressroute/customer-controlled-gateway-maintenance#azure-portal-steps"
 
+- description: Configure customer-controlled VPN gateway maintenance
+  aprlGuid: f8c2e6d9-4b3a-45d6-b9e2-8e7f3a1c2d04
+  recommendationTypeId: null
+  recommendationControl: HighAvailability
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Network/virtualNetworkGateways
+  recommendationMetadataState: Active
+  longDescription: |
+    VPN gateways are updated for improved functionality, reliability, performance, and security. Customer-controlled maintenance configuration and scheduling minimize update impact and align with your maintenance windows.
+  potentialBenefits: Minimizes update impact
+  pgVerified: false
+  automationAvailable: true
+  tags: []
+  learnMoreLink:
+    - name: Configure customer-controlled gateway maintenance for VPN Gateway
+      url: "https://learn.microsoft.com/azure/vpn-gateway/customer-controlled-gateway-maintenance"
+
 - description: Choose a Zone-redundant VPN gateway
   aprlGuid: 5b1933a6-90e4-f642-a01f-e58594e5aab2
   recommendationTypeId: null
