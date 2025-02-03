@@ -40,7 +40,7 @@
   recommendationResourceType: Microsoft.Compute/virtualMachines
   recommendationMetadataState: Active
   longDescription: |
-    Availability Sets aren’t being deprecated immediately but will be in the future. To improve reliability, migrate workloads to VMSS Flex for deployment across zones or within a zone across multiple fault domains (FDs). VMSS Flex offers better VM distribution control, enhancing availability.
+    Availability Sets aren’t being deprecated immediately, but they will be in the future. To improve reliability, migrate workloads to VMSS Flex for deployment either across zones or within a zone, utilizing multiple fault domains (FDs). VMSS Flex offers better VM distribution control, enhancing availability.
   potentialBenefits: Enhances reliability and future-proofs VMs
   pgVerified: true
   automationAvailable: true
