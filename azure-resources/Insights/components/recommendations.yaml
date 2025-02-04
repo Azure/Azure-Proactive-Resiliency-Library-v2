@@ -18,13 +18,13 @@
   aprlGuid: 092f5c85-bffb-48b0-b85d-d543c6b54800
   recommendationTypeId: null
   recommendationControl: ServiceUpgradAndRetirement
-  recommendationImpact: Low
+  recommendationImpact: Medium
   recommendationResourceType: Microsoft.Insights/components
   recommendationMetadataState: Active
   longDescription: |
-    Application Insights is changing from global ingestion endpoints to regional endpoints that use connection strings.  Connection strings make telemetry ingestion more reliable by removing dependencies on global ingestion endpoints.
+    Application Insights is changing from global ingestion endpoints to regional endpoints that use connection strings.  Connection strings make telemetry ingestion more reliable by removing dependencies on global ingestion endpoints.  To continue getting technical support related to data ingestion for your Application Insights resources, transition to connection string–based ingestion before 31 March 2025.
   potentialBenefits: Reliable telemetry ingestion
-  pgVerified: false
+  pgVerified: true
   automationAvailable: false
   tags: null
   learnMoreLink:
