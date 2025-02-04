@@ -9,7 +9,7 @@
     Deploy Azure DNS Private Resolvers across multiple regions to establish cross-region failover.
   potentialBenefits: Ensures BCDR during regional outages.
   pgVerified: false
-  automationAvailable: true
+  automationAvailable: false
   tags: []
   learnMoreLink:
     - name: Resiliency in Azure DNS Private Resolver

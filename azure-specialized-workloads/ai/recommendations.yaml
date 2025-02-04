@@ -43,7 +43,7 @@
     Azure Traffic Manager enhances redundancy by routing search requests to geo-located clients. If a primary search client or region fails, Traffic Manager redirects requests to a backup client in another region. This setup ensures continuous availability and seamless failover for search services.
   potentialBenefits: High availability
   pgVerified: false
-  automationAvailable: true
+  automationAvailable: false
   tags: []
   learnMoreLink:
     - name: Reliability in Azure AI Search

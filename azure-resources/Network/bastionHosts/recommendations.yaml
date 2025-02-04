@@ -9,7 +9,7 @@
     Azure Bastion provides secure operational access to workload components. By distributing your Bastion resource across multiple availability zones, you can enhance the resiliency and reliability of your production workloads.
   potentialBenefits: Provide high availability and resilience to failures
   pgVerified: true
-  automationAvailable: true
+  automationAvailable: false
   tags: [AI-GPT-RAG]
   learnMoreLink:
     - name: Reliability in Azure Bastion

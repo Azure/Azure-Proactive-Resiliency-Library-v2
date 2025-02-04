@@ -26,7 +26,7 @@
     Azure AI Search lacks automatic failover. For continuity and global reach, deploy multiple services in different regions. Sync data via indexers or REST APIs, and manage routing with Azure Traffic Manager.
   potentialBenefits: High availability
   pgVerified: false
-  automationAvailable: true
+  automationAvailable: false
   tags: []
   learnMoreLink:
     - name: Reliability in Azure AI Search
