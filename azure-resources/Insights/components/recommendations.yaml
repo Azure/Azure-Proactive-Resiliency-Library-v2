@@ -17,16 +17,16 @@
 - description: Migrate from Application Insights instrumentation keys to connection strings
   aprlGuid: 092f5c85-bffb-48b0-b85d-d543c6b54800
   recommendationTypeId: null
-  recommendationControl: ServiceUpgradAndRetirement
+  recommendationControl: ServiceUpgradeAndRetirement
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Insights/components
   recommendationMetadataState: Active
   longDescription: |
-    Application Insights is changing from global ingestion endpoints to regional endpoints that use connection strings.  Connection strings make telemetry ingestion more reliable by removing dependencies on global ingestion endpoints.  To continue getting technical support related to data ingestion for your Application Insights resources, transition to connection string–based ingestion before 31 March 2025.
+    App Insights is changing from global ingestion endpoints to regional endpoints that use connection strings.  Connection strings make telemetry ingestion more reliable by removing dependencies on global ingestion endpoints.  Transition to connection string-based ingestion before 31 March 2025.
   potentialBenefits: Reliable telemetry ingestion
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Migrate from Application Insights instrumentation keys to connection strings
       url: "https://learn.microsoft.com/en-us/azure/azure-monitor/app/migrate-from-instrumentation-keys-to-connection-strings"
