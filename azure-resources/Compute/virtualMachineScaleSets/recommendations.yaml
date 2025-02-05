@@ -10,12 +10,10 @@
   potentialBenefits: Higher scalability and availability
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: When to use VMSS instead of VMs
       url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-design-overview#when-to-use-scale-sets-instead-of-virtual-machines"
-    - name: Azure Well-Architected Framework review - Virtual Machines and Scale Sets
-      url: "https://learn.microsoft.com/azure/well-architected/services/compute/virtual-machines/virtual-machines-review"
 
 - description: Enable Azure Virtual Machine Scale Set Application Health Monitoring
   aprlGuid: 94794d2a-eff0-2345-9b67-6f9349d0a627
@@ -29,7 +27,7 @@
   potentialBenefits: Enhances deployment management and upgrades
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Using Application Health extension with Virtual Machine Scale Sets
       url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-health-extension?tabs=rest-api"
@@ -46,7 +44,7 @@
   potentialBenefits: Boosts app availability by auto-repair
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Automatic instance repairs for Azure Virtual Machine Scale Sets
       url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-automatic-instance-repairs#requirements-for-using-automatic-instance-repairs"
@@ -63,12 +61,10 @@
   potentialBenefits: Enhances performance and cost-efficiency
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Get started with autoscale in Azure
       url: "https://learn.microsoft.com/azure/azure-monitor/autoscale/autoscale-get-started?WT.mc_id=Portal-Microsoft_Azure_Monitoring"
-    - name: Overview of autoscale in Azure
-      url: "https://learn.microsoft.com/azure/azure-monitor/autoscale/autoscale-overview"
 
 - description: Enable Predictive autoscale and configure at least for Forecast Only
   aprlGuid: 3f85a51c-e286-9f44-b4dc-51d00768696c
@@ -82,7 +78,7 @@
   potentialBenefits: Optimizes scaling with ML predictions
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Use predictive autoscale to scale out before load demands in virtual machine scale sets
       url: "https://learn.microsoft.com/azure/azure-monitor/autoscale/autoscale-predictive"
@@ -99,7 +95,7 @@
   potentialBenefits: Improves scaling, reduces fail attempts
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Use scale-in policies with Azure Virtual Machine Scale Sets
       url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-scale-in-policy"
@@ -116,12 +112,10 @@
   potentialBenefits: Enhances disaster resilience
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Create a Virtual Machine Scale Set that uses Availability Zones
       url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-use-availability-zones"
-    - name: Update scale set to add availability zones
-      url: "https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-use-availability-zones?tabs=cli-1%2Cportal-2#update-scale-set-to-add-availability-zones"
 
 - description: Set Patch orchestration options to Azure-orchestrated
   aprlGuid: e4ffd7b0-ba24-c84e-9352-ba4819f908c0
@@ -135,12 +129,10 @@
   potentialBenefits: Eases patch management, enhances security
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Automatic VM Guest Patching for Azure VMs
       url: "https://learn.microsoft.com/azure/virtual-machines/automatic-vm-guest-patching"
-    - name: Auto OS Image Upgrades
-      url: "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-automatic-upgrade"
 
 - description: Upgrade VMSS Image versions scheduled to be deprecated or already retired
   aprlGuid: 83d61669-7bd6-9642-a305-175db8adcdf4
@@ -154,7 +146,7 @@
   potentialBenefits: Avoid disruptions by updating VMSS images.
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Deprecated Azure Marketplace images
       url: "https://learn.microsoft.com/en-us/azure/virtual-machines/deprecated-images"

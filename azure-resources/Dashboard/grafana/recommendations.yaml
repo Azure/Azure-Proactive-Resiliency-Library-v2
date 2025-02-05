@@ -10,9 +10,7 @@
   potentialBenefits: Enhanced Managed Grafana resilience to failures
   pgVerified: false
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
-    - name: Azure Managed Grafana service reliability
-      url: "https://learn.microsoft.com/azure/managed-grafana/high-availability"
     - name: Enable zone redundancy in Azure Managed Grafana
       url: "https://learn.microsoft.com/Azure/managed-grafana/how-to-enable-zone-redundancy"

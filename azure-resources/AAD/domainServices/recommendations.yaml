@@ -10,7 +10,7 @@
   potentialBenefits: The Enterprise SKU enables creation of replica sets.
   pgVerified: false
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Create and use replica sets for resiliency or geolocation in Microsoft Entra Domain Services
       url: "https://learn.microsoft.com/en-us/entra/identity/domain-services/tutorial-create-replica-set"
@@ -28,7 +28,7 @@
   potentialBenefits: The replica sets provide geographical resiliency.
   pgVerified: false
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Create and use replica sets for resiliency or geolocation in Microsoft Entra Domain Services
       url: "https://learn.microsoft.com/en-us/entra/identity/domain-services/tutorial-create-replica-set"

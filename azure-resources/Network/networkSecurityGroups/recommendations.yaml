@@ -10,7 +10,7 @@
   potentialBenefits: Enhanced monitoring and security insights
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Diagnostic settings in Azure Monitor
       url: "https://learn.microsoft.com/azure/azure-monitor/essentials/diagnostic-settings"
@@ -27,7 +27,7 @@
   potentialBenefits: Enhanced security and change monitoring
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Azure Monitor activity log
       url: "https://learn.microsoft.com/azure/azure-monitor/essentials/activity-log?tabs=powershell"
@@ -44,7 +44,7 @@
   potentialBenefits: Prevents accidental edits/deletions
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Lock your resources to protect your infrastructure
       url: "https://learn.microsoft.com/azure/azure-resource-manager/management/lock-resources?toc=%2Fazure%2Fvirtual-network%2Ftoc.json&tabs=json"
@@ -61,7 +61,7 @@
   potentialBenefits: Enhanced traffic control and security
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Security rules
       url: "https://learn.microsoft.com/azure/virtual-network/network-security-groups-overview#security-rules"

@@ -10,7 +10,7 @@
   potentialBenefits: Enhances reliability and uptime
   pgVerified: false
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Availability zones support in Azure SignalR Service
       url: "https://learn.microsoft.com/azure/azure-signalr/availability-zones"

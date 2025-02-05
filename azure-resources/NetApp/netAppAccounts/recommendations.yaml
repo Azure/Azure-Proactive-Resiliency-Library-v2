@@ -10,7 +10,7 @@
   potentialBenefits: Optimized performance and cost efficiency
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Service levels for Azure NetApp Files | Microsoft Learn
       url: "https://learn.microsoft.com/azure/azure-netapp-files/azure-netapp-files-service-levels"
@@ -27,7 +27,7 @@
   potentialBenefits: Enhanced connectivity and security
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Guidelines for Azure NetApp Files network planning | Microsoft Learn
       url: "https://learn.microsoft.com/azure/azure-netapp-files/azure-netapp-files-network-topologies"
@@ -44,7 +44,7 @@
   potentialBenefits: High Availability across availability zones
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Use availability zones for high availability in Azure NetApp Files | Microsoft Learn
       url: "https://learn.microsoft.com/azure/azure-netapp-files/use-availability-zones"
@@ -61,7 +61,7 @@
   potentialBenefits: Within AZ latency and tolerate failure of other AZ
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Manage availability zone volume placement for Azure NetApp Files | Microsoft Learn
       url: "https://learn.microsoft.com/azure/azure-netapp-files/manage-availability-zone-volume-placement"
@@ -78,7 +78,7 @@
   potentialBenefits: Stable, scalable, swift recovery, no perf impact
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: How Azure NetApp Files snapshots work | Microsoft Learn
       url: "https://learn.microsoft.com/azure/azure-netapp-files/snapshots-introduction"
@@ -95,7 +95,7 @@
   potentialBenefits: Enhances data recovery and compliance
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Understand Azure NetApp Files backup | Microsoft Learn
       url: "https://learn.microsoft.com/azure/azure-netapp-files/backup-introduction"
@@ -112,7 +112,7 @@
   potentialBenefits: Enhanced data protection and disaster recovery
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Cross-region replication of Azure NetApp Files volumes
       url: "https://learn.microsoft.com/en-us/azure/azure-netapp-files/cross-region-replication-introduction"
@@ -129,7 +129,7 @@
   potentialBenefits: Enhances disaster recovery across availability zones
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Cross-zone replication of Azure NetApp Files volumes | Microsoft Learn
       url: "https://learn.microsoft.com/azure/azure-netapp-files/cross-zone-replication-introduction"
@@ -146,7 +146,7 @@
   potentialBenefits: Optimize usage and performance
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Ways to monitor Azure NetApp Files | Microsoft Learn
       url: "https://learn.microsoft.com/azure/azure-netapp-files/monitor-azure-netapp-files"
@@ -163,12 +163,10 @@
   potentialBenefits: Enforce standards and assess compliance
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Azure Policy definitions for Azure NetApp Files | Microsoft Learn
       url: "https://learn.microsoft.com/azure/azure-netapp-files/azure-policy-definitions"
-    - name: Creating custom policy definitions | Microsoft Learn
-      url: "https://learn.microsoft.com/azure/governance/policy/tutorials/create-custom-policy-definition"
 
 - description: Restrict default access to Azure NetApp Files volumes
   aprlGuid: cfa2244b-5436-47de-8287-b217875d3b0a
@@ -182,18 +180,10 @@
   potentialBenefits: Enhanced security, Reduced data breach risk
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Configure network features for an Azure NetApp Files volume
       url: "https://learn.microsoft.com/azure/azure-netapp-files/configure-network-features"
-    - name: Manage SMB share ACLs in Azure NetApp Files
-      url: "https://learn.microsoft.com/azure/azure-netapp-files/manage-smb-share-access-control-lists"
-    - name: Configure export policy for NFS or dual-protocol volumes
-      url: "https://learn.microsoft.com/azure/azure-netapp-files/azure-netapp-files-configure-export-policy"
-    - name: Configure access control lists on NFSv4.1 volumes for Azure NetApp Files
-      url: "https://learn.microsoft.com/azure/azure-netapp-files/configure-access-control-lists"
-    - name: Configure Unix permissions and change ownership mode for NFS and dual-protocol volumes
-      url: "https://learn.microsoft.com/azure/azure-netapp-files/configure-unix-permissions-change-ownership-mode"
 
 - description: Make use of SMB continuous availability for supported applications
   aprlGuid: d1e7ccc3-e6c1-40e9-a36e-fd134711c808
@@ -207,7 +197,7 @@
   potentialBenefits: Zero downtime for SMB apps
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Do I need to take special precautions for SMB-based applications? | Microsoft Learn
       url: "https://learn.microsoft.com/azure/azure-netapp-files/faq-application-resilience#do-i-need-to-take-special-precautions-for-smb-based-applications"
@@ -224,7 +214,7 @@
   potentialBenefits: Minimizes downtime during maintenance
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: What do you recommend for handling potential application disruptions due to storage service maintenance events? | Microsoft Learn
       url: "https://learn.microsoft.com/azure/azure-netapp-files/faq-application-resilience#what-do-you-recommend-for-handling-potential-application-disruptions-due-to-storage-service-maintenance-events"

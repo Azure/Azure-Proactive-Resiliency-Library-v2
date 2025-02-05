@@ -1,0 +1,17 @@
+// Azure Resource Graph Query
+// This query will return all Vnets missing Flow Logs configuration
+resources
+| where type =~ "Microsoft.Network/virtualNetworks"
+| extend vnetId = tolower(tostring(id)),vnetName = name,vnetTags = tags,vnetLocation = location
+| join kind = leftouter (
+    resources
+    | where type =~ "microsoft.network/networkwatchers/flowlogs"
+    | extend flowLogType = iff(
+        properties.targetResourceId contains "Microsoft.Network/virtualNetworks",
+        'Virtual network',
+        'Virtual network'
+      )
+    | extend flowLogTargetVnet = tolower(properties.targetResourceId)
+) on $left.vnetId == $right.flowLogTargetVnet
+| where strlen(flowLogTargetVnet) == 0
+| project recommendationId = "06b77be9-56a3-4d41-b362-8b295c5a283d",name=vnetName,id=vnetId,tags,param1 = "Missing Vnet Flow Log configuration"

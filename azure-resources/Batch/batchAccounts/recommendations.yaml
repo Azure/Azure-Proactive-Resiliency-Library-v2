@@ -10,7 +10,7 @@
   potentialBenefits: Ensures business continuity
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: [AI-GPT-RAG]
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/reliability/reliability-batch#cross-region-disaster-recovery-and-business-continuity"
@@ -27,7 +27,7 @@
   potentialBenefits: Enhanced reliability and failure protection
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: [AI-GPT-RAG]
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/batch/create-pool-availability-zones"

@@ -10,7 +10,7 @@
   potentialBenefits: Monitoring and Alerting
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Enable diagnostics logging for apps in Azure App Service
       url: "https://learn.microsoft.com/azure/app-service/troubleshoot-diagnostic-logs"
@@ -27,12 +27,10 @@
   potentialBenefits: Real-time insights and issue diagnosis
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Application Insights
       url: "https://learn.microsoft.com/azure/application-insights/app-insights-overview"
-    - name: Application monitoring for Azure App Service
-      url: "https://learn.microsoft.com/azure/azure-monitor/app/azure-web-apps"
 
 - description: Separate web apps from web APIs
   aprlGuid: 78a5c033-ff51-4332-8a71-83464c34494b
@@ -46,7 +44,7 @@
   potentialBenefits: Independent scaling, easier management
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Resiliency checklist for specific Azure services
       url: "https://learn.microsoft.com/azure/architecture/checklist/resiliency-per-service#app-service"
@@ -63,14 +61,14 @@
   potentialBenefits: Improves app performance
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Resiliency checklist
       url: "https://learn.microsoft.com/azure/architecture/checklist/resiliency-per-service#app-service"
 
 - description: Deploy to a staging slot
   aprlGuid: a1d91661-32d4-430b-b3b6-5adeb0975df7
-  recommendationTypeId: 1d3b5a51-62d4-4b77-96f6-40ed0a3aa21f
+  recommendationTypeId: null
   recommendationControl: Governance
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Web/sites
@@ -80,7 +78,7 @@
   potentialBenefits: Safer updates and easy rollback
   pgVerified: false
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Set up staging environments in Azure App Service
       url: "https://learn.microsoft.com/azure/app-service-web/web-sites-staged-publishing"
@@ -97,7 +95,7 @@
   potentialBenefits: Enhanced reliability via automation
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Configure web apps in Azure App Service
       url: "https://learn.microsoft.com/azure/app-service-web/web-sites-configure"
@@ -114,7 +112,7 @@
   potentialBenefits: Enhanced reliability via automation
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Monitor the health of App Service instances
       url: "https://learn.microsoft.com/en-us/azure/app-service/monitor-instances-health-check?tabs=dotnet#enable-health-check"
@@ -131,27 +129,10 @@
   potentialBenefits: Enhanced security
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Set up Azure App Service access restrictions
       url: "https://learn.microsoft.com/en-us/azure/app-service/app-service-ip-restrictions?tabs=azurecli"
-
-- description: Set minimum instance count to 2 for app service
-  aprlGuid: 9e6682ac-31bc-4635-9959-ab74b52454e6
-  recommendationTypeId: null
-  recommendationControl: Scalability
-  recommendationImpact: High
-  recommendationResourceType: Microsoft.Web/sites
-  recommendationMetadataState: Active
-  longDescription: |
-    App Service should be configured with a minimum of two instances for production workloads. If apps have a longer warmup time a minimum of three instances should be used.
-  potentialBenefits: Improves app performace
-  pgVerified: true
-  automationAvailable: true
-  tags: null
-  learnMoreLink:
-    - name: Ultimate guide to running healthy apps in the cloud
-      url: "https://azure.github.io/AppService/2020/05/15/Robust-Apps-for-the-cloud.html"
 
 - description: Enable auto heal for Functions App
   aprlGuid: c6c4b962-5af4-447a-9d74-7b9c53a5dff5
@@ -165,7 +146,7 @@
   potentialBenefits: Improved app availability
   pgVerified: false
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Announcing the New Auto Healing Experience in App Service Diagnostics - Azure App Service
       url: "https://azure.github.io/AppService/2018/09/10/Announcing-the-New-Auto-Healing-Experience-in-App-Service-Diagnostics.html"
@@ -182,7 +163,7 @@
   potentialBenefits: Improved app availability
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Azure Functions Warmup Trigger
       url: "https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-warmup?tabs=in-process%2Cnodejs-v4&pivots=programming-language-csharp#trigger"
@@ -199,7 +180,7 @@
   potentialBenefits: Easier management
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Resource naming restrictions - Azure Resource Manager
       url: "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-name-rules"
@@ -216,7 +197,7 @@
   potentialBenefits: Better governance
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Migrate version 3.x to 4.x
       url: "https://learn.microsoft.com/en-us/azure/azure-functions/migrate-version-3-version-4?tabs=net6-in-proc%2Cazure-cli%2Cwindows&pivots=programming-language-csharp"
@@ -233,7 +214,7 @@
   potentialBenefits: Better governance
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: FUNCTIONS_WORKER_RUNTIME
       url: "https://learn.microsoft.com/en-us/azure/azure-functions/functions-app-settings#functions_worker_runtime"

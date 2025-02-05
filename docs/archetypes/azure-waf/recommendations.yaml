@@ -1,7 +1,7 @@
 - description: Your Recommendation Title Here (less than 100 characters)
   aprlGuid: Generate a Unique GUID for Your Recommendation
   recommendationTypeId: null
-  recommendationControl: HighAvailability/BusinessContinuity/DisasterRecovery/Scalability/MonitoringAndAlerting/ServiceUpgradeAndRetirement/OtherBestPractices/Personalized/Governance/Security
+  recommendationControl: HighAvailability/Business Continuity/Disaster Recovery/Scalability/Monitoring and Alerting/Service Upgrade and Retirement/Other Best Practices/Personalized/Governance/Security
   recommendationImpact: Low/Medium/High
   recommendationResourceType: Friendly name to identity resource type
   recommendationMetadataState: Active
@@ -11,7 +11,7 @@
   potentialBenefits: Potential Benefits of Implementing the Recommendation (less than 60 characters)
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: [AI-GTP-RAG, AVD, AVS, HPC, SAP] # A recommendation with no associated specialized workloads can use an empty array []
   learnMoreLink:
     - name: Learn More
       url: "Link URL"
@@ -19,7 +19,7 @@
 - description: Your Recommendation Title Here (less than 100 characters)
   aprlGuid: Generate a Unique GUID for Your Recommendation
   recommendationTypeId: null
-  recommendationControl: HighAvailability/BusinessContinuity/DisasterRecovery/Scalability/MonitoringAndAlerting/ServiceUpgradeAndRetirement/OtherBestPractices/Personalized/Governance/Security
+  recommendationControl: HighAvailability/Business Continuity/Disaster Recovery/Scalability/Monitoring and Alerting/Service Upgrade and Retirement/Other Best Practices/Personalized/Governance/Security
   recommendationImpact: Low/Medium/High
   recommendationResourceType: Friendly name to identity resource type
   recommendationMetadataState: Active
@@ -29,7 +29,7 @@
   potentialBenefits: Potential Benefits of Implementing the Recommendation (less than 60 characters)
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: [AI-GTP-RAG, AVD, AVS, HPC, SAP] # A recommendation with no associated specialized workloads can use an empty array []
   learnMoreLink:
     - name: Learn More
       url: "Link URL"

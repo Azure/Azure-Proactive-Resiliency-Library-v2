@@ -10,12 +10,10 @@
   potentialBenefits: Enhances app resiliency and reliability
   pgVerified: false
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Migrate App Service to availability zone support
       url: "https://learn.microsoft.com/en-us/azure/reliability/migrate-app-service"
-    - name: High availability enterprise deployment using App Service Environment
-      url: "https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/enterprise-integration/ase-high-availability-deployment"
 
 - description: Use Standard or Premium tier
   aprlGuid: b2113023-a553-2e41-9789-597e2fb54c31
@@ -29,7 +27,7 @@
   potentialBenefits: Enhanced scaling and reliability
   pgVerified: false
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Resiliency checklist for specific Azure services
       url: "https://learn.microsoft.com/en-us/azure/architecture/checklist/resiliency-per-service#app-service"
@@ -46,7 +44,7 @@
   potentialBenefits: Minimizes restarts, enhances stability
   pgVerified: false
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Resiliency checklist for specific Azure services
       url: "https://learn.microsoft.com/en-us/azure/architecture/checklist/resiliency-per-service#app-service"
@@ -63,7 +61,7 @@
   potentialBenefits: Protects prod performance; avoids test impact
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Resiliency checklist for specific Azure services
       url: "https://learn.microsoft.com/en-us/azure/architecture/checklist/resiliency-per-service#app-service"
@@ -80,9 +78,24 @@
   potentialBenefits: Optimizes resources for traffic
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Automatic scaling in Azure App Service
       url: "https://learn.microsoft.com/en-us/azure/app-service/manage-automatic-scaling?tabs=azure-portal"
-    - name: Auto Scale Web Apps
-      url: "https://learn.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-get-started"
+
+- description: Set minimum instance count to 2 for app service
+  aprlGuid: 855ca19a-6518-4f2e-9e5a-01796fbca9f8
+  recommendationTypeId: null
+  recommendationControl: Scalability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Web/serverFarms
+  recommendationMetadataState: Active
+  longDescription: |
+    App Service should be configured with a minimum of two instances for production workloads. If apps have a longer warmup time a minimum of three instances should be used.
+  potentialBenefits: Improves app performance
+  pgVerified: true
+  automationAvailable: true
+  tags: []
+  learnMoreLink:
+    - name: Ultimate guide to running healthy apps in the cloud
+      url: "https://azure.github.io/AppService/2020/05/15/Robust-Apps-for-the-cloud.html"

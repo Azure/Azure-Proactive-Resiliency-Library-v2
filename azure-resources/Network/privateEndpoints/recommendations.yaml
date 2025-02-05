@@ -10,7 +10,7 @@
   potentialBenefits: Ensure connection availability
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Private endpoint connections
       url: "https://learn.microsoft.com/azure/private-link/manage-private-endpoint?tabs=manage-private-link-powershell#private-endpoint-connections"

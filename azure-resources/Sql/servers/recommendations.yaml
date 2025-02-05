@@ -4,41 +4,39 @@
   recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.Sql/servers
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Active Geo Replication ensures business continuity by utilizing readable secondary database replicas. In case of primary database failure, manually failover to secondary database. Secondaries, up to four, can be in same/different regions, used for read-only access.
   potentialBenefits: Enhanced disaster recovery and read scalability
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Active Geo Replication
       url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/active-geo-replication-overview"
 
 - description: Auto Failover Groups can encompass one or multiple databases, usually used by the same app.
   aprlGuid: 943c168a-2ec2-a94c-8015-85732a1b4859
-  recommendationTypeId: null
+  recommendationTypeId: 2ea11bcb-dfd0-48dc-96f0-beba578b989a
   recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.Sql/servers
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Failover Groups facilitate disaster recovery by configuring databases on one logical server to replicate to another region's logical server. This streamlines geo-replicated database management, offering a single endpoint for connection routing to replicated databases if the primary server fails.
   potentialBenefits: Improves load balancing and disaster recovery
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: AutoFailover Groups
       url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/auto-failover-group-overview?tabs=azure-powershell"
-    - name: DR Design
-      url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/designing-cloud-solutions-for-disaster-recovery"
 
 - description: Enable zone redundancy for Azure SQL Database to achieve high availability and resiliency
   aprlGuid: c0085c32-84c0-c247-bfa9-e70977cbf108
   recommendationTypeId: 807e58d0-e385-41ad-987b-4a4b3e3fb563
   recommendationControl: HighAvailability
-  recommendationImpact: Medium
+  recommendationImpact: High
   recommendationResourceType: Microsoft.Sql/servers
   recommendationMetadataState: Active
   longDescription: |
@@ -46,7 +44,7 @@
   potentialBenefits: Enhanced reliability, no extra cost
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Zone Redundant Databases
       url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/high-availability-sla"
@@ -63,7 +61,7 @@
   potentialBenefits: Enhanced connectivity stability
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: How to Implement Retry Logic
       url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/troubleshoot-common-connectivity-issues"
@@ -80,14 +78,10 @@
   potentialBenefits: Quick incident detection and response
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Azure Monitor
       url: "https://learn.microsoft.com/en-us/azure/azure-monitor/insights/azure-sql#analyze-data-and-create-alerts"
-    - name: Azure SQL Database Monitoring
-      url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/monitoring-sql-database-azure-monitor"
-    - name: Monitoring SQL Database Reference
-      url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/monitoring-sql-database-azure-monitor-reference"
 
 - description: Back Up Your Keys
   aprlGuid: d6ef87aa-574e-584e-a955-3e6bb8b5425b
@@ -101,12 +95,10 @@
   potentialBenefits: Enhanced security and data recovery
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Azure Key Vault
       url: "https://learn.microsoft.com/en-us/azure/key-vault/general/overview"
-    - name: Getting Started with Always Encrypted
-      url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/always-encrypted-landing?view=azuresql"
 
 - description: Use Failover Group endpoints for database connections
   aprlGuid: de266d8a-a9f3-4cb9-be95-9306001fceea
@@ -120,7 +112,7 @@
   potentialBenefits: Enhanced disaster recovery
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Failover Group endpoint redirection
       url: "https://learn.microsoft.com/azure/azure-sql/database/failover-group-sql-db?view=azuresql#endpoint-redirection"

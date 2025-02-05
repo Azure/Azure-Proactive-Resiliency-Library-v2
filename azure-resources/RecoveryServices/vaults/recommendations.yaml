@@ -10,7 +10,7 @@
   potentialBenefits: Smooth failover IP management
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Setup network mapping for site recovery
       url: "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-network-mapping#set-up-ip-addressing-for-target-vms"
@@ -27,14 +27,14 @@
   potentialBenefits: Ensures BCDR plan accuracy and VM performance
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Run a test failover
       url: "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-dr-drill#run-a-test-failover"
 
 - description: Migrate from classic alerts to built-in Azure Monitor alerts for Azure Recovery Services Vaults
   aprlGuid: 2912472d-0198-4bdc-aa90-37f145790edc
-  recommendationTypeId: 06578866-1877-41e6-9d22-3ea5122e8048
+  recommendationTypeId: null
   recommendationControl: MonitoringAndAlerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.RecoveryServices/vaults
@@ -44,12 +44,10 @@
   potentialBenefits: Enhanced, scalable, and consistent alerting.
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Move to Azure monitor Alerts
       url: "https://learn.microsoft.com/azure/backup/move-to-azure-monitor-alerts"
-    - name: Classic alerts retirement announcement
-      url: "https://azure.microsoft.com/updates/transition-to-builtin-azure-monitor-alerts-for-recovery-services-vaults-in-azure-backup-by-31-march-2026/"
 
 - description: Enable Cross Region Restore for your GRS Recovery Services Vault
   aprlGuid: 1549b91f-2ea0-4d4f-ba2a-4596becbe3de
@@ -63,16 +61,10 @@
   potentialBenefits: Enhances disaster recovery capabilities
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Set Cross Region Restore
       url: "https://learn.microsoft.com/azure/backup/backup-create-recovery-services-vault#set-cross-region-restore"
-    - name: Azure Backup Best Practices
-      url: "https://learn.microsoft.com/azure/backup/guidance-best-practices"
-    - name: Minimum Role Requirements for Cross Region Restore
-      url: "https://learn.microsoft.com/azure/backup/backup-rbac-rs-vault#minimum-role-requirements-for-azure-vm-backup"
-    - name: Recovery Services Vault
-      url: "https://learn.microsoft.com/azure/backup/backup-azure-arm-vms-prepare"
 
 - description: Enable Soft Delete for Recovery Services Vaults in Azure Backup
   aprlGuid: 9e39919b-78af-4a0b-b70f-c548dae97c25
@@ -86,7 +78,7 @@
   potentialBenefits: Enhances disaster recovery capabilities
   pgVerified: false
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Soft Delete for Azure Backup
       url: "https://learn.microsoft.com/azure/backup/backup-azure-security-feature-cloud?tabs=azure-portal"

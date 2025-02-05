@@ -10,14 +10,14 @@
   potentialBenefits: Enhances security and performance
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Secure traffic to Azure Front Door origins
       url: "https://learn.microsoft.com/azure/frontdoor/origin-security?tabs=app-service-functions&pivots=front-door-standard-premium"
 
 - description: Use the latest API version and SDK version
   aprlGuid: 52bc9a7b-23c8-bc4c-9d2a-7bc43b50104a
-  recommendationTypeId: e607041e-3194-42ad-9994-b6ea5ec12f5e
+  recommendationTypeId: null
   recommendationControl: Scalability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Cdn/profiles
@@ -27,14 +27,10 @@
   potentialBenefits: Enhanced security and features
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: REST API Reference
       url: "https://learn.microsoft.com/rest/api/frontdoor/"
-    - name: Client library for Java
-      url: "https://learn.microsoft.com/java/api/overview/azure/resourcemanager-frontdoor-readme?view=azure-java-preview"
-    - name: SDK for Python
-      url: "https://learn.microsoft.com/python/api/overview/azure/front-door?view=azure-python"
 
 - description: Configure logs
   aprlGuid: 1ad74c3c-e3d7-0046-b83f-a2199974ef15
@@ -48,14 +44,10 @@
   potentialBenefits: Enhanced insights and solution monitoring
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Monitor metrics and logs in Azure Front Door
       url: "https://learn.microsoft.com/azure/frontdoor/front-door-diagnostics?pivots=front-door-standard-premium"
-    - name: WAF logs
-      url: "https://learn.microsoft.com/azure/web-application-firewall/afds/waf-front-door-monitor?pivots=front-door-standard-premium#waf-logs"
-    - name: Configure Azure Front Door logs
-      url: "https://learn.microsoft.com/azure/frontdoor/standard-premium/how-to-logs"
 
 - description: Use end-to-end TLS
   aprlGuid: d9bd6780-0d6f-cd4c-bc66-8ddcab12f3d1
@@ -69,7 +61,7 @@
   potentialBenefits: Ensures data encryption in transit
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: End-to-end TLS with Azure Front Door
       url: "https://learn.microsoft.com/azure/frontdoor/end-to-end-tls?pivots=front-door-standard-premium"
@@ -86,7 +78,7 @@
   potentialBenefits: Enhances security and compliance
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Create HTTP to HTTPS redirect rule
       url: "https://learn.microsoft.com/azure/frontdoor/front-door-how-to-redirect-https#create-http-to-https-redirect-rule"
@@ -103,7 +95,7 @@
   potentialBenefits: Lowers costs, avoids outages
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Configure HTTPS on an Azure Front Door custom domain using the Azure portal
       url: "https://learn.microsoft.com/azure/frontdoor/standard-premium/how-to-configure-https-custom-domain?tabs=powershell"
@@ -120,7 +112,7 @@
   potentialBenefits: Saves time and automates TLS updates
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Select the certificate for Azure Front Door to deploy
       url: "https://learn.microsoft.com/azure/frontdoor/standard-premium/how-to-configure-https-custom-domain?tabs=powershell#select-the-certificate-for-azure-front-door-to-deploy"
@@ -137,7 +129,7 @@
   potentialBenefits: Improves session/auth handling
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Preserve the original HTTP host name between a reverse proxy and its back-end web application
       url: "https://learn.microsoft.com/azure/architecture/best-practices/host-name-preservation"
@@ -154,7 +146,7 @@
   potentialBenefits: Enhances web app security
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Web Application Firewall on Azure Front Door
       url: "https://learn.microsoft.com/azure/frontdoor/web-application-firewall"
@@ -171,7 +163,7 @@
   potentialBenefits: Reduces unnecessary origin traffic
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Health probes
       url: "https://learn.microsoft.com/azure/frontdoor/health-probes"
@@ -188,7 +180,7 @@
   potentialBenefits: Improves traffic routing and uptime
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Health Endpoint Monitoring pattern
       url: "https://learn.microsoft.com/azure/architecture/patterns/health-endpoint-monitoring"
@@ -205,7 +197,7 @@
   potentialBenefits: Reduces traffic load on origins
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Supported HTTP methods for health probes
       url: "https://learn.microsoft.com/azure/frontdoor/health-probes#supported-http-methods-for-health-probes"
@@ -222,7 +214,7 @@
   potentialBenefits: Enhanced regional access control
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Geo filter WAF policy - GeoMatch
       url: "https://learn.microsoft.com/azure/web-application-firewall/afds/waf-front-door-geo-filtering"
@@ -239,7 +231,7 @@
   potentialBenefits: Enhanced security and private connectivity
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Private link for Azure Front Door
       url: "https://learn.microsoft.com/azure/frontdoor/private-link"
@@ -256,7 +248,7 @@
   potentialBenefits: Costs savings and additional supported features
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Compare pricing between Azure Front Door tiers
-      url: https://learn.microsoft.com/en-us/azure/frontdoor/understanding-pricing
+      url: "https://learn.microsoft.com/en-us/azure/frontdoor/understanding-pricing"

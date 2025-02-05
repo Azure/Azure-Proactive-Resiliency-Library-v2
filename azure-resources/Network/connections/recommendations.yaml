@@ -10,7 +10,7 @@
   potentialBenefits: Enhances speed and resiliency
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: About ExpressRoute FastPath
       url: "https://learn.microsoft.com/en-us/azure/expressroute/about-fastpath"
@@ -19,7 +19,7 @@
   aprlGuid: a5f3a4bd-4cf1-4196-a3cb-f5a0876198b2
   recommendationTypeId: null
   recommendationControl: HighAvailability
-  recommendationImpact: High
+  recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/connections
   recommendationMetadataState: Disabled
   longDescription: |
@@ -27,7 +27,7 @@
   potentialBenefits: Prevents accidental deletion of connections
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Protect your Azure resources with a lock - Azure Resource Manager | Microsoft Learn
       url: "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources?tabs=json"

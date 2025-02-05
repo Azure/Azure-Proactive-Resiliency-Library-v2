@@ -10,24 +10,24 @@
   potentialBenefits: Ensures optimal connectivity.
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: How to configure ExpressRoute Direct Change Admin State of links
       url: "https://learn.microsoft.com/en-us/azure/expressroute/expressroute-howto-erdirect#state"
 
-- description: Ensure you do not over-subscribe an ExpressRoute Direct
+- description: Ensure ExpressRoute Direct is not over-subscribed
   aprlGuid: 0bee356b-7348-4799-8cab-0c71ffe13018
   recommendationTypeId: null
   recommendationControl: Scalability
-  recommendationImpact: High
+  recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/ExpressRoutePorts
   recommendationMetadataState: Active
   longDescription: |
     Provisioning ExpressRoute circuits on a 10-Gbps or 100-Gbps ExpressRoute Direct resource up to 20-Gbps or 200-Gbps is possible but not recommended for resiliency. If an ExpressRoute Direct port fails, and circuits are using full capacity, the remaining port won't handle the extra load.
   potentialBenefits: Improves resilience during port failures
-  pgVerified: true
+  pgVerified: false
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: About ExpressRoute Direct Circuit Sizes
       url: "https://learn.microsoft.com/en-us/azure/expressroute/expressroute-erdirect-about?source=recommendations#circuit-sizes"
@@ -36,7 +36,7 @@
   aprlGuid: 55815823-d588-4cb7-a5b8-ae581837356e
   recommendationTypeId: null
   recommendationControl: MonitoringAndAlerting
-  recommendationImpact: High
+  recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/expressRoutePorts
   recommendationMetadataState: Active
   longDescription: |
@@ -44,7 +44,7 @@
   potentialBenefits: Enhanced network performance and health
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Azure Monitor Baseline Alerts - expressRoutePorts
       url: "https://azure.github.io/azure-monitor-baseline-alerts/services/Network/expressRoutePorts/"
@@ -61,7 +61,7 @@
   potentialBenefits: Enhanced reliability and redundancy
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Designing for disaster recovery with ExpressRoute private peering
       url: "https://learn.microsoft.com/azure/expressroute/designing-for-disaster-recovery-with-expressroute-privatepeering"
@@ -78,12 +78,10 @@
   potentialBenefits: Enhanced reliability and fault tolerance
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Designing for high availability with ExpressRoute
       url: "https://learn.microsoft.com/en-us/azure/expressroute/designing-for-high-availability-with-expressroute"
-    - name: Azure Well-Architected Framework review - Azure ExpressRoute - Design Checklist
-      url: "https://learn.microsoft.com/azure/well-architected/services/networking/azure-expressroute#recommendations"
 
 - description: Ensure both connections of an ExpressRoute are configured in active-active mode
   aprlGuid: 859886df-3996-4eab-8439-c1a38c416e0e
@@ -97,7 +95,7 @@
   potentialBenefits: Improved high availability and load balancing
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Designing for high availability with ExpressRoute - Active-active connections
       url: "https://learn.microsoft.com/azure/expressroute/designing-for-high-availability-with-expressroute#active-active-connections"

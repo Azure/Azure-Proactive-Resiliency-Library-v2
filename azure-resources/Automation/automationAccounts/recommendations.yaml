@@ -10,9 +10,7 @@
   potentialBenefits: Ensures continuity during outages
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Disaster recovery for Automation accounts
       url: "https://learn.microsoft.com/en-us/azure/automation/automation-disaster-recovery?tabs=win-hrw%2Cps-script%2Coption-one"
-    - name: Disaster recovery scenarios for cloud and hybrid jobs
-      url: "https://learn.microsoft.com/en-us/azure/automation/automation-disaster-recovery?tabs=win-hrw%2Cps-script%2Coption-one#scenarios-for-cloud-and-hybrid-jobs"

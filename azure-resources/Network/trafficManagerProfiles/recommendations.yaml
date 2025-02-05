@@ -10,14 +10,10 @@
   potentialBenefits: Ensures failover functionality
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Azure Traffic Manager endpoint monitoring
       url: "https://learn.microsoft.com/azure/traffic-manager/traffic-manager-monitoring"
-    - name: Enable or disable health checks
-      url: "https://learn.microsoft.com/azure/traffic-manager/traffic-manager-monitoring#enable-or-disable-health-checks-preview"
-    - name: Troubleshooting degraded state on Azure Traffic Manager
-      url: "https://learn.microsoft.com/azure/traffic-manager/traffic-manager-troubleshooting-degraded"
 
 - description: Traffic manager profiles should have more than one endpoint
   aprlGuid: 5b422a7f-8caa-3d48-becb-511599e5bba9
@@ -31,7 +27,7 @@
   potentialBenefits: Enhances failover capabilities
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Traffic Manager Endpoint Types
       url: "https://learn.microsoft.com/azure/traffic-manager/traffic-manager-endpoint-types"
@@ -48,7 +44,7 @@
   potentialBenefits: Enhances availability across regions
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Reliability recommendations
       url: "https://learn.microsoft.com/azure/advisor/advisor-reference-reliability-recommendations#add-at-least-one-more-endpoint-to-the-profile-preferably-in-another-azure-region"
@@ -65,12 +61,10 @@
   potentialBenefits: Avoids traffic black holing, ensures availability
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Add an endpoint configured to "All (World)"
       url: "https://learn.microsoft.com/azure/advisor/advisor-reference-reliability-recommendations#add-an-endpoint-configured-to-all-world"
-    - name: Traffic Manager profile - GeographicProfile (Add an endpoint configured to ""All (World)"").
-      url: "https://aka.ms/Rf7vc5"
 
 - description: Avoid combining Traffic Manager and Front Door
   aprlGuid: 9437634c-d69e-2747-b13e-631c13182150
@@ -84,13 +78,7 @@
   potentialBenefits: Optimized network routing and security
   pgVerified: true
   automationAvailable: true
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Azure Load Balancing Options
       url: "https://learn.microsoft.com/azure/architecture/guide/technology-choices/load-balancing-overview"
-    - name: Azure Traffic Manager
-      url: "https://learn.microsoft.com/azure/traffic-manager/traffic-manager-overview"
-    - name: Azure Front Door
-      url: "https://learn.microsoft.com/azure/frontdoor/front-door-overview"
-    - name: Mission-critical global content delivery
-      url: "https://learn.microsoft.com/en-us/azure/architecture/guide/networking/global-web-applications/mission-critical-content-delivery"

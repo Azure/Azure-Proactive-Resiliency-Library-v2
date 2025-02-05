@@ -10,7 +10,7 @@
   potentialBenefits: Enhanced network flow analysis and DR readiness
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Azure ExpressRoute Traffic Collector
       url: "https://learn.microsoft.com/en-us/azure/expressroute/traffic-collector"

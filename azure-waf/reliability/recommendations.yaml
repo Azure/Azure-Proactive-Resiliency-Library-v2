@@ -10,7 +10,7 @@
   potentialBenefits: Meet business requirements
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: [WAF]
   learnMoreLink:
     - name: RE:01 Simplicity and efficiency
       url: "https://learn.microsoft.com/azure/well-architected/reliability/simplify"
@@ -27,7 +27,7 @@
   potentialBenefits: Align architecture with reliability goals
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: [WAF]
   learnMoreLink:
     - name: RE:02 Critical flows
       url: "https://learn.microsoft.com/azure/well-architected/reliability/identify-flows"
@@ -44,7 +44,7 @@
   potentialBenefits: Reduce risk of unpredicted behavior
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: [WAF]
   learnMoreLink:
     - name: RE:03 Failure mode analysis
       url: "https://learn.microsoft.com/azure/well-architected/reliability/failure-mode-analysis"
@@ -61,7 +61,7 @@
   potentialBenefits: Communicate reliability expectations with stakeholders
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: [WAF]
   learnMoreLink:
     - name: RE:04 Target metrics
       url: "https://learn.microsoft.com/azure/well-architected/reliability/metrics"
@@ -78,7 +78,7 @@
   potentialBenefits: Optimize for resiliency
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: [WAF]
   learnMoreLink:
     - name: RE:05 Redundancy
       url: "https://learn.microsoft.com/azure/well-architected/reliability/redundancy"
@@ -95,7 +95,7 @@
   potentialBenefits: Minimize downtime from regional outages
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: [WAF]
   learnMoreLink:
     - name: RE:05 High-availability multi-region design
       url: "https://learn.microsoft.com/en-us/azure/well-architected/reliability/highly-available-multi-region-design"
@@ -112,7 +112,7 @@
   potentialBenefits: Minimize downtime from zonal outages
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: [WAF]
   learnMoreLink:
     - name: Regions and availability zones
       url: "https://learn.microsoft.com/azure/well-architected/reliability/regions-availability-zones"
@@ -129,7 +129,7 @@
   potentialBenefits: Improve data estate reliability
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: [WAF]
   learnMoreLink:
     - name: RE:06 Data partitioning
       url: "https://learn.microsoft.com/azure/well-architected/reliability/partition-data"
@@ -146,7 +146,7 @@
   potentialBenefits: Dynamically handle increased load
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: [WAF]
   learnMoreLink:
     - name: RE:06 Scaling
       url: "https://learn.microsoft.com/azure/well-architected/reliability/scaling"
@@ -163,7 +163,7 @@
   potentialBenefits: Minimize application load
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: [WAF]
   learnMoreLink:
     - name: RE:07 Background jobs
       url: "https://learn.microsoft.com/azure/well-architected/reliability/background-jobs"
@@ -180,7 +180,7 @@
   potentialBenefits: Reduce the likelihood of outages
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: [WAF]
   learnMoreLink:
     - name: RE:07 Self-preservation
       url: "https://learn.microsoft.com/azure/well-architected/reliability/self-preservation"
@@ -197,7 +197,7 @@
   potentialBenefits: Reduce the likelihood of outages
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: [WAF]
   learnMoreLink:
     - name: RE:07 Transient faults
       url: "https://learn.microsoft.com/azure/well-architected/reliability/handle-transient-faults"
@@ -214,7 +214,7 @@
   potentialBenefits: Validate and optimize workload reliability
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: [WAF]
   learnMoreLink:
     - name: RE:08 Testing
       url: "https://learn.microsoft.com/azure/well-architected/reliability/testing-strategy"
@@ -231,7 +231,7 @@
   potentialBenefits: Reliable disaster recovery
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: [WAF]
   learnMoreLink:
     - name: RE:09 Disaster recovery
       url: "https://learn.microsoft.com/azure/well-architected/reliability/disaster-recovery"
@@ -248,7 +248,7 @@
   potentialBenefits: Observability into workload health
   pgVerified: true
   automationAvailable: false
-  tags: null
+  tags: [WAF]
   learnMoreLink:
     - name: RE:10 Monitoring and alerting
       url: "https://learn.microsoft.com/azure/well-architected/reliability/monitoring-alerting-strategy"
