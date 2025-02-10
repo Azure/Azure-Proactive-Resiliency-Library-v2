@@ -14,20 +14,3 @@
   learnMoreLink:
     - name: About ExpressRoute FastPath
       url: "https://learn.microsoft.com/en-us/azure/expressroute/about-fastpath"
-
-- description: Configure an Azure Resource Lock on connections to prevent accidental deletion
-  aprlGuid: a5f3a4bd-4cf1-4196-a3cb-f5a0876198b2
-  recommendationTypeId: null
-  recommendationControl: HighAvailability
-  recommendationImpact: Medium
-  recommendationResourceType: Microsoft.Network/connections
-  recommendationMetadataState: Disabled
-  longDescription: |
-    Configure an Azure Resource lock for Gateway Connection resources to prevent accidental deletion and maintain connectivity between on-premises networks and Azure workloads.
-  potentialBenefits: Prevents accidental deletion of connections
-  pgVerified: true
-  automationAvailable: false
-  tags: []
-  learnMoreLink:
-    - name: Protect your Azure resources with a lock - Azure Resource Manager | Microsoft Learn
-      url: "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources?tabs=json"

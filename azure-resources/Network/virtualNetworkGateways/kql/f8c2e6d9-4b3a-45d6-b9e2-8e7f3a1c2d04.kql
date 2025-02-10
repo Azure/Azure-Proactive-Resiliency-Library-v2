@@ -1,9 +1,9 @@
 // Azure Resource Graph Query
-// Find all ExpressRoute Virtual Network Gateways without Maintenance Configurations
+// Find all VPN Virtual Network Gateways without Maintenance Configurations
 
 resources
 | where type =~ "Microsoft.Network/virtualNetworkGateways"
-| where properties.gatewayType =~ "ExpressRoute"
+| where properties.gatewayType =~ "Vpn"
 | extend resourceId = tolower(id)
 | join kind=leftouter  (
     maintenanceresources
@@ -18,5 +18,4 @@ resources
     | project maintenanceConfigurationId, resourceId=tolower(tostring(JsonData.resourceId))
 ) on resourceId
 | where isempty(maintenanceConfigurationId)
-| project recommendationId = "3e115044-a3aa-433e-be01-ce17d67e50da", name, id, tags, param1= strcat("sku-tier: " , properties.sku.tier), param2=location
-
+| project recommendationId = "f8c2e6d9-4b3a-45d6-b9e2-8e7f3a1c2d04", name, id, tags, param1= strcat("sku-tier: " , properties.sku.tier), param2=location
