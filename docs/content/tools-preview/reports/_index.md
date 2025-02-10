@@ -28,7 +28,7 @@ Whatever directory you run the `Start-WARAReport` cmdlet in, the Word and PowerP
 You can review all of the parameters of Start-WARAReport [here](https://github.com/Azure/Well-Architected-Reliability-Assessment/blob/main/docs/wara/Start-WARAReport.md).
 #### Examples
 
-#### Create the Word and PowerPoint reports from the Action Plan Excel output.
+#### Create the Word and PowerPoint reports from the Action Plan Excel output
 ```PowerShell
 Start-WARAReport -ExpertAnalysisFile 'C:\WARA\Expert-Analysis-v1-2025-02-04-11-14.xlsx'
 ```

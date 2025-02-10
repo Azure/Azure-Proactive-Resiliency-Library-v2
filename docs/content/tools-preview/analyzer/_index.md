@@ -30,6 +30,6 @@ You can review all of the parameters of Start-WARAAnalyzer [here](https://github
 
 #### Examples
 
-#### Run the analyzer against a specific JSON file.
+#### Run the analyzer against a specific JSON file
 ```PowerShell
 Start-WARAAnalyzer -JSONFile 'C:\WARA\WARA_File_2024-04-01_10_01.json'

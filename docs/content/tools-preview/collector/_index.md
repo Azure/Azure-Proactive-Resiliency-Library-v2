@@ -74,37 +74,37 @@ Start-WARACollector -TenantID "00000000-0000-0000-0000-000000000000" -Subscripti
 
 ### Examples
 
-#### Run the collector against a specific subscription.
+#### Run the collector against a specific subscription
 ```PowerShell
 Start-WARACollector -TenantID "00000000-0000-0000-0000-000000000000" -SubscriptionIds "/subscriptions/00000000-0000-0000-0000-000000000000"
 ```
 
-#### Run the collector against a multiple specific subscriptions.
+#### Run the collector against a multiple specific subscriptions
 ```PowerShell
 Start-WARACollector -TenantID "00000000-0000-0000-0000-000000000000" -SubscriptionIds @("/subscriptions/00000000-0000-0000-0000-000000000000","/subscriptions/00000000-0000-0000-0000-000000000001")
 ```
 
-#### Run the collector against a specific subscription and resource group.
+#### Run the collector against a specific subscription and resource group
 ```PowerShell
 Start-WARACollector -TenantID "00000000-0000-0000-0000-000000000000" -SubscriptionIds "/subscriptions/00000000-0000-0000-0000-000000000000" -ResourceGroups "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/RG-001"
 ```
 
-#### Run the collector against a specific subscription and resource group and filtering by tag key/values.
+#### Run the collector against a specific subscription and resource group and filtering by tag key/values
 ```PowerShell
 Start-WARACollector -TenantID "00000000-0000-0000-0000-000000000000" -SubscriptionIds "/subscriptions/00000000-0000-0000-0000-000000000000" -ResourceGroups "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/RG-001" -Tags "Env||Environment!~Dev||QA" -AVD -SAP -HPC
 ```
 
-#### Run the collector against a specific subscription and resource group, filtering by tag key/values and using the specialized resource types (AVD, SAP, HPC, AVS).
+#### Run the collector against a specific subscription and resource group, filtering by tag key/values and using the specialized resource types (AVD, SAP, HPC, AVS)
 ```PowerShell
 Start-WARACollector -TenantID "00000000-0000-0000-0000-000000000000" -SubscriptionIds "/subscriptions/00000000-0000-0000-0000-000000000000" -ResourceGroups "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/RG-001" -Tags "Env||Environment!~Dev||QA" -AVD -SAP -HPC
 ```
 
-#### Run the collector using a configuration file.
+#### Run the collector using a configuration file
 ```PowerShell
 Start-WARACollector -ConfigFile "C:\path\to\config.txt"
 ```
 
-#### Run the collector using a configuration file and using the specialized resource types (AVD, SAP, HPC, AVS).
+#### Run the collector using a configuration file and using the specialized resource types (AVD, SAP, HPC, AVS)
 ```PowerShell
 Start-WARACollector -ConfigFile "C:\path\to\config.txt" -SAP -AVD
 ```
