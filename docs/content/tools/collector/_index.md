@@ -100,7 +100,7 @@ See at the end of this page various examples of how to run this script - [Exampl
 1. After Script completes, download the produced json file to your machine
   {{< figure src="../../img/tools/collector-5.png" width="100%" >}}
 
-1. Read how to execute the [Analyzer Script](../analyzer/_index.md) to generate the Excel report.
+1. Read how to execute the [Analyzer Script](../analyzer/) to generate the Excel report.
 
 ### 1.2 Local Machine
 
@@ -134,7 +134,7 @@ See at the end of this page various examples of how to run this script - [Exampl
 
 1. After script completes, a json file with all the results will be saved to the same folder location.
 
-1. Read how to execute the [Analyzer Script](../analyzer/_index.md) to generate the Excel report.
+1. Read how to execute the [Analyzer Script](../analyzer/) to generate the Excel report.
 
 ## Resource Filtering
 
