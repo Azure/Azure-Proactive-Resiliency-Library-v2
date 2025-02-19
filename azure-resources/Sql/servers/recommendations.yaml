@@ -129,7 +129,7 @@
   potentialBenefits: Enhanced disaster recovery
   pgVerified: false
   automationAvailable: false
-  tags: null
+  tags: []
   learnMoreLink:
     - name: Learn More
       url: "https://aka.ms/SQLDBFGPolicy"
