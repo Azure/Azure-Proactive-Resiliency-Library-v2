@@ -361,7 +361,7 @@
   recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.ContainerService/managedClusters
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Nodepool subnets sized for max auto-scale settings enable AKS to efficiently scale out nodes, meeting increased demand while reducing resource constraints and potential service disruptions.
   potentialBenefits: Efficient scaling, reduced disruptions
