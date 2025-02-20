@@ -30,7 +30,7 @@
   tags: []
   learnMoreLink:
     - name: Virtual WAN Monitoring Best Practices
-      url: "https://learn.microsoft.com/en-us/azure/virtual-wan/monitoring-best-practices#expressroute-gateway"
+      url: "https://learn.microsoft.com/azure/virtual-wan/monitoring-best-practices#expressroute-gateway"
 
 - description: Avoid using ExpressRoute circuits for VNet to VNet communication
   aprlGuid: 560a76a7-8f64-4ce3-ad27-d174468861a1

@@ -115,7 +115,7 @@
   tags: []
   learnMoreLink:
     - name: Cross-region replication of Azure NetApp Files volumes
-      url: "https://learn.microsoft.com/en-us/azure/azure-netapp-files/cross-region-replication-introduction"
+      url: "https://learn.microsoft.com/azure/azure-netapp-files/cross-region-replication-introduction"
 
 - description: Enable Cross-zone replication of Azure NetApp Files volumes
   aprlGuid: e3d742e1-dacd-9b48-b6b1-510ec9f87c96

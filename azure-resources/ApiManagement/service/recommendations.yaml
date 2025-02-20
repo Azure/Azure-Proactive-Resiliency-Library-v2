@@ -13,7 +13,7 @@
   tags: []
   learnMoreLink:
     - name: Change your API Management service tier
-      url: "https://learn.microsoft.com/en-us/azure/api-management/upgrade-and-scale#change-your-api-management-service-tier"
+      url: "https://learn.microsoft.com/azure/api-management/upgrade-and-scale#change-your-api-management-service-tier"
 
 - description: Enable Availability Zones on Premium API Management instances
   aprlGuid: 740f2c1c-8857-4648-80eb-47d2c56d5a50
@@ -30,7 +30,7 @@
   tags: []
   learnMoreLink:
     - name: Ensure API Management availability and reliability
-      url: "https://learn.microsoft.com/en-us/azure/api-management/high-availability#availability-zones"
+      url: "https://learn.microsoft.com/azure/api-management/high-availability#availability-zones"
 
 - description: Azure API Management platform version should be stv2
   aprlGuid: e35cf148-8eee-49d1-a1c9-956160f99e0b
@@ -47,7 +47,7 @@
   tags: []
   learnMoreLink:
     - name: Azure API Management - stv1 platform retirement (August 2024)
-      url: "https://learn.microsoft.com/en-us/azure/api-management/breaking-changes/stv1-platform-retirement-august-2024"
+      url: "https://learn.microsoft.com/azure/api-management/breaking-changes/stv1-platform-retirement-august-2024"
 
 - description: Enable auto-scale for production workloads on API Management services
   aprlGuid: c79680ea-de85-44fa-a596-f31fa17a952f
@@ -81,7 +81,7 @@
   tags: [AI-GPT-RAG]
   learnMoreLink:
     - name: Deploy API Management instance to multiple Azure regions
-      url: "https://learn.microsoft.com/en-us/azure/api-management/api-management-howto-deploy-multi-region"
+      url: "https://learn.microsoft.com/azure/api-management/api-management-howto-deploy-multi-region"
 
 - description: Enable caching to improve performance in Azure API Management
   aprlGuid: badd9a1f-222a-498d-ab84-1f14892b1c1b
@@ -98,4 +98,4 @@
   tags: []
   learnMoreLink:
     - name: Add caching to improve performance in Azure API Management
-      url: "https://learn.microsoft.com/en-us/azure/api-management/api-management-howto-cache"
+      url: "https://learn.microsoft.com/azure/api-management/api-management-howto-cache"

@@ -13,7 +13,7 @@
   tags: []
   learnMoreLink:
     - name: AKS Availability Zones
-      url: "https://learn.microsoft.com/en-us/azure/aks/availability-zones"
+      url: "https://learn.microsoft.com/azure/aks/availability-zones"
 
 - description: Isolate system and application pods
   aprlGuid: 5ee083cd-6ac3-4a83-8913-9549dd36cf56
@@ -30,7 +30,7 @@
   tags: []
   learnMoreLink:
     - name: System and user node pools
-      url: "https://learn.microsoft.com/en-us/azure/aks/use-system-pools?tabs=azure-cli#system-and-user-node-pools"
+      url: "https://learn.microsoft.com/azure/aks/use-system-pools?tabs=azure-cli#system-and-user-node-pools"
 
 - description: Disable local accounts
   aprlGuid: ca324d71-54b0-4a3e-b9e4-10e767daa9fc
@@ -47,7 +47,7 @@
   tags: []
   learnMoreLink:
     - name: Entra integration
-      url: "https://learn.microsoft.com/en-us/azure/aks/concepts-identity#azure-ad-integration"
+      url: "https://learn.microsoft.com/azure/aks/concepts-identity#azure-ad-integration"
 
 - description: Configure Azure CNI networking for dynamic allocation of IPs or use CNI overlay
   aprlGuid: c22db132-399b-4e7c-995d-577a60881be8
@@ -64,7 +64,7 @@
   tags: []
   learnMoreLink:
     - name: Configure Azure CNI networking
-      url: "https://learn.microsoft.com/en-us/azure/aks/configure-azure-cni-dynamic-ip-allocation"
+      url: "https://learn.microsoft.com/azure/aks/configure-azure-cni-dynamic-ip-allocation"
 
 - description: Enable the cluster auto-scaler on an existing cluster
   aprlGuid: 902c82ff-4910-4b61-942d-0d6ef7f39b67
@@ -98,7 +98,7 @@
   tags: []
   learnMoreLink:
     - name: AKS Backups
-      url: "https://learn.microsoft.com/en-us/azure/backup/azure-kubernetes-service-cluster-backup"
+      url: "https://learn.microsoft.com/azure/backup/azure-kubernetes-service-cluster-backup"
 
 - description: Use zone-redundant storage for persistent volumes when running multi-zone AKS
   aprlGuid: d3111036-355d-431b-ab49-8ddad042800b
@@ -183,7 +183,7 @@
   tags: []
   learnMoreLink:
     - name: Pricing Tiers
-      url: "https://learn.microsoft.com/en-us/azure/aks/free-standard-pricing-tiers"
+      url: "https://learn.microsoft.com/azure/aks/free-standard-pricing-tiers"
 
 - description: Enable AKS Monitoring
   aprlGuid: dcaf8128-94bd-4d53-9235-3a0371df6b74
@@ -234,7 +234,7 @@
   tags: []
   learnMoreLink:
     - name: AKS Baseline - Policy Management
-      url: "https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/baseline-aks?toc=https%3A%2F%2Flearn.microsoft.com%2Fen-us%2Fazure%2Faks%2Ftoc.json&bc=https%3A%2F%2Flearn.microsoft.com%2Fen-us%2Fazure%2Fbread%2Ftoc.json#policy-management"
+      url: "https://learn.microsoft.com/azure/architecture/reference-architectures/containers/aks/baseline-aks?toc=https%3A%2F%2Flearn.microsoft.com%2Fen-us%2Fazure%2Faks%2Ftoc.json&bc=https%3A%2F%2Flearn.microsoft.com%2Fen-us%2Fazure%2Fbread%2Ftoc.json#policy-management"
 
 - description: Enable GitOps when using DevOps frameworks
   aprlGuid: 5f3cbd68-692a-4121-988c-9770914859a9
@@ -251,7 +251,7 @@
   tags: []
   learnMoreLink:
     - name: GitOps with AKS
-      url: "https://learn.microsoft.com/en-us/azure/architecture/guide/aks/aks-cicd-github-actions-and-gitops"
+      url: "https://learn.microsoft.com/azure/architecture/guide/aks/aks-cicd-github-actions-and-gitops"
 
 - description: Use pod topology spread constraints to ensure that pods are spread across different nodes or zones
   aprlGuid: 928fcc6f-5e9a-42d9-9bd4-260af42de2e5
@@ -361,7 +361,7 @@
   recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.ContainerService/managedClusters
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Nodepool subnets sized for max auto-scale settings enable AKS to efficiently scale out nodes, meeting increased demand while reducing resource constraints and potential service disruptions.
   potentialBenefits: Efficient scaling, reduced disruptions
@@ -395,7 +395,7 @@
   recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.ContainerService/managedClusters
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Azure Linux on AKS boosts resiliency with a native image using validated, source-built components. It's lightweight, reducing the attack surface and maintenance. A Microsoft-hardened kernel, optimized for Azure, enhances stability and security for container workloads.
   potentialBenefits: Reduced disruptions

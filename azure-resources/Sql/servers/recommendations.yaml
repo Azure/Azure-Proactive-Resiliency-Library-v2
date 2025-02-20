@@ -13,7 +13,7 @@
   tags: []
   learnMoreLink:
     - name: Active Geo Replication
-      url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/active-geo-replication-overview"
+      url: "https://learn.microsoft.com/azure/azure-sql/database/active-geo-replication-overview"
 
 - description: Auto Failover Groups can encompass one or multiple databases, usually used by the same app.
   aprlGuid: 943c168a-2ec2-a94c-8015-85732a1b4859
@@ -30,7 +30,7 @@
   tags: []
   learnMoreLink:
     - name: AutoFailover Groups
-      url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/auto-failover-group-overview?tabs=azure-powershell"
+      url: "https://learn.microsoft.com/azure/azure-sql/database/auto-failover-group-overview?tabs=azure-powershell"
 
 - description: Enable zone redundancy for Azure SQL Database to achieve high availability and resiliency
   aprlGuid: c0085c32-84c0-c247-bfa9-e70977cbf108
@@ -47,7 +47,7 @@
   tags: []
   learnMoreLink:
     - name: Zone Redundant Databases
-      url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/high-availability-sla"
+      url: "https://learn.microsoft.com/azure/azure-sql/database/high-availability-sla"
 
 - description: Implement Retry Logic
   aprlGuid: cbb17a29-64fb-c943-95d0-8df814a37c40
@@ -64,7 +64,7 @@
   tags: []
   learnMoreLink:
     - name: How to Implement Retry Logic
-      url: "https://learn.microsoft.com/en-us/azure/azure-sql/database/troubleshoot-common-connectivity-issues"
+      url: "https://learn.microsoft.com/azure/azure-sql/database/troubleshoot-common-connectivity-issues"
 
 - description: Monitor your Azure SQL Database in Near Real-Time to Detect Reliability Incidents
   aprlGuid: 7e7daec9-6a81-3546-a4cc-9aef72fec1f7
@@ -81,7 +81,7 @@
   tags: []
   learnMoreLink:
     - name: Azure Monitor
-      url: "https://learn.microsoft.com/en-us/azure/azure-monitor/insights/azure-sql#analyze-data-and-create-alerts"
+      url: "https://learn.microsoft.com/azure/azure-monitor/insights/azure-sql#analyze-data-and-create-alerts"
 
 - description: Back Up Your Keys
   aprlGuid: d6ef87aa-574e-584e-a955-3e6bb8b5425b
@@ -98,7 +98,7 @@
   tags: []
   learnMoreLink:
     - name: Azure Key Vault
-      url: "https://learn.microsoft.com/en-us/azure/key-vault/general/overview"
+      url: "https://learn.microsoft.com/azure/key-vault/general/overview"
 
 - description: Use Failover Group endpoints for database connections
   aprlGuid: de266d8a-a9f3-4cb9-be95-9306001fceea
@@ -116,3 +116,20 @@
   learnMoreLink:
     - name: Failover Group endpoint redirection
       url: "https://learn.microsoft.com/azure/azure-sql/database/failover-group-sql-db?view=azuresql#endpoint-redirection"
+
+- description: Use failover group customer managed policy
+  aprlGuid: 0f838324-ffe3-4b8a-b7a2-d983be8f9fa9
+  recommendationTypeId: null
+  recommendationControl: DisasterRecovery
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Sql/servers
+  recommendationMetadataState: Active
+  longDescription: |
+    When using failover groups, setting your failover policy to customer managed is highly recommended as it keeps you in control of when to initiate a failover.
+  potentialBenefits: Enhanced disaster recovery
+  pgVerified: false
+  automationAvailable: false
+  tags: []
+  learnMoreLink:
+    - name: Learn More
+      url: "https://aka.ms/SQLDBFGPolicy"

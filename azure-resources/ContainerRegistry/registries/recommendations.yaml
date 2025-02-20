@@ -13,7 +13,7 @@
   tags: []
   learnMoreLink:
     - name: Container Registry Best Practices
-      url: "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices"
+      url: "https://learn.microsoft.com/azure/container-registry/container-registry-best-practices"
 
 - description: Enable zone redundancy
   aprlGuid: 63491f70-22e4-3b4a-8b0c-845450e46fac
@@ -30,7 +30,7 @@
   tags: []
   learnMoreLink:
     - name: Registry best practices - Enable zone redundancy
-      url: "https://learn.microsoft.com/en-us/azure/container-registry/zone-redundancy?toc=%2Fazure%2Freliability%2Ftoc.json&bc=%2Fazure%2Freliability%2Fbreadcrumb%2Ftoc.json&branch=main"
+      url: "https://learn.microsoft.com/azure/container-registry/zone-redundancy?toc=%2Fazure%2Freliability%2Ftoc.json&bc=%2Fazure%2Freliability%2Fbreadcrumb%2Ftoc.json&branch=main"
 
 - description: Create container registries with geo-replication enabled
   aprlGuid: 36ea6c09-ef6e-d743-9cfb-bd0c928a430b
@@ -47,7 +47,7 @@
   tags: []
   learnMoreLink:
     - name: Registry best practices - Enable geo-replication
-      url: "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices#geo-replicate-multi-region-deployments"
+      url: "https://learn.microsoft.com/azure/container-registry/container-registry-best-practices#geo-replicate-multi-region-deployments"
 
 - description: Use Repository namespaces
   aprlGuid: a5a0101a-a240-8742-90ba-81dbde9a0c0c
@@ -64,7 +64,7 @@
   tags: []
   learnMoreLink:
     - name: Registry best practices - use repository namespaces
-      url: "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices#repository-namespaces"
+      url: "https://learn.microsoft.com/azure/container-registry/container-registry-best-practices#repository-namespaces"
 
 - description: Move Container Registry to a dedicated resource group
   aprlGuid: 8e389532-5db5-7e4c-9d4d-443b3e55ae82
@@ -81,7 +81,7 @@
   tags: []
   learnMoreLink:
     - name: Registry best practices - Use dedicated resource group
-      url: "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices#dedicated-resource-group"
+      url: "https://learn.microsoft.com/azure/container-registry/container-registry-best-practices#dedicated-resource-group"
 
 - description: Manage registry size
   aprlGuid: 3ef86f16-f65b-c645-9901-7830d6dc3a1b
@@ -98,7 +98,7 @@
   tags: []
   learnMoreLink:
     - name: Registry best practices - Manage registry size
-      url: "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices#manage-registry-size"
+      url: "https://learn.microsoft.com/azure/container-registry/container-registry-best-practices#manage-registry-size"
 
 - description: Disable anonymous pull access
   aprlGuid: 03f4a7d8-c5b4-7842-8e6e-14997a34842b
@@ -115,7 +115,7 @@
   tags: []
   learnMoreLink:
     - name: Enable anonymous pull access
-      url: "https://learn.microsoft.com/en-us/azure/container-registry/anonymous-pull-access#about-anonymous-pull-access"
+      url: "https://learn.microsoft.com/azure/container-registry/anonymous-pull-access#about-anonymous-pull-access"
 
 - description: Configure Diagnostic Settings for all Azure Container Registries
   aprlGuid: 44107155-7a32-9348-89f3-d5aa7e7c5a1d
@@ -132,7 +132,7 @@
   tags: []
   learnMoreLink:
     - name: Monitor Azure Container Registry - Enable diagnostic logs
-      url: "https://learn.microsoft.com/en-us/azure/container-registry/monitor-service#collection-and-routing"
+      url: "https://learn.microsoft.com/azure/container-registry/monitor-service#collection-and-routing"
 
 - description: Monitor Azure Container Registry with Azure Monitor
   aprlGuid: d594cde6-4116-d143-a64a-25f63289a2f8
@@ -149,7 +149,7 @@
   tags: []
   learnMoreLink:
     - name: Monitor Azure Container Registry
-      url: "https://learn.microsoft.com/en-us/azure/container-registry/monitor-service"
+      url: "https://learn.microsoft.com/azure/container-registry/monitor-service"
 
 - description: Enable soft delete policy
   aprlGuid: e7f0fd54-fba0-054e-9ab8-e676f2851f88
@@ -166,4 +166,4 @@
   tags: []
   learnMoreLink:
     - name: Enable soft delete policy
-      url: "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-soft-delete-policy"
+      url: "https://learn.microsoft.com/azure/container-registry/container-registry-soft-delete-policy"

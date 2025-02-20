@@ -13,7 +13,7 @@
   tags: []
   learnMoreLink:
     - name: Service Bus and reliability
-      url: "https://learn.microsoft.com/en-us/azure/well-architected/services/messaging/service-bus/reliability"
+      url: "https://learn.microsoft.com/azure/well-architected/services/messaging/service-bus/reliability"
 
 - description: Enable auto-scale for production workloads on Service Bus namespaces
   aprlGuid: d810e3a8-600f-4be1-895b-1a93e61d37fd

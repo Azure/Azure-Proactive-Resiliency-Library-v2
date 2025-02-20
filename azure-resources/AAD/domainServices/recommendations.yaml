@@ -13,7 +13,7 @@
   tags: []
   learnMoreLink:
     - name: Create and use replica sets for resiliency or geolocation in Microsoft Entra Domain Services
-      url: "https://learn.microsoft.com/en-us/entra/identity/domain-services/tutorial-create-replica-set"
+      url: "https://learn.microsoft.com/entra/identity/domain-services/tutorial-create-replica-set"
 
 - description: Use replica sets for resiliency or geolocation in Microsoft Entra Domain Services
   aprlGuid: a3058909-fcf8-4450-88b5-499f57449178
@@ -31,4 +31,4 @@
   tags: []
   learnMoreLink:
     - name: Create and use replica sets for resiliency or geolocation in Microsoft Entra Domain Services
-      url: "https://learn.microsoft.com/en-us/entra/identity/domain-services/tutorial-create-replica-set"
+      url: "https://learn.microsoft.com/entra/identity/domain-services/tutorial-create-replica-set"

@@ -47,7 +47,7 @@
   tags: []
   learnMoreLink:
     - name: Connection monitor overview
-      url: "https://learn.microsoft.com/en-us/azure/network-watcher/connection-monitor-overview"
+      url: "https://learn.microsoft.com/azure/network-watcher/connection-monitor-overview"
 
 - description: Enable traffic analytics in Virtual Network Flow Logs configuration
   aprlGuid: bf0b7dbd-016d-458c-af99-70fcb03ad451
@@ -64,4 +64,4 @@
   tags: []
   learnMoreLink:
     - name: Network Watcher traffic analytics
-      url: "https://learn.microsoft.com/en-us/azure/network-watcher/traffic-analytics"
+      url: "https://learn.microsoft.com/azure/network-watcher/traffic-analytics"

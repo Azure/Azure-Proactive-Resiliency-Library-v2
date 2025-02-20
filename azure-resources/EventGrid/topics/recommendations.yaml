@@ -13,7 +13,7 @@
   tags: []
   learnMoreLink:
     - name: Azure Event Grid - Enable diagnostic logs for Event Grid resources
-      url: "https://learn.microsoft.com/en-us/azure/event-grid/enable-diagnostic-logs-topic"
+      url: "https://learn.microsoft.com/azure/event-grid/enable-diagnostic-logs-topic"
 
 - description: Configure Dead-letter to save events that cannot be delivered
   aprlGuid: 92162eb5-4323-3145-8a6c-525ce2f0700e
@@ -30,7 +30,7 @@
   tags: []
   learnMoreLink:
     - name: Azure Event Grid delivery and retry
-      url: "https://learn.microsoft.com/en-us/azure/event-grid/delivery-and-retry#dead-letter-events"
+      url: "https://learn.microsoft.com/azure/event-grid/delivery-and-retry#dead-letter-events"
 
 - description: Azure Event Grid topics should use Private Link Private Endpoints
   aprlGuid: b2069f64-4741-3d4a-a71d-50c8b03f5ab7
@@ -47,4 +47,4 @@
   tags: []
   learnMoreLink:
     - name: Configure private endpoints for Azure Event Grid topics or domains
-      url: "https://learn.microsoft.com/en-us/azure/event-grid/configure-private-endpoints"
+      url: "https://learn.microsoft.com/azure/event-grid/configure-private-endpoints"

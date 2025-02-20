@@ -251,4 +251,4 @@
   tags: []
   learnMoreLink:
     - name: Compare pricing between Azure Front Door tiers
-      url: "https://learn.microsoft.com/en-us/azure/frontdoor/understanding-pricing"
+      url: "https://learn.microsoft.com/azure/frontdoor/understanding-pricing"

@@ -13,4 +13,4 @@
   tags: []
   learnMoreLink:
     - name: About ExpressRoute FastPath
-      url: "https://learn.microsoft.com/en-us/azure/expressroute/about-fastpath"
+      url: "https://learn.microsoft.com/azure/expressroute/about-fastpath"

@@ -47,7 +47,7 @@
   tags: []
   learnMoreLink:
     - name: Configure the VMs and install Active Directory Domain Services
-      url: "https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/deploy/virtual-dc/adds-on-azure-vm#configure-the-vms-and-install-active-directory-domain-services"
+      url: "https://learn.microsoft.com/windows-server/identity/ad-ds/deploy/virtual-dc/adds-on-azure-vm#configure-the-vms-and-install-active-directory-domain-services"
 
 - description: Use Azure Site Recovery to protect stateful session hosts
   aprlGuid: 38721758-2cc2-4d6b-b7b7-8b47dadbf7df
@@ -64,4 +64,4 @@
   tags: []
   learnMoreLink:
     - name: About Site Recovery
-      url: "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-overview"
+      url: "https://learn.microsoft.com/azure/site-recovery/site-recovery-overview"

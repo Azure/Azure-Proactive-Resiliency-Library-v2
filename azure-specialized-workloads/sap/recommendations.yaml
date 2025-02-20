@@ -13,7 +13,7 @@
   tags: [SAP]
   learnMoreLink:
     - name: High Availability Deployment Options for SAP
-      url: "https://learn.microsoft.com/en-us/azure/sap/workloads/sap-high-availability-architecture-scenarios#high-availability-deployment-options-for-sap-workload"
+      url: "https://learn.microsoft.com/azure/sap/workloads/sap-high-availability-architecture-scenarios#high-availability-deployment-options-for-sap-workload"
 
 - description: Run SAP application servers on two or more VMs using VMSS Flex
   aprlGuid: 49bd34ab-d117-4b0e-99f8-34cc8a5394bc
@@ -30,7 +30,7 @@
   tags: [SAP]
   learnMoreLink:
     - name: Virtual machine Scale Set SAP Deployment Guide
-      url: "https://learn.microsoft.com/en-us/azure/sap/workloads/virtual-machine-scale-set-sap-deployment-guide"
+      url: "https://learn.microsoft.com/azure/sap/workloads/virtual-machine-scale-set-sap-deployment-guide"
 
 - description: If using single-instance VMs all OS and data disks must be Premium SSD or Ultra Disk
   aprlGuid: b60ae773-9917-4bca-8a42-7cb45365a917
@@ -47,7 +47,7 @@
   tags: [SAP]
   learnMoreLink:
     - name: SAP Storage Planning Guide
-      url: "https://learn.microsoft.com/en-us/azure/sap/workloads/planning-guide-storage"
+      url: "https://learn.microsoft.com/azure/sap/workloads/planning-guide-storage"
 
 - description: Ensure synchronous data replication (SYNC mode) between primary and secondary VM nodes
   aprlGuid: 094400a5-f112-408d-a334-afd68873ff0f
@@ -99,7 +99,7 @@
   tags: [SAP]
   learnMoreLink:
     - name: Test Cases
-      url: "https://learn.microsoft.com/en-us/azure/sap/workloads/sap-hana-high-availability?tabs=lb-portal#test-the-cluster-setup"
+      url: "https://learn.microsoft.com/azure/sap/workloads/sap-hana-high-availability?tabs=lb-portal#test-the-cluster-setup"
 
 - description: Remove unwanted location constraints from Linux Pacemaker clusters
   aprlGuid: 1b8a3051-dfd4-4780-bfb7-446296774029
@@ -133,7 +133,7 @@
   tags: [SAP]
   learnMoreLink:
     - name: Capacity Reservation
-      url: "https://learn.microsoft.com/en-us/azure/virtual-machines/capacity-reservation-overview"
+      url: "https://learn.microsoft.com/azure/virtual-machines/capacity-reservation-overview"
 
 - description: Replicate production databases to DR location (ASYNC) using the vendor's replication technology
   aprlGuid: fb8bdcee-d88f-408d-8572-a76a4aaa733b
@@ -150,7 +150,7 @@
   tags: [SAP]
   learnMoreLink:
     - name: SAP Disaster Recovery Guide
-      url: "https://learn.microsoft.com/en-us/azure/sap/workloads/disaster-recovery-sap-guide?tabs=windows"
+      url: "https://learn.microsoft.com/azure/sap/workloads/disaster-recovery-sap-guide?tabs=windows"
 
 - description: SAP components are backed up to DR location using an appropriate backup tool or ASR
   aprlGuid: 41f0d88e-7866-4444-aac4-ef5fee3e6874
@@ -167,7 +167,7 @@
   tags: [SAP]
   learnMoreLink:
     - name: SAP ACSS Insights
-      url: "https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/get-quality-checks-insights"
+      url: "https://learn.microsoft.com/azure/sap/center-sap-solutions/get-quality-checks-insights"
 
 - description: SAP shared files systems are replicated or backed up to DR location
   aprlGuid: ee4dc309-00a1-49fe-92fa-1724baf5f103
@@ -184,7 +184,7 @@
   tags: [SAP]
   learnMoreLink:
     - name: DR Guidance
-      url: "https://learn.microsoft.com/en-us/azure/sap/workloads/disaster-recovery-sap-guide?tabs=windows"
+      url: "https://learn.microsoft.com/azure/sap/workloads/disaster-recovery-sap-guide?tabs=windows"
 
 - description: Automate DR infrastructure build or pre-deploy DR resources
   aprlGuid: 0fabc52e-cdbb-4acd-8626-c4c637061e2d
@@ -201,7 +201,7 @@
   tags: [SAP]
   learnMoreLink:
     - name: DR Guidance
-      url: "https://learn.microsoft.com/en-us/azure/sap/workloads/disaster-recovery-sap-guide?tabs=windows"
+      url: "https://learn.microsoft.com/azure/sap/workloads/disaster-recovery-sap-guide?tabs=windows"
 
 - description: Document and test DR procedure ensure it meets RPO and RTO targets
   aprlGuid: c300e949-528d-4ac9-889b-cacf8b4a6e90
@@ -218,7 +218,7 @@
   tags: [SAP]
   learnMoreLink:
     - name: DR Guidance
-      url: "https://learn.microsoft.com/en-us/azure/sap/workloads/disaster-recovery-sap-guide?tabs=windows"
+      url: "https://learn.microsoft.com/azure/sap/workloads/disaster-recovery-sap-guide?tabs=windows"
 
 - description: Ensure there is a robust monitoring and alerting solution in place for the entire DR solution
   aprlGuid: c27134b7-6917-4852-8276-3dbef5c71578
@@ -235,7 +235,7 @@
   tags: [SAP]
   learnMoreLink:
     - name: DR Guidance
-      url: "https://learn.microsoft.com/en-us/azure/sap/workloads/disaster-recovery-sap-guide?tabs=windows"
+      url: "https://learn.microsoft.com/azure/sap/workloads/disaster-recovery-sap-guide?tabs=windows"
 
 - description: Configure scheduled events notification
   aprlGuid: 6b589ce6-c847-4cee-af35-f6e8eb1cf983
@@ -252,7 +252,7 @@
   tags: [SAP]
   learnMoreLink:
     - name: VM Scheduled Events
-      url: "https://learn.microsoft.com/en-us/azure/virtual-machines/linux/scheduled-events"
+      url: "https://learn.microsoft.com/azure/virtual-machines/linux/scheduled-events"
 
 - description: Configure a Pacemaker cluster for SAP ASCS high availability
   aprlGuid: 9d8f6678-694c-4da4-8384-415201f65194
@@ -337,7 +337,7 @@
   tags: [SAP]
   learnMoreLink:
     - name: SAP on Azure NetApp Planning Guide
-      url: "https://learn.microsoft.com/en-us/azure/sap/workloads/planning-guide-storage#azure-netapp-files"
+      url: "https://learn.microsoft.com/azure/sap/workloads/planning-guide-storage#azure-netapp-files"
 
 - description: Provision recommended storage configuration on database VMs
   aprlGuid: 697deb1d-d398-4989-9734-9e6c18f7e0ad
@@ -354,4 +354,4 @@
   tags: [SAP]
   learnMoreLink:
     - name: High-availability SAP NetWeaver with simple mount and NFS on SLES for SAP Applications VMs
-      url: "https://learn.microsoft.com/en-us/azure/sap/workloads/high-availability-guide-suse-nfs-simple-mount?tabs=lb-portal%2Censa1"
+      url: "https://learn.microsoft.com/azure/sap/workloads/high-availability-guide-suse-nfs-simple-mount?tabs=lb-portal%2Censa1"
