@@ -13,7 +13,7 @@
   tags: []
   learnMoreLink:
     - name: Databricks runtime support lifecycles
-      url: "https://learn.microsoft.com/en-us/azure/databricks/release-notes/runtime/databricks-runtime-ver"
+      url: "https://learn.microsoft.com/azure/databricks/release-notes/runtime/databricks-runtime-ver"
 
 - description: Use SSD backed VMs for Worker VM Type and Driver type
   aprlGuid: 5877a510-8444-7a4c-8412-a8dab8662f7e
@@ -47,7 +47,7 @@
   tags: []
   learnMoreLink:
     - name: Best practices for reliability
-      url: "https://learn.microsoft.com/en-us/azure/databricks/lakehouse-architecture/reliability/best-practices#enable-autoscaling-for-batch-workloadss"
+      url: "https://learn.microsoft.com/azure/databricks/lakehouse-architecture/reliability/best-practices#enable-autoscaling-for-batch-workloadss"
 
 - description: Enable autoscaling for SQL warehouse
   aprlGuid: 362ad2b6-b92c-414f-980a-0cf69467ccce
@@ -64,7 +64,7 @@
   tags: []
   learnMoreLink:
     - name: Best practices for reliability
-      url: "https://learn.microsoft.com/en-us/azure/databricks/lakehouse-architecture/reliability/best-practices#enable-autoscaling-for-sql-warehouse"
+      url: "https://learn.microsoft.com/azure/databricks/lakehouse-architecture/reliability/best-practices#enable-autoscaling-for-sql-warehouse"
 
 - description: Use Delta Live Tables enhanced autoscaling
   aprlGuid: cd77db98-9b13-6e4b-bd2b-74c2cb538628
@@ -98,7 +98,7 @@
   tags: []
   learnMoreLink:
     - name: Best practices for reliability
-      url: "https://learn.microsoft.com/en-us/azure/databricks/lakehouse-architecture/reliability/best-practices"
+      url: "https://learn.microsoft.com/azure/databricks/lakehouse-architecture/reliability/best-practices"
 
 - description: Enable Logging-Cluster log delivery
   aprlGuid: 7fb90127-5364-bb4d-86fa-30778ed713fb
@@ -115,7 +115,7 @@
   tags: []
   learnMoreLink:
     - name: Create a cluster
-      url: "https://learn.microsoft.com/en-us/azure/databricks/clusters/configure#cluster-log-delivery"
+      url: "https://learn.microsoft.com/azure/databricks/clusters/configure#cluster-log-delivery"
 
 - description: Use Delta Lake for higher reliability
   aprlGuid: da4ea916-4df3-8c4d-8060-17b49da45977
@@ -132,7 +132,7 @@
   tags: []
   learnMoreLink:
     - name: Best practices for reliability
-      url: "https://learn.microsoft.com/en-us/azure/databricks/lakehouse-architecture/reliability/best-practices"
+      url: "https://learn.microsoft.com/azure/databricks/lakehouse-architecture/reliability/best-practices"
 
 - description: Automatically rescue invalid or nonconforming data with Databricks Auto Loader or Delta Live Tables
   aprlGuid: 7e52d64d-8cc0-8548-a593-eb49ab45630d
@@ -149,7 +149,7 @@
   tags: []
   learnMoreLink:
     - name: Best practices for reliability
-      url: "https://learn.microsoft.com/en-us/azure/databricks/lakehouse-architecture/reliability/best-practices"
+      url: "https://learn.microsoft.com/azure/databricks/lakehouse-architecture/reliability/best-practices"
 
 - description: Configure jobs for automatic retries and termination
   aprlGuid: 84e44da6-8cd7-b349-b02c-c8bf72cf587c
@@ -166,7 +166,7 @@
   tags: []
   learnMoreLink:
     - name: Best practices for reliability
-      url: "https://learn.microsoft.com/en-us/azure/databricks/lakehouse-architecture/reliability/best-practices"
+      url: "https://learn.microsoft.com/azure/databricks/lakehouse-architecture/reliability/best-practices"
 
 - description: Use a scalable and production-grade model serving infrastructure
   aprlGuid: 4cbb7744-ff3d-0447-badb-baf068c95696
@@ -183,7 +183,7 @@
   tags: []
   learnMoreLink:
     - name: Best practices for reliability
-      url: "https://learn.microsoft.com/en-us/azure/databricks/lakehouse-architecture/reliability/best-practices"
+      url: "https://learn.microsoft.com/azure/databricks/lakehouse-architecture/reliability/best-practices"
 
 - description: Use a layered storage architecture
   aprlGuid: 1b0d0893-bf0e-8f4c-9dc6-f18f145c1ecf
@@ -200,7 +200,7 @@
   tags: []
   learnMoreLink:
     - name: Best practices for reliability
-      url: "https://learn.microsoft.com/en-us/azure/databricks/lakehouse-architecture/reliability/best-practices"
+      url: "https://learn.microsoft.com/azure/databricks/lakehouse-architecture/reliability/best-practices"
 
 - description: Improve data integrity by reducing data redundancy
   aprlGuid: e93fe702-e385-d741-ba37-1f1656482ecd
@@ -217,7 +217,7 @@
   tags: []
   learnMoreLink:
     - name: Best practices for reliability
-      url: "https://learn.microsoft.com/en-us/azure/databricks/lakehouse-architecture/reliability/best-practices"
+      url: "https://learn.microsoft.com/azure/databricks/lakehouse-architecture/reliability/best-practices"
 
 - description: Actively manage schemas
   aprlGuid: b7e1d13f-54c9-1648-8a52-34c0abe8ce16
@@ -234,7 +234,7 @@
   tags: []
   learnMoreLink:
     - name: Best practices for reliability
-      url: "https://learn.microsoft.com/en-us/azure/databricks/lakehouse-architecture/reliability/best-practices"
+      url: "https://learn.microsoft.com/azure/databricks/lakehouse-architecture/reliability/best-practices"
 
 - description: Use constraints and data expectations
   aprlGuid: a42297c4-7e4f-8b41-8d4b-114033263f0e
@@ -251,7 +251,7 @@
   tags: []
   learnMoreLink:
     - name: Best practices for reliability
-      url: "https://learn.microsoft.com/en-us/azure/databricks/lakehouse-architecture/reliability/best-practices#use-constraints-and-data-expectations"
+      url: "https://learn.microsoft.com/azure/databricks/lakehouse-architecture/reliability/best-practices#use-constraints-and-data-expectations"
 
 - description: Create regular backups
   aprlGuid: 932d45d6-b46d-e341-abfb-d97bce832f1f
@@ -268,7 +268,7 @@
   tags: []
   learnMoreLink:
     - name: Best practices for reliability
-      url: "https://learn.microsoft.com/en-us/azure/databricks/lakehouse-architecture/reliability/best-practices#create-regular-backups"
+      url: "https://learn.microsoft.com/azure/databricks/lakehouse-architecture/reliability/best-practices#create-regular-backups"
 
 - description: Recover from Structured Streaming query failures
   aprlGuid: 12e9d852-5cdc-2743-bffe-ee21f2ef7781
@@ -285,7 +285,7 @@
   tags: []
   learnMoreLink:
     - name: Best practices for reliability
-      url: "https://learn.microsoft.com/en-us/azure/databricks/lakehouse-architecture/reliability/best-practices#recover-from-structured-streaming-query-failures"
+      url: "https://learn.microsoft.com/azure/databricks/lakehouse-architecture/reliability/best-practices#recover-from-structured-streaming-query-failures"
 
 - description: Recover ETL jobs based on Delta time travel
   aprlGuid: a18d60f8-c98c-ba4e-ad6e-2fac72879df1
@@ -302,7 +302,7 @@
   tags: []
   learnMoreLink:
     - name: Best practices for reliability
-      url: "https://learn.microsoft.com/en-us/azure/databricks/lakehouse-architecture/reliability/best-practices#recover-etl-jobs-based-on-delta-time-travel"
+      url: "https://learn.microsoft.com/azure/databricks/lakehouse-architecture/reliability/best-practices#recover-etl-jobs-based-on-delta-time-travel"
 
 - description: Use Databricks Workflows and built-in recovery
   aprlGuid: c0e22580-3819-444d-8546-a80e4ed85c83
@@ -319,7 +319,7 @@
   tags: []
   learnMoreLink:
     - name: Best practices for reliability
-      url: "https://learn.microsoft.com/en-us/azure/databricks/lakehouse-architecture/reliability/best-practices"
+      url: "https://learn.microsoft.com/azure/databricks/lakehouse-architecture/reliability/best-practices"
 
 - description: Configure a disaster recovery pattern
   aprlGuid: 4fdb7112-4531-6f48-b60e-c917a6068d9b
@@ -355,7 +355,7 @@
   tags: []
   learnMoreLink:
     - name: Best practices for operational excellence
-      url: "https://learn.microsoft.com/en-us/azure/databricks/lakehouse-architecture/operational-excellence/best-practices#2-automate-deployments-and-workloads"
+      url: "https://learn.microsoft.com/azure/databricks/lakehouse-architecture/operational-excellence/best-practices#2-automate-deployments-and-workloads"
 
 - description: Set up monitoring, alerting, and logging
   aprlGuid: 20193ff9-dbcd-a74e-b197-71d7d9d3c1e6
@@ -372,7 +372,7 @@
   tags: []
   learnMoreLink:
     - name: Best practices for operational excellence
-      url: "https://learn.microsoft.com/en-us/azure/databricks/lakehouse-architecture/operational-excellence/best-practices#system-monitoring"
+      url: "https://learn.microsoft.com/azure/databricks/lakehouse-architecture/operational-excellence/best-practices#system-monitoring"
 
 - description: Deploy workspaces in separate Subscriptions
   aprlGuid: 397cdebb-9d6e-ab4f-83a1-8c481de0a3a7
@@ -440,7 +440,7 @@
   tags: []
   learnMoreLink:
     - name: Use Azure Spot Virtual Machines
-      url: "https://learn.microsoft.com/en-us/azure/virtual-machines/spot-vms"
+      url: "https://learn.microsoft.com/azure/virtual-machines/spot-vms"
 
 - description: Evaluate regional isolation for workspaces
   aprlGuid: 8aa63c34-dd9d-49bd-9582-21ec310dfbdd
@@ -491,4 +491,4 @@
   tags: []
   learnMoreLink:
     - name: Best practices for reliability
-      url: "https://learn.microsoft.com/en-us/azure/databricks/lakehouse-architecture/reliability/best-practices#use-managed-services-where-possible"
+      url: "https://learn.microsoft.com/azure/databricks/lakehouse-architecture/reliability/best-practices#use-managed-services-where-possible"

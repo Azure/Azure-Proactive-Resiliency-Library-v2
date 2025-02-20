@@ -98,7 +98,7 @@
   tags: [WAF]
   learnMoreLink:
     - name: RE:05 High-availability multi-region design
-      url: "https://learn.microsoft.com/en-us/azure/well-architected/reliability/highly-available-multi-region-design"
+      url: "https://learn.microsoft.com/azure/well-architected/reliability/highly-available-multi-region-design"
 
 - description: RE:05 Design for high availability with availability zones
   aprlGuid: 3d6adb0a-042f-47f7-a7ea-db2e360903d5

@@ -13,7 +13,7 @@
   tags: [AVS]
   learnMoreLink:
     - name: Connect Private Clouds in the same region
-      url: "https://learn.microsoft.com/en-us/azure/azure-vmware/connect-multiple-private-clouds-same-region"
+      url: "https://learn.microsoft.com/azure/azure-vmware/connect-multiple-private-clouds-same-region"
 
 - description: Integrate LDAPS Identity with dual sources for enhanced NSX and vCenter security
   aprlGuid: c2794660-ffd7-4da3-96ba-5d546b70b1c6
@@ -30,7 +30,7 @@
   tags: [AVS]
   learnMoreLink:
     - name: Set an external identity source for vCenter
-      url: "https://learn.microsoft.com/en-us/azure/azure-vmware/configure-identity-source-vcenter"
+      url: "https://learn.microsoft.com/azure/azure-vmware/configure-identity-source-vcenter"
 
 - description: Use HCX Network Extension High Availability
   aprlGuid: bce16eee-0933-4baa-ab4d-8d1bb5653fc2
@@ -47,7 +47,7 @@
   tags: [AVS]
   learnMoreLink:
     - name: HCX Network extension high availability
-      url: "https://learn.microsoft.com/en-us/azure/azure-vmware/configure-hcx-network-extension-high-availability"
+      url: "https://learn.microsoft.com/azure/azure-vmware/configure-hcx-network-extension-high-availability"
 
 - description: Verify Management Networks are not extended with HCX Network Extension
   aprlGuid: 6be9a543-cf82-4926-82ea-7e1f1ffaad80
@@ -81,7 +81,7 @@
   tags: [AVS]
   learnMoreLink:
     - name: Use fault domains
-      url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-vmware/application-platform#use-fault-domains"
+      url: "https://learn.microsoft.com/azure/well-architected/azure-vmware/application-platform#use-fault-domains"
 
 - description: Align ExpressRoute configuration with best practices for circuit resilience
   aprlGuid: 6f573d60-be93-4f18-8016-42e923e3c05e
@@ -115,7 +115,7 @@
   tags: [AVS]
   learnMoreLink:
     - name: Deploy vSAN streched cluster
-      url: "https://learn.microsoft.com/en-us/azure/azure-vmware/deploy-vsan-stretched-clusters#deploy-a-stretched-cluster-private-cloud"
+      url: "https://learn.microsoft.com/azure/azure-vmware/deploy-vsan-stretched-clusters#deploy-a-stretched-cluster-private-cloud"
 
 - description: Deploy dual Azure VMware Solution clouds in different regions for disaster recovery
   aprlGuid: bdac462a-2eda-4a67-887d-46d58f141afe
@@ -132,4 +132,4 @@
   tags: [AVS]
   learnMoreLink:
     - name: Private Clouds in two regions
-      url: "https://learn.microsoft.com/en-us/azure/azure-vmware/move-azure-vmware-solution-across-regions"
+      url: "https://learn.microsoft.com/azure/azure-vmware/move-azure-vmware-solution-across-regions"

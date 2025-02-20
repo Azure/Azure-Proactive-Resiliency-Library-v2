@@ -13,7 +13,7 @@
   tags: []
   learnMoreLink:
     - name: Reliability in Azure AI Search
-      url: "https://learn.microsoft.com/en-us/azure/search/search-reliability#availability-zone-support"
+      url: "https://learn.microsoft.com/azure/search/search-reliability#availability-zone-support"
 
 - description: Enable Multi Region deployments for AI Search
   aprlGuid: dff62efe-c3a3-4621-98b3-c877c65cb195
@@ -30,4 +30,4 @@
   tags: []
   learnMoreLink:
     - name: Reliability in Azure AI Search
-      url: "https://learn.microsoft.com/en-us/azure/search/search-reliability#multiple-services-in-separate-geographic-regions"
+      url: "https://learn.microsoft.com/azure/search/search-reliability#multiple-services-in-separate-geographic-regions"

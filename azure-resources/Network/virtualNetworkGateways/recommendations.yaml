@@ -81,7 +81,7 @@
   tags: []
   learnMoreLink:
     - name: Configure customer-controlled maintenance for your virtual network gateway - ExpressRoute | Microsoft Learn
-      url: "https://learn.microsoft.com/en-us/azure/expressroute/customer-controlled-gateway-maintenance#azure-portal-steps"
+      url: "https://learn.microsoft.com/azure/expressroute/customer-controlled-gateway-maintenance#azure-portal-steps"
 
 - description: Configure customer-controlled VPN gateway maintenance
   aprlGuid: f8c2e6d9-4b3a-45d6-b9e2-8e7f3a1c2d04

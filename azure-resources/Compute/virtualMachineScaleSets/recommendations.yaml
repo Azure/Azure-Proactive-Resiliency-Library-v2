@@ -149,5 +149,5 @@
   tags: []
   learnMoreLink:
     - name: Deprecated Azure Marketplace images
-      url: "https://learn.microsoft.com/en-us/azure/virtual-machines/deprecated-images"
+      url: "https://learn.microsoft.com/azure/virtual-machines/deprecated-images"
 

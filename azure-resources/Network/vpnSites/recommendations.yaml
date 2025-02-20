@@ -13,4 +13,4 @@
   tags: []
   learnMoreLink:
     - name: vWAN VPN Gateway Disaster Recovery
-      url: "https://learn.microsoft.com/en-us/azure/virtual-wan/disaster-recovery-design#multi-link-topology"
+      url: "https://learn.microsoft.com/azure/virtual-wan/disaster-recovery-design#multi-link-topology"

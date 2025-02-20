@@ -115,7 +115,7 @@
   tags: []
   learnMoreLink:
     - name: Monitor the health of App Service instances
-      url: "https://learn.microsoft.com/en-us/azure/app-service/monitor-instances-health-check?tabs=dotnet#enable-health-check"
+      url: "https://learn.microsoft.com/azure/app-service/monitor-instances-health-check?tabs=dotnet#enable-health-check"
 
 - description: Configure network access restrictions
   aprlGuid: aab6b4a4-9981-43a4-8728-35c7ecbb746d
@@ -132,7 +132,7 @@
   tags: []
   learnMoreLink:
     - name: Set up Azure App Service access restrictions
-      url: "https://learn.microsoft.com/en-us/azure/app-service/app-service-ip-restrictions?tabs=azurecli"
+      url: "https://learn.microsoft.com/azure/app-service/app-service-ip-restrictions?tabs=azurecli"
 
 - description: Enable auto heal for Functions App
   aprlGuid: c6c4b962-5af4-447a-9d74-7b9c53a5dff5
@@ -166,7 +166,7 @@
   tags: []
   learnMoreLink:
     - name: Azure Functions Warmup Trigger
-      url: "https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-warmup?tabs=in-process%2Cnodejs-v4&pivots=programming-language-csharp#trigger"
+      url: "https://learn.microsoft.com/azure/azure-functions/functions-bindings-warmup?tabs=in-process%2Cnodejs-v4&pivots=programming-language-csharp#trigger"
 
 - description: Ensure unique hostid set for Function App
   aprlGuid: 0b06a688-0dd6-4d73-9f72-6666ff853ca9
@@ -183,7 +183,7 @@
   tags: []
   learnMoreLink:
     - name: Resource naming restrictions - Azure Resource Manager
-      url: "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-name-rules"
+      url: "https://learn.microsoft.com/azure/azure-resource-manager/management/resource-name-rules"
 
 - description: Ensure Function App runs a supported version
   aprlGuid: c9a278b7-024b-454b-bd54-41587c512b74
@@ -200,7 +200,7 @@
   tags: []
   learnMoreLink:
     - name: Migrate version 3.x to 4.x
-      url: "https://learn.microsoft.com/en-us/azure/azure-functions/migrate-version-3-version-4?tabs=net6-in-proc%2Cazure-cli%2Cwindows&pivots=programming-language-csharp"
+      url: "https://learn.microsoft.com/azure/azure-functions/migrate-version-3-version-4?tabs=net6-in-proc%2Cazure-cli%2Cwindows&pivots=programming-language-csharp"
 
 - description: Ensure FUNCTIONS_WORKER_RUNTIME is set properly
   aprlGuid: 7c608f46-46b2-4cc0-bbd6-1d457c16671c
@@ -217,4 +217,4 @@
   tags: []
   learnMoreLink:
     - name: FUNCTIONS_WORKER_RUNTIME
-      url: "https://learn.microsoft.com/en-us/azure/azure-functions/functions-app-settings#functions_worker_runtime"
+      url: "https://learn.microsoft.com/azure/azure-functions/functions-app-settings#functions_worker_runtime"

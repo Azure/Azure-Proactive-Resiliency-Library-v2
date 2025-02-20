@@ -47,7 +47,7 @@
   tags: []
   learnMoreLink:
     - name: High availability in Azure Cosmos DB
-      url: "https://learn.microsoft.com/en-us/azure/reliability/reliability-cosmos-db-nosql"
+      url: "https://learn.microsoft.com/azure/reliability/reliability-cosmos-db-nosql"
 
 - description: Evaluate multi-region write capability
   aprlGuid: 9ce78192-74a0-104c-b5bb-9a443f941649
