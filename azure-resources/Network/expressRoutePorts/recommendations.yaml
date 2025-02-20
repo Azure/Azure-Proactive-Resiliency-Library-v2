@@ -13,7 +13,7 @@
   tags: []
   learnMoreLink:
     - name: How to configure ExpressRoute Direct Change Admin State of links
-      url: "https://learn.microsoft.com/en-us/azure/expressroute/expressroute-howto-erdirect#state"
+      url: "https://learn.microsoft.com/azure/expressroute/expressroute-howto-erdirect#state"
 
 - description: Ensure ExpressRoute Direct is not over-subscribed
   aprlGuid: 0bee356b-7348-4799-8cab-0c71ffe13018
@@ -30,7 +30,7 @@
   tags: []
   learnMoreLink:
     - name: About ExpressRoute Direct Circuit Sizes
-      url: "https://learn.microsoft.com/en-us/azure/expressroute/expressroute-erdirect-about?source=recommendations#circuit-sizes"
+      url: "https://learn.microsoft.com/azure/expressroute/expressroute-erdirect-about?source=recommendations#circuit-sizes"
 
 - description: Configure monitoring and alerting for ExpressRoute Ports
   aprlGuid: 55815823-d588-4cb7-a5b8-ae581837356e
@@ -81,7 +81,7 @@
   tags: []
   learnMoreLink:
     - name: Designing for high availability with ExpressRoute
-      url: "https://learn.microsoft.com/en-us/azure/expressroute/designing-for-high-availability-with-expressroute"
+      url: "https://learn.microsoft.com/azure/expressroute/designing-for-high-availability-with-expressroute"
 
 - description: Ensure both connections of an ExpressRoute are configured in active-active mode
   aprlGuid: 859886df-3996-4eab-8439-c1a38c416e0e

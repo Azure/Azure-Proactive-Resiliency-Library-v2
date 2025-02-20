@@ -13,7 +13,7 @@
   tags: []
   learnMoreLink:
     - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/deployment-types#global-provisioned"
+      url: "https://learn.microsoft.com/azure/ai-services/openai/how-to/deployment-types#global-provisioned"
 
 - description: Ensure PAYG AOAI models leverage Global Standard deployment
   aprlGuid: 081fc8a4-b2d9-405b-b351-334e621016f5
@@ -30,7 +30,7 @@
   tags: []
   learnMoreLink:
     - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/deployment-types#global-standard"
+      url: "https://learn.microsoft.com/azure/ai-services/openai/how-to/deployment-types#global-standard"
 
 - description: Deploy a PAYG instance of the model with provisioned throughput to manage overflow effectively
   aprlGuid: 0c193899-da60-4a52-b4a0-77d75ac8c5c5
@@ -47,7 +47,7 @@
   tags: []
   learnMoreLink:
     - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/provisioned-throughput"
+      url: "https://learn.microsoft.com/azure/ai-services/openai/concepts/provisioned-throughput"
 
 - description: Ensure that models are deployed using Global batch for large scale processing
   aprlGuid: 8aa9744b-f302-4b05-9776-51d6dd3d0c3a
@@ -64,7 +64,7 @@
   tags: [AI-GPT-RAG]
   learnMoreLink:
     - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/deployment-types#global-batch"
+      url: "https://learn.microsoft.com/azure/ai-services/openai/how-to/deployment-types#global-batch"
 
 - description: Ensure AOAI models are deployed using Data Zone Standard for data residency requirements
   aprlGuid: ac3add17-013e-41a5-af91-9fefce794a00
@@ -81,7 +81,7 @@
   tags: [AI-GPT-RAG]
   learnMoreLink:
     - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/deployment-types#data-zone-standard"
+      url: "https://learn.microsoft.com/azure/ai-services/openai/how-to/deployment-types#data-zone-standard"
 
 - description: Use comprehensive monitoring solution for AOAI service
   aprlGuid: 72b1b4ad-a14b-4430-9799-91bda782973d
@@ -98,7 +98,7 @@
   tags: [AI-GPT-RAG]
   learnMoreLink:
     - name: Learn more
-      url: "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/openai/architecture/log-monitor-azure-openai"
+      url: "https://learn.microsoft.com/azure/architecture/ai-ml/openai/architecture/log-monitor-azure-openai"
 
 - description: Deploy AOAI Service in multiple regions using Standard and/or Provisioned deployments
   aprlGuid: 61187af4-7d36-4b48-b16e-de78bef143a0
@@ -115,5 +115,5 @@
   tags: []
   learnMoreLink:
     - name: Learn More
-      url: "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/business-continuity-disaster-recovery"
+      url: "https://learn.microsoft.com/azure/ai-services/openai/how-to/business-continuity-disaster-recovery"
 

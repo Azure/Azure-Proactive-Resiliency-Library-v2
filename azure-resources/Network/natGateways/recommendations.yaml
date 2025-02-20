@@ -13,4 +13,4 @@
   tags: []
   learnMoreLink:
     - name: What is Azure NAT Gateway metrics and alerts?
-      url: "https://learn.microsoft.com/en-us/azure/nat-gateway/nat-metrics"
+      url: "https://learn.microsoft.com/azure/nat-gateway/nat-metrics"

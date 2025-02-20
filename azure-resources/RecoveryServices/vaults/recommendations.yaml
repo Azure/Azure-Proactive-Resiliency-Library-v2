@@ -13,7 +13,7 @@
   tags: []
   learnMoreLink:
     - name: Setup network mapping for site recovery
-      url: "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-network-mapping#set-up-ip-addressing-for-target-vms"
+      url: "https://learn.microsoft.com/azure/site-recovery/azure-to-azure-network-mapping#set-up-ip-addressing-for-target-vms"
 
 - description: Validate VM functionality with a Site Recovery test failover to check performance at target
   aprlGuid: 17e877f7-3a89-4205-8a24-0670de54ddcd
@@ -30,7 +30,7 @@
   tags: []
   learnMoreLink:
     - name: Run a test failover
-      url: "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-tutorial-dr-drill#run-a-test-failover"
+      url: "https://learn.microsoft.com/azure/site-recovery/azure-to-azure-tutorial-dr-drill#run-a-test-failover"
 
 - description: Migrate from classic alerts to built-in Azure Monitor alerts for Azure Recovery Services Vaults
   aprlGuid: 2912472d-0198-4bdc-aa90-37f145790edc

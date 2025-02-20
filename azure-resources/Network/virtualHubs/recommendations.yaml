@@ -13,7 +13,7 @@
   tags: []
   learnMoreLink:
     - name: Upgrade a virtual WAN from Basic to Standard
-      url: "https://learn.microsoft.com/en-us/azure/virtual-wan/upgrade-virtual-wan"
+      url: "https://learn.microsoft.com/azure/virtual-wan/upgrade-virtual-wan"
 
 - description: Monitor health for v-Hubs
   aprlGuid: 30ec8a5e-46de-4323-87e9-a7c56b72813b
@@ -30,4 +30,4 @@
   tags: []
   learnMoreLink:
     - name: Virtual WAN Monitoring Best Practices
-      url: "https://learn.microsoft.com/en-us/azure/virtual-wan/monitoring-best-practices#virtual-hub"
+      url: "https://learn.microsoft.com/azure/virtual-wan/monitoring-best-practices#virtual-hub"

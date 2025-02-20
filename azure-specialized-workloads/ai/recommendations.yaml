@@ -13,7 +13,7 @@
   tags: [AI-GPT-RAG]
   learnMoreLink:
     - name: Monitor online endpoints using Application Insights
-      url: "https://learn.microsoft.com/en-us/azure/machine-learning/how-to-monitor-online-endpoints?view=azureml-api-2#using-application-insights"
+      url: "https://learn.microsoft.com/azure/machine-learning/how-to-monitor-online-endpoints?view=azureml-api-2#using-application-insights"
 
 - description: Create Application insights for Machine learning workspace in both the regions
   aprlGuid: 89928e61-bba8-4c25-99c5-a06a09849ecc
@@ -30,7 +30,7 @@
   tags: [AI-GPT-RAG]
   learnMoreLink:
     - name: Data collection, retention, and storage in Application Insights
-      url: "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-retention-configure?tabs=portal-3%2Cportal-1%2Cportal-2"
+      url: "https://learn.microsoft.com/azure/azure-monitor/logs/data-retention-configure?tabs=portal-3%2Cportal-1%2Cportal-2"
 
 - description: Use Azure Traffic Manager to route search requests via geo-located clients for failover redundancy.
   aprlGuid: a6c8f3f3-199a-4a13-aaf0-eb51eed5352e
@@ -47,4 +47,4 @@
   tags: []
   learnMoreLink:
     - name: Reliability in Azure AI Search
-      url: "https://learn.microsoft.com/en-us/azure/search/search-reliability#fail-over-or-redirect-query-requests"
+      url: "https://learn.microsoft.com/azure/search/search-reliability#fail-over-or-redirect-query-requests"

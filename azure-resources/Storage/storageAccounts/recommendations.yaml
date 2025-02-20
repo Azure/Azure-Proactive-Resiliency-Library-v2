@@ -132,4 +132,4 @@
   tags: []
   learnMoreLink:
     - name: Private Link
-      url: "https://learn.microsoft.com/en-us/azure/well-architected/azure-virtual-desktop/networking#private-endpoints-private-link"
+      url: "https://learn.microsoft.com/azure/well-architected/azure-virtual-desktop/networking#private-endpoints-private-link"

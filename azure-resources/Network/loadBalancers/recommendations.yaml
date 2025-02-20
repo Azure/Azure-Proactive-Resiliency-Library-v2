@@ -64,7 +64,7 @@
   tags: []
   learnMoreLink:
     - name: Load Balancer and Availability Zones
-      url: "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-standard-availability-zones#zone-redundant"
+      url: "https://learn.microsoft.com/azure/load-balancer/load-balancer-standard-availability-zones#zone-redundant"
 
 - description: Use Health Probes to detect backend instances availability
   aprlGuid: e5f5fcea-f925-4578-8599-9a391e888a60
@@ -81,4 +81,4 @@
   tags: []
   learnMoreLink:
     - name: Load Balancer Health Probe Overview
-      url: "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-custom-probe-overview"
+      url: "https://learn.microsoft.com/azure/load-balancer/load-balancer-custom-probe-overview"

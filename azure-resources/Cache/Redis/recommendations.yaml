@@ -30,7 +30,7 @@
   tags: []
   learnMoreLink:
     - name: Schedule Redis Updates
-      url: "https://learn.microsoft.com/en-us/azure/azure-cache-for-redis/cache-administration#update-channel-and-schedule-updates"
+      url: "https://learn.microsoft.com/azure/azure-cache-for-redis/cache-administration#update-channel-and-schedule-updates"
 
 - description: Configure Private Endpoints
   aprlGuid: c474fc96-4e6a-4fb0-95d0-a26b3f35933c

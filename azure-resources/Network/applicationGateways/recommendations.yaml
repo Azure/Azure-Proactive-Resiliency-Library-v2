@@ -149,4 +149,4 @@
   tags: []
   learnMoreLink:
     - name: Azure Application Gateway infrastructure configuration | Microsoft Learn
-      url: "https://learn.microsoft.com/en-us/azure/application-gateway/configuration-infrastructure#size-of-the-subnet"
+      url: "https://learn.microsoft.com/azure/application-gateway/configuration-infrastructure#size-of-the-subnet"
