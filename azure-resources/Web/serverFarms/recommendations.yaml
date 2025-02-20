@@ -13,7 +13,7 @@
   tags: []
   learnMoreLink:
     - name: Migrate App Service to availability zone support
-      url: "https://learn.microsoft.com/en-us/azure/reliability/migrate-app-service"
+      url: "https://learn.microsoft.com/azure/reliability/migrate-app-service"
 
 - description: Use Standard or Premium tier
   aprlGuid: b2113023-a553-2e41-9789-597e2fb54c31
@@ -30,7 +30,7 @@
   tags: []
   learnMoreLink:
     - name: Resiliency checklist for specific Azure services
-      url: "https://learn.microsoft.com/en-us/azure/architecture/checklist/resiliency-per-service#app-service"
+      url: "https://learn.microsoft.com/azure/architecture/checklist/resiliency-per-service#app-service"
 
 - description: Avoid scaling up or down
   aprlGuid: 07243659-4643-d44c-a1c6-07ac21635072
@@ -47,7 +47,7 @@
   tags: []
   learnMoreLink:
     - name: Resiliency checklist for specific Azure services
-      url: "https://learn.microsoft.com/en-us/azure/architecture/checklist/resiliency-per-service#app-service"
+      url: "https://learn.microsoft.com/azure/architecture/checklist/resiliency-per-service#app-service"
 
 - description: Create separate App Service plans for production and test
   aprlGuid: dbe3fd66-fb2a-9d46-b162-1791e21da236
@@ -64,7 +64,7 @@
   tags: []
   learnMoreLink:
     - name: Resiliency checklist for specific Azure services
-      url: "https://learn.microsoft.com/en-us/azure/architecture/checklist/resiliency-per-service#app-service"
+      url: "https://learn.microsoft.com/azure/architecture/checklist/resiliency-per-service#app-service"
 
 - description: Enable Autoscale/Automatic scaling to ensure adequate resources are available to service requests
   aprlGuid: 6320abf6-f917-1843-b2ae-4779c35985ae
@@ -81,7 +81,7 @@
   tags: []
   learnMoreLink:
     - name: Automatic scaling in Azure App Service
-      url: "https://learn.microsoft.com/en-us/azure/app-service/manage-automatic-scaling?tabs=azure-portal"
+      url: "https://learn.microsoft.com/azure/app-service/manage-automatic-scaling?tabs=azure-portal"
 
 - description: Set minimum instance count to 2 for app service
   aprlGuid: 855ca19a-6518-4f2e-9e5a-01796fbca9f8

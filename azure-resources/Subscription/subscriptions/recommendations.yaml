@@ -30,7 +30,7 @@
   tags: []
   learnMoreLink:
     - name: Management group recommendations
-      url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org-management-groups#management-group-recommendations"
+      url: "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org-management-groups#management-group-recommendations"
 
 - description: Configure Service Health Alerts
   aprlGuid: 9729c89d-8118-41b4-a39b-e12468fa872b
@@ -64,4 +64,4 @@
   tags: []
   learnMoreLink:
     - name: Azure Resource Manager Overview
-      url: "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overview#resource-group-location-alignment"
+      url: "https://learn.microsoft.com/azure/azure-resource-manager/management/overview#resource-group-location-alignment"

@@ -13,4 +13,4 @@
   tags: [AI-GPT-RAG]
   learnMoreLink:
     - name: Manage Azure Machine Learning registries
-      url: "https://learn.microsoft.com/en-us/azure/machine-learning/how-to-manage-registries?view=azureml-api-2&tabs=cli"
+      url: "https://learn.microsoft.com/azure/machine-learning/how-to-manage-registries?view=azureml-api-2&tabs=cli"

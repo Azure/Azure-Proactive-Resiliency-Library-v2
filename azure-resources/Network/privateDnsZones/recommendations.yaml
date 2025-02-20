@@ -13,7 +13,7 @@
   tags: []
   learnMoreLink:
     - name: Protecting private DNS Zones and Records - Azure DNS
-      url: "https://learn.microsoft.com/en-us/azure/dns/dns-protect-private-zones-recordsets"
+      url: "https://learn.microsoft.com/azure/dns/dns-protect-private-zones-recordsets"
 
 - description: Monitor Private DNS Zones health and set up alerts
   aprlGuid: ab896e8c-49b9-2c44-adec-98339aff7821

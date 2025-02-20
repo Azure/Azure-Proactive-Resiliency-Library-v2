@@ -78,7 +78,10 @@ The YAML structure for adding new recommendations consists of several key-value 
 | pgVerified | false | Boolean | true, false | Indicates whether the recommendation is verified by the relevant product group |
 | automationAvailable | false| Boolean | true, false | Indicates whether automation is available for validating the recommendation |
 | tags | [AVD]| String | [AI-GTP-RAG, AVD, AVS, HPC, SAP] or [] | Indicates which type of specialized workload the recommendation is associated to if any |
-| learnMoreLink | - name: Learn More url: "<https://learn.microsoft.com/en-us/azure/reliability/reliability-batch#cross-region-disaster-recovery-and-business-continuity>" | Object | Only 1 link per recommendation | Links related to the recommendation, such as announcements or documentation |
+| learnMoreLink | - name: Learn More url: "<https://learn.microsoft.com/azure/reliability/reliability-batch#cross-region-disaster-recovery-and-business-continuity>" | Object | Only 1 link per recommendation | Links related to the recommendation, such as announcements or documentation |
+
+> [!NOTE]
+> When referencing MS Learn content, avoid including locale identifiers such as **en-us** or **ja-jp** in the URL. Without a locale identifier, the display language will automatically be selected based on the user’s browser language settings.
 
 ### Recommendation Categories
 

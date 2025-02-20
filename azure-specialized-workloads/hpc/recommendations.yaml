@@ -13,7 +13,7 @@
   tags: [HPC]
   learnMoreLink:
     - name: Learn More
-      url: "https://learn.microsoft.com/en-us/powershell/high-performance-computing/hpcpack-ha-cloud?view=hpc19-ps#hpc-pack-cluster-shares"
+      url: "https://learn.microsoft.com/powershell/high-performance-computing/hpcpack-ha-cloud?view=hpc19-ps#hpc-pack-cluster-shares"
 
 - description: Automatically grow and shrink HPC Pack cluster resources
   aprlGuid: b02b5a0e-3770-44da-a099-5dd4d9f8cd70
@@ -30,7 +30,7 @@
   tags: [HPC]
   learnMoreLink:
     - name: Learn More
-      url: "https://learn.microsoft.com/en-us/powershell/high-performance-computing/hpcpack-auto-grow-shrink?view=hpc19-ps"
+      url: "https://learn.microsoft.com/powershell/high-performance-computing/hpcpack-auto-grow-shrink?view=hpc19-ps"
 
 - description: Use multiple head nodes for HPC Pack
   aprlGuid: a48b1be6-77a3-4e3c-8205-dda2ba010a99
@@ -47,7 +47,7 @@
   tags: [HPC]
   learnMoreLink:
     - name: Learn More
-      url: "https://learn.microsoft.com/en-us/powershell/high-performance-computing/hpcpack-ha-cloud?view=hpc19-ps#dealing-with-head-node-failure"
+      url: "https://learn.microsoft.com/powershell/high-performance-computing/hpcpack-ha-cloud?view=hpc19-ps#dealing-with-head-node-failure"
 
 - description: Use HPC Pack Azure AD Integration or other highly available AD configuration
   aprlGuid: 37eec891-7880-4759-b597-7cd925512fe3
@@ -64,4 +64,4 @@
   tags: [HPC]
   learnMoreLink:
     - name: Learn More
-      url: "https://learn.microsoft.com/en-us/powershell/high-performance-computing/hpcpack-ha-cloud?view=hpc19-ps#dealing-with-ad-failure"
+      url: "https://learn.microsoft.com/powershell/high-performance-computing/hpcpack-ha-cloud?view=hpc19-ps#dealing-with-ad-failure"

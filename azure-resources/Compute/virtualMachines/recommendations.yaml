@@ -319,7 +319,7 @@
   tags: []
   learnMoreLink:
     - name: Azure Monitor Agent overview
-      url: "https://learn.microsoft.com/en-us/azure/azure-monitor/agents/agents-overview"
+      url: "https://learn.microsoft.com/azure/azure-monitor/agents/agents-overview"
 
 - description: Use maintenance configurations for the VMs
   aprlGuid: 52ab9e5c-eec0-3148-8bd7-b6dd9e1be870
@@ -353,7 +353,7 @@
   tags: []
   learnMoreLink:
     - name: B-series burstable virtual machine sizes
-      url: "https://learn.microsoft.com/en-us/azure/virtual-machines/sizes-b-series-burstable"
+      url: "https://learn.microsoft.com/azure/virtual-machines/sizes-b-series-burstable"
 
 - description: Mission Critical Workloads should consider using Premium or Ultra Disks
   aprlGuid: df0ff862-814d-45a3-95e4-4fad5a244ba6
@@ -370,7 +370,7 @@
   tags: []
   learnMoreLink:
     - name: Disk type comparison and decision tree
-      url: "https://learn.microsoft.com/en-us/azure/virtual-machines/disks-types#disk-type-comparison"
+      url: "https://learn.microsoft.com/azure/virtual-machines/disks-types#disk-type-comparison"
 
 - description: Use Azure Boost VMs for Maintenance sensitive workload
   aprlGuid: 9ab499d8-8844-424d-a2d4-8f53690eb8f8
@@ -438,7 +438,7 @@
   tags: []
   learnMoreLink:
     - name: How to update the Azure Linux Agent on a VM
-      url: "https://learn.microsoft.com/en-us/azure/virtual-machines/extensions/update-linux-agent?tabs=ubuntu"
+      url: "https://learn.microsoft.com/azure/virtual-machines/extensions/update-linux-agent?tabs=ubuntu"
 
 - description: Reserve Compute Capacity in Disaster Recovery Regions
   aprlGuid: 587ca3e4-113b-4c4f-b4e0-92cd8d2065b6

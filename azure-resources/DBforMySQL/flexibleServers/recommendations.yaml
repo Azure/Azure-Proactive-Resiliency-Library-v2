@@ -47,7 +47,7 @@
   tags: []
   learnMoreLink:
     - name: Backup and restore in Azure Database for MySQL - Flexible Server
-      url: "https://learn.microsoft.com/en-us/azure/mysql/flexible-server/concepts-backup-restore"
+      url: "https://learn.microsoft.com/azure/mysql/flexible-server/concepts-backup-restore"
 
 - description: Configure one or more read replicas
   aprlGuid: b49a8653-cc43-48c9-8513-a2d2e3f14dd1
@@ -64,7 +64,7 @@
   tags: []
   learnMoreLink:
     - name: Read replicas in Azure Database for MySQL - Flexible Server
-      url: "https://learn.microsoft.com/en-us/azure/mysql/flexible-server/concepts-read-replicas"
+      url: "https://learn.microsoft.com/azure/mysql/flexible-server/concepts-read-replicas"
 
 - description: Configure storage auto-grow
   aprlGuid: 8176a79d-8645-4e52-96be-a10fc0204fe5
@@ -81,4 +81,4 @@
   tags: []
   learnMoreLink:
     - name: Azure Database for MySQL - Flexible Server service tiers - Storage auto grow
-      url: "https://learn.microsoft.com/en-us/azure/mysql/flexible-server/concepts-service-tiers-storage#storage-auto-grow"
+      url: "https://learn.microsoft.com/azure/mysql/flexible-server/concepts-service-tiers-storage#storage-auto-grow"
