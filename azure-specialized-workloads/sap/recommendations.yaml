@@ -269,7 +269,7 @@
   tags: [SAP]
   learnMoreLink:
     - name: ASCS-Pacemaker - Central Server Instance
-      url: "https://docs.microsoft.com/azure/advisor/advisor-reference-reliability-recommendations"
+      url: "https://learn.microsoft.com/azure/advisor/advisor-reference-reliability-recommendations"
 
 - description: Ensure the load balancer is configured correctly for SAP ASCS High availability
   aprlGuid: 5c2e52d0-25be-4b1c-833c-b98b5ef1a26b
@@ -286,7 +286,7 @@
   tags: [SAP]
   learnMoreLink:
     - name: ASCS-LB - Central Server Instance
-      url: "https://docs.microsoft.com/azure/advisor/advisor-reference-reliability-recommendations"
+      url: "https://learn.microsoft.com/azure/advisor/advisor-reference-reliability-recommendations"
 
 - description: Ensure the Pacemaker cluster has been setup for SAP HANA DB high availability
   aprlGuid: 6648fe61-880d-4a96-8d2d-190a23d5580b
@@ -303,7 +303,7 @@
   tags: [SAP]
   learnMoreLink:
     - name: DBHANA-Pacemaker - Database Instance
-      url: "https://docs.microsoft.com/azure/advisor/advisor-reference-reliability-recommendations"
+      url: "https://learn.microsoft.com/azure/advisor/advisor-reference-reliability-recommendations"
 
 - description: Ensure the load balancer is configured correctly for SAP HANA DB High availability
   aprlGuid: 2e4c2171-a83f-4238-a8e3-b51c90d86a99
@@ -320,7 +320,7 @@
   tags: [SAP]
   learnMoreLink:
     - name: DBHANA-LB- Database Instance
-      url: "https://docs.microsoft.com/azure/advisor/advisor-reference-reliability-recommendations"
+      url: "https://learn.microsoft.com/azure/advisor/advisor-reference-reliability-recommendations"
 
 - description: Review SAP configuration for timeout values used with Azure NetApp Files
   aprlGuid: 4884cada-b9c7-42d5-8153-3853e4a6f6c4
