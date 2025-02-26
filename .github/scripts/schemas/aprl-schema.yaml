@@ -21,4 +21,5 @@ recommendation:
 
 linkItem:
   name: str()
-  url: str()
+  url: regex('^(https://(learn|docs).microsoft.com/(?!.*en-us).*|https://.*citrix.com/.*en-us.*|https://.*)$')
+
