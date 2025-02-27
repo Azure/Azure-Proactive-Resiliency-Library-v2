@@ -78,7 +78,7 @@
   potentialBenefits: Improve latency and provides business continuity
   pgVerified: true
   automationAvailable: false
-  tags: [AI-GPT-RAG]
+  tags: []
   learnMoreLink:
     - name: Deploy API Management instance to multiple Azure regions
       url: "https://learn.microsoft.com/azure/api-management/api-management-howto-deploy-multi-region"
