@@ -68,8 +68,7 @@ There is also a known issue with clipboard history enabled. The cmdlet will chec
 
 ### The specified Excel file may be encrypted. If a sensitivity label is applied to the file, please change the sensitivity label to the label without encryption temporarily
 
-The specified Excel file may be has a sensitivity label (encrypted). The Start-WARAReport script does not support encrypted Excel file currently. To avoid this issue, you need to change the sensitivity label to the label without encryption temporarily. For example, **Confidential/Any User (No Protection)** sensitivity. After running the command, you can re-apply the original sensitivity label (recommended).
-
+The specified Excel file may have a sensitivity label (encrypted). The Start-WARAReport script does not support encrypted Excel file currently. To avoid this issue, you need to change the sensitivity label to the label without encryption temporarily. For example, **Confidential/Any User (No Protection)** sensitivity. After running the command, you can re-apply the original sensitivity label (recommended).
 You can change the sensitivity label on the file by **Excel** or **Information Protection File Labeler**.
 
 - Option 1: Excel
