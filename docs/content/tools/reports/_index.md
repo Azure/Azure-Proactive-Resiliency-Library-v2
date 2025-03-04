@@ -57,7 +57,7 @@ After the documents have been created, review the PowerPoint presentation and th
 
 ## Frequently asked questions
 
-### I get errors when running the script that .Copy() or .Paste() has no data or the clipboard cannot be used.
+### I get errors when running the script that .Copy() or .Paste() has no data or the clipboard cannot be used
 
 The script uses the clipboard to copy and paste data between Excel and PowerPoint. We are aware that this can cause issues when running the script and using your clipboard at the same time. We plan on having a fix for this released soon, however, in the meantime, please ensure that you are not using your clipboard while the script is running.
 There is also a known issue with clipboard history enabled. The cmdlet will check to see if the clipboard history feature is enabled and throw an error. To disable clipboard history, follow the steps below:

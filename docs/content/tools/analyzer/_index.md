@@ -25,7 +25,7 @@ This Data Analyzer cmdlet is the second script used during Well-Architected Reli
 When running the script on a Non-Windows environment you may see a warning message about ImportExcel Module Cannot Autosize. You can ignore this warning message.
 {{< /hint >}}
 
-```
+```bash
 Starting the WARA Analyzer
 Validating ImportExcel Module..
 Installing ImportExcel Module
