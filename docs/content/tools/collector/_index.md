@@ -100,6 +100,18 @@ Start-WARACollector -TenantID "00000000-0000-0000-0000-000000000000" -Subscripti
 Start-WARACollector -TenantID "00000000-0000-0000-0000-000000000000" -SubscriptionIds "/subscriptions/00000000-0000-0000-0000-000000000000" -ResourceGroups "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/RG-001"
 ```
 
+#### Run the collector against a specific resource group
+
+```PowerShell
+Start-WARACollector -TenantID "00000000-0000-0000-0000-000000000000" -ResourceGroups "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/RG-001"
+```
+
+#### Run the collector against a specific resource group and filtering by tag key/values
+
+```PowerShell
+Start-WARACollector -TenantID "00000000-0000-0000-0000-000000000000" -ResourceGroups "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/RG-001" -Tags "Env||Environment"
+```
+
 #### Run the collector against a specific subscription and resource group and filtering by tag key/values
 
 ```PowerShell
@@ -121,5 +133,5 @@ Start-WARACollector -ConfigFile "C:\path\to\config.txt"
 #### Run the collector using a configuration file and using the specialized resource types (AVD, SAP, HPC, AVS, AI_GPT_RAG)
 
 ```PowerShell
-Start-WARACollector -ConfigFile "C:\path\to\config.txt" -SAP -AVD
+Start-WARACollector -ConfigFile "C:\path\to\config.txt" -SAP -AVD -HPC -AVS -AI_GPT_RAG
 ```

@@ -50,3 +50,41 @@ Start-WARAReport -ExcelFile 'C:\WARA\Expert-Analysis-v1-2025-02-04-11-14.xlsx'
 ```PowerShell
 Start-WARAReport -ExpertAnalysisFile 'C:\WARA\Expert-Analysis-v1-2025-02-04-11-14.xlsx' -CustomerName "Contoso" -WorkloadName "Contoso Web App"
 ```
+
+## Document Review
+
+After the documents have been created, review the PowerPoint presentation and the Excel file to ensure that the data is accurate and that the recommendations are appropriate for the workload. Not all slides are updated by the automation and require manual review and updates.
+
+## Frequently asked questions
+
+### I get errors when running the script that .Copy() or .Paste() has no data or the clipboard cannot be used.
+
+The script uses the clipboard to copy and paste data between Excel and PowerPoint. We are aware that this can cause issues when running the script and using your clipboard at the same time. We plan on having a fix for this released soon, however, in the meantime, please ensure that you are not using your clipboard while the script is running.
+There is also a known issue with clipboard history enabled. The cmdlet will check to see if the clipboard history feature is enabled and throw an error. To disable clipboard history, follow the steps below:
+
+- Open the Settings app.
+- Go to System > Clipboard.
+- Turn off the Clipboard history toggle switch.
+
+### The specified Excel file may be encrypted. If a sensitivity label is applied to the file, please change the sensitivity label to the label without encryption temporarily
+
+The specified Excel file may be has a sensitivity label (encrypted). The Start-WARAReport script does not support encrypted Excel file currently. To avoid this issue, you need to change the sensitivity label to the label without encryption temporarily. For example, **Confidential/Any User (No Protection)** sensitivity. After running the command, you can re-apply the original sensitivity label (recommended).
+
+You can change the sensitivity label on the file by **Excel** or **Information Protection File Labeler**.
+
+- Option 1: Excel
+
+    1. Select a sensitivity label that you want from the sensitivity bar at the top of the Excel window.
+    2. Save the Excel file.
+
+    Learn more about the [Sensitivity bar in Microsoft 365](https://support.microsoft.com/office/2f96e7cd-d5a4-403b-8bd7-4cc636bae0f9).
+
+- Option 2: Information Protection File Labeler
+
+    1. Install the [Microsoft Purview Information Protection client](https://www.microsoft.com/en-us/download/details.aspx?id=53018)
+    2. Right click the Excel file in the File Explorer then select **Show more options**.
+    3. Select **Apply sensitivity label with Microsoft Purview**
+    4. Select a sensitivity label that you want.
+    5. Click the **Apply** button.
+
+    Learn more about the [detailed usage of the Information Protection File Labeler](https://support.microsoft.com/topic/67829155-2d0e-4122-9677-7c53c8cba18a).
