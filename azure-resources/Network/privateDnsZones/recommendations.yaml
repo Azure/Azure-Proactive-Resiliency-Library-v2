@@ -65,3 +65,21 @@
   learnMoreLink:
     - name: Reliability in Azure DNS
       url: "https://learn.microsoft.com/azure/reliability/reliability-dns"
+
+- description: Use virtual network links to link global Private DNS Zones to VNETs in two or more regions
+  aprlGuid: a2341513-2ab8-4aa1-b100-302e54640f18
+  recommendationTypeId: null
+  recommendationControl: HighAvailability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Network/privateDnsZones
+  recommendationMetadataState: Active
+  longDescription: |
+    DNS private zones are resilient to regional outages because zone data is globally available. Resource records in a private zone are automatically replicated across regions. Linking a Private DNS Zone to VNETs in multiple regions increases availability and resiliency.
+  potentialBenefits: Ensures seamless failover for DNS during a regional outage
+  pgVerified: true
+  automationAvailable: false
+  tags: []
+  learnMoreLink:
+    - name: Azure Private DNS zone resiliency
+      url: "https://learn.microsoft.com/azure/dns/private-dns-resiliency"
+
