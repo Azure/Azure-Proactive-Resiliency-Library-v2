@@ -26,26 +26,26 @@ The Reports cmdlet serves as the final step in a Well-Architected Reliability As
 The `Start-WARAReport` cmdlet is used to generate the WARA reports.
 
 {{< hint type=note >}}
-Whatever directory you run the `Start-WARAReport` cmdlet in, the Word and PowerPoint files will be created in that directory. For example: if you run the `Start-WARAReport` cmdlet in the `C:\Temp` directory, the Word and PowerPoint files will be created in the `C:\Temp` directory.
+Whatever directory you run the `Start-WARAReport` cmdlet in, the PowerPoint and Excel files will be created in that directory. For example: if you run the `Start-WARAReport` cmdlet in the `C:\Temp` directory, the PowerPoint and Excel files will be created in the `C:\Temp` directory.
 {{< /hint >}}
 
 You can review all of the parameters of Start-WARAReport [here](https://github.com/Azure/Well-Architected-Reliability-Assessment/blob/main/docs/wara/Start-WARAReport.md).
 
 #### Examples
 
-#### Create the Word and PowerPoint reports from the Action Plan Excel output
+#### Create the PowerPoint and Excel reports from the Action Plan Excel output
 
 ```PowerShell
 Start-WARAReport -ExpertAnalysisFile 'C:\WARA\Expert-Analysis-v1-2025-02-04-11-14.xlsx'
 ```
 
-#### Create the Word and PowerPoint reports from the Action Plan Excel output using the alias `ExcelFile` for the parameter
+#### Create the PowerPoint and Excel reports from the Action Plan Excel output using the alias `ExcelFile` for the parameter
 
 ```PowerShell
 Start-WARAReport -ExcelFile 'C:\WARA\Expert-Analysis-v1-2025-02-04-11-14.xlsx'
 ```
 
-#### Create the Word and PowerPoint reports from the Action Plan Excel output specifying the customer name and workload name
+#### Create the PowerPoint and Excel reports from the Action Plan Excel output specifying the customer name and workload name
 
 ```PowerShell
 Start-WARAReport -ExpertAnalysisFile 'C:\WARA\Expert-Analysis-v1-2025-02-04-11-14.xlsx' -CustomerName "Contoso" -WorkloadName "Contoso Web App"
