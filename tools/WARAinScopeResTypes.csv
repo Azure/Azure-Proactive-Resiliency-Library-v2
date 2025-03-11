@@ -3758,7 +3758,7 @@ yes,Microsoft.Workloads/sapVirtualInstances/applicationInstances,App Server Inst
 yes,Microsoft.Workloads/sapVirtualInstances/centralInstances,Central Server Instance,Yes
 yes,Microsoft.Workloads/sapVirtualInstances/databaseInstances,Database Instance,Yes
 no,Microsoft.Workloads/Operations,null,No
-yes,Microsoft.Workloads/monitors,Wrokload Monitors,Yes
+yes,Microsoft.Workloads/monitors,Workload Monitors,Yes
 no,Microsoft.Workloads/monitors/providerInstances,null,No
 no,Microsoft.Workloads/Locations/sapVirtualInstanceMetadata,null,No
 no,Microsoft.Workloads/connectors,null,No
