@@ -61,7 +61,7 @@ no,microsoft.insights/listMigrationdate,null,No
 no,microsoft.insights/logprofiles,null,No
 no,microsoft.insights/migratealertrules,null,No
 no,microsoft.insights/metricalerts,Metric Alerts,No
-no,microsoft.insights/alertrules,Alert Rule,No
+no,microsoft.insights/alertrules,Alert Rules,No
 no,microsoft.insights/autoscalesettings,Auto Scale Settings,No
 no,microsoft.insights/eventtypes,null,No
 no,microsoft.insights/locations,null,No
@@ -81,7 +81,7 @@ no,microsoft.insights/notificationstatus,null,No
 no,microsoft.insights/createnotifications,null,No
 no,microsoft.insights/tenantactiongroups,null,No
 no,microsoft.insights/actiongroups,Action Groups,No
-yes,microsoft.insights/activityLogAlerts,Resource Health Alerts,Yes
+yes,microsoft.insights/activityLogAlerts,Activity Log Alerts,Yes
 no,microsoft.insights/metricbaselines,null,No
 no,microsoft.insights/workbooks,null,No
 no,microsoft.insights/workbooktemplates,null,No
@@ -267,10 +267,10 @@ no,Microsoft.Network/dnszones/NAPTR,null,No
 no,Microsoft.Network/dnszones/recordsets,null,No
 no,Microsoft.Network/dnszones/all,null,No
 no,Microsoft.Network/dnszones/dnssecConfigs,null,No
-yes,Microsoft.Network/virtualNetworks,Virtual Networks,Yes
+yes,Microsoft.Network/virtualNetworks,Virtual Network,Yes
 no,Microsoft.Network/virtualNetworks/taggedTrafficConsumers,null,No
 yes,Microsoft.Network/natGateways,NAT Gateways,Yes
-yes,Microsoft.Network/publicIPAddresses,Public Ip,Yes
+yes,Microsoft.Network/publicIPAddresses,Public IP address,Yes
 no,Microsoft.Network/internalPublicIpAddresses,null,No
 no,Microsoft.Network/customIpPrefixes,null,No
 no,Microsoft.Network/networkInterfaces,null,No
@@ -1029,7 +1029,7 @@ no,Microsoft.Web/sites/slots/hostNameBindings,null,No
 no,Microsoft.Web/operations,null,No
 no,Microsoft.Web/certificates,null,No
 yes,Microsoft.Web/serverFarms,App Service Plan,Yes
-yes,Microsoft.Web/sites,Web App,Yes
+yes,Microsoft.Web/sites,App Service,Yes
 no,Microsoft.Web/sites/slots,null,No
 no,Microsoft.Web/runtimes,null,No
 no,Microsoft.Web/recommendations,null,No
@@ -1322,7 +1322,7 @@ no,Microsoft.Automanage/bestPractices,null,No
 no,Microsoft.Automanage/bestPractices/versions,null,No
 no,Microsoft.Automanage/operations,null,No
 no,Microsoft.Automanage/servicePrincipals,null,No
-yes,Microsoft.Automation/automationAccounts,Automation Account,Yes
+yes,Microsoft.Automation/automationAccounts,Automation,Yes
 no,Microsoft.Automation/deletedAutomationAccounts,null,No
 no,Microsoft.Automation/automationAccounts/runbooks,null,No
 no,Microsoft.Automation/automationAccounts/configurations,null,No
@@ -2171,7 +2171,7 @@ yes,Microsoft.DataBoxEdge/DataBoxEdgeDevices,DataBox Edge Devices,No
 no,Microsoft.DataBoxEdge/DataBoxEdgeDevices/checkNameAvailability,null,No
 no,Microsoft.DataBoxEdge/operations,null,No
 no,Microsoft.DataBoxEdge/availableSkus,null,No
-yes,Microsoft.Databricks/workspaces,Databricks,Yes
+yes,Microsoft.Databricks/workspaces,Azure Databricks,Yes
 no,Microsoft.Databricks/accessConnectors,null,No
 no,Microsoft.Databricks/workspaces/virtualNetworkPeerings,null,No
 no,Microsoft.Databricks/workspaces/dbWorkspaces,null,No
@@ -2201,7 +2201,7 @@ no,Microsoft.Datadog/monitors/refreshSetPasswordLink,null,No
 no,Microsoft.Datadog/agreements,null,No
 no,Microsoft.Datadog/monitors/monitoredSubscriptions,null,No
 no,Microsoft.Datadog/subscriptionStatuses,null,No
-yes,Microsoft.DataLakeAnalytics/accounts,Data lake analytics account,Yes
+yes,Microsoft.DataLakeAnalytics/accounts,Azure Data Lake Analytics,Yes
 no,Microsoft.DataLakeAnalytics/accounts/dataLakeStoreAccounts,null,No
 no,Microsoft.DataLakeAnalytics/accounts/storageAccounts,null,No
 no,Microsoft.DataLakeAnalytics/accounts/storageAccounts/containers,null,No
@@ -2212,7 +2212,7 @@ no,Microsoft.DataLakeAnalytics/locations/checkNameAvailability,null,No
 no,Microsoft.DataLakeAnalytics/locations/capability,null,No
 no,Microsoft.DataLakeAnalytics/locations/usages,null,No
 no,Microsoft.DataLakeAnalytics/operations,null,No
-yes,Microsoft.DataLakeStore/accounts,Data lake store account,Yes
+yes,Microsoft.DataLakeStore/accounts,Azure Data Lake Storage,Yes
 no,Microsoft.DataLakeStore/accounts/firewallRules,null,No
 no,Microsoft.DataLakeStore/accounts/eventGridFilters,null,No
 no,Microsoft.DataLakeStore/locations,null,No
@@ -2301,8 +2301,8 @@ no,Microsoft.DBforMariaDB/locations/serverKeyOperationResults,null,No
 no,Microsoft.DBforMariaDB/servers/start,null,No
 no,Microsoft.DBforMariaDB/servers/stop,null,No
 no,Microsoft.DBforMySQL/operations,null,No
-yes,Microsoft.DBforMySQL/servers,MySQL server,Yes
-yes,Microsoft.DBforMySQL/flexibleServers,Db For Mysql,Yes
+yes,Microsoft.DBforMySQL/servers,Azure Database for MySQL,Yes
+yes,Microsoft.DBforMySQL/flexibleServers,Azure Database for MySQL Flexible,Yes
 no,Microsoft.DBforMySQL/servers/recoverableServers,null,No
 no,Microsoft.DBforMySQL/servers/virtualNetworkRules,null,No
 no,Microsoft.DBforMySQL/locations/capabilities,null,No
@@ -2342,9 +2342,9 @@ no,Microsoft.DBforMySQL/locations/serverKeyAzureAsyncOperation,null,No
 no,Microsoft.DBforMySQL/locations/serverKeyOperationResults,null,No
 no,Microsoft.DBforMySQL/servers/upgrade,null,No
 no,Microsoft.DBforPostgreSQL/operations,null,No
-yes,Microsoft.DBforPostgreSQL/servers,PostgreSQL server,Yes
+yes,Microsoft.DBforPostgreSQL/servers,Azure Database for PostgreSQL,Yes
 yes,Microsoft.DBforPostgreSQL/serverGroupsv2,Hyperscale (Citus) server group,Yes
-yes,Microsoft.DBforPostgreSQL/flexibleServers,Db For Postgresql,Yes
+yes,Microsoft.DBforPostgreSQL/flexibleServers,Azure Database for PostgreSQL Flexible,Yes
 no,Microsoft.DBforPostgreSQL/locations/capabilities,null,No
 no,Microsoft.DBforPostgreSQL/locations/checkNameAvailability,null,No
 no,Microsoft.DBforPostgreSQL/servers/recoverableServers,null,No
@@ -2385,7 +2385,7 @@ no,Microsoft.DesktopVirtualization/applicationgroups,null,No
 no,Microsoft.DesktopVirtualization/applicationgroups/applications,null,No
 no,Microsoft.DesktopVirtualization/applicationgroups/desktops,null,No
 no,Microsoft.DesktopVirtualization/applicationgroups/startmenuitems,null,No
-yes,Microsoft.DesktopVirtualization/hostpools,Azure Virtual Desktop,Yes
+yes,Microsoft.DesktopVirtualization/hostpools,Windows Virtual Desktop,Yes
 no,Microsoft.DesktopVirtualization/hostpools/msixpackages,null,No
 no,Microsoft.DesktopVirtualization/hostpools/sessionhosts,null,No
 no,Microsoft.DesktopVirtualization/hostpools/sessionhosts/usersessions,null,No
@@ -2586,7 +2586,7 @@ no,Microsoft.HDInsight/Locations/availableclusterversions,null,No
 no,Microsoft.HDInsight/Locations/availableclusterpoolversions,null,No
 no,Microsoft.HDInsight/operations,null,No
 no,Microsoft.HDInsight/clusterpools/clusters/jobs,null,No
-yes,Microsoft.HDInsight/clusters,HDInsight cluster,Yes
+yes,Microsoft.HDInsight/clusters,HDInsight,Yes
 no,Microsoft.HDInsight/clusters/applications,null,No
 no,Microsoft.HDInsight/clusters/operationresults,null,No
 no,Microsoft.HDInsight/locations/capabilities,null,No
@@ -2805,7 +2805,7 @@ no,Microsoft.MachineLearning/locations/operationsStatus,null,No
 no,Microsoft.MachineLearning/commitmentPlans,null,No
 no,Microsoft.MachineLearningServices/workspaces/batchEndpoints,null,No
 no,Microsoft.MachineLearningServices/workspaces/batchEndpoints/deployments,null,No
-yes,Microsoft.MachineLearningServices/workspaces,Machine Learning Services Workspaces,Yes
+yes,Microsoft.MachineLearningServices/workspaces,Machine Learning Services,Yes
 no,Microsoft.MachineLearningServices/registries,null,No
 no,Microsoft.MachineLearningServices/locations/registryOperationsStatus,null,No
 no,Microsoft.MachineLearningServices/workspaces/onlineEndpoints,null,No
@@ -2998,7 +2998,7 @@ no,Microsoft.Media/operations,null,No
 no,Microsoft.Media/checknameavailability,null,No
 no,Microsoft.Media/locations,null,No
 no,Microsoft.Media/locations/checkNameAvailability,null,No
-no,Microsoft.Migrate/migrateprojects,null,No
+no,Microsoft.Migrate/migrateprojects,Azure Migrate,No
 no,Microsoft.Migrate/assessmentProjects,null,No
 no,Microsoft.Migrate/moveCollections,null,No
 no,Microsoft.Migrate/operations,null,No
@@ -3645,7 +3645,7 @@ no,microsoft.support/operationsstatus,null,No
 no,microsoft.support/lookUpResourceId,null,No
 no,microsoft.support/fileWorkspaces,null,No
 no,microsoft.support/fileWorkspaces/files,null,No
-yes,Microsoft.Synapse/workspaces,Synapse workspace,Yes
+yes,Microsoft.Synapse/workspaces,Azure Synapse,Yes
 no,Microsoft.Synapse/workspaces/bigDataPools,null,No
 no,Microsoft.Synapse/workspaces/sqlPools,null,No
 no,Microsoft.Synapse/workspaces/sqlDatabases,null,No
@@ -3758,7 +3758,7 @@ yes,Microsoft.Workloads/sapVirtualInstances/applicationInstances,App Server Inst
 yes,Microsoft.Workloads/sapVirtualInstances/centralInstances,Central Server Instance,Yes
 yes,Microsoft.Workloads/sapVirtualInstances/databaseInstances,Database Instance,Yes
 no,Microsoft.Workloads/Operations,null,No
-yes,Microsoft.Workloads/monitors,Monitor,Yes
+yes,Microsoft.Workloads/monitors,Workload Monitors,Yes
 no,Microsoft.Workloads/monitors/providerInstances,null,No
 no,Microsoft.Workloads/Locations/sapVirtualInstanceMetadata,null,No
 no,Microsoft.Workloads/connectors,null,No
