@@ -310,7 +310,7 @@
   recommendationControl: MonitoringAndAlerting
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Compute/virtualMachines
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Azure Monitor Metrics automatically receives platform metrics, but platform logs, which offer detailed diagnostics and auditing for resources and their Azure platform, need to be manually routed for collection.
   potentialBenefits: Enhanced diagnostics and auditing capability
