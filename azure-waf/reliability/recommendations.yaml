@@ -157,7 +157,7 @@
   recommendationControl: OtherBestPractices
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Subscription/Subscriptions
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Background jobs help minimize the load on the application UI, which improves availability and reduces interactive response time.
   potentialBenefits: Minimize application load
@@ -191,7 +191,7 @@
   recommendationControl: HighAvailability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Subscription/Subscriptions
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Build capabilities into the solution by using infrastructure-based reliability patterns and software-based design patterns to handle component failures and transient errors.
   potentialBenefits: Reduce the likelihood of outages
