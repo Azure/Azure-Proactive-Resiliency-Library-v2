@@ -4,6 +4,6 @@ resources
 | where type =~ 'Microsoft.ApiManagement/service'
 | extend plat_version = properties.platformVersion
 | extend skuName = sku.name
-| where tolower(plat_version) != tolower('stv2')
+| where tolower(plat_version) == tolower('stv1')
 | project recommendationId = "e35cf148-8eee-49d1-a1c9-956160f99e0b", name, id, tags, param1=strcat("Platform Version: ", plat_version) , param2=strcat("SKU: ", skuName)
 
