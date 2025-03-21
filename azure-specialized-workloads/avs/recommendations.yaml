@@ -133,3 +133,20 @@
   learnMoreLink:
     - name: Private Clouds in two regions
       url: "https://learn.microsoft.com/azure/azure-vmware/move-azure-vmware-solution-across-regions"
+
+- description: Create a HCX Snapshot ahead of either a maintenance activity or a crucial HCX operation
+  aprlGuid: 1f25a3d8-ac67-4b84-96c5-9304bfa8a164
+  recommendationTypeId: null
+  recommendationControl: HighAvailability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Subscription/subscriptions
+  recommendationMetadataState: Active
+  longDescription: |
+    Use Run command to take a snapshot of HCX Manager before making any critical changes to HCX Manager. Additionally, capture snapshot for HCX Manager before initiating a maintenance activity.
+  potentialBenefits: Improves HCX service continuity
+  pgVerified: true
+  automationAvailable: false
+  tags: [AVS]
+  learnMoreLink:
+    - name: Take a snapshot of VMware HCX Cloud Manager
+      url: "https://learn.microsoft.com/azure/azure-vmware/use-hcx-run-commands#take-a-snapshot-of-vmware-hcx-cloud-manager"
