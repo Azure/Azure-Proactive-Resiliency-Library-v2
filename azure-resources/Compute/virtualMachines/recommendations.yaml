@@ -1,6 +1,6 @@
 - description: Run production workloads on two or more VMs using VMSS Flex
   aprlGuid: 273f6b30-68e0-4241-85ea-acf15ffb60bf
-  recommendationTypeId: null
+  recommendationTypeId: 5f2613df-629f-4b07-9425-2a47ea0dfad3
   recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Compute/virtualMachines
@@ -34,7 +34,7 @@
 
 - description: Migrate VMs using availability sets to VMSS Flex
   aprlGuid: a8d25876-7951-b646-b4e8-880c9031596b
-  recommendationTypeId: null
+  recommendationTypeId: 39fb2718-a2ae-4662-a8c9-cd8df23f01eb
   recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Compute/virtualMachines
@@ -340,7 +340,7 @@
 
 - description: Don't use A or B-Series VMs for production needing constant full CPU performance
   aprlGuid: 3201dba8-d1da-4826-98a4-104066545170
-  recommendationTypeId: null
+  recommendationTypeId: 7f71b153-c0b7-4e99-a23e-db8179183ec9
   recommendationControl: Scalability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Compute/virtualMachines
@@ -408,7 +408,7 @@
 
 - description: Reserve Compute Capacity for critical workloads
   aprlGuid: 302fda08-ee65-4fbe-a916-6dc0b33169c4
-  recommendationTypeId: null
+  recommendationTypeId: 1670c0af-6536-4cbf-872f-152c91a51a80
   recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Compute/virtualMachines

@@ -51,7 +51,7 @@
 
 - description: Configure one or more read replicas
   aprlGuid: 2ab85a67-26be-4ed2-a0bb-101b2513ec63
-  recommendationTypeId: null
+  recommendationTypeId: 7d2149f5-94f7-458d-8171-92cf66832cb2
   recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.DBforPostgreSQL/flexibleServers

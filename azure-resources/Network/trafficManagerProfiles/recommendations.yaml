@@ -68,7 +68,7 @@
 
 - description: Avoid combining Traffic Manager and Front Door
   aprlGuid: 9437634c-d69e-2747-b13e-631c13182150
-  recommendationTypeId: null
+  recommendationTypeId: 825ff735-ed9a-4335-b132-321df86b0e81
   recommendationControl: BusinessContinuity
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/trafficManagerProfiles
