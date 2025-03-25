@@ -85,7 +85,7 @@
 
 - description: Use Health Probes to detect backend availability
   aprlGuid: 847a8d88-21c4-bc48-a94e-562206edd767
-  recommendationTypeId: null
+  recommendationTypeId: 01c0dcd3-d6f7-4d50-a98b-4e15f9486a32
   recommendationControl: MonitoringAndAlerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/applicationGateways

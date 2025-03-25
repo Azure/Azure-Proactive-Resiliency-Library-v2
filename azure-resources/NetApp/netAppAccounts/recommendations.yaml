@@ -68,7 +68,7 @@
 
 - description: Use snapshots for data protection in Azure NetApp Files
   aprlGuid: 72827434-c773-4345-9493-34848ddf5803
-  recommendationTypeId: null
+  recommendationTypeId: cda11061-35a8-4ca3-aa03-b242dcdf7319
   recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.NetApp/netAppAccounts
@@ -85,7 +85,7 @@
 
 - description: Enable backup for data protection in Azure NetApp Files
   aprlGuid: b2fb3e60-97ec-e34d-af29-b16a0d61c2ac
-  recommendationTypeId: null
+  recommendationTypeId: c70fc854-2814-4b03-9b93-8ad7b918bfcf
   recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.NetApp/netAppAccounts
@@ -102,7 +102,7 @@
 
 - description: Enable Cross-region replication of Azure NetApp Files volumes
   aprlGuid: e30317d2-c502-4dfe-a2d3-0a737cc79545
-  recommendationTypeId: null
+  recommendationTypeId: 26f91380-cb68-4642-bb6f-1bce3c64c55e
   recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.NetApp/netAppAccounts
