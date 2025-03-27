@@ -14,7 +14,7 @@
   potentialBenefits: Ensure business continuity in case of zonal failure.
   pgVerified: false
   automationAvailable: no
-  tags: null
+  tags: [Oracle]
   learnMoreLink:
     - name: Business continuity and disaster recovery considerations for Oracle Database@Azure
       url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-disaster-recovery-oracle-database-azure"
@@ -40,7 +40,7 @@
   pgVerified: false
   publishedToLearn: false
   automationAvailable: no
-  tags: null
+  tags: [Oracle]
   learnMoreLink:
     - name: Business continuity and disaster recovery considerations for Oracle Database@Azure
       url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-disaster-recovery-oracle-database-azure"
@@ -63,7 +63,7 @@
   pgVerified: false
   publishedToLearn: false
   automationAvailable: no
-  tags: null
+  tags: [Oracle]
   learnMoreLink:
     - name: Business continuity and disaster recovery considerations for Oracle Database@Azure
       url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-disaster-recovery-oracle-database-azure"
@@ -86,7 +86,7 @@
   pgVerified: false
   publishedToLearn: false
   automationAvailable: no
-  tags: null
+  tags: [Oracle]
   learnMoreLink:
     - name: Business continuity and disaster recovery considerations for Oracle Database@Azure
       url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-disaster-recovery-oracle-database-azure"
@@ -111,7 +111,7 @@
   pgVerified: false
   publishedToLearn: false
   automationAvailable: no
-  tags: null
+  tags: [Oracle]
   learnMoreLink:
     - name: Capacity planning for Oracle Database@Azure
       url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-capacity-planning-oracle-database-azure"
@@ -135,7 +135,7 @@
   pgVerified: false
   publishedToLearn: false
   automationAvailable: no
-  tags: null
+  tags: [Oracle]
   learnMoreLink:
     - name: Plan for IP Address Space
       url: "https://docs.oracle.com/en-us/iaas/Content/database-at-azure/oaa_ip.htm"
@@ -156,7 +156,7 @@
   pgVerified: false
   publishedToLearn: false
   automationAvailable: no
-  tags: null
+  tags: [Oracle]
   learnMoreLink:
     - name: Network Planning for Oracle Database@Azure
       url: "https://learn.microsoft.com/en-us/azure/oracle/oracle-db/oracle-database-network-plan#constraints"
@@ -174,7 +174,7 @@
   pgVerified: false
   publishedToLearn: false
   automationAvailable: no
-  tags: null
+  tags: [Oracle]
   learnMoreLink:
     - name: Business continuity and disaster recovery considerations for Oracle Database@Azure
       url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-disaster-recovery-oracle-database-azure"
@@ -195,7 +195,7 @@
   pgVerified: false
   publishedToLearn: false
   automationAvailable: no
-  tags: null
+  tags: [Oracle]
   learnMoreLink:
     - name: Security guidelines for Oracle Database@Azure
       url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-security-overview-odaa"
@@ -216,7 +216,7 @@
   pgVerified: false
   publishedToLearn: false
   automationAvailable: no
-  tags: null
+  tags: [Oracle]
   learnMoreLink:
     - name: Configure Oracle-Managed Infrastructure Maintenance
       url: "https://docs.oracle.com/en-us/iaas/exadatacloud/doc/exa-conf-oracle-man-infra.html"
@@ -234,7 +234,7 @@
   pgVerified: false
   publishedToLearn: false
   automationAvailable: no
-  tags: null
+  tags: [Oracle]
   learnMoreLink:
     - name: Configure Oracle-Managed Infrastructure Maintenance
       url: "https://docs.oracle.com/en-us/iaas/exadatacloud/doc/exa-conf-oracle-man-infra.html"
