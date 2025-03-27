@@ -189,7 +189,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Automate the provisioning of Oracle Database@Azure deployment. Use the same deployment to secondary site to minimize risk of human error.
-  potentialBenefits: Standardize Oracle workload deployment to reduce human error.
+  potentialBenefits: Standardize Oracle deployments to minimize human error
   pgVerified: false
   automationAvailable: no
   tags: [ORACLE]
