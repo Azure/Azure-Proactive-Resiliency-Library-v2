@@ -13,7 +13,6 @@
     Data Guard can be configured using the Automated DG feature in the OCI Portal, and manual configuration is also possible.
   potentialBenefits: Ensure business continuity in case of zonal failure.
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: no
   tags: null
   learnMoreLink:
