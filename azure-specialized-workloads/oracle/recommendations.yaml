@@ -1,7 +1,7 @@
 - description: Implement cross-AZ replication strategy for Oracle to meet your workload requirements
   aprlGuid: ccf0fece-27c7-4163-98ce-a1dd982d7f79
   recommendationTypeId: null
-  recommendationControl: Business Continuity or DR
+  recommendationControl: Business Continuity
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/oracle
   recommendationMetadataState: Active
@@ -11,7 +11,7 @@
     By default, The Oracle Database@Azure solution follows a Silver level reference architecture. The primary database residing in ExaDB-D provides high availability, data protection, elasticity, and scalability benefits, however it is vulnerable to any AZ failure.
     Gold-level reference architectures with Oracle Database@Azure are recommended, meaning that database changes will be replicated via Data Guard to a secondary Oracle Database@Azure instance in a different availability zone within the same region.
     Data Guard can be configured using the Automated DG feature in the OCI Portal, and manual configuration is also possible.
-  potentialBenefits: Ensure business continuity in case of zonal failure.The cloud MAA architecture achieves data protection and DR.
+  potentialBenefits: Ensure business continuity in case of zonal failure.
   pgVerified: false
   publishedToLearn: false
   automationAvailable: no
@@ -26,7 +26,7 @@
 - description: Implement a regional replication strategy for Oracle to meet your workload requirements
   aprlGuid: dfeb9c7a-7dae-4751-9625-b23a7160a3e1
   recommendationTypeId: null
-  recommendationControl: Business Continuity or DR
+  recommendationControl: Disaster Recovery
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/oracle
   recommendationMetadataState: Active
@@ -37,7 +37,7 @@
     Gold-level reference architectures with Oracle Database@Azure are recommended, meaning that database changes will be replicated via Data Guard (ASYNC replication) to a secondary Oracle Database@Azure instance in a different region.
     Data Guard can be configured using the Automated DG feature in the OCI Portal, and manual configuration is also possible.
     Regional replication is a key strategy to ensure business continuity and disaster recovery for your Oracle workloads in case of a regional failure.
-  potentialBenefits: Ensure business continuity in case of regional failure. The cloud MAA architecture achieves data protection and DR.
+  potentialBenefits: The cloud MAA architecture achieves data protection and DR.
   pgVerified: false
   publishedToLearn: false
   automationAvailable: no
@@ -52,13 +52,14 @@
 - description: Implement a backup and restore strategy for Oracle databases to meet your workload's data protection requirements
   aprlGuid: 0583239a-dfb5-44d4-94db-804bfc8e3bd1
   recommendationTypeId: null
-  recommendationControl: Business Continuity
+  recommendationControl: Disaster Recovery
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/oracle
   recommendationMetadataState: Active
   longDescription: |
-    When you configure automatic backup to Autonomous Recovery Service in Azure/OCI or Object Storage Service in OCI, backup copies provide additional protection.Alternatively configure manual backup to Azure Storage services(Blob, Azure Files and ANF) for long term backups.
-     Oracle Recovery Manager (RMAN) validates cloud database backups for any physical corruptions.
+    Enable OCI-managed backup to Autonomous Recovery Service in Azure/OCI or Object Storage Service in OCI to ensure additional data protection.
+    Alternatively configure self-managed backup to Azure Storage services(Blob, Azure Files and ANF) for long term backups.
+    Oracle Recovery Manager (RMAN) validates database backups for any physical corruptions.
   potentialBenefits: Provide workload data protection.
   pgVerified: false
   publishedToLearn: false
@@ -69,6 +70,30 @@
       url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-disaster-recovery-oracle-database-azure"
     - name: Learn about Oracle Maximum Availability Architecture for Oracle Database@Azure
       url: "https://docs.oracle.com/en/solutions/oracle-maa-db-at-azure/#GUID-7723E2B1-9588-40BC-88BE-44637B1AF0D9"
+    - name: Manage Database Backup and Recovery on Oracle Exadata Database Service on Dedicated Infrastructure
+      url: "https://docs.oracle.com/en-us/iaas/exadatacloud/doc/ecs-managing-db-backup-and-recovery.html"
+
+- description: Document and test DR procedure ensure it meets RPO and RTO targets
+  aprlGuid: a64ea6f4-8c6b-4b76-b152-4e862d19264d
+  recommendationTypeId: null
+  recommendationControl: Disaster Recovery
+  recommendationImpact: High
+  recommendationResourceType: Specialized.Workload/oracle
+  recommendationMetadataState: Active
+  longDescription: |
+    Document DR procedures for Oracle Database@Azure and related applications.
+    Include configuration, failover mechanisms, and recovery steps. Test various failure scenarios to ensure the DR strategy meets RPO/RTO targets and provides seamless failover.
+  potentialBenefits: Ensures robust DR architecture, meets RPO/RTO
+  pgVerified: false
+  publishedToLearn: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Business continuity and disaster recovery considerations for Oracle Database@Azure
+      url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-disaster-recovery-oracle-database-azure"
+    - name: Learn about Oracle Maximum Availability Architecture for Oracle Database@Azure
+      url: "https://docs.oracle.com/en/solutions/oracle-maa-db-at-azure/#GUID-7723E2B1-9588-40BC-88BE-44637B1AF0D9"
+
 
 - description: Scale up the VM cluster based on the workload requirement
   aprlGuid: 2322a597-a6af-4c3e-a1b1-d1b1ddead508
@@ -79,7 +104,8 @@
   recommendationMetadataState: Active
   longDescription: |
     Oracle RAC is ideal for high-volume applications or consolidated environments where scalability and the ability to dynamically add or re-prioritize capacity across more than a single server are required. An individual database may have instances running on one or more nodes of a cluster. Similarly, a database service may be available on one or more database instances. Additional nodes, database instances, and database services can be provisioned online.
-    Auto-scaling is not avaialble on ODAA Exadata Database Service.
+    Monitor database metrics such as CPU utilization and memory usage using Azure Monitor. Set alerts for specific thresholds to trigger scaling decision when your workload reaches critical levels.
+    Auto-scaling is not available on ODAA Exadata Database Service.
     Be mindful that the capacity of Vm cluster is deployed according to the workload requirements.
     If scaling up is needed, scale up the number of OCPUs on the VM cluster, if there is capacity available on the Exa infra.
   potentialBenefits: Meet workload scalability requirements.
@@ -92,6 +118,9 @@
       url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-capacity-planning-oracle-database-azure"
     - name: Learn about Oracle Maximum Availability Architecture for Oracle Database@Azure
       url: "https://docs.oracle.com/en/solutions/oracle-maa-db-at-azure/#GUID-7723E2B1-9588-40BC-88BE-44637B1AF0D9"
+    - name: Learn about Manage and monitor Oracle Database@Azure
+      url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-manage-monitor-oracle-database-azure"
+
 
 - description: Plan and implement IP addressing strategy to meet current and future requirements
   aprlGuid: 1bfdf86c-f501-4ad9-99a7-b29b736f34dc
@@ -111,6 +140,9 @@
   learnMoreLink:
     - name: Plan for IP Address Space
       url: "https://docs.oracle.com/en-us/iaas/Content/database-at-azure/oaa_ip.htm"
+    - name: Capacity planning for Oracle Database@Azure
+      url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-capacity-planning-oracle-database-azure"
+
 
 - description: Only one ODAA delegated subnet must exist within the VNet
   aprlGuid: 76c9136c-642d-4ea3-a4f5-655f28d2ee07
@@ -159,8 +191,8 @@
   recommendationResourceType: Specialized.Workload/oracle
   recommendationMetadataState: Active
   longDescription: |
-    Provide redundancy for VMs used as OKV, note that this is only relevant if customer is using own keys and only if OCI vault is not used. Minimum 4 node OKV cluster deployment is advised.
-  potentialBenefits: Protect access to keys in case of VM or AZ failure.
+    Provide redundancy for VMs used as OKV, note that this is only relevant if customer is using own keys and only if OCI vault is not used. A minimum 4-node OKV cluster deployment is recommended across two AZs or regions, aligned with the BCDR architecture.
+  potentialBenefits: Protect access to keys in case of VM or AZ/region failure.
   pgVerified: false
   publishedToLearn: false
   automationAvailable: no
@@ -171,27 +203,7 @@
     - name: Deploy Oracle Key Vault for Oracle Database@Azure
       url: "https://docs.oracle.com/en/solutions/deploy-key-vault-database-at-azure/index.html#GUID-3C967419-6461-470C-AC86-07F419CDF967"
 
-- //description: Ensure that the application tier spans at least two availability zones.
-  aprlGuid: 2ce48b43-bc8f-4b9e-850e-6cf827592daa
-  recommendationTypeId: null
-  recommendationControl: Business Continuity
-  recommendationImpact: High
-  recommendationResourceType: Specialized.Workload/oracle
-  recommendationMetadataState: Active
-  longDescription:
-    The application tier spans at least two availability zones which are the same AZs where ODAA is deployed.
-  potentialBenefits: Azure Availability Zones provide high availability.
-  pgVerified: false
-  publishedToLearn: false
-  automationAvailable: no
-  tags: null
-  learnMoreLink:
-    - name: Business continuity and disaster recovery considerations for Oracle Database@Azure
-      url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-disaster-recovery-oracle-database-azure"
-    - name: Learn about Oracle Maximum Availability Architecture for Oracle Database@Azure
-      url: "https://docs.oracle.com/en/solutions/oracle-maa-db-at-azure/#GUID-7723E2B1-9588-40BC-88BE-44637B1AF0D9"
-
-- description: Ensure Infrastructure is updated in a rolling manner.
+- description: Ensure Oracle Database@Azure Infrastructure is updated in a rolling manner.
   aprlGuid: 02bfe908-d958-451a-a603-bef8277ae56a
   recommendationTypeId: null
   recommendationControl: Other Best Practices
@@ -207,5 +219,23 @@
   automationAvailable: no
   tags: null
   learnMoreLink:
-    - name: Learn More
-      url: "https://docs.oracle.com/en-us/iaas/exadatacloud/exacs/exa-conf-oracle-man-infra.html#ECSCM-GUID-3274A857-5AE3-468E-950B-CB1D61DE48A9"
+    - name: Configure Oracle-Managed Infrastructure Maintenance
+      url: "https://docs.oracle.com/en-us/iaas/exadatacloud/doc/exa-conf-oracle-man-infra.html"
+
+- description: Use infrastructure as code (IaC) for more reliable Oracle Database@Azure deployment
+  aprlGuid: 5d870898-97d7-437d-9ea9-d8ccced7e6fe
+  recommendationTypeId: null
+  recommendationControl: Other Best Practices
+  recommendationImpact: Medium
+  recommendationResourceType: Specialized.Workload/oracle
+  recommendationMetadataState: Active
+  longDescription: |
+    Automate the provisioning of Oracle Database@Azure deployment. Use the same deployment to secondary site to minimize risk of human error.
+  potentialBenefits: Ensure a standardized deployment approach for Oracle workloads and reduce human error.
+  pgVerified: false
+  publishedToLearn: false
+  automationAvailable: no
+  tags: null
+  learnMoreLink:
+    - name: Configure Oracle-Managed Infrastructure Maintenance
+      url: "https://docs.oracle.com/en-us/iaas/exadatacloud/doc/exa-conf-oracle-man-infra.html"
