@@ -41,7 +41,7 @@
       url: "https://docs.oracle.com/en/database/oracle/oracle-database/21/haovw/oracle-maximum-availability-architecture-oracle-databaseazure.html#GUID-336D3305-EF7C-4C3A-A952-6C3338070127"
 
 
-- description: Implement a backup and restore strategy for Oracle databases to meet your workload's data protection requirements
+- description: Implement a backup strategy for Oracle databases to meet data protection and recovery requirements
   aprlGuid: 0583239a-dfb5-44d4-94db-804bfc8e3bd1
   recommendationTypeId: null
   recommendationControl: DisasterRecovery
@@ -117,8 +117,8 @@
   recommendationResourceType: Specialized.Workload/oracle
   recommendationMetadataState: Active
   longDescription: |
-    It is important to design an IP addressing scheme taking into consideration the current and future requirements of your Oracle workloads. This will help you to avoid IP address conflicts and ensure that your Oracle workloads are always available.
-    Primary, standby, client and backup subnets should be designed without overlapping IP CIDR ranges.
+    Design an IP addressing scheme considering current and future Oracle workload needs to prevent conflicts and ensure availability.
+    Primary, standby, client, and backup subnets should have non-overlapping CIDR ranges for reliable connectivity.
   potentialBenefits: Avoid conflicts in IP addressing.
   pgVerified: false
   automationAvailable: no
@@ -167,7 +167,7 @@
       url: "https://www.oracle.com/technical-resources/articles/smiley-fsfo.html
             https://docs.oracle.com/en/database/oracle/oracle-database/19/haovw/configure-and-deploy-oracle-data-guard.html#GUID-FA4AAC8F-EDA8-489F-9168-E83AE23B86F7"
 
-- description: When using customer-managed encryption keys with OKV as VMs in Azure, set up OKV cluster in a redundant manner.
+- description: When using customer-managed encryption keys with OKV, setup OKV cluster in a redundant manner.
   aprlGuid: bbe4014f-c49d-475d-9c48-76cb3c190483
   recommendationTypeId: null
   recommendationControl: HighAvailability
@@ -194,8 +194,8 @@
   recommendationResourceType: Specialized.Workload/oracle
   recommendationMetadataState: Active
   longDescription: |
-   Non-rolling maintenance incurs a full system downtime.
-    Automatic infrastructure maintenance occurs each quarter. Oracle will notify you of the exact date and time of your maintenance a few weeks in advance. You can change the automatically chosen date and time at any time before the maintenance starts.
+   Non-rolling maintenance incurs a downtime.
+    Automatic infrastructure maintenance occurs quarterly, with Oracle notifying you of the date and time weeks in advance. You can modify the scheduled date and time before maintenance starts.
   potentialBenefits: Keep Oracle workloads up-to-date.
   pgVerified: false
   automationAvailable: no
