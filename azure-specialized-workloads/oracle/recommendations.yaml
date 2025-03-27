@@ -7,10 +7,8 @@
   recommendationMetadataState: Active
   longDescription:
     Define a BCDR strategy based on the workload's RPO/RTO requirements.
-
     Oracle has set of best practices and reference architectures tailored to meet various workload RPO/RTO requirements. This framework is known as the Oracle Maximum Availability Architecture (MAA).
     By default, The Oracle Database@Azure solution follows a Silver level reference architecture. The primary database residing in ExaDB-D provides high availability, data protection, elasticity, and scalability benefits, however it is vulnerable to any AZ failure.
-
     Gold-level reference architectures with Oracle Database@Azure are recommended, meaning that database changes will be replicated via Data Guard to a secondary Oracle Database@Azure instance in a different availability zone within the same region.
     Data Guard can be configured using the Automated DG feature in the OCI Portal, and manual configuration is also possible.
   potentialBenefits: Ensure business continuity in case of zonal failure.
