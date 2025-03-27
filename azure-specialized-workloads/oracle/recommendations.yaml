@@ -16,9 +16,6 @@
   learnMoreLink:
     - name: Business continuity and disaster recovery considerations for Oracle Database@Azure
       url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-disaster-recovery-oracle-database-azure"
-    - name: Oracle Maximum Availability Architecture for Oracle Database@Azure
-      url: "https://docs.oracle.com/en/database/oracle/oracle-database/21/haovw/oracle-maximum-availability-architecture-oracle-databaseazure.html#GUID-336D3305-EF7C-4C3A-A952-6C3338070127"
-
 
 - description: Implement a regional replication strategy for Oracle to meet your workload requirements
   aprlGuid: dfeb9c7a-7dae-4751-9625-b23a7160a3e1
@@ -28,8 +25,7 @@
   recommendationResourceType: Specialized.Workload/oracle
   recommendationMetadataState: Active
   longDescription:
-    Gold-level reference architectures with Oracle Database@Azure are recommended, meaning that database changes will be replicated via Data Guard (ASYNC replication) to a secondary Oracle Database@Azure instance in a different region.
-    Regional replication is a key strategy to ensure business continuity and disaster recovery for your Oracle workloads in case of a regional failure.
+    Gold-level reference architecture with Oracle Database@Azure is recommended, meaning that database changes will be replicated via Data Guard (ASYNC replication) to a secondary Oracle Database@Azure instance in a different region.
   potentialBenefits: The cloud MAA architecture achieves data protection and DR.
   pgVerified: false
   automationAvailable: no
@@ -37,8 +33,6 @@
   learnMoreLink:
     - name: Business continuity and disaster recovery considerations for Oracle Database@Azure
       url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-disaster-recovery-oracle-database-azure"
-    - name: Oracle Maximum Availability Architecture for Oracle Database@Azure
-      url: "https://docs.oracle.com/en/database/oracle/oracle-database/21/haovw/oracle-maximum-availability-architecture-oracle-databaseazure.html#GUID-336D3305-EF7C-4C3A-A952-6C3338070127"
 
 
 - description: Implement a backup strategy for Oracle databases to meet data protection and recovery requirements
@@ -49,9 +43,7 @@
   recommendationResourceType: Specialized.Workload/oracle
   recommendationMetadataState: Active
   longDescription: |
-    Enable OCI-managed backup to Autonomous Recovery Service in Azure/OCI to ensure additional data protection.
-    Alternatively configure self-managed backup to Azure Storage services(Blob, Azure Files and ANF) for long term backups.
-    Oracle Recovery Manager (RMAN) validates database backups for any physical corruptions.
+    Enable OCI-managed backup to Autonomous Recovery Service in Azure/OCI for data protection. Alternatively, configure self-managed backup to Azure Storage services (Blob, Azure Files, ANF) for long-term backups. RMAN validates database backups for physical corruptions.
   potentialBenefits: Provide workload data protection.
   pgVerified: false
   automationAvailable: no
@@ -59,10 +51,7 @@
   learnMoreLink:
     - name: Business continuity and disaster recovery considerations for Oracle Database@Azure
       url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-disaster-recovery-oracle-database-azure"
-    - name: Learn about Oracle Maximum Availability Architecture for Oracle Database@Azure
-      url: "https://docs.oracle.com/en/solutions/oracle-maa-db-at-azure/#GUID-7723E2B1-9588-40BC-88BE-44637B1AF0D9"
-    - name: Manage Database Backup and Recovery on Oracle Exadata Database Service on Dedicated Infrastructure
-      url: "https://docs.oracle.com/en-us/iaas/exadatacloud/doc/ecs-managing-db-backup-and-recovery.html"
+
 
 - description: Document and test DR procedure ensure it meets RPO and RTO targets
   aprlGuid: a64ea6f4-8c6b-4b76-b152-4e862d19264d
@@ -81,8 +70,6 @@
   learnMoreLink:
     - name: Business continuity and disaster recovery considerations for Oracle Database@Azure
       url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-disaster-recovery-oracle-database-azure"
-    - name: Learn about Oracle Maximum Availability Architecture for Oracle Database@Azure
-      url: "https://docs.oracle.com/en/solutions/oracle-maa-db-at-azure/#GUID-7723E2B1-9588-40BC-88BE-44637B1AF0D9"
 
 
 - description: Scale up the VM cluster based on the workload requirement
@@ -101,10 +88,6 @@
   automationAvailable: no
   tags: [ORACLE]
   learnMoreLink:
-    - name: Capacity planning for Oracle Database@Azure
-      url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-capacity-planning-oracle-database-azure"
-    - name: Learn about Oracle Maximum Availability Architecture for Oracle Database@Azure
-      url: "https://docs.oracle.com/en/solutions/oracle-maa-db-at-azure/#GUID-7723E2B1-9588-40BC-88BE-44637B1AF0D9"
     - name: Learn about Manage and monitor Oracle Database@Azure
       url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-manage-monitor-oracle-database-azure"
 
@@ -124,8 +107,6 @@
   automationAvailable: no
   tags: [ORACLE]
   learnMoreLink:
-    - name: Plan for IP Address Space
-      url: "https://docs.oracle.com/en-us/iaas/Content/database-at-azure/oaa_ip.htm"
     - name: Capacity planning for Oracle Database@Azure
       url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-capacity-planning-oracle-database-azure"
 
@@ -163,9 +144,6 @@
   learnMoreLink:
     - name: Business continuity and disaster recovery considerations for Oracle Database@Azure
       url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-disaster-recovery-oracle-database-azure"
-    - name: Learn More about Fast Start Failover
-      url: "https://www.oracle.com/technical-resources/articles/smiley-fsfo.html
-            https://docs.oracle.com/en/database/oracle/oracle-database/19/haovw/configure-and-deploy-oracle-data-guard.html#GUID-FA4AAC8F-EDA8-489F-9168-E83AE23B86F7"
 
 - description: When using customer-managed encryption keys with OKV, setup OKV cluster in a redundant manner.
   aprlGuid: bbe4014f-c49d-475d-9c48-76cb3c190483
@@ -183,8 +161,6 @@
   learnMoreLink:
     - name: Security guidelines for Oracle Database@Azure
       url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-security-overview-odaa"
-    - name: Deploy Oracle Key Vault for Oracle Database@Azure
-      url: "https://docs.oracle.com/en/solutions/deploy-key-vault-database-at-azure/index.html#GUID-3C967419-6461-470C-AC86-07F419CDF967"
 
 - description: Ensure Oracle Database@Azure Infrastructure is updated in a rolling manner.
   aprlGuid: 02bfe908-d958-451a-a603-bef8277ae56a
@@ -213,7 +189,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Automate the provisioning of Oracle Database@Azure deployment. Use the same deployment to secondary site to minimize risk of human error.
-  potentialBenefits: Ensure a standardized deployment approach for Oracle workloads and reduce human error.
+  potentialBenefits: Standardize Oracle workload deployment to reduce human error.
   pgVerified: false
   automationAvailable: no
   tags: [ORACLE]
