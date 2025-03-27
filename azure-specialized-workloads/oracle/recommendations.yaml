@@ -1,7 +1,7 @@
 - description: Implement cross-AZ replication strategy for Oracle to meet your workload requirements
   aprlGuid: ccf0fece-27c7-4163-98ce-a1dd982d7f79
   recommendationTypeId: null
-  recommendationControl: Business Continuity
+  recommendationControl: BusinessContinuity
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/oracle
   recommendationMetadataState: Active
@@ -26,7 +26,7 @@
 - description: Implement a regional replication strategy for Oracle to meet your workload requirements
   aprlGuid: dfeb9c7a-7dae-4751-9625-b23a7160a3e1
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/oracle
   recommendationMetadataState: Active
@@ -52,7 +52,7 @@
 - description: Implement a backup and restore strategy for Oracle databases to meet your workload's data protection requirements
   aprlGuid: 0583239a-dfb5-44d4-94db-804bfc8e3bd1
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/oracle
   recommendationMetadataState: Active
@@ -76,7 +76,7 @@
 - description: Document and test DR procedure ensure it meets RPO and RTO targets
   aprlGuid: a64ea6f4-8c6b-4b76-b152-4e862d19264d
   recommendationTypeId: null
-  recommendationControl: Disaster Recovery
+  recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/oracle
   recommendationMetadataState: Active
@@ -125,7 +125,7 @@
 - description: Plan and implement IP addressing strategy to meet current and future requirements
   aprlGuid: 1bfdf86c-f501-4ad9-99a7-b29b736f34dc
   recommendationTypeId: null
-  recommendationControl: Other Best Practices
+  recommendationControl: OtherBestPractices
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/oracle
   recommendationMetadataState: Active
@@ -147,7 +147,7 @@
 - description: Only one ODAA delegated subnet must exist within the VNet
   aprlGuid: 76c9136c-642d-4ea3-a4f5-655f28d2ee07
   recommendationTypeId: null
-  recommendationControl: Other Best Practices
+  recommendationControl: OtherBestPractices
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/oracle
   recommendationMetadataState: Active
@@ -165,7 +165,7 @@
 - description: Deploy Data Guard observer in a redundant manner
   aprlGuid: 768a5b06-41d4-4f10-b544-fbd2f6999af4
   recommendationTypeId: null
-  recommendationControl: Business Continuity
+  recommendationControl: BusinessContinuity
   recommendationImpact: Medium
   recommendationResourceType: Specialized.Workload/oracle
   recommendationMetadataState: Active
@@ -186,7 +186,7 @@
 - description: When using customer-managed encryption keys with OKV as VMs in Azure, set up OKV cluster in a redundant manner.
   aprlGuid: bbe4014f-c49d-475d-9c48-76cb3c190483
   recommendationTypeId: null
-  recommendationControl: High Availability
+  recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/oracle
   recommendationMetadataState: Active
@@ -206,7 +206,7 @@
 - description: Ensure Oracle Database@Azure Infrastructure is updated in a rolling manner.
   aprlGuid: 02bfe908-d958-451a-a603-bef8277ae56a
   recommendationTypeId: null
-  recommendationControl: Other Best Practices
+  recommendationControl: OtherBestPractices
   recommendationImpact: High
   recommendationResourceType: Specialized.Workload/oracle
   recommendationMetadataState: Active
@@ -225,7 +225,7 @@
 - description: Use infrastructure as code (IaC) for more reliable Oracle Database@Azure deployment
   aprlGuid: 5d870898-97d7-437d-9ea9-d8ccced7e6fe
   recommendationTypeId: null
-  recommendationControl: Other Best Practices
+  recommendationControl: OtherBestPractices
   recommendationImpact: Medium
   recommendationResourceType: Specialized.Workload/oracle
   recommendationMetadataState: Active
