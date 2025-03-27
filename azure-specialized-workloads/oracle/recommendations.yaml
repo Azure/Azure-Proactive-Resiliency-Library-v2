@@ -6,11 +6,9 @@
   recommendationResourceType: Specialized.Workload/oracle
   recommendationMetadataState: Active
   longDescription:
-    Define a BCDR strategy based on the workload's RPO/RTO requirements.
-    Oracle has set of best practices and reference architectures tailored to meet various workload RPO/RTO requirements. This framework is known as the Oracle Maximum Availability Architecture (MAA).
-    By default, The Oracle Database@Azure solution follows a Silver level reference architecture. The primary database residing in ExaDB-D provides high availability, data protection, elasticity, and scalability benefits, however it is vulnerable to any AZ failure.
-    Gold-level reference architectures with Oracle Database@Azure are recommended, meaning that database changes will be replicated via Data Guard to a secondary Oracle Database@Azure instance in a different availability zone within the same region.
-    Data Guard can be configured using the Automated DG feature in the OCI Portal, and manual configuration is also possible.
+    Define a BCDR strategy based on workload RPO/RTO.
+    Oracle Database@Azure follows a Silver-level reference architecture that provides high availability by default however it is vulnerable to AZ failures.
+    Gold-level adds Data Guard replication across AZs via Automated DG or manual setup.
   potentialBenefits: Ensure business continuity in case of zonal failure.
   pgVerified: false
   automationAvailable: no
@@ -30,15 +28,10 @@
   recommendationResourceType: Specialized.Workload/oracle
   recommendationMetadataState: Active
   longDescription:
-    Define a BCDR strategy based on the workload's RPO/RTO requirements.
-    Oracle has set of best practices and reference architectures tailored to meet various workload RPO/RTO requirements. This framework is known as the Oracle Maximum Availability Architecture (MAA).
-    By default, The Oracle Database@Azure solution follows a Silver level reference architecture. The primary database residing in ExaDB-D provides high availability, data protection, elasticity, and scalability benefits, however it is vulnerable to any AZ failure.
     Gold-level reference architectures with Oracle Database@Azure are recommended, meaning that database changes will be replicated via Data Guard (ASYNC replication) to a secondary Oracle Database@Azure instance in a different region.
-    Data Guard can be configured using the Automated DG feature in the OCI Portal, and manual configuration is also possible.
     Regional replication is a key strategy to ensure business continuity and disaster recovery for your Oracle workloads in case of a regional failure.
   potentialBenefits: The cloud MAA architecture achieves data protection and DR.
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: no
   tags: [ORACLE]
   learnMoreLink:
@@ -56,12 +49,11 @@
   recommendationResourceType: Specialized.Workload/oracle
   recommendationMetadataState: Active
   longDescription: |
-    Enable OCI-managed backup to Autonomous Recovery Service in Azure/OCI or Object Storage Service in OCI to ensure additional data protection.
+    Enable OCI-managed backup to Autonomous Recovery Service in Azure/OCI to ensure additional data protection.
     Alternatively configure self-managed backup to Azure Storage services(Blob, Azure Files and ANF) for long term backups.
     Oracle Recovery Manager (RMAN) validates database backups for any physical corruptions.
   potentialBenefits: Provide workload data protection.
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: no
   tags: [ORACLE]
   learnMoreLink:
@@ -84,7 +76,6 @@
     Include configuration, failover mechanisms, and recovery steps. Test various failure scenarios to ensure the DR strategy meets RPO/RTO targets and provides seamless failover.
   potentialBenefits: Ensures robust DR architecture, meets RPO/RTO
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: no
   tags: [ORACLE]
   learnMoreLink:
@@ -102,14 +93,11 @@
   recommendationResourceType: Specialized.Workload/oracle
   recommendationMetadataState: Active
   longDescription: |
-    Oracle RAC is ideal for high-volume applications or consolidated environments where scalability and the ability to dynamically add or re-prioritize capacity across more than a single server are required. An individual database may have instances running on one or more nodes of a cluster. Similarly, a database service may be available on one or more database instances. Additional nodes, database instances, and database services can be provisioned online.
-    Monitor database metrics such as CPU utilization and memory usage using Azure Monitor. Set alerts for specific thresholds to trigger scaling decision when your workload reaches critical levels.
-    Auto-scaling is not available on ODAA Exadata Database Service.
-    Be mindful that the capacity of Vm cluster is deployed according to the workload requirements.
-    If scaling up is needed, scale up the number of OCPUs on the VM cluster, if there is capacity available on the Exa infra.
+    Monitor database metrics such as CPU utilization and memory usage with Azure Monitor, setting alerts for scaling decisions.
+    Auto-scaling isn't available on Oracle Exadata Database@Azure.
+    If needed, scale OCPUs on the VM cluster, if Exa infrastructure capacity allows.
   potentialBenefits: Meet workload scalability requirements.
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: no
   tags: [ORACLE]
   learnMoreLink:
@@ -133,7 +121,6 @@
     Primary, standby, client and backup subnets should be designed without overlapping IP CIDR ranges.
   potentialBenefits: Avoid conflicts in IP addressing.
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: no
   tags: [ORACLE]
   learnMoreLink:
@@ -154,7 +141,6 @@
     An Azure VNet must have only one ODAA delegated subnet. However other delegated subnets can exist for other services e.g. Azure NetApp Files.
   potentialBenefits: Avoid multiple ODAA delegated subnets within a VNet.
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: no
   tags: [ORACLE]
   learnMoreLink:
@@ -172,7 +158,6 @@
     Deploy Data Guard observer nodes in different AZs and make sure that an observer node will always stay up if anything happens to the Production deployment.
   potentialBenefits: Data Guard observer automates database failover.
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: no
   tags: [ORACLE]
   learnMoreLink:
@@ -193,7 +178,6 @@
     Provide redundancy for VMs used as OKV, note that this is only relevant if customer is using own keys and only if OCI vault is not used. A minimum 4-node OKV cluster deployment is recommended across two AZs or regions, aligned with the BCDR architecture.
   potentialBenefits: Protect access to keys in case of VM or AZ/region failure.
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: no
   tags: [ORACLE]
   learnMoreLink:
@@ -210,11 +194,10 @@
   recommendationResourceType: Specialized.Workload/oracle
   recommendationMetadataState: Active
   longDescription: |
-    You can select non-rolling maintenance to update database and storage servers in parallel. However, non-rolling maintenance incurs a full system downtime.
+   Non-rolling maintenance incurs a full system downtime.
     Automatic infrastructure maintenance occurs each quarter. Oracle will notify you of the exact date and time of your maintenance a few weeks in advance. You can change the automatically chosen date and time at any time before the maintenance starts.
   potentialBenefits: Keep Oracle workloads up-to-date.
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: no
   tags: [ORACLE]
   learnMoreLink:
@@ -232,7 +215,6 @@
     Automate the provisioning of Oracle Database@Azure deployment. Use the same deployment to secondary site to minimize risk of human error.
   potentialBenefits: Ensure a standardized deployment approach for Oracle workloads and reduce human error.
   pgVerified: false
-  publishedToLearn: false
   automationAvailable: no
   tags: [ORACLE]
   learnMoreLink:
