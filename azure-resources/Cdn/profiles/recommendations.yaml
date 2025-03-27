@@ -157,12 +157,12 @@
   recommendationControl: HighAvailability
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Cdn/profiles
-  recommendationMetadataState: Disabled
+  recommendationMetadataState: Active
   longDescription: |
     Front Door health probes help detect unavailable or unhealthy origins, directing traffic to alternate origins if needed.
   potentialBenefits: Reduces unnecessary origin traffic
   pgVerified: true
-  automationAvailable: true
+  automationAvailable: false
   tags: []
   learnMoreLink:
     - name: Health probes
