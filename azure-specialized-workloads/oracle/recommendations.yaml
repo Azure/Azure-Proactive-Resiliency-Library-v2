@@ -170,7 +170,7 @@
   recommendationResourceType: Specialized.Workload/oracle
   recommendationMetadataState: Active
   longDescription: |
-   Non-rolling maintenance incurs a downtime.
+    Non-rolling maintenance incurs a downtime.
     Automatic infrastructure maintenance occurs quarterly, with Oracle notifying you of the date and time weeks in advance. You can modify the scheduled date and time before maintenance starts.
   potentialBenefits: Keep Oracle workloads up-to-date.
   pgVerified: false
