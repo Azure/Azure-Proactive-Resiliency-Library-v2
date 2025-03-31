@@ -83,12 +83,30 @@
     - name: Set up staging environments in Azure App Service
       url: "https://learn.microsoft.com/azure/app-service-web/web-sites-staged-publishing"
 
-- description: Store configuration as app settings
+- description: Store configuration as app settings for Web Sites
   aprlGuid: 0b80b67c-afbe-4988-ad58-a85a146b681e
   recommendationTypeId: null
   recommendationControl: OtherBestPractices
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Web/sites
+  recommendationMetadataState: Active
+  longDescription: |
+    Use app settings for configuration and define them in Resource Manager templates or via PowerShell to facilitate part of an automated deployment/update process for improved reliability.
+  potentialBenefits: Enhanced reliability via automation
+  pgVerified: true
+  automationAvailable: true
+  tags: []
+  learnMoreLink:
+    - name: Configure web apps in Azure App Service
+      url: "https://learn.microsoft.com/azure/app-service-web/web-sites-configure"
+
+
+- description: Store configuration as app settings for Web Site Slots
+  aprlGuid: 0a535241-8dc4-4058-af03-f2fff0abad2a
+  recommendationTypeId: null
+  recommendationControl: OtherBestPractices
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Web/sites/slots
   recommendationMetadataState: Active
   longDescription: |
     Use app settings for configuration and define them in Resource Manager templates or via PowerShell to facilitate part of an automated deployment/update process for improved reliability.
