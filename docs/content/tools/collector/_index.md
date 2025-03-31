@@ -16,9 +16,6 @@ We are aware of an issue with Az.ResourceGraph PowerShell module 1.0.2 that caus
 When installing a new instance of the WARA module, it will automatically install the latest version of Az.ResourceGraph and Az.Accounts. If you are using the WARA module in an environment where you need a fresh install of the module and will be working in a non-commercial environment, please use `Install-PSResource WARA`. This will install the latest version of the WARA module with Az.Accounts 3.0.0 and Az.ResourceGraph 1.0.0. Please ensure that Az.ResourceGraph is not already installed in your environment. If it is, please uninstall it first using `Uninstall-Module Az.ResourceGraph`. You can then install the WARA module using `Install-PSResource WARA` and it will install the correct version of Az.ResourceGraph.
 {{< /hint >}}
 
-{{< hint type=note >}}
-{{< /hint >}}
-
 {{< hint type=important >}}
 These Azure Resource Graph queries only read ARM (Azure Resource Manager) data. They do not access or collect any keys, secrets, passwords, or other confidential information. The queries only gather information about how resources are deployed and configured. If you would like to learn more, you can explore the Azure Resource Graph Explorer and run some of the query examples provided in the Azure portal.
 {{< /hint >}}
