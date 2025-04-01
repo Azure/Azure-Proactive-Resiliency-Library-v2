@@ -5,8 +5,8 @@ Resources
 | join kind=inner
     (appserviceresources
     | where type == "microsoft.web/sites/config"
-    | extend AppSettings = iif(isempty(properties.AppSettings), true, false)
-    | where AppSettings == true
+    | extend AppSettings = iif(isempty(properties.AppSettings), false, true)
+    | where AppSettings == false
     | extend id = replace(@"/config/web$", "", id)
     ) on id
 | project recommendationID = "0a535241-8dc4-4058-af03-f2fff0abad2a", id, name, param1="AppSettings is not configured", properties
