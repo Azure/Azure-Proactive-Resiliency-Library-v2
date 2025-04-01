@@ -218,3 +218,71 @@
   learnMoreLink:
     - name: What do you recommend for handling potential application disruptions due to storage service maintenance events? | Microsoft Learn
       url: "https://learn.microsoft.com/azure/azure-netapp-files/faq-application-resilience#what-do-you-recommend-for-handling-potential-application-disruptions-due-to-storage-service-maintenance-events"
+      
+- description: Cool Access
+  aprlGuid: 8dad18fa-6b06-4f23-85c4-dc3d214cac8f
+  recommendationTypeId: null
+  recommendationControl: Optimization
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.NetApp/netAppAccounts
+  recommendationMetadataState: Active
+  longDescription: |
+    Azure NetApp Files with cool access allows you to have inactive data transparently tiered from Azure NetApp Files storage (the hot tier) to an Azure storage account (the cool tier). This option lets you free up storage that resides within Azure NetApp Files volumes by moving data blocks to the lower cost cool tier, resulting in overall cost savings.    
+  potentialBenefits: Cost Savings for workloads with infrequently accessed data and no latency requirements
+  pgVerified: false
+  automationAvailable: false
+  tags: []
+  learnMoreLink:
+    - name: Cool Access Introduction
+      url: "https://learn.microsoft.com/en-us/azure/azure-netapp-files/cool-access-introduction"
+      
+- description: Reserved Capacity
+  aprlGuid: c86b9562-cce4-4398-b0ad-0c8d3cc2f83b
+  recommendationTypeId: null
+  recommendationControl: Optimization
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.NetApp/netAppAccounts
+  recommendationMetadataState: Active
+  longDescription: |
+    Azure NetApp Files reservations, of 100 TiB or 1 PiB increments, provide cost savings and financial predictability and stability, allowing for more effective budgeting.   
+  potentialBenefits: up to 34% cost savings
+  pgVerified: false
+  automationAvailable: false
+  tags: []
+  learnMoreLink:
+    - name: Azure NetApp Files Reservations
+      url: "https://learn.microsoft.com/en-us/azure/azure-netapp-files/reservations"
+           
+- description: Customer Managed Keys
+  aprlGuid: d9871358-4c99-4fa1-99e0-377fd90dbf64
+  recommendationTypeId: null
+  recommendationControl: Security
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.NetApp/netAppAccounts
+  recommendationMetadataState: Active
+  longDescription: |
+    Azure NetApp Files volumes now support encryption with customer-managed keys and Azure Key Vault to enable an extra layer of security for data at rest.    
+  potentialBenefits: Manage your own encryption keys
+  pgVerified: false
+  automationAvailable: false
+  tags: []
+  learnMoreLink:
+    - name: Azure NetApp Files with Customer Managed Keys
+      url: "https://learn.microsoft.com/en-us/azure/azure-netapp-files/configure-customer-managed-keys"     
+      
+- description: AzAcSnap
+  aprlGuid: e184bf51-523c-4333-ab24-757dde3bf32f
+  recommendationTypeId: null
+  recommendationControl: HighAvailability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.NetApp/netAppAccounts
+  recommendationMetadataState: Active
+  longDescription: |
+   Azure Application Consistent Snapshot Tool (AzAcSnap) is a command-line tool that enables customers to simplify data protection for third-party databases in Linux environments.    
+  potentialBenefits: Point in time recovery point for Oracle, Db2, and SAP HANA databases
+  pgVerified: false
+  automationAvailable: false
+  tags: []
+  learnMoreLink:
+    - name: AzAcSnap Introduction
+      url: "https://learn.microsoft.com/en-us/azure/azure-netapp-files/azacsnap-introduction"
