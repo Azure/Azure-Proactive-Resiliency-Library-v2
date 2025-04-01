@@ -354,4 +354,21 @@
   tags: [SAP]
   learnMoreLink:
     - name: High-availability SAP NetWeaver with simple mount and NFS on SLES for SAP Applications VMs
-      url: "https://learn.microsoft.com/azure/sap/workloads/high-availability-guide-suse-nfs-simple-mount?tabs=lb-portal%2Censa1"
+      url: "https://learn.microsoft.com/azure/sap/workloads/high-availability-guide-suse-nfs-simple-mount?tabs=lb-portal%2Censa1"      
+
+- description: Utilize Azure NetApp Files to host SAP IaaS deployments
+  aprlGuid: bc2f72a5-2098-4a46-ae01-58b25069975c
+  recommendationTypeId: null
+  recommendationControl: Storage
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.NetApp/netAppAccounts
+  recommendationMetadataState: Active
+  longDescription: |
+    Azure NetApp Files offers high-performance, sub-millisecond latency for SAP. Certified for SAP HANA and supports AnyDB like Oracle, DB2, ASE, it's ideal for various SAP landscapes.
+  potentialBenefits: Azure NetApp Files provides on-demand scalability, allowing to adjust both performance and capacity as needed
+  pgVerified: false
+  automationAvailable: false
+  tags: [SAP]
+  learnMoreLink:
+    - name: ANF for SAP best practices 
+      url: "https://techcommunity.microsoft.com/t5/running-sap-applications-on-the/sap-on-azure-netapp-files-sizing-best-practices/ba-p/3895300"
