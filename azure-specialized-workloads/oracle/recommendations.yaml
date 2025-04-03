@@ -3,7 +3,7 @@
   recommendationTypeId: null
   recommendationControl: BusinessContinuity
   recommendationImpact: High
-  recommendationResourceType: Specialized.Workload/oracle
+  recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription:
     Define a BCDR strategy based on workload RPO/RTO.
@@ -22,7 +22,7 @@
   recommendationTypeId: null
   recommendationControl: DisasterRecovery
   recommendationImpact: High
-  recommendationResourceType: Specialized.Workload/oracle
+  recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription:
     Gold-level reference architecture with Oracle Database@Azure is recommended, meaning that database changes will be replicated via Data Guard (ASYNC replication) to a secondary Oracle Database@Azure instance in a different region.
@@ -40,7 +40,7 @@
   recommendationTypeId: null
   recommendationControl: DisasterRecovery
   recommendationImpact: High
-  recommendationResourceType: Specialized.Workload/oracle
+  recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription: |
     Enable OCI-managed backup to Autonomous Recovery Service in Azure/OCI for data protection. Alternatively, configure self-managed backup to Azure Storage services (Blob, Azure Files, ANF) for long-term backups. RMAN validates database backups for physical corruptions.
@@ -58,7 +58,7 @@
   recommendationTypeId: null
   recommendationControl: DisasterRecovery
   recommendationImpact: High
-  recommendationResourceType: Specialized.Workload/oracle
+  recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription: |
     Document DR procedures for Oracle Database@Azure and related applications.
@@ -77,7 +77,7 @@
   recommendationTypeId: null
   recommendationControl: Scalability
   recommendationImpact: Medium
-  recommendationResourceType: Specialized.Workload/oracle
+  recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription: |
     Monitor database metrics such as CPU utilization and memory usage with Azure Monitor, setting alerts for scaling decisions.
@@ -97,7 +97,7 @@
   recommendationTypeId: null
   recommendationControl: OtherBestPractices
   recommendationImpact: High
-  recommendationResourceType: Specialized.Workload/oracle
+  recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription: |
     Design an IP addressing scheme considering current and future Oracle workload needs to prevent conflicts and ensure availability.
@@ -116,7 +116,7 @@
   recommendationTypeId: null
   recommendationControl: OtherBestPractices
   recommendationImpact: High
-  recommendationResourceType: Specialized.Workload/oracle
+  recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription: |
     An Azure VNet must have only one ODAA delegated subnet. However other delegated subnets can exist for other services e.g. Azure NetApp Files.
@@ -133,7 +133,7 @@
   recommendationTypeId: null
   recommendationControl: BusinessContinuity
   recommendationImpact: Medium
-  recommendationResourceType: Specialized.Workload/oracle
+  recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription: |
     Deploy Data Guard observer nodes in different AZs and make sure that an observer node will always stay up if anything happens to the Production deployment.
@@ -150,7 +150,7 @@
   recommendationTypeId: null
   recommendationControl: HighAvailability
   recommendationImpact: High
-  recommendationResourceType: Specialized.Workload/oracle
+  recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription: |
     Provide redundancy for VMs used as OKV, note that this is only relevant if customer is using own keys and only if OCI vault is not used. A minimum 4-node OKV cluster deployment is recommended across two AZs or regions, aligned with the BCDR architecture.
@@ -167,7 +167,7 @@
   recommendationTypeId: null
   recommendationControl: OtherBestPractices
   recommendationImpact: High
-  recommendationResourceType: Specialized.Workload/oracle
+  recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription: |
     Non-rolling maintenance incurs a downtime.
@@ -185,7 +185,7 @@
   recommendationTypeId: null
   recommendationControl: OtherBestPractices
   recommendationImpact: Medium
-  recommendationResourceType: Specialized.Workload/oracle
+  recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription: |
     Automate the provisioning of Oracle Database@Azure deployment. Use the same deployment to secondary site to minimize risk of human error.
