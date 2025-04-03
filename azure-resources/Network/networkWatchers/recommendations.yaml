@@ -20,7 +20,7 @@
   recommendationTypeId: null
   recommendationControl: MonitoringAndAlerting
   recommendationImpact: Low
-  recommendationResourceType: Microsoft.Network/networkWatchers
+  recommendationResourceType: Microsoft.Network/networkWatchers/flowlogs
   recommendationMetadataState: Active
   longDescription: |
     Network security group flow logging is a feature of Azure Network Watcher that logs IP traffic info through a network security group. If in Failed state, monitoring data from the associated resource is not collected.
@@ -54,7 +54,7 @@
   recommendationTypeId: null
   recommendationControl: MonitoringAndAlerting
   recommendationImpact: Medium
-  recommendationResourceType: Microsoft.Network/networkWatchers
+  recommendationResourceType: Microsoft.Network/networkWatchers/flowlogs
   recommendationMetadataState: Active
   longDescription: |
     Improves monitoring, security and troubleshooting for Azure and Hybrid connectivity

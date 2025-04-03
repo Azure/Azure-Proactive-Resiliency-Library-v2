@@ -20,7 +20,7 @@
   recommendationTypeId: null
   recommendationControl: DisasterRecovery
   recommendationImpact: High
-  recommendationResourceType: Microsoft.RecoveryServices/vaults
+  recommendationResourceType: Microsoft.Compute/virtualMachines
   recommendationMetadataState: Active
   longDescription: |
     Perform a test failover to validate your BCDR strategy and ensure that your applications are functioning correctly in the target region without impacting your production environment. Test your Disaster Recovery plan periodically without any data loss or downtime, using test failovers.
