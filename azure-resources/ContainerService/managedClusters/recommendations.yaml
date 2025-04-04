@@ -120,7 +120,7 @@
 - description: Upgrade Persistent Volumes using in-tree drivers to Azure CSI drivers
   aprlGuid: b002c030-72e6-4a37-8217-1cb276c43169
   recommendationTypeId: null
-  recommendationControl: Governance
+  recommendationControl: OtherBestPractices
   recommendationImpact: High
   recommendationResourceType: Microsoft.ContainerService/managedClusters
   recommendationMetadataState: Active
@@ -222,7 +222,7 @@
 - description: Enable and remediate Azure Policies configured for AKS
   aprlGuid: 26ebaf1f-c70d-4ebd-8641-4b60a0ce0094
   recommendationTypeId: null
-  recommendationControl: Governance
+  recommendationControl: OtherBestPractices
   recommendationImpact: Low
   recommendationResourceType: Microsoft.ContainerService/managedClusters
   recommendationMetadataState: Active

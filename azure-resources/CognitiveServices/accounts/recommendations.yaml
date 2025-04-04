@@ -69,7 +69,7 @@
 - description: Ensure AOAI models are deployed using Data Zone Standard for data residency requirements
   aprlGuid: ac3add17-013e-41a5-af91-9fefce794a00
   recommendationTypeId: null
-  recommendationControl: Governance
+  recommendationControl: OtherBestPractices
   recommendationImpact: High
   recommendationResourceType: Microsoft.CognitiveServices/Accounts
   recommendationMetadataState: Active

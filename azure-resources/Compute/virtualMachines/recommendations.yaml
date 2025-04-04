@@ -154,7 +154,7 @@
 - description: When AccelNet is enabled, you must manually update the GuestOS NIC driver
   aprlGuid: 73d1bb04-7d3e-0d47-bc0d-63afe773b5fe
   recommendationTypeId: null
-  recommendationControl: Governance
+  recommendationControl: OtherBestPractices
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Compute/virtualMachines
   recommendationMetadataState: Active
