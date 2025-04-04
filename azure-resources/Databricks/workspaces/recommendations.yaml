@@ -1,7 +1,7 @@
 - description: Databricks runtime version is not latest or is not LTS version
   aprlGuid: 0e835cc2-2551-a247-b1f1-3c5f25c9cb70
   recommendationTypeId: null
-  recommendationControl: Governance
+  recommendationControl: OtherBestPractices
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Databricks/workspaces
   recommendationMetadataState: Active

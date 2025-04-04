@@ -52,7 +52,7 @@
 - description: Organize AVD resources using the AVD scale unit model described by the AVD landing zone methodology
   aprlGuid: 204b56b0-9710-4c16-b506-bafb5fb318ed
   recommendationTypeId: null
-  recommendationControl: Governance
+  recommendationControl: OtherBestPractices
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
@@ -189,7 +189,7 @@
 - description: Ensure AVD session hosts connect to control plane & allow UDP ports for RDP shortpath
   aprlGuid: e718ac1a-ebab-4f75-9e4a-1a5ccef20d1f
   recommendationTypeId: null
-  recommendationControl: Governance
+  recommendationControl: OtherBestPractices
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
@@ -275,7 +275,7 @@
 - description: Create updated image version and replace session hosts rather than updating host directly
   aprlGuid: 2831dab9-6a43-44a1-8aec-90a8e84894bc
   recommendationTypeId: null
-  recommendationControl: Governance
+  recommendationControl: OtherBestPractices
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
@@ -292,7 +292,7 @@
 - description: Ensure the standard FSLogix configuration is deployed
   aprlGuid: c15b2b73-52a1-4db2-88dd-d592424ff4e4
   recommendationTypeId: null
-  recommendationControl: Governance
+  recommendationControl: OtherBestPractices
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
@@ -343,7 +343,7 @@
 - description: Manually install FSLogix updates
   aprlGuid: d51e0a70-8b50-4be3-af8a-7c9065e47360
   recommendationTypeId: null
-  recommendationControl: Governance
+  recommendationControl: OtherBestPractices
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active

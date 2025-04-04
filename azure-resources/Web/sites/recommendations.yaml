@@ -69,7 +69,7 @@
 - description: Deploy to a staging slot
   aprlGuid: a1d91661-32d4-430b-b3b6-5adeb0975df7
   recommendationTypeId: null
-  recommendationControl: Governance
+  recommendationControl: OtherBestPractices
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Web/sites
   recommendationMetadataState: Active
@@ -189,7 +189,7 @@
 - description: Ensure unique hostid set for Function App
   aprlGuid: 0b06a688-0dd6-4d73-9f72-6666ff853ca9
   recommendationTypeId: null
-  recommendationControl: Governance
+  recommendationControl: OtherBestPractices
   recommendationImpact: Low
   recommendationResourceType: Microsoft.Web/sites
   recommendationMetadataState: Active
@@ -206,7 +206,7 @@
 - description: Ensure Function App runs a supported version
   aprlGuid: c9a278b7-024b-454b-bd54-41587c512b74
   recommendationTypeId: null
-  recommendationControl: Governance
+  recommendationControl: OtherBestPractices
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Web/sites
   recommendationMetadataState: Active
@@ -223,7 +223,7 @@
 - description: Ensure FUNCTIONS_WORKER_RUNTIME is set properly
   aprlGuid: 7c608f46-46b2-4cc0-bbd6-1d457c16671c
   recommendationTypeId: null
-  recommendationControl: Governance
+  recommendationControl: OtherBestPractices
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Web/sites
   recommendationMetadataState: Active
