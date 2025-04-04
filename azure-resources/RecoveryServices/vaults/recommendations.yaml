@@ -17,7 +17,7 @@
 
 - description: Validate VM functionality with a Site Recovery test failover to check performance at target
   aprlGuid: 17e877f7-3a89-4205-8a24-0670de54ddcd
-  recommendationTypeId: null
+  recommendationTypeId: 01c715f6-426a-47d3-87be-9f26e2ab2d8e
   recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.Compute/virtualMachines
