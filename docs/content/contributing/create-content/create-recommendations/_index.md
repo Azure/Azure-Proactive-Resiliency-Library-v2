@@ -97,7 +97,6 @@ Each recommendation should have _**one and only one**_ associated recommendation
 | ServiceUpgradAndRetirement | Addresses the planning and execution of system upgrades and the retirement of outdated services.                                                                                                                                   |
 |      OtherBestPractices      | Encompasses miscellaneous best practices that improve system resilience, efficiency, and security.                                                                                                                                 |
 |          Personalized          | Customized recommendations tailored to specific system requirements, configurations, or preferences.                                                                                                                               |
-|
 
 ## Writing a Meaningful Recommendation
 
