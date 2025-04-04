@@ -205,7 +205,7 @@
 - description: IP Forwarding should only be enabled for Network Virtual Appliances
   aprlGuid: 41a22a5e-5e08-9647-92d0-2ffe9ef1bdad
   recommendationTypeId: null
-  recommendationControl: Security
+  recommendationControl: OtherBestPractices
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Compute/virtualMachines
   recommendationMetadataState: Active
