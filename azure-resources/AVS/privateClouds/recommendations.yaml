@@ -154,7 +154,7 @@
 - description: Use key autorotation for vSAN datastore customer-managed keys
   aprlGuid: e0ac2f57-c8c0-4b8c-a7c8-19e5797828b5
   recommendationTypeId: null
-  recommendationControl: Security
+  recommendationControl: BusinessContinuity
   recommendationImpact: High
   recommendationResourceType: Microsoft.AVS/privateClouds
   recommendationMetadataState: Active
