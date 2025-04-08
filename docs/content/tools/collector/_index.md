@@ -86,6 +86,79 @@ Import-Module WARA
 Start-WARACollector -TenantID "00000000-0000-0000-0000-000000000000" -SubscriptionIds "/subscriptions/00000000-0000-0000-0000-000000000000"
 ```
 
+## Resource Filtering
+
+The filtering capabilities are designed for targeting specific Azure resources, enabling precise and flexible reliability assessments. The scope of the feature includes functionalities that allow users to define the scope and tags and criteria of their reliability checks using parameters or text files.
+
+### Order of operations
+
+1. Subscriptions
+    - Subscription scopes like `-SubscriptionIds "/subscriptions/00000000-0000-0000-0000-000000000000"` or `[subscriptionIds]`
+
+    `/subscriptions/11111111-1111-1111-1111-111111111111` in a configuration file always take explicit precedence over any smaller, more specific scope.
+
+1. Resource Groups
+    - These scopes can be used explicitly where you need to grab a resource group from a subscription but not evaluate the whole subscription.
+
+1. Tags
+    - When your resources have been explicitly scoped as above - the script will then further refine your results based on the tags provided to the script via parameters or configuration file.
+
+### Filtering Considerations
+
+- If you set a subscription filter for `subscription1` and you also set a resource group filter for `subscription1/resourcegroups/rg-demo1` your results will contain **all** of the resources in `subscription1`
+  - This is because we specified `subscription1` and so all of `subscription1` will be evaluated. If we only wanted to evaluate `subscription1/resourcegroups/rg-demo1` then we would include that resource group as a filter and not the full subscription.
+- If you set a subscription filter for `subscription2` and a resourcegroup filter for `subscription1/resourcegroups/rg-demo1` you will evaluate all of `subscription2` and only the resource group `rg-demo-1`.
+- Setting a subscription filter for `subscription3`, a resource group filter for `subscription1/resourcegroups/rg-demo1`, and a tag filter for `environment=~prod` will return only resources or those in resource groups tagged with `environment=~prod` within subscription3 and `subscription1/resourcegroups/rg-demo1`.
+
+### Tags Filtering
+
+The tag filtering feature can be broken into two distinct types:
+
+- `=~` Equals (non-case sensitive) to define your name/value pair values.
+- `!~` Not Equals (non-case sensitive) to define your name/value pair values.
+
+These tags can be further broken down into their `Key:Value` pairs and allow for the following logical operands:
+
+- `||` Or operations, when one or more TagName(s) could be equal to one or more TagValue(s).
+
+This separator to separate name/value pairs.
+
+- `,` to separate name/value pairs.
+
+This allows you to build logical tag filtering:
+
+- The following example shows where the tag name can be `App` or `Application` and the value attributed to these tag names must be `App1` or `App2`. In addition, a new entry acts as an `AND` operator. So the first line must be true, so must the second line where we state that the tag name can be `env` or `environment` and the value can be `prod` or `production`. Only when all of these criteria are met would a resource become included in the output file.
+
+In the configFile.txt the configuration looks like:
+
+```text
+[tags]
+App||Application=~App1||App2
+env||environment=~prod||production
+```
+
+In PowerShell command line the configuration looks like:
+
+```powershell
+-tags "App||Application=~App1||App2","env||environment=~prod||production""
+```
+
+- Our next example will demonstrate how we can filter using a `NOT` operator. This will return all resources in scope, except those that meet the requirements of `app` or `application` not equalling `App3`, `env` or `environment` not equalling `dev` or `qa`.
+
+In the configFile.txt the configuration looks like:
+
+```text
+[tags]
+App||Application!~App3
+env||environment!~dev||qa
+```
+
+In PowerShell command line the configuration looks like:
+
+```powershell
+-tags "App||Application!~App3","env||environment!~dev||qa""
+```
+
 ### Examples
 
 #### Run the collector against a specific subscription
