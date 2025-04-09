@@ -100,7 +100,6 @@
     - name: Configure web apps in Azure App Service
       url: "https://learn.microsoft.com/azure/app-service-web/web-sites-configure"
 
-
 - description: Store configuration as app settings for Web Site Slots
   aprlGuid: 0a535241-8dc4-4058-af03-f2fff0abad2a
   recommendationTypeId: null
