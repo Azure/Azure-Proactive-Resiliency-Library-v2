@@ -203,24 +203,6 @@
     - name: Learn More
       url: "https://learn.microsoft.com/azure/virtual-desktop/troubleshoot-rdp-shortpath"
 
-- description: Ensure secondary Entra ID connect synchronization server
-  aprlGuid: d984eaf9-0fa1-4f8d-a326-bda751993c6f
-  recommendationTypeId: null
-  recommendationControl: Security
-  recommendationImpact: Low
-  recommendationResourceType: Microsoft.Subscription/subscriptions
-  recommendationMetadataState: Active
-  longDescription: |
-    Hybrid - Entra ID Connect best to run in Azure but can be hosted on-prem. Secondary or more VMs should be setup in staging mode in event of failover.
-    Set up secondary server in staging mode for Entra Connect for syncing to Entra in case of primary server outage.
-  potentialBenefits: Improved failover reliability
-  pgVerified: true
-  automationAvailable: false
-  tags: [AVD]
-  learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-install-multiple-domains"
-
 - description: Ensure virtual networks have route tables/route server configured for all regions
   aprlGuid: db1727d1-5c8e-4a01-a31e-f0d58cfd95b1
   recommendationTypeId: null
@@ -305,23 +287,6 @@
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/fslogix/reference-configuration-settings?tabs=profiles"
-
-- description: Ensure user permissions are set correctly on FSLogix SMB shares
-  aprlGuid: 7b170ddd-5770-4945-9bc3-cd1ccf5f8672
-  recommendationTypeId: null
-  recommendationControl: Security
-  recommendationImpact: Medium
-  recommendationResourceType: Microsoft.Subscription/subscriptions
-  recommendationMetadataState: Active
-  longDescription: |
-    Verify user permissions are correctly set on SMB shares so that users have appropriate access to only their own profile and not other user profiles, while administrators have full access at the root volume. Also ensure secondary storage path permissions are set in case of a DR event.
-  potentialBenefits: Enhanced security & disaster recovery
-  pgVerified: true
-  automationAvailable: false
-  tags: [AVD]
-  learnMoreLink:
-    - name: Learn More
-      url: "https://learn.microsoft.com/fslogix/how-to-configure-storage-permissions"
 
 - description: Configure Diagnostic Settings on FSLogix storage and capture session hosts FSLogix events
   aprlGuid: 483f5a00-84a0-49f7-903b-ef6f1fc0c389
