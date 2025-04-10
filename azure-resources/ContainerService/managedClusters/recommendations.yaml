@@ -35,7 +35,7 @@
 - description: Disable local accounts
   aprlGuid: ca324d71-54b0-4a3e-b9e4-10e767daa9fc
   recommendationTypeId: null
-  recommendationControl: Security
+  recommendationControl: OtherBestPractices
   recommendationImpact: High
   recommendationResourceType: Microsoft.ContainerService/managedClusters
   recommendationMetadataState: Disabled

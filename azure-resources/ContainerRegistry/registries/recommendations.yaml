@@ -52,7 +52,7 @@
 - description: Use Repository namespaces
   aprlGuid: a5a0101a-a240-8742-90ba-81dbde9a0c0c
   recommendationTypeId: null
-  recommendationControl: Security
+  recommendationControl: OtherBestPractices
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.ContainerRegistry/registries
   recommendationMetadataState: Active
@@ -103,7 +103,7 @@
 - description: Disable anonymous pull access
   aprlGuid: 03f4a7d8-c5b4-7842-8e6e-14997a34842b
   recommendationTypeId: null
-  recommendationControl: Security
+  recommendationControl: OtherBestPractices
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.ContainerRegistry/registries
   recommendationMetadataState: Active
