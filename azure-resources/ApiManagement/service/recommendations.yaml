@@ -68,7 +68,7 @@
 
 - description: Configure API management service in multiple Azure regions
   aprlGuid: af4f88cb-35e8-4371-b29e-3a32b1d2f40a
-  recommendationTypeId: null
+  recommendationTypeId: 2e4d65a3-1e77-4759-bcaa-13009484a97e
   recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.ApiManagement/service
