@@ -18,7 +18,7 @@ recommendation:
   potentialBenefits: str(max=60)
   pgVerified: bool()
   automationAvailable: bool()
-  tags: list(enum('AI-GPT-RAG', 'AVD', 'AVS', 'HPC', 'SAP','WAF'))
+  tags: list(enum('AI-GPT-RAG', 'AVD', 'AVS', 'HPC', 'SAP','WAF','ORACLE'))
   learnMoreLink: list(include('linkItem'), required=False, max=1)
 
 linkItem:
