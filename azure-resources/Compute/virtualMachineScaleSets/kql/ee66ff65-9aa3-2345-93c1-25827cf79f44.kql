@@ -3,7 +3,7 @@
 resources
 | where type == "microsoft.compute/virtualmachinescalesets"
 | where isempty(tostring(tags['aks-managed-poolName']))
-| where isnotempty(sku)
+| where isnotempty(tostring(sku))
 | project name, id, tags
 | join kind=leftouter  (
     resources
