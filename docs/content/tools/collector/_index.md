@@ -160,6 +160,7 @@ In PowerShell command line the configuration looks like:
 ```
 
 ## Configuration File
+
 The configuration file is a text file that contains the parameters for the collector. The configuration file can be used to specify the subscriptions, resource groups, and tags to be included in the collector run.
 
 ### Example Configuration File
