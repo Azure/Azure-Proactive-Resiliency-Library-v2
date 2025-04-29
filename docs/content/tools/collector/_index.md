@@ -159,6 +159,28 @@ In PowerShell command line the configuration looks like:
 -tags "App||Application!~App3","env||environment!~dev||qa""
 ```
 
+## Configuration File
+
+The configuration file is a text file that contains the parameters for the collector. The configuration file can be used to specify the subscriptions, resource groups, and tags to be included in the collector run.
+
+### Example Configuration File
+
+```text
+[tenantId]
+tenantid
+
+[subscriptionIds]
+/subscriptions/<subid1>
+
+[resourcegroups]
+/subscriptions/<subid2>/resourceGroups/Demo1-RG
+/subscriptions/<subid2>/resourceGroups/Demo2-RG
+
+[tags]
+env=~prod
+application=~demoapp1
+```
+
 ### Examples
 
 #### Run the collector against a specific subscription
@@ -214,3 +236,11 @@ Start-WARACollector -ConfigFile "C:\path\to\config.txt"
 ```PowerShell
 Start-WARACollector -ConfigFile "C:\path\to\config.txt" -SAP -AVD -HPC -AVS -AI_GPT_RAG
 ```
+
+## Runbooks
+
+{{< hint type=important >}}
+Runbooks are an advanced feature designed for specific workload-aligned use cases. If you're not sure if you need runbooks, you probably don't. Before diving into runbooks, [try using the filtering feature to see if it meets your needs](#resource-filtering).
+{{< /hint >}}
+
+Learn more about using runbooks with the WARA collector script in the [runbooks docs](runbooks.md).
