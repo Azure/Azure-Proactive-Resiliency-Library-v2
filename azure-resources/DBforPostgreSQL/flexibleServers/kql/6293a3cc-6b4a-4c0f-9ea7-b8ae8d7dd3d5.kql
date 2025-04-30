@@ -1,1 +1,5 @@
-// cannot-be-validated-with-arg
+resources
+| where type =~ "Microsoft.DBforPostgreSQL/flexibleServers"
+| where properties.storage.type !~ "PremiumV2_LRS"
+| where properties.storage.autoGrow !~ "Enabled"
+| project recommendationId = "6293a3cc-6b4a-4c0f-9ea7-b8ae8d7dd3d5", name, id, tags, param1 = strcat("autoGrow: ", properties.storage.autoGrow)
