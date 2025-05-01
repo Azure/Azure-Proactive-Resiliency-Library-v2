@@ -1,5 +1,5 @@
 // Azure Resource Graph Query
-// Find VMSS instances associated with autoscale settings when autoscale is disabled
+// Find VMSS instances (excluding VMSS Flex associated with standalone VMs) associated with autoscale settings when autoscale is disabled
 resources
 | where type == "microsoft.compute/virtualmachinescalesets"
 | where isempty(tostring(tags['aks-managed-poolName']))
