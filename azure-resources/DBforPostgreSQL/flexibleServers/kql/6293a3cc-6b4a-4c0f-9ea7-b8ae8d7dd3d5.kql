@@ -1,3 +1,5 @@
+// Azure Resource Graph Query
+// Provides a list of Azure Database for PostgreSQL flexible server resources that do not configure auto-grow to enabled
 resources
 | where type =~ "Microsoft.DBforPostgreSQL/flexibleServers"
 | where properties.storage.type !~ "PremiumV2_LRS"
