@@ -1,4 +1,4 @@
-- description: Implement cross-AZ replication strategy for Oracle to meet your workload requirements
+- description: Implement Oracle Data Guard replication across availability zones(AZs) to meet your workload's BCDR requirements
   aprlGuid: ccf0fece-27c7-4163-98ce-a1dd982d7f79
   recommendationTypeId: null
   recommendationControl: BusinessContinuity
@@ -6,9 +6,9 @@
   recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription:
-    Define a BCDR strategy based on workload RPO/RTO.
     Oracle Database@Azure follows a Silver-level reference architecture that provides high availability by default however it is vulnerable to AZ failures.
     Gold-level adds Data Guard replication across AZs via Automated DG or manual setup.
+    Data Guard transport mode - Use SYNC for zero data loss, or ASYNC when performance is constrained and a near-zero RPO is acceptable.
   potentialBenefits: Ensure business continuity in case of zonal failure.
   pgVerified: false
   automationAvailable: no
@@ -26,7 +26,7 @@
   recommendationMetadataState: Active
   longDescription:
     Gold-level reference architecture with Oracle Database@Azure is recommended, meaning that database changes will be replicated via Data Guard (ASYNC replication) to a secondary Oracle Database@Azure instance in a different region.
-  potentialBenefits: The cloud MAA architecture achieves data protection and DR.
+  potentialBenefits: The cloud Maximum Availability Architecture achieves data protection and DR.
   pgVerified: false
   automationAvailable: no
   tags: [ORACLE]
@@ -35,7 +35,7 @@
       url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-disaster-recovery-oracle-database-azure"
 
 
-- description: Implement a backup strategy for Oracle databases to meet data protection and recovery requirements
+- description: Implement Autonomous Recovery Service in Azure for ODAA backup strategy
   aprlGuid: 0583239a-dfb5-44d4-94db-804bfc8e3bd1
   recommendationTypeId: null
   recommendationControl: DisasterRecovery
@@ -43,7 +43,8 @@
   recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription: |
-    Enable OCI-managed backup to Autonomous Recovery Service in Azure/OCI for data protection. Alternatively, configure self-managed backup to Azure Storage services (Blob, Azure Files, ANF) for long-term backups. RMAN validates database backups for physical corruptions.
+    Enable OCI-managed backup to Autonomous Recovery Service in Azure for data protection.
+    ARS provides automated, policy-based backups with continuous validation.
   potentialBenefits: Provide workload data protection.
   pgVerified: false
   automationAvailable: no
@@ -53,26 +54,7 @@
       url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-disaster-recovery-oracle-database-azure"
 
 
-- description: Document and test DR procedure ensure it meets RPO and RTO targets
-  aprlGuid: a64ea6f4-8c6b-4b76-b152-4e862d19264d
-  recommendationTypeId: null
-  recommendationControl: DisasterRecovery
-  recommendationImpact: High
-  recommendationResourceType: Microsoft.Subscription/subscriptions
-  recommendationMetadataState: Active
-  longDescription: |
-    Document DR procedures for Oracle Database@Azure and related applications.
-    Include configuration, failover mechanisms, and recovery steps. Test various failure scenarios to ensure the DR strategy meets RPO/RTO targets and provides seamless failover.
-  potentialBenefits: Ensures robust DR architecture, meets RPO/RTO
-  pgVerified: false
-  automationAvailable: no
-  tags: [ORACLE]
-  learnMoreLink:
-    - name: Business continuity and disaster recovery considerations for Oracle Database@Azure
-      url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-disaster-recovery-oracle-database-azure"
-
-
-- description: Scale up the VM cluster based on the workload requirement
+- description: Monitor critical Oracle Database metrics with defined thresholds and scale accordingly
   aprlGuid: 2322a597-a6af-4c3e-a1b1-d1b1ddead508
   recommendationTypeId: null
   recommendationControl: Scalability
@@ -96,7 +78,7 @@
   aprlGuid: 1bfdf86c-f501-4ad9-99a7-b29b736f34dc
   recommendationTypeId: null
   recommendationControl: OtherBestPractices
-  recommendationImpact: High
+  recommendationImpact: Medium
   recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription: |
@@ -111,32 +93,15 @@
       url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-capacity-planning-oracle-database-azure"
 
 
-- description: Only one ODAA delegated subnet must exist within the VNet
-  aprlGuid: 76c9136c-642d-4ea3-a4f5-655f28d2ee07
+- description: Deploy Data Guard observer in different Availability zones for high availability
+  aprlGuid: 768a5b06-41d4-4f10-b544-fbd2f6999af4
   recommendationTypeId: null
-  recommendationControl: OtherBestPractices
+  recommendationControl: BusinessContinuity
   recommendationImpact: High
   recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription: |
-    An Azure VNet must have only one ODAA delegated subnet. However other delegated subnets can exist for other services e.g. Azure NetApp Files.
-  potentialBenefits: Avoid multiple ODAA delegated subnets within a VNet.
-  pgVerified: false
-  automationAvailable: no
-  tags: [ORACLE]
-  learnMoreLink:
-    - name: Network Planning for Oracle Database@Azure
-      url: "https://learn.microsoft.com/en-us/azure/oracle/oracle-db/oracle-database-network-plan#constraints"
-
-- description: Deploy Data Guard observer in a redundant manner
-  aprlGuid: 768a5b06-41d4-4f10-b544-fbd2f6999af4
-  recommendationTypeId: null
-  recommendationControl: BusinessContinuity
-  recommendationImpact: Medium
-  recommendationResourceType: Microsoft.Subscription/subscriptions
-  recommendationMetadataState: Active
-  longDescription: |
-    Deploy Data Guard observer nodes in different AZs and make sure that an observer node will always stay up if anything happens to the Production deployment.
+    Deploy Data Guard observer nodes in different AZs and make sure that an observer node will remain available if anything happens to the Production deployment.
   potentialBenefits: Data Guard observer automates database failover.
   pgVerified: false
   automationAvailable: no
@@ -145,7 +110,7 @@
     - name: Business continuity and disaster recovery considerations for Oracle Database@Azure
       url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-disaster-recovery-oracle-database-azure"
 
-- description: When using customer-managed encryption keys with OKV, setup OKV cluster in a redundant manner.
+- description: When using customer-managed encryption keys with Oracle Key Vault, setup Oracle Key Vault cluster in a highly available cluster configuration.
   aprlGuid: bbe4014f-c49d-475d-9c48-76cb3c190483
   recommendationTypeId: null
   recommendationControl: HighAvailability
@@ -173,23 +138,6 @@
     Non-rolling maintenance incurs a downtime.
     Automatic infrastructure maintenance occurs quarterly, with Oracle notifying you of the date and time weeks in advance. You can modify the scheduled date and time before maintenance starts.
   potentialBenefits: Keep Oracle workloads up-to-date.
-  pgVerified: false
-  automationAvailable: no
-  tags: [ORACLE]
-  learnMoreLink:
-    - name: Configure Oracle-Managed Infrastructure Maintenance
-      url: "https://docs.oracle.com/en-us/iaas/exadatacloud/doc/exa-conf-oracle-man-infra.html"
-
-- description: Use infrastructure as code (IaC) for more reliable Oracle Database@Azure deployment
-  aprlGuid: 5d870898-97d7-437d-9ea9-d8ccced7e6fe
-  recommendationTypeId: null
-  recommendationControl: OtherBestPractices
-  recommendationImpact: Medium
-  recommendationResourceType: Microsoft.Subscription/subscriptions
-  recommendationMetadataState: Active
-  longDescription: |
-    Automate the provisioning of Oracle Database@Azure deployment. Use the same deployment to secondary site to minimize risk of human error.
-  potentialBenefits: Standardize Oracle deployments to minimize human error
   pgVerified: false
   automationAvailable: no
   tags: [ORACLE]
