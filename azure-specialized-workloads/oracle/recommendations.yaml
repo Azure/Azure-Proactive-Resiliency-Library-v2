@@ -1,4 +1,4 @@
-- description: Implement Oracle Data Guard replication across availability zones(AZs) to meet your workload's BCDR requirements
+- description: Implement Oracle Data Guard replication across availability zones
   aprlGuid: ccf0fece-27c7-4163-98ce-a1dd982d7f79
   recommendationTypeId: null
   recommendationControl: BusinessContinuity
@@ -6,9 +6,9 @@
   recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription:
-    Oracle Database@Azure follows a Silver-level reference architecture that provides high availability by default however it is vulnerable to AZ failures.
+    Oracle Database@Azure follows a Silver-level reference architecture that provides HA by default however it is vulnerable to AZ failures.
     Gold-level adds Data Guard replication across AZs via Automated DG or manual setup.
-    Data Guard transport mode - Use SYNC for zero data loss, or ASYNC when performance is constrained and a near-zero RPO is acceptable.
+    Use SYNC for zero data loss or ASYNC when performance is constrained.
   potentialBenefits: Ensure business continuity in case of zonal failure.
   pgVerified: false
   automationAvailable: no
@@ -26,7 +26,7 @@
   recommendationMetadataState: Active
   longDescription:
     Gold-level reference architecture with Oracle Database@Azure is recommended, meaning that database changes will be replicated via Data Guard (ASYNC replication) to a secondary Oracle Database@Azure instance in a different region.
-  potentialBenefits: The cloud Maximum Availability Architecture achieves data protection and DR.
+  potentialBenefits: The cloud MAA architecture achieves data protection and DR.
   pgVerified: false
   automationAvailable: no
   tags: [ORACLE]
@@ -110,7 +110,7 @@
     - name: Business continuity and disaster recovery considerations for Oracle Database@Azure
       url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-disaster-recovery-oracle-database-azure"
 
-- description: When using customer-managed encryption keys with Oracle Key Vault, setup Oracle Key Vault cluster in a highly available cluster configuration.
+- description: Set up Oracle Key Vault in a highly available cluster for customer-managed encryption keys.
   aprlGuid: bbe4014f-c49d-475d-9c48-76cb3c190483
   recommendationTypeId: null
   recommendationControl: HighAvailability
