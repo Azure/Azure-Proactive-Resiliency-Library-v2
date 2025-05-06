@@ -137,7 +137,7 @@
 - description: Upgrade VMSS Image versions scheduled to be deprecated or already retired
   aprlGuid: 83d61669-7bd6-9642-a305-175db8adcdf4
   recommendationTypeId: 3b739bd1-c193-4bb6-a953-1362ee3b03b2
-  recommendationControl: Governance
+  recommendationControl: OtherBestPractices
   recommendationImpact: High
   recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
   recommendationMetadataState: Active

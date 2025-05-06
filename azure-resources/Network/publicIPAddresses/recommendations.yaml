@@ -48,20 +48,3 @@
   learnMoreLink:
     - name: Upgrading a basic public IP address to Standard SKU - Guidance
       url: "https://learn.microsoft.com/azure/virtual-network/ip-services/public-ip-basic-upgrade-guidance"
-
-- description: Public IP addresses should have DDoS protection enabled
-  aprlGuid: c4254c66-b8a5-47aa-82f6-e7d7fb418f47
-  recommendationTypeId: null
-  recommendationControl: Security
-  recommendationImpact: Medium
-  recommendationResourceType: Microsoft.Network/publicIPAddresses
-  recommendationMetadataState: Active
-  longDescription: |
-    DDoS attacks can be targeted at any endpoint that is publicly reachable through the internet.
-  potentialBenefits: Avoids service disruption
-  pgVerified: true
-  automationAvailable: true
-  tags: []
-  learnMoreLink:
-    - name: Azure DDoS Protection
-      url: "https://learn.microsoft.com/azure/ddos-protection/ddos-protection-overview"

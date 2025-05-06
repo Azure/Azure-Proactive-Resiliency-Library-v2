@@ -37,7 +37,7 @@
   recommendationTypeId: 807e58d0-e385-41ad-987b-4a4b3e3fb563
   recommendationControl: HighAvailability
   recommendationImpact: High
-  recommendationResourceType: Microsoft.Sql/servers
+  recommendationResourceType: Microsoft.Sql/servers/databases
   recommendationMetadataState: Active
   longDescription: |
     By default, Azure SQL Database premium tier provisions multiple copies within the same region. For geo redundancy, databases can be set as Zone Redundant, distributing copies across Azure Availability Zones to maintain availability during regional outages.
@@ -54,7 +54,7 @@
   recommendationTypeId: null
   recommendationControl: HighAvailability
   recommendationImpact: High
-  recommendationResourceType: Microsoft.Sql/servers
+  recommendationResourceType: Microsoft.Sql/servers/databases
   recommendationMetadataState: Disabled
   longDescription: |
     During transient failures, the application should handle connection retries effectively with Azure SQL Database. No Database layer configuration is needed; instead, the application must be set up for graceful retrying.
@@ -71,7 +71,7 @@
   recommendationTypeId: null
   recommendationControl: MonitoringAndAlerting
   recommendationImpact: High
-  recommendationResourceType: Microsoft.Sql/servers
+  recommendationResourceType: Microsoft.Sql/servers/databases
   recommendationMetadataState: Active
   longDescription: |
     Monitoring and alerting are an important part of database operations. When working with Azure SQL Database, make use of Azure Monitor and SQL Insights to ensure that you capture relevant database metrics.

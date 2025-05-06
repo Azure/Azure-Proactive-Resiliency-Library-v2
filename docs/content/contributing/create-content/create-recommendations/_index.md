@@ -69,7 +69,7 @@ The YAML structure for adding new recommendations consists of several key-value 
 | description | Monitor Batch Account quota | String | Less than 100 characters | Summarization of your recommendation |
 | aprlGuid | 3464854d-6f75-4922-95e4-a2a308b53ce6 | String | 32-character hexadecimal string | The unique identifier for the recommendation in the context of APRL and CXObserve. Generate a [GUID](https://guidgenerator.com/online-guid-generator.aspx) for each new recommendation |
 | recommendationTypeId | 3464854d-6f75-4922-95e4-a2a308b53ce6 | String | `null` until updated by the Azure Advisor team | The unique identifier for the recommendation in the context of Advisor. |
-| recommendationControl | Monitoring and Alerting | String | [HighAvailability, BusinessContinuity, DisasterRecovery, Scalability, MonitoringAndAlerting, ServiceUpgradeAnd Retirement, OtherBestPractices, Personalized, Governance, Security](#recommendation-categories) | Resiliency category associated with the recommendation |
+| recommendationControl | Monitoring and Alerting | String | [HighAvailability, BusinessContinuity, DisasterRecovery, Scalability, MonitoringAndAlerting, ServiceUpgradeAnd Retirement, OtherBestPractices, Personalized](#recommendation-categories) | Resiliency category associated with the recommendation |
 | recommendationImpact | Medium | String | Low, Medium, High | Importance of adopting the recommendation and/or the risk of choosing not to adopt |
 | recommendationResourceType | Microsoft.Storage/storageAccounts | String | Align with the resource type | Friendly name to identity resource type |
 | recommendationMetadataState | Active | String | Active, Disabled | Indicates whether the recommendation is visible |
@@ -97,7 +97,6 @@ Each recommendation should have _**one and only one**_ associated recommendation
 | ServiceUpgradAndRetirement | Addresses the planning and execution of system upgrades and the retirement of outdated services.                                                                                                                                   |
 |      OtherBestPractices      | Encompasses miscellaneous best practices that improve system resilience, efficiency, and security.                                                                                                                                 |
 |          Personalized          | Customized recommendations tailored to specific system requirements, configurations, or preferences.                                                                                                                               |
-|           Governance           | Involves policies, procedures, and oversight for IT resource utilization. Ensures adherence to legal, regulatory, and compatibility requirements, while guiding overall system management. (Includes Compliance and Compatibility) |
 
 ## Writing a Meaningful Recommendation
 

@@ -1,7 +1,7 @@
 // Azure Resource Graph Query
-// Provides a list of Azure App Service resources that don't have App Settings configured
+// Provides a list of Azure App Service Slot resources that don't have App Settings configured
 Resources
-| where type =~ 'microsoft.web/sites'
+| where type =~ 'microsoft.web/sites/slots'
 | join kind=inner
     (appserviceresources
     | where type == "microsoft.web/sites/config"
@@ -9,5 +9,5 @@ Resources
     | where AppSettings == false
     | extend id = replace(@"/config/web$", "", id)
     ) on id
-| project recommendationID = "0b80b67c-afbe-4988-ad58-a85a146b681e", id, name, param1="AppSettings is not configured"
+| project recommendationID = "0a535241-8dc4-4058-af03-f2fff0abad2a", id, name, param1="AppSettings is not configured", properties
 

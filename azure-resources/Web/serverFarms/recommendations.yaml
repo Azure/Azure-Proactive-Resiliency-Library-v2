@@ -52,7 +52,7 @@
 - description: Create separate App Service plans for production and test
   aprlGuid: dbe3fd66-fb2a-9d46-b162-1791e21da236
   recommendationTypeId: null
-  recommendationControl: Governance
+  recommendationControl: OtherBestPractices
   recommendationImpact: High
   recommendationResourceType: Microsoft.Web/serverFarms
   recommendationMetadataState: Active
