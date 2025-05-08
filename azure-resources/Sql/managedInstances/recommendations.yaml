@@ -49,7 +49,7 @@
     - name: Connection types
       url: "https://learn.microsoft.com/azure/azure-sql/managed-instance/connection-types-overview?view=azuresql#connection-types"
 
-- description: Configure a secondary instance and a Failover group to enable failover to another region
+- description: Enable cross region disaster recovery for SQL Managed Instance
   aprlGuid: 257cd903-700f-4a79-bd37-7dce2b511df4
   recommendationTypeId: null
   recommendationControl: DisasterRecovery
@@ -57,14 +57,14 @@
   recommendationResourceType: Microsoft.Sql/managedInstances
   recommendationMetadataState: Active
   longDescription: |
-    During an outage on the managed instance, use the failover group to switch all databases to a secondary region, either manually or automatically. Route connections to the failover group’s listener instead of the primary instance to avoid changing the connection string after geo-failover.
-  potentialBenefits: Ensure seamless service with cross-region failover
+    Consider deploying a failover group for your SQL Managed Instance to enable business continuity in different Azure region in case of regional outage.
+  potentialBenefits: Enabling disaster recovery creates a continuously synchronized readable secondary managed instance for a primary managed instance.
   pgVerified: false
   automationAvailable: false
   tags: []
   learnMoreLink:
     - name: Failover groups overview and best practices
-      url: "https://learn.microsoft.com/azure/azure-sql/managed-instance/failover-group-sql-mi?view=azuresql"
+      url: "https://aka.ms/instanceFailoverGroups"
 
 - description: Monitor your Azure SQL MI Managed Instance in near-real time to detect reliability incidents
   aprlGuid: c9afeb1e-e706-4809-be4e-75d9fac708f2
