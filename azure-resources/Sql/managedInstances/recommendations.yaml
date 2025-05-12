@@ -58,12 +58,12 @@
   recommendationMetadataState: Active
   longDescription: |
     Consider deploying a failover group for your SQL Managed Instance to enable business continuity in a different Azure region in case of regional outage.
-  potentialBenefits: Enabling disaster recovery creates a continuously synchronized read-only secondary managed instance to support the primary instance.
+  potentialBenefits: Ensure business continuity through regional redundancy.
   pgVerified: false
   automationAvailable: false
   tags: []
   learnMoreLink:
-    - name: Failover groups overview and best practices
+    - name: Learn more
       url: "https://aka.ms/instanceFailoverGroups"
 
 - description: Monitor your Azure SQL MI Managed Instance in near-real time to detect reliability incidents
