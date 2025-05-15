@@ -15,7 +15,7 @@
   tags: [ORACLE]
   learnMoreLink:
     - name: Business continuity and disaster recovery considerations for Oracle Database@Azure
-      url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-disaster-recovery-oracle-database-azure"
+      url: "https://learn.microsoft.com/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-disaster-recovery-oracle-database-azure"
 
 - description: Implement a regional replication strategy for Oracle to meet your workload requirements
   aprlGuid: dfeb9c7a-7dae-4751-9625-b23a7160a3e1
@@ -32,8 +32,7 @@
   tags: [ORACLE]
   learnMoreLink:
     - name: Business continuity and disaster recovery considerations for Oracle Database@Azure
-      url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-disaster-recovery-oracle-database-azure"
-
+      url: "https://learn.microsoft.com/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-disaster-recovery-oracle-database-azure"
 
 - description: Implement Autonomous Recovery Service in Azure for ODAA backup strategy
   aprlGuid: 0583239a-dfb5-44d4-94db-804bfc8e3bd1
@@ -51,8 +50,7 @@
   tags: [ORACLE]
   learnMoreLink:
     - name: Business continuity and disaster recovery considerations for Oracle Database@Azure
-      url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-disaster-recovery-oracle-database-azure"
-
+      url: "https://learn.microsoft.com/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-disaster-recovery-oracle-database-azure"
 
 - description: Monitor critical Oracle Database metrics with defined thresholds and scale accordingly
   aprlGuid: 2322a597-a6af-4c3e-a1b1-d1b1ddead508
@@ -71,8 +69,7 @@
   tags: [ORACLE]
   learnMoreLink:
     - name: Learn about Manage and monitor Oracle Database@Azure
-      url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-manage-monitor-oracle-database-azure"
-
+      url: "https://learn.microsoft.com/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-manage-monitor-oracle-database-azure"
 
 - description: Plan and implement IP addressing strategy to meet current and future requirements
   aprlGuid: 1bfdf86c-f501-4ad9-99a7-b29b736f34dc
@@ -90,8 +87,7 @@
   tags: [ORACLE]
   learnMoreLink:
     - name: Capacity planning for Oracle Database@Azure
-      url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-capacity-planning-oracle-database-azure"
-
+      url: "https://learn.microsoft.com/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-capacity-planning-oracle-database-azure"
 
 - description: Deploy Data Guard observer in different Availability zones for high availability
   aprlGuid: 768a5b06-41d4-4f10-b544-fbd2f6999af4
@@ -108,7 +104,7 @@
   tags: [ORACLE]
   learnMoreLink:
     - name: Business continuity and disaster recovery considerations for Oracle Database@Azure
-      url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-disaster-recovery-oracle-database-azure"
+      url: "https://learn.microsoft.com/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-disaster-recovery-oracle-database-azure"
 
 - description: Set up Oracle Key Vault in a highly available cluster for customer-managed encryption keys.
   aprlGuid: bbe4014f-c49d-475d-9c48-76cb3c190483
@@ -125,7 +121,7 @@
   tags: [ORACLE]
   learnMoreLink:
     - name: Security guidelines for Oracle Database@Azure
-      url: "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-security-overview-odaa"
+      url: "https://learn.microsoft.com/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-security-overview-odaa"
 
 - description: Ensure Oracle Database@Azure Infrastructure is updated in a rolling manner.
   aprlGuid: 02bfe908-d958-451a-a603-bef8277ae56a
