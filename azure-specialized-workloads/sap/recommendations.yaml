@@ -34,7 +34,7 @@
 
 - description: If using single-instance VMs all OS and data disks must be Premium SSD or Ultra Disk
   aprlGuid: b60ae773-9917-4bca-8a42-7cb45365a917
-  recommendationTypeId: 58d6648d-32e8-4346-827c-4f288dd8ca24
+  recommendationTypeId: 2b5cf6e5-2792-49b2-9ec0-0e901be6488b
   recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Subscription/subscriptions

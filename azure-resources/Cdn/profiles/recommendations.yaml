@@ -1,20 +1,3 @@
-- description: Restrict traffic to your origins
-  aprlGuid: 6c40b7ae-2bea-5748-be1a-9e9e3b834649
-  recommendationTypeId: null
-  recommendationControl: Security
-  recommendationImpact: High
-  recommendationResourceType: Microsoft.Cdn/profiles
-  recommendationMetadataState: Active
-  longDescription: |
-    Front Door's features perform optimally when traffic exclusively comes through Front Door. It's advised to set up your origin to deny access to traffic that bypasses Front Door.
-  potentialBenefits: Enhances security and performance
-  pgVerified: true
-  automationAvailable: false
-  tags: []
-  learnMoreLink:
-    - name: Secure traffic to Azure Front Door origins
-      url: "https://learn.microsoft.com/azure/frontdoor/origin-security?tabs=app-service-functions&pivots=front-door-standard-premium"
-
 - description: Use the latest API version and SDK version
   aprlGuid: 52bc9a7b-23c8-bc4c-9d2a-7bc43b50104a
   recommendationTypeId: null
@@ -156,7 +139,7 @@
   recommendationTypeId: null
   recommendationControl: HighAvailability
   recommendationImpact: Low
-  recommendationResourceType: Microsoft.Cdn/profiles
+  recommendationResourceType: Microsoft.Cdn/profiles/originGroups
   recommendationMetadataState: Active
   longDescription: |
     Front Door health probes help detect unavailable or unhealthy origins, directing traffic to alternate origins if needed.
@@ -252,3 +235,20 @@
   learnMoreLink:
     - name: Compare pricing between Azure Front Door tiers
       url: "https://learn.microsoft.com/azure/frontdoor/understanding-pricing"
+
+- description: Monitor Web Application Firewall
+  aprlGuid: 5357ae22-0f52-1a49-9fd4-1f00ace6add0
+  recommendationTypeId: null
+  recommendationControl: MonitoringAndAlerting
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.Cdn/profiles
+  recommendationMetadataState: Active
+  longDescription: |
+    Monitoring the health of your Web Application Firewall and the applications it protects is crucial. This can be achieved through integration with Microsoft Defender for Cloud, Azure Monitor, and Azure Monitor logs, ensuring optimal performance and security.
+  potentialBenefits: Enhanced security and health insight
+  pgVerified: false
+  automationAvailable: false
+  tags: []
+  learnMoreLink:
+    - name: WAF monitoring
+      url: "https://learn.microsoft.com/azure/web-application-firewall/afds/afds-overview#monitoring"

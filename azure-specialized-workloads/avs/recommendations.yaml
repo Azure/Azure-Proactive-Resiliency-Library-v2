@@ -18,7 +18,7 @@
 - description: Integrate LDAPS Identity with dual sources for enhanced NSX and vCenter security
   aprlGuid: c2794660-ffd7-4da3-96ba-5d546b70b1c6
   recommendationTypeId: null
-  recommendationControl: Security
+  recommendationControl: BusinessContinuity
   recommendationImpact: High
   recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active

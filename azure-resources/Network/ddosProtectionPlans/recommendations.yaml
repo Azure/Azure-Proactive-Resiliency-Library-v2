@@ -1,7 +1,7 @@
 - description: Monitor Azure DDoS Protection Plan metrics
   aprlGuid: ae054bf2-aefa-cf4a-8282-741194cef8da
   recommendationTypeId: null
-  recommendationControl: Security
+  recommendationControl: MonitoringAndAlerting
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/ddosProtectionPlans
   recommendationMetadataState: Active

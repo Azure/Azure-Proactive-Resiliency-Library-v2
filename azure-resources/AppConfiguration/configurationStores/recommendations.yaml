@@ -1,7 +1,7 @@
 - description: Enable Purge protection for Azure App Configuration
   aprlGuid: bb4c8db4-f821-475b-b1ea-16e95358665e
   recommendationTypeId: null
-  recommendationControl: Governance
+  recommendationControl: OtherBestPractices
   recommendationImpact: Low
   recommendationResourceType: Microsoft.AppConfiguration/configurationStores
   recommendationMetadataState: Active
