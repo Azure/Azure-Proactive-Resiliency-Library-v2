@@ -1,11 +1,15 @@
 // Azure Resource Graph Query
 // This Resource Graph query will return all Azure NetApp Files volumes without cross-zone replication.
-resources
-| where type == "microsoft.netapp/netappaccounts/capacitypools/volumes"
-| where location in~ ("australiaeast", "brazilsouth", "canadacentral", "centralindia", "centralus", "eastasia", "eastus", "eastus2", "francecentral", "germanywestcentral", "israelcentral", "italynorth", "japaneast", "japanwest", "koreacentral", "mexicocentral", "newzealandnorth", "northeurope", "norwayeast", "polandcentral", "qatarcentral", "southafricanorth", "southcentralus", "southeastasia", "spaincentral", "swedencentral", "switzerlandnorth", "uaenorth", "uksouth", "westeurope", "westus2", "westus3", "usgovvirginia", "chinanorth3")
-| extend remoteVolumeRegion = properties.dataProtection.replication.remoteVolumeRegion
-| extend volumeType = properties.volumeType
-| extend replicationType = iff((remoteVolumeRegion == location), "CZR", iff((remoteVolumeRegion == ""),"n/a","CRR"))
-| where replicationType != "CZR" and volumeType != "DataProtection"
-| project recommendationId = "e3d742e1-dacd-9b48-b6b1-510ec9f87c96", name, id, tags
+advisorresources
+| where properties.recommendationTypeId =~ '7a48f43e-8615-4ce0-8039-83b9d24f945a' // RecommendationID from Advisor
+| mv-expand resId = properties.resourceMetadata.resourceId
+| extend resId = tostring(resId)
+| project recId = properties.recommendationTypeId, resId
+| join kind=leftouter (
+    resources
+    | extend id = tostring(id)
+    | project id, name, tags, location, properties
+) on $left.resId == $right.id
+| project recommendationId = "e3d742e1-dacd-9b48-b6b1-510ec9f87c96", name , id = resId, tags
+
 

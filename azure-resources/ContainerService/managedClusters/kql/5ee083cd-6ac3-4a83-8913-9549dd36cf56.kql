@@ -12,7 +12,7 @@ resources
 | where hasCriticalAddonsOnly
 | project
     recommendationId="5ee083cd-6ac3-4a83-8913-9549dd36cf56",
-    id,
     name,
+    id,
     tags,
     param1=strcat("nodepoolName: ", nodePool)

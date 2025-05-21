@@ -34,7 +34,7 @@
 
 - description: Configure geo redundant backup storage
   aprlGuid: 31f4ac4b-29cb-4588-8de2-d8fe6f13ceb3
-  recommendationTypeId: null
+  recommendationTypeId: 5295ed8a-f7a1-48d3-b4a9-e5e472cf1685
   recommendationControl: DisasterRecovery
   recommendationImpact: High
   recommendationResourceType: Microsoft.DBforPostgreSQL/flexibleServers

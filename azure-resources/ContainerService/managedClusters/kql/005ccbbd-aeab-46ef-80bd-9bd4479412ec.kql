@@ -6,5 +6,4 @@ resources
 | extend taints = tostring(parse_json(agentPoolProfile.nodeTaints))
 | extend nodePool = tostring(parse_json(agentPoolProfile.name))
 | where taints !has "CriticalAddonsOnly=true:NoSchedule" and  agentPoolProfile.minCount < 2
-| project recommendationId="005ccbbd-aeab-46ef-80bd-9bd4479412ec", id, name, param1=strcat("nodePoolName: ", nodePool), param2=strcat("nodePoolMinNodeCount: ", agentPoolProfile.minCount)
-
+| project recommendationId="005ccbbd-aeab-46ef-80bd-9bd4479412ec", name=nodePool, id=strcat(id,"/agentPools/",nodePool), tags,param1=strcat("nodePoolName: ", nodePool), param2=strcat("nodePoolMinNodeCount: ", agentPoolProfile.minCount)
