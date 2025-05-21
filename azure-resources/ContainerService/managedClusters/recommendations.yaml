@@ -3,7 +3,7 @@
   recommendationTypeId: 9f3263db-b9c0-43bb-8523-6800f9f50793
   recommendationControl: HighAvailability
   recommendationImpact: High
-  recommendationResourceType: Microsoft.ContainerService/managedClusters
+  recommendationResourceType: Microsoft.ContainerService/managedClusters/agentPools
   recommendationMetadataState: Active
   longDescription: |
     Azure Availability Zones ensure high availability by offering independent locations within regions, equipped with their own power, cooling, and networking to ensure applications and data are protected from datacenter-level failures.
@@ -207,7 +207,7 @@
   recommendationTypeId: null
   recommendationControl: Scalability
   recommendationImpact: Medium
-  recommendationResourceType: Microsoft.ContainerService/managedClusters
+  recommendationResourceType: Microsoft.ContainerService/managedClusters/agentPools
   recommendationMetadataState: Active
   longDescription: |
     Ephemeral OS disks on AKS offer lower read/write latency due to local attachment, eliminating the need for replication seen with managed disks. This enhances performance and speeds up cluster operations such as scaling or upgrading due to quicker re-imaging and boot times.
@@ -225,7 +225,7 @@
   recommendationControl: OtherBestPractices
   recommendationImpact: Low
   recommendationResourceType: Microsoft.ContainerService/managedClusters
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Azure Policies in AKS clusters help enforce governance best practices concerning security, authentication, provisioning, networking, and more, ensuring a robust and secure environment for operations.
   potentialBenefits: Enhanced AKS governance and security
@@ -326,7 +326,7 @@
   recommendationTypeId: null
   recommendationControl: HighAvailability
   recommendationImpact: High
-  recommendationResourceType: Microsoft.ContainerService/managedClusters
+  recommendationResourceType: Microsoft.ContainerService/managedClusters/agentPools
   recommendationMetadataState: Active
   longDescription: |
     Configuring the user node pool with at least two nodes is essential for applications needing high availability, ensuring they remain operational and accessible without interruption.
@@ -394,7 +394,7 @@
   recommendationTypeId: null
   recommendationControl: HighAvailability
   recommendationImpact: High
-  recommendationResourceType: Microsoft.ContainerService/managedClusters
+  recommendationResourceType: Microsoft.ContainerService/managedClusters/agentPools
   recommendationMetadataState: Disabled
   longDescription: |
     Azure Linux on AKS boosts resiliency with a native image using validated, source-built components. It's lightweight, reducing the attack surface and maintenance. A Microsoft-hardened kernel, optimized for Azure, enhances stability and security for container workloads.

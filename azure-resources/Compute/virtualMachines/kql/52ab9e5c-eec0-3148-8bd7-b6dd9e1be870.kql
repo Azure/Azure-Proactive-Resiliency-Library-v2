@@ -1,16 +1,38 @@
 // Azure Resource Graph Query
-// Find VMS that do not have maintenance configuration assigned
-Resources
-| extend resourceId = tolower(id)
-| project name, location, type, id, tags, resourceId, properties
+// Find VMs on Dedicated Hosts or using Isolated SKUs (via substring match)  that do NOT have a maintenance configuration assigned
+resources
 | where type =~ 'Microsoft.Compute/virtualMachines'
+| extend
+    resourceId    = tolower(id),
+    hostId        = tostring(properties.host.id),
+    hostGroupId   = tostring(properties.hostGroup.id),
+    vmSize        = tostring(properties.hardwareProfile.vmSize)
+| where
+    // 1) Dedicated Host association
+    isnotempty(hostId) or isnotempty(hostGroupId)
+    // 2) OR any of the "isolated" substrings
+    or (
+        vmSize contains "i_"    or
+        vmSize contains "is_"   or
+        vmSize contains "id_"   or
+        vmSize contains "ids_"  or
+        vmSize contains "idms_" or
+        vmSize contains "ims_"  or
+        vmSize contains "G5"    or
+        vmSize contains "GS5"   or
+        vmSize contains "F72s_" or
+        vmSize contains "M128ms"
+    )
 | join kind=leftouter (
-maintenanceresources
-| where type =~ "microsoft.maintenance/configurationassignments"
-| project planName = name, type, maintenanceProps = properties
-| extend resourceId = tostring(maintenanceProps.resourceId)
+    resources
+    | where type =~ 'microsoft.maintenance/configurationassignments'
+    | extend resourceId = tolower(tostring(properties.resourceId))
+    | project resourceId, maintenanceProps = properties
 ) on resourceId
 | where isnull(maintenanceProps)
-| project recommendationId = "52ab9e5c-eec0-3148-8bd7-b6dd9e1be870",name, id, tags
+| project
+    recommendationId = "52ab9e5c-eec0-3148-8bd7-b6dd9e1be870",
+    name,
+    id,
+    tags
 | order by id asc
-
