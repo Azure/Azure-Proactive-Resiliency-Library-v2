@@ -102,7 +102,7 @@
 
 - description: Choose a Zone-redundant VPN gateway
   aprlGuid: 5b1933a6-90e4-f642-a01f-e58594e5aab2
-  recommendationTypeId: null
+  recommendationTypeId: 1afa00b3-bb4c-496d-99e5-b7bda59a057c
   recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
