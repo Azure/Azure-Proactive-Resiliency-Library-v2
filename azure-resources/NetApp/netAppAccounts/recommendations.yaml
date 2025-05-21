@@ -119,9 +119,9 @@
 
 - description: Enable Cross-zone replication of Azure NetApp Files volumes
   aprlGuid: e3d742e1-dacd-9b48-b6b1-510ec9f87c96
-  recommendationTypeId: null
+  recommendationTypeId: 7a48f43e-8615-4ce0-8039-83b9d24f945a
   recommendationControl: DisasterRecovery
-  recommendationImpact: High
+  recommendationImpact: Medium
   recommendationResourceType: Microsoft.NetApp/netAppAccounts/capacityPools/volumes
   recommendationMetadataState: Active
   longDescription: |
