@@ -117,23 +117,6 @@
     - name: What is the Azure Backup service?
       url: "https://learn.microsoft.com/azure/backup/backup-overview"
 
-- description: Review VMs in stopped state
-  aprlGuid: 98b334c0-8578-6046-9e43-b6e8fce6318e
-  recommendationTypeId: null
-  recommendationControl: Governance
-  recommendationImpact: Low
-  recommendationResourceType: Microsoft.Compute/virtualMachines
-  recommendationMetadataState: Disabled
-  longDescription: |
-    Azure Virtual Machines (VM) instances have various states, like provisioning and power states. A non-running VM may indicate issues or it being unnecessary, suggesting removal could help cut costs.
-  potentialBenefits: Reduce costs by removing unused VMs
-  pgVerified: true
-  automationAvailable: true
-  tags: []
-  learnMoreLink:
-    - name: States and billing status of Azure Virtual Machines
-      url: "https://learn.microsoft.com/azure/virtual-machines/states-billing?context=%2Ftroubleshoot%2Fazure%2Fvirtual-machines%2Fcontext%2Fcontext#power-states-and-billing"
-
 - description: Enable Accelerated Networking (AccelNet)
   aprlGuid: dfedbeb1-1519-fc47-86a5-52f96cf07105
   recommendationTypeId: null
@@ -162,45 +145,11 @@
     When Accelerated Networking is enabled, the default Azure VNet interface in GuestOS is swapped for a Mellanox, and its driver comes from a 3rd party. Marketplace images have the latest Mellanox drivers, but post-deployment, updating the driver is the user's responsibility.
   potentialBenefits: Enhanced VM network efficiency
   pgVerified: true
-  automationAvailable: false
+  automationAvailable: true
   tags: []
   learnMoreLink:
     - name: Accelerated Networking (AccelNet) overview
       url: "https://learn.microsoft.com/azure/virtual-network/accelerated-networking-overview"
-
-- description: VMs should not have a Public IP directly associated
-  aprlGuid: 1f629a30-c9d0-d241-82ee-6f2eb9d42cb4
-  recommendationTypeId: null
-  recommendationControl: Security
-  recommendationImpact: Medium
-  recommendationResourceType: Microsoft.Compute/virtualMachines
-  recommendationMetadataState: Disabled
-  longDescription: |
-    For outbound internet connectivity of Virtual Machines, using NAT Gateway or Azure Firewall is recommended to enhance security and service resilience, thanks to their higher availability and SNAT ports.
-  potentialBenefits: Enhanced security and service resiliency
-  pgVerified: true
-  automationAvailable: true
-  tags: []
-  learnMoreLink:
-    - name: Use Source Network Address Translation (SNAT) for outbound connections
-      url: "https://learn.microsoft.com/azure/load-balancer/load-balancer-outbound-connections"
-
-- description: VM network interfaces and associated subnets both have a Network Security Group associated
-  aprlGuid: 82b3cf6b-9ae2-2e44-b193-10793213f676
-  recommendationTypeId: null
-  recommendationControl: Security
-  recommendationImpact: Low
-  recommendationResourceType: Microsoft.Compute/virtualMachines
-  recommendationMetadataState: Disabled
-  longDescription: |
-    Unless you have a specific reason, it's advised to associate a network security group to a subnet or a network interface, but not both, to avoid unexpected communication issues and troubleshooting due to potential rule conflicts between the two associations.
-  potentialBenefits: Reduces communication problems
-  pgVerified: true
-  automationAvailable: true
-  tags: []
-  learnMoreLink:
-    - name: How network security groups filter network traffic
-      url: "https://learn.microsoft.com/azure/virtual-network/network-security-group-how-it-works#intra-subnet-traffic"
 
 - description: IP Forwarding should only be enabled for Network Virtual Appliances
   aprlGuid: 41a22a5e-5e08-9647-92d0-2ffe9ef1bdad
@@ -219,23 +168,6 @@
     - name: Enable or disable IP forwarding
       url: "https://learn.microsoft.com/azure/virtual-network/virtual-network-network-interface?tabs=network-interface-portal#enable-or-disable-ip-forwarding"
 
-- description: Customer DNS Servers should be configured in the Virtual Network level
-  aprlGuid: 1cf8fe21-9593-1e4e-966b-779a294c0d30
-  recommendationTypeId: null
-  recommendationControl: OtherBestPractices
-  recommendationImpact: Low
-  recommendationResourceType: Microsoft.Compute/virtualMachines
-  recommendationMetadataState: Disabled
-  longDescription: |
-    Configure the DNS Server at the Virtual Network level to prevent any inconsistency across the environment.
-  potentialBenefits: Ensures DNS consistency
-  pgVerified: true
-  automationAvailable: true
-  tags: []
-  learnMoreLink:
-    - name: Name resolution for resources in Azure virtual networks
-      url: "https://learn.microsoft.com/azure/virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances"
-
 - description: Network access to the VM disk should be set to Disable public access and enable private access
   aprlGuid: 70b1d2be-e6c4-b54e-9959-b1b690f9e485
   recommendationTypeId: null
@@ -252,40 +184,6 @@
   learnMoreLink:
     - name: Restrict import/export access for managed disks using Azure Private Link
       url: "https://learn.microsoft.com/azure/virtual-machines/disks-enable-private-links-for-import-export-portal"
-
-- description: Ensure that your VMs are compliant with Azure Policies
-  aprlGuid: c42343ae-2712-2843-a285-3437eb0b28a1
-  recommendationTypeId: null
-  recommendationControl: Governance
-  recommendationImpact: Low
-  recommendationResourceType: Microsoft.Compute/virtualMachines
-  recommendationMetadataState: Disabled
-  longDescription: |
-    Keeping your virtual machine (VM) secure is crucial for the applications you run. This involves using various Azure services and features to ensure secure access to your VMs and the secure storage of your data, aiming for overall security of your VM and applications.
-  potentialBenefits: Secure VMs and applications
-  pgVerified: true
-  automationAvailable: true
-  tags: []
-  learnMoreLink:
-    - name: Policy-driven governance
-      url: "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-principles#policy-driven-governance"
-
-- description: Virtual Machines should have Azure Disk Encryption or EncryptionAtHost enabled
-  aprlGuid: f0a97179-133a-6e4f-8a49-8a44da73ffce
-  recommendationTypeId: a40cc620-e72c-fdf4-c554-c6ca2cd705c0
-  recommendationControl: Security
-  recommendationImpact: High
-  recommendationResourceType: Microsoft.Compute/virtualMachines
-  recommendationMetadataState: Disabled
-  longDescription: |
-    Consider enabling Azure Disk Encryption (ADE) for encrypting Azure VM disks using DM-Crypt (Linux) or BitLocker (Windows). Additionally, consider Encryption at host and Confidential disk encryption for enhanced data security.
-  potentialBenefits: Enhances data security and integrity
-  pgVerified: true
-  automationAvailable: true
-  tags: []
-  learnMoreLink:
-    - name: Overview of managed disk encryption options
-      url: "https://learn.microsoft.com/azure/virtual-machines/disk-encryption-overview"
 
 - description: Enable VM Insights
   aprlGuid: b72214bb-e879-5f4b-b9cd-642db84f36f4
@@ -304,28 +202,11 @@
     - name: Overview of VM insights
       url: "https://learn.microsoft.com/azure/azure-monitor/vm/vminsights-overview"
 
-- description: Configure monitoring for all Azure Virtual Machines
-  aprlGuid: 4a9d8973-6dba-0042-b3aa-07924877ebd5
-  recommendationTypeId: null
-  recommendationControl: MonitoringAndAlerting
-  recommendationImpact: Low
-  recommendationResourceType: Microsoft.Compute/virtualMachines
-  recommendationMetadataState: Disabled
-  longDescription: |
-    Azure Monitor Metrics automatically receives platform metrics, but platform logs, which offer detailed diagnostics and auditing for resources and their Azure platform, need to be manually routed for collection.
-  potentialBenefits: Enhanced diagnostics and auditing capability
-  pgVerified: true
-  automationAvailable: true
-  tags: []
-  learnMoreLink:
-    - name: Azure Monitor Agent overview
-      url: "https://learn.microsoft.com/azure/azure-monitor/agents/agents-overview"
-
-- description: Use maintenance configurations for the VMs
+- description: Use maintenance configurations for the Dedicated and/or Isolated VM SKUs
   aprlGuid: 52ab9e5c-eec0-3148-8bd7-b6dd9e1be870
   recommendationTypeId: null
   recommendationControl: HighAvailability
-  recommendationImpact: High
+  recommendationImpact: Medium
   recommendationResourceType: Microsoft.Compute/virtualMachines
   recommendationMetadataState: Active
   longDescription: |
@@ -372,7 +253,7 @@
     - name: Disk type comparison and decision tree
       url: "https://learn.microsoft.com/azure/virtual-machines/disks-types#disk-type-comparison"
 
-- description: Use Azure Boost VMs for Maintenance sensitive workload
+- description: Use Azure Boost VMs for Maintenance sensitive workload VMs
   aprlGuid: 9ab499d8-8844-424d-a2d4-8f53690eb8f8
   recommendationTypeId: null
   recommendationControl: HighAvailability

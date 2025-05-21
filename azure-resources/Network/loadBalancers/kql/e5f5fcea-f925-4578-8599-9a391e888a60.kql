@@ -1,6 +1,0 @@
-// Azure Resource Graph Query
-// List the load balancers which don't have health probe configured
-resources
-| where type =~ "microsoft.network/loadbalancers"
-| where array_length(properties.probes) == 0
-| project recommendationId="e5f5fcea-f925-4578-8599-9a391e888a60", name, id, tags, param1="customHealthProbeUsed: false"
