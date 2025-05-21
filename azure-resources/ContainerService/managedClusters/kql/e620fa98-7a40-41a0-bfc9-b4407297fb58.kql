@@ -19,7 +19,7 @@ resources
     | extend possibleMaxNodeCount = toint(exp2(32-subnetmask) - 5)
 ) on $left.subnetId == $right.id
 | project-away id, subnetmask
-| where possibleMaxNodeCount >= maxNodes
+| where possibleMaxNodeCount <= maxNodes
 | extend param1 = strcat(nodePoolName, " autoscaler upper limit: ", maxNodes)
 | extend param2 = strcat("ip addresses on subnet: ", possibleMaxNodeCount)
 | project recommendationId="e620fa98-7a40-41a0-bfc9-b4407297fb58", name=clusterName, id=clusterId,tags,param1, param2

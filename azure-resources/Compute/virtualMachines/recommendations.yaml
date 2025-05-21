@@ -145,7 +145,7 @@
     When Accelerated Networking is enabled, the default Azure VNet interface in GuestOS is swapped for a Mellanox, and its driver comes from a 3rd party. Marketplace images have the latest Mellanox drivers, but post-deployment, updating the driver is the user's responsibility.
   potentialBenefits: Enhanced VM network efficiency
   pgVerified: true
-  automationAvailable: True
+  automationAvailable: true
   tags: []
   learnMoreLink:
     - name: Accelerated Networking (AccelNet) overview
