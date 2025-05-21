@@ -1,1 +1,7 @@
-// cannot-be-validated-with-arg
+// Azure Resource Graph Query
+// Provides a list of Azure Database for PostgreSQL flexible server resources that do not configure auto-grow to enabled
+resources
+| where type =~ "Microsoft.DBforPostgreSQL/flexibleServers"
+| where properties.storage.type !~ "PremiumV2_LRS"
+| where properties.storage.autoGrow !~ "Enabled"
+| project recommendationId = "6293a3cc-6b4a-4c0f-9ea7-b8ae8d7dd3d5", name, id, tags, param1 = strcat("autoGrow: ", properties.storage.autoGrow)
