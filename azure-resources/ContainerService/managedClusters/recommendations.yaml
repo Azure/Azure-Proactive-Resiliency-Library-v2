@@ -1,6 +1,6 @@
 - description: Deploy AKS cluster across availability zones
   aprlGuid: 4f63619f-5001-439c-bacb-8de891287727
-  recommendationTypeId: null
+  recommendationTypeId: 9f3263db-b9c0-43bb-8523-6800f9f50793
   recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.ContainerService/managedClusters
