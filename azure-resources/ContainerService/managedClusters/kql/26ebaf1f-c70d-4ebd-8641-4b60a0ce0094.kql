@@ -13,4 +13,4 @@ PolicyResources
     | where type =~ 'Microsoft.ContainerService/managedClusters'
     | project id, name
 ) on id
-| project recommendationId="26ebaf1f-c70d-4ebd-8641-4b60a0ce0094", id, name, param1=strcat("numNonCompliantAlerts: ", count_)
+| project recommendationId="26ebaf1f-c70d-4ebd-8641-4b60a0ce0094", name,id,param1=strcat("numNonCompliantAlerts: ", count_)

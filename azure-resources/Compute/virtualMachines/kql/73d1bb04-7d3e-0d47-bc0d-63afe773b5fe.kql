@@ -1,2 +1,18 @@
-// cannot-be-validated-with-arg
+// Azure Resource Graph Query
+// Find all VM NICs that have Accelerated Networking enabled
+resources
+| where type =~ 'Microsoft.Compute/virtualMachines'
+| mv-expand nic = properties.networkProfile.networkInterfaces
+| project name, id, tags, lowerCaseNicId = tolower(nic.id), vmSize = tostring(properties.hardwareProfile.vmSize)
+| join kind = inner (
+    resources
+    | where type =~ 'Microsoft.Network/networkInterfaces'
+    | where properties.enableAcceleratedNetworking == true
+    | project nicName = split(id, "/")[8], lowerCaseNicId = tolower(id)
+    )
+    on lowerCaseNicId
+| summarize nicNames = make_set(nicName) by name, id, tostring(tags), vmSize
+| extend param2 = strcat("NicName: ", strcat_array(nicNames, ", ")), param3 = strcat("VMSize: ", vmSize)
+| project recommendationId = "dfedbeb1-1519-fc47-86a5-52f96cf07105", name, id, tags, param1="This machine has AccelNet enabled, but it is not possible to confirm if the GuestOS drivers are Up-to-Date.", param2,param3
+| order by id asc
 

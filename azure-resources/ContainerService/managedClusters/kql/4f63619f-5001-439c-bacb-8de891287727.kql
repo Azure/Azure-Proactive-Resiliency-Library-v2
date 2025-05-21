@@ -1,5 +1,5 @@
 // Azure Resource Graph Query
-// Returns AKS clusters that do not have any availability zones enabled or only use a single zone
+// Returns AKS clusters Node Pools that do not have any availability zones enabled or only use a single zone
 resources
 | where type =~ "Microsoft.ContainerService/managedClusters"
 | where location in~ ("australiaeast", "brazilsouth", "canadacentral", "centralindia", "centralus", "eastasia", "eastus", "eastus2", "francecentral", "germanywestcentral", "israelcentral", "italynorth", "japaneast", "japanwest", "koreacentral", "mexicocentral", "newzealandnorth", "northeurope", "norwayeast", "polandcentral", "qatarcentral", "southafricanorth", "southcentralus", "southeastasia", "spaincentral", "swedencentral", "switzerlandnorth", "uaenorth", "uksouth", "westeurope", "westus2", "westus3", "usgovvirginia", "chinanorth3")
@@ -10,8 +10,8 @@ resources
 | where numOfAvailabilityZones < 2
 | project
     recommendationId = "4f63619f-5001-439c-bacb-8de891287727",
-    id,
-    name,
+    name=pool.name,
+    id=strcat(id,"/agentPools/",pool.name),
     tags,
     param1 = strcat("NodePoolName: ", pool.name),
     param2 = strcat("Mode: ", pool.mode),
