@@ -51,7 +51,7 @@
 
 - description: Ensure Standard Load Balancer is zone-redundant
   aprlGuid: 621dbc78-3745-4d32-8eac-9e65b27b7512
-  recommendationTypeId: null
+  recommendationTypeId: 796b9be0-487d-4daa-8771-f08e4d7c9c0c
   recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/loadBalancers
