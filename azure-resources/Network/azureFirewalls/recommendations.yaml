@@ -1,6 +1,6 @@
 - description: Deploy Azure Firewall across multiple availability zones
   aprlGuid: c72b7fee-1fa0-5b4b-98e5-54bcae95bb74
-  recommendationTypeId: null
+  recommendationTypeId: e82f5b61-b0f8-48e7-8e18-5aa1f57bff81
   recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/azureFirewalls
