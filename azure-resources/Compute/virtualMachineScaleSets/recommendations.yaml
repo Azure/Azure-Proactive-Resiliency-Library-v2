@@ -151,3 +151,19 @@
     - name: Deprecated Azure Marketplace images
       url: "https://learn.microsoft.com/azure/virtual-machines/deprecated-images"
 
+- description: Use Ephemeral OS Disks for AKS VMSS Node Pools
+  aprlGuid: a7bfcc18-b0d8-4d37-81f3-8131ed8bead5
+  recommendationTypeId: null
+  recommendationControl: Scalability
+  recommendationImpact: Medium
+  recommendationResourceType: Microsoft.Compute/virtualMachineScaleSets
+  recommendationMetadataState: Active
+  longDescription: |
+    Ephemeral OS disks on AKS offer lower read/write latency due to local attachment, eliminating the need for replication seen with managed disks. This enhances performance and speeds up cluster operations such as scaling or upgrading due to quicker re-imaging and boot times.
+  potentialBenefits: Lower latency, faster re-imaging and booting
+  pgVerified: true
+  automationAvailable: true
+  tags: []
+  learnMoreLink:
+    - name: Ephemeral OS disk
+      url: "https://learn.microsoft.com/azure/aks/concepts-storage#ephemeral-os-disk"
