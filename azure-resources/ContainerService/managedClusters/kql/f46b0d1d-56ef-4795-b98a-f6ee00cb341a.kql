@@ -1,7 +1,9 @@
 // Azure Resource Graph Query
-// Returns each AKS cluster with nodepools that have Linux nodepools not using Azure Linux
+// Returns each AKS cluster that has Linux node pools not using Azure Linux
 resources
-| where type == "microsoft.containerservice/managedclusters"
-| mv-expand agentPoolProfile = properties.agentPoolProfiles
-| where agentPoolProfile.osType == 'Linux' and agentPoolProfile.osSKU != 'AzureLinux'
-| project recommendationid="f46b0d1d-56ef-4795-b98a-f6ee00cb341a", name=agentPoolProfile.name, id=strcat(id,"/agentPools/",agentPoolProfile.name),tags, param1=strcat("nodePoolName: ", agentPoolProfile.name)
+  | where type == "microsoft.containerservice/managedclusters"
+  | mv-expand agentPoolProfile = properties.agentPoolProfiles
+  | where agentPoolProfile.osType == 'Linux' and agentPoolProfile.osSKU != 'AzureLinux'
+  | extend clusterId = id,clusterName = name,nodePoolName = tostring(agentPoolProfile.name)
+  | summarize nonAzureLinuxNodePools = make_list(strcat("nodePoolName: ", nodePoolName)),anyClusterName = any(clusterName),anyTags = any(tags) by clusterId
+  | project recommendationId = "f46b0d1d-56ef-4795-b98a-f6ee00cb341a",name = anyClusterName,id = clusterId,tags = anyTags,param1 = tostring(nonAzureLinuxNodePools)

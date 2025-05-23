@@ -20,7 +20,7 @@
   recommendationTypeId: null
   recommendationControl: HighAvailability
   recommendationImpact: High
-  recommendationResourceType: Microsoft.Network/loadBalancers/backendAddressPools
+  recommendationResourceType: Microsoft.Network/loadBalancers
   recommendationMetadataState: Active
   longDescription: |
     Deploying Azure Load Balancers with at least two instances in the backend prevents a single point of failure and supports scalability. Pairing with Virtual Machine Scale Sets is advised for optimal scale building.
