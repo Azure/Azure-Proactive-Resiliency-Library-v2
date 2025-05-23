@@ -4,8 +4,8 @@
 
 resources
 | where type =~ 'Microsoft.ContainerService/managedClusters'
-| where properties.storageProfile.diskCSIDriver.enabled != true or 
-        properties.storageProfile.fileCSIDriver.enabled != true or 
+| where properties.storageProfile.diskCSIDriver.enabled != true or
+        properties.storageProfile.fileCSIDriver.enabled != true or
         properties.storageProfile.blobCSIDriver.enabled != true
 | project recommendationId = 'b002c030-72e6-4a37-8217-1cb276c43169', name, id, tags
 
