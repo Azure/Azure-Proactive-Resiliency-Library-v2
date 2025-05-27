@@ -12,10 +12,7 @@ resources
 | project
     nodePoolName,
     nodeResourceGroup,
-    subscriptionId,
-    tags,
-    osDiskType,
-    recommendationId = "a7bfcc18-b0d8-4d37-81f3-8131ed8bead5"
+    subscriptionId
 | join kind=inner (
     resources
     | where type == "microsoft.compute/virtualmachinescalesets"
