@@ -13,6 +13,6 @@ resources
     on lowerCaseNicId
 | summarize nicNames = make_set(nicName) by name, id, tostring(tags), vmSize
 | extend param2 = strcat("NicName: ", strcat_array(nicNames, ", ")), param3 = strcat("VMSize: ", vmSize)
-| project recommendationId = "dfedbeb1-1519-fc47-86a5-52f96cf07105", name, id, tags, param1="This machine has AccelNet enabled, but it is not possible to confirm if the GuestOS drivers are Up-to-Date.", param2,param3
+| project recommendationId = "73d1bb04-7d3e-0d47-bc0d-63afe773b5fe", name, id, tags, param1="This machine has AccelNet enabled, but it is not possible to confirm if the GuestOS drivers are Up-to-Date.", param2,param3
 | order by id asc
 
