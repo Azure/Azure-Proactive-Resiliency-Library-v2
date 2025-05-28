@@ -10,8 +10,8 @@
    Ensure that the infrastructure is in Available state under normal operations.
   potentialBenefits: Ensure service is available
   pgVerified: false
-  automationAvailable: arg
-  tags: [ORACLE]
+  automationAvailable: true
+  tags: []
   learnMoreLink:
     - name: Cloud Exadata infrastructure lifecycle
       url: "https://learn.microsoft.com/rest/api/oracle/cloud-exadata-infrastructures/get?view=rest-oracle-2023-09-01&tabs=HTTP#cloudexadatainfrastructurelifecyclestate"
