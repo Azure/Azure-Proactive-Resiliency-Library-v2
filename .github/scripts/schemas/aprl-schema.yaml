@@ -8,9 +8,9 @@ recommendation:
   recommendationControl: enum('HighAvailability', 'BusinessContinuity', 'DisasterRecovery', 'Scalability', 'MonitoringAndAlerting', 'ServiceUpgradeAndRetirement', 'OtherBestPractices', 'Personalized', 'Governance', 'Security')
   recommendationImpact: enum('Low', 'Medium', 'High')
   recommendationResourceType: any(
-    regex('^Microsoft\\.[a-zA-Z0-9.]+/[a-zA-Z0-9]+$'),
-    regex('^Microsoft\\.[a-zA-Z0-9.]+/[a-zA-Z0-9.]+/[a-zA-Z0-9]+$'),
-    regex('^Microsoft\\.[a-zA-Z0-9.]+/[a-zA-Z0-9.]+/[a-zA-Z0-9.]+/[a-zA-Z0-9]+$'),
+    regex('^(Microsoft|Oracle)\\.[a-zA-Z0-9.]+/[a-zA-Z0-9]+$'),
+    regex('^(Microsoft|Oracle)\\.[a-zA-Z0-9.]+/[a-zA-Z0-9.]+/[a-zA-Z0-9]+$'),
+    regex('^(Microsoft|Oracle)\\.[a-zA-Z0-9.]+/[a-zA-Z0-9.]+/[a-zA-Z0-9.]+/[a-zA-Z0-9]+$'),
     regex('^WellArchitected/[A-Za-z]+$'),
     regex('^Specialized\\.Workload/[A-Za-z]+$'))
   recommendationMetadataState: enum('Active', 'Disabled')
