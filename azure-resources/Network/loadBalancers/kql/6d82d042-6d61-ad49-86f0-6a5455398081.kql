@@ -1,9 +1,10 @@
 // Azure Resource Graph Query
-// Find all LoadBalancers which only have 1 backend pool defined or only 1 VM in the backend pool,
-// and project the name of the impacted backend pool.
+// Find all LoadBalancers with only 1 VM in any backend pool
 resources
 | where type =~ 'Microsoft.Network/loadBalancers'
 | mv-expand bpool = properties.backendAddressPools
 | extend BackendAddresses = array_length(bpool.properties.loadBalancerBackendAddresses)
 | where BackendAddresses <= 1
-| project recommendationId = "6d82d042-6d61-ad49-86f0-6a5455398081",name=bpool.name,id=strcat(id,"/backendAddressPools/",bpool.name),tags
+| extend lbId = id, lbName = name, poolName = tostring(bpool.name)
+| summarize anyPool = any(poolName), anyTags = any(tags) by lbId, lbName
+| project recommendationId = "6d82d042-6d61-ad49-86f0-6a5455398081", name = lbName, id = lbId, tags = anyTags, param1 = strcat("backendPoolName: ", anyPool)

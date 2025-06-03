@@ -1,0 +1,32 @@
+// Azure Resource Graph Query
+// Returns any AKS cluster nodepools that do not have Ephemeral Disks
+resources
+| where type == "microsoft.containerservice/managedclusters"
+| mv-expand agentPoolProfile = properties.agentPoolProfiles
+| extend
+    osDiskType         = tostring(agentPoolProfile.osDiskType),
+    nodePoolName       = tostring(agentPoolProfile.name),
+    nodeResourceGroup  = tostring(properties.nodeResourceGroup),
+    subscriptionId     = tostring(split(id, "/")[2])
+| where osDiskType != "Ephemeral" and isnotempty(nodeResourceGroup)
+| project
+    nodePoolName,
+    nodeResourceGroup,
+    subscriptionId
+| join kind=inner (
+    resources
+    | where type == "microsoft.compute/virtualmachinescalesets"
+    | extend
+        vmssName        = name,
+        vmssId          = id,
+        subscriptionId  = tostring(split(id, "/")[2]),
+        resourceGroup   = tostring(split(id, "/")[4])
+) on subscriptionId
+| where tolower(resourceGroup) == tolower(nodeResourceGroup)
+    and tolower(vmssName) contains tolower(nodePoolName)
+| project
+    recommendationId = "a7bfcc18-b0d8-4d37-81f3-8131ed8bead5",
+    name = vmssName,
+    id   = vmssId,
+    tags,
+    param1 = "osDiskType: Non-Ephemeral"
