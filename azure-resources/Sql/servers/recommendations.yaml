@@ -72,7 +72,7 @@
   recommendationControl: MonitoringAndAlerting
   recommendationImpact: High
   recommendationResourceType: Microsoft.Sql/servers/databases
-  recommendationMetadataState: Active
+  recommendationMetadataState: Disabled
   longDescription: |
     Monitoring and alerting are an important part of database operations. When working with Azure SQL Database, make use of Azure Monitor and SQL Insights to ensure that you capture relevant database metrics.
   potentialBenefits: Quick incident detection and response
