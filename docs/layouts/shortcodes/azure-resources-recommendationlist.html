@@ -73,6 +73,12 @@ Azure Resources Recommendation List
         <span style="font-weight: normal">{{ .aprlGuid }}</span>
       </h4>
     </div>
+    <div style="margin-top: 10px;">
+      <h4>
+        <span style="font-weight: bold;">Advisor GUID:</span>&nbsp;
+        <span style="font-weight: normal">{{ if .recommendationTypeId }}{{ .recommendationTypeId }}{{ else }}n/a{{ end }}</span>
+      </h4>
+    </div>
     <div style="max-width: 100%; word-wrap: break-word; overflow-wrap: break-word;">
       <h4>Description:</h4>
       <pre
