@@ -11,7 +11,7 @@
     Use SYNC for zero data loss or ASYNC when performance is constrained.
   potentialBenefits: Ensure business continuity in case of zonal failure.
   pgVerified: false
-  automationAvailable: no
+  automationAvailable: false
   tags: [ORACLE]
   learnMoreLink:
     - name: Business continuity and disaster recovery considerations for Oracle Database@Azure
@@ -28,7 +28,7 @@
     Gold-level reference architecture with Oracle Database@Azure is recommended, meaning that database changes will be replicated via Data Guard (ASYNC replication) to a secondary Oracle Database@Azure instance in a different region.
   potentialBenefits: The cloud MAA architecture achieves data protection and DR.
   pgVerified: false
-  automationAvailable: no
+  automationAvailable: false
   tags: [ORACLE]
   learnMoreLink:
     - name: Business continuity and disaster recovery considerations for Oracle Database@Azure
@@ -46,7 +46,7 @@
     ARS provides automated, policy-based backups with continuous validation.
   potentialBenefits: Provide workload data protection.
   pgVerified: false
-  automationAvailable: no
+  automationAvailable: false
   tags: [ORACLE]
   learnMoreLink:
     - name: Business continuity and disaster recovery considerations for Oracle Database@Azure
@@ -65,7 +65,7 @@
     If needed, scale OCPUs on the VM cluster, if Exa infrastructure capacity allows.
   potentialBenefits: Meet workload scalability requirements.
   pgVerified: false
-  automationAvailable: no
+  automationAvailable: false
   tags: [ORACLE]
   learnMoreLink:
     - name: Learn about Manage and monitor Oracle Database@Azure
@@ -83,7 +83,7 @@
     Primary, standby, client, and backup subnets should have non-overlapping CIDR ranges for reliable connectivity.
   potentialBenefits: Avoid conflicts in IP addressing.
   pgVerified: false
-  automationAvailable: no
+  automationAvailable: false
   tags: [ORACLE]
   learnMoreLink:
     - name: Capacity planning for Oracle Database@Azure
@@ -100,7 +100,7 @@
     Deploy Data Guard observer nodes in different AZs and make sure that an observer node will remain available if anything happens to the Production deployment.
   potentialBenefits: Data Guard observer automates database failover.
   pgVerified: false
-  automationAvailable: no
+  automationAvailable: false
   tags: [ORACLE]
   learnMoreLink:
     - name: Business continuity and disaster recovery considerations for Oracle Database@Azure
@@ -117,7 +117,7 @@
     Provide redundancy for VMs used as OKV, note that this is only relevant if customer is using own keys and only if OCI vault is not used. A minimum 4-node OKV cluster deployment is recommended across two AZs or regions, aligned with the BCDR architecture.
   potentialBenefits: Protect access to keys in case of VM or AZ/region failure.
   pgVerified: false
-  automationAvailable: no
+  automationAvailable: false
   tags: [ORACLE]
   learnMoreLink:
     - name: Security guidelines for Oracle Database@Azure
@@ -135,7 +135,7 @@
     Automatic infrastructure maintenance occurs quarterly, with Oracle notifying you of the date and time weeks in advance. You can modify the scheduled date and time before maintenance starts.
   potentialBenefits: Keep Oracle workloads up-to-date.
   pgVerified: false
-  automationAvailable: no
+  automationAvailable: false
   tags: [ORACLE]
   learnMoreLink:
     - name: Configure Oracle-Managed Infrastructure Maintenance
