@@ -10,7 +10,7 @@
    Ensure that the infrastructure is in Available state under normal operations.
   potentialBenefits: Ensure service is available
   pgVerified: false
-  automationAvailable: true
+  automationAvailable: false
   tags: []
   learnMoreLink:
     - name: Cloud Exadata infrastructure lifecycle
