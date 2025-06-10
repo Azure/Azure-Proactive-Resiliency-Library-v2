@@ -3,7 +3,7 @@
   recommendationTypeId: null
   recommendationControl: OtherBestPractices
   recommendationImpact: High
-  recommendationResourceType: oracle.database/cloudvmclusters
+  recommendationResourceType: Oracle.Database/cloudVmClusters
   recommendationMetadataState: Active
   longDescription: |
     ODAA Vm Clusters can be in a number of states during their lifecycle (Available, Failed, Maintenance In Progress, Provisioning, Terminated, Terminating and Updating).
