@@ -3,11 +3,11 @@
   recommendationTypeId: null
   recommendationControl: OtherBestPractices
   recommendationImpact: High
-  recommendationResourceType: oracle.database/cloudExadataInfrastructures
+  recommendationResourceType: Oracle.Database/cloudExadataInfrastructures
   recommendationMetadataState: Active
   longDescription: |
-   ODAA Exadata infrastructures can be in a number of states during its lifecycle (Available, Failed, Maintenance In Progress, Provisioning, Terminated, Terminating and Updating).
-   Ensure that the infrastructure is in Available state under normal operations.
+    ODAA Exadata infrastructures can be in a number of states during its lifecycle (Available, Failed, Maintenance In Progress, Provisioning, Terminated, Terminating and Updating).
+    Ensure that the infrastructure is in Available state under normal operations.
   potentialBenefits: Ensure service is available
   pgVerified: false
   automationAvailable: false
