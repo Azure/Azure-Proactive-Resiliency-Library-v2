@@ -3,7 +3,7 @@
   recommendationTypeId: null
   recommendationControl: OtherBestPractices
   recommendationImpact: High
-  recommendationResourceType: oracle.database/cloudExadataInfrastructures
+  recommendationResourceType: Oracle.Database/cloudExadataInfrastructures
   recommendationMetadataState: Active
   longDescription: |
     ODAA Exadata infrastructures can be in a number of states during its lifecycle (Available, Failed, Maintenance In Progress, Provisioning, Terminated, Terminating and Updating).
