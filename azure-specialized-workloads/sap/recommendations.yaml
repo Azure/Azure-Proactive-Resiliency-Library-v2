@@ -359,7 +359,7 @@
 - description: Utilize Azure NetApp Files to host SAP IaaS deployments
   aprlGuid: bc2f72a5-2098-4a46-ae01-58b25069975c
   recommendationTypeId: null
-  recommendationControl: Storage
+  recommendationControl: OtherBestPractices
   recommendationImpact: High
   recommendationResourceType: Microsoft.NetApp/netAppAccounts
   recommendationMetadataState: Active
