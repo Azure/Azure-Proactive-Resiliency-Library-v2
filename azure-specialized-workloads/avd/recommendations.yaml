@@ -411,7 +411,7 @@
 - description: Utilize Azure NetApp Files to host FSLogix profiles on AVD
   aprlGuid: bc2f72a5-2098-4a46-ae01-58b25069975c
   recommendationTypeId: null
-  recommendationControl: Storage
+  recommendationControl: Scalability
   recommendationImpact: High
   recommendationResourceType: Microsoft.NetApp/netAppAccounts
   recommendationMetadataState: Active
