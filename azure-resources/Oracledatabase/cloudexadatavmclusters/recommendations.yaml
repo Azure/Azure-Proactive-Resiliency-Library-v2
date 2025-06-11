@@ -1,0 +1,17 @@
+- description: Ensure ODAA clusters are in Available state under normal operations
+  aprlGuid: 4b33324a-70cd-4bac-bdae-da4c382c436b
+  recommendationTypeId: null
+  recommendationControl: OtherBestPractices
+  recommendationImpact: High
+  recommendationResourceType: Oracle.Database/cloudVmClusters
+  recommendationMetadataState: Active
+  longDescription: |
+    ODAA Vm Clusters can be in a number of states during their lifecycle (Available, Failed, Maintenance In Progress, Provisioning, Terminated, Terminating and Updating).
+    Ensure that the ODAA clusters are in Available state under normal operations.
+  potentialBenefits: Ensure service is available
+  pgVerified: false
+  automationAvailable: false
+  tags: []
+  learnMoreLink:
+    - name: Cloud VM Cluster lifecycle
+      url: "https://learn.microsoft.com/rest/api/oracle/cloud-vm-clusters/get?view=rest-oracle-2023-09-01&tabs=HTTP#cloudvmclusterlifecyclestate"
