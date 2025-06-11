@@ -234,7 +234,7 @@
   tags: []
   learnMoreLink:
     - name: Cool Access Introduction
-      url: "https://learn.microsoft.com/en-us/azure/azure-netapp-files/cool-access-introduction"
+      url: "https://learn.microsoft.com/azure/azure-netapp-files/cool-access-introduction"
 
 - description: Reserved Capacity
   aprlGuid: c86b9562-cce4-4398-b0ad-0c8d3cc2f83b
@@ -251,7 +251,7 @@
   tags: []
   learnMoreLink:
     - name: Azure NetApp Files Reservations
-      url: "https://learn.microsoft.com/en-us/azure/azure-netapp-files/reservations"
+      url: "https://learn.microsoft.com/azure/azure-netapp-files/reservations"
 
 - description: Customer Managed Keys
   aprlGuid: d9871358-4c99-4fa1-99e0-377fd90dbf64
@@ -268,7 +268,7 @@
   tags: []
   learnMoreLink:
     - name: Azure NetApp Files with Customer Managed Keys
-      url: "https://learn.microsoft.com/en-us/azure/azure-netapp-files/configure-customer-managed-keys"
+      url: "https://learn.microsoft.com/azure/azure-netapp-files/configure-customer-managed-keys"
 
 - description: AzAcSnap
   aprlGuid: e184bf51-523c-4333-ab24-757dde3bf32f
@@ -285,4 +285,4 @@
   tags: []
   learnMoreLink:
     - name: AzAcSnap Introduction
-      url: "https://learn.microsoft.com/en-us/azure/azure-netapp-files/azacsnap-introduction"
+      url: "https://learn.microsoft.com/azure/azure-netapp-files/azacsnap-introduction"
