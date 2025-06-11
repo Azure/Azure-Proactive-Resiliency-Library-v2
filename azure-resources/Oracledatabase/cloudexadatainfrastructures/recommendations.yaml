@@ -1,0 +1,17 @@
+- description: Ensure ODAA infrastructure is in Available state under normal operations
+  aprlGuid: c99d730b-8754-447f-bd5d-3e8850a12235
+  recommendationTypeId: null
+  recommendationControl: OtherBestPractices
+  recommendationImpact: High
+  recommendationResourceType: Oracle.Database/cloudExadataInfrastructures
+  recommendationMetadataState: Active
+  longDescription: |
+    ODAA Exadata infrastructures can be in a number of states during its lifecycle (Available, Failed, Maintenance In Progress, Provisioning, Terminated, Terminating and Updating).
+    Ensure that the infrastructure is in Available state under normal operations.
+  potentialBenefits: Ensure service is available
+  pgVerified: false
+  automationAvailable: false
+  tags: []
+  learnMoreLink:
+    - name: Cloud Exadata infrastructure lifecycle
+      url: "https://learn.microsoft.com/rest/api/oracle/cloud-exadata-infrastructures/get?view=rest-oracle-2023-09-01&tabs=HTTP#cloudexadatainfrastructurelifecyclestate"

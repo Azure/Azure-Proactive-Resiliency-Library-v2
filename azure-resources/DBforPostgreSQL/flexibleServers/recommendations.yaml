@@ -1,6 +1,6 @@
 - description: Enable HA with zone redundancy
   aprlGuid: ca87914f-aac4-4783-ab67-82a6f936f194
-  recommendationTypeId: null
+  recommendationTypeId: 80b4e93c-4500-4fbd-bd6f-3ec245f72be9
   recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.DBforPostgreSQL/flexibleServers

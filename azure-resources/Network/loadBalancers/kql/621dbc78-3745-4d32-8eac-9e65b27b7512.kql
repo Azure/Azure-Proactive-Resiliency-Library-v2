@@ -27,7 +27,7 @@ resources
     | join kind=innerunique (
         resources
         | where type == "microsoft.network/publicipaddresses"
-        | where location in~ ("australiaeast", "brazilsouth", "canadacentral", "centralindia", "centralus", "eastasia", "eastus", "eastus2", "francecentral", "germanywestcentral", "israelcentral", "italynorth", "japaneast", "japanwest", "koreacentral", "mexicocentral", "newzealandnorth", "northeurope", "norwayeast", "polandcentral", "qatarcentral", "southafricanorth", "southcentralus", "southeastasia", "spaincentral", "swedencentral", "switzerlandnorth", "uaenorth", "uksouth", "westeurope", "westus2", "westus3", "usgovvirginia", "chinanorth3")
+        | where location in~ ("centralindia", "centralus", "eastus", "japaneast", "japanwest","newzealandnorth", "southcentralus", "southeastasia", "switzerlandnorth","uaenorth", "westeurope", "westus3", "usgovvirginia", "chinanorth3")
         | where isnull(zones) or array_length(zones) < 2
         | extend
             LBid = toupper(substring(properties.ipConfiguration.id, 0, indexof(properties.ipConfiguration.id, '/frontendIPConfigurations'))),
