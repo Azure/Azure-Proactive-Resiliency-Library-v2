@@ -150,7 +150,7 @@
   learnMoreLink:
     - name: Take a snapshot of VMware HCX Cloud Manager
       url: "https://learn.microsoft.com/azure/azure-vmware/use-hcx-run-commands#take-a-snapshot-of-vmware-hcx-cloud-manager"
-      
+
 - description: Add Azure NetApp Files as a Azure VMware Solution datastore
   aprlGuid: 38df8b6b-04f0-4be1-9c13-a98ef869f7b1
   recommendationTypeId: null
@@ -165,5 +165,5 @@
   automationAvailable: false
   tags: [AVS]
   learnMoreLink:
-    - name: ANF datastore on AVS 
+    - name: ANF datastore on AVS
       url: "https://learn.microsoft.com/en-us/azure/azure-vmware/attach-azure-netapp-files-to-azure-vmware-solution-hosts"
