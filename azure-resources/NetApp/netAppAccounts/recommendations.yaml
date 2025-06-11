@@ -278,7 +278,7 @@
   recommendationResourceType: Microsoft.NetApp/netAppAccounts
   recommendationMetadataState: Active
   longDescription: |
-   Azure Application Consistent Snapshot Tool (AzAcSnap) is a command-line tool that enables customers to simplify data protection for third-party databases in Linux environments.
+    Azure Application Consistent Snapshot Tool (AzAcSnap) is a command-line tool that enables customers to simplify data protection for third-party databases in Linux environments.
   potentialBenefits: Point in time recovery point for Oracle, Db2, and SAP HANA databases
   pgVerified: false
   automationAvailable: false
