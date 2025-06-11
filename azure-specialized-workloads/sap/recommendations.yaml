@@ -354,7 +354,7 @@
   tags: [SAP]
   learnMoreLink:
     - name: High-availability SAP NetWeaver with simple mount and NFS on SLES for SAP Applications VMs
-      url: "https://learn.microsoft.com/azure/sap/workloads/high-availability-guide-suse-nfs-simple-mount?tabs=lb-portal%2Censa1"      
+      url: "https://learn.microsoft.com/azure/sap/workloads/high-availability-guide-suse-nfs-simple-mount?tabs=lb-portal%2Censa1"
 
 - description: Utilize Azure NetApp Files to host SAP IaaS deployments
   aprlGuid: bc2f72a5-2098-4a46-ae01-58b25069975c
@@ -370,5 +370,5 @@
   automationAvailable: false
   tags: [SAP]
   learnMoreLink:
-    - name: ANF for SAP best practices 
+    - name: ANF for SAP best practices
       url: "https://techcommunity.microsoft.com/t5/running-sap-applications-on-the/sap-on-azure-netapp-files-sizing-best-practices/ba-p/3895300"
