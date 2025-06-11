@@ -222,7 +222,7 @@
 - description: Cool Access
   aprlGuid: 8dad18fa-6b06-4f23-85c4-dc3d214cac8f
   recommendationTypeId: null
-  recommendationControl: Optimization
+  recommendationControl: OtherBestPractices
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.NetApp/netAppAccounts
   recommendationMetadataState: Active
@@ -239,7 +239,7 @@
 - description: Reserved Capacity
   aprlGuid: c86b9562-cce4-4398-b0ad-0c8d3cc2f83b
   recommendationTypeId: null
-  recommendationControl: Optimization
+  recommendationControl: OtherBestPractices
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.NetApp/netAppAccounts
   recommendationMetadataState: Active
