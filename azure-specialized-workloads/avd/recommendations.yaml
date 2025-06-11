@@ -423,4 +423,4 @@
   tags: [AVD]
   learnMoreLink:
     - name: ANF for large AVD deployments
-      url: "https://learn.microsoft.com/en-us/azure/azure-netapp-files/solutions-windows-virtual-desktop"
+      url: "https://learn.microsoft.com/azure/azure-netapp-files/solutions-windows-virtual-desktop"
