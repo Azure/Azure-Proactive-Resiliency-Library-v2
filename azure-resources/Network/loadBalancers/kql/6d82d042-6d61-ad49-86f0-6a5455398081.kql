@@ -5,6 +5,6 @@ resources
 | mv-expand bpool = properties.backendAddressPools
 | extend BackendAddresses = array_length(bpool.properties.loadBalancerBackendAddresses)
 | where BackendAddresses <= 1
-| extend lbId = id, lbName = name, poolName = tostring(bpool.name)
-| summarize anyPool = any(poolName), anyTags = any(tags) by lbId, lbName
-| project recommendationId = "6d82d042-6d61-ad49-86f0-6a5455398081", name = lbName, id = lbId, tags = anyTags, param1 = strcat("backendPoolName: ", anyPool)
+| extend lbId = id, lbName = name, poolName = tostring(bpool.name), lbTags = tostring(tags)
+| summarize impactedPools = make_list(poolName) by lbId, lbName, lbTags
+| project recommendationId = "6d82d042-6d61-ad49-86f0-6a5455398081",name = lbName,id = lbId,tags = lbTags,param1 = strcat("backendPoolNames: ", strcat_array(impactedPools, ", "))
