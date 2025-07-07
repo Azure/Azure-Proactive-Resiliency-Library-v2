@@ -5,6 +5,6 @@ resources
 | mv-expand agentPoolProfile = properties.agentPoolProfiles
 | extend taints = tostring(parse_json(agentPoolProfile.nodeTaints))
 | extend nodePool = tostring(parse_json(agentPoolProfile.name))
-| where taints has "CriticalAddonsOnly=true:NoSchedule" and  agentPoolProfile.minCount < 2
+| where taints has "CriticalAddonsOnly=true:NoSchedule" and  agentPoolProfile.minCount < 3
 | project recommendationId="7f7ae535-a5ba-4665-b7e0-c451dbdda01f", name, id, tags, param1=strcat("nodePoolName: ", nodePool), param2=strcat("nodePoolMinNodeCount: ", agentPoolProfile.minCount)
 
