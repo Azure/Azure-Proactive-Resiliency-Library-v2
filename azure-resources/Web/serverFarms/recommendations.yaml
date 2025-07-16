@@ -17,7 +17,7 @@
 
 - description: Use Standard or Premium tier
   aprlGuid: b2113023-a553-2e41-9789-597e2fb54c31
-  recommendationTypeId: null
+  recommendationTypeId: dc298556-8232-4aa8-bfe0-5204c5017be0
   recommendationControl: HighAvailability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Web/serverFarms
