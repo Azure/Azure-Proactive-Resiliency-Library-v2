@@ -1,1 +1,14 @@
-// under-development
+// Azure Resource Graph Query
+// This query will return all regions for which Network Watcher is deployed but Connection Monitor is not deployed
+Resources
+    | where type =~ "microsoft.network/networkwatchers"
+    | summarize by location, subscriptionId, name, id
+| join kind = leftouter (
+resources
+| where type =~ 'microsoft.network/networkwatchers/connectionmonitors'
+| summarize by location, subscriptionId
+    | project nwlocation = location, nwsubscriptionId = subscriptionId
+    )  on $left.location == $right.nwlocation,
+    $left.subscriptionId == $right.nwsubscriptionId
+      | where isnull(nwlocation) or isempty(nwlocation)
+| project recommendationId = "1e28bbc1-1eb7-486f-8d7f-93943f40219c", name, id, tags=''

@@ -1,1 +1,15 @@
-// under-development
+// Azure Resource Graph Query
+// This query will return all regions for which Network Watcher is not deployed
+Resources
+| where location <> 'global'
+| summarize by location, subscriptionId
+| project location, subscriptionId
+| join kind = leftouter (
+    resources
+    | where type =~ "microsoft.network/networkwatchers"
+    | summarize by location, subscriptionId
+    | project nwlocation = location, nwsubscriptionId = subscriptionId
+    )  on $left.location == $right.nwlocation,
+    $left.subscriptionId == $right.nwsubscriptionId
+    | where isnull(nwlocation) or isempty(nwlocation)
+    | project recommendationId = "4e133bd0-8762-bc40-a95b-b29142427d73", name = strcat('NetworkWatcher_',location) , id=subscriptionId, tags='', param1 = strcat("missingLocation: ", location)
