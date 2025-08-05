@@ -1,2 +1,11 @@
-// cannot-be-validated-with-arg
+// Azure Resource Graph Query
+// Detects AKS clusters (Microsoft.ContainerService/managedClusters) where one or more of the CSI drivers (disk, file, blob) are not enabled.
+// This matches the recommendation to upgrade persistent volumes using in-tree drivers to Azure CSI drivers.
+
+resources
+| where type =~ 'Microsoft.ContainerService/managedClusters'
+| where properties.storageProfile.diskCSIDriver.enabled != true or
+        properties.storageProfile.fileCSIDriver.enabled != true or
+        properties.storageProfile.blobCSIDriver.enabled != true
+| project recommendationId = 'b002c030-72e6-4a37-8217-1cb276c43169', name, id, tags
 
