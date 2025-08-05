@@ -1,5 +1,5 @@
 // Azure Resource Graph Query
-// Count VM instances with a tag that contains "Citrix VDA" and create output if that count is >2000 for each subscription.
+// Count VM instances with a tag that contains "Citrix VDA" and create output if that count is >4000 for each subscription.
 // The Citrix published limit is 5000. This query runs an 80% check.
 
 resources
