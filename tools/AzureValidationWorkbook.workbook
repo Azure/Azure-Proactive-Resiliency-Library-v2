@@ -143,18 +143,10 @@
             "style": "link"
           },
           {
-            "id": "f280fc2a-f42a-42a4-ad4b-be37ab3e8b48",
-            "cellValue": "SelectedTab",
-            "linkTarget": "parameter",
-            "linkLabel": "Resiliency Zone Adoption checks",
-            "subTarget": "zoneAdoption",
-            "style": "link"
-          },
-          {
             "id": "26b3c7ef-1a00-4a3f-a773-677f00db9343",
             "cellValue": "SelectedTab",
             "linkTarget": "parameter",
-            "linkLabel": "Resiliency BCDR checks ",
+            "linkLabel": "Backup checks ",
             "subTarget": "BCDR",
             "style": "link"
           },
@@ -173,6 +165,14 @@
             "linkLabel": "Monitor checks",
             "subTarget": "Monitor",
             "style": "link"
+          },
+          {
+            "id": "f280fc2a-f42a-42a4-ad4b-be37ab3e8b48",
+            "cellValue": "SelectedTab",
+            "linkTarget": "parameter",
+            "linkLabel": "Resiliency Zone Adoption checks",
+            "subTarget": "zoneAdoption",
+            "style": "link"
           }
         ]
       },
@@ -183,14 +183,41 @@
       "content": {
         "version": "NotebookGroup/1.0",
         "groupType": "editable",
-        "title": "Overview",
         "items": [
           {
             "type": 1,
             "content": {
-              "json": "# Validation Workbook\r\n\r\nThis workbook provides a set of essential recommendations to validate and optimize the overall Azure environment.\r\n"
+              "json": "# Welcome to the Azure Validation Workbook"
             },
-            "name": "text - 0"
+            "name": "Welcome"
+          },
+          {
+            "type": 1,
+            "content": {
+              "json": "### Reference: [Microsoft Azure Well-Architected Framework - Reliability, Security, and Operational Excellence](https://learn.microsoft.com/en-us/azure/architecture/framework/)",
+              "style": "upsell"
+            },
+            "name": "Reference"
+          },
+          {
+            "type": 1,
+            "content": {
+              "json": "The Azure Validation Workbook provides a comprehensive assessment of your Azure environment, focusing on best practices for resiliency, business continuity and disaster recovery (BCDR), security, and monitoring. It is designed to help you quickly identify gaps, review recommendations, and track remediation progress across your subscriptions and resource groups.\r\n\r\n## Workbook Objectives\r\n\r\n* Evaluate your Azure resources against Microsoft best practices for reliability, security, and operational excellence.\r\n* Surface actionable insights and recommendations to improve your cloud posture.\r\n* Enable filtering by subscription, resource group, and tags for targeted analysis.\r\n* Support export of findings for offline review and reporting.\r\n\r\n> **Note:** This workbook is intended as a guidance tool. Remediation actions should be reviewed and implemented according to your organization’s policies and priorities."
+            },
+            "name": "Objective"
+          },
+          {
+            "type": 1,
+            "content": {
+              "json": "Indicates an implemented recommendation that results in an environment aligned with Azure best practices for resiliency, security, and monitoring.",
+              "style": "success"
+            },
+            "customWidth": "50",
+            "name": "Greenlight",
+            "styleSettings": {
+              "margin": "10px",
+              "showBorder": true
+            }
           }
         ]
       },
@@ -199,7 +226,7 @@
         "comparison": "isEqualTo",
         "value": "Overview"
       },
-      "name": "groupOverview"
+      "name": "Welcome"
     },
     {
       "type": 12,
@@ -330,6 +357,14 @@
               "groupType": "editable",
               "title": "Zone Overview",
               "items": [
+                {
+                  "type": 1,
+                  "content": {
+                    "json": "# Availability Zones\r\n## Availability Zone Best Practice Checks\r\nThis section reviews your Azure resources for alignment with Availability Zone best practices. Recommendations focus on deploying resources across multiple zones to enhance resiliency and minimize the impact of zone-level failures. Implementing these recommendations helps ensure high availability and business continuity for your critical workloads.",
+                    "style": "upsell"
+                  },
+                  "name": "text - AvailabilityZone"
+                },
                 {
                   "type": 3,
                   "content": {
@@ -1871,6 +1906,19 @@
             "name": "links - bcdrSubTab"
           },
           {
+            "type": 1,
+            "content": {
+              "json": "# Business Continuity and Disaster Recovery (BCDR)\r\n## BCDR Best Practice Checks\r\nThis section reviews your Azure resources for alignment with BCDR best practices. Recommendations focus on ensuring that your workloads are resilient to outages, have appropriate backup and recovery strategies, and are configured for high availability. Addressing these findings helps minimize downtime and data loss in the event of failures or disasters.",
+              "style": "upsell"
+            },
+            "conditionalVisibility": {
+              "parameterName": "SelectedSubTab",
+              "comparison": "isEqualTo",
+              "value": "Overview"
+            },
+            "name": "text - BCDR"
+          },
+          {
             "type": 12,
             "content": {
               "version": "NotebookGroup/1.0",
@@ -2216,10 +2264,18 @@
               "groupType": "editable",
               "items": [
                 {
+                  "type": 1,
+                  "content": {
+                    "json": "# Security\r\n## Security Best Practice Checks\r\nThis section evaluates your Azure resources against security best practices. Recommendations focus on protecting your environment from threats, ensuring proper access controls, and maintaining compliance with security standards. Addressing these findings helps safeguard your data, applications, and infrastructure from vulnerabilities and unauthorized access.",
+                    "style": "upsell"
+                  },
+                  "name": "text - Security"
+                },
+                {
                   "type": 3,
                   "content": {
                     "version": "KqlItem/1.0",
-                    "query": "securityresources\n| where type =~ \"microsoft.security/pricings\"\n| extend pricingTier = properties.pricingTier, subPlan = properties.subPlan\n| extend planSet = pack(name, level = case(isnotempty(subPlan),subPlan,pricingTier))\n| summarize defenderPlans = make_bag(planSet) by subscriptionId\n| project subscriptionId,\n    CloudPosture = defenderPlans.CloudPosture,\n    VirtualMachines = defenderPlans.VirtualMachines,\n    AppServices = defenderPlans.AppServices,\n    SqlServers = defenderPlans.SqlServers,\n    SqlServerVirtualMachines = defenderPlans.SqlServerVirtualMachines,\n    OpenSourceRelationalDatabases = defenderPlans.OpenSourceRelationalDatabases,\n    CosmosDB = defenderPlans.CosmosDbs,\n    StorageAccounts = defenderPlans.StorageAccounts,\n    Containers = defenderPlans.Containers,\n    KeyVaults = defenderPlans.KeyVaults,\n    Arm = defenderPlans.Arm,\n    DNS = defenderPlans.Dns,\n    KubernetesService = defenderPlans.KubernetesService,\n    ContainerRegistry = defenderPlans.ContainerRegistry",
+                    "query": "securityresources\n| where type =~ \"microsoft.security/pricings\"\n| extend pricingTier = properties.pricingTier, subPlan = properties.subPlan\n| extend planSet = pack(name, level = case(isnotempty(subPlan),subPlan,pricingTier))\n| summarize defenderPlans = make_bag(planSet) by subscriptionId\n| project subscriptionId,\n    CloudPosture = defenderPlans.CloudPosture,\n    VirtualMachines = defenderPlans.VirtualMachines,\n    AppServices = defenderPlans.AppServices,\n    SqlServers = defenderPlans.SqlServers,\n    SqlServerVirtualMachines = defenderPlans.SqlServerVirtualMachines,\n    OpenSourceRelationalDatabases = defenderPlans.OpenSourceRelationalDatabases,\n    CosmosDB = defenderPlans.CosmosDbs,\n    StorageAccounts = defenderPlans.StorageAccounts,\n    Containers = defenderPlans.Containers,\n    KeyVaults = defenderPlans.KeyVaults,\n    Arm = defenderPlans.Arm,\n    DNS = defenderPlans.Dns,\n    KubernetesService = defenderPlans.KubernetesService,\n    ContainerRegistry = defenderPlans.ContainerRegistry",
                     "size": 1,
                     "showAnalytics": true,
                     "title": "Absolute coverage across Azure subscriptions",
@@ -3000,6 +3056,14 @@
               "groupType": "editable",
               "items": [
                 {
+                  "type": 1,
+                  "content": {
+                    "json": "# Monitoring\r\n## Monitoring Best Practice Checks\r\nThis section assesses your Azure resources for adherence to monitoring best practices. Recommendations focus on ensuring that logging, alerting, and observability are properly configured, enabling proactive detection and response to issues. Implementing these recommendations helps maintain visibility into your environment and supports operational excellence.",
+                    "style": "upsell"
+                  },
+                  "name": "text - Monitoring"
+                },
+                {
                   "type": 3,
                   "content": {
                     "version": "KqlItem/1.0",
@@ -3153,7 +3217,7 @@
     }
   ],
   "fallbackResourceIds": [
-    "Azure Monitor"
+    "azure monitor"
   ],
   "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
 }
