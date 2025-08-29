@@ -3,7 +3,7 @@
   "parameters": {
     "workbookDisplayName": {
       "type": "string",
-      "defaultValue": "Azure Health Check v0.1",
+      "defaultValue": "Azure Validation Workbook v0.1",
       "metadata": {
         "description": "The friendly name for the workbook that is used in the Gallery or Saved List.  This name must be unique within a resource group."
       }
@@ -65,9 +65,9 @@
           "contentVersion": "1.0.0.0",
           "resources": [],
           "outputs": {
-            "telemetry": {
-              "type": "String",
-              "value": "For more information, see https://aka.ms/avm/TelemetryInfo"
+            "workbookId": {
+              "type": "string",
+              "value": "[resourceId( 'microsoft.insights/workbooks', parameters('workbookId'))]"
             }
           }
         }
