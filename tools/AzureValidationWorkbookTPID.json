@@ -57,7 +57,7 @@
       "condition": "[parameters('enableTelemetry')]",
       "name": "[concat('azvalidationworkbookj2factory-', substring(uniqueString(deployment().name), 0, 8))]",
       "type": "Microsoft.Resources/deployments",
-      "apiVersion": "2019-04-01",
+      "apiVersion": "2025-04-01",
       "properties": {
         "mode": "Incremental",
         "template": {
