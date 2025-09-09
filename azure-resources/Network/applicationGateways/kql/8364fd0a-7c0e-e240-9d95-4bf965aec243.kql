@@ -21,4 +21,8 @@ resources
     | extend subnetPrefixLength = split(prefix, '/')[1]
 ) on subnetId
 | where subnetPrefixLength > 24 and subnetPrefixLength != 64
-| distinct id, subscriptionId
+| project
+    recommendationId = id,
+    name = tostring(split(id, '/')[8]), // Extract resource name from id
+    tags = iif(isnull(properties.tags), array(), properties.tags),
+    param1 = subnetId
