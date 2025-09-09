@@ -1,13 +1,12 @@
 // Azure Resource Graph Query
 // This query will validate the subnet id for an appGW ends with a /24
-
 resources
-| where type == 'microsoft.network/applicationgateways'
+| where type == "microsoft.network/applicationgateways"
 | extend subnetId = tostring(properties.gatewayIPConfigurations[0].properties.subnet.id)
-| project id, subscriptionId, subnetId
+| project id, subscriptionId, subnetId, name, tags
 | join (
     resources
-    | where type == 'microsoft.network/virtualnetworks'
+    | where type == "microsoft.network/virtualnetworks"
     | project id, subnets = properties.subnets
     | mv-expand subnets
     | mv-expand subnets.properties.addressPrefixes
@@ -18,11 +17,7 @@ resources
         prefix2 = subnets.properties.addressPrefixes
     | mv-expand prefix2
     | extend prefix = iff(isnotnull(prefix1), prefix1, prefix2)
-    | extend subnetPrefixLength = split(prefix, '/')[1]
+    | extend subnetPrefixLength = split(prefix, "/")[1]
 ) on subnetId
 | where subnetPrefixLength > 24 and subnetPrefixLength != 64
-| project
-    recommendationId = id,
-    name = tostring(split(id, '/')[8]), // Extract resource name from id
-    tags = iif(isnull(properties.tags), array(), properties.tags),
-    param1 = subnetId
+| project recommendationId = "8364fd0a-7c0e-e240-9d95-4bf965aec243",name,id,tags,param1 = strcat("AppGW subnet prefix: ", prefix)
