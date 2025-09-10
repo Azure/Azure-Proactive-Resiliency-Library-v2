@@ -106,22 +106,22 @@
     - name: Business continuity and disaster recovery considerations for Oracle Database@Azure
       url: "https://learn.microsoft.com/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-disaster-recovery-oracle-database-azure"
 
-- description: Set up Oracle Key Vault in a highly available cluster for customer-managed encryption keys.
+- description: Store Oracle Transparent Data Encryption (TDE) master encryption keys (MEKs) in Azure Key Vault
   aprlGuid: bbe4014f-c49d-475d-9c48-76cb3c190483
   recommendationTypeId: null
-  recommendationControl: HighAvailability
+  recommendationControl: Security
   recommendationImpact: High
   recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription: |
-    Provide redundancy for VMs used as OKV, note that this is only relevant if customer is using own keys and only if OCI vault is not used. A minimum 4-node OKV cluster deployment is recommended across two AZs or regions, aligned with the BCDR architecture.
-  potentialBenefits: Protect access to keys in case of VM or AZ/region failure.
+    Store Oracle TDE master encryption keys in Azure Key Vault to centralize key management, improve security, and support compliance with enterprise-grade controls.
+  potentialBenefits: Improved encryption key security and compliance through centralized, Azure-native key management.
   pgVerified: false
   automationAvailable: false
   tags: [ORACLE]
   learnMoreLink:
-    - name: Security guidelines for Oracle Database@Azure
-      url: "https://learn.microsoft.com/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-security-overview-odaa"
+    - name: Integrate Oracle Exadata Database@Azure with Azure Key Vault
+      url: https://learn.microsoft.com/azure/oracle/oracle-db/manage-oracle-transparent-data-encryption-azure-key-vault
 
 - description: Ensure Oracle Database@Azure Infrastructure is updated in a rolling manner.
   aprlGuid: 02bfe908-d958-451a-a603-bef8277ae56a
