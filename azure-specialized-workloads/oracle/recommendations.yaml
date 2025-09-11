@@ -114,7 +114,7 @@
   recommendationResourceType: Microsoft.Subscription/subscriptions
   recommendationMetadataState: Active
   longDescription: |
-    Store Oracle TDE master encryption keys in Azure Key Vault to centralize key management, improve security, and support compliance with enterprise-grade controls.
+    Store Oracle TDE master encryption keys for Exadata workloads in Azure Key Vault to centralize key management, improve security, and support compliance with enterprise-grade controls.
   potentialBenefits: Storing keys in AKV improves security and reliability.
   pgVerified: false
   automationAvailable: false
