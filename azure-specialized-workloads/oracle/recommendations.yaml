@@ -115,7 +115,7 @@
   recommendationMetadataState: Active
   longDescription: |
     Store Oracle TDE master encryption keys in Azure Key Vault to centralize key management, improve security, and support compliance with enterprise-grade controls.
-  potentialBenefits: Improved encryption key security and compliance through centralized, Azure-native key management.
+  potentialBenefits: Storing keys in AKV improves security and reliability.
   pgVerified: false
   automationAvailable: false
   tags: [ORACLE]

@@ -1,5 +1,5 @@
 // Azure Resource Graph Query
-// This resource graph query will return rows if Oracle Database@Azure Infrastructure Lifestyle state is not Available
+// This resource graph query will return rows if Oracle Database@Azure Infrastructure life cycle state is not Available
 resources
 | where type == "oracle.database/cloudexadatainfrastructures"
 | where properties.lifecycleState !~ "Available"
