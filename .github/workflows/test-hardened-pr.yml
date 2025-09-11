@@ -7,6 +7,11 @@ on:
         description: "PR number to simulate"
         required: true
         default: "123"
+      # Optional: flip to 'fail' to simulate a failing integrity check
+      integrity_result:
+        description: "Expected integrity result (pass|fail)"
+        required: false
+        default: "pass"
 
 permissions:
   contents: read
@@ -16,36 +21,63 @@ jobs:
   test-hardened:
     name: Validate Hardened Workflow Logic
     runs-on: ubuntu-latest
+
     steps:
-      # 1. Harden Runner in AUDIT mode (not blocking yet)
+      # 1) Harden Runner (audit mode so nothing is blocked during the test)
       - name: Harden Runner (audit mode)
         uses: step-security/harden-runner@v2
         with:
           egress-policy: audit
 
-      # 2. Simulate PR metadata
+      # 2) Checkout repository so files exist in the workspace
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 1
+
+      # 3) Simulate PR metadata
       - name: Simulate PR Context
         run: |
           echo "Simulating PR #${{ github.event.inputs.simulate_pr_number }}"
           echo "Base branch: main"
           echo "PR branch: feature/test"
 
-      # 3. Integrity Check Simulation
+      # 4) Integrity Check (Simulated; defaults to PASS)
       - name: Integrity Check (Simulated)
+        id: integrity
         shell: bash
+        env:
+          FILE_PATH: .github/scripts/validate-kql-comments.ps1
+          EXPECTED: ${{ github.event.inputs.integrity_result || 'pass' }}
         run: |
-          echo "Running integrity check..."
-          base_hash=$(sha256sum .github/scripts/validate-kql-comments.ps1 | cut -d ' ' -f1)
+          set -euo pipefail
+          echo "Running integrity check on $FILE_PATH ..."
+
+          if [[ ! -f "$FILE_PATH" ]]; then
+            echo "::error title=File not found::'$FILE_PATH' does not exist in the checked-out repository."
+            echo "Tip: verify the file path in the repo and that the workflow is running on the branch that contains it."
+            exit 1
+          fi
+
+          base_hash="$(sha256sum "$FILE_PATH" | cut -d ' ' -f1)"
           echo "Base hash: $base_hash"
-          pr_hash="abc123"
-          if [ "$base_hash" != "$pr_hash" ]; then
-            echo "Integrity check failed!"
+
+          # For this test, set pr_hash to either match (pass) or differ (fail)
+          if [[ "$EXPECTED" == "pass" ]]; then
+            pr_hash="$base_hash"
+          else
+            pr_hash="0000000000000000000000000000000000000000000000000000000000000000"
+          fi
+
+          if [[ "$base_hash" != "$pr_hash" ]]; then
+            echo "::error title=Integrity check failed::Base and PR hashes differ."
+            echo "PR hash (simulated): $pr_hash"
             exit 1
           else
             echo "Integrity check passed ✅"
           fi
 
-      # 4. Conditional Execution Simulation
+      # 5) Conditional Execution Simulation
       - name: Check Approval Condition
         run: |
           echo "Simulating reviewDecision=APPROVED"
@@ -56,7 +88,7 @@ jobs:
           fi
           echo "PR approved ✅"
 
-      # 5. Mock Azure Login (No real secrets)
+      # 6) Mock Azure Login (No real secrets)
       - name: Mock Azure Login
         run: |
           echo "Simulating Azure OIDC login..."
@@ -64,7 +96,7 @@ jobs:
           echo "Tenant ID: dummy"
           echo "Subscription ID: dummy"
 
-      # 6. Simulate KQL Validation
+      # 7) Simulate KQL Validation
       - name: Run KQL Validation (Dry Run)
         shell: pwsh
         run: |
