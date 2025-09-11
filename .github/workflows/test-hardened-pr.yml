@@ -45,39 +45,59 @@ jobs:
           ls -la .github/scripts || echo "::warning::.github/scripts not found in this repo/branch"
 
       # 5) Integrity Check (guarded): compute hash only if the file exists
-
       - name: Integrity Check (Hash Compare)
         id: integrity
         shell: bash
         env:
           FILE_PATH: ".github/scripts/validate-kql-comments.ps1"
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          SIMULATE_PR_NUMBER: ${{ github.event.inputs.simulate_pr_number }}
         run: |
           set -euo pipefail
           echo "Running integrity check for $FILE_PATH"
 
-          if [ ! -f "$FILE_PATH" ]; then
-            echo "Error: $FILE_PATH not found in repository"
+          # Ensure we have the latest main ref available
+          git fetch --no-tags origin main || true
+
+          # Compute base hash from the file as it exists on the main branch (trusted source)
+          if ! git show "origin/main:${FILE_PATH}" >/dev/null 2>&1; then
+            echo "Error: ${FILE_PATH} not found on origin/main"
             exit 1
           fi
+          base_hash=$(git show "origin/main:${FILE_PATH}" | sha256sum | cut -d ' ' -f1)
+          echo "Base hash (origin/main): $base_hash"
 
-          # Compute hash for the file in the current branch
-          base_hash=$(sha256sum "$FILE_PATH" | cut -d ' ' -f1)
-          echo "Base hash: $base_hash"
+          # If this run was triggered by a pull_request, fetch the PR head and compute its file hash
+          if [ -n "${PR_NUMBER:-}" ]; then
+            echo "Detected PR run for PR #${PR_NUMBER}. Fetching PR head..."
+            git fetch origin "refs/pull/${PR_NUMBER}/head:refs/remotes/origin/pr/${PR_NUMBER}" || true
 
-          # Simulate PR hash or compute from another checkout if needed
-          # For now, reuse base hash for pass/fail logic
-          pr_hash="$base_hash"  # Replace with actual PR hash if you checkout PR separately
+            if ! git show "refs/remotes/origin/pr/${PR_NUMBER}:${FILE_PATH}" >/dev/null 2>&1; then
+              echo "Error: $FILE_PATH not found in PR #${PR_NUMBER}"
+              exit 1
+            fi
+
+            pr_hash=$(git show "refs/remotes/origin/pr/${PR_NUMBER}:${FILE_PATH}" | sha256sum | cut -d ' ' -f1)
+            echo "PR hash (PR #${PR_NUMBER}): $pr_hash"
+          else
+            # Manual run: fall back to workspace file (but still trust main as the baseline)
+            if [ -f "$FILE_PATH" ]; then
+              pr_hash=$(sha256sum "$FILE_PATH" | cut -d ' ' -f1)
+              echo "Manual run: PR hash computed from workspace file: $pr_hash"
+            else
+              echo "Error: no PR context and workspace file $FILE_PATH not found"
+              exit 1
+            fi
+          fi
 
           if [ "$base_hash" != "$pr_hash" ]; then
-            echo "Integrity check failed! Hash mismatch."
-            echo "Base: $base_hash"
-            echo "PR:   $pr_hash"
+            echo "Integrity check failed! File on PR does not match trusted version on main."
+            echo "Base (main): $base_hash"
+            echo "PR/head:     $pr_hash"
             exit 1
           fi
 
           echo "Integrity check passed."
-
-
       # 6) Conditional Execution Simulation (purely illustrative)
       - name: Check Approval Condition (simulated)
         run: |
