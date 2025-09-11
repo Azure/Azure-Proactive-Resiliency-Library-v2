@@ -1,4 +1,4 @@
-#Install Az.ResourceGraph module##
+##Install Az.ResourceGraph module##
 Install-Module -Name Az.resourcegraph -force -scope CurrentUser
 
 #Functions
