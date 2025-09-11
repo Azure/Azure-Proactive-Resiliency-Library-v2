@@ -106,7 +106,7 @@
     - name: Business continuity and disaster recovery considerations for Oracle Database@Azure
       url: "https://learn.microsoft.com/azure/cloud-adoption-framework/scenarios/oracle-iaas/oracle-disaster-recovery-oracle-database-azure"
 
-- description: Store Oracle Transparent Data Encryption (TDE) master encryption keys (MEKs) in Azure Key Vault
+- description: Store Oracle Transparent Data Encryption (TDE) master encryption keys (MEKs) in Azure Key Vault for Exadata workloads
   aprlGuid: bbe4014f-c49d-475d-9c48-76cb3c190483
   recommendationTypeId: null
   recommendationControl: Security
