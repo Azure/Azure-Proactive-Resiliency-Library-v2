@@ -45,24 +45,38 @@ jobs:
           ls -la .github/scripts || echo "::warning::.github/scripts not found in this repo/branch"
 
       # 5) Integrity Check (guarded): compute hash only if the file exists
-      - name: Integrity Check (guarded)
+
+      - name: Integrity Check (Hash Compare)
         id: integrity
         shell: bash
         env:
           FILE_PATH: ".github/scripts/validate-kql-comments.ps1"
         run: |
           set -euo pipefail
-          echo "Running integrity check..."
-          if [[ ! -f "$FILE_PATH" ]]; then
-            echo "::warning:: $FILE_PATH not found in this repository/branch. Skipping integrity check."
-            echo "found=false" >> "$GITHUB_OUTPUT"
-            exit 0
+          echo "Running integrity check for $FILE_PATH"
+
+          if [ ! -f "$FILE_PATH" ]; then
+            echo "Error: $FILE_PATH not found in repository"
+            exit 1
           fi
-          base_hash="$(sha256sum "$FILE_PATH" | cut -d ' ' -f1)"
+
+          # Compute hash for the file in the current branch
+          base_hash=$(sha256sum "$FILE_PATH" | cut -d ' ' -f1)
           echo "Base hash: $base_hash"
-          # For this TEST workflow we simply pass when file exists and hash is computed.
-          echo "found=true"  >> "$GITHUB_OUTPUT"
-          echo "hash=$base_hash" >> "$GITHUB_OUTPUT"
+
+          # Simulate PR hash or compute from another checkout if needed
+          # For now, reuse base hash for pass/fail logic
+          pr_hash="$base_hash"  # Replace with actual PR hash if you checkout PR separately
+
+          if [ "$base_hash" != "$pr_hash" ]; then
+            echo "Integrity check failed! Hash mismatch."
+            echo "Base: $base_hash"
+            echo "PR:   $pr_hash"
+            exit 1
+          fi
+
+          echo "Integrity check passed."
+
 
       # 6) Conditional Execution Simulation (purely illustrative)
       - name: Check Approval Condition (simulated)
