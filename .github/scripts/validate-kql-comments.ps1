@@ -1,4 +1,4 @@
-#Functions#
+#Functions##
 Function Invoke-ValidateKqlComment([array]$filearray) {
 $kqlresults = @()
 ForEach($file in $filearray){
