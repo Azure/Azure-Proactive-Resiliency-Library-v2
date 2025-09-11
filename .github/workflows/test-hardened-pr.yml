@@ -1,0 +1,71 @@
+name: Test Hardened PR Workflow
+
+on:
+  workflow_dispatch:   # Manual trigger for safe testing
+    inputs:
+      simulate_pr_number:
+        description: "PR number to simulate"
+        required: true
+        default: "123"
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  test-hardened:
+    name: Validate Hardened Workflow Logic
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Harden Runner in AUDIT mode (not blocking yet)
+      - name: Harden Runner (audit mode)
+        uses: step-security/harden-runner@v2
+        with:
+          egress-policy: audit
+
+      # 2. Simulate PR metadata
+      - name: Simulate PR Context
+        run: |
+          echo "Simulating PR #${{ github.event.inputs.simulate_pr_number }}"
+          echo "Base branch: main"
+          echo "PR branch: feature/test"
+
+      # 3. Integrity Check Simulation
+      - name: Integrity Check (Simulated)
+        shell: bash
+        run: |
+          echo "Running integrity check..."
+          base_hash="abc123"
+          pr_hash="abc123"
+          if [ "$base_hash" != "$pr_hash" ]; then
+            echo "Integrity check failed!"
+            exit 1
+          else
+            echo "Integrity check passed ✅"
+          fi
+
+      # 4. Conditional Execution Simulation
+      - name: Check Approval Condition
+        run: |
+          echo "Simulating reviewDecision=APPROVED"
+          decision="APPROVED"
+          if [ "$decision" != "APPROVED" ]; then
+            echo "PR not approved yet. Exiting."
+            exit 1
+          fi
+          echo "PR approved ✅"
+
+      # 5. Mock Azure Login (No real secrets)
+      - name: Mock Azure Login
+        run: |
+          echo "Simulating Azure OIDC login..."
+          echo "Client ID: dummy"
+          echo "Tenant ID: dummy"
+          echo "Subscription ID: dummy"
+
+      # 6. Simulate KQL Validation
+      - name: Run KQL Validation (Dry Run)
+        shell: pwsh
+        run: |
+          Write-Host "Simulating KQL validation..."
+          Write-Host "No real scripts executed."
