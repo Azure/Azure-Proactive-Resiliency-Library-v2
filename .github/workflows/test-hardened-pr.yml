@@ -35,7 +35,8 @@ jobs:
         shell: bash
         run: |
           echo "Running integrity check..."
-          base_hash="abc123"
+          base_hash=$(sha256sum .github/scripts/validate-kql-comments.ps1 | cut -d ' ' -f1)
+          echo "Base hash: $base_hash"
           pr_hash="abc123"
           if [ "$base_hash" != "$pr_hash" ]; then
             echo "Integrity check failed!"
