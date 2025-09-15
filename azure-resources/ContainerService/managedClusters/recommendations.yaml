@@ -295,7 +295,7 @@
   recommendationResourceType: Microsoft.ContainerService/managedClusters
   recommendationMetadataState: Active
   longDescription: |
-    The system node pool should be configured with a minimum node count of two to ensure critical system pods are resilient to node outages.
+    The system node pool should be configured with a minimum node count of three to ensure critical system pods are resilient to node outages.
   potentialBenefits: Ensures pod resilience
   pgVerified: true
   automationAvailable: true
