@@ -1,2 +1,4 @@
-// under-development
-
+// Azure Resource Graph Query
+// This query will return Time-To-Live (TTL) for the DNS recordsets. Make sure it is set appropriately to ensure RTOs
+dnsresources
+| project recommendationId = "3538aa48-c40b-455b-a93b-269fe6e65be2", name, id, tags, param1 = strcat("Time-To-Live: ", tostring(properties.ttl))

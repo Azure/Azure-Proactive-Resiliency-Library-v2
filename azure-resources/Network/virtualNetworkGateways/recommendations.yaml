@@ -68,7 +68,7 @@
 
 - description: Configure customer-controlled ExpressRoute gateway maintenance
   aprlGuid: 3e115044-a3aa-433e-be01-ce17d67e50da
-  recommendationTypeId: null
+  recommendationTypeId: b4af9e04-3570-41f1-b4cf-b7af07224799
   recommendationControl: HighAvailability
   recommendationImpact: Medium
   recommendationResourceType: Microsoft.Network/virtualNetworkGateways
