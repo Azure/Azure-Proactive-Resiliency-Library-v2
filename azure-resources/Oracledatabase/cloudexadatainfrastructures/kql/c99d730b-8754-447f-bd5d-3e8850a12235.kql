@@ -1,1 +1,6 @@
-// under-development
+// Azure Resource Graph Query
+// This resource graph query will return rows if Oracle Database@Azure Infrastructure life cycle state is not Available
+resources
+| where type == "oracle.database/cloudexadatainfrastructures"
+| where properties.lifecycleState !~ "Available"
+| project recommendationId = "c99d730b-8754-447f-bd5d-3e8850a12235",id=tostring(id),name,tags, param1 = "ODAAInfraAvail: False"
