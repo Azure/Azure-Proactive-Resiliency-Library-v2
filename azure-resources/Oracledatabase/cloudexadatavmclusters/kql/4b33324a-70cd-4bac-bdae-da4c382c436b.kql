@@ -1,1 +1,6 @@
-// under-development
+// Azure Resource Graph Query
+// This resource graph query will return rows if Oracle Database@Azure Cluster life cycle state is not Available
+resources
+| where type == "oracle.database/cloudvmclusters"
+| where properties.lifecycleState !~ "Available"
+| project recommendationId = "4b33324a-70cd-4bac-bdae-da4c382c436b",id=tostring(id),name,tags, param1 = "ODAAClusterAvail: False"
