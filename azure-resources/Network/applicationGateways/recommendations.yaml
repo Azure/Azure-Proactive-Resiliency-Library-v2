@@ -134,16 +134,16 @@
     - name: Application Gateway Connection Draining
       url: "https://learn.microsoft.com/azure/application-gateway/features#connection-draining"
 
-- description: Ensure Application Gateway Subnet is using a /24 subnet mask
+- description: A minimum subnet size of /24 is recommended for Application Gateway v2 subnets.
   aprlGuid: 8364fd0a-7c0e-e240-9d95-4bf965aec243
-  recommendationTypeId: null
+  recommendationTypeId: ef4da732-f541-4109-bc0e-465c68b6c7eb
   recommendationControl: OtherBestPractices
   recommendationImpact: High
   recommendationResourceType: Microsoft.Network/applicationGateways
   recommendationMetadataState: Active
   longDescription: |
-    Application Gateway v2 (Standard_v2 or WAF_v2 SKU) can support up to 125 instances. A /24 subnet isn't mandatory for deployment but is advised to provide enough space for autoscaling and maintenance upgrades.
-  potentialBenefits: Allows autoscaling and maintenance
+    Application Gateway (Standard_v2 or WAF_v2 SKU) can support up to 125 instances (125 instance IP addresses + 1 private frontend IP configuration + 5 Azure reserved). A minimum subnet size of /24 is recommended.
+  potentialBenefits: Enough room for scalability
   pgVerified: true
   automationAvailable: true
   tags: []
