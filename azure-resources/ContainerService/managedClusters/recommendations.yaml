@@ -128,7 +128,7 @@
     From Kubernetes 1.26, Azure Disk and Azure File in-tree drivers are deprecated in favor of CSI drivers. Existing deployments remain operational but untested; users should switch to CSI drivers for new features and SKUs.
   potentialBenefits: Ensures future compatibility
   pgVerified: true
-  automationAvailable: false
+  automationAvailable: true
   tags: []
   learnMoreLink:
     - name: CSI Storage Drivers
