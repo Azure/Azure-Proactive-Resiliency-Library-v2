@@ -1,1 +1,6 @@
-// cannot-be-validated-with-arg
+// Azure Resource Graph Query
+// This resource graph query will return rows if Oracle Database@Azure Infrastructure Maintenance is not Rolling
+resources
+| where type == "oracle.database/cloudexadatainfrastructures"
+| where properties.maintenanceWindow.patchingMode !~ "Rolling"
+| project recommendationId = "02bfe908-d958-451a-a603-bef8277ae56a",id=tostring(id),name,tags, param1 = "ODAAInfraMaintRolling: False"

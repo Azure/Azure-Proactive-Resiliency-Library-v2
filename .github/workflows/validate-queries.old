@@ -1,18 +1,18 @@
 name: Validate ARG Queries
 
-on:
-  pull_request_target:
-    branches:
-      - main
-      - dev-tools
-    types:
-      - opened
-      - reopened
-      - synchronize
-      - ready_for_review
-    paths:
-    - '**/*.kql'
-  workflow_dispatch: {}
+##on:
+##  pull_request_target:
+##    branches:
+##      - main
+##      - dev-tools
+##    types:
+##      - opened
+##      - reopened
+##      - synchronize
+##     - ready_for_review
+##    paths:
+##    - '**/*.kql'
+##  workflow_dispatch: {}
 
 permissions:
   contents: read  # This is required for actions/checkout
@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Harden Runner
-        uses: step-security/harden-runner@002fdce3c6a235733a90a27c80493a3241e56863 # v2.12.1
+        uses: step-security/harden-runner@6c439dc8bdf85cadbbce9ed30d1c7b959517bc49 # v2.12.2
         with:
           egress-policy: audit
 
@@ -34,14 +34,14 @@ jobs:
         with:
           ref: "refs/pull/${{ github.event.number }}/merge"
 
-      - name: Azure login (OIDC)
-        uses: azure/login@a457da9ea143d694b1b9c7c869ebb04ebe844ef5 # v2.3.0
-        if:
-        with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          enable-AzPSSession: true
+##      - name: Azure login (OIDC)
+##        uses: azure/login@a457da9ea143d694b1b9c7c869ebb04ebe844ef5 # v2.3.0
+##        if:
+##        with:
+##          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+##          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+##          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+##          enable-AzPSSession: true
 
       - name: Run KQL Comment Check
         run: |
