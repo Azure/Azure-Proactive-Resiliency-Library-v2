@@ -4,7 +4,7 @@
 You can deploy the workbook directly to your Azure environment using the button below.
 
 
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2FAzure-Proactive-Resiliency-Library-v2%2Frefs%2Fheads%2Farclares-workbook%2Ftools%2FAzureValidationWorkbookTPID.json)
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2FAzure-Proactive-Resiliency-Library-v2%2Frefs%2Fheads%2Farclares-workbook%2Ftools%2FAzureValidationWorkbook.json)
 
 Clicking this button will open the Azure Portal with your template pre-loaded for deployment.
 
