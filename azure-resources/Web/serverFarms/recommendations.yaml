@@ -85,7 +85,7 @@
 
 - description: Set minimum instance count to 2 for app service
   aprlGuid: 855ca19a-6518-4f2e-9e5a-01796fbca9f8
-  recommendationTypeId: null
+  recommendationTypeId: e987dcce-fd2c-4683-8abf-f1a34bbad737
   recommendationControl: Scalability
   recommendationImpact: High
   recommendationResourceType: Microsoft.Web/serverFarms
