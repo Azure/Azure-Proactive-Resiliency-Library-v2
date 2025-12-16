@@ -407,3 +407,20 @@
   learnMoreLink:
     - name: Learn More
       url: "https://learn.microsoft.com/azure/architecture/example-scenario/identity/adds-extend-domain#reliability"
+
+- description: Utilize Azure NetApp Files to host FSLogix profiles on AVD
+  aprlGuid: 7e2c1b8a-4e3f-4c2a-9b1a-2d8f3e6c1a2b
+  recommendationTypeId: null
+  recommendationControl: Scalability
+  recommendationImpact: High
+  recommendationResourceType: Microsoft.NetApp/netAppAccounts
+  recommendationMetadataState: Active
+  longDescription: |
+    Azure NetApp Files can provide up to 450,000 IOPS and sub-millisecond latency, capable of supporting extremely large scale of Azure Virtual Desktop deployments.
+  potentialBenefits: low latency performant storage for large AVD deployments.
+  pgVerified: false
+  automationAvailable: false
+  tags: [AVD]
+  learnMoreLink:
+    - name: ANF for large AVD deployments
+      url: "https://learn.microsoft.com/azure/azure-netapp-files/solutions-windows-virtual-desktop"
