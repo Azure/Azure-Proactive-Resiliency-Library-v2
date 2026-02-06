@@ -4,8 +4,8 @@
 resources
 | where type =~ 'Microsoft.Network/loadBalancers'
 | mv-expand bpool = properties.backendAddressPools
-| extend DirectMembers = array_length(bpool.properties.loadBalancerBackendAddresses)
-| extend NicMembers = array_length(bpool.properties.backendIpConfigurations)
+| extend DirectMembers = tolong(coalesce(array_length(bpool.properties.loadBalancerBackendAddresses), 0))
+| extend NicMembers = tolong(coalesce(array_length(bpool.properties.backendIpConfigurations), 0))
 | extend TotalMembers = DirectMembers + NicMembers
 | where TotalMembers <= 1
 | extend lbId = id, lbName = name, poolName = tostring(bpool.name), lbTags = tostring(tags)
