@@ -1,1 +1,12 @@
-// cannot-be-validated-with-arg
+// Azure Resource Graph Query
+// This query will return if the encryptionType is Customer-managed key or Microsoft-Managed key. If it is Customer-managed key, the query displays the keyName and keyVaultId 
+Resources
+| where type =~ "microsoft.avs/privateclouds"
+| extend keyName = tostring(properties.encryption.keyVaultProperties.keyName)
+| extend encryptionType = case(
+    isnull(keyName) or keyName == "", "Microsoft-managed keys",
+    "Customer-managed keys"
+)
+| project subscriptionId, resourceGroup, name, encryptionType,
+          keyVaultId = tostring(properties.encryption.keyVaultProperties.keyVaultId),
+          keyName
