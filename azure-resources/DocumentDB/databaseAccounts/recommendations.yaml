@@ -15,23 +15,6 @@
     - name: Distribute data globally with Azure Cosmos DB
       url: "https://learn.microsoft.com/azure/cosmos-db/distribute-data-globally"
 
-- description: Enable service-managed failover for multi-region accounts with single write region
-  aprlGuid: 9cabded7-a1fc-6e4a-944b-d7dd98ea31a2
-  recommendationTypeId: 5de9f2e6-087e-40da-863a-34b7943beed4
-  recommendationControl: DisasterRecovery
-  recommendationImpact: High
-  recommendationResourceType: Microsoft.DocumentDB/databaseAccounts
-  recommendationMetadataState: Active
-  longDescription: |
-    Cosmos DB boasts high uptime and resiliency. Even so, issues may arise. With Service-Managed failover, if a region is down, Cosmos DB automatically switches to the next available region, requiring no user action.
-  potentialBenefits: Auto failover for high uptime
-  pgVerified: true
-  automationAvailable: true
-  tags: []
-  learnMoreLink:
-    - name: Manage an Azure Cosmos DB account by using the Azure portal
-      url: "https://learn.microsoft.com/azure/cosmos-db/how-to-manage-database-account#automatic-failover"
-
 - description: Enable availability zones
   aprlGuid: 921631f6-ed59-49a5-94c1-f0f3ececa580
   recommendationTypeId: null
