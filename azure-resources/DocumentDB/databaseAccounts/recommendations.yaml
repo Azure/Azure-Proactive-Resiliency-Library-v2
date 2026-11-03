@@ -49,7 +49,7 @@
     - name: High availability in Azure Cosmos DB
       url: "https://learn.microsoft.com/azure/reliability/reliability-cosmos-db-nosql"
 
-- description: Evaluate multi-region write capability
+- description: Enable Business Critical tier for highest availability
   aprlGuid: 9ce78192-74a0-104c-b5bb-9a443f941649
   recommendationTypeId: null
   recommendationControl: HighAvailability
@@ -57,7 +57,7 @@
   recommendationResourceType: Microsoft.DocumentDB/databaseAccounts
   recommendationMetadataState: Active
   longDescription: |
-    Multi-region writes enable high availability but require careful consistency and conflict resolution. Using Bounded Staleness is an anti-pattern, as replication lag increases latency and coordination overhead. This setup undermines scalability, impacting performance and availability.
+    Opting into Business Critical Tier enables achieving 99.999% availability through either multi-region writes or PPAF. Multi-region writes supports all APIs but requires conflict-aware application design; PPAF requires the NoSQL API and newer SDKs.
   potentialBenefits: Enhances high availability
   pgVerified: true
   automationAvailable: true
