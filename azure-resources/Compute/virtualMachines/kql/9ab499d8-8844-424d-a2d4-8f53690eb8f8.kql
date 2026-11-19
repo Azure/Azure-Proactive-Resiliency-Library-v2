@@ -1,2 +1,43 @@
-// under-development
+// Azure Resource Graph Query
+// This query will return all the virtual machines which are on SKUs supported by Azure Boost.
 
+Resources
+| where type in~ (
+    'microsoft.compute/virtualmachines',
+    'microsoft.compute/virtualmachinescalesets/virtualmachines'
+)
+| extend vmSize = tolower(tostring(properties.hardwareProfile.vmSize))
+// Families from Azure Boost current availability (Sept 2025)
+| extend isBoostSku = case(
+    // Ebsv5 / Ebdsv5
+    vmSize matches regex @"^standard_e\d+(bs|bds)_v5$", true,
+    // Lsv3
+    vmSize matches regex @"^standard_l(8|16|32|48|64|80)s_v3$", true,
+    // Dsv5 / Ddsv5 / Dds_v5
+    vmSize matches regex @"^standard_d\d+d?s_v5$", true,
+    // Dsv6 / Ddsv6 / Dds_v6
+    vmSize matches regex @"^standard_d\d+d?s_v6$", true,
+    // Msv3 / Mdsv3
+    vmSize matches regex @"^standard_m\d+ms_v3$", true,
+    vmSize matches regex @"^standard_m\d+mds_v3$", true,
+    // Msv6 / Mdsv6
+    vmSize matches regex @"^standard_m\d+ms_v6$", true,
+    vmSize matches regex @"^standard_m\d+mds_v6$", true,
+    // Fsv2
+    vmSize matches regex @"^standard_f\d+s_v2$", true,
+    // Fsv6 / Famsv6 / Falsv6
+    vmSize matches regex @"^standard_f\d+s_v6$", true,
+    vmSize matches regex @"^standard_f\d+als_v6$", true,
+    vmSize matches regex @"^standard_f\d+ams_v6$", true,
+    // DCesv5 / DCedsv5
+    vmSize matches regex @"^standard_dce\d+s_v5$", true,
+    vmSize matches regex @"^standard_dced\d+s_v5$", true,
+    // GPU: Nvadsv5
+    vmSize matches regex @"^standard_nvadsv5$", true,
+    // HPC: HBv4 / HX
+    vmSize matches regex @"^standard_hbv4$", true,
+    vmSize matches regex @"^standard_hx$", true,
+    false
+)
+| project subscriptionId, resourceGroup, name, location, type, vmSize, isBoostSku
+| order by isBoostSku desc, name asc
